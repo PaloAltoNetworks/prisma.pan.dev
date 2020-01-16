@@ -1,0 +1,2 @@
+# Redirect domain aliases to primary domain
+https://panos.developers.paloaltonetworks.com/* https://panos.pan.dev/:splat 301!
