@@ -101,7 +101,7 @@ function Home() {
                 <img
                   alt="Prisma"
                   className={styles.heroLogo}
-                  src={useBaseUrl("img/prismalogo.png")}
+                  src={useBaseUrl("img/prismablack.png")}
                 />
                 Develop for the{" "}
                 <span className={styles.heroProjectKeywords}>journey</span>{" "}
