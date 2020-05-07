@@ -6,7 +6,7 @@ sidebar_label: IaC Scan API
 
 ### Scan CloudFormation, Terraform, Kubernetes deployment YAML files for security issues.
 
-> Prisma Public Cloud IaC Scan API will require authentication from Prisma Cloud product after Dec. 17th, 2019. We offer full functionality 30 day trial for Prisma Cloud product here - https://marketplace.paloaltonetworks.com/s/product-rdl
+> Prisma Public Cloud IaC Scan API requires authentication from Prisma Cloud. We offer full functionality 30 day trial for Prisma Cloud product here - https://marketplace.paloaltonetworks.com/s/product-rdl
 
 Prisma Public Cloud IaC Scan API is a public service that helps DevOps and security teams identify insecure configuration in their IaC so they can fix them before deploying the infrastructure to runtime. The service accepts IaC templates and provides scan results with details about the insecure configurations in the templates. You can use this service to scan popular formats such as AWS CloudFormation Templates, HashiCorp Terraform templates and Kubernetes App Deployment YAML files.
 

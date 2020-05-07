@@ -13,7 +13,8 @@ module.exports = {
       items: [
         "cloud_api",
         "compute_api",
-        "twistcli_gs"
+        "twistcli_gs",
+        "iac_api",
     ]
     },
   ],

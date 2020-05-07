@@ -17,7 +17,7 @@ import styles from "./styles.module.css";
 const features = [
   {
     title: <>What is Prisma?</>,
-    imageUrl: "img/prisma_blue.png",
+    imageUrl: "img/prismalogo.png",
     description: (
       <>
         Prisma is a comprehensive cloud security suite that allows organizations to protect their users, 
@@ -101,7 +101,7 @@ function Home() {
                 <img
                   alt="Prisma"
                   className={styles.heroLogo}
-                  src={useBaseUrl("img/prismalogo.png")}
+                  src={useBaseUrl("img/prismablack.png")}
                 />
                 Develop for the{" "}
                 <span className={styles.heroProjectKeywords}>journey</span>{" "}
@@ -120,16 +120,6 @@ function Home() {
                   onClick={scrollToTools}
                 >
                   Explore Tools
-                </Link>
-                <Link
-                  className={classnames(
-                    "button button--outline button--info button--lg",
-                    styles.getStarted
-                  )}
-                  href="register"
-                  target="_blank"
-                >
-                  Register
                 </Link>
               </div>
             </div>

@@ -25,7 +25,8 @@ module.exports = {
       title: "",
       logo: {
         alt: "Prisma for Developers",
-        src: "img/prismapeel.png"
+        src: "/img/Prisma_Light.svg",
+        srcDark: "/img/Prisma_Dark.svg"
       },
       menus: [
         {
@@ -54,12 +55,12 @@ module.exports = {
         {
           href: "https://medium.com/palo-alto-networks-developer-blog",
           label: "Blog",
-          position: "left"
+          position: "right"
         },
         {
           href: "https://github.com/PaloAltoNetworks",
           label: "GitHub",
-          position: "left"
+          position: "right"
         }
       ]
     },
@@ -90,7 +91,7 @@ module.exports = {
       ],
       logo: {
         alt: "PAN-OS® for Developers",
-        src: "img/pandev.png",
+        src: "/img/PANW_Parent_Brand_Primary_Logo_RGB_KO.svg",
         href: "https://pan.dev"
       },
       copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`

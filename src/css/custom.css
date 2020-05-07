@@ -14,15 +14,13 @@
 /* You can override the default Infima variables here. */
 
 :root {
-  --ifm-color-primary: #1a67d0;
-  --ifm-color-primary-dark: #5E93DE;
-  --ifm-color-primary-darker: #4784D9;
-  --ifm-color-primary-dt: #3075D4;
-  --ifm-color-primary-light: 	#75A3E2;
-  --ifm-color-primary-lighter: #8CB2E7;
-  --ifm-color-primary-lightest: #A3C1EC;
-  --ifm-color-info: #1a67d0;
-  --ifm-link-color: #1a67d0;
+  --ifm-color-primary: #00c0e8;
+  --ifm-color-primary-dark: #00add1;
+  --ifm-color-primary-darker: #00a3c5;
+  --ifm-color-primary-darkest: #0086a2;
+  --ifm-color-primary-light: #00d3ff;
+  --ifm-color-primary-lighter: #0cd5ff;
+  --ifm-color-primary-lightest: #2fdbff;
   --ifm-navbar-search-input-color: var(--ifm-color-gray-900);
 }
 
@@ -74,6 +72,7 @@ blockquote {
 .button {
   background-color: var(--ifm-color-gray-900);
   z-index: 1;
+  color: white !important;
 }
 
 .button:hover {
