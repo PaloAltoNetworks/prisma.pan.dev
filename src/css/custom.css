@@ -45,6 +45,8 @@ html[data-theme="dark"] {
 
   --ifm-color-content-secondary: rgba(255, 255, 255, 1);
 
+  --ifm-heading-color: #fff !important;
+
   /* Mardown color in dark mode */
   --ifm-color-gray-800: var(--ifm-color-gray-300);
 }
