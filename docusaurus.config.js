@@ -28,30 +28,17 @@ module.exports = {
         src: "/img/Prisma_Light.svg",
         srcDark: "/img/Prisma_Dark.svg"
       },
-      menus: [
+      links: [
         {
-          label: "Quickstart",
-          items: [
-            { to: "docs/twistcli_gs", label: "twistcli" },
-          
-          ],
-          position: "left"
+          to: "/docs",
+          label: "Docs",
+          position: "left",
         },
         {
-          label: "Docs",
-          items: [
-            { 
-              to: "docs/whatisprisma", 
-              label: "About Prisma" },
-            {
-              to: "docs/cloud_api",
-              label: "APIs"
-            }
-          ],
-          position: "left"
-        }
-      ],
-      links: [
+          to: "/api",
+          label: "API Ref",
+          position: "right"
+        },
         {
           href: "https://medium.com/palo-alto-networks-developer-blog",
           label: "Blog",
@@ -62,8 +49,32 @@ module.exports = {
           label: "GitHub",
           position: "right"
         }
+      ],
+      sites: [
+        {
+          label: "Products",
+          items: [
+            {
+              href: "https://panos.pan.dev",
+              label: "PAN-OS",
+              logo: "/img/strata_favicon.png"
+            },
+            {
+              href: "https://cortex.pan.dev",
+              label: "Cortex",
+              logo: "/img/cortexfavicon.png"
+            },
+            {
+              href: "https://xsoar.pan.dev",
+              label: "Cortex XSOAR",
+              logo: "/img/Cortex-XSOAR-product-green.svg"
+            }
+          ],
+          position: "right"
+        }
       ]
     },
+    
     footer: {
       style: "dark",
       links: [
@@ -97,10 +108,12 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`
     }
   },
-  themes: ["@docusaurus/theme-live-codeblock"],
+  themes: [
+    require.resolve("@docusaurus/theme-live-codeblock"),
+  ],
   presets: [
     [
-      "@docusaurus/preset-classic",
+      require.resolve("@docusaurus/preset-classic"),
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
@@ -122,7 +135,7 @@ module.exports = {
     ]
   ],
   plugins: [
-    "@docusaurus/plugin-sitemap",
+    require.resolve("@docusaurus/plugin-sitemap"),
     {
       cacheTime: 600 * 1000, // 600 sec - cache purge period
       changefreq: "weekly",
