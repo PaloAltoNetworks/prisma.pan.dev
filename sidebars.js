@@ -15,6 +15,7 @@ module.exports = {
         "compute_api",
         "twistcli_gs",
         "iac_api",
+        "policy_samples"
     ]
     },
   ],

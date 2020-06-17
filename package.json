@@ -24,11 +24,15 @@
     "@docusaurus/types": "^2.0.0-alpha.50",
     "@docusaurus/utils": "^2.0.0-alpha.50",
     "classnames": "^2.2.6",
+    "core-js": "^3.6.5",
     "marketo": "^0.0.1",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "mobx": "^4.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-particles-js": "^2.7.0",
-    "react-scroll-up-button": "^1.6.4"
+    "react-scroll-up-button": "^1.6.4",
+    "redoc": "^2.0.0-rc.29",
+    "styled-components": "^5.1.0"
   },
   "browserslist": {
     "production": [
