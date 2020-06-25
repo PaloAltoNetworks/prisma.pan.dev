@@ -168,22 +168,3 @@
   width: 100%;
   display: flex;
 }
-
-.card {
-  max-width: 348px;
-  margin: auto;
-  padding-bottom: 2rem !important;
-}
-
-.cardImage {
-  height: 8rem;
-  width: auto;
-  padding: 1rem;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.cardBody {
-  text-align: center;
-}
