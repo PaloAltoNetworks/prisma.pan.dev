@@ -43,7 +43,7 @@ const features = [
     imageUrl: "img/prisma_api.png",
     description: (
       <>
-        Our APIs and SDKs provide a collection of open, feature-rich automation
+        Our APIs and SDKs provide a collection of open, feature-rich automation to help you secure the cloud. 
       </>
     ),
     button: (
