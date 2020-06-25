@@ -35,11 +35,6 @@ module.exports = {
           position: "left",
         },
         {
-          to: "/api",
-          label: "API Ref",
-          position: "right"
-        },
-        {
           href: "https://medium.com/palo-alto-networks-developer-blog",
           label: "Blog",
           position: "right"
