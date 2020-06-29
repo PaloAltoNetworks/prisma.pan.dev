@@ -59,58 +59,7 @@ function Docs() {
                         "button button--primary stretch",
                         styles.docs
                       )}
-                      href={useBaseUrl("/docs/learn")}
-                    >
-                      GO
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div className="col col--6">
-                <div class="card shadow--md">
-                  <div class="card__header">
-                    <h2>Develop</h2>
-                    <description>
-                      Dive straight into building your own apps, scripts, and
-                      integrations with our APIs and SDKs. Here you'll find
-                      guides ranging from "Hello World!" to more advanced use
-                      cases.
-                    </description>
-                  </div>
-                  <div class="card__body">
-                    <Link href={useBaseUrl("docs/develop/quickstart")}>
-                      Quickstart
-                    </Link>
-                    <br></br>
-                    <Link
-                      href={useBaseUrl("docs/develop/cdl_python_installation")}
-                    >
-                      PAN Cortex Python
-                    </Link>
-                    <br></br>
-                    <Link
-                      href={useBaseUrl(
-                        "docs/develop/pan_cortex_data_lake_nodejs_qs"
-                      )}
-                    >
-                      PAN Cortex NodeJS
-                    </Link>
-                    <br></br>
-                    <Link
-                      href={useBaseUrl(
-                        "docs/develop/pan_cortex_data_lake_java_qs"
-                      )}
-                    >
-                      PAN Cortex JAVA
-                    </Link>
-                  </div>
-                  <div class="card__footer">
-                    <Link
-                      className={classnames(
-                        "button button--primary stretch",
-                        styles.docs
-                      )}
-                      href={useBaseUrl("docs/develop")}
+                      href={useBaseUrl("/docs/cloud_api")}
                     >
                       GO
                     </Link>

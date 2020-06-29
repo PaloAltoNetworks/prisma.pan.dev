@@ -43,8 +43,7 @@ const features = [
     imageUrl: "img/prisma_api.png",
     description: (
       <>
-        Our APIs and SDKs provide a collection of open, feature-rich automation
-        opportunities for configuration and management.
+        Our APIs and SDKs provide a collection of open, feature-rich automation to help you secure the cloud. 
       </>
     ),
     button: (
@@ -98,11 +97,6 @@ function Home() {
         <div className={styles.hero}>
             <div className={styles.heroInner}>
               <h1 className={styles.heroProjectTagline}>
-                <img
-                  alt="Prisma"
-                  className={styles.heroLogo}
-                  src={useBaseUrl("img/prismablack.png")}
-                />
                 Develop for the{" "}
                 <span className={styles.heroProjectKeywords}>journey</span>{" "}
                 to the{" "}

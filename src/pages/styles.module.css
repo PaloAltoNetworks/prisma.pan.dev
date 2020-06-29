@@ -14,13 +14,16 @@
   padding: 4rem 0;
   text-align: center;
   position: relative;
-  overflow: hidden;
-  clip-path: polygon(100% 0, 100% 79%, 50% 100%, 0 79%, 0 0);
+  clip-path: polygon(100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
 }
 
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;
+  }
+
+  .buttons_src-pages- {
+    padding-bottom: 2rem !important;
   }
 }
 
@@ -67,7 +70,6 @@
   text-align: center;
   justify-content: center;
   background-color: #807C7B;
-  clip-path: polygon(50% 0%, 100% 10%, 100% 100%, 0 100%, 0 10%);
 }
 
 .headerImage {
@@ -144,4 +146,25 @@
 
 .text__blue {
   color: #00C0E8 !important;
+}
+
+.docs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.buttons-tools-github {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 1em 1em 0 !important;
+}
+
+.features {
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+  display: flex;
 }
