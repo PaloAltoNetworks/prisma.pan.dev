@@ -96,7 +96,7 @@ function SiteLink({
 function NavMenu(props) {
   return (
     <div className="navbar__item dropdown dropdown--hoverable">
-      <a className="navbar__link">{props.label} &#9662;</a>
+      <a className="navbar__link">{props.label}</a>
       <ul className="dropdown__menu">
         {props.items.map((linkItem, i) => (
           <li key={i}>
