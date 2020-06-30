@@ -5,6 +5,8 @@ sidebar_label: AWS
 description: AWS RQL Queries
 ---
 
+# Sample RQL Queries
+
 :::note
 The following guide will walk you AWS RQL Query Examples
 :::
