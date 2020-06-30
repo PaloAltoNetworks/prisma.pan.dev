@@ -19,6 +19,15 @@ module.exports = {
     ]
     },
   ],
+  queries: [
+    {
+      type: "category",
+      label: "Queries",
+      items: [
+        "rql_aws"
+      ]
+    }
+  ],
   about :[
     {
       type: "category",
