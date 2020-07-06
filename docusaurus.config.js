@@ -16,7 +16,6 @@ module.exports = {
   themeConfig: {
     algolia: {
       apiKey: "caddcc77123a6dff437a768f47b785c3",
-      appId: "QAP3NZH9FJ",
       indexName: "prisma_pan",
       algoliaOptions: {} // Optional, if provided by Algolia
     },
