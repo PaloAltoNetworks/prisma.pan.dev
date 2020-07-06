@@ -15,9 +15,9 @@ module.exports = {
   projectName: "prisma.pan.dev", // Usually your repo name.
   themeConfig: {
     algolia: {
-      apiKey: "81ceae0c1242ce2659cacb30678ba9d7",
+      apiKey: "caddcc77123a6dff437a768f47b785c3",
       appId: "QAP3NZH9FJ",
-      indexName: "prisma.pan.dev",
+      indexName: "prisma_pan",
       algoliaOptions: {} // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
