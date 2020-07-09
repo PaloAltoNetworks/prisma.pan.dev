@@ -76,7 +76,7 @@ function DocItem(props) {
   } = DocContent;
 
   const issueTitle = `Issue with "${title}" in ${source}`;
-  const issueUrl = `https://github.com/PaloAltoNetworks/cortex.pan.dev/issues/new?labels=documentation&template=developer-documentation-issue.md&title=${issueTitle}`;
+  const issueUrl = `https://github.com/PaloAltoNetwork/prisma.pan.dev/issues/new?labels=documentation&template=developer-documentation-issue.md&title=${issueTitle}`;
   const metaImageUrl = siteUrl + useBaseUrl(metaImage);
 
   return (

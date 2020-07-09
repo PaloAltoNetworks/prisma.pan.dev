@@ -111,8 +111,8 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          // editUrl:
-          //   "https://github.com/PaloAltoNetworks/prisma.pan.dev/tree/master/docs",
+          editUrl:
+            "https://github.com/PaloAltoNetworks/prisma.pan.dev/tree/master/docs",
           routeBasePath: "docs",
           include: ["**/*.md", "**/*.mdx"], // Extensions to include.
           docLayoutComponent: "@theme/DocPage",

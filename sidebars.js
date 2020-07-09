@@ -8,25 +8,32 @@
 module.exports = {
   apis: [
     {
-      type: "category",
-      label: "Prisma APIs",
-      items: [
-        "cloud_api",
-        "compute_api",
-        "twistcli_gs",
-        "iac_api",
-        "policy_samples"
-    ]
+      type: "doc",
+      id: "index"
     },
-  ],
-  queries: [
     {
       type: "category",
-      label: "Queries",
+      label: "Prisma Cloud",
       items: [
-        "rql_aws"
+        "rql_aws",
       ]
-    }
+    },
+    {
+      type: "category",
+      label: "Prisma Cloud Compute",
+      items: [
+        "compute_api",
+        "twistcli_gs",
+        "policy_samples",
+    ]
+    },
+    {
+      type: "category",
+      label: "IaC Scan",
+      items: [
+        "iac_api",
+    ]
+    },
   ],
   about :[
     {
