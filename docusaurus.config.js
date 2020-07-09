@@ -29,7 +29,7 @@ module.exports = {
       },
       links: [
         {
-          to: "/docs",
+          to: "/docs/index",
           label: "Docs",
           position: "left",
         },
@@ -79,8 +79,8 @@ module.exports = {
               to: "docs/whatisprisma", 
               label: "About Prisma" },
             {
-              to: "docs/cloud_api",
-              label: "APIs"
+              to: "docs/index",
+              label: "Docs Homepage"
             }
           ],
         },
