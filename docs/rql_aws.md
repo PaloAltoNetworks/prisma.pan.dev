@@ -1,7 +1,7 @@
 ---
 id: rql_aws
-title: AWS rql 
-sidebar_label: AWS
+title: AWS RQL Queries
+sidebar_label: AWS RQL Queries
 description: AWS RQL Queries
 ---
 

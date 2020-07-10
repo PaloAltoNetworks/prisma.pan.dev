@@ -29,7 +29,7 @@ module.exports = {
       },
       links: [
         {
-          to: "/docs",
+          to: "/docs/index",
           label: "Docs",
           position: "left",
         },
@@ -79,8 +79,8 @@ module.exports = {
               to: "docs/whatisprisma", 
               label: "About Prisma" },
             {
-              to: "docs/cloud_api",
-              label: "APIs"
+              to: "docs/index",
+              label: "Docs Homepage"
             }
           ],
         },
@@ -111,8 +111,8 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          // editUrl:
-          //   "https://github.com/PaloAltoNetworks/prisma.pan.dev/tree/master/docs",
+          editUrl:
+            "https://github.com/PaloAltoNetworks/prisma.pan.dev/tree/master/docs",
           routeBasePath: "docs",
           include: ["**/*.md", "**/*.mdx"], // Extensions to include.
           docLayoutComponent: "@theme/DocPage",
