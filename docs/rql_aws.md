@@ -8,7 +8,7 @@ description: AWS RQL Queries
 # Sample RQL Queries
 
 :::note
-The following guide will walk you AWS RQL Query Examples
+The following guide will walk you AWS RQL Query Examples.
 :::
 
 ## List all AWS Security Groups that have Internet Access and exclude certain ports.
