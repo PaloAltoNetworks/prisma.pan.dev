@@ -65,6 +65,7 @@ blockquote {
   background-color: var(--ifm-color-gray-900);
   z-index: 1;
   color: white !important;
+  margin-bottom: 1.75rem;
 }
 
 .button:hover {
