@@ -5,23 +5,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
+import Head from "@docusaurus/Head";
+import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import DocPaginator from "@theme/DocPaginator";
+import useTOCHighlight from "@theme/hooks/useTOCHighlight";
+import classnames from "classnames";
+import clsx from "clsx";
+import React from "react";
+import styles from "./styles.module.css";
 
-import Head from '@docusaurus/Head';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import DocPaginator from '@theme/DocPaginator';
-import useTOCHighlight from '@theme/hooks/useTOCHighlight';
-import Link from '@docusaurus/Link';
-
-import clsx from 'clsx';
-import styles from './styles.module.css';
-
-const LINK_CLASS_NAME = 'table-of-contents__link';
-const ACTIVE_LINK_CLASS_NAME = 'table-of-contents__link--active';
+const LINK_CLASS_NAME = "table-of-contents__link";
+const ACTIVE_LINK_CLASS_NAME = "table-of-contents__link--active";
 const TOP_OFFSET = 100;
 
-function DocTOC({headings}) {
+function DocTOC({ headings }) {
   useTOCHighlight(LINK_CLASS_NAME, ACTIVE_LINK_CLASS_NAME, TOP_OFFSET);
   return (
     <div className="col col--3">
@@ -33,21 +32,22 @@ function DocTOC({headings}) {
 }
 
 /* eslint-disable jsx-a11y/control-has-associated-label */
-function Headings({headings, isChild}) {
+function Headings({ headings, isChild }) {
   if (!headings.length) {
     return null;
   }
   return (
     <ul
       className={
-        isChild ? '' : 'table-of-contents table-of-contents__left-border'
-      }>
+        isChild ? "" : "table-of-contents table-of-contents__left-border"
+      }
+    >
       {headings.map((heading) => (
         <li key={heading.id}>
           <a
             href={`#${heading.id}`}
             className={LINK_CLASS_NAME}
-            dangerouslySetInnerHTML={{__html: heading.value}}
+            dangerouslySetInnerHTML={{ __html: heading.value }}
           />
           <Headings isChild headings={heading.children} />
         </li>
@@ -57,10 +57,10 @@ function Headings({headings, isChild}) {
 }
 
 function DocItem(props) {
-  const {siteConfig = {}} = useDocusaurusContext();
-  const {url: siteUrl, title: siteTitle} = siteConfig;
-  const {content: DocContent} = props;
-  const {metadata} = DocContent;
+  const { siteConfig = {} } = useDocusaurusContext();
+  const { url: siteUrl, title: siteTitle } = siteConfig;
+  const { content: DocContent } = props;
+  const { metadata } = DocContent;
   const {
     description,
     title,
@@ -70,6 +70,7 @@ function DocItem(props) {
     lastUpdatedBy,
     version,
     latestVersionMainDocPermalink,
+    source,
   } = metadata;
   const {
     frontMatter: {
@@ -80,8 +81,10 @@ function DocItem(props) {
     },
   } = DocContent;
 
+  const issueTitle = `Issue with "${title}" in ${source}`;
+  const issueUrl = `https://github.com/PaloAltoNetworks/panos.pan.dev/issues/new?labels=documentation&template=developer-documentation-issue.md&title=${issueTitle}`;
   const metaTitle = title ? `${title} | ${siteTitle}` : siteTitle;
-  const metaImageUrl = useBaseUrl(metaImage, {absolute: true});
+  const metaImageUrl = useBaseUrl(metaImage, { absolute: true });
 
   return (
     <>
@@ -93,7 +96,7 @@ function DocItem(props) {
           <meta property="og:description" content={description} />
         )}
         {keywords && keywords.length && (
-          <meta name="keywords" content={keywords.join(',')} />
+          <meta name="keywords" content={keywords.join(",")} />
         )}
         {metaImage && <meta property="og:image" content={metaImageUrl} />}
         {metaImage && <meta property="twitter:image" content={metaImageUrl} />}
@@ -104,30 +107,33 @@ function DocItem(props) {
         {permalink && <link rel="canonical" href={siteUrl + permalink} />}
       </Head>
       <div
-        className={clsx('container padding-vert--lg', styles.docItemWrapper)}>
+        className={clsx("container padding-vert--lg", styles.docItemWrapper)}
+      >
         <div className="row">
           <div
-            className={clsx('col', {
+            className={clsx("col", {
               [styles.docItemCol]: !hideTableOfContents,
-            })}>
+            })}
+          >
             {latestVersionMainDocPermalink && (
               <div
                 className="alert alert--warning margin-bottom--md"
-                role="alert">
-                {version === 'next' ? (
+                role="alert"
+              >
+                {version === "next" ? (
                   <div>
-                    This is unreleased documentation for {siteTitle}{' '}
+                    This is unreleased documentation for {siteTitle}{" "}
                     <strong>{version}</strong> version.
                   </div>
                 ) : (
                   <div>
-                    This is archived documentation for {siteTitle}{' '}
+                    This is archived documentation for {siteTitle}{" "}
                     <strong>v{version}</strong>, which is no longer actively
                     maintained.
                   </div>
                 )}
                 <div className="margin-top--md">
-                  For up-to-date documentation, see the{' '}
+                  For up-to-date documentation, see the{" "}
                   <strong>
                     <Link to={latestVersionMainDocPermalink}>
                       latest version
@@ -163,7 +169,8 @@ function DocItem(props) {
                         <a
                           href={editUrl}
                           target="_blank"
-                          rel="noreferrer noopener">
+                          rel="noreferrer noopener"
+                        >
                           <svg
                             fill="currentColor"
                             height="1.2em"
@@ -171,9 +178,10 @@ function DocItem(props) {
                             preserveAspectRatio="xMidYMid meet"
                             viewBox="0 0 40 40"
                             style={{
-                              marginRight: '0.3em',
-                              verticalAlign: 'sub',
-                            }}>
+                              marginRight: "0.3em",
+                              verticalAlign: "sub",
+                            }}
+                          >
                             <g>
                               <path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z" />
                             </g>
@@ -186,20 +194,21 @@ function DocItem(props) {
                       <div className="col text--right">
                         <em>
                           <small>
-                            Last updated{' '}
+                            Last updated{" "}
                             {lastUpdatedAt && (
                               <>
-                                on{' '}
+                                on{" "}
                                 <time
                                   dateTime={new Date(
-                                    lastUpdatedAt * 1000,
+                                    lastUpdatedAt * 1000
                                   ).toISOString()}
-                                  className={styles.docLastUpdatedAt}>
+                                  className={styles.docLastUpdatedAt}
+                                >
                                   {new Date(
-                                    lastUpdatedAt * 1000,
+                                    lastUpdatedAt * 1000
                                   ).toLocaleDateString()}
                                 </time>
-                                {lastUpdatedBy && ' '}
+                                {lastUpdatedBy && " "}
                               </>
                             )}
                             {lastUpdatedBy && (
@@ -207,10 +216,10 @@ function DocItem(props) {
                                 by <strong>{lastUpdatedBy}</strong>
                               </>
                             )}
-                            {process.env.NODE_ENV === 'development' && (
+                            {process.env.NODE_ENV === "development" && (
                               <div>
                                 <small>
-                                  {' '}
+                                  {" "}
                                   (Simulated during dev for better perf)
                                 </small>
                               </div>
@@ -219,6 +228,19 @@ function DocItem(props) {
                         </em>
                       </div>
                     )}
+                  </div>
+                  <div className="row">
+                    <div className="col text--right">
+                      <Link
+                        className={classnames(
+                          "button button--outline button--primary button--md"
+                        )}
+                        href={issueUrl}
+                        target="_blank"
+                      >
+                        Report an Issue
+                      </Link>
+                    </div>
                   </div>
                 </div>
               )}
