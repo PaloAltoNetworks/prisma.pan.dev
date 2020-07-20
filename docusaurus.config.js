@@ -29,7 +29,7 @@ module.exports = {
       },
       links: [
         {
-          to: "/docs/index",
+          to: "/docs",
           label: "Docs",
           position: "left",
         },
