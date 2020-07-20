@@ -19,6 +19,13 @@ function Docs() {
     <main>
       <section>
         <div className="container">
+          <h1>Prisma For Developers</h1>
+          <description>
+            Secure your cloud with a comprehensive quite of security services to
+            effectively predict, prevent, detect, and automatically respond to
+            security and compliance risks without creating friction for users,
+            developers, and security and network administrators.
+          </description>
           <br></br>
           <br></br>
           <div className="row minheight">
