@@ -129,7 +129,21 @@ html[data-theme="dark"] .header-github-link:before {
     no-repeat;
 }
 
+.footer {
+  padding: 1rem;
+}
+
 /* Dropdown override */
 .navbar__link:after {
   display: none !important;
+}
+
+.no_dropdown:after {
+  display: none !important;
+}
+
+@media (max-width: 380px){
+  .navbar__logo {
+    content: url("/img/prismafavicon.png") !important;
+  }
 }

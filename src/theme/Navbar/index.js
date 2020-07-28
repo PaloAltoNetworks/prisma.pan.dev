@@ -231,7 +231,7 @@ function MobileNavItem({ items, position: _position, className, ...props }) {
     clsx(
       "menu__link",
       {
-        "menu__link--sublist": isSubList,
+        "menu__link--sublist no_dropdown": isSubList,
       },
       extraClassName
     );
@@ -273,7 +273,7 @@ function MobileSiteItem({ items, position: _position, className, ...props }) {
     clsx(
       "menu__link",
       {
-        "menu__link--sublist": isSubList,
+        "menu__link--sublist no_dropdown": isSubList,
       },
       extraClassName
     );
