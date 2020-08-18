@@ -27,13 +27,6 @@ module.exports = {
         "policy_samples",
     ]
     },
-    {
-      type: "category",
-      label: "IaC Scan",
-      items: [
-        "iac_api",
-    ]
-    },
   ],
   about :[
     {

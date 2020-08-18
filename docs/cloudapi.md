@@ -12,7 +12,7 @@ Prisma Public Cloud Scanning API are public API services designed to help develo
 
 1. <a href="/docs/twistcli_gs" target="_self">twistcli</a> - This service identifies vulnerabilities in packages used in container images as well as VMs.
 
-2. <a href="/docs/iac_api" target="_self">Prisma Public Cloud Infrastructure-as-Code (IaC) Scan API (BETA)</a> - This service identifies insecure configurations in common Infrastructure-as-Code (e.g. AWS Cloud Formation Templates, HashiCorp Terraform templates, Kubernetes App Deployment YAML files)
+2. Prisma Public Cloud Infrastructure-as-Code (IaC) Scan API - This service identifies insecure configurations in common Infrastructure-as-Code (e.g. AWS Cloud Formation Templates, HashiCorp Terraform templates, Kubernetes App Deployment YAML files)
 
 ## FAQs
 #### Will you be keeping these scanning services up to date with the latest security research of Palo Alto Networks as well as other public threat intelligence?
