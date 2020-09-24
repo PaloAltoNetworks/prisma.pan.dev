@@ -21,8 +21,12 @@ import styles from "./styles.module.css";
 function DocPage(props) {
   const { route: baseRoute, docsMetadata, location } = props;
   // case-sensitive route such as it is defined in the sidebar
+  if (!baseRoute.routes) {
+    baseRoute.routes = [];
+  }
+  console.log(baseRoute);
   const currentRoute =
-    baseRoute.routes.find(route => {
+    baseRoute.routes.find((route) => {
       return matchPath(location.pathname, route);
     }) || {};
   const { permalinkToSidebar, docsSidebars, version } = docsMetadata;
@@ -30,8 +34,9 @@ function DocPage(props) {
   const {
     siteConfig: { themeConfig = {} } = {},
     siteConfig: { customFields = {} } = {},
-    isClient
+    isClient,
   } = useDocusaurusContext();
+
   const { sidebarCollapsible = true } = themeConfig;
   const { docbar = {} } = customFields;
   const { options = [] } = docbar;
@@ -44,7 +49,7 @@ function DocPage(props) {
     <Layout version={version} key={isClient}>
       <div className={styles.docPage}>
         {sidebar && (
-          <div className={styles.docSidebarContainer}>
+          <div className={styles.docSidebarContainer} role="complementary">
             <DocSidebar
               docsSidebars={docsSidebars}
               path={currentRoute.path}
@@ -58,9 +63,9 @@ function DocPage(props) {
             className="row row--no-gutters"
             style={{
               position: "sticky",
-              top: "60px",
+              top: "57px",
               zIndex: 1,
-              backgroundColor: "var(--ifm-background-color)"
+              backgroundColor: "var(--ifm-background-color)",
             }}
           >
             {options.map((menuItem, i) => (
@@ -78,7 +83,7 @@ function DocPage(props) {
                   borderColor: "var(--ifm-contents-border-color)",
                   borderWidth: "0",
                   padding:
-                    "calc( var(--ifm-button-padding-vertical) * 1.5  ) calc( var(--ifm-button-padding-horizontal) * .65 )"
+                    "calc( var(--ifm-button-padding-vertical) * 1.5  ) calc( var(--ifm-button-padding-horizontal) * .65 )",
                 }}
                 key={i}
                 to={useBaseUrl(menuItem.to)}

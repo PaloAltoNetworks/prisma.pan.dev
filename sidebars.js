@@ -6,35 +6,56 @@
  */
 
 module.exports = {
-  apis: [
+  home: [
+    {
+      type:"doc",
+      id: "_index"
+    }
+  ],
+  prisma_cloud: [
     {
       type: "category",
-      label: "Prisma APIs",
+      label: "Prisma Cloud",
       items: [
-        "cloud_api",
-        "compute_api",
-        "twistcli_gs",
-        "iac_api",
-        "policy_samples"
-    ]
+        {
+          type: "category",
+          label: "RQL",
+          items: [
+            {
+              type: "category",
+              label: "AWS",
+              items: [
+                "cloud/rql/aws/aws_ec2"
+              ],
+            },
+            {
+              type: "category",
+              label: "GCP",
+              items: [
+                "cloud/rql/aws/aws_ec2"
+              ],
+            },
+            {
+              type: "category",
+              label: "Azure",
+              items: [
+                "cloud/rql/aws/aws_ec2"
+              ],
+            },
+          ],
+        },
+      ],
     },
   ],
-  queries: [
+  cloud_compute :[
     {
       type: "category",
-      label: "Queries",
+      label: "Prisma Cloud Compute",
       items: [
-        "rql_aws"
-      ]
-    }
-  ],
-  about :[
-    {
-      type: "category",
-      label: "About Prisma",
-      items: [
-        "whatisprisma"
-      ]
-    }
+        "cloud_compute/compute_api",
+        "cloud_compute/policy_samples",
+        "cloud_compute/twistcli_gs"
+      ],
+    },
   ]
 };

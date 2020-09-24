@@ -15,9 +15,8 @@ module.exports = {
   projectName: "prisma.pan.dev", // Usually your repo name.
   themeConfig: {
     algolia: {
-      apiKey: "81ceae0c1242ce2659cacb30678ba9d7",
-      appId: "QAP3NZH9FJ",
-      indexName: "prisma.pan.dev",
+      apiKey: "caddcc77123a6dff437a768f47b785c3",
+      indexName: "prisma_pan",
       algoliaOptions: {} // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
@@ -41,8 +40,9 @@ module.exports = {
         },
         {
           href: "https://github.com/PaloAltoNetworks",
-          label: "GitHub",
-          position: "right"
+          position: "right",
+          className: "header-github-link",
+          "aria-label": "GitHub repository",
         }
       ],
       sites: [
@@ -62,10 +62,10 @@ module.exports = {
             {
               href: "https://xsoar.pan.dev",
               label: "Cortex XSOAR",
-              logo: "/img/Cortex-XSOAR-product-green.svg"
+              logo: "/img/Cortex-XSOAR-product-green.svg",
             }
           ],
-          position: "right"
+          position: "products",
         }
       ]
     },
@@ -80,8 +80,8 @@ module.exports = {
               to: "docs/whatisprisma", 
               label: "About Prisma" },
             {
-              to: "docs/cloud_api",
-              label: "APIs"
+              to: "docs/index",
+              label: "Docs Homepage"
             }
           ],
         },
@@ -111,15 +111,17 @@ module.exports = {
       require.resolve("@docusaurus/preset-classic"),
       {
         docs: {
+          homePageId: "_index",
           sidebarPath: require.resolve("./sidebars.js"),
-          // editUrl:
-          //   "https://github.com/PaloAltoNetworks/prisma.pan.dev/tree/master/docs",
+          editUrl:
+            "https://github.com/PaloAltoNetworks/prisma.pan.dev/tree/master/",
           routeBasePath: "docs",
           include: ["**/*.md", "**/*.mdx"], // Extensions to include.
           docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/DocItem",
           remarkPlugins: [],
           rehypePlugins: [],
+          path: "docs",
           showLastUpdateAuthor: true,
           showLastUpdateTime: true
         },
