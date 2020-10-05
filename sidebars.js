@@ -27,20 +27,6 @@ module.exports = {
         "policy_samples",
       ]
     },
-    {
-      type: "category",
-      label: "IaC Scan",
-      items: [
-        "iac_api",
-      ]
-    },
-    {
-      type: "category",
-      label: "Releases",
-      items: [
-        "compute/releases/saas_announcements",
-      ]
-    },
   ],
   about: [
     {

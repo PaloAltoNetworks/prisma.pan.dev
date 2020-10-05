@@ -81,33 +81,6 @@ function Docs() {
 
           <br></br>
           <br></br>
-          <div className="row minheight">
-            <div className="col col--6">
-              <div class="card shadow--md">
-                <div class="card__header">
-                  <h3>IaC Scan</h3>
-                  <description>
-                    IaC Scan API is a public service that helps DevOps and
-                    security teams identify insecure configuration in their IaC
-                    so they can fix them before deploying the infrastructure to
-                    runtime.
-                  </description>
-                </div>
-                <div class="card__body">
-                  <Link href={useBaseUrl("docs/iac_api")}>IaC Scan API</Link>
-                  <br></br>
-                </div>
-                <div class="card__footer">
-                  <Link
-                    className={classnames("button button--primary stretch")}
-                    href={useBaseUrl("/docs/iac_api")}
-                  >
-                    GO
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
       <section>
