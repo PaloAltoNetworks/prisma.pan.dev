@@ -59,6 +59,28 @@ const features = [
         </Link>
       </div>
     )
+  },
+  {
+    title: <>Upgrade Announcements for Compute Console SaaS</>,
+    imageUrl: "img/prisma_cloud_saas_announcements.svg",
+    description: (
+      <>
+        Check here to learn about our upgrade plans for Compute Console in Prisma Cloud Enterprise Edition.
+      </>
+    ),
+    button: (
+      <div className={styles.buttons}>
+        <Link
+          className={classnames(
+            "button button--outline button--primary button--md",
+            styles.getStarted
+          )}
+          href="/docs/compute/releases/saas_announcements"
+        >
+          Learn More
+        </Link>
+      </div>
+    )
   }
 ];
 

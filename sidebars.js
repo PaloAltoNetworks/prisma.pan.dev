@@ -25,17 +25,24 @@ module.exports = {
         "compute_api",
         "twistcli_gs",
         "policy_samples",
-    ]
+      ]
     },
     {
       type: "category",
       label: "IaC Scan",
       items: [
         "iac_api",
-    ]
+      ]
+    },
+    {
+      type: "category",
+      label: "Releases",
+      items: [
+        "compute/releases/saas_announcements",
+      ]
     },
   ],
-  about :[
+  about: [
     {
       type: "category",
       label: "About Prisma",
