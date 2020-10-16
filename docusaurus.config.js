@@ -27,7 +27,7 @@ module.exports = {
         src: "/img/Prisma_Light.svg",
         srcDark: "/img/Prisma_Dark.svg"
       },
-      links: [
+      items: [
         {
           to: "/docs",
           label: "Docs",
@@ -45,29 +45,6 @@ module.exports = {
           "aria-label": "GitHub repository",
         }
       ],
-      sites: [
-        {
-          label: "Products",
-          items: [
-            {
-              href: "https://panos.pan.dev",
-              label: "PAN-OS",
-              logo: "/img/strata_favicon.png"
-            },
-            {
-              href: "https://cortex.pan.dev",
-              label: "Cortex",
-              logo: "/img/cortexfavicon.png"
-            },
-            {
-              href: "https://xsoar.pan.dev",
-              label: "Cortex XSOAR",
-              logo: "/img/Cortex-XSOAR-product-green.svg",
-            }
-          ],
-          position: "products",
-        }
-      ]
     },
     
     footer: {
@@ -132,11 +109,41 @@ module.exports = {
     ]
   ],
   plugins: [
-    require.resolve("@docusaurus/plugin-sitemap"),
-    {
-      cacheTime: 600 * 1000, // 600 sec - cache purge period
-      changefreq: "weekly",
-      priority: 0.5
-    }
-  ]
+    [
+      '@docusaurus/plugin-sitemap',
+      {
+        cacheTime: 600 * 1000, // 600 sec - cache purge period
+        changefreq: 'weekly',
+        priority: 0.5,
+        trailingSlash: false,
+      },
+    ],
+  ],
+  customFields: {
+    sites: [
+      {
+        label: "Products",
+        items: [
+          {
+            href: "https://panos.pan.dev",
+            label: "PAN-OS",
+            logo: "/img/strata_favicon.png",
+          },
+          {
+            href: "https://cortex.pan.dev",
+            label: "Cortex",
+            logo: "/img/cortexfavicon.png",
+          },
+          {
+            href: "https://xsoar.pan.dev",
+            label: "Cortex XSOAR",
+            logo: "/img/Cortex-XSOAR-product-green.svg",
+          },
+        ],
+        position: "products",
+      },
+    ],
+  },
+  onBrokenLinks: "error",
+  onDuplicateRoutes: "error",
 };
