@@ -53,7 +53,7 @@ const features = [
             "button button--outline button--primary button--md",
             styles.getStarted
           )}
-          href="/docs/cloud_api"
+          href="/docs/cloud_computer/compute_api"
         >
           Learn More
         </Link>
@@ -155,7 +155,7 @@ function Home() {
                       "button button--outline button--primary button--md",
                       styles.quickstart
                     )}
-                    href="/docs/twistcli_gs"
+                    href="/docs/cloud_compute/twistcli_gs"
                   >
                     Quickstart
                   </Link>
