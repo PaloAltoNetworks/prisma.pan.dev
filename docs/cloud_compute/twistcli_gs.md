@@ -60,7 +60,7 @@ The criteria for passing or failing a scan can be refined with any of the follow
 ## Scan results
 Scan reports can viewed in Prisma Cloud Console. Log into Console, and then go to **Monitor > Vulnerabilities > Twistcli Scans**. The visual report in Console is the best way for humans to parse the results.
 You can also retrieve a JSON representation of the data shown in Console using the Prisma Cloud API. The following example curl command calls the API with Basic authentication to fetch the results of a scan.
-For more information on accessing the API, see <a href="/docs/computeapi" target="_self">Accessing the API</a>
+For more information on accessing the API, see <a href="/docs/cloud_computer/compute_api" target="_self">Accessing the API</a>
 
 ``` bash
 $ curl \

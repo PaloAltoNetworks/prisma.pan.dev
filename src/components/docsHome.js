@@ -49,7 +49,7 @@ function Docs() {
                 <div class="card__footer">
                   <Link
                     className={classnames("button button--primary stretch")}
-                    href={useBaseUrl("/docs/cloud_compute/computeapi")}
+                    href={useBaseUrl("/docs/cloud_compute/compute_api")}
                   >
                     GO
                   </Link>
