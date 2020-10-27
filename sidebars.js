@@ -9,7 +9,7 @@ module.exports = {
   home: [
     {
       type:"doc",
-      id: "_index"
+      id: "home"
     }
   ],
   prisma_cloud: [
