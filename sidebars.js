@@ -32,14 +32,14 @@ module.exports = {
               type: "category",
               label: "GCP",
               items: [
-                "cloud/rql/aws/aws_ec2"
+                "cloud/rql/gcp/coming_soon_gcp"
               ],
             },
             {
               type: "category",
               label: "Azure",
               items: [
-                "cloud/rql/aws/aws_ec2"
+                "cloud/rql/azure/coming_soon_azure"
               ],
             },
           ],

@@ -143,7 +143,14 @@ module.exports = {
         position: "products",
       },
     ],
+    announcementBar: {
+      id: 'prisma',
+      content:
+        'prisma.pan.dev is a work in progress. Keep an eye out for more documentation coming to the website soon.',
+      backgroundColor: '#fafbfc',
+      textColor: '#091E42',
+    },
+    onBrokenLinks: "error",
+    onDuplicateRoutes: "error",
   },
-  onBrokenLinks: "error",
-  onDuplicateRoutes: "error",
 };
