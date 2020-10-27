@@ -150,7 +150,7 @@ module.exports = {
       backgroundColor: '#fafbfc',
       textColor: '#091E42',
     },
-    onBrokenLinks: "error",
-    onDuplicateRoutes: "error",
+    onBrokenLinks: "warn",
+    onDuplicateRoutes: "warn",
   },
 };
