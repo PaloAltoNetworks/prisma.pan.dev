@@ -53,7 +53,7 @@ const features = [
             "button button--outline button--primary button--md",
             styles.getStarted
           )}
-          href="/docs/cloud_computer/compute_api"
+          href="/docs"
         >
           Learn More
         </Link>
