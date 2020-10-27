@@ -9,7 +9,7 @@ module.exports = {
   apis: [
     {
       type: "doc",
-      id: "_index"
+      id: "home"
     },
     {
       type: "category",
