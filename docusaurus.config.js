@@ -19,6 +19,11 @@ module.exports = {
       indexName: "prisma_pan",
       algoliaOptions: {} // Optional, if provided by Algolia
     },
+    announcementBar: {
+      id: 'beta',
+      content:
+        '🚧 prisma.pan.dev is a work in progress. Check back for more documentation soon! 🚧',
+    },
     sidebarCollapsible: true,
     navbar: {
       title: "",
@@ -143,13 +148,6 @@ module.exports = {
         position: "products",
       },
     ],
-    announcementBar: {
-      id: 'prisma',
-      content:
-        'prisma.pan.dev is a work in progress. Keep an eye out for more documentation coming to the website soon.',
-      backgroundColor: '#fafbfc',
-      textColor: '#091E42',
-    },
     onBrokenLinks: "warn",
     onDuplicateRoutes: "warn",
   },
