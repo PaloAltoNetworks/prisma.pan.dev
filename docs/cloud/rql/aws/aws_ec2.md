@@ -35,6 +35,11 @@ config where api.name = 'aws-ec2-describe-instances' AND json.rule = publicIpAdd
 config where api.name = 'aws-ec2-describe-security-groups' AND json.rule = (((ipPermissions[?(@.toPort > 3389 && @.fromPort < 3389)].ipRanges[*] contains 0.0.0.0/0) or (ipPermissions[?(@.toPort == 3389 || @.fromPort == 3389)].ipRanges[*] contains 0.0.0.0/0)) or ((ipPermissions[?(@.toPort > 3389 && @.fromPort < 3389)].ipv6Ranges[*].cidrIpv6 contains ::/0) or (ipPermissions[?(@.toPort == 3389 || @.fromPort == 3389)].ipv6Ranges[*].cidrIpv6 contains ::/0))) and isShared is false as X; config where api.name = 'aws-ec2-describe-internet-gateways' as Y; filter '$.Y.attachments[*].vpcId contains $.X.vpcId'; show X; 
 ```
 
+## List all security groups that are open to the public on port 22 that are on a VPC that contains an IGW with an EC2 instance attached.
+
+```bash
+config where api.name = 'aws-ec2-describe-security-groups' AND json.rule = (((ipPermissions[?(@.toPort > 22 && @.fromPort < 22)].ipRanges[*] contains 0.0.0.0/0) or (ipPermissions[?(@.toPort == 22 || @.fromPort == 22)].ipRanges[*] contains 0.0.0.0/0)) or ((ipPermissions[?(@.toPort > 22 && @.fromPort < 22)].ipv6Ranges[*].cidrIpv6 contains ::/0) or (ipPermissions[?(@.toPort == 22 || @.fromPort == 22)].ipv6Ranges[*].cidrIpv6 contains ::/0))) and isShared is false as X; config where api.name = 'aws-ec2-describe-internet-gateways' as Y; config where api.name = 'aws-ec2-describe-instances' as Z; filter '$.Z.securityGroups[*].groupId contains $.X.groupId and $.Y.attachments[*].vpcId contains $.X.vpcId'; show X;
+```
 ## 
 
 ```bash
