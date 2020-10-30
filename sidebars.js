@@ -25,7 +25,9 @@ module.exports = {
               type: "category",
               label: "AWS",
               items: [
-                "cloud/rql/aws/aws_ec2"
+                "cloud/rql/aws/aws_ec2",
+                "cloud/rql/aws/aws_elb",
+                "cloud/rql/aws/aws_s3",
               ],
             },
             {
