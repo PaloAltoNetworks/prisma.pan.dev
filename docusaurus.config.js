@@ -19,11 +19,6 @@ module.exports = {
       indexName: "prisma_pan",
       algoliaOptions: {} // Optional, if provided by Algolia
     },
-    announcementBar: {
-      id: 'beta',
-      content:
-        '🚧 prisma.pan.dev is a work in progress. Check back for more documentation soon! 🚧',
-    },
     sidebarCollapsible: true,
     navbar: {
       title: "",
