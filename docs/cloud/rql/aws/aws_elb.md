@@ -8,7 +8,7 @@ description: AWS ELB rql
 # Sample RQL Queries
 
 :::note
-The following guide will walk you AWS RQL Query Examples
+The following guide will walk you through AWS RQL Query Examples
 :::
 
 ## Internet-Facing ELB that is not behind a WAF

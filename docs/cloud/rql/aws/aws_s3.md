@@ -8,7 +8,7 @@ description: AWS S3 rql
 # Sample RQL Queries
 
 :::note
-The following guide will walk you AWS RQL Query Examples
+The following guide will walk you through AWS RQL Query Examples
 :::
 
 ## S3 public bucket and exclude buckets with tag key is "DataClassification" and tag value is "Public"
