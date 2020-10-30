@@ -1,8 +1,8 @@
 ---
 id: coming_soon_azure
-title: Azure RQL Queries
-sidebar_label: Azure RQL Queries
-description: Azure  RQL Queries
+title: Virtual Machines
+sidebar_label: Virtual Machines 
+description: Virtual Machines
 ---
 
 # Keep an eye out for updates
