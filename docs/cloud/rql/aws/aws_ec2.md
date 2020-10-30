@@ -1,7 +1,7 @@
 ---
 id: aws_ec2
-title: AWS EC2 Queries
-sidebar_label: AWS EC2 Queries
+title: EC2
+sidebar_label: EC2
 description: AWS EC2 Queries
 ---
 
