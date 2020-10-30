@@ -26,10 +26,16 @@
     "@docusaurus/types": "2.0.0-alpha.65",
     "@docusaurus/utils": "2.0.0-alpha.65",
     "classnames": "^2.2.6",
+    "clsx": "^1.1.1",
+    "core-js": "^3.6.5",
+    "lodash.merge": "^4.6.2",
+    "mobx": "4.15.7",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-particles-js": "^3.2.1",
-    "react-scroll-up-button": "^1.6.4"
+    "react-scroll-up-button": "^1.6.4",
+    "redoc": "^2.0.0-rc.40",
+    "styled-components": "^5.2.0"
   },
   "browserslist": {
     "production": [

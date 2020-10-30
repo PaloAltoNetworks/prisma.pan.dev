@@ -53,7 +53,7 @@ const features = [
             "button button--outline button--primary button--md",
             styles.getStarted
           )}
-          href="/docs/cloud_api"
+          href="/docs"
         >
           Learn More
         </Link>
@@ -155,7 +155,7 @@ function Home() {
                       "button button--outline button--primary button--md",
                       styles.quickstart
                     )}
-                    href="/docs/twistcli_gs"
+                    href="/docs/cloud_compute/twistcli_gs"
                   >
                     Quickstart
                   </Link>
@@ -164,7 +164,7 @@ function Home() {
                       "button button--outline button--primary button--md",
                       styles.github
                     )}
-                    href="https://github.com/PaloAltoNetworks/pandevice"
+                    href="https://github.com/twistlock/docs"
                   >
                     <img
                       src="/img/GitHub_Logo_White.png"

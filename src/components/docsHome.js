@@ -40,16 +40,16 @@ function Docs() {
                   </description>
                 </div>
                 <div class="card__body">
-                  <Link href={useBaseUrl("docs/twistcli_gs")}>twistcli</Link>
+                  <Link href={useBaseUrl("docs/cloud_compute/twistcli_gs")}>twistcli</Link>
                   <br></br>
-                  <Link href={useBaseUrl("docs/policy_samples")}>
+                  <Link href={useBaseUrl("docs/cloud_compute/policy_samples")}>
                     Policy Samples
                   </Link>
                 </div>
                 <div class="card__footer">
                   <Link
                     className={classnames("button button--primary stretch")}
-                    href={useBaseUrl("/docs/cloud_api")}
+                    href={useBaseUrl("/docs/cloud_compute/compute_api")}
                   >
                     GO
                   </Link>
@@ -64,13 +64,13 @@ function Docs() {
                   <description>Get the most out of your cloud.</description>
                 </div>
                 <div class="card__body">
-                  <Link href={useBaseUrl("docs/rql_aws")}>AWS RQL Queries</Link>
+                  <Link href={useBaseUrl("docs/cloud/rql/aws/aws_ec2")}>AWS RQL Queries</Link>
                   <br></br>
                 </div>
                 <div class="card__footer">
                   <Link
                     className={classnames("button button--primary stretch")}
-                    href={useBaseUrl("/docs/rql_aws")}
+                    href={useBaseUrl("docs/cloud/rql/aws/aws_ec2")}
                   >
                     GO
                   </Link>

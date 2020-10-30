@@ -143,7 +143,7 @@ module.exports = {
         position: "products",
       },
     ],
+    onBrokenLinks: "warn",
+    onDuplicateRoutes: "warn",
   },
-  onBrokenLinks: "error",
-  onDuplicateRoutes: "error",
 };
