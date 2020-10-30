@@ -164,7 +164,7 @@ function Home() {
                       "button button--outline button--primary button--md",
                       styles.github
                     )}
-                    href="https://github.com/PaloAltoNetworks/pandevice"
+                    href="https://github.com/twistlock/docs"
                   >
                     <img
                       src="/img/GitHub_Logo_White.png"
