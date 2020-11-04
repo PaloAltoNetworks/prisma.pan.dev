@@ -1,6 +1,6 @@
 ---
 id: aws_elb
-title: AWS ELB
+title: ELB
 sidebar_label: ELB
 description: AWS ELB rql
 ---

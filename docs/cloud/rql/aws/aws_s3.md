@@ -1,6 +1,6 @@
 ---
 id: aws_s3
-title: AWS S3
+title: S3
 sidebar_label: S3
 description: AWS S3 rql
 ---
