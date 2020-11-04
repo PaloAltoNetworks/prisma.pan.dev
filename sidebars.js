@@ -34,7 +34,7 @@ module.exports = {
               type: "category",
               label: "GCP",
               items: [
-                "cloud/rql/gcp/coming_soon_gcp"
+                "cloud/rql/gcp/gcp_compute"
               ],
             },
             {
