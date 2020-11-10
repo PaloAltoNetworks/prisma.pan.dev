@@ -45,7 +45,8 @@ module.exports = {
               label: "GCP",
               items: [
                 "cloud/rql/gcp/gcp_compute",
-                "cloud/rql/gcp/gcp_cloudstorage"
+                "cloud/rql/gcp/gcp_cloudstorage",
+                "cloud/rql/gcp/gcp_gke"
               ],
             },
             {
