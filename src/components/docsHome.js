@@ -64,7 +64,7 @@ function Docs() {
                   <description>Get the most out of your cloud.</description>
                 </div>
                 <div class="card__body">
-                  <Link href={useBaseUrl("docs/cloud/rql/aws/aws_ec2")}>AWS RQL Queries</Link>
+                  <Link href={useBaseUrl("docs/cloud/rql/aws/aws_ec2")}>RQL Library</Link>
                   <br></br>
                 </div>
                 <div class="card__footer">
