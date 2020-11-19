@@ -53,7 +53,8 @@ module.exports = {
               type: "category",
               label: "Azure",
               items: [
-                "cloud/rql/azure/azure_virtual_machine"
+                "cloud/rql/azure/azure_virtual_machine",
+                "cloud/rql/azure/azure_event",
               ],
             },
           ],
