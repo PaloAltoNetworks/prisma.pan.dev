@@ -1,5 +1,5 @@
 ---
-id: virtual machine
+id: azure_virtual_machine
 title: Virtual Machine
 sidebar_label: Virtual Machine 
 description: Virtual Machine
