@@ -53,7 +53,7 @@ module.exports = {
               type: "category",
               label: "Azure",
               items: [
-                "cloud/rql/azure/coming_soon_azure"
+                "cloud/rql/azure/azure_virtual_machine"
               ],
             },
           ],
