@@ -89,7 +89,7 @@ function Home() {
   return (
     <Layout
       title={`${siteConfig.themeConfig.navbar.title}`}
-      description="All things related to automation and development with PAN-OS®"
+      description="All things related to automation and development with Prisma"
     >
       <ScrollUpButton />
       <header className={classnames("hero hero--primary", styles.heroBanner)}>
