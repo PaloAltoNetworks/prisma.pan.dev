@@ -62,6 +62,7 @@ module.exports = {
                 "cloud/rql/azure/azure_cosmos_db",
                 "cloud/rql/azure/azure_storage",
                 "cloud/rql/azure/azure_sql_db",
+                "cloud/rql/azure/azure_sql_server",
                 "cloud/rql/azure/azure_virtual_machine",
                 "cloud/rql/azure/azure_event",
               ],

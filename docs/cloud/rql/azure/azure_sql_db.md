@@ -19,11 +19,3 @@ Active Geo-Replication enables the configuration of up to four (4) readable seco
 config where cloud.type = 'azure' AND api.name = 'azure-sql-db-list' AND json.rule = sqlDatabase.properties.defaultSecondaryLocation exists and
 sqlDatabase.properties.defaultSecondaryLocation is not empty
 ```
-
-## SQL Databases not using firewall rules
-:::note
-Lock down your database to a subset of resources / limit accessibility
-:::
-```bash
-config where cloud.type = 'azure' AND api.name = 'azure-sql-server-list' AND json.rule = firewallRules is empty
-```

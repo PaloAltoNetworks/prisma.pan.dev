@@ -19,7 +19,7 @@ Azure Cosmos DB Firewall Lock down your database to a subset of resources / limi
 config where cloud.type = 'azure' AND api.name = 'azure-cosmos-db' AND json.rule = properties.ipRangeFilter is empty
 ```
 
-## Cosmos DB doesn't have a service endpoint
+## Cosmos DB doesn't have a service endpoint in the form of network filter
 
 ```bash
 config where api.name = 'azure-cosmos-db' AND json.rule = properties.isVirtualNetworkFilterEnabled is false
