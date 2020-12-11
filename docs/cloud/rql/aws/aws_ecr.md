@@ -14,5 +14,5 @@ The following guide will walk you through Amazon Elastic Container Registry RQL 
 ## ECR has images with vulnerabilities 
 
 ```bash
-config from cloud.resource where api.name = 'aws-ecr-image' AND json.rule = imageScanFindingsSummary does not exist 
+config from cloud.resource where api.name = 'aws-ecr-image' AND json.rule = imageScanFindingsSummary exists 
 ```
