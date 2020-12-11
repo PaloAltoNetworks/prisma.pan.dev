@@ -90,7 +90,7 @@ $.spec.template.spec.containers[*].ports[*].containerPort any equals 80
 </TabItem>
 </Tabs>
 
-## Deny Privilaged Pod
+## Deny Privileged Pod
 
 <Tabs
 defaultValue={typeof window !== 'undefined' && localStorage.getItem('defaultLanguage') ? localStorage.getItem('defaultLanguage') : 'rego'}
@@ -152,4 +152,27 @@ Namespace object not supported in Prisma Cloud IaC
 ```
 
 </TabItem>
+</Tabs>
+
+
+## KubeCTL exec is not allowed
+
+<Tabs
+defaultValue={typeof window !== 'undefined' && localStorage.getItem('defaultLanguage') ? localStorage.getItem('defaultLanguage') : 'rego'}
+values={[
+{ label: 'Rego', value: 'rego', },
+]
+}>
+<TabItem value="rego">
+
+```bash
+match[{"msg": msg}] {
+	input.request.operation == "CONNECT"
+	input.request.userInfo.groups[_] == "group1"
+	msg := "It's not allowed for group1 users to exec into a pod"
+}
+```
+
+</TabItem>
+
 </Tabs>
