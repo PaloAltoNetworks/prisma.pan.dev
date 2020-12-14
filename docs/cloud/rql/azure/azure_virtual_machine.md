@@ -32,9 +32,8 @@ config where cloud.type = 'azure' AND api.name = 'azure-vm-list' AND resource.st
 ```
 
 ## Azure virtual machine disk not encrypted
-:::note
-Audit the disk encryption status for the VM resources; Remediation - Navigate to the settings > Disk and click on the Encryption to enable the disk encryption, the Azure Keyvault resource should have the access policy enablement as a prerequisite for the disk encryption
-:::
+> Audit the disk encryption status for the VM resources; Remediation - Navigate to the settings > Disk and click on the Encryption to enable the disk encryption, the Azure Keyvault resource should have the access policy enablement as a prerequisite for the disk encryption
+
 ```bash
 config where cloud.type = 'azure' AND api.name = 'azure-disk-list' and json.rule = 'osType exists and (encryptionSettings does not exist or encryptionSettings.enabled == false)'
 ```
