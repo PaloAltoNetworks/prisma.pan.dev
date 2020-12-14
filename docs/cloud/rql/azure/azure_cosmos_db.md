@@ -12,9 +12,8 @@ The following guide will walk you through Azure Cosmos DB RQL Query Examples
 :::
 
 ## Cosmos DB doesn't have an IP Range filter
-:::note
-Azure Cosmos DB Firewall Lock down your database to a subset of resources / limit accessibility
-:::
+> Azure Cosmos DB Firewall Lock down your database to a subset of resources / limit accessibility
+
 ```bash
 config where cloud.type = 'azure' AND api.name = 'azure-cosmos-db' AND json.rule = properties.ipRangeFilter is empty
 ```
