@@ -90,7 +90,7 @@ $.spec.template.spec.containers[*].ports[*].containerPort any equals 80
 </TabItem>
 </Tabs>
 
-## Deny Privilaged Pod
+## Deny Privileged Pod
 
 <Tabs
 defaultValue={typeof window !== 'undefined' && localStorage.getItem('defaultLanguage') ? localStorage.getItem('defaultLanguage') : 'rego'}
@@ -152,4 +152,57 @@ Namespace object not supported in Prisma Cloud IaC
 ```
 
 </TabItem>
+</Tabs>
+
+
+## "kubectl exec" is not allowed for group1 users
+
+<Tabs
+defaultValue={typeof window !== 'undefined' && localStorage.getItem('defaultLanguage') ? localStorage.getItem('defaultLanguage') : 'rego'}
+values={[
+{ label: 'Rego', value: 'rego', },
+]
+}>
+<TabItem value="rego">
+
+```bash
+match[{"msg": msg}] {
+	input.request.operation == "CONNECT"
+	input.request.userInfo.groups[_] == "group1"
+	msg := "It's not allowed for group1 users to exec into a pod"
+}
+```
+
+</TabItem>
+
+</Tabs>
+
+
+## Audit all kubectl CONNECT operations
+
+<Tabs
+defaultValue={typeof window !== 'undefined' && localStorage.getItem('defaultLanguage') ? localStorage.getItem('defaultLanguage') : 'rego'}
+values={[
+{ label: 'Rego', value: 'rego', },
+]
+}>
+<TabItem value="rego">
+
+```bash
+match[{"msg": msg}] {
+  input.request.operation == "CONNECT"
+  input.request.resource.resource == "pods"
+  exec_or_attach(input.request.subResource)
+  msg := "Exec or attach to a pod"
+}
+exec_or_attach(v) {
+  v == "exec"
+}
+exec_or_attach(v) {
+  v == "attach"
+}
+```
+
+</TabItem>
+
 </Tabs>
