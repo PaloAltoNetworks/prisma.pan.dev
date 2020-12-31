@@ -14,16 +14,16 @@ The following guide will walk you through Azure Kubernetes Service RQL Query Exa
 ## Authorized IPs that will connect to the cluster are not set
 
 ```bash
-config where cloud.type = 'azure' AND api.name = 'azure-kubernetes-cluster' AND json.rule = properties.apiServerAuthorizedIPRanges does not exist or properties.apiServerAuthorizedIPRanges is empty
+config from cloud.resource where cloud.type = 'azure' AND api.name = 'azure-kubernetes-cluster' AND json.rule = properties.apiServerAuthorizedIPRanges does not exist or properties.apiServerAuthorizedIPRanges is empty
 ```
 ## Pod Security Policies are not used
 
 ```bash
-config where cloud.type = 'azure' AND api.name = 'azure-kubernetes-cluster' AND json.rule = properties.enablePodSecurityPolicy does not exist or properties.enablePodSecurityPolicy is false
+config from cloud.resource where cloud.type = 'azure' AND api.name = 'azure-kubernetes-cluster' AND json.rule = properties.enablePodSecurityPolicy does not exist or properties.enablePodSecurityPolicy is false
 ```
 
 ## AKS cluster not integrated with AAD
 
 ```bash
-config where cloud.type = 'azure' AND api.name = 'azure-kubernetes-cluster' AND json.rule = properties.aadProfile exists
+config from cloud.resource where cloud.type = 'azure' AND api.name = 'azure-kubernetes-cluster' AND json.rule = properties.aadProfile exists
 ```

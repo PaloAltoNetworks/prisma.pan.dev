@@ -14,5 +14,5 @@ The following guide will walk you through Azure Container Registry RQL Query Exa
 ## Azure ACR with an enabled admin user (i.e. not using AD)
 
 ```bash
-config where cloud.type='azure' and api.name= 'azure-container-registry' AND json.rule = properties.adminUserEnabled is false
+config from cloud.resource where cloud.type='azure' and api.name= 'azure-container-registry' AND json.rule = properties.adminUserEnabled is false
 ```

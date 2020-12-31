@@ -16,5 +16,5 @@ The following guide will walk you through Azure Load Balancer RQL Query Examples
 > The configuration of the health probe and probe responses determine which backend pool instances will receive new flows
 
 ```bash
-config where cloud.type = 'azure' AND api.name = 'azure-network-lb-list' AND json.rule = ['properties.probes'][*] does not exist
+config from cloud.resource where cloud.type = 'azure' AND api.name = 'azure-network-lb-list' AND json.rule = ['properties.probes'][*] does not exist
 ```

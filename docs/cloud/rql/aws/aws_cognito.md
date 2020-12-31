@@ -14,5 +14,5 @@ The following guide will walk you through AWS Cognito RQL Query Examples
 ## Ensure Cognito Identity Pool exists
 
 ```bash
-config where cloud.type = 'aws' AND cloud.service = 'AWS Cognito' AND api.name = 'aws-cognito-identity-pool' AND json.rule = identityPoolName exists
+config from cloud.resource where cloud.type = 'aws' AND cloud.service = 'AWS Cognito' AND api.name = 'aws-cognito-identity-pool' AND json.rule = identityPoolName exists
 ```

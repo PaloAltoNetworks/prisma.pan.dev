@@ -15,5 +15,5 @@ The following guide will walk you through Azure SQL Server RQL Query Examples
 > Lock down your SQL Servers to a subset of resources / limit accessibility
 
 ```bash
-config where cloud.type = 'azure' AND api.name = 'azure-sql-server-list' AND json.rule = firewallRules is empty
+config from cloud.resource where cloud.type = 'azure' AND api.name = 'azure-sql-server-list' AND json.rule = firewallRules is empty
 ```
