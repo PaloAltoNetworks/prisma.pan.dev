@@ -19,3 +19,15 @@ event from cloud.audit_logs where operation IN ( 'AddUserToGroup', 'AttachGroupP
 'DeleteLogGroup' ) AND json.rule = $.userIdentity.arn does not contain 'AWSCloudFormation' 
 and $.userIdentity.arn does not contain 'ocp_installer' and $.userIdentity.arn does not contain 'automation_user' 
 ```
+
+## Alert when someone deletes a key
+
+```bash
+event from cloud.audit_logs where cloud.type = 'aws' AND operation IN ( 'DeleteAccessKey' ) 
+```
+
+## Failed AWS API calls
+
+```bash
+event from cloud.audit_logs where json.rule = $.errorCode exists ADDCOLUMN $.errorCode
+```
