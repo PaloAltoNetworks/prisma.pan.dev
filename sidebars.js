@@ -64,7 +64,21 @@ module.exports = {
                 "cloud/rql/azure/azure_sql_db",
                 "cloud/rql/azure/azure_sql_server",
                 "cloud/rql/azure/azure_virtual_machine",
-                "cloud/rql/azure/azure_event",
+              ],
+            },
+            {
+              type: "category",
+              label: "Network",
+              items: [
+                "cloud/rql/network/network_vpc_flows",
+              ],
+            },
+            {
+              type: "category",
+              label: "Event",
+              items: [
+                "cloud/rql/event/aws_event",
+                "cloud/rql/event/azure_event",
               ],
             },
           ],

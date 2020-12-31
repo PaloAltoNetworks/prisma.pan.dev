@@ -14,5 +14,5 @@ The following guide will walk you through AWS Guardduty RQL Query Examples
 ## AWS Guardduty Host looking for Trojan using Blackholed DNS traffic
 
 ```bash
-config where finding.type = 'AWS GuardDuty Host' AND finding.name = 'Trojan:EC2/BlackholeTraffic!DNS'
+config from cloud.resource where finding.type = 'AWS GuardDuty Host' AND finding.name = 'Trojan:EC2/BlackholeTraffic!DNS'
 ```

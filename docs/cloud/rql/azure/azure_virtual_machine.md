@@ -14,20 +14,21 @@ The following guide will walk you through Azure RQL Query Examples
 ## Azure virtual machine looking for Linux OS type in storage profile
 
 ```bash
-config where AND api.name = 'azure-vm-list' AND json.rule = ['properties.storageProfile'].osDisk.osType contains "Linux"
+config from cloud.resource where AND api.name = 'azure-vm-list' AND json.rule = ['properties.storageProfile'].osDisk.osType contains "Linux"
 ```
 
 ## Azure virtual machine anti malware setting not enabled on a Windows VM
 
 ```bash
-config where cloud.type = 'azure' AND api.name = 'azure-vm-list' AND resource.status = Active AND json.rule = ['properties.licenseType'] contains "Windows" and 
-Extensions.IaaSAntimalware.settings.AntimalwareEnabled is false
+config from cloud.resource where cloud.type = 'azure' AND api.name = 'azure-vm-list' AND resource.status = Active AND 
+json.rule = ['properties.licenseType'] contains "Windows" and Extensions.IaaSAntimalware.settings.AntimalwareEnabled is false
 ```
 
 ## Azure virtual machine not configured with automatic updates on Windows VM
 
 ```bash
-config where cloud.type = 'azure' AND api.name = 'azure-vm-list' AND resource.status = Active AND json.rule = ['properties.licenseType'] contains "Windows" and 
+config from cloud.resource where cloud.type = 'azure' AND api.name = 'azure-vm-list' AND 
+resource.status = Active AND json.rule = ['properties.licenseType'] contains "Windows" and 
 ['properties.osProfile'].windowsConfiguration.enableAutomaticUpdates is true
 ```
 
@@ -35,5 +36,6 @@ config where cloud.type = 'azure' AND api.name = 'azure-vm-list' AND resource.st
 > Audit the disk encryption status for the VM resources; Remediation - Navigate to the settings > Disk and click on the Encryption to enable the disk encryption, the Azure Keyvault resource should have the access policy enablement as a prerequisite for the disk encryption
 
 ```bash
-config where cloud.type = 'azure' AND api.name = 'azure-disk-list' and json.rule = 'osType exists and (encryptionSettings does not exist or encryptionSettings.enabled == false)'
+config from cloud.resource where cloud.type = 'azure' AND api.name = 'azure-disk-list' and 
+json.rule = 'osType exists and (encryptionSettings does not exist or encryptionSettings.enabled == false)'
 ```
