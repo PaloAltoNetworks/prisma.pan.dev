@@ -8,8 +8,10 @@
 module.exports = {
   title: "Next-gen Automation",
   tagline: "with the only next-gen security platform",
-  url: "https://prisma.pan.dev",
-  baseUrl: "/",
+  url: process.env.SITE_URL,
+  baseUrl: process.env.CI_MERGE_REQUEST_IID
+    ? `/-/${process.env.CI_PROJECT_NAME}/-/jobs/${process.env.CI_JOB_ID}/artifacts/public/`
+    : "/",
   favicon: "img/prismafavicon.png",
   organizationName: "PaloAltoNetworks", // Usually your GitHub org/user name.
   projectName: "prisma.pan.dev", // Usually your repo name.
@@ -17,7 +19,7 @@ module.exports = {
     algolia: {
       apiKey: "caddcc77123a6dff437a768f47b785c3",
       indexName: "prisma_pan",
-      algoliaOptions: {} // Optional, if provided by Algolia
+      algoliaOptions: {}, // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
     navbar: {
@@ -25,7 +27,7 @@ module.exports = {
       logo: {
         alt: "Prisma for Developers",
         src: "/img/Prisma_Light.svg",
-        srcDark: "/img/Prisma_Dark.svg"
+        srcDark: "/img/Prisma_Dark.svg",
       },
       items: [
         {
@@ -36,30 +38,31 @@ module.exports = {
         {
           href: "https://medium.com/palo-alto-networks-developer-blog",
           label: "Blog",
-          position: "right"
+          position: "right",
         },
         {
           href: "https://github.com/PaloAltoNetworks",
           position: "right",
           className: "header-github-link",
           "aria-label": "GitHub repository",
-        }
+        },
       ],
     },
-    
+
     footer: {
       style: "dark",
       links: [
         {
           title: "Docs",
           items: [
-            { 
-              to: "docs/whatisprisma", 
-              label: "About Prisma" },
+            {
+              to: "docs/whatisprisma",
+              label: "About Prisma",
+            },
             {
               to: "docs/index",
-              label: "Docs Homepage"
-            }
+              label: "Docs Homepage",
+            },
           ],
         },
         {
@@ -67,22 +70,20 @@ module.exports = {
           items: [
             {
               label: "Blog",
-              href: "https://medium.com/palo-alto-networks-developer-blog"
-            }
-          ]
-        }
+              href: "https://medium.com/palo-alto-networks-developer-blog",
+            },
+          ],
+        },
       ],
       logo: {
         alt: "PAN-OS® for Developers",
         src: "/img/PANW_Parent_Brand_Primary_Logo_RGB_KO.svg",
-        href: "https://pan.dev"
+        href: "https://pan.dev",
       },
-      copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`
-    }
+      copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`,
+    },
   },
-  themes: [
-    require.resolve("@docusaurus/theme-live-codeblock"),
-  ],
+  themes: [require.resolve("@docusaurus/theme-live-codeblock")],
   presets: [
     [
       require.resolve("@docusaurus/preset-classic"),
@@ -100,21 +101,21 @@ module.exports = {
           rehypePlugins: [],
           path: "docs",
           showLastUpdateAuthor: true,
-          showLastUpdateTime: true
+          showLastUpdateTime: true,
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css")
-        }
-      }
-    ]
+          customCss: require.resolve("./src/css/custom.css"),
+        },
+      },
+    ],
   ],
   plugins: [
     [
-      '@docusaurus/plugin-sitemap',
+      "@docusaurus/plugin-sitemap",
       {
         id: "prisma-sitemap",
         cacheTime: 600 * 1000, // 600 sec - cache purge period
-        changefreq: 'weekly',
+        changefreq: "weekly",
         priority: 0.5,
       },
     ],

@@ -1,0 +1,74 @@
+image: node:alpine
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - 🤞 precheck
+  - 📦 publish
+
+pages:
+  stage: 📦 publish
+  script:
+    - yarn install
+    - yarn run build
+    - mv build public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+  environment:
+    name: production/${CI_PROJECT_NAME}/${CI_COMMIT_REF_NAME}
+    url: https://${CI_PROJECT_NAMESPACE}.docs.pan.run
+
+🤔 pages:preview:
+  stage: 📦 publish
+  script:
+    - yarn install
+    - yarn run build
+    - mv build public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_MERGE_REQUEST_IID
+  environment:
+    name: preview/${CI_PROJECT_NAME}/${CI_COMMIT_REF_NAME}
+    url: https://${CI_PROJECT_NAMESPACE}.docs.pan.run/-/${CI_PROJECT_NAME}/-/jobs/${CI_JOB_ID}/artifacts/public/index.html
+    on_stop: 😢 pages:preview:stop
+
+😢 pages:preview:stop:
+  stage: 📦 publish
+  rules:
+    - if: $CI_MERGE_REQUEST_IID
+      when: manual
+  allow_failure: true
+  environment:
+    name: preview/${CI_PROJECT_NAME}/${CI_COMMIT_REF_NAME}
+    action: stop
+  script:
+    - echo "👋 bye"
+
+openapi:linter:
+  stage: 🤞 precheck
+  only:
+    refs:
+      - merge_requests
+    changes:
+      - static/oas/**/*.{yaml,yml,json}
+  script:
+    - apk add git
+    - apk add rsync
+    - yarn global add @stoplight/spectral
+    - mkdir .temp
+    - git fetch origin ${CI_MERGE_REQUEST_TARGET_BRANCH_NAME}
+    - git diff --name-only -r ${CI_COMMIT_SHA} origin/${CI_MERGE_REQUEST_TARGET_BRANCH_NAME} | xargs -I{} rsync -R {} .temp
+    - find .temp -print
+    - spectral --ignore-unknown-format -v -F "warn" lint .temp/static/oas/**/*.{json,yml,yaml} -f html 2>&1 | tee openapi-linter-results.html
+  artifacts:
+    expose_as: 'OpenAPI Linter Results'
+    paths:
+      - openapi-linter-results.html
+    when: always
