@@ -23,7 +23,7 @@ config from cloud.resource where api.name = 'gcloud-compute-instances-list'  and
 config from cloud.resource where api.name = 'gcloud-compute-instances-list' as X; config from cloud.resource where api.name = 'gcloud-compute-networks-subnets-list' as Y; filter '$.X.networkInterfaces[*].subnetwork contains $.Y.selfLink'; show Y;
  ```
 
-## List VPC subnetworks which are NOT in-use:
+## List VPC subnetworks which are NOT in-use
 
 ```bash
 config from cloud.resource where api.name = 'gcloud-compute-instances-list' as X; config from cloud.resource where api.name = 'gcloud-compute-networks-subnets-list' as Y; filter 'not ($.X.networkInterfaces[*].subnetwork contains $.Y.selfLink)'; show Y; 
@@ -35,3 +35,7 @@ config from cloud.resource where api.name = 'gcloud-compute-instances-list' as X
 config from cloud.resource where api.name = 'gcloud-compute-networks-subnets-list' AND json.rule = enableFlowLogs does not exist or enableFlowLogs is false as X; config from cloud.resource where api.name = 'gcloud-compute-instances-list' AND json.rule = canIpForward is true as Y; filter ' $.Y.networkInterfaces[*].network contains $.X.network '; show X;
 ```
 
+## Find Compute instances with OS-Login enabled
+```bash
+config from cloud.resource where api.name = 'gcloud-compute-project-info' AND json.rule = "commonInstanceMetadata.items[?(@.key=='enable-oslogin' && @.value=='TRUE')] exists" 
+```
