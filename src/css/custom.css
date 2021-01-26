@@ -22,6 +22,48 @@
   --ifm-color-primary-lighter: #0cd5ff;
   --ifm-color-primary-lightest: #2fdbff;
   --ifm-navbar-search-input-color: var(--ifm-color-gray-900);
+  --ifm-font-size-base: 95%;
+  --ifm-code-font-size: 90%;
+  --ifm-font-family-base: 'Montserrat', sans-serif;
+  --ifm-font-family-monospace: 'Roboto Mono', monospace;
+}
+
+/* Center all columns in main wrapper */ 
+.main-wrapper {
+  max-width: 1400px;
+  width: 1400px;
+  align-self: center;
+}
+
+.main-wrapper h1[class^="docTitle"] {
+  font-size: 2.8rem;
+}
+
+@media (max-width: 1416px) {
+  .main-wrapper {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1320px) and (min-width: 997px) {
+  .container {
+    max-width: calc(
+      var(--ifm-container-width) - 125px - var(--ifm-spacing-horizontal) * 2
+    );
+  }
+}
+
+/* Center navbar items */ 
+.navbar__inner {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+/* Force homepage to full width */
+.homepage {
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Dark mode overrides */
