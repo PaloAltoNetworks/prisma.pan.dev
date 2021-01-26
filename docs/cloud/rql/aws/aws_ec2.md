@@ -7,7 +7,7 @@ description: AWS EC2 Queries
 
 # Sample RQL Queries
 
-:::note
+:::info
 The following guide will walk you through AWS EC2 RQL Query Examples
 :::
 

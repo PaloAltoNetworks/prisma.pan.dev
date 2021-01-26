@@ -49,6 +49,8 @@ html[data-theme="dark"] {
 
   /* Mardown color in dark mode */
   --ifm-color-gray-800: var(--ifm-color-gray-300);
+
+  --ifm-code-background: var(--ifm-color-gray-700);
 }
 
 /* Docs overrides */
@@ -59,6 +61,17 @@ html[data-theme="dark"] {
 blockquote {
   border-left: 10px solid var(--ifm-color-primary) !important;
   border-top: 1px solid var(--ifm-color-primary) !important;
+}
+
+.alert--info {
+  --ifm-alert-background-color: var(--ifm-color-primary);
+  --ifm-alert-border-color: var(--ifm-color-primary);
+  --ifm-alert-color: var(--ifm-color-white);
+}
+
+.alert--info svg {
+  fill: #fff;
+  stroke: #fff;
 }
 
 .button {
@@ -149,15 +162,22 @@ html[data-theme="dark"] .header-github-link:before {
 }
 
 .search-input{
-  background: var(--docsearch-searchbox-background);
+  background: #EBEDF0;
   border: 0;
   border-radius: 40px;
   color: var(--docsearch-muted-color);
   cursor: pointer;
-  display:inline;
+  display: inline-flex;
   font-weight: 500;
   height: 36px;
   padding: 0 8px;
-  -webkit-user-select: none;
-  user-select: none;
+  -webkit-user-select: text !important;
+  user-select: text !important;
+}
+
+.search-input:active, .search-input:focus, .search-input:hover {
+  background: var(--docsearch-searchbox-focus-background);
+  box-shadow: var(--docsearch-searchbox-shadow);
+  color: var(--docsearch-text-color);
+  outline: none;
 }

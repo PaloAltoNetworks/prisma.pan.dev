@@ -128,7 +128,7 @@ export const columns = [
   {
     Header: "RQL",
     accessor: "rql",
-    className: "rql-data-table left pre-wrap",
+    className: "rql-data-table right pre-wrap",
     Cell: ({ cell: { value }, row: { original } }) => (
       <CodeBlock className="sql">{value}</CodeBlock>
     ),

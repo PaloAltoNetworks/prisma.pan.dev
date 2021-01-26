@@ -32,7 +32,6 @@
     "match-sorter": "^6.1.0",
     "mobx": "4.15.7",
     "react": "16.13.1",
-    "react-code-blocks": "^0.0.8",
     "react-dom": "16.13.1",
     "react-particles-js": "^3.2.1",
     "react-scroll-up-button": "^1.6.4",
