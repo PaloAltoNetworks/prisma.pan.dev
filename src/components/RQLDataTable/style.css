@@ -1,0 +1,12 @@
+.rql-data-table.left {
+    text-align: center;
+    min-width: 300px;
+  }
+  
+  .rql-data-table.right {
+    text-align: right;
+  }
+  
+  .rql-data-table, .rql-data-table.center {
+    text-align: center;
+  }

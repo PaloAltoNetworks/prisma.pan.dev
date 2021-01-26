@@ -1,0 +1,16 @@
+---
+id: aws_rql
+sidebar_label: AWS RQL Table
+title:  Searchable AWS RQL Table
+description: AWS RQL Table
+hide_table_of_contents: true
+custom_edit_url: https://github.com/PaloAltoNetworks/prisma.pan.dev/blob/master/docs/cloud/rql/aws/aws_rql.table.js
+---
+
+import { RQLDataTable } from "@site/src/components/RQLDataTable";
+import { columns, queries } from "./aws_rql.table";
+
+<RQLDataTable
+  columns={columns}
+  data={queries}
+/>

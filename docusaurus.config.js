@@ -8,7 +8,9 @@
 module.exports = {
   title: "Next-gen Automation",
   tagline: "with the only next-gen security platform",
-  url: process.env.SITE_URL,
+  url: process.env.CI_PAGES_URL
+    ? process.env.CI_PAGES_URL
+    : "https://prisma.pan.dev",
   baseUrl: process.env.CI_MERGE_REQUEST_IID
     ? `/-/${process.env.CI_PROJECT_NAME}/-/jobs/${process.env.CI_JOB_ID}/artifacts/public/`
     : "/",
