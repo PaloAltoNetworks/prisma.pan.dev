@@ -20,8 +20,9 @@ const features = [
     imageUrl: "img/prismalogo.png",
     description: (
       <>
-        Prisma is a comprehensive cloud security suite that allows organizations to protect their users, 
-        applications and data, regardless of where they’re located.
+        Prisma is a comprehensive cloud security suite that allows organizations
+        to protect their users, applications and data, regardless of where
+        they’re located.
       </>
     ),
     button: (
@@ -36,14 +37,15 @@ const features = [
           Learn More
         </Link>
       </div>
-    )
+    ),
   },
   {
     title: <>APIs and SDKs</>,
     imageUrl: "img/prisma_api.png",
     description: (
       <>
-        Our APIs and SDKs provide a collection of open, feature-rich automation to help you secure the cloud. 
+        Our APIs and SDKs provide a collection of open, feature-rich automation
+        to help you secure the cloud.
       </>
     ),
     button: (
@@ -58,8 +60,8 @@ const features = [
           Learn More
         </Link>
       </div>
-    )
-  }
+    ),
+  },
 ];
 
 function Feature({ imageUrl, title, description, button }) {
@@ -81,7 +83,8 @@ function Feature({ imageUrl, title, description, button }) {
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
-  const scrollToRef = ref => ref.current.scrollIntoView({ behavior: "smooth" });
+  const scrollToRef = (ref) =>
+    ref.current.scrollIntoView({ behavior: "smooth" });
   const vertificalsRef = useRef(null);
   const toolsRef = useRef(null);
   const scrollToVerticals = () => scrollToRef(vertificalsRef);
@@ -90,19 +93,17 @@ function Home() {
     <Layout
       title={`${siteConfig.themeConfig.navbar.title}`}
       description="All things related to automation and development with Prisma"
+      wrapperClassName="homepage"
     >
       <ScrollUpButton />
       <header className={classnames("hero hero--primary", styles.heroBanner)}>
         <div className="container">
-        <div className={styles.hero}>
+          <div className={styles.hero}>
             <div className={styles.heroInner}>
               <h1 className={styles.heroProjectTagline}>
                 Develop for the{" "}
-                <span className={styles.heroProjectKeywords}>journey</span>{" "}
-                to the{" "}
-                <span className={styles.heroProjectKeywords}>
-                  cloud
-                </span>{" "}
+                <span className={styles.heroProjectKeywords}>journey</span> to
+                the <span className={styles.heroProjectKeywords}>cloud</span>{" "}
                 with Prisma
               </h1>
               <div className={styles.buttons}>
@@ -135,7 +136,6 @@ function Home() {
         <section className={styles.tools} ref={toolsRef}>
           <div className="container">
             <div className="row">
-
               {/* Twistlock */}
               <div className={classnames("col col--12", styles.tools)}>
                 <div className="text text--center">
@@ -174,7 +174,6 @@ function Home() {
                   </Link>
                 </div>
               </div>
-
             </div>
           </div>
         </section>
