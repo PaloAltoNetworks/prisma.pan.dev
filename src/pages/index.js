@@ -39,11 +39,12 @@ const features = [
     )
   },
   {
-    title: <>APIs and SDKs</>,
+    title: <>APIs, SDKs and policy examples</>,
     imageUrl: "img/prisma_api.png",
     description: (
       <>
         Our APIs and SDKs provide a collection of open, feature-rich automation to help you secure the cloud. 
+        Get the most out of Prisma by using custom policy examples to enreach your views and cloud security.
       </>
     ),
     button: (

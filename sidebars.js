@@ -83,6 +83,14 @@ module.exports = {
             },
           ],
         },
+        {
+          type: "category",
+          label: "Terraform Provider",
+            items: [
+                "cloud/tf/provider_doc",
+                "cloud/tf/tf_example1",
+              ]
+        },
       ],
     },
   ],

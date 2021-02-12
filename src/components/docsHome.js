@@ -67,6 +67,10 @@ function Docs() {
                   <Link href={useBaseUrl("docs/cloud/rql/aws/aws_ec2")}>RQL Library</Link>
                   <br></br>
                 </div>
+                <div class="card__body">
+                  <Link href={useBaseUrl("docs/cloud/tf/tf_example1")}>Terraform Provider Examples</Link>
+                  <br></br>
+                </div>
                 <div class="card__footer">
                   <Link
                     className={classnames("button button--primary stretch")}
