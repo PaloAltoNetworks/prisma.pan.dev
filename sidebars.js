@@ -81,6 +81,14 @@ module.exports = {
                 "cloud/rql/event/azure_event",
               ],
             },
+            {
+              type: "category",
+              label: "IAM Security",
+              items: [
+                "cloud/rql/iam/iam_gen",
+                "cloud/rql/iam/iam_aws",
+              ],
+            },
           ],
         },
       ],
