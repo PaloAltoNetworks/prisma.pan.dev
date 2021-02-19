@@ -161,6 +161,7 @@ Namespace object not supported in Prisma Cloud IaC
 defaultValue={typeof window !== 'undefined' && localStorage.getItem('defaultLanguage') ? localStorage.getItem('defaultLanguage') : 'rego'}
 values={[
 { label: 'Rego', value: 'rego', },
+{ label: 'JSON', value: 'json', },
 ]
 }>
 <TabItem value="rego">
@@ -175,6 +176,13 @@ match[{"msg": msg}] {
 
 </TabItem>
 
+<TabItem value="json">
+
+```bash
+CONNECT operations not supported in Prisma Cloud IaC, as those are runtime audits
+```
+
+</TabItem>
 </Tabs>
 
 
@@ -184,6 +192,7 @@ match[{"msg": msg}] {
 defaultValue={typeof window !== 'undefined' && localStorage.getItem('defaultLanguage') ? localStorage.getItem('defaultLanguage') : 'rego'}
 values={[
 { label: 'Rego', value: 'rego', },
+{ label: 'JSON', value: 'json', },
 ]
 }>
 <TabItem value="rego">
@@ -205,4 +214,47 @@ exec_or_attach(v) {
 
 </TabItem>
 
+<TabItem value="json">
+
+```bash
+CONNECT operations not supported in Prisma Cloud IaC, as those are runtime audits
+```
+
+</TabItem>
+</Tabs>
+
+
+## Audit all Pods with Linux Capabilities
+
+<Tabs
+defaultValue={typeof window !== 'undefined' && localStorage.getItem('defaultLanguage') ? localStorage.getItem('defaultLanguage') : 'rego'}
+values={[
+{ label: 'Rego', value: 'rego', },
+{ label: 'JSON', value: 'json', },
+]
+}>
+<TabItem value="rego">
+
+```bash
+match[{"msg": msg}] {
+	input.request.operation == "CREATE"
+	input.request.kind.kind == "Pod"
+	input.request.resource.resource == "pods"
+	input.request.object.spec.containers[_].securityContext.capabilities.add
+	msg := "Pod created with Linux Capabilities"
+}
+```
+
+</TabItem>
+
+<TabItem value="json">
+
+```bash
+($.spec.template.spec.containers[*].securityContext.capabilities.drop exists 
+and not $.spec.template.spec.containers[*].securityContext.capabilities.drop[*] contains ALL) 
+or ($.spec.template.spec.containers[*].securityContext.capabilities.add exists 
+and not $.spec.template.spec.containers[*].securityContext.capabilities.add[*] is empty)
+```
+
+</TabItem>
 </Tabs>

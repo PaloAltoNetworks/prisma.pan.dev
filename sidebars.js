@@ -82,7 +82,23 @@ module.exports = {
                 "cloud/rql/event/azure_event",
               ],
             },
+            {
+              type: "category",
+              label: "IAM Security",
+              items: [
+                "cloud/rql/iam/iam_gen",
+                "cloud/rql/iam/iam_aws",
+              ],
+            },
           ],
+        },
+        {
+          type: "category",
+          label: "Terraform Provider",
+            items: [
+                "cloud/tf/provider_doc",
+                "cloud/tf/tf_example1",
+              ]
         },
       ],
     },
