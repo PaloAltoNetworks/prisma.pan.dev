@@ -20,3 +20,25 @@ filter ' not ( ( $.Z.resources.applicationLoadBalancer[*] contains $.X.loadBalan
 ( $.Y.resources.applicationLoadBalancer[*] contains $.X.loadBalancerArn ))'; show X;
 ```
 
+## Use a good cipher list to find the resources that have a cipher not in the good list enabled.
+
+Following are considered as good ciphers:
+
+ECDHE-RSA-AES128-GCM-SHA256
+ECDHE-RSA-AES256-GCM-SHA384
+DHE-RSA-AES128-GCM-SHA256
+DHE-RSA-AES128-CCM)
+DHE-RSA-AES256-CCM
+DHE-RSA-AES128-CCM8
+DHE-RSA-AES256-CCM8
+ECDHE-RSA-AES128-SHA256
+DHE-RSA-AES128-SHA256
+DHE-RSA-AES256-SHA256
+
+Following is one of the bad ciphers:
+
+DES-CBC3-SHA
+
+````bash
+config from cloud.resource where cloud.type = 'aws' AND api.name = 'aws-elb-describe-load-balancers' AND json.rule = 'policies[*].policyAttributeDescriptions[?any( ( attributeName does not contain ECDHE-RSA-AES128-GCM-SHA256 and attributeValue equals true) and ( attributeName does not contain ECDHE-RSA-AES256-GCM-SHA384 and attributeValue equals true) and ( attributeName does not contain DHE-RSA-AES128-GCM-SHA256 and attributeValue equals true) and ( attributeName does not contain DHE-RSA-AES128-CCM and attributeValue equals true) and ( attributeName does not contain DHE-RSA-AES256-CCM and attributeValue equals true) and ( attributeName does not contain DHE-RSA-AES128-CCM8 and attributeValue equals true) and ( attributeName does not contain DHE-RSA-AES256-CCM8 and attributeValue equals true) and ( attributeName does not contain ECDHE-RSA-AES128-SHA256 and attributeValue equals true) and ( attributeName does not contain DHE-RSA-AES128-SHA256 and attributeValue equals true) and ( attributeName does not contain DHE-RSA-AES256-SHA256 and attributeValue equals true) and ( attributeName contains DES-CBC3-SHA and attributeValue equals true))] exists'
+````
