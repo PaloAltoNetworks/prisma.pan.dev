@@ -109,6 +109,7 @@ module.exports = {
       items: [
         "cloud_compute/compute_api",
         "cloud_compute/policy_samples",
+        "cloud_compute/custom_compliance_samples",
         "cloud_compute/twistcli_gs"
       ],
     },
