@@ -45,6 +45,10 @@ function Docs() {
                   <Link href={useBaseUrl("docs/cloud_compute/policy_samples")}>
                     Policy Samples
                   </Link>
+                  <br></br>
+                  <Link href={useBaseUrl("docs/cloud_compute/custom_compliance_samples")}>
+                    Custom Compliance Checks Samples
+                  </Link>
                 </div>
                 <div class="card__footer">
                   <Link
