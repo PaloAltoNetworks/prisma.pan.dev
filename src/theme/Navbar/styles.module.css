@@ -18,3 +18,4 @@
 .navbarHidden {
   transform: translate3d(0, calc(var(--ifm-navbar-height) * -1), 0);
 }
+

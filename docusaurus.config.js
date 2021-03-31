@@ -26,13 +26,18 @@ module.exports = {
       title: '',
       logo: {
         alt: 'Prisma for Developers',
-        src: '/img/Prisma_Light.svg',
-        srcDark: '/img/Prisma_Dark.svg',
+        src: '/img/PAN_Prisma_Light.svg',
+        srcDark: '/img/PAN_Prisma_Dark.svg',
       },
       items: [
         {
-          to: '/docs',
+          to: '/docs/cloud/',
           label: 'Docs',
+          position: 'left',
+        },
+        {
+          label: 'API Reference',
+          items: [{ to: '/api/cloud/', label: 'Prisma Cloud Platform APIs' }],
           position: 'left',
         },
         {
@@ -56,11 +61,11 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              to: 'docs/whatisprisma',
-              label: 'About Prisma',
+              to: '/api/cloud/',
+              label: 'API Docs',
             },
             {
-              to: 'docs/index',
+              to: 'docs/cloud',
               label: 'Docs Homepage',
             },
           ],
@@ -89,7 +94,6 @@ module.exports = {
       require.resolve('@docusaurus/preset-classic'),
       {
         docs: {
-          homePageId: '_index',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/PaloAltoNetworks/prisma.pan.dev/tree/master/',
           routeBasePath: 'docs',
@@ -115,6 +119,23 @@ module.exports = {
         id: 'prisma-sitemap',
         changefreq: 'weekly',
         priority: 0.5,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'api',
+        sidebarPath: require.resolve('./api.sidebars.js'),
+        editUrl: 'https://github.com/PaloAltoNetworks/prisma.pan.dev/tree/master/',
+        routeBasePath: 'api',
+        include: ['**/*.md', '**/*.mdx'], // Extensions to include.
+        docLayoutComponent: '@theme/DocPage',
+        docItemComponent: '@theme/APIDocItem',
+        remarkPlugins: [],
+        rehypePlugins: [],
+        path: 'api',
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
       },
     ],
   ],
@@ -150,4 +171,10 @@ module.exports = {
     onBrokenLinks: 'warn',
     onDuplicateRoutes: 'warn',
   },
+  stylesheets: [
+    {
+      href: 'https://use.fontawesome.com/releases/v5.11.0/css/all.css',
+      type: 'text/css',
+    },
+  ],
 };

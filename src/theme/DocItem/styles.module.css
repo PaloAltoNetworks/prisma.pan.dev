@@ -11,13 +11,20 @@
 }
 
 .docItemContainer {
-  margin: 0 auto;
+  margin-right: 1rem;
   padding: 0 0.5rem;
+  max-width: calc(var(--ifm-container-width));
 }
 
 @media only screen and (min-width: 997px) {
   .docItemCol {
     max-width: 75% !important;
+  }
+}
+
+@media (min-width: 997px) and (max-width: 1320px) {
+  .docItemWrapper {
+    max-width: calc(var(--ifm-container-width) - 300px - var(--ifm-spacing-horizontal) * 2);
   }
 }
 
