@@ -18,7 +18,7 @@ pages:
     paths:
       - public
   rules:
-    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "staging"
   environment:
     name: production/${CI_PROJECT_NAME}/${CI_COMMIT_REF_NAME}
     url: ${CI_PAGES_URL}
@@ -53,6 +53,7 @@ pages:
 
 openapi:linter:
   stage: 🤞 precheck
+  allow_failure: true
   only:
     refs:
       - merge_requests

@@ -5,178 +5,58 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Link from "@docusaurus/Link";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import Layout from "@theme/Layout";
-import classnames from "classnames";
-import React, { useRef } from "react";
-import ScrollUpButton from "react-scroll-up-button";
-import styles from "./styles.module.css";
-
-const features = [
-  {
-    title: <>What is Prisma?</>,
-    imageUrl: "img/prismalogo.png",
-    description: (
-      <>
-        Prisma is a comprehensive cloud security suite that allows organizations to protect their users, 
-        applications and data, regardless of where they’re located.
-      </>
-    ),
-    button: (
-      <div className={styles.buttons}>
-        <Link
-          className={classnames(
-            "button button--outline button--primary button--md",
-            styles.getStarted
-          )}
-          href="/docs/whatisprisma"
-        >
-          Learn More
-        </Link>
-      </div>
-    )
-  },
-  {
-    title: <>APIs, SDKs and policy examples</>,
-    imageUrl: "img/prisma_api.png",
-    description: (
-      <>
-        Our APIs and SDKs provide a collection of open, feature-rich automation to help you secure the cloud. 
-        Get the most out of Prisma by using custom policy examples to enreach your views and cloud security.
-      </>
-    ),
-    button: (
-      <div className={styles.buttons}>
-        <Link
-          className={classnames(
-            "button button--outline button--primary button--md",
-            styles.getStarted
-          )}
-          href="/docs"
-        >
-          Learn More
-        </Link>
-      </div>
-    )
-  }
-];
-
-function Feature({ imageUrl, title, description, button }) {
-  const imgUrl = useBaseUrl(imageUrl);
-  return (
-    <div className={classnames("col col--6", styles.features)}>
-      {imgUrl && (
-        <div className="text--center">
-          <img className={styles.featureImage} src={imgUrl} alt={title} />
-        </div>
-      )}
-      <h3>{title}</h3>
-      <p>{description}</p>
-      {button}
-    </div>
-  );
-}
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Layout from '@theme/Layout';
+import classnames from 'classnames';
+import React, { useRef } from 'react';
+import ScrollUpButton from 'react-scroll-up-button';
+import styles from './styles.module.css';
+import Featured from '../components/Featured';
+import Tools from '../components/Tools';
 
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
-  const scrollToRef = ref => ref.current.scrollIntoView({ behavior: "smooth" });
-  const vertificalsRef = useRef(null);
-  const toolsRef = useRef(null);
-  const scrollToVerticals = () => scrollToRef(vertificalsRef);
-  const scrollToTools = () => scrollToRef(toolsRef);
+
   return (
     <Layout
       title={`${siteConfig.themeConfig.navbar.title}`}
       description="All things related to automation and development with Prisma"
+      wrapperClassName="homepage"
     >
       <ScrollUpButton />
-      <header className={classnames("hero hero--primary", styles.heroBanner)}>
+      <header className={classnames('hero hero--primary', styles.heroBanner)}>
         <div className="container">
-        <div className={styles.hero}>
+          <div className={styles.hero}>
             <div className={styles.heroInner}>
-              <h1 className={styles.heroProjectTagline}>
-                Develop for the{" "}
-                <span className={styles.heroProjectKeywords}>journey</span>{" "}
-                to the{" "}
-                <span className={styles.heroProjectKeywords}>
-                  cloud
-                </span>{" "}
-                with Prisma
-              </h1>
-              <div className={styles.buttons}>
-                <Link
-                  className={classnames(
-                    "button button--outline button--info button--lg",
-                    styles.getStarted
-                  )}
-                  onClick={scrollToTools}
-                >
-                  Explore Tools
-                </Link>
+              <div className="row">
+                <div className={classnames('col col--12')}>
+                  <div className={styles.heroLogo}>
+                    <img src="img/PrismaCloud.svg" />
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className={classnames('col col--12')}>
+                  <h1 className={styles.heroProjectTagline}>
+                    Welcome to the home of <span className={styles.heroProjectKeywords}> developer docs </span> for{' '}
+                    <span className={styles.heroProjectKeywords}>Prisma.</span>
+                  </h1>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </header>
       <main>
-        {features && features.length && (
-          <section className={styles.features} ref={vertificalsRef}>
-            <div className="container">
-              <div className="row">
-                {features.map((props, idx) => (
-                  <Feature key={idx} {...props} />
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-        <section className={styles.tools} ref={toolsRef}>
+        <section className="featuredContainer">
           <div className="container">
-            <div className="row">
-
-              {/* Twistlock */}
-              <div className={classnames("col col--12", styles.tools)}>
-                <div className="text text--center">
-                  <img
-                    className={styles.toolImage}
-                    src="img/twistlocklogo.png"
-                    alt="PAN Device Framework"
-                  />
-                </div>
-                <h4 className={styles.text__blue}>twistcli</h4>
-                <p className={styles.text__gray}>
-                  Scan container images with twistcli
-                </p>
-                <div className={styles.buttons}>
-                  <Link
-                    className={classnames(
-                      "button button--outline button--primary button--md",
-                      styles.quickstart
-                    )}
-                    href="/docs/cloud_compute/twistcli_gs"
-                  >
-                    Quickstart
-                  </Link>
-                  <Link
-                    className={classnames(
-                      "button button--outline button--primary button--md",
-                      styles.github
-                    )}
-                    href="https://github.com/twistlock/docs"
-                  >
-                    <img
-                      src="/img/GitHub_Logo_White.png"
-                      width="auto"
-                      height="19"
-                    />
-                  </Link>
-                </div>
-              </div>
-
-            </div>
+            <Featured />
+          </div>
+        </section>
+        <section className="toolsContainer">
+          <div className="container">
+            <Tools />
           </div>
         </section>
       </main>
