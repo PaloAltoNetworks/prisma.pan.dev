@@ -11,19 +11,17 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
+  width: 100%;
+  padding: 2rem 0;
   text-align: center;
   position: relative;
-  clip-path: polygon(100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
+  margin: auto;
+  background-color: var(--ifm-hero-color);
 }
 
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;
-  }
-
-  .buttons_src-pages- {
-    padding-bottom: 2rem !important;
   }
 }
 
@@ -47,31 +45,6 @@
   border-radius: 0 1em 1em 0;
 }
 
-.buttons-tools-github {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0 1em 1em 0 !important;
-}
-
-.features {
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
-  display: flex;
-}
-
-.tools {
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
-  display: flex;
-  color: white;
-  text-align: center;
-  justify-content: center;
-  background-color: #807C7B;
-}
-
 .headerImage {
   height: 300px;
   width: 200px;
@@ -82,53 +55,15 @@
 }
 
 .heroProjectTagline {
-  color: #fff;
-  font-size: 4rem;
+  color: var(--ifm-color-black);
+  font-size: clamp(2rem, -0.875rem + 8.333vw, 3rem);
   margin: 0;
   margin-top: 1rem;
-  text-align: left;
-  padding-bottom: 2rem;
+  text-align: center;
 }
 
 .heroProjectKeywords {
-  color: var(--ifm-color-black);
-}
-
-.featureImage {
-  height: 150px;
-  width: 100px;
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  padding: 1rem 0;
-}
-
-.toolImage {
-  height: 80px;
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  padding: 1rem 0;
-}
-
-.particles {
-  background-color: "#262941";
-  z-index: -10;
-  position: "absolute";
-  width: "100%";
-  height: "100%";
-  top: 0;
-  left: 0;
-}
-
-.heroLogo {
-  animation-duration: 2s;
-  animation-name: jackInTheBox;
-  float: left;
-  height: 10rem;
-  margin-top: 1px;
-  padding: 5px;
-  padding-right: 5rem;
+  color: var(--ifm-color-primary-lighter);
 }
 
 .hero__title {
@@ -140,12 +75,19 @@
   color: #a4a9ad !important;
 }
 
+.heroLogo {
+  max-width: 30%;
+  height: auto;
+  margin: 0 auto;
+  z-index: 1;
+}
+
 .text__gray {
   color: #000 !important;
 }
 
 .text__blue {
-  color: #00C0E8 !important;
+  color: #00c0e8 !important;
 }
 
 .docs {
@@ -160,11 +102,4 @@
   align-items: center;
   justify-content: center;
   border-radius: 0 1em 1em 0 !important;
-}
-
-.features {
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
-  display: flex;
 }

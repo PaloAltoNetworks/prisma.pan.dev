@@ -14,6 +14,7 @@
 /* You can override the default Infima variables here. */
 
 :root {
+  /* Primary Colors */
   --ifm-color-primary: #00c0e8;
   --ifm-color-primary-dark: #00add1;
   --ifm-color-primary-darker: #00a3c5;
@@ -21,11 +22,23 @@
   --ifm-color-primary-light: #00d3ff;
   --ifm-color-primary-lighter: #0cd5ff;
   --ifm-color-primary-lightest: #2fdbff;
+  /* Status Colors */
+  --ifm-color-info: #00c0e8;
+  --ifm-color-success: #00cc66;
+  --ifm-color-warning: #ffcb06;
+  --ifm-color-danger: #fa582d;
+
   --ifm-navbar-search-input-color: var(--ifm-color-gray-900);
+  --ifm-font-size-base: 95%;
+  --ifm-code-font-size: 90%;
+  --ifm-font-family-base: 'Montserrat', sans-serif, 'Font Awesome 5 Free';
+  --ifm-font-family-monospace: 'Roboto Mono', monospace;
+  --ifm-hero-color: #daf0f6;
+  --ifm-color-gray-switch: var(--ifm-color-gray-100);
 }
 
 /* Dark mode overrides */
-html[data-theme="dark"] {
+html[data-theme='dark'] {
   --ifm-color-emphasis-100: var(--ifm-color-gray-900);
   --ifm-color-emphasis-200: var(--ifm-color-gray-800);
   --ifm-color-emphasis-300: var(--ifm-color-gray-700);
@@ -49,6 +62,54 @@ html[data-theme="dark"] {
 
   /* Mardown color in dark mode */
   --ifm-color-gray-800: var(--ifm-color-gray-300);
+
+  --ifm-code-background: #393939 !important;
+
+  --ifm-hero-color: var(--ifm-color-gray-600);
+
+  --ifm-color-gray-switch: var(--ifm-color-gray-300);
+}
+
+.footer--dark {
+  --ifm-footer-background-color: var(--ifm-color-gray-600);
+}
+
+/* Center all columns in main wrapper */
+.main-wrapper {
+  max-width: 1400px;
+  width: 1400px;
+  align-self: center;
+}
+
+.main-wrapper h1[class^='docTitle'] {
+  font-size: 2.8rem;
+}
+
+@media (max-width: 1416px) {
+  .main-wrapper {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1320px) and (min-width: 997px) {
+  .container {
+    max-width: calc(var(--ifm-container-width) - 125px - var(--ifm-spacing-horizontal) * 2);
+  }
+}
+
+/* Center navbar items */
+.navbar__inner {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+/* Force homepage to full width */
+.homepage {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  background-color: #303846;
 }
 
 /* Docs overrides */
@@ -91,6 +152,7 @@ blockquote {
 
 .card {
   margin-bottom: 2rem !important;
+  height: 100% !important;
 }
 
 .cardImage {
@@ -108,6 +170,7 @@ blockquote {
 
 .container {
   margin-top: 1rem;
+  max-width: 1400px;
 }
 
 /* GitHub Header Link */
@@ -116,7 +179,7 @@ blockquote {
 }
 
 .header-github-link:before {
-  content: "";
+  content: '';
   width: 24px;
   height: 24px;
   display: flex;
@@ -124,7 +187,7 @@ blockquote {
     no-repeat;
 }
 
-html[data-theme="dark"] .header-github-link:before {
+html[data-theme='dark'] .header-github-link:before {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='white' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
     no-repeat;
 }
@@ -142,8 +205,508 @@ html[data-theme="dark"] .header-github-link:before {
   display: none !important;
 }
 
-@media (max-width: 380px){
+@media (max-width: 380px) {
   .navbar__logo {
-    content: url("/img/prismafavicon.png") !important;
+    content: url('/img/prismafavicon.png') !important;
   }
+}
+
+/* Redocusaurus overrides follow
+
+/* Corrects colors in redoc JSON samples */
+.redocusaurus code {
+  color: white;
+  background-color: rgb(41, 45, 62) !important;
+}
+
+.redocusaurus pre {
+  background-color: rgb(41, 45, 62) !important;
+}
+
+html[data-theme='dark'] .redocusaurus .react-tabs__tab--selected {
+  background: var(--ifm-color-primary) !important;
+  color: var(--ifm-font-color-base) !important;
+}
+
+.redocusaurus .react-tabs__tab--selected {
+  background: var(--ifm-color-primary) !important;
+  color: #fff !important;
+}
+
+.redocusaurus .react-tabs__tab {
+  background: var(--ifm-color-default);
+}
+
+.redocusaurus .react-tabs__tab-panel {
+  background: rgb(41, 45, 62) !important;
+}
+
+/* Override button font size */
+.redocusaurus .react-tabs__tab-panel button {
+  font-size: 12px !important;
+}
+
+.redocusaurus table td {
+  padding: var(--ifm-table-cell-padding) !important;
+}
+
+.redocusaurus h2,
+h3,
+h4 {
+  color: var(--ifm-font-color-base) !important;
+}
+
+.redocusaurus h5 {
+  color: var(--ifm-font-color-secondary) !important;
+}
+
+.redocusaurus h5 > span {
+  color: var(--ifm-font-color-secondary) !important;
+}
+
+html[data-theme='dark'] .redocusaurus tr {
+  background-color: transparent !important;
+}
+
+/* Hide mobile ReDoc menu button */
+.redocusaurus .redoc-wrap > div:nth-child(2) {
+  /* top: 100px; */
+  display: none !important;
+}
+
+/* Change bg-color of mobile menu button */
+html[data-theme='dark'] .redocusaurus .redoc-wrap > div:nth-child(2) {
+  background-color: rgb(41, 45, 62);
+}
+
+/* Force response text to wrap */
+.redocusaurus button {
+  overflow-wrap: anywhere !important;
+}
+
+/* Force smooth scrolling */
+.redocusaurus {
+  scroll-behavior: smooth !important;
+}
+
+/* Smaller menu-content font */
+.redocusaurus .menu-content {
+  font-size: small !important;
+}
+
+/* Expanded sidebar menu by default */
+.redocusaurus .menu-content ul {
+  display: inline-block !important;
+}
+
+/* Hide powered by Redoc */
+a[href="https://github.com/Redocly/redoc"]
+{
+  display: none !important;
+}
+
+.menu > .menu__list > .menu__list-item > .menu__link {
+  font-weight: bolder;
+}
+
+/* Show outlinks are leaving site */
+.markdown a[target='_blank'][href]::after,
+.menu--responsive a[target='_blank'][href]::after {
+  margin: 0 4px 0 4px;
+  font-family: 'Font Awesome 5 Free' !important;
+  content: '\f35d';
+  font-size: x-small;
+  font-weight: 900;
+}
+
+/* Homepage features */
+.featuredContainer {
+  width: 100%;
+  display: flex;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  flex: 1;
+  background-color: #fff;
+}
+
+html[data-theme='dark'] .featuredContainer {
+  background-color: #303846;
+}
+
+/* Homepage tools */
+.toolsContainer {
+  background-color: #303846;
+  width: 100%;
+  height: 200%;
+  display: flex;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  flex: 1;
+}
+
+.centRow {
+  justify-content: center;
+}
+
+/* Algolia Search */
+.DocSearch-Button-Placeholder:after {
+  content: ' Prisma Docs' !important;
+}
+
+.menu--responsive .menu__button {
+  bottom: 0 !important;
+}
+
+/* API doc method labels */
+.menu__link[href*='operation/get-my-access-keys']:after,
+.menu__link[href*='operation/get-access-key-by-id']:after,
+.menu__link[href*='operation/get-account-groups']:after,
+.menu__link[href*='operation/get-account-group-name']:after,
+.menu__link[href*='operation/get-account-group-name-by-cloudType']:after,
+.menu__link[href*='operation/get-account-group']:after,
+.menu__link[href*='operation/get-alert-rules-v2']:after,
+.menu__link[href*='operation/get-alert-rule']:after,
+.menu__link[href*='operation/get-alert-filter-and-options']:after,
+.menu__link[href*='operation/get-alerts']:after,
+.menu__link[href*='operation/get-alerts-v2']:after,
+.menu__link[href*='operation/get-alerts-grouped']:after,
+.menu__link[href*='operation/get-alert']:after,
+.menu__link[href*='operation/is-dismissal-note-required']:after,
+.menu__link[href*='operation/get-alert-count']:after,
+.menu__link[href*='operation/get-alerts-job-status']:after,
+.menu__link[href*='operation/download-alerts-list-json']:after,
+.menu__link[href*='operation/get-alert-csv-job-status']:after,
+.menu__link[href*='operation/download-alert-csv']:after,
+.menu__link[href*='operation/get-async-policy-alert-job-status']:after,
+.menu__link[href*='operation/download-policy-alerts-json']:after,
+.menu__link[href*='operation/get-all-anomalies-settings']:after,
+.menu__link[href*='operation/get-anomalies-settings']:after,
+.menu__link[href*='operation/list-trusted-listed-anomalies']:after,
+.menu__link[href*='operation/list-trusted-listed-anomaly']:after,
+.menu__link[href*='operation/list-available-policies']:after,
+.menu__link[href*='operation/list-allowed-trustedlist-types']:after,
+.menu__link[href*='operation/get-asset-inventory-v2-filters-and-options']:after,
+.menu__link[href*='operation/get-all-saved-asset-inventory-filters']:after,
+.menu__link[href*='operation/get-saved-asset-inventory-filter']:after,
+.menu__link[href*='operation/asset-inventory-v2']:after,
+.menu__link[href*='operation/asset-inventory-trend-v2']:after,
+.menu__link[href*='operation/rl-audit-logs']:after,
+.menu__link[href*='operation/get-cloud-accounts']:after,
+.menu__link[href*='operation/get-cloud-account-names']:after,
+.menu__link[href*='operation/get-cloud-org-accounts']:after,
+.menu__link[href*='operation/get-cloud-types']:after,
+.menu__link[href*='operation/get-cloud-account']:after,
+.menu__link[href*='operation/list-cloud-account-status-details']:after,
+.menu__link[href*='operation/get-previously-saved-resource-hierarchy']:after,
+.menu__link[href*='operation/get-compliance-posture']:after,
+.menu__link[href*='operation/get-compliance-posture-for-standard']:after,
+.menu__link[href*='operation/get-compliance-posture-for-requirement']:after,
+.menu__link[href*='operation/get-compliance-posture-trend']:after,
+.menu__link[href*='operation/get-compliance-posture-trend-for-standard']:after,
+.menu__link[href*='operation/get-compliance-posture-trend-for-requirement']:after,
+.menu__link[href*='operation/get-compliance-posture-filters-and-options']:after,
+.menu__link[href*='operation/get-all-standards']:after,
+.menu__link[href*='operation/get-standards-by-id']:after,
+.menu__link[href*='operation/get-requirements']:after,
+.menu__link[href*='operation/get-requirement-by-id']:after,
+.menu__link[href*='operation/get-sections']:after,
+.menu__link[href*='operation/get-data-usage']:after,
+.menu__link[href*='operation/get-snippets']:after,
+.menu__link[href*='operation/get-data-pattern-details']:after,
+.menu__link[href*='operation/get-data-pattern-name']:after,
+.menu__link[href*='operation/get-data-profiles']:after,
+.menu__link[href*='operation/get-data-profile-details']:after,
+.menu__link[href*='operation/get-snippets-config']:after,
+.menu__link[href*='operation/get-networks-list']:after,
+.menu__link[href*='operation/get-network-info']:after,
+.menu__link[href*='operation/list-login-ip-allow-lists']:after,
+.menu__link[href*='operation/get-login-ip-allow-list']:after,
+.menu__link[href*='operation/get-login-ip-allow-list-status']:after,
+.menu__link[href*='operation/get-login-ip-allow-list-tab-status']:after,
+.menu__link[href*='operation/getScans']:after,
+.menu__link[href*='operation/getAsyncScanStatus']:after,
+.menu__link[href*='operation/getScanResult']:after,
+.menu__link[href*='operation/exportScanResultToSarif']:after,
+.menu__link[href*='operation/exportScans']:after,
+.menu__link[href*='operation/get-all-integrations-metadata']:after,
+.menu__link[href*='operation/get-all-integrations-types']:after,
+.menu__link[href*='operation/get-all-integrations']:after,
+.menu__link[href*='operation/get-integration-by-id']:after,
+.menu__link[href*='operation/extend-session']:after,
+.menu__link[href*='operation/get-notification-templates']:after,
+.menu__link[href*='operation/get-notification-template']:after,
+.menu__link[href*='operation/get-snow-configurable-fields']:after,
+.menu__link[href*='operation/get-snow-field-suggestions']:after,
+.menu__link[href*='operation/get-snow-service-types']:after,
+.menu__link[href*='operation/get-jira-projects']:after,
+.menu__link[href*='operation/get-jira-fields']:after,
+.menu__link[href*='operation/get-jira-issue-types']:after,
+.menu__link[href*='operation/get-jira-users']:after,
+.menu__link[href*='operation/get-jira-auto-complete-fields']:after,
+.menu__link[href*='operation/get-policy-filters-and-options']:after,
+.menu__link[href*='operation/get-policies']:after,
+.menu__link[href*='operation/get-policies-v2']:after,
+.menu__link[href*='operation/get-policy']:after,
+.menu__link[href*='operation/get-compliance-standards']:after,
+.menu__link[href*='operation/list-reports']:after,
+.menu__link[href*='operation/get-report-types']:after,
+.menu__link[href*='operation/get-specified-report']:after,
+.menu__link[href*='operation/download-report']:after,
+.menu__link[href*='operation/get-historical-report-by-id']:after,
+.menu__link[href*='operation/get-last-scheduled-report-by-id']:after,
+.menu__link[href*='operation/download-historical-by-id']:after,
+.menu__link[href*='operation/get-report-filters-and-options']:after,
+.menu__link[href*='operation/get-host-findings-for-alert']:after,
+.menu__link[href*='operation/get-resource-info-filters-and-options']:after,
+.menu__link[href*='operation/get-resource-scan-info']:after,
+.menu__link[href*='operation/get-all-resource-list-for-customer']:after,
+.menu__link[href*='operation/get-resource-list-types']:after,
+.menu__link[href*='operation/get-resource-list-by-id']:after,
+.menu__link[href*='operation/search-events-raw']:after,
+.menu__link[href*='operation/search-for-alert-by-id']:after,
+.menu__link[href*='operation/search-history']:after,
+.menu__link[href*='operation/search-history-by-id']:after,
+.menu__link[href*='operation/get-enterprise-settings']:after,
+.menu__link[href*='operation/health-check']:after,
+.menu__link[href*='operation/get-my-profile']:after,
+.menu__link[href*='operation/get-user-profiles-v2']:after,
+.menu__link[href*='operation/get-user-profile-v2']:after,
+.menu__link[href*='operation/get-usernames']:after,
+.menu__link[href*='operation/get-user-role-types']:after,
+.menu__link[href*='operation/email-domains']:after,
+.menu__link[href*='operation/get-sso-bypass-allowed-users']:after,
+.menu__link[href*='operation/get-user-roles']:after,
+.menu__link[href*='operation/get-user-role-name']:after,
+.menu__link[href*='operation/get-user-role']:after {
+  content: 'get';
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  margin-right: -6px;
+  padding: 3px 6px;
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: 3px;
+  color: var(--ifm-color-primary);
+  text-transform: uppercase;
+  font-size: 10px;
+  line-height: 10px;
+  height: 10px;
+  font-weight: 600;
+}
+
+.menu__link[href*='operation/add-access-keys']:after,
+.menu__link[href*='operation/add-account-group']:after,
+.menu__link[href*='operation/add-alert-rule']:after,
+.menu__link[href*='operation/get-alert-filter-options']:after,
+.menu__link[href*='operation/post-alerts']:after,
+.menu__link[href*='operation/post-alerts-v2']:after,
+.menu__link[href*='operation/post-alerts-grouped']:after,
+.menu__link[href*='operation/dismiss-alerts']:after,
+.menu__link[href*='operation/reopen-alerts']:after,
+.menu__link[href*='operation/submit-job-for-listing-alerts']:after,
+.menu__link[href*='operation/submit-an-alert-csv-download-job']:after,
+.menu__link[href*='operation/submit-a-job-for-listing-alerts-grouped-by-policy']:after,
+.menu__link[href*='operation/get-alerts-remediation']:after,
+.menu__link[href*='operation/update-anomalies-settings']:after,
+.menu__link[href*='operation/update-trusted-list-anomalies']:after,
+.menu__link[href*='operation/get-asset-inventory-v2-dashboard-filter-options']:after,
+.menu__link[href*='operation/save-asset-inventory-filter']:after,
+.menu__link[href*='operation/post-method-for-asset-inventory-v2']:after,
+.menu__link[href*='operation/post-method-asset-inventory-trend-v2']:after,
+.menu__link[href*='operation/add-cloud-account']:after,
+.menu__link[href*='operation/generateterraformscript']:after,
+.menu__link[href*='operation/get-cloud-account-status']:after,
+.menu__link[href*='operation/get-list-of-children-under-parent']:after,
+.menu__link[href*='operation/get-list-of-folders-under-parent']:after,
+.menu__link[href*='operation/get-list-of-projects-under-parent']:after,
+.menu__link[href*='operation/get-ancestors-for-given-projects-folders']:after,
+.menu__link[href*='operation/post-compliance-posture']:after,
+.menu__link[href*='operation/post-compliance-posture-for-standard']:after,
+.menu__link[href*='operation/post-compliance-posture-for-requirement']:after,
+.menu__link[href*='operation/post-compliance-posture-trend']:after,
+.menu__link[href*='operation/post-compliance-posture-trend-for-standard']:after,
+.menu__link[href*='operation/post-compliance-posture-trend-for-requirement']:after,
+.menu__link[href*='operation/get-compliance-posture-filter-options']:after,
+.menu__link[href*='operation/add-standard']:after,
+.menu__link[href*='operation/clone-standard']:after,
+.menu__link[href*='operation/add-requirement']:after,
+.menu__link[href*='operation/add-section']:after,
+.menu__link[href*='operation/get-dashboard-alerts']:after,
+.menu__link[href*='operation/get-dashboard-object-by-classification']:after,
+.menu__link[href*='operation/get-dashboard-object-by-owner']:after,
+.menu__link[href*='operation/get-dashboard-object-by-region']:after,
+.menu__link[href*='operation/get-dashboard-object-sensitive']:after,
+.menu__link[href*='operation/get-dashboard-resource-by-exposure']:after,
+.menu__link[href*='operation/get-dashboard-violations']:after,
+.menu__link[href*='operation/get-classification-report-v2']:after,
+.menu__link[href*='operation/get-classification-report']:after,
+.menu__link[href*='operation/get-inventory-objects']:after,
+.menu__link[href*='operation/get-inventory-object-details']:after,
+.menu__link[href*='operation/get-inventory-objects-by-classification']:after,
+.menu__link[href*='operation/get-inventory-aggregate-alerts-by-classification']:after,
+.menu__link[href*='operation/get-inventory-aggregate-history']:after,
+.menu__link[href*='operation/get-malware-report']:after,
+.menu__link[href*='operation/get-inventory-resource-details']:after,
+.menu__link[href*='operation/get-inventory-resource-objects']:after,
+.menu__link[href*='operation/add-snippets']:after,
+.menu__link[href*='operation/add-data-pattern']:after,
+.menu__link[href*='operation/clone-data-pattern']:after,
+.menu__link[href*='operation/add-data-profile']:after,
+.menu__link[href*='operation/clone-data-profile']:after,
+.menu__link[href*='operation/update-snippets']:after,
+.menu__link[href*='operation/add-a-network']:after,
+.menu__link[href*='operation/add-cidr-block']:after,
+.menu__link[href*='operation/insert-login-ip-allow-list']:after,
+.menu__link[href*='operation/startAsyncScan']:after,
+.menu__link[href*='operation/triggerAsyncScan']:after,
+.menu__link[href*='operation/save-integration']:after,
+.menu__link[href*='operation/test-integration']:after,
+.menu__link[href*='operation/license-usage-graph']:after,
+.menu__link[href*='operation/license-usage-count-by-cloud-paginated_1']:after,
+.menu__link[href*='operation/license-get-usage-csv']:after,
+.menu__link[href*='operation/app-login']:after,
+.menu__link[href*='operation/add-notification-template']:after,
+.menu__link[href*='operation/clone-notification-template']:after,
+.menu__link[href*='operation/get-policy-filter-options']:after,
+.menu__link[href*='operation/add-policy']:after,
+.menu__link[href*='operation/save-report']:after,
+.menu__link[href*='operation/get-report-posture-filter-options']:after,
+.menu__link[href*='operation/get-resource']:after,
+.menu__link[href*='operation/get-alerts-for-resource']:after,
+.menu__link[href*='operation/get-network-for-resource']:after,
+.menu__link[href*='operation/get-host-findings']:after,
+.menu__link[href*='operation/get-timeline-for-resource']:after,
+.menu__link[href*='operation/get-resource-raw']:after,
+.menu__link[href*='operation/get-resource-info-filter-options']:after,
+.menu__link[href*='operation/get-external-integrations-for-resource']:after,
+.menu__link[href*='operation/post-resource-scan-info']:after,
+.menu__link[href*='operation/add-resource-list']:after,
+.menu__link[href*='operation/search-config']:after,
+.menu__link[href*='operation/search-network']:after,
+.menu__link[href*='operation/search-events']:after,
+.menu__link[href*='operation/search-events-aggregated']:after,
+.menu__link[href*='operation/search-events-filtered']:after,
+.menu__link[href*='operation/search-events-page']:after,
+.menu__link[href*='operation/search-suggest']:after,
+.menu__link[href*='operation/search-config-page']:after,
+.menu__link[href*='operation/search-events-csv']:after,
+.menu__link[href*='operation/search-history-save']:after,
+.menu__link[href*='operation/update-enterprise-settings']:after,
+.menu__link[href*='operation/add-user-v2']:after,
+.menu__link[href*='operation/add-user-role']:after {
+  content: 'post';
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  margin-right: -6px;
+  padding: 3px 6px;
+  border: 1px solid var(--ifm-color-warning);
+  border-radius: 3px;
+  color: var(--ifm-color-warning);
+  text-transform: uppercase;
+  font-size: 10px;
+  line-height: 10px;
+  height: 10px;
+  font-weight: 600;
+}
+
+.menu__link[href*='operation/update-access-key-status']:after,
+.menu__link[href*='operation/perform-remediation-for-alert']:after,
+.menu__link[href*='operation/patch-cloud-account']:after,
+.menu__link[href*='operation/update-cloud-account-status']:after,
+.menu__link[href*='operation/update-login-ip-allow-list-status']:after,
+.menu__link[href*='operation/update-policy-status']:after,
+.menu__link[href*='operation/update-user-profile']:after {
+  content: 'patch';
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  margin-right: -6px;
+  padding: 3px 6px;
+  border: 1px solid var(--ifm-color-warning);
+  border-radius: 3px;
+  color: var(--ifm-color-warning);
+  text-transform: uppercase;
+  font-size: 10px;
+  line-height: 10px;
+  height: 10px;
+  font-weight: 600;
+}
+
+.menu__link[href*='operation/update-access-keys']:after,
+.menu__link[href*='operation/update-account-group']:after,
+.menu__link[href*='operation/update-alert-rule']:after,
+.menu__link[href*='operation/set-dismissal-note-required']:after,
+.menu__link[href*='operation/update-saved-asset-inventory-filter']:after,
+.menu__link[href*='operation/update-cloud-account']:after,
+.menu__link[href*='operation/update-standard']:after,
+.menu__link[href*='operation/update-requirement']:after,
+.menu__link[href*='operation/update-section']:after,
+.menu__link[href*='operation/get-all-data-patterns']:after,
+.menu__link[href*='operation/update-data-pattern']:after,
+.menu__link[href*='operation/enable-disable-data-profiles']:after,
+.menu__link[href*='operation/update-data-profile']:after,
+.menu__link[href*='operation/rename-a-network']:after,
+.menu__link[href*='operation/update-cidr-block']:after,
+.menu__link[href*='operation/update-login-ip-allow-list']:after,
+.menu__link[href*='operation/update-integration']:after,
+.menu__link[href*='operation/update-notification-template']:after,
+.menu__link[href*='operation/update-policy']:after,
+.menu__link[href*='operation/update-report']:after,
+.menu__link[href*='operation/update-resource-list']:after,
+.menu__link[href*='operation/update-my-profile']:after,
+.menu__link[href*='operation/update-profile-v2']:after,
+.menu__link[href*='operation/update-sso-bypass-allowed-users']:after,
+.menu__link[href*='operation/update-user-role']:after {
+  content: 'put';
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  margin-right: -6px;
+  padding: 3px 6px;
+  border: 1px solid var(--ifm-color-warning);
+  border-radius: 3px;
+  color: var(--ifm-color-warning);
+  text-transform: uppercase;
+  font-size: 10px;
+  line-height: 10px;
+  height: 10px;
+  font-weight: 600;
+}
+
+.menu__link[href*='operation/delete-access-keys']:after,
+.menu__link[href*='operation/delete-account-group']:after,
+.menu__link[href*='operation/delete-alert-rule']:after,
+.menu__link[href*='operation/delete-trusted-list-anomalies']:after,
+.menu__link[href*='operation/delete-saved-asset-inventory-filter']:after,
+.menu__link[href*='operation/delete-cloud-account']:after,
+.menu__link[href*='operation/delete-standard']:after,
+.menu__link[href*='operation/delete-requirement']:after,
+.menu__link[href*='operation/delete-section']:after,
+.menu__link[href*='operation/delete-data-pattern']:after,
+.menu__link[href*='operation/delete-data-profile']:after,
+.menu__link[href*='operation/delete-cidr-block']:after,
+.menu__link[href*='operation/delete-login-ip-allow-list']:after,
+.menu__link[href*='operation/delete-integration']:after,
+.menu__link[href*='operation/delete-notification-template']:after,
+.menu__link[href*='operation/delete-policy']:after,
+.menu__link[href*='operation/delete-report']:after,
+.menu__link[href*='operation/delete-resource-list-by-id']:after,
+.menu__link[href*='operation/search-history-delete']:after,
+.menu__link[href*='operation/delete-user']:after,
+.menu__link[href*='operation/delete-user-role']:after {
+  content: 'delete';
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  margin-right: -6px;
+  padding: 3px 6px;
+  border: 1px solid var(--ifm-color-danger);
+  border-radius: 3px;
+  color: var(--ifm-color-danger);
+  text-transform: uppercase;
+  font-size: 10px;
+  line-height: 10px;
+  height: 10px;
+  font-weight: 600;
 }
