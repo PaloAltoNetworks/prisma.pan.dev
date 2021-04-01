@@ -3,15 +3,16 @@ id: aws_lambda
 title: AWS Lambda
 sidebar_label: Lambda
 description: AWS Lambda Queries
+hide_title: true
 ---
 
-# Sample RQL Queries
+## Sample AWS Lambda RQL Queries
 
 :::note
 The following guide will walk you through AWS Lambda RQL Query Examples
 :::
 
-## Unprotected (without a Compute Defender) Internet-accessible active AWS Lambda functions
+### Unprotected (without a Compute Defender) Internet-accessible active AWS Lambda functions
 
 ```bash
 config from cloud.resource where resource.status = Active AND api.name = 'aws-lambda-list-functions' 

@@ -3,15 +3,16 @@ id: aws_elb
 title: ELB
 sidebar_label: ELB
 description: AWS ELB rql
+hide_title: true
 ---
 
-# Sample RQL Queries
+## Sample AWS ELB RQL Queries
 
 :::note
 The following guide will walk you through AWS RQL Query Examples
 :::
 
-## Internet-Facing ELB that is not behind a WAF
+### Internet-Facing ELB that is not behind a WAF
 
 ```bash
 config from cloud.resource where api.name = 'aws-elbv2-describe-load-balancers' as X; config from cloud.resource where api.name = 'aws-waf-classic-web-acl-resource' 
@@ -20,7 +21,7 @@ filter ' not ( ( $.Z.resources.applicationLoadBalancer[*] contains $.X.loadBalan
 ( $.Y.resources.applicationLoadBalancer[*] contains $.X.loadBalancerArn ))'; show X;
 ```
 
-## Use a good cipher list to find the resources that have a cipher not in the good list enabled.
+### Use a good cipher list to find the resources that have a cipher not in the good list enabled.
 
 Following are considered as good ciphers:
 
