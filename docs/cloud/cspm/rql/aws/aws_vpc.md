@@ -3,15 +3,16 @@ id: aws_vpc
 title: AWS VPC
 sidebar_label: AWS VPC
 description: AWS VPC rql
+hide_title: true
 ---
 
-# Sample RQL Queries
+## Sample AWS VPC RQL Queries
 
 :::note
 The following guide will walk you through AWS VPC RQL Query Examples
 :::
 
-## Security Groups allows internet traffic to ports which are not commonly used AND WITH IGW attached to VPC
+### Security Groups allows internet traffic to ports which are not commonly used AND WITH IGW attached to VPC
 
 ```bash
 config from cloud.resource where cloud.type = 'aws' AND api.name='aws-ec2-describe-security-groups' as X; config from cloud.resource where api.name = 

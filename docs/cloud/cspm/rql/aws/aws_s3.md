@@ -3,15 +3,16 @@ id: aws_s3
 title: S3
 sidebar_label: S3
 description: AWS S3 rql
+hide_title: true
 ---
 
-# Sample RQL Queries
+## Sample AWS S3 RQL Queries
 
 :::note
 The following guide will walk you through AWS RQL Query Examples
 :::
 
-## S3 public bucket and exclude buckets with tag key is "DataClassification" and tag value is "Public"
+### S3 public bucket and exclude buckets with tag key is "DataClassification" and tag value is "Public"
 
 ```bash
 config from cloud.resource where cloud.type = 'aws' AND api.name='aws-s3api-get-bucket-acl' AND 
@@ -30,7 +31,7 @@ accountLevelPublicAccessBlockConfiguration.restrictPublicBuckets is false)))) an
 and tagSets.DataClassification != Public"
 ```
 
-## S3 buckets connected to Cloudfront distribution
+### S3 buckets connected to Cloudfront distribution
 
 ```bash
 config from cloud.resource where api.name = 'aws-cloudfront-list-distributions' as X; config from cloud.resource where api.name = 'aws-s3api-get-bucket-acl' as Y; filter '$.X.origins.items[*].id contains $.Y.bucketName'; show Y;

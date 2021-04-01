@@ -85,9 +85,17 @@ to the endpoint URL. An example of a query string is: ``&timeType=to_now&timeUni
 
 The following time model descriptions apply only to compliance report, compliance posture, asset inventory, and resource (asset) explorer APIs.
 
-* [Absolute  Time  for  Compliance  and  Asset  Inventory](#absolute-time-for-compliance-and-asset-inventory)
-* [Relative  Time  for  Compliance  and  Asset  Inventory](#relative-time-for-compliance-and-asset-inventory)
-* [Time  To  Now  for  Compliance  and  Asset  Inventory](#time-to-now-for-compliance-and-asset-inventory)
+- [Time Range Model for Most Prisma Cloud APIs](#time-range-model-for-most-prisma-cloud-apis)
+  - [Absolute Time](#absolute-time)
+  - [Relative Time](#relative-time)
+  - [Time To Now](#time-to-now)
+- [Compliance Report, Posture, and Asset Inventory Time Range Model](#compliance-report-posture-and-asset-inventory-time-range-model)
+  - [Absolute Time for Compliance and Asset Inventory](#absolute-time-for-compliance-and-asset-inventory)
+  - [Relative Time for Compliance and Asset Inventory](#relative-time-for-compliance-and-asset-inventory)
+  - [Time To Now for Compliance and Asset Inventory](#time-to-now-for-compliance-and-asset-inventory)
+- [Alert Dismissal Time Range Model](#alert-dismissal-time-range-model)
+  - [Absolute Time for Alert Dismissal](#absolute-time-for-alert-dismissal)
+  - [Relative Time for Alert Dismissal](#relative-time-for-alert-dismissal)
 
 For all APIs that use these time range models, when you send a request body (POST / PUT), you represent the time range models as objects. When you're sending time ranges through query parameters (GET), though, you use a flattened version of the model.
 
@@ -147,7 +155,7 @@ For time type **to_now**, the only valid value for **unit** is **epoch**, so **t
 For equivalent APIs with GET methods and query parameters, the time range query parameters make up a query string that is appended
 to the endpoint URL. An example of a query string is: ``&timeType=to_now&timeUnit=epoch``
 
-## Alert Dismissal  ime Range Model
+## Alert Dismissal Time Range Model
 
 The time range model for alert dismissal is special because it denotes a point of time in the future. The following time model descriptions apply only to [Dismiss  Alerts](/api/cloud/cspm/alerts#operation/dismiss-alerts).
 
