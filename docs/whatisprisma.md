@@ -1,6 +1,7 @@
 ---
 id: whatisprisma
 title: Prisma Overview
+description: Discover how Palo Alto Network's Prisma can deliver comprehensive cloud-native security.
 sidebar_label: What is Prisma
 ---
 

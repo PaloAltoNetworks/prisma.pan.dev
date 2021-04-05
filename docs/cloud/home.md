@@ -1,9 +1,14 @@
 ---
 id: home
 title: Prisma Cloud Overview
+description: Prisma Cloud API docs for Cloud Security Posture Management (CSPM) and Cloud Workload Protection (CWPP)
 hide_title: true
 slug: /cloud
 hide_table_of_contents: true
+keywords:
+  - cspm
+  - cwpp
+  - twistlock
 ---
 
 
