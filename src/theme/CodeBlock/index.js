@@ -4,21 +4,18 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, {useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import clsx from 'clsx';
-import Highlight, {defaultProps} from 'prism-react-renderer';
+import Highlight, { defaultProps } from 'prism-react-renderer';
 import copy from 'copy-text-to-clipboard';
 import rangeParser from 'parse-numeric-range';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import usePrismTheme from '@theme/hooks/usePrismTheme';
+import Translate, { translate } from '@docusaurus/Translate';
 import styles from './styles.module.css';
+import { useThemeConfig } from '@docusaurus/theme-common';
 const highlightLinesRangeRegex = /{([\d,-]+)}/;
 
-const getHighlightDirectiveRegex = (
-  languages = ['js', 'jsBlock', 'jsx', 'python', 'html'],
-) => {
+const getHighlightDirectiveRegex = (languages = ['js', 'jsBlock', 'jsx', 'python', 'html']) => {
   // supported types of comments
   const comments = {
     js: {
@@ -43,17 +40,10 @@ const getHighlightDirectiveRegex = (
     },
   }; // supported directives
 
-  const directives = [
-    'highlight-next-line',
-    'highlight-start',
-    'highlight-end',
-  ].join('|'); // to be more reliable, the opening and closing comment must match
+  const directives = ['highlight-next-line', 'highlight-start', 'highlight-end'].join('|'); // to be more reliable, the opening and closing comment must match
 
   const commentPattern = languages
-    .map(
-      (lang) =>
-        `(?:${comments[lang].start}\\s*(${directives})\\s*${comments[lang].end})`,
-    )
+    .map((lang) => `(?:${comments[lang].start}\\s*(${directives})\\s*${comments[lang].end})`)
     .join('|'); // white space is allowed, but otherwise it should be on it's own line
 
   return new RegExp(`^\\s*(?:${commentPattern})\\s*$`);
@@ -84,13 +74,9 @@ const highlightDirectiveRegex = (lang) => {
   }
 };
 
-const codeBlockTitleRegex = /title=".*"/;
-export default ({children, className: languageClassName, metastring}) => {
-  const {
-    siteConfig: {
-      themeConfig: {prism = {}},
-    },
-  } = useDocusaurusContext();
+const codeBlockTitleRegex = /(?:title=")(.*)(?:")/;
+export default function CodeBlock({ children, className: languageClassName, metastring }) {
+  const { prism } = useThemeConfig();
   const [showCopied, setShowCopied] = useState(false);
   const [mounted, setMounted] = useState(false); // The Prism theme on SSR is always the default theme but the site theme
   // can be in a different mode. React hydration doesn't update DOM styles
@@ -106,40 +92,39 @@ export default ({children, className: languageClassName, metastring}) => {
   const button = useRef(null);
   let highlightLines = [];
   let codeBlockTitle = '';
-  const prismTheme = usePrismTheme();
+  const prismTheme = usePrismTheme(); // In case interleaved Markdown (e.g. when using CodeBlock as standalone component).
+
+  const content = Array.isArray(children) ? children.join('') : children;
 
   if (metastring && highlightLinesRangeRegex.test(metastring)) {
     // Tested above
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const highlightLinesRange = metastring.match(highlightLinesRangeRegex)[1];
-    highlightLines = rangeParser
-      .parse(highlightLinesRange)
-      .filter((n) => n > 0);
+    highlightLines = rangeParser(highlightLinesRange).filter((n) => n > 0);
   }
 
   if (metastring && codeBlockTitleRegex.test(metastring)) {
     // Tested above
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    codeBlockTitle = metastring
-      .match(codeBlockTitleRegex)[0]
-      .split('title=')[1]
-      .replace(/"+/g, '');
+    codeBlockTitle = metastring.match(codeBlockTitleRegex)[1].split('title=')[1].replace(/"+/g, '');
   }
 
   let language =
-    languageClassName && languageClassName.replace(/language-/, '');
+    languageClassName && // Force Prism's language union type to `any` because it does not contain all available languages
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    languageClassName.replace(/language-/, '');
 
   if (!language && prism.defaultLanguage) {
     language = prism.defaultLanguage;
   } // only declaration OR directive highlight can be used for a block
 
-  let code = children.replace(/\n$/, '');
+  let code = content.replace(/\n$/, '');
 
   if (highlightLines.length === 0 && language !== undefined) {
     let range = '';
     const directiveRegex = highlightDirectiveRegex(language); // go through line by line
 
-    const lines = children.replace(/\n$/, '').split('\n');
+    const lines = content.replace(/\n$/, '').split('\n');
     let blockStart; // loop through lines
 
     for (let index = 0; index < lines.length; ) {
@@ -149,9 +134,7 @@ export default ({children, className: languageClassName, metastring}) => {
       const match = line.match(directiveRegex);
 
       if (match !== null) {
-        const directive = match
-          .slice(1)
-          .reduce((final, item) => final || item, undefined);
+        const directive = match.slice(1).reduce((final, item) => final || item, undefined);
 
         switch (directive) {
           case 'highlight-next-line':
@@ -177,7 +160,7 @@ export default ({children, className: languageClassName, metastring}) => {
       }
     }
 
-    highlightLines = rangeParser.parse(range);
+    highlightLines = rangeParser(range);
     code = lines.join('\n');
   }
 
@@ -188,39 +171,22 @@ export default ({children, className: languageClassName, metastring}) => {
   };
 
   return (
-    <Highlight
-      {...defaultProps}
-      key={String(mounted)}
-      theme={prismTheme}
-      code={code} // @ts-expect-error: prism-react-renderer doesn't export Language type
-      language={language}>
-      {({className, style, tokens, getLineProps, getTokenProps}) => (
-        <>
+    <Highlight {...defaultProps} key={String(mounted)} theme={prismTheme} code={code} language={language}>
+      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        <div className={styles.codeBlockContainer}>
           {codeBlockTitle && (
             <div style={style} className={styles.codeBlockTitle}>
               {codeBlockTitle}
             </div>
           )}
-          <div className={styles.codeBlockContent}>
-          {language != "console" ? (
-            <button
-              ref={button}
-              type="button"
-              aria-label="Copy code to clipboard"
-              className={clsx(styles.copyButton, {
-                [styles.copyButtonWithTitle]: codeBlockTitle,
-              })}
-              onClick={handleCopyCode}>
-              {showCopied ? 'Copied' : 'Copy'}
-            </button>
-            ) : (
-              <div />
-            )}
+          <div className={clsx(styles.codeBlockContent, language)}>
             <div
+              /* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */
               tabIndex={0}
-              className={clsx(className, styles.codeBlock, {
+              className={clsx(className, styles.codeBlock, 'thin-scrollbar', {
                 [styles.codeBlockWithTitle]: codeBlockTitle,
-              })}>
+              })}
+            >
               <div className={styles.codeBlockLines} style={style}>
                 {tokens.map((line, i) => {
                   if (line.length === 1 && line[0].content === '') {
@@ -252,9 +218,31 @@ export default ({children, className: languageClassName, metastring}) => {
                 })}
               </div>
             </div>
+
+            <button
+              ref={button}
+              type="button"
+              aria-label={translate({
+                id: 'theme.CodeBlock.copyButtonAriaLabel',
+                message: 'Copy code to clipboard',
+                description: 'The ARIA label for copy code blocks button',
+              })}
+              className={clsx(styles.copyButton)}
+              onClick={handleCopyCode}
+            >
+              {showCopied ? (
+                <Translate id="theme.CodeBlock.copied" description="The copied button label on code blocks">
+                  Copied
+                </Translate>
+              ) : (
+                <Translate id="theme.CodeBlock.copy" description="The copy button label on code blocks">
+                  Copy
+                </Translate>
+              )}
+            </button>
           </div>
-        </>
+        </div>
       )}
     </Highlight>
   );
-};
+}
