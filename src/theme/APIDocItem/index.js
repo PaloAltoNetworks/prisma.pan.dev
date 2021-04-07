@@ -5,26 +5,43 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
-import Link from '@docusaurus/Link';
-import DocPaginator from '@theme/DocPaginator';
-import DocVersionSuggestions from '@theme/DocVersionSuggestions';
-import Seo from '@theme/Seo';
-import LastUpdated from '@theme/LastUpdated';
-import TOC from '@theme/TOC';
-import classnames from 'classnames';
-import EditThisPage from '@theme/EditThisPage';
-import clsx from 'clsx';
-import styles from './styles.module.css';
-import { useActivePlugin, useVersions, useActiveVersion } from '@theme/hooks/useDocs';
+import React from "react";
+import Link from "@docusaurus/Link";
+import DocPaginator from "@theme/DocPaginator";
+import DocVersionSuggestions from "@theme/DocVersionSuggestions";
+import Seo from "@theme/Seo";
+import LastUpdated from "@theme/LastUpdated";
+import TOC from "@theme/TOC";
+import classnames from "classnames";
+import EditThisPage from "@theme/EditThisPage";
+import clsx from "clsx";
+import styles from "./styles.module.css";
+import {
+  useActivePlugin,
+  useVersions,
+  useActiveVersion,
+} from "@theme/hooks/useDocs";
 
 function APIDocItem(props) {
   const { content: DocContent } = props;
   const {
     metadata,
-    frontMatter: { image, keywords, hide_title: hideTitle, hide_table_of_contents: hideTableOfContents },
+    frontMatter: {
+      image,
+      keywords,
+      hide_title: hideTitle,
+      hide_table_of_contents: hideTableOfContents,
+    },
   } = DocContent;
-  const { description, title, editUrl, lastUpdatedAt, formattedLastUpdatedAt, lastUpdatedBy, source } = metadata;
+  const {
+    description,
+    title,
+    editUrl,
+    lastUpdatedAt,
+    formattedLastUpdatedAt,
+    lastUpdatedBy,
+    source,
+  } = metadata;
   const issueTitle = `Issue with "${title}" in ${source}`;
   const issueUrl = `https://github.com/PaloAltoNetworks/prisma.pan.dev/issues/new?labels=documentation&template=developer-documentation-issue.md&title=${issueTitle}`;
 
@@ -50,7 +67,7 @@ function APIDocItem(props) {
 
       <div className="row">
         <div
-          className={clsx('col', {
+          className={clsx("col", {
             [styles.docItemCol]: !hideTableOfContents,
           })}
         >
@@ -59,7 +76,9 @@ function APIDocItem(props) {
             <article>
               {showVersionBadge && (
                 <div>
-                  <span className="badge badge--secondary">Version: {version.label}</span>
+                  <span className="badge badge--secondary">
+                    Version: {version.label}
+                  </span>
                 </div>
               )}
               {!hideTitle && (
@@ -74,7 +93,9 @@ function APIDocItem(props) {
             {(editUrl || lastUpdatedAt || lastUpdatedBy) && (
               <div className="margin-vert--xl">
                 <div className="row">
-                  <div className="col">{editUrl && <EditThisPage editUrl={editUrl} />}</div>
+                  <div className="col">
+                    {editUrl && <EditThisPage editUrl={editUrl} />}
+                  </div>
                   {(lastUpdatedAt || lastUpdatedBy) && (
                     <LastUpdated
                       lastUpdatedAt={lastUpdatedAt}
@@ -86,7 +107,9 @@ function APIDocItem(props) {
                 <div className="row">
                   <div className="col text--right">
                     <Link
-                      className={classnames('button button--outline button--primary button--md')}
+                      className={classnames(
+                        "button button--outline button--primary button--md"
+                      )}
                       href={issueUrl}
                       target="_blank"
                     >
