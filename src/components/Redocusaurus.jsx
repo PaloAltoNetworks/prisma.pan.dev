@@ -157,7 +157,6 @@ function Redocusaurus(props) {
           nativeScrollBars: false,
           disableSearch: true,
           hideSchemaPattern: false,
-          // expandResponses: "200,201",
           pathInMiddlePanel: true,
           suppressWarnings: true,
           showExtensions: true,
