@@ -6,7 +6,7 @@ description: AWS Cognito Queries
 hide_title: true
 ---
 
-## Sample AWS ognito RQL Queries
+## Sample AWS Cognito RQL Queries
 
 :::note
 The following guide will walk you through AWS Cognito RQL Query Examples
