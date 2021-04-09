@@ -95,6 +95,23 @@ html[data-theme="dark"] {
   text-align: left;
 }
 
+.redocusaurus table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.redocusaurus tr {
+  border-bottom: 1px solid var(--ifm-color-secondary) !important;
+}
+
+.redocusaurus td {
+  width: 50%;
+}
+
+.redocusaurus th {
+  text-align: left;
+}
+
 /* Center all columns in main wrapper */
 .main-wrapper {
   max-width: 1400px;
