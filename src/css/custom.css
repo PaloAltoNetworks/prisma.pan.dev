@@ -98,6 +98,15 @@ html[data-theme="dark"] {
 
 .footer--dark {
   --ifm-footer-background-color: var(--ifm-color-gray-600);
+  color: white;
+}
+
+.footer--dark a {
+  color: white;
+}
+
+.footer--dark a:hover {
+  color: white;
 }
 
 /* Tables */
