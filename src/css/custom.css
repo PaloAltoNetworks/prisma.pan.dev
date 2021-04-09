@@ -27,7 +27,14 @@
   --ifm-color-success: #00cc66;
   --ifm-color-warning: #ffcb06;
   --ifm-color-danger: #fa582d;
-
+  /* Secondary Colors */
+  --ifm-color-secondary: #768ba1;
+  --ifm-color-secondary-dark: #667d95;
+  --ifm-color-secondary-darker: #61768d;
+  --ifm-color-secondary-darkest: #4f6174;
+  --ifm-color-secondary-light: #8799ac;
+  --ifm-color-secondary-lighter: #8fa0b2;
+  --ifm-color-secondary-lightest: #a8b5c3;
   --ifm-navbar-search-input-color: var(--ifm-color-gray-900);
   --ifm-font-size-base: 95%;
   --ifm-code-font-size: 90%;
@@ -36,7 +43,7 @@
   --ifm-hero-color: #daf0f6;
   --ifm-color-gray-switch: var(--ifm-color-gray-100);
   /* Tables */
-  --ifm-table-stripe-background: var(--ifm-background-color);
+  /* --ifm-table-stripe-background: var(--ifm-background-color); */
   --ifm-table-border-width: 0px;
 }
 
@@ -73,6 +80,22 @@ html[data-theme="dark"] {
   --ifm-color-gray-switch: var(--ifm-color-gray-300);
 }
 
+.alert--secondary svg {
+  fill: white;
+}
+
+.alert--secondary {
+  color: white;
+}
+
+.alert--secondary p {
+  color: white !important;
+}
+
+.alert--secondary a {
+  color: white;
+}
+
 .footer--dark {
   --ifm-footer-background-color: var(--ifm-color-gray-600);
 }
@@ -92,23 +115,6 @@ html[data-theme="dark"] {
 }
 
 .markdown th {
-  text-align: left;
-}
-
-.redocusaurus table {
-  table-layout: fixed;
-  width: 100%;
-}
-
-.redocusaurus tr {
-  border-bottom: 1px solid var(--ifm-color-secondary) !important;
-}
-
-.redocusaurus td {
-  width: 50%;
-}
-
-.redocusaurus th {
   text-align: left;
 }
 
@@ -154,7 +160,7 @@ html[data-theme="dark"] {
 
 /* Docs overrides */
 .markdown p {
-  color: var(--ifm-color-gray-800) !important;
+  color: var(--ifm-color-gray-800);
 }
 
 blockquote {
@@ -252,6 +258,25 @@ html[data-theme="dark"] .header-github-link:before {
 }
 
 /* Redocusaurus overrides follow */
+
+.redocusaurus table {
+  table-layout: unset !important;
+  width: unset !important;
+}
+
+.redocusaurus tr {
+  border-bottom: unset !important;
+}
+
+.redocusaurus td {
+  width: unset !important;
+  border-bottom: unset !important;
+}
+
+.redocusaurus th {
+  text-align: unset !important;
+  width: unset !important;
+}
 
 /* Override ReDoc code block colors */
 .redocusaurus .boolean {
