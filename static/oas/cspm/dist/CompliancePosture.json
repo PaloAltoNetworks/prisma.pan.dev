@@ -10,11 +10,17 @@
     },
     "requestBodies": {
       "FilterModel3": {
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/FilterModel" }
+          }
+        }
       },
       "FilterSuggestionModel": {
         "content": {
-          "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" } }
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
+          }
         }
       }
     },
@@ -42,7 +48,10 @@
             "type": "integer"
           },
           "default": { "description": "Is System Default", "type": "boolean" },
-          "description": { "description": "Description of Compliance Standard/Requirement/Section", "type": "string" },
+          "description": {
+            "description": "Description of Compliance Standard/Requirement/Section",
+            "type": "string"
+          },
           "failedResources": {
             "description": "Number of failing Compliance Standard/Requirement/Section Scanned Resources",
             "format": "int64",
@@ -53,7 +62,10 @@
             "format": "int64",
             "type": "integer"
           },
-          "id": { "description": "ID of Compliance Standard/Requirement/Section", "type": "string" },
+          "id": {
+            "description": "ID of Compliance Standard/Requirement/Section",
+            "type": "string"
+          },
           "lowSeverityFailedResources": {
             "description": "Number of Compliance Standard/Requirement/Section Scanned Resources failing low severity policies",
             "format": "int64",
@@ -64,7 +76,10 @@
             "format": "int64",
             "type": "integer"
           },
-          "name": { "description": "Name of Compliance Standard/Requirement/Section", "type": "string" },
+          "name": {
+            "description": "Name of Compliance Standard/Requirement/Section",
+            "type": "string"
+          },
           "passedResources": {
             "description": "Number of Passing Compliance Standard/Requirement/Section Scanned Resources",
             "format": "int64",
@@ -86,14 +101,22 @@
             "items": { "$ref": "#/components/schemas/ComplianceDetail" },
             "type": "array"
           },
-          "requestedTimestamp": { "description": "Requested timestamp", "format": "int64", "type": "integer" },
+          "requestedTimestamp": {
+            "description": "Requested timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
           "requirementSummaries": {
             "description": "List of requirement summaries",
             "items": { "$ref": "#/components/schemas/RequirementSummary" },
             "type": "array"
           },
           "summary": { "$ref": "#/components/schemas/PostureSummary" },
-          "timestamp": { "description": "Timestamp", "format": "int64", "type": "integer" }
+          "timestamp": {
+            "description": "Timestamp",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -104,9 +127,15 @@
           "cloud.account": { "$ref": "#/components/schemas/FilterSuggestion" },
           "cloud.region": { "$ref": "#/components/schemas/FilterSuggestion" },
           "cloud.type": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.complianceRequirement": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.complianceSection": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.complianceStandard": { "$ref": "#/components/schemas/FilterSuggestion" }
+          "policy.complianceRequirement": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "policy.complianceSection": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "policy.complianceStandard": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          }
         },
         "type": "object"
       },
@@ -164,7 +193,10 @@
             "type": "array",
             "uniqueItems": true
           },
-          "staticFilter": { "description": "Filter is a static filter", "type": "boolean" }
+          "staticFilter": {
+            "description": "Filter is a static filter",
+            "type": "boolean"
+          }
         },
         "type": "object"
       },
@@ -181,18 +213,41 @@
         "type": "object"
       },
       "NameValueIntegerString": {
-        "properties": { "id": { "format": "int32", "type": "integer" }, "name": { "type": "string" } },
+        "properties": {
+          "id": { "format": "int32", "type": "integer" },
+          "name": { "type": "string" }
+        },
         "type": "object"
       },
       "ParsedTableFilter": {
         "description": "Model for parsed table filter",
         "properties": {
-          "completeParameters": { "items": { "$ref": "#/components/schemas/UIFilterModel" }, "type": "array" },
-          "needsOffsetUpdate": { "description": "Needs offset update (for internal use)", "type": "boolean" },
-          "offset": { "description": "Offset within query", "format": "int32", "type": "integer" },
-          "queryRemainder": { "description": "Query remainder", "type": "string" },
-          "suggestions": { "description": "List of suggestions", "items": { "type": "string" }, "type": "array" },
-          "translate": { "description": "Translate (for internal use)", "type": "boolean" },
+          "completeParameters": {
+            "items": { "$ref": "#/components/schemas/UIFilterModel" },
+            "type": "array"
+          },
+          "needsOffsetUpdate": {
+            "description": "Needs offset update (for internal use)",
+            "type": "boolean"
+          },
+          "offset": {
+            "description": "Offset within query",
+            "format": "int32",
+            "type": "integer"
+          },
+          "queryRemainder": {
+            "description": "Query remainder",
+            "type": "string"
+          },
+          "suggestions": {
+            "description": "List of suggestions",
+            "items": { "type": "string" },
+            "type": "array"
+          },
+          "translate": {
+            "description": "Translate (for internal use)",
+            "type": "boolean"
+          },
           "valid": { "description": "Query is valid", "type": "boolean" }
         },
         "type": "object"
@@ -225,7 +280,11 @@
             "format": "int64",
             "type": "integer"
           },
-          "timestamp": { "description": "Timestamp", "format": "int64", "type": "integer" },
+          "timestamp": {
+            "description": "Timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
           "totalResources": {
             "description": "Total number of scanned compliance resources",
             "format": "int64",
@@ -237,7 +296,11 @@
       "RelativeTimeDurationModel": {
         "description": "Model for RelativeTimeDuration",
         "properties": {
-          "amount": { "description": "Number of time units", "format": "int32", "type": "integer" },
+          "amount": {
+            "description": "Number of time units",
+            "format": "int32",
+            "type": "integer"
+          },
           "unit": {
             "description": "Time unit",
             "enum": ["minute", "hour", "day", "week", "month", "year"],
@@ -258,7 +321,9 @@
                 "type": "string"
               },
               "type": { "example": "relative", "type": "string" },
-              "value": { "$ref": "#/components/schemas/RelativeTimeDurationModel" }
+              "value": {
+                "$ref": "#/components/schemas/RelativeTimeDurationModel"
+              }
             },
             "required": ["value"],
             "type": "object"
@@ -268,8 +333,14 @@
       "RequirementSummary": {
         "description": "Model for Compliance Requirement Summary on Posture API",
         "properties": {
-          "id": { "description": "Compliance Requirement ID", "type": "string" },
-          "name": { "description": "Compliance Requirement name", "type": "string" },
+          "id": {
+            "description": "Compliance Requirement ID",
+            "type": "string"
+          },
+          "name": {
+            "description": "Compliance Requirement name",
+            "type": "string"
+          },
           "sectionSummaries": {
             "description": "Section Summary list for the compliance requirement",
             "items": { "$ref": "#/components/schemas/SectionSummary" },
@@ -287,7 +358,10 @@
             "type": "integer"
           },
           "id": { "description": "Compliance section ID", "type": "string" },
-          "name": { "description": "Compliance section name", "type": "string" },
+          "name": {
+            "description": "Compliance section name",
+            "type": "string"
+          },
           "passedResources": {
             "description": "Number of passed compliance section scanned resources",
             "format": "int64",
@@ -304,8 +378,16 @@
       "TimeModel": {
         "description": "Model for Time",
         "properties": {
-          "endTime": { "description": "End timestamp", "format": "int64", "type": "integer" },
-          "startTime": { "description": "Start timestamp", "format": "int64", "type": "integer" }
+          "endTime": {
+            "description": "End timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
+          "startTime": {
+            "description": "Start timestamp",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -324,7 +406,9 @@
           { "$ref": "#/components/schemas/AbsoluteTimeRangeConfigModel" },
           { "$ref": "#/components/schemas/ToNowTimeRangeConfigModel" }
         ],
-        "properties": { "type": { "description": "Time type", "type": "string" } },
+        "properties": {
+          "type": { "description": "Time type", "type": "string" }
+        },
         "required": ["type"],
         "type": "object"
       },
@@ -336,7 +420,16 @@
             "properties": {
               "value": {
                 "description": "Time range object",
-                "enum": ["MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR", "EPOCH", "LOGIN"],
+                "enum": [
+                  "MINUTE",
+                  "HOUR",
+                  "DAY",
+                  "WEEK",
+                  "MONTH",
+                  "YEAR",
+                  "EPOCH",
+                  "LOGIN"
+                ],
                 "type": "string"
               }
             },
@@ -348,7 +441,11 @@
         "description": "Model for UIFilter",
         "properties": {
           "name": { "description": "Name", "type": "string" },
-          "operator": { "description": "Operator", "enum": ["="], "type": "string" },
+          "operator": {
+            "description": "Operator",
+            "enum": ["="],
+            "type": "string"
+          },
           "value": { "description": "Value", "type": "string" }
         },
         "type": "object"
@@ -363,7 +460,12 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The Compliance Posture APIs are listed below.", "name": "Compliance Posture" }],
+  "tags": [
+    {
+      "description": "The Compliance Posture APIs are listed below.",
+      "name": "Compliance Posture"
+    }
+  ],
   "paths": {
     "/compliance/posture": {
       "get": {
@@ -389,7 +491,10 @@
             "in": "query",
             "name": "timeUnit",
             "required": true,
-            "schema": { "enum": ["minute", "hour", "day", "week", "month", "year"], "type": "string" }
+            "schema": {
+              "enum": ["minute", "hour", "day", "week", "month", "year"],
+              "type": "string"
+            }
           },
           {
             "description": "Cloud account",
@@ -437,7 +542,9 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/CompliancePosture" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/CompliancePosture" }
+              }
             },
             "description": "success"
           },
@@ -462,11 +569,19 @@
         "description": "Returns a breakdown of the passed/failed statistics and associated policies for compliance standards, requirements, and sections. Also returns a summary for all compliance standards.",
         "operationId": "post-compliance-posture",
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
+          }
         },
         "responses": {
           "200": {
-            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/CompliancePosture" } } },
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CompliancePosture" }
+              }
+            },
             "description": "success"
           },
           "400": { "description": "bad_request" },
@@ -518,7 +633,10 @@
             "in": "query",
             "name": "timeUnit",
             "required": true,
-            "schema": { "enum": ["minute", "hour", "day", "week", "month", "year"], "type": "string" }
+            "schema": {
+              "enum": ["minute", "hour", "day", "week", "month", "year"],
+              "type": "string"
+            }
           },
           {
             "description": "Cloud account",
@@ -559,7 +677,9 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/CompliancePosture" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/CompliancePosture" }
+              }
             },
             "description": "success"
           },
@@ -593,11 +713,19 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
+          }
         },
         "responses": {
           "200": {
-            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/CompliancePosture" } } },
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CompliancePosture" }
+              }
+            },
             "description": "success"
           },
           "400": { "description": "bad_request" },
@@ -656,7 +784,10 @@
             "in": "query",
             "name": "timeUnit",
             "required": true,
-            "schema": { "enum": ["minute", "hour", "day", "week", "month", "year"], "type": "string" }
+            "schema": {
+              "enum": ["minute", "hour", "day", "week", "month", "year"],
+              "type": "string"
+            }
           },
           {
             "description": "Cloud account",
@@ -690,7 +821,9 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/CompliancePosture" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/CompliancePosture" }
+              }
             },
             "description": "success"
           },
@@ -731,11 +864,19 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
+          }
         },
         "responses": {
           "200": {
-            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/CompliancePosture" } } },
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CompliancePosture" }
+              }
+            },
             "description": "success"
           },
           "400": { "description": "bad_request" },
@@ -780,7 +921,10 @@
             "in": "query",
             "name": "timeUnit",
             "required": true,
-            "schema": { "enum": ["minute", "hour", "day", "week", "month", "year"], "type": "string" }
+            "schema": {
+              "enum": ["minute", "hour", "day", "week", "month", "year"],
+              "type": "string"
+            }
           },
           {
             "description": "Cloud account",
@@ -829,7 +973,10 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/PostureSummary" }, "type": "array" }
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/PostureSummary" },
+                  "type": "array"
+                }
               }
             },
             "description": "success"
@@ -855,13 +1002,20 @@
         "description": "Returns a compliance posture summary that describes the passed/failed statistics trend.  \r\n\r\nThe **fields** body parameter allows you to request specific fields. These fields are separate \nfrom the filters you specify. The following are valid **fields** items.\n\n* cloud.account\n* account.group\n* cloud.region\n* cloud.type\n* policy.complianceStandard\n* policy.complianceRequirement\n* policy.complianceSection\n\nThe **filters** body parameter enables you to narrow your request for alerts. \nSee [Get Compliance Overview Filters and Options](/api/cloud/cspm/compliance-posture#operation/get-compliance-posture-filters-and-options) \nfor the API request to list all valid filters.\n",
         "operationId": "post-compliance-posture-trend",
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
+          }
         },
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": { "items": { "$ref": "#/components/schemas/PostureSummary" }, "type": "array" }
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/PostureSummary" },
+                  "type": "array"
+                }
               }
             },
             "description": "success"
@@ -915,7 +1069,10 @@
             "in": "query",
             "name": "timeUnit",
             "required": true,
-            "schema": { "enum": ["minute", "hour", "day", "week", "month", "year"], "type": "string" }
+            "schema": {
+              "enum": ["minute", "hour", "day", "week", "month", "year"],
+              "type": "string"
+            }
           },
           {
             "description": "Cloud account",
@@ -957,7 +1114,10 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/PostureSummary" }, "type": "array" }
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/PostureSummary" },
+                  "type": "array"
+                }
               }
             },
             "description": "success"
@@ -992,13 +1152,20 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
+          }
         },
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": { "items": { "$ref": "#/components/schemas/PostureSummary" }, "type": "array" }
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/PostureSummary" },
+                  "type": "array"
+                }
               }
             },
             "description": "success"
@@ -1059,7 +1226,10 @@
             "in": "query",
             "name": "timeUnit",
             "required": true,
-            "schema": { "enum": ["minute", "hour", "day", "week", "month", "year"], "type": "string" }
+            "schema": {
+              "enum": ["minute", "hour", "day", "week", "month", "year"],
+              "type": "string"
+            }
           },
           {
             "description": "Cloud account",
@@ -1094,7 +1264,10 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/PostureSummary" }, "type": "array" }
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/PostureSummary" },
+                  "type": "array"
+                }
               }
             },
             "description": "success"
@@ -1136,13 +1309,20 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
+          }
         },
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": { "items": { "$ref": "#/components/schemas/PostureSummary" }, "type": "array" }
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/PostureSummary" },
+                  "type": "array"
+                }
               }
             },
             "description": "success"
@@ -1173,7 +1353,9 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "$ref": "#/components/schemas/CompliancePostureFilterSuggestion" }
+                "schema": {
+                  "$ref": "#/components/schemas/CompliancePostureFilterSuggestion"
+                }
               }
             },
             "description": "success"
@@ -1199,17 +1381,23 @@
         "operationId": "get-compliance-posture-filter-options",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
+            }
           }
         },
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ParsedTableFilter" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/ParsedTableFilter" }
+              }
             },
             "description": "success"
           },
-          "400": { "description": "missing_required_parameter / invalid_parameter_value" },
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value"
+          },
           "500": { "description": "internal_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
