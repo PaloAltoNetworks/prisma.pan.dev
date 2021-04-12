@@ -118,8 +118,8 @@ module.exports = {
     [
       "@docusaurus/plugin-sitemap",
       {
-        id: 'prisma-sitemap',
-        changefreq: 'weekly',
+        id: "prisma-sitemap",
+        changefreq: "weekly",
         priority: 0.5,
       },
     ],
