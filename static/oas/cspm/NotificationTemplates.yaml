@@ -285,8 +285,8 @@ paths:
                 $ref: '#/components/schemas/NotificationTemplate'
           description: successful operation
         '400':
-          description: missing_required_parameter / invalid_parameter_value / invalid_template_name
-            / missing_template_type / missing_integration_type / bad_request
+          description: missing_required_parameter / invalid_parameter_value /  / invalid_template_name
+            / missing_template_type /  / missing_integration_typebad_request
         '500':
           description: internal_error
       security:
@@ -344,7 +344,8 @@ paths:
                 $ref: '#/components/schemas/NotificationTemplate'
           description: successful operation
         '400':
-          description: missing_required_parameter / invalid_parameter_value
+          description: missing_required_parameter / invalid_parameter_value / invalid_template_name
+            / missing_template_type /  / missing_integration_type
         '500':
           description: internal_error
       security:

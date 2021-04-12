@@ -17,7 +17,11 @@
         "operationId": "license-usage-graph",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/AccountListRequestModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountListRequestModel"
+              }
+            }
           },
           "required": true
         },
@@ -26,26 +30,34 @@
             "description": "Successful operation",
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "$ref": "#/components/schemas/ResourceUsageGraphResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceUsageGraphResponse"
+                }
               }
             }
           },
           "400": {
             "description": "invalid_parameter_value",
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/SpringErrorResponse" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
+              }
             }
           },
           "403": {
             "description": "Forbidden",
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/SpringErrorResponse" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
+              }
             }
           },
           "500": {
             "description": "internal_error",
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/SpringErrorResponse" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
+              }
             }
           }
         },
@@ -68,10 +80,19 @@
         "summary": "Usage Count By Cloud Type Paginated",
         "description": "Get a paginated, full breakdown of resources used per account under a single cloud type.",
         "operationId": "license-usage-count-by-cloud-paginated_1",
-        "parameters": [{ "name": "cloud_type", "in": "query", "required": true, "schema": { "type": "string" } }],
+        "parameters": [
+          {
+            "name": "cloud_type",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/LicenseRequestModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/LicenseRequestModel" }
+            }
           },
           "required": true
         },
@@ -79,25 +100,35 @@
           "200": {
             "description": "Successful operation",
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/LicenseResponseModel" } }
+              "application/json; charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenseResponseModel"
+                }
+              }
             }
           },
           "400": {
             "description": "invalid_parameter_value",
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/SpringErrorResponse" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
+              }
             }
           },
           "403": {
             "description": "Forbidden",
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/SpringErrorResponse" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
+              }
             }
           },
           "500": {
             "description": "internal_error",
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/SpringErrorResponse" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
+              }
             }
           }
         },
@@ -122,31 +153,45 @@
         "operationId": "license-get-usage-csv",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/AccountListRequestModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountListRequestModel"
+              }
+            }
           },
           "required": true
         },
         "responses": {
           "200": {
             "description": "Successful operation",
-            "content": { "application/octet-stream": { "schema": { "$ref": "#/components/schemas/CsvMessage" } } }
+            "content": {
+              "application/octet-stream": {
+                "schema": { "$ref": "#/components/schemas/CsvMessage" }
+              }
+            }
           },
           "400": {
             "description": "invalid_parameter_value",
             "content": {
-              "application/octet-stream": { "schema": { "$ref": "#/components/schemas/SpringErrorResponse" } }
+              "application/octet-stream": {
+                "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
+              }
             }
           },
           "403": {
             "description": "Forbidden",
             "content": {
-              "application/octet-stream": { "schema": { "$ref": "#/components/schemas/SpringErrorResponse" } }
+              "application/octet-stream": {
+                "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
+              }
             }
           },
           "500": {
             "description": "internal_error",
             "content": {
-              "application/octet-stream": { "schema": { "$ref": "#/components/schemas/SpringErrorResponse" } }
+              "application/octet-stream": {
+                "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
+              }
             }
           }
         },
@@ -186,7 +231,10 @@
           "headerComments": {
             "type": "array",
             "description": "List of header comments",
-            "items": { "type": "string", "description": "List of header comments" }
+            "items": {
+              "type": "string",
+              "description": "List of header comments"
+            }
           },
           "headers": {
             "type": "array",
@@ -210,7 +258,11 @@
         "type": "object",
         "properties": {
           "timestamp": { "type": "string", "description": "timestamp" },
-          "status": { "type": "integer", "description": "Http status", "format": "int32" },
+          "status": {
+            "type": "integer",
+            "description": "Http status",
+            "format": "int32"
+          },
           "error": { "type": "string", "description": "Error message" },
           "message": { "type": "string", "description": "Error message" },
           "path": { "type": "string", "description": "Request path" }
@@ -224,7 +276,10 @@
           "accountIds": {
             "type": "array",
             "description": "List of account IDs",
-            "items": { "type": "string", "description": "Each item is an account ID" }
+            "items": {
+              "type": "string",
+              "description": "Each item is an account ID"
+            }
           },
           "limit": {
             "type": "integer",
@@ -233,8 +288,16 @@
             "example": 100
           },
           "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" },
-          "cloudType": { "type": "string", "description": "Cloud type values", "enum": ["aws"] },
-          "csvHeaderRequired": { "type": "boolean", "description": "CSV file header", "example": true }
+          "cloudType": {
+            "type": "string",
+            "description": "Cloud type values",
+            "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"]
+          },
+          "csvHeaderRequired": {
+            "type": "boolean",
+            "description": "CSV file header",
+            "example": true
+          }
         },
         "description": "Model for AccountListRequest"
       },
@@ -246,7 +309,9 @@
             "required": ["value"],
             "properties": {
               "type": { "type": "string", "example": "relative" },
-              "value": { "$ref": "#/components/schemas/RelativeTimeDurationModel" },
+              "value": {
+                "$ref": "#/components/schemas/RelativeTimeDurationModel"
+              },
               "relativeTimeType": {
                 "type": "string",
                 "description": "Direction in which to count time. Default = BACKWARD",
@@ -260,7 +325,12 @@
       "RelativeTimeDurationModel": {
         "description": "Model for RelativeTimeDuration",
         "properties": {
-          "amount": { "description": "Number of time units", "example": 5, "format": "int32", "type": "integer" },
+          "amount": {
+            "description": "Number of time units",
+            "example": 5,
+            "format": "int32",
+            "type": "integer"
+          },
           "unit": {
             "description": "Time unit",
             "example": "day",
@@ -302,11 +372,24 @@
             "description": "Graph GraphDataPoint points",
             "items": { "$ref": "#/components/schemas/GraphDataPoint" }
           },
-          "workloadsPurchased": { "type": "integer", "description": "Purchased workload count", "format": "int32" },
+          "workloadsPurchased": {
+            "type": "integer",
+            "description": "Purchased workload count",
+            "format": "int32"
+          },
           "timeUnit": {
             "type": "string",
             "description": "Returned data time unit",
-            "enum": ["minute", "hour", "day", "week", "month", "year", "epoch", "login"]
+            "enum": [
+              "minute",
+              "hour",
+              "day",
+              "week",
+              "month",
+              "year",
+              "epoch",
+              "login"
+            ]
           },
           "availableAsOf": {
             "type": "integer",
@@ -352,7 +435,11 @@
       "Item": {
         "type": "object",
         "properties": {
-          "total": { "type": "integer", "description": "Total", "format": "int32" },
+          "total": {
+            "type": "integer",
+            "description": "Total",
+            "format": "int32"
+          },
           "account": { "$ref": "#/components/schemas/Account" },
           "resourceTypeCount": {
             "type": "object",
@@ -365,8 +452,15 @@
       "LicenseResponseModel": {
         "type": "object",
         "properties": {
-          "totalRows": { "type": "integer", "description": "Total number of rows for the query", "format": "int64" },
-          "nextPageToken": { "type": "string", "description": "Token to be used for next page call" },
+          "totalRows": {
+            "type": "integer",
+            "description": "Total number of rows for the query",
+            "format": "int64"
+          },
+          "nextPageToken": {
+            "type": "string",
+            "description": "Token to be used for next page call"
+          },
           "items": {
             "type": "array",
             "description": "List of items. Each item contains cloud account name and the workload count of resource type",
@@ -379,7 +473,10 @@
       "Stats": {
         "type": "object",
         "properties": {
-          "stats": { "type": "object", "additionalProperties": { "type": "integer", "format": "int32" } }
+          "stats": {
+            "type": "object",
+            "additionalProperties": { "type": "integer", "format": "int32" }
+          }
         },
         "description": "Statistics to be shown. This contains the total workload per resource type"
       },
@@ -399,17 +496,37 @@
             "example": 10
           },
           "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" },
-          "cloudType": { "type": "string", "description": "Cloud type values", "enum": ["aws"] },
-          "csvHeaderRequired": { "type": "boolean", "description": "CSV file header", "example": true },
-          "pageToken": { "type": "string", "description": "Page token for pagination" },
-          "offset": { "type": "integer", "description": "Offset", "format": "int64" }
+          "cloudType": {
+            "type": "string",
+            "description": "Cloud type values",
+            "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"]
+          },
+          "csvHeaderRequired": {
+            "type": "boolean",
+            "description": "CSV file header",
+            "example": true
+          },
+          "pageToken": {
+            "type": "string",
+            "description": "Page token for pagination"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Offset",
+            "format": "int64"
+          }
         },
         "description": "Model for LicenseRequest"
       },
       "TimeModel": {
         "description": "Model for Time",
         "properties": {
-          "endTime": { "description": "End timestamp", "format": "int64", "type": "integer", "example": 1504794533000 },
+          "endTime": {
+            "description": "End timestamp",
+            "format": "int64",
+            "type": "integer",
+            "example": 1504794533000
+          },
           "startTime": {
             "description": "Start timestamp",
             "format": "int64",
@@ -436,7 +553,9 @@
           { "$ref": "#/components/schemas/AbsoluteTimeRangeConfigModel" },
           { "$ref": "#/components/schemas/ToNowTimeRangeConfigModel" }
         ],
-        "properties": { "type": { "type": "string", "description": "Time type" } }
+        "properties": {
+          "type": { "type": "string", "description": "Time type" }
+        }
       },
       "ToNowTimeRangeConfigModel": {
         "allOf": [
@@ -447,7 +566,16 @@
               "value": {
                 "description": "Time range object",
                 "example": "DAY",
-                "enum": ["MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR", "EPOCH", "LOGIN"],
+                "enum": [
+                  "MINUTE",
+                  "HOUR",
+                  "DAY",
+                  "WEEK",
+                  "MONTH",
+                  "YEAR",
+                  "EPOCH",
+                  "LOGIN"
+                ],
                 "type": "string"
               }
             },

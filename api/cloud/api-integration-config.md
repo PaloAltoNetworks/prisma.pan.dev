@@ -93,7 +93,7 @@ Key  |  Value Description | Value Type | Default Value or Required
 queueUrl | The Queue URL you used when you configured Prisma Cloud in Amazon SQS | string | _required_
 moreInfo | true=specific IAM credentials are specified for SQS queue access | boolean | false
 roleArn | Role ARN associated with the IAM role on Prisma Cloud | string |  _required_
-externalId | External ID associated with the IAM role on Prisma Cloud | string | _required_
+externalId | External ID associated with the IAM role on Prisma Cloud. New or updated value must be a unique 128-bit UUID | string | _required_
 
 To update an Amazon SQS integration, invoke the API with the corresponding request body described in [Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The **queueUrl** in **integrationConfig** is editable.
 

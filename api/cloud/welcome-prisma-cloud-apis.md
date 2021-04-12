@@ -1,6 +1,6 @@
 ---
 id: welcome-prisma-cloud-apis
-title: Welcome to the Prisma Cloud™ APIs
+title: Welcome to the Prisma™ Cloud APIs
 sidebar_label: Welcome to the Prisma Cloud APIs
 keywords:
   - Developer
@@ -10,7 +10,7 @@ keywords:
   - API
 ---
 
-Prisma™ Cloud is a cloud security posture management (CSPM) and cloud workload protection platform
+Prisma Cloud is a cloud security posture management (CSPM) and cloud workload protection platform
 (CWPP) that provides comprehensive visibility and threat detection across an organization’s hybrid,
 multi-cloud infrastructure. Prisma Cloud is available as either an 
 [Enterprise or Compute Edition](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/welcome/pcee_vs_pcce.html). 

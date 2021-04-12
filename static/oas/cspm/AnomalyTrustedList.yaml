@@ -31,6 +31,9 @@ components:
         service:
           description: Service
           type: string
+        subject:
+          description: Subject name
+          type: string
         tagKey:
           description: Tag key
           type: string
@@ -192,6 +195,10 @@ components:
           type: string
         service:
           description: Service
+          readOnly: true
+          type: string
+        subject:
+          description: Subject Name
           readOnly: true
           type: string
         tagKey:

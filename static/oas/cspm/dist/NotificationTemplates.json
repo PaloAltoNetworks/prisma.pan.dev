@@ -36,17 +36,39 @@
             "readOnly": true,
             "type": "string"
           },
-          "lastUpdated": { "description": "Last updated", "format": "int64", "readOnly": true, "type": "integer" },
-          "message": { "description": "Message", "readOnly": true, "type": "string" }
+          "lastUpdated": {
+            "description": "Last updated",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "message": {
+            "description": "Message",
+            "readOnly": true,
+            "type": "string"
+          }
         },
         "type": "object"
       },
       "MessageDetails": {
         "description": "Model for Message Details",
         "properties": {
-          "i18nKey": { "description": "Internationalization key", "readOnly": true, "type": "string" },
-          "statusCode": { "description": "Status code", "format": "int32", "readOnly": true, "type": "integer" },
-          "subject": { "description": "Subject", "readOnly": true, "type": "string" }
+          "i18nKey": {
+            "description": "Internationalization key",
+            "readOnly": true,
+            "type": "string"
+          },
+          "statusCode": {
+            "description": "Status code",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "subject": {
+            "description": "Subject",
+            "readOnly": true,
+            "type": "string"
+          }
         },
         "type": "object"
       },
@@ -56,7 +78,11 @@
           "aliasField": { "description": "Alias field", "type": "string" },
           "displayName": { "description": "Display name", "type": "string" },
           "fieldName": { "description": "Field name", "type": "string" },
-          "maxLength": { "description": "Maximum field length", "format": "int32", "type": "integer" },
+          "maxLength": {
+            "description": "Maximum field length",
+            "format": "int32",
+            "type": "integer"
+          },
           "options": {
             "description": "List of field configuration options",
             "items": { "$ref": "#/components/schemas/FieldConfigOption" },
@@ -72,7 +98,10 @@
             "enum": ["list", "text", "array", "bool", "integer"],
             "type": "string"
           },
-          "typeaheadUri": { "description": "URL used to query suggestions for field value", "type": "string" },
+          "typeaheadUri": {
+            "description": "URL used to query suggestions for field value",
+            "type": "string"
+          },
           "value": { "description": "Field value", "type": "string" }
         },
         "type": "object"
@@ -80,18 +109,41 @@
       "NotificationTemplate": {
         "description": "Model for Notification Template",
         "properties": {
-          "createdBy": { "description": "Created by", "readOnly": true, "type": "string" },
-          "createdTs": { "description": "Creation timestamp", "format": "int64", "readOnly": true, "type": "integer" },
+          "createdBy": {
+            "description": "Created by",
+            "readOnly": true,
+            "type": "string"
+          },
+          "createdTs": {
+            "description": "Creation timestamp",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
           "enabled": { "description": "true = Enabled", "type": "boolean" },
-          "id": { "description": "Notification template ID", "readOnly": true, "type": "string" },
-          "integrationId": { "description": "Integration ID", "type": "string" },
-          "integrationName": { "description": "Integration name", "type": "string" },
+          "id": {
+            "description": "Notification template ID",
+            "readOnly": true,
+            "type": "string"
+          },
+          "integrationId": {
+            "description": "Integration ID",
+            "type": "string"
+          },
+          "integrationName": {
+            "description": "Integration name",
+            "type": "string"
+          },
           "integrationType": {
             "description": "Integration type",
             "enum": ["SERVICE_NOW", "JIRA", "EMAIL"],
             "type": "string"
           },
-          "lastModifiedBy": { "description": "Last modified by", "readOnly": true, "type": "string" },
+          "lastModifiedBy": {
+            "description": "Last modified by",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedTs": {
             "description": "Timestamp of last modification",
             "format": "int64",
@@ -111,16 +163,29 @@
           },
           "templateConfig": {
             "additionalProperties": {
-              "items": { "$ref": "#/components/schemas/NotificationFieldsConfig" },
+              "items": {
+                "$ref": "#/components/schemas/NotificationFieldsConfig"
+              },
               "type": "array"
             },
             "description": "Template configuration",
             "type": "object"
           },
-          "templateType": { "description": "Template type", "enum": ["ticketing"], "type": "string" },
+          "templateType": {
+            "description": "Template type",
+            "enum": ["ticketing"],
+            "type": "string"
+          },
           "valid": { "type": "boolean" }
         },
-        "required": ["enabled", "integrationId", "integrationType", "name", "templateConfig", "templateType"],
+        "required": [
+          "enabled",
+          "integrationId",
+          "integrationType",
+          "name",
+          "templateConfig",
+          "templateType"
+        ],
         "type": "object"
       }
     }
@@ -133,7 +198,12 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The Notification Template APIs are listed below.", "name": "Notification Templates" }],
+  "tags": [
+    {
+      "description": "The Notification Template APIs are listed below.",
+      "name": "Notification Templates"
+    }
+  ],
   "paths": {
     "/notification/template": {
       "get": {
@@ -145,14 +215,22 @@
             "in": "query",
             "name": "type",
             "required": false,
-            "schema": { "enum": ["jira", "service_now", "email"], "type": "string" }
+            "schema": {
+              "enum": ["jira", "service_now", "email"],
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/NotificationTemplate" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationTemplate"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -178,7 +256,9 @@
         "operationId": "add-notification-template",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/NotificationTemplate" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/NotificationTemplate" }
+            }
           },
           "description": "Model for Notification Template",
           "required": true
@@ -186,12 +266,16 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/NotificationTemplate" } }
+              "application/json; charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationTemplate"
+                }
+              }
             },
             "description": "successful operation"
           },
           "400": {
-            "description": "missing_required_parameter / invalid_parameter_value / invalid_template_name / missing_template_type / missing_integration_type / bad_request"
+            "description": "missing_required_parameter / invalid_parameter_value /  / invalid_template_name / missing_template_type /  / missing_integration_typebad_request"
           },
           "500": { "description": "internal_error" }
         },
@@ -226,7 +310,11 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/NotificationTemplate" } }
+              "application/json; charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationTemplate"
+                }
+              }
             },
             "description": "successful operation"
           },
@@ -261,17 +349,25 @@
         ],
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/NotificationTemplate" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/NotificationTemplate" }
+            }
           }
         },
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/NotificationTemplate" } }
+              "application/json; charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationTemplate"
+                }
+              }
             },
             "description": "successful operation"
           },
-          "400": { "description": "missing_required_parameter / invalid_parameter_value" },
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value / invalid_template_name / missing_template_type /  / missing_integration_type"
+          },
           "500": { "description": "internal_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -302,7 +398,9 @@
         ],
         "responses": {
           "204": { "description": "success" },
-          "400": { "description": "missing_required_parameter / invalid_parameter_value" },
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value"
+          },
           "500": { "description": "internal_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -336,16 +434,25 @@
         "requestBody": {
           "content": {
             "application/json; charset=UTF-8": {
-              "schema": { "additionalProperties": { "type": "object" }, "type": "object" }
+              "schema": {
+                "additionalProperties": { "type": "object" },
+                "type": "object"
+              }
             }
           }
         },
         "responses": {
           "200": {
-            "content": { "application/json; charset=UTF-8": { "schema": { "type": "boolean" } } },
+            "content": {
+              "application/json; charset=UTF-8": {
+                "schema": { "type": "boolean" }
+              }
+            },
             "description": "successful operation"
           },
-          "400": { "description": "missing_required_parameter / invalid_parameter_value / bad_request" },
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value / bad_request"
+          },
           "500": { "description": "internal_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -387,7 +494,12 @@
           "200": {
             "content": {
               "*/*": {
-                "schema": { "items": { "$ref": "#/components/schemas/NotificationFieldsConfig" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationFieldsConfig"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -453,7 +565,12 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "items": { "$ref": "#/components/schemas/FieldConfigOption" }, "type": "array" } }
+              "*/*": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/FieldConfigOption" },
+                  "type": "array"
+                }
+              }
             },
             "description": "successful operation"
           },
@@ -489,7 +606,13 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/NotificationFieldsConfig" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationFieldsConfig"
+                }
+              }
+            },
             "description": "successful operation"
           }
         },
@@ -523,7 +646,13 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/NotificationFieldsConfig" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationFieldsConfig"
+                }
+              }
+            },
             "description": "successful operation"
           },
           "400": { "description": "error_fetching_projects" }
@@ -574,7 +703,12 @@
           "200": {
             "content": {
               "*/*": {
-                "schema": { "items": { "$ref": "#/components/schemas/NotificationFieldsConfig" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationFieldsConfig"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -618,7 +752,13 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/NotificationFieldsConfig" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationFieldsConfig"
+                }
+              }
+            },
             "description": "successful operation"
           },
           "400": { "description": "not_authorized_for_project" }
@@ -675,7 +815,12 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "items": { "$ref": "#/components/schemas/FieldConfigOption" }, "type": "array" } }
+              "*/*": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/FieldConfigOption" },
+                  "type": "array"
+                }
+              }
             },
             "description": "successful operation"
           },
@@ -736,7 +881,13 @@
             "required": true,
             "schema": { "type": "string" }
           },
-          { "description": "Field", "in": "path", "name": "field", "required": true, "schema": { "type": "string" } },
+          {
+            "description": "Field",
+            "in": "path",
+            "name": "field",
+            "required": true,
+            "schema": { "type": "string" }
+          },
           {
             "description": "Case-insensitive search filter. Response includes only items that contain the query as a substring.",
             "in": "query",
@@ -748,7 +899,12 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "items": { "$ref": "#/components/schemas/FieldConfigOption" }, "type": "array" } }
+              "*/*": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/FieldConfigOption" },
+                  "type": "array"
+                }
+              }
             },
             "description": "successful operation"
           },

@@ -1116,12 +1116,14 @@ paths:
           **timeType** **to_now**
         in: query
         name: timeAmount
+        required: false
         schema:
           type: string
       - description: Time Unit. Required for **timeType** **relative**. Unused for
           **timeType** **to_now**
         in: query
         name: timeUnit
+        required: false
         schema:
           enum:
           - minute

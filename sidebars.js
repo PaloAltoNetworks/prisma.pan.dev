@@ -113,6 +113,11 @@ module.exports = {
         'cloud/cwpp/twistcli_gs',
         'cloud/cwpp/custom_compliance_samples',
         {
+          type: 'link',
+          label: "Compute API Reference",
+          href: 'https://cdn.twistlock.com/docs/api/twistlock_api.html',
+        },
+        {
           type: 'category',
           label: 'Other Documentation',
           items: [

@@ -13,9 +13,9 @@ components:
         alertDisposition:
           description: Alert Disposition Setting
           enum:
-          - Low
-          - Medium
-          - High
+          - Aggressive
+          - Moderate
+          - Conservative
           type: string
         alertDispositionDescription:
           additionalProperties:
@@ -36,9 +36,9 @@ components:
         trainingModelThreshold:
           description: Training Model Threshold
           enum:
-          - Aggressive
-          - Moderate
-          - Conservative
+          - Low
+          - Medium
+          - High
           type: string
       type: object
 info:
