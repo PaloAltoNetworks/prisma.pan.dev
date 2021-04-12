@@ -78,6 +78,7 @@ module.exports = {
           label: 'Terraform Provider',
           items: ['cloud/cspm/tf/provider_doc', 'cloud/cspm/tf/tf_example1'],
         },
+        'cloud/cspm/cspm_postman_collection',
         {
           type: 'category',
           label: 'Other Documentation',
@@ -117,6 +118,7 @@ module.exports = {
           label: "Compute API Reference",
           href: 'https://cdn.twistlock.com/docs/api/twistlock_api.html',
         },
+        'cloud/cwpp/cwpp_postman_collection',
         {
           type: 'category',
           label: 'Other Documentation',
