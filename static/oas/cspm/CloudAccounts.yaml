@@ -25,6 +25,19 @@ components:
       description: Service Account Key (JSON) file content
       required: true
   schemas:
+    AbsoluteTimeRangeConfigModel:
+      allOf:
+      - $ref: '#/components/schemas/TimeRangeConfigModel'
+      - description: Model for AbsoluteTimeRangeConfig
+        properties:
+          type:
+            example: absolute
+            type: string
+          value:
+            $ref: '#/components/schemas/TimeModel'
+        required:
+        - value
+        type: object
     AccountGroupInfo:
       description: Account group info linked to a cloud account
       properties:
@@ -40,6 +53,45 @@ components:
         lastModifiedBy:
           description: Last modified by
           type: string
+      type: object
+    AccountListRequestModel:
+      description: Model for AccountListRequest
+      properties:
+        accountGroupIds:
+          description: List of account group IDs
+          items:
+            type: string
+          type: array
+        accountIds:
+          description: List of account IDs
+          items:
+            type: string
+          type: array
+        aggregate:
+          description: true = aggregate
+          type: boolean
+        cloudType:
+          type: string
+        csvHeaderRequired:
+          type: boolean
+        filterKey:
+          description: Filter key
+          type: string
+        filterValue:
+          description: Filter value
+          type: string
+        groupBy:
+          description: Group items by this value
+          type: string
+        limit:
+          description: Limit of items per request. Default is 1000.
+          format: int32
+          type: integer
+        timeRange:
+          $ref: '#/components/schemas/TimeRangeConfigModel'
+      required:
+      - accountIds
+      - timeRange
       type: object
     AccountStatusMessage:
       properties:
@@ -134,6 +186,25 @@ components:
           - ALIBABA_CLOUD
           - OCI
           readOnly: true
+          type: string
+        deploymentType:
+          description: Deployment Type
+          enum:
+          - AZURE
+          - AZURE_GOVERNMENT
+          - AZURE_CHINA
+          - AWS
+          - AWS_GOVERNMENT
+          - AWS_CHINA
+          - OCI
+          - OCI_GOVERNMENT
+          - OCI_CHINA
+          - GCP
+          - GCP_GOVERNMENT
+          - GCP_CHINA
+          - ALIBABA
+          - ALIBABA_GOVERNMENT
+          - ALIBABA_CHINA
           type: string
         enabled:
           description: Enabled
@@ -243,6 +314,25 @@ components:
           - ALIBABA_CLOUD
           - OCI
           readOnly: true
+          type: string
+        deploymentType:
+          description: Deployment Type
+          enum:
+          - AZURE
+          - AZURE_GOVERNMENT
+          - AZURE_CHINA
+          - AWS
+          - AWS_GOVERNMENT
+          - AWS_CHINA
+          - OCI
+          - OCI_GOVERNMENT
+          - OCI_CHINA
+          - GCP
+          - GCP_GOVERNMENT
+          - GCP_CHINA
+          - ALIBABA
+          - ALIBABA_GOVERNMENT
+          - ALIBABA_CHINA
           type: string
         enabled:
           description: Enabled
@@ -356,6 +446,43 @@ components:
             $ref: '#/components/schemas/GcpNodeModel'
           type: array
       type: object
+    RelativeTimeDurationModel:
+      description: Model for RelativeTimeDuration
+      properties:
+        amount:
+          description: Number of time units
+          format: int32
+          type: integer
+        unit:
+          description: Time unit
+          enum:
+          - minute
+          - hour
+          - day
+          - week
+          - month
+          - year
+          type: string
+      type: object
+    RelativeTimeRangeConfigModel:
+      allOf:
+      - $ref: '#/components/schemas/TimeRangeConfigModel'
+      - description: Model for RelativeTimeRangeConfig
+        properties:
+          relativeTimeType:
+            description: Direction in which to count time. Default = BACKWARD
+            enum:
+            - BACKWARD
+            - FORWARD
+            type: string
+          type:
+            example: relative
+            type: string
+          value:
+            $ref: '#/components/schemas/RelativeTimeDurationModel'
+        required:
+        - value
+        type: object
     Resources:
       description: Resources Model for Identifying Ancestors
       properties:
@@ -391,6 +518,58 @@ components:
       - policyName
       - userName
       type: object
+    TimeModel:
+      description: Model for Time
+      properties:
+        endTime:
+          description: End timestamp
+          format: int64
+          type: integer
+        startTime:
+          description: Start timestamp
+          format: int64
+          type: integer
+      type: object
+    TimeRangeConfigModel:
+      description: 'See the [Time Range Model](/api/cloud/api-time-range-model) for
+        details.
+
+        '
+      discriminator:
+        mapping:
+          absolute: '#/components/schemas/AbsoluteTimeRangeConfigModel'
+          relative: '#/components/schemas/RelativeTimeRangeConfigModel'
+          to_now: '#/components/schemas/ToNowTimeRangeConfigModel'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/RelativeTimeRangeConfigModel'
+      - $ref: '#/components/schemas/AbsoluteTimeRangeConfigModel'
+      - $ref: '#/components/schemas/ToNowTimeRangeConfigModel'
+      properties:
+        type:
+          description: Time type
+          type: string
+      required:
+      - type
+      type: object
+    ToNowTimeRangeConfigModel:
+      allOf:
+      - $ref: '#/components/schemas/TimeRangeConfigModel'
+      - description: Model for ToNowTimeRangeConfig
+        properties:
+          value:
+            description: Time range object
+            enum:
+            - MINUTE
+            - HOUR
+            - DAY
+            - WEEK
+            - MONTH
+            - YEAR
+            - EPOCH
+            - LOGIN
+            type: string
+        type: object
 info:
   contact: {}
   description: "To begin monitoring the resources on your cloud infrastructure, you\
@@ -473,7 +652,45 @@ paths:
           description: successful operation
       security:
       - x-redlock-auth: []
-      summary: List Cloud Account Names
+      summary: List Cloud Account Names - GET
+      tags:
+      - Cloud Accounts
+    post:
+      description: Returns a list of cloud account IDs and names.
+      operationId: get-cloud-account-names-by-post
+      parameters:
+      - description: Returns IDs and names of active accounts only. Default is false.
+        in: query
+        name: onlyActive
+        required: false
+        schema:
+          type: boolean
+      - description: Returns IDs and names of accounts that belong to the specified
+          cloudType and accountGroup
+        in: query
+        name: cloudType
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountListRequestModel'
+        description: Cloud Account Groups
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/CloudAccountIdentity'
+                type: array
+          description: successful operation
+      security:
+      - x-redlock-auth: []
+      summary: List Cloud Account Names - POST
       tags:
       - Cloud Accounts
   /cloud/{cloud_type}/{id}/project:
@@ -630,6 +847,10 @@ paths:
         \ | string | GCP project for flow log compression | Required if compressionEnabled\
         \ is **true**\nflowLogStorageBucket | string | GCP flow logs storage bucket\
         \ | \"\"\norganizationName | string | GCP organization name | _required_\n\
+        accountGroupCreationMode | string | Cloud account group creation mode. Valid\
+        \ values:<br/>**MANUAL**: Create account groups manually<br/>**AUTO**: Create\
+        \ high-level account groups based on folders identified<br/>**RECURSIVE**:\
+        \ Drill down in folder tree to create account groups | default: **MANUAL**\n\
         hierarchySelection.resourceId | string | Resource ID. For folders, format\
         \ is folders/{folder ID}. For projects, format is {project number}. For orgs,\
         \ format is organizations/{org ID} | _required if **hierarchySelection** is\
@@ -645,26 +866,26 @@ paths:
         \    \"groupIds\": [],\n    \"name\": \"\",\n    \"projectId\":\"\",\n   \
         \ \"protectionMode\": \"MONITOR\"\n},\n\"compressionEnabled\": false,\n\"\
         dataflowEnabledProject\": \"\",\n\"flowLogStorageBucket\": \"\",\n\"organizationName\"\
-        : \"\",\n\"credentials\": {\n    \"type\": \"\",\n    \"project_id\": \"\"\
-        ,\n    \"private_key_id\": \"\",\n    \"private_key\": \"\",\n    \"client_email\"\
-        : \"\",\n    \"client_id\": \"\",\n    \"auth_uri\": \"\",\n    \"token_uri\"\
-        : \"\",\n    \"auth_provider_x509_cert_url\": \"\",\n    \"client_x509_cert_url\"\
-        : \"\"\n},\n\"hierarchySelection\": \n  [{\n    \"resourceId\": \"\",\n  \
-        \  \"displayName\": \"\",\n    \"nodeType\": \"FOLDER\",\n    \"selectionType\"\
-        : \"EXCLUDE\"\n  }]    \n}\n```\n\n### Add an Alibaba Account\n#### Request\
-        \ Body\nThe table below lists the request body parameters to add an Alibaba\
-        \ account.\n\nParameter  | Type | Description | Default Value or Required\n\
-        -----------| ---- | ----------- | -------------\naccountId | string | AWS\
-        \ account ID | _required_\ngroupIds | array of strings  | List of account\
-        \ group IDs to which you are assigning this account  | _required_\nname |\
-        \ string  | Name to be used for the account on the Prisma Cloud platform (must\
-        \ be unique)  | _required_\nroleArn | string | Unique identifier for an Alibaba\
-        \ RAM role resource | _required_\nenabled | boolean | Whether or not the account\
-        \ is enabled | **false**\n\n##### Request Body Example\n```\n{\n  \"accountId\"\
-        : \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"enabled\": true,\n  \"\
-        ramArn\": \"\"\n}\n```\n### Add an OCI Account\n#### Request Body\nTo add\
-        \ an Oracle Cloud Infrastructure (OCI) account, you must:\n\n1. Use [Generate\
-        \ Zipped Terraform Script (OCI)](/api/cloud/cspm/cloud-accounts#operation/generateterraformscript)\
+        : \"\",\n\"accountGroupCreationMode\": \"\",\n\"credentials\": {\n    \"type\"\
+        : \"\",\n    \"project_id\": \"\",\n    \"private_key_id\": \"\",\n    \"\
+        private_key\": \"\",\n    \"client_email\": \"\",\n    \"client_id\": \"\"\
+        ,\n    \"auth_uri\": \"\",\n    \"token_uri\": \"\",\n    \"auth_provider_x509_cert_url\"\
+        : \"\",\n    \"client_x509_cert_url\": \"\"\n},\n\"hierarchySelection\": \n\
+        \  [{\n    \"resourceId\": \"\",\n    \"displayName\": \"\",\n    \"nodeType\"\
+        : \"FOLDER\",\n    \"selectionType\": \"EXCLUDE\"\n  }]    \n}\n```\n\n###\
+        \ Add an Alibaba Account\n#### Request Body\nThe table below lists the request\
+        \ body parameters to add an Alibaba account.\n\nParameter  | Type | Description\
+        \ | Default Value or Required\n-----------| ---- | ----------- | -------------\n\
+        accountId | string | AWS account ID | _required_\ngroupIds | array of strings\
+        \  | List of account group IDs to which you are assigning this account  |\
+        \ _required_\nname | string  | Name to be used for the account on the Prisma\
+        \ Cloud platform (must be unique)  | _required_\nroleArn | string | Unique\
+        \ identifier for an Alibaba RAM role resource | _required_\nenabled | boolean\
+        \ | Whether or not the account is enabled | **false**\n\n##### Request Body\
+        \ Example\n```\n{\n  \"accountId\": \"\",\n  \"groupIds\": [],\n  \"name\"\
+        : \"\",\n  \"enabled\": true,\n  \"ramArn\": \"\"\n}\n```\n### Add an OCI\
+        \ Account\n#### Request Body\nTo add an Oracle Cloud Infrastructure (OCI)\
+        \ account, you must:\n\n1. Use [Generate Zipped Terraform Script (OCI)](/api/cloud/cspm/cloud-accounts#operation/generateterraformscript)\
         \ to generate a zipped Terraform template.\n2. Log into your OCI Tenant Console\
         \ to submit the zipped Terraform template as the Terraform configuration source\
         \ for a stack you create.\n3. Use the resulting OCI user OCID and other parameters\
@@ -860,13 +1081,18 @@ paths:
         \ account is enabled | _required_\ncloudAccount.groupIds | array of strings\
         \ | List of account group IDs to which you are assigning this account | _required_\n\
         cloudAccount.projectId | string  | Existing GCP project ID | _required_\n\
-        cloudAccount.protectionMode | string  | Valid values: \"MONITOR\", **MONITOR_AND_PROTECT**\
-        \ | _required_ \ncloudAccount.accountType | string | Valid values: **organization**,**masterServiceAccount**,**account**\
-        \ | _required_\ncredentials | JSON object | Service account key | _required_\n\
-        compressionEnabled |boolean | Enable flow log compression | _required_\ndataflowEnabledProject\
-        \ | string | GCP project for flow log compression | _required if **compressionEnabled**\
-        \ is **true**_\nflowLogStorageBucket | string | GCP flow logs storage bucket\
+        cloudAccount.protectionMode | string  | Valid values: **MONITOR**, **MONITOR_AND_PROTECT**\
+        \ | _required_ \ncloudAccount.accountType | string | Valid values: **organization**,\
+        \ **masterServiceAccount**, **account** | _required_\ncredentials | JSON object\
+        \ | Service account key | _required_\ncompressionEnabled |boolean | Enable\
+        \ flow log compression | _required_\ndataflowEnabledProject | string | GCP\
+        \ project for flow log compression | _required if **compressionEnabled** is\
+        \ **true**_\nflowLogStorageBucket | string | GCP flow logs storage bucket\
         \ | _required_\norganizationName | string | GCP organization name | _required_\n\
+        accountGroupCreationMode | string | Cloud account group creation mode. Valid\
+        \ values:<br/>**MANUAL**: Create account groups manually<br/>**AUTO**: Create\
+        \ high-level account groups based on folders identified<br/>**RECURSIVE**:\
+        \ Drill down in folder tree to create account groups | default: **MANUAL**\n\
         hierarchySelection.resourceId | string | Resource ID. For folders, format\
         \ is folders/{folder ID}. For projects, format is {project number}. For orgs,\
         \ format is organizations/{org ID} | _required if **hierarchySelection** is\
@@ -882,12 +1108,13 @@ paths:
         : [],\n    \"name\": \"\",\n    \"projectId\":\"\",\n    \"protectionMode\"\
         : \"MONITOR\"\n},\n\"compressionEnabled\": false,\n\"dataflowEnabledProject\"\
         : \"\",\n\"flowLogStorageBucket\": \"\",\n\"organizationName\": \"\",\n\"\
-        credentials\": {\n    \"type\": \"\",\n    \"project_id\": \"\",\n    \"private_key_id\"\
-        : \"\",\n    \"private_key\": \"\",\n    \"client_email\": \"\",\n    \"client_id\"\
-        : \"\",\n    \"auth_uri\": \"\",\n    \"token_uri\": \"\",\n    \"auth_provider_x509_cert_url\"\
-        : \"\",\n    \"client_x509_cert_url\": \"\"\n},\n\"hierarchySelection\": \n\
-        \  [{\n    \"resourceId\": \"\",\n    \"displayName\": \"\",\n    \"nodeType\"\
-        : \"FOLDER\",\n    \"selectionType\": \"EXCLUDE\"\n  }]    \n}\n```\n\n###\
+        accountGroupCreationMode\": \"\",\n\"credentials\": {\n    \"type\": \"\"\
+        ,\n    \"project_id\": \"\",\n    \"private_key_id\": \"\",\n    \"private_key\"\
+        : \"\",\n    \"client_email\": \"\",\n    \"client_id\": \"\",\n    \"auth_uri\"\
+        : \"\",\n    \"token_uri\": \"\",\n    \"auth_provider_x509_cert_url\": \"\
+        \",\n    \"client_x509_cert_url\": \"\"\n},\n\"hierarchySelection\": \n  [{\n\
+        \    \"resourceId\": \"\",\n    \"displayName\": \"\",\n    \"nodeType\":\
+        \ \"FOLDER\",\n    \"selectionType\": \"EXCLUDE\"\n  }]    \n}\n```\n\n###\
         \ Update an Alibaba Account\n#### Request Body\nThe table below lists the\
         \ request body parameters.\n\nParameter  | Type | Description |  Required?\n\
         -----------| ---- | ----------- | -------------\naccountId |string | AWS account\

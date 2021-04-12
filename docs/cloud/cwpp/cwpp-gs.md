@@ -56,6 +56,3 @@ For example, test the connection by retrieving your compliance policies.
 $ curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..." \
   <COMPUTE_CONSOLE>/api/v1/policies/compliance/container
   ```
-
-
-  ### For more information, see the [Compute API Reference.](https://cdn.twistlock.com/docs/api/twistlock_api.html)

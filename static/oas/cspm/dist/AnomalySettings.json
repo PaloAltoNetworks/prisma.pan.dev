@@ -15,7 +15,7 @@
         "properties": {
           "alertDisposition": {
             "description": "Alert Disposition Setting",
-            "enum": ["Low", "Medium", "High"],
+            "enum": ["Aggressive", "Moderate", "Conservative"],
             "type": "string"
           },
           "alertDispositionDescription": {
@@ -23,7 +23,10 @@
             "description": "Alert disposition description",
             "type": "object"
           },
-          "policyDescription": { "description": "Policy description", "type": "string" },
+          "policyDescription": {
+            "description": "Policy description",
+            "type": "string"
+          },
           "policyName": { "description": "Policy name", "type": "string" },
           "trainingModelDescription": {
             "additionalProperties": { "type": "string" },
@@ -32,7 +35,7 @@
           },
           "trainingModelThreshold": {
             "description": "Training Model Threshold",
-            "enum": ["Aggressive", "Moderate", "Conservative"],
+            "enum": ["Low", "Medium", "High"],
             "type": "string"
           }
         },
@@ -73,14 +76,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "additionalProperties": { "$ref": "#/components/schemas/AnomaliesSettingsRequestModel" },
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/AnomaliesSettingsRequestModel"
+                  },
                   "type": "object"
                 }
               }
             },
             "description": "successful operation"
           },
-          "400": { "description": "missing_required_parameter / invalid_parameter_value / internal_error" },
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value / internal_error"
+          },
           "403": { "description": "permission_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -113,10 +120,18 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/AnomaliesSettingsRequestModel" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnomaliesSettingsRequestModel"
+                }
+              }
+            },
             "description": "successful operation"
           },
-          "400": { "description": "missing_required_parameter / invalid_parameter_value / internal_error" },
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value / internal_error"
+          },
           "403": { "description": "permission_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -147,13 +162,19 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": { "schema": { "$ref": "#/components/schemas/AnomaliesSettingsRequestModel" } }
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnomaliesSettingsRequestModel"
+              }
+            }
           },
           "description": "Model for Anomaly Settings Request"
         },
         "responses": {
           "200": { "description": "successful operation" },
-          "400": { "description": "missing_required_parameter / invalid_parameter_value / internal_error" },
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value / internal_error"
+          },
           "403": { "description": "permission_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -162,11 +183,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/settings/%7Bpolicyid%7D\"\n\npayload = \"{\\\"alertDisposition\\\":\\\"Low\\\",\\\"alertDispositionDescription\\\":{\\\"property1\\\":\\\"string\\\",\\\"property2\\\":\\\"string\\\"},\\\"policyDescription\\\":\\\"string\\\",\\\"policyName\\\":\\\"string\\\",\\\"trainingModelDescription\\\":{\\\"property1\\\":\\\"string\\\",\\\"property2\\\":\\\"string\\\"},\\\"trainingModelThreshold\\\":\\\"Aggressive\\\"}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/settings/%7Bpolicyid%7D\"\n\npayload = \"{\\\"alertDisposition\\\":\\\"Aggressive\\\",\\\"alertDispositionDescription\\\":{\\\"property1\\\":\\\"string\\\",\\\"property2\\\":\\\"string\\\"},\\\"policyDescription\\\":\\\"string\\\",\\\"policyName\\\":\\\"string\\\",\\\"trainingModelDescription\\\":{\\\"property1\\\":\\\"string\\\",\\\"property2\\\":\\\"string\\\"},\\\"trainingModelThreshold\\\":\\\"Low\\\"}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/anomalies/settings/%7Bpolicyid%7D \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"alertDisposition\":\"Low\",\"alertDispositionDescription\":{\"property1\":\"string\",\"property2\":\"string\"},\"policyDescription\":\"string\",\"policyName\":\"string\",\"trainingModelDescription\":{\"property1\":\"string\",\"property2\":\"string\"},\"trainingModelThreshold\":\"Aggressive\"}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/anomalies/settings/%7Bpolicyid%7D \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"alertDisposition\":\"Aggressive\",\"alertDispositionDescription\":{\"property1\":\"string\",\"property2\":\"string\"},\"policyDescription\":\"string\",\"policyName\":\"string\",\"trainingModelDescription\":{\"property1\":\"string\",\"property2\":\"string\"},\"trainingModelThreshold\":\"Low\"}'"
           }
         ]
       }

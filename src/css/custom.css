@@ -515,6 +515,7 @@ html[data-theme='dark'] .featuredContainer {
 .menu__link[href$='operation/post-method-asset-inventory-trend-v2']:after,
 .menu__link[href$='operation/add-cloud-account']:after,
 .menu__link[href$='operation/generateterraformscript']:after,
+.menu__link[href$='operation/get-cloud-account-names-by-post']:after,
 .menu__link[href$='operation/get-cloud-account-status']:after,
 .menu__link[href$='operation/get-list-of-children-under-parent']:after,
 .menu__link[href$='operation/get-list-of-folders-under-parent']:after,

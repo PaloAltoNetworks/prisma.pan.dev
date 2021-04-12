@@ -105,6 +105,8 @@ components:
           $ref: '#/components/schemas/FilterSuggestion'
         risk.grade:
           $ref: '#/components/schemas/FilterSuggestion'
+        timeRange.type:
+          $ref: '#/components/schemas/FilterSuggestion'
       type: object
     AlertModel:
       description: Model for Alert

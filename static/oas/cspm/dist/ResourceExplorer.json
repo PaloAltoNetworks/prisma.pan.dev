@@ -10,16 +10,24 @@
     },
     "requestBodies": {
       "FilterModel3": {
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/FilterModel" }
+          }
+        }
       },
       "FilterSuggestionModel": {
         "content": {
-          "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" } }
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
+          }
         }
       },
       "ResourceExplorerRequest": {
         "content": {
-          "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ResourceExplorerRequest" } }
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/ResourceExplorerRequest" }
+          }
         }
       }
     },
@@ -41,7 +49,10 @@
       "AlertIdAndSeverity": {
         "properties": {
           "id": { "type": "string" },
-          "severity": { "enum": ["INFORMATIONAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"], "type": "string" }
+          "severity": {
+            "enum": ["INFORMATIONAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"],
+            "type": "string"
+          }
         },
         "type": "object"
       },
@@ -57,7 +68,10 @@
           },
           "id": { "description": "Resource ID", "type": "string" },
           "name": { "description": "Resource name", "type": "string" },
-          "overallPassed": { "description": "All policies passed", "type": "boolean" },
+          "overallPassed": {
+            "description": "All policies passed",
+            "type": "boolean"
+          },
           "regionId": { "description": "Region ID", "type": "string" },
           "regionName": { "description": "Region Name", "type": "string" },
           "rrn": { "$ref": "#/components/schemas/RRNModel" },
@@ -72,14 +86,24 @@
       "DecoratedResourceInfoResult": {
         "description": "Model for resource info and status list",
         "properties": {
-          "nextPageToken": { "$ref": "#/components/schemas/ResourceInfoPageOption" },
-          "pageSize": { "description": "Page size", "format": "int64", "type": "integer" },
+          "nextPageToken": {
+            "$ref": "#/components/schemas/ResourceInfoPageOption"
+          },
+          "pageSize": {
+            "description": "Page size",
+            "format": "int64",
+            "type": "integer"
+          },
           "resources": {
             "description": "List of metadata for resources that match filter",
             "items": { "$ref": "#/components/schemas/DecoratedResourceInfo" },
             "type": "array"
           },
-          "timestamp": { "description": "Epoch timestamp", "format": "int64", "type": "integer" },
+          "timestamp": {
+            "description": "Epoch timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
           "totalMatchedCount": {
             "description": "Total number of filtered resources, both scanned and unscanned",
             "format": "int64",
@@ -134,12 +158,24 @@
           "rlUpdatedOn": { "format": "int64", "type": "integer" },
           "scanId": { "type": "string" },
           "score": { "type": "object" },
-          "severity": { "enum": ["INFORMATIONAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"], "type": "string" },
-          "source": {
-            "enum": ["AWS_INSPECTOR", "AWS_GUARD_DUTY", "TENABLE", "QUALYS", "PRISMA_CLOUD"],
+          "severity": {
+            "enum": ["INFORMATIONAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"],
             "type": "string"
           },
-          "sourceData": { "additionalProperties": { "type": "object" }, "type": "object" },
+          "source": {
+            "enum": [
+              "AWS_INSPECTOR",
+              "AWS_GUARD_DUTY",
+              "TENABLE",
+              "QUALYS",
+              "PRISMA_CLOUD"
+            ],
+            "type": "string"
+          },
+          "sourceData": {
+            "additionalProperties": { "type": "object" },
+            "type": "object"
+          },
           "status": {
             "enum": [
               "PENDING",
@@ -182,7 +218,13 @@
           "name": { "type": "string" },
           "rlUpdatedOn": { "format": "int64", "type": "integer" },
           "source": {
-            "enum": ["AWS_INSPECTOR", "AWS_GUARD_DUTY", "TENABLE", "QUALYS", "PRISMA_CLOUD"],
+            "enum": [
+              "AWS_INSPECTOR",
+              "AWS_GUARD_DUTY",
+              "TENABLE",
+              "QUALYS",
+              "PRISMA_CLOUD"
+            ],
             "type": "string"
           },
           "tags": { "items": { "type": "string" }, "type": "array" }
@@ -243,7 +285,10 @@
             "type": "array",
             "uniqueItems": true
           },
-          "staticFilter": { "description": "Filter is a static filter", "type": "boolean" }
+          "staticFilter": {
+            "description": "Filter is a static filter",
+            "type": "boolean"
+          }
         },
         "type": "object"
       },
@@ -271,18 +316,41 @@
         "type": "object"
       },
       "NameValueIntegerString": {
-        "properties": { "id": { "format": "int32", "type": "integer" }, "name": { "type": "string" } },
+        "properties": {
+          "id": { "format": "int32", "type": "integer" },
+          "name": { "type": "string" }
+        },
         "type": "object"
       },
       "ParsedTableFilter": {
         "description": "Model for parsed table filter",
         "properties": {
-          "completeParameters": { "items": { "$ref": "#/components/schemas/UIFilterModel" }, "type": "array" },
-          "needsOffsetUpdate": { "description": "Needs offset update (for internal use)", "type": "boolean" },
-          "offset": { "description": "Offset within query", "format": "int32", "type": "integer" },
-          "queryRemainder": { "description": "Query remainder", "type": "string" },
-          "suggestions": { "description": "List of suggestions", "items": { "type": "string" }, "type": "array" },
-          "translate": { "description": "Translate (for internal use)", "type": "boolean" },
+          "completeParameters": {
+            "items": { "$ref": "#/components/schemas/UIFilterModel" },
+            "type": "array"
+          },
+          "needsOffsetUpdate": {
+            "description": "Needs offset update (for internal use)",
+            "type": "boolean"
+          },
+          "offset": {
+            "description": "Offset within query",
+            "format": "int32",
+            "type": "integer"
+          },
+          "queryRemainder": {
+            "description": "Query remainder",
+            "type": "string"
+          },
+          "suggestions": {
+            "description": "List of suggestions",
+            "items": { "type": "string" },
+            "type": "array"
+          },
+          "translate": {
+            "description": "Translate (for internal use)",
+            "type": "boolean"
+          },
           "valid": { "description": "Query is valid", "type": "boolean" }
         },
         "type": "object"
@@ -290,24 +358,48 @@
       "RRNModel": {
         "description": "Model for RRN",
         "properties": {
-          "accountId": { "description": "Account ID", "readOnly": true, "type": "string" },
+          "accountId": {
+            "description": "Account ID",
+            "readOnly": true,
+            "type": "string"
+          },
           "cloudType": {
             "description": "Cloud type",
             "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
             "readOnly": true,
             "type": "string"
           },
-          "idmapId": { "description": "Hashed generated ID", "readOnly": true, "type": "string" },
-          "regionId": { "description": "Region ID", "readOnly": true, "type": "string" },
-          "resourceId": { "description": "Resource ID", "readOnly": true, "type": "string" },
-          "resourceType": { "description": "Resource type", "readOnly": true, "type": "string" }
+          "idmapId": {
+            "description": "Hashed generated ID",
+            "readOnly": true,
+            "type": "string"
+          },
+          "regionId": {
+            "description": "Region ID",
+            "readOnly": true,
+            "type": "string"
+          },
+          "resourceId": {
+            "description": "Resource ID",
+            "readOnly": true,
+            "type": "string"
+          },
+          "resourceType": {
+            "description": "Resource type",
+            "readOnly": true,
+            "type": "string"
+          }
         },
         "type": "object"
       },
       "RelativeTimeDurationModel": {
         "description": "Model for RelativeTimeDuration",
         "properties": {
-          "amount": { "description": "Number of time units", "format": "int32", "type": "integer" },
+          "amount": {
+            "description": "Number of time units",
+            "format": "int32",
+            "type": "integer"
+          },
           "unit": {
             "description": "Time unit",
             "enum": ["minute", "hour", "day", "week", "month", "year"],
@@ -328,7 +420,9 @@
                 "type": "string"
               },
               "type": { "example": "relative", "type": "string" },
-              "value": { "$ref": "#/components/schemas/RelativeTimeDurationModel" }
+              "value": {
+                "$ref": "#/components/schemas/RelativeTimeDurationModel"
+              }
             },
             "required": ["value"],
             "type": "object"
@@ -340,13 +434,23 @@
           "findingSource": {
             "description": "External Finding Sources",
             "items": {
-              "enum": ["AWS_INSPECTOR", "AWS_GUARD_DUTY", "TENABLE", "QUALYS", "PRISMA_CLOUD"],
+              "enum": [
+                "AWS_INSPECTOR",
+                "AWS_GUARD_DUTY",
+                "TENABLE",
+                "QUALYS",
+                "PRISMA_CLOUD"
+              ],
               "type": "string"
             },
             "readOnly": true,
             "type": "array"
           },
-          "findingType": { "description": "External Finding Types", "items": { "type": "string" }, "type": "array" },
+          "findingType": {
+            "description": "External Finding Types",
+            "items": { "type": "string" },
+            "type": "array"
+          },
           "riskFactors": {
             "description": "External finding risk factors",
             "items": {
@@ -372,8 +476,14 @@
             },
             "type": "array"
           },
-          "rrn": { "description": "Restricted Resource Name", "type": "string" },
-          "timelineItemId": { "description": "Timeline Item ID", "type": "string" }
+          "rrn": {
+            "description": "Restricted Resource Name",
+            "type": "string"
+          },
+          "timelineItemId": {
+            "description": "Timeline Item ID",
+            "type": "string"
+          }
         },
         "required": ["rrn"],
         "type": "object"
@@ -392,16 +502,25 @@
       "ResourceMetaModel": {
         "description": "Model containing resource metadata",
         "properties": {
-          "accountGroupName": { "description": "Account group name", "type": "string" },
+          "accountGroupName": {
+            "description": "Account group name",
+            "type": "string"
+          },
           "accountId": { "description": "Account ID", "type": "string" },
           "accountName": { "description": "Account name", "type": "string" },
-          "allowDrillDown": { "description": "allowDrillDown", "type": "boolean" },
+          "allowDrillDown": {
+            "description": "allowDrillDown",
+            "type": "boolean"
+          },
           "cloudType": {
             "description": "Cloud Type",
             "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
             "type": "string"
           },
-          "data": { "description": "Raw JSON data for the resource", "type": "object" },
+          "data": {
+            "description": "Raw JSON data for the resource",
+            "type": "object"
+          },
           "deleted": { "description": "Deleted", "type": "boolean" },
           "dynamicData": {
             "additionalProperties": { "type": "object" },
@@ -409,12 +528,25 @@
             "type": "object"
           },
           "hasAlert": { "description": "Has alert", "type": "boolean" },
-          "hasExtFindingRiskFactors": { "description": "Has risk factors", "type": "boolean" },
-          "hasExternalFinding": { "description": "Has external finding", "type": "boolean" },
-          "hasExternalIntegration": { "description": "Has external integration", "type": "boolean" },
+          "hasExtFindingRiskFactors": {
+            "description": "Has risk factors",
+            "type": "boolean"
+          },
+          "hasExternalFinding": {
+            "description": "Has external finding",
+            "type": "boolean"
+          },
+          "hasExternalIntegration": {
+            "description": "Has external integration",
+            "type": "boolean"
+          },
           "hasNetwork": { "description": "Has network", "type": "boolean" },
           "id": { "description": "ID", "type": "string" },
-          "insertTs": { "description": "Insertion timestamp", "format": "int64", "type": "integer" },
+          "insertTs": {
+            "description": "Insertion timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
           "name": { "description": "Name", "type": "string" },
           "regionId": { "description": "Region ID", "type": "string" },
           "regionName": { "description": "Region name", "type": "string" },
@@ -423,10 +555,20 @@
           "rrn": { "$ref": "#/components/schemas/RRNModel" },
           "service": { "description": "Service", "type": "string" },
           "stateId": { "description": "State ID", "type": "string" },
-          "tags": { "additionalProperties": { "type": "string" }, "description": "Tags", "type": "object" },
+          "tags": {
+            "additionalProperties": { "type": "string" },
+            "description": "Tags",
+            "type": "object"
+          },
           "url": { "description": "URL", "type": "string" },
-          "vpcId": { "description": "Virtual private cloud ID", "type": "string" },
-          "vpcName": { "description": "Virtual private cloud name", "type": "string" }
+          "vpcId": {
+            "description": "Virtual private cloud ID",
+            "type": "string"
+          },
+          "vpcName": {
+            "description": "Virtual private cloud name",
+            "type": "string"
+          }
         },
         "type": "object"
       },
@@ -441,26 +583,41 @@
           "similarSince": { "format": "int64", "type": "integer" },
           "similarStateCount": { "format": "int64", "type": "integer" },
           "timestamp": { "format": "int64", "type": "integer" },
-          "type": { "enum": ["STATE_CHANGE", "EVENT", "VULNERABILITY"], "type": "string" },
+          "type": {
+            "enum": ["STATE_CHANGE", "EVENT", "VULNERABILITY"],
+            "type": "string"
+          },
           "user": { "type": "string" },
           "vulnerabilities": {
-            "items": { "$ref": "#/components/schemas/ResourceTimelineVulnerability" },
+            "items": {
+              "$ref": "#/components/schemas/ResourceTimelineVulnerability"
+            },
             "type": "array"
           }
         },
         "type": "object"
       },
       "ResourceTimelineVulnerability": {
-        "properties": { "id": { "type": "string" }, "url": { "type": "string" } },
+        "properties": {
+          "id": { "type": "string" },
+          "url": { "type": "string" }
+        },
         "type": "object"
       },
       "ScannedPolicyInfo": {
         "properties": {
           "id": { "type": "string" },
-          "labels": { "items": { "type": "string" }, "type": "array", "uniqueItems": true },
+          "labels": {
+            "items": { "type": "string" },
+            "type": "array",
+            "uniqueItems": true
+          },
           "name": { "type": "string" },
           "passed": { "type": "boolean" },
-          "severity": { "enum": ["INFORMATIONAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"], "type": "string" }
+          "severity": {
+            "enum": ["INFORMATIONAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"],
+            "type": "string"
+          }
         },
         "type": "object"
       },
@@ -478,8 +635,16 @@
       "TimeModel": {
         "description": "Model for Time",
         "properties": {
-          "endTime": { "description": "End timestamp", "format": "int64", "type": "integer" },
-          "startTime": { "description": "Start timestamp", "format": "int64", "type": "integer" }
+          "endTime": {
+            "description": "End timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
+          "startTime": {
+            "description": "Start timestamp",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -498,7 +663,9 @@
           { "$ref": "#/components/schemas/AbsoluteTimeRangeConfigModel" },
           { "$ref": "#/components/schemas/ToNowTimeRangeConfigModel" }
         ],
-        "properties": { "type": { "description": "Time type", "type": "string" } },
+        "properties": {
+          "type": { "description": "Time type", "type": "string" }
+        },
         "required": ["type"],
         "type": "object"
       },
@@ -510,7 +677,16 @@
             "properties": {
               "value": {
                 "description": "Time range object",
-                "enum": ["MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR", "EPOCH", "LOGIN"],
+                "enum": [
+                  "MINUTE",
+                  "HOUR",
+                  "DAY",
+                  "WEEK",
+                  "MONTH",
+                  "YEAR",
+                  "EPOCH",
+                  "LOGIN"
+                ],
                 "type": "string"
               }
             },
@@ -522,7 +698,11 @@
         "description": "Model for UIFilter",
         "properties": {
           "name": { "description": "Name", "type": "string" },
-          "operator": { "description": "Operator", "enum": ["="], "type": "string" },
+          "operator": {
+            "description": "Operator",
+            "enum": ["="],
+            "type": "string"
+          },
           "value": { "description": "Value", "type": "string" }
         },
         "type": "object"
@@ -550,17 +730,25 @@
         "operationId": "get-resource",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ResourceExplorerRequest" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceExplorerRequest"
+              }
+            }
           }
         },
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ResourceMetaModel" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/ResourceMetaModel" }
+              }
             },
             "description": "successful operation"
           },
-          "400": { "description": "bad_request / no_results / invalid_parameter_value" },
+          "400": {
+            "description": "bad_request / no_results / invalid_parameter_value"
+          },
           "404": { "description": "not_found" },
           "500": { "description": "internal_error" }
         },
@@ -585,14 +773,23 @@
         "operationId": "get-alerts-for-resource",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ResourceExplorerRequest" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceExplorerRequest"
+              }
+            }
           }
         },
         "responses": {
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/AlertIdAndSeverity" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AlertIdAndSeverity"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -620,14 +817,23 @@
         "operationId": "get-network-for-resource",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ResourceExplorerRequest" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceExplorerRequest"
+              }
+            }
           }
         },
         "responses": {
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/SecurityGroupDetail" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/SecurityGroupDetail"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "success / no_results"
@@ -654,7 +860,12 @@
         "description": "Get a list of all host findings for a specific alert.",
         "operationId": "get-host-findings-for-alert",
         "parameters": [
-          { "in": "query", "name": "alertId", "required": true, "schema": { "type": "string" } },
+          {
+            "in": "query",
+            "name": "alertId",
+            "required": true,
+            "schema": { "type": "string" }
+          },
           {
             "explode": true,
             "in": "query",
@@ -674,7 +885,12 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/ExternalFindingView" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalFindingView"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -700,14 +916,23 @@
         "operationId": "get-host-findings",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ResourceExplorerRequest" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceExplorerRequest"
+              }
+            }
           }
         },
         "responses": {
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/ExternalFindingView" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalFindingView"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -735,14 +960,23 @@
         "operationId": "get-timeline-for-resource",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ResourceExplorerRequest" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceExplorerRequest"
+              }
+            }
           }
         },
         "responses": {
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/ResourceTimelineItem" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ResourceTimelineItem"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -772,12 +1006,20 @@
         "operationId": "get-resource-raw",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ResourceExplorerRequest" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceExplorerRequest"
+              }
+            }
           }
         },
         "responses": {
           "200": {
-            "content": { "application/json; charset=UTF-8": { "schema": { "type": "object" } } },
+            "content": {
+              "application/json; charset=UTF-8": {
+                "schema": { "type": "object" }
+              }
+            },
             "description": "successful operation"
           },
           "400": { "description": "invalid_parameter_value" },
@@ -805,7 +1047,13 @@
         "operationId": "get-resource-info-filters-and-options",
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/InventoryFilterSuggestion" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/InventoryFilterSuggestion"
+                }
+              }
+            },
             "description": "success"
           },
           "500": { "description": "internal_error" }
@@ -829,12 +1077,18 @@
         "operationId": "get-resource-info-filter-options",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
+            }
           }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ParsedTableFilter" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ParsedTableFilter" }
+              }
+            },
             "description": "success"
           },
           "500": { "description": "internal_error" }
@@ -860,14 +1114,23 @@
         "operationId": "get-external-integrations-for-resource",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ResourceExplorerRequest" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceExplorerRequest"
+              }
+            }
           }
         },
         "responses": {
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/ExternalIntegrationView" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalIntegrationView"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "success / no_results"
@@ -905,13 +1168,18 @@
             "description": "Time Amount. Required for **timeType** **relative**. Unused for **timeType** **to_now**",
             "in": "query",
             "name": "timeAmount",
+            "required": false,
             "schema": { "type": "string" }
           },
           {
             "description": "Time Unit. Required for **timeType** **relative**. Unused for **timeType** **to_now**",
             "in": "query",
             "name": "timeUnit",
-            "schema": { "enum": ["minute", "hour", "day", "week", "month", "year"], "type": "string" }
+            "required": false,
+            "schema": {
+              "enum": ["minute", "hour", "day", "week", "month", "year"],
+              "type": "string"
+            }
           },
           {
             "description": "Cloud account",
@@ -925,7 +1193,10 @@
             "in": "query",
             "name": "cloud.type",
             "required": false,
-            "schema": { "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"], "type": "string" }
+            "schema": {
+              "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"],
+              "type": "string"
+            }
           },
           {
             "description": "Cloud region",
@@ -987,7 +1258,11 @@
         "responses": {
           "200": {
             "content": {
-              "application/json": { "schema": { "$ref": "#/components/schemas/DecoratedResourceInfoResult" } }
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecoratedResourceInfoResult"
+                }
+              }
             },
             "description": "success"
           },
@@ -1012,12 +1287,20 @@
         "description": "Returns a full breakdown of passed/failed statistics and associated policies for resources.  \r\n\r\nYou can get a list of the valid names and values for the filters body parameter through \n[List Inventory Filters V2](/api/cloud/cspm/asset-inventory#operation/get-asset-inventory-v2-filters-and-options)\n and \n [List Inventory Dashboard Filter Autocomplete Suggestions V2](/api/cloud/cspm/asset-inventory#operation/get-asset-inventory-v2-dashboard-filter-options).\n\n### Filter by Time\nThe time filter narrows the response to resources from account onboarding until the point in time of interest.\n\n#### Time Types\n\nTime Type | Required **timeRange.value** Parameters\n----------|-----------------\n**to_now** | No **timeRange.value** parameter required\n**relative** | **timeRange.value.amount**, **timeRange.value.unit** \n**absolute** | **timeRange.value.endTime** (**timeRange.value.startTime** is ignored)\n\n### How Current is the Returned Data?\nSince Prisma Cloud relies on snapshots of data, there can be an hour or two delay between the \ntime a resource passes or fails a policy check and the reporting of that result through this method.\n",
         "operationId": "post-resource-scan-info",
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
+          }
         },
         "responses": {
           "200": {
             "content": {
-              "application/json": { "schema": { "$ref": "#/components/schemas/DecoratedResourceInfoResult" } }
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecoratedResourceInfoResult"
+                }
+              }
             },
             "description": "success"
           },

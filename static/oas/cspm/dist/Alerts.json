@@ -10,16 +10,26 @@
     },
     "requestBodies": {
       "FilterModel": {
-        "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+        "content": {
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/FilterModel" }
+          }
+        }
       },
       "FilterModel2": {
-        "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterModel" } } },
+        "content": {
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/FilterModel" }
+          }
+        },
         "description": "Model for Filter",
         "required": true
       },
       "FilterSuggestionModel": {
         "content": {
-          "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" } }
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
+          }
         }
       }
     },
@@ -45,8 +55,15 @@
             "items": { "$ref": "#/components/schemas/AttributionEventModel" },
             "type": "array"
           },
-          "resourceCreatedBy": { "description": "Resource Created By", "type": "string" },
-          "resourceCreatedOn": { "description": "Resource Created On", "format": "int64", "type": "integer" }
+          "resourceCreatedBy": {
+            "description": "Resource Created By",
+            "type": "string"
+          },
+          "resourceCreatedOn": {
+            "description": "Resource Created On",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -58,43 +75,77 @@
           "alert.status": { "$ref": "#/components/schemas/FilterSuggestion" },
           "alertRule.name": { "$ref": "#/components/schemas/FilterSuggestion" },
           "cloud.account": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "cloud.accountId": { "$ref": "#/components/schemas/FilterSuggestion" },
+          "cloud.accountId": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
           "cloud.region": { "$ref": "#/components/schemas/FilterSuggestion" },
           "cloud.service": { "$ref": "#/components/schemas/FilterSuggestion" },
           "cloud.type": { "$ref": "#/components/schemas/FilterSuggestion" },
           "malware": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "object.classification": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "object.exposure": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "object.identifier": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.complianceRequirement": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.complianceSection": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.complianceStandard": { "$ref": "#/components/schemas/FilterSuggestion" },
+          "object.classification": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "object.exposure": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "object.identifier": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "policy.complianceRequirement": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "policy.complianceSection": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "policy.complianceStandard": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
           "policy.label": { "$ref": "#/components/schemas/FilterSuggestion" },
           "policy.name": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.remediable": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.severity": { "$ref": "#/components/schemas/FilterSuggestion" },
+          "policy.remediable": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "policy.severity": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
           "policy.type": { "$ref": "#/components/schemas/FilterSuggestion" },
           "resource.id": { "$ref": "#/components/schemas/FilterSuggestion" },
           "resource.name": { "$ref": "#/components/schemas/FilterSuggestion" },
           "resource.type": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "risk.grade": { "$ref": "#/components/schemas/FilterSuggestion" }
+          "risk.grade": { "$ref": "#/components/schemas/FilterSuggestion" },
+          "timeRange.type": { "$ref": "#/components/schemas/FilterSuggestion" }
         },
         "type": "object"
       },
       "AlertModel": {
         "description": "Model for Alert",
         "properties": {
-          "alertAttribution": { "$ref": "#/components/schemas/AlertAttributionModel" },
+          "alertAttribution": {
+            "$ref": "#/components/schemas/AlertAttributionModel"
+          },
           "alertCount": { "format": "int64", "type": "integer" },
-          "alertRules": { "items": { "$ref": "#/components/schemas/PolicyScanConfigModel" }, "type": "array" },
+          "alertRules": {
+            "items": { "$ref": "#/components/schemas/PolicyScanConfigModel" },
+            "type": "array"
+          },
           "alertTime": {
             "description": "For anomaly alerts, the last anomaly event time. For other alerts, either the timestamp when the alert was last reopened for resource update or the same as **firstSeen** if there are no status changes.",
             "format": "int64",
             "type": "integer"
           },
-          "dismissalDuration": { "description": "Dismissal Duration", "type": "string" },
-          "dismissalNote": { "description": "Dismissal note", "type": "string" },
-          "dismissalUntilTs": { "description": "Dismiss until this timestamp", "format": "int64", "type": "integer" },
+          "dismissalDuration": {
+            "description": "Dismissal Duration",
+            "type": "string"
+          },
+          "dismissalNote": {
+            "description": "Dismissal note",
+            "type": "string"
+          },
+          "dismissalUntilTs": {
+            "description": "Dismiss until this timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
           "dismissedBy": { "description": "Dismissed by", "type": "string" },
           "eventOccurred": {
             "description": "Timestamp when the event occurred. Set only for Audit Event policies.",
@@ -106,20 +157,33 @@
             "format": "int64",
             "type": "integer"
           },
-          "history": { "items": { "$ref": "#/components/schemas/HistoryModel" }, "type": "array" },
+          "history": {
+            "items": { "$ref": "#/components/schemas/HistoryModel" },
+            "type": "array"
+          },
           "id": { "description": "Alert ID", "type": "string" },
           "lastSeen": {
             "description": "Timestamp when alert was last updated. Updates include but are not limited to resource state changes, policy updates, alert rule updates, and alert status changes.",
             "format": "int64",
             "type": "integer"
           },
-          "metadata": { "description": "Raw JSON metadata for the alert", "type": "object" },
+          "metadata": {
+            "description": "Raw JSON metadata for the alert",
+            "type": "object"
+          },
           "policy": { "$ref": "#/components/schemas/PolicyModel" },
           "policyId": { "description": "Policy ID", "type": "string" },
-          "reason": { "description": "Reason", "readOnly": true, "type": "string" },
+          "reason": {
+            "description": "Reason",
+            "readOnly": true,
+            "type": "string"
+          },
           "resource": { "$ref": "#/components/schemas/CloudResourceModel" },
           "riskDetail": { "$ref": "#/components/schemas/RiskDetailModel" },
-          "saveSearchId": { "description": "Saved Search ID", "type": "string" },
+          "saveSearchId": {
+            "description": "Saved Search ID",
+            "type": "string"
+          },
           "status": {
             "description": "Status",
             "enum": ["open", "dismissed", "snoozed", "resolved"],
@@ -133,21 +197,51 @@
       "AlertRuleNotificationConfigModel": {
         "description": "Model for Alert Rule Notification Config",
         "properties": {
-          "dayOfMonth": { "description": "Day of month", "format": "int32", "readOnly": true, "type": "integer" },
+          "dayOfMonth": {
+            "description": "Day of month",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
           "daysOfWeek": {
             "description": "Days of week",
             "items": { "$ref": "#/components/schemas/WeekDay" },
             "readOnly": true,
             "type": "array"
           },
-          "detailedReport": { "description": "Provide csv detailed report", "type": "boolean" },
+          "detailedReport": {
+            "description": "Provide csv detailed report",
+            "type": "boolean"
+          },
           "enabled": { "description": "Scan enabled", "type": "boolean" },
-          "frequency": { "enum": ["as_it_happens", "daily", "weekly", "monthly"], "type": "string" },
-          "frequencyFromRRule": { "description": "Frequency from RRule", "readOnly": true, "type": "string" },
-          "hourOfDay": { "description": "Hour of day", "format": "int32", "readOnly": true, "type": "integer" },
-          "id": { "description": "Alert rule notification config ID", "type": "string" },
-          "includeRemediation": { "description": "Include remediation in detailed report", "type": "boolean" },
-          "lastUpdated": { "description": "Last Updated", "format": "int64", "type": "integer" },
+          "frequency": {
+            "enum": ["as_it_happens", "daily", "weekly", "monthly"],
+            "type": "string"
+          },
+          "frequencyFromRRule": {
+            "description": "Frequency from RRule",
+            "readOnly": true,
+            "type": "string"
+          },
+          "hourOfDay": {
+            "description": "Hour of day",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "id": {
+            "description": "Alert rule notification config ID",
+            "type": "string"
+          },
+          "includeRemediation": {
+            "description": "Include remediation in detailed report",
+            "type": "boolean"
+          },
+          "lastUpdated": {
+            "description": "Last Updated",
+            "format": "int64",
+            "type": "integer"
+          },
           "last_sent_ts": {
             "description": "Time of last notification in milliseconds",
             "format": "int64",
@@ -185,21 +279,34 @@
             ],
             "type": "string"
           },
-          "withCompression": { "description": "Compress detailed report", "type": "boolean" }
+          "withCompression": {
+            "description": "Compress detailed report",
+            "type": "boolean"
+          }
         },
         "type": "object"
       },
       "AlertStatusChangeRequestModel": {
         "description": "Model for Alert Status Change Request",
         "properties": {
-          "alerts": { "description": "Alert IDs", "items": { "type": "string" }, "type": "array" },
+          "alerts": {
+            "description": "Alert IDs",
+            "items": { "type": "string" },
+            "type": "array"
+          },
           "dismissalNote": {
             "description": "Reason for dismissal (this only applies to the dismiss alerts endpoint)",
             "type": "string"
           },
-          "dismissalTimeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" },
+          "dismissalTimeRange": {
+            "$ref": "#/components/schemas/TimeRangeConfigModel"
+          },
           "filter": { "$ref": "#/components/schemas/FilterModel" },
-          "policies": { "description": "Policy IDs", "items": { "type": "string" }, "type": "array" }
+          "policies": {
+            "description": "Policy IDs",
+            "items": { "type": "string" },
+            "type": "array"
+          }
         },
         "required": ["filter"],
         "type": "object"
@@ -225,9 +332,22 @@
       "AsyncJob": {
         "description": "Model for AsyncJob",
         "properties": {
-          "createdBy": { "description": "Job creator", "readOnly": true, "type": "string" },
-          "createdOn": { "description": "Creation timestamp", "format": "int64", "readOnly": true, "type": "integer" },
-          "downloadUri": { "description": "Download URI", "readOnly": true, "type": "string" },
+          "createdBy": {
+            "description": "Job creator",
+            "readOnly": true,
+            "type": "string"
+          },
+          "createdOn": {
+            "description": "Creation timestamp",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "downloadUri": {
+            "description": "Download URI",
+            "readOnly": true,
+            "type": "string"
+          },
           "id": { "description": "Job ID", "readOnly": true, "type": "string" },
           "lastModified": {
             "description": "Timestamp for last modified",
@@ -235,14 +355,23 @@
             "readOnly": true,
             "type": "integer"
           },
-          "recordCount": { "description": "Record Count", "format": "int32", "readOnly": true, "type": "integer" },
+          "recordCount": {
+            "description": "Record Count",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
           "status": {
             "description": "Job status",
             "enum": ["IN_PROGRESS", "READY_TO_DOWNLOAD", "FAILED"],
             "readOnly": true,
             "type": "string"
           },
-          "statusUri": { "description": "Status URI", "readOnly": true, "type": "string" },
+          "statusUri": {
+            "description": "Status URI",
+            "readOnly": true,
+            "type": "string"
+          },
           "timeTaken": {
             "description": "Time taken to complete the job",
             "format": "int64",
@@ -256,7 +385,11 @@
         "description": "Model for AttributionEvent",
         "properties": {
           "event": { "description": "Event", "type": "string" },
-          "event_ts": { "description": "Event Timestamp", "format": "int64", "type": "integer" },
+          "event_ts": {
+            "description": "Event Timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
           "username": { "description": "Username", "type": "string" }
         },
         "type": "object"
@@ -282,18 +415,33 @@
             "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
             "type": "string"
           },
-          "data": { "description": "Raw JSON data for the resource", "readOnly": true, "type": "object" },
+          "data": {
+            "description": "Raw JSON data for the resource",
+            "readOnly": true,
+            "type": "object"
+          },
           "id": { "description": "Id", "type": "string" },
           "name": { "description": "Name", "type": "string" },
           "region": { "description": "Region Name", "type": "string" },
-          "regionId": { "description": "Region API Identifier", "type": "string" },
-          "resourceApiName": { "description": "Resource API Name", "readOnly": true, "type": "string" },
+          "regionId": {
+            "description": "Region API Identifier",
+            "type": "string"
+          },
+          "resourceApiName": {
+            "description": "Resource API Name",
+            "readOnly": true,
+            "type": "string"
+          },
           "resourceTags": {
             "additionalProperties": { "type": "string" },
             "description": "Resource Tags",
             "type": "object"
           },
-          "resourceType": { "description": "Resource Type", "readOnly": true, "type": "string" },
+          "resourceType": {
+            "description": "Resource Type",
+            "readOnly": true,
+            "type": "string"
+          },
           "rrn": { "description": "RRN", "type": "string" },
           "url": { "description": "URL", "type": "string" }
         },
@@ -302,23 +450,50 @@
       "ComplianceMetadataModel": {
         "description": "Model for ComplianceMetadata",
         "properties": {
-          "complianceId": { "description": "Compliance Section UUID", "type": "string" },
+          "complianceId": {
+            "description": "Compliance Section UUID",
+            "type": "string"
+          },
           "customAssigned": { "type": "boolean" },
           "policyId": { "description": "Policy ID", "type": "string" },
-          "requirementDescription": { "description": "Requirement description", "type": "string" },
-          "requirementId": { "description": "Requirement ID", "type": "string" },
-          "requirementName": { "description": "Requirement name", "type": "string" },
-          "sectionDescription": { "description": "Section name", "type": "string" },
+          "requirementDescription": {
+            "description": "Requirement description",
+            "type": "string"
+          },
+          "requirementId": {
+            "description": "Requirement ID",
+            "type": "string"
+          },
+          "requirementName": {
+            "description": "Requirement name",
+            "type": "string"
+          },
+          "sectionDescription": {
+            "description": "Section name",
+            "type": "string"
+          },
           "sectionId": { "description": "Section Id", "type": "string" },
           "sectionLabel": { "description": "Section Label", "type": "string" },
-          "standardDescription": { "description": "Compliance standard description", "type": "string" },
-          "standardName": { "description": "Compliance standard name", "type": "string" }
+          "standardDescription": {
+            "description": "Compliance standard description",
+            "type": "string"
+          },
+          "standardName": {
+            "description": "Compliance standard name",
+            "type": "string"
+          }
         },
         "type": "object"
       },
       "CountModel": {
         "description": "Model used for just count",
-        "properties": { "count": { "description": "Count", "format": "int64", "type": "integer" } },
+        "properties": {
+          "count": {
+            "description": "Count",
+            "format": "int64",
+            "type": "integer"
+          }
+        },
         "type": "object"
       },
       "FilterModel": {
@@ -375,7 +550,10 @@
             "type": "array",
             "uniqueItems": true
           },
-          "staticFilter": { "description": "Filter is a static filter", "type": "boolean" }
+          "staticFilter": {
+            "description": "Filter is a static filter",
+            "type": "boolean"
+          }
         },
         "type": "object"
       },
@@ -394,10 +572,20 @@
       "HistoryModel": {
         "description": "Model for History",
         "properties": {
-          "reason": { "description": "Reason", "readOnly": true, "type": "string" },
+          "reason": {
+            "description": "Reason",
+            "readOnly": true,
+            "type": "string"
+          },
           "status": {
             "description": "Status",
-            "enum": ["OPEN", "DISMISSED", "SNOOZED", "PENDING_RESOLUTION", "RESOLVED"],
+            "enum": [
+              "OPEN",
+              "DISMISSED",
+              "SNOOZED",
+              "PENDING_RESOLUTION",
+              "RESOLVED"
+            ],
             "readOnly": true,
             "type": "string"
           }
@@ -405,15 +593,29 @@
         "type": "object"
       },
       "NameValueIntegerString": {
-        "properties": { "id": { "format": "int32", "type": "integer" }, "name": { "type": "string" } },
+        "properties": {
+          "id": { "format": "int32", "type": "integer" },
+          "name": { "type": "string" }
+        },
         "type": "object"
       },
       "PagedResultsAlertModel": {
         "properties": {
-          "dynamicColumns": { "items": { "type": "string" }, "type": "array", "uniqueItems": true },
-          "items": { "items": { "$ref": "#/components/schemas/AlertModel" }, "type": "array" },
+          "dynamicColumns": {
+            "items": { "type": "string" },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "items": {
+            "items": { "$ref": "#/components/schemas/AlertModel" },
+            "type": "array"
+          },
           "nextPageToken": { "type": "string" },
-          "sortAllowedColumns": { "items": { "type": "string" }, "type": "array", "uniqueItems": true },
+          "sortAllowedColumns": {
+            "items": { "type": "string" },
+            "type": "array",
+            "uniqueItems": true
+          },
           "totalRows": { "format": "int64", "type": "integer" }
         },
         "type": "object"
@@ -421,12 +623,32 @@
       "ParsedTableFilter": {
         "description": "Model for parsed table filter",
         "properties": {
-          "completeParameters": { "items": { "$ref": "#/components/schemas/UIFilterModel" }, "type": "array" },
-          "needsOffsetUpdate": { "description": "Needs offset update (for internal use)", "type": "boolean" },
-          "offset": { "description": "Offset within query", "format": "int32", "type": "integer" },
-          "queryRemainder": { "description": "Query remainder", "type": "string" },
-          "suggestions": { "description": "List of suggestions", "items": { "type": "string" }, "type": "array" },
-          "translate": { "description": "Translate (for internal use)", "type": "boolean" },
+          "completeParameters": {
+            "items": { "$ref": "#/components/schemas/UIFilterModel" },
+            "type": "array"
+          },
+          "needsOffsetUpdate": {
+            "description": "Needs offset update (for internal use)",
+            "type": "boolean"
+          },
+          "offset": {
+            "description": "Offset within query",
+            "format": "int32",
+            "type": "integer"
+          },
+          "queryRemainder": {
+            "description": "Query remainder",
+            "type": "string"
+          },
+          "suggestions": {
+            "description": "List of suggestions",
+            "items": { "type": "string" },
+            "type": "array"
+          },
+          "translate": {
+            "description": "Translate (for internal use)",
+            "type": "boolean"
+          },
           "valid": { "description": "Query is valid", "type": "boolean" }
         },
         "type": "object"
@@ -444,18 +666,41 @@
             "items": { "$ref": "#/components/schemas/ComplianceMetadataModel" },
             "type": "array"
           },
-          "createdBy": { "description": "Created by", "readOnly": true, "type": "string" },
+          "createdBy": {
+            "description": "Created by",
+            "readOnly": true,
+            "type": "string"
+          },
           "createdOn": {
             "description": "Created on this timestamp",
             "format": "int64",
             "readOnly": true,
             "type": "integer"
           },
-          "deleted": { "description": "Deleted", "readOnly": true, "type": "boolean" },
-          "description": { "description": "Policy description", "type": "string" },
-          "enabled": { "description": "Enabled. Default is true.", "type": "boolean" },
-          "labels": { "description": "Labels", "items": { "type": "string" }, "type": "array", "uniqueItems": true },
-          "lastModifiedBy": { "description": "Last modified by", "readOnly": true, "type": "string" },
+          "deleted": {
+            "description": "Deleted",
+            "readOnly": true,
+            "type": "boolean"
+          },
+          "description": {
+            "description": "Policy description",
+            "type": "string"
+          },
+          "enabled": {
+            "description": "Enabled. Default is true.",
+            "type": "boolean"
+          },
+          "labels": {
+            "description": "Labels",
+            "items": { "type": "string" },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "lastModifiedBy": {
+            "description": "Last modified by",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedOn": {
             "description": "Last modified on this timestamp",
             "format": "int64",
@@ -463,11 +708,27 @@
             "type": "integer"
           },
           "name": { "description": "Policy name", "type": "string" },
-          "overridden": { "description": "Overridden", "readOnly": true, "type": "boolean" },
-          "policyId": { "description": "Policy ID", "readOnly": true, "type": "string" },
+          "overridden": {
+            "description": "Overridden",
+            "readOnly": true,
+            "type": "boolean"
+          },
+          "policyId": {
+            "description": "Policy ID",
+            "readOnly": true,
+            "type": "string"
+          },
           "policySubTypes": {
             "description": "Policy subtype",
-            "enum": ["audit", "build", "data_classification", "malware", "network_event", "run", "ueba"],
+            "enum": [
+              "audit",
+              "build",
+              "data_classification",
+              "malware",
+              "network_event",
+              "run",
+              "ueba"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -476,11 +737,26 @@
             "enum": ["config", "audit_event", "network"],
             "type": "string"
           },
-          "policyUpi": { "description": "Policy UPI", "readOnly": true, "type": "string" },
-          "recommendation": { "description": "Remediation recommendation", "type": "string" },
-          "remediable": { "description": "isRemediable", "readOnly": true, "type": "boolean" },
+          "policyUpi": {
+            "description": "Policy UPI",
+            "readOnly": true,
+            "type": "string"
+          },
+          "recommendation": {
+            "description": "Remediation recommendation",
+            "type": "string"
+          },
+          "remediable": {
+            "description": "isRemediable",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "remediation": { "$ref": "#/components/schemas/RemediationModel" },
-          "restrictAlertDismissal": { "description": "Restrict alert dismissal", "readOnly": true, "type": "boolean" },
+          "restrictAlertDismissal": {
+            "description": "Restrict alert dismissal",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "rule": { "$ref": "#/components/schemas/RuleModel" },
           "ruleLastModifiedOn": {
             "description": "Rule last modified on",
@@ -488,7 +764,11 @@
             "readOnly": true,
             "type": "integer"
           },
-          "severity": { "description": "Severity", "enum": ["high", "medium", "low"], "type": "string" },
+          "severity": {
+            "description": "Severity",
+            "enum": ["high", "medium", "low"],
+            "type": "string"
+          },
           "systemDefault": {
             "description": "true = Policy is a Prisma Cloud system default policy",
             "readOnly": true,
@@ -511,18 +791,41 @@
             "items": { "$ref": "#/components/schemas/ComplianceMetadataModel" },
             "type": "array"
           },
-          "createdBy": { "description": "Created by", "readOnly": true, "type": "string" },
+          "createdBy": {
+            "description": "Created by",
+            "readOnly": true,
+            "type": "string"
+          },
           "createdOn": {
             "description": "Created on this timestamp",
             "format": "int64",
             "readOnly": true,
             "type": "integer"
           },
-          "deleted": { "description": "Deleted", "readOnly": true, "type": "boolean" },
-          "description": { "description": "Policy description", "type": "string" },
-          "enabled": { "description": "Enabled. Default is true.", "type": "boolean" },
-          "labels": { "description": "Labels", "items": { "type": "string" }, "type": "array", "uniqueItems": true },
-          "lastModifiedBy": { "description": "Last modified by", "readOnly": true, "type": "string" },
+          "deleted": {
+            "description": "Deleted",
+            "readOnly": true,
+            "type": "boolean"
+          },
+          "description": {
+            "description": "Policy description",
+            "type": "string"
+          },
+          "enabled": {
+            "description": "Enabled. Default is true.",
+            "type": "boolean"
+          },
+          "labels": {
+            "description": "Labels",
+            "items": { "type": "string" },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "lastModifiedBy": {
+            "description": "Last modified by",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedOn": {
             "description": "Last modified on this timestamp",
             "format": "int64",
@@ -530,12 +833,28 @@
             "type": "integer"
           },
           "name": { "description": "Policy name", "type": "string" },
-          "overridden": { "description": "Overridden", "readOnly": true, "type": "boolean" },
+          "overridden": {
+            "description": "Overridden",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "points": { "description": "Points", "type": "string" },
-          "policyId": { "description": "Policy ID", "readOnly": true, "type": "string" },
+          "policyId": {
+            "description": "Policy ID",
+            "readOnly": true,
+            "type": "string"
+          },
           "policySubTypes": {
             "description": "Policy subtype",
-            "enum": ["audit", "build", "data_classification", "malware", "network_event", "run", "ueba"],
+            "enum": [
+              "audit",
+              "build",
+              "data_classification",
+              "malware",
+              "network_event",
+              "run",
+              "ueba"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -544,11 +863,26 @@
             "enum": ["config", "audit_event", "network"],
             "type": "string"
           },
-          "policyUpi": { "description": "Policy UPI", "readOnly": true, "type": "string" },
-          "recommendation": { "description": "Remediation recommendation", "type": "string" },
-          "remediable": { "description": "isRemediable", "readOnly": true, "type": "boolean" },
+          "policyUpi": {
+            "description": "Policy UPI",
+            "readOnly": true,
+            "type": "string"
+          },
+          "recommendation": {
+            "description": "Remediation recommendation",
+            "type": "string"
+          },
+          "remediable": {
+            "description": "isRemediable",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "remediation": { "$ref": "#/components/schemas/RemediationModel" },
-          "restrictAlertDismissal": { "description": "Restrict alert dismissal", "readOnly": true, "type": "boolean" },
+          "restrictAlertDismissal": {
+            "description": "Restrict alert dismissal",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "riskScore": { "$ref": "#/components/schemas/ScoreModel" },
           "rule": { "$ref": "#/components/schemas/RuleModel" },
           "ruleLastModifiedOn": {
@@ -557,7 +891,11 @@
             "readOnly": true,
             "type": "integer"
           },
-          "severity": { "description": "Severity", "enum": ["high", "medium", "low"], "type": "string" },
+          "severity": {
+            "description": "Severity",
+            "enum": ["high", "medium", "low"],
+            "type": "string"
+          },
           "systemDefault": {
             "description": "true = Policy is a Prisma Cloud system default policy",
             "readOnly": true,
@@ -572,23 +910,38 @@
         "properties": {
           "alertRuleNotificationConfig": {
             "description": "List of data for notifications to third-party tools",
-            "items": { "$ref": "#/components/schemas/AlertRuleNotificationConfigModel" },
+            "items": {
+              "$ref": "#/components/schemas/AlertRuleNotificationConfigModel"
+            },
             "type": "array"
           },
-          "allowAutoRemediate": { "description": "Allow Auto-Remediation", "type": "boolean" },
+          "allowAutoRemediate": {
+            "description": "Allow Auto-Remediation",
+            "type": "boolean"
+          },
           "delayNotificationMs": {
             "description": "Delay notifications by the specified milliseconds",
             "format": "int64",
             "type": "integer"
           },
-          "description": { "description": "Rule/Scan description", "type": "string" },
-          "enabled": { "description": "Rule/Scan is enabled", "type": "boolean" },
+          "description": {
+            "description": "Rule/Scan description",
+            "type": "string"
+          },
+          "enabled": {
+            "description": "Rule/Scan is enabled",
+            "type": "boolean"
+          },
           "excludedPolicies": {
             "description": "List of policies to exclude from scan",
             "items": { "type": "string" },
             "type": "array"
           },
-          "lastModifiedBy": { "description": "Last modified by", "readOnly": true, "type": "string" },
+          "lastModifiedBy": {
+            "description": "Last modified by",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedOn": {
             "description": "Last modified on this date/time in milliseconds",
             "format": "int64",
@@ -596,17 +949,36 @@
             "type": "integer"
           },
           "name": { "description": "Rule/Scan name", "type": "string" },
-          "notifyOnDismissed": { "description": "include dismissed alerts in notification", "type": "boolean" },
-          "notifyOnOpen": { "description": "include open alerts in notification", "type": "boolean" },
-          "notifyOnResolved": { "description": "include resolved alerts in notification", "type": "boolean" },
-          "notifyOnSnoozed": { "description": "include snoozed alerts in notification", "type": "boolean" },
+          "notifyOnDismissed": {
+            "description": "include dismissed alerts in notification",
+            "type": "boolean"
+          },
+          "notifyOnOpen": {
+            "description": "include open alerts in notification",
+            "type": "boolean"
+          },
+          "notifyOnResolved": {
+            "description": "include resolved alerts in notification",
+            "type": "boolean"
+          },
+          "notifyOnSnoozed": {
+            "description": "include snoozed alerts in notification",
+            "type": "boolean"
+          },
           "policies": {
             "description": "List of specific policies to scan",
             "items": { "type": "string" },
             "type": "array"
           },
-          "policyLabels": { "description": "Policy labels", "items": { "type": "string" }, "type": "array" },
-          "policyScanConfigId": { "description": "Policy Scan Config ID", "type": "string" },
+          "policyLabels": {
+            "description": "Policy labels",
+            "items": { "type": "string" },
+            "type": "array"
+          },
+          "policyScanConfigId": {
+            "description": "Policy Scan Config ID",
+            "type": "string"
+          },
           "scanAll": { "description": "Scan all policies", "type": "boolean" },
           "target": { "$ref": "#/components/schemas/TargetFilterModel" }
         },
@@ -616,7 +988,11 @@
       "RelativeTimeDurationModel": {
         "description": "Model for RelativeTimeDuration",
         "properties": {
-          "amount": { "description": "Number of time units", "format": "int32", "type": "integer" },
+          "amount": {
+            "description": "Number of time units",
+            "format": "int32",
+            "type": "integer"
+          },
           "unit": {
             "description": "Time unit",
             "enum": ["minute", "hour", "day", "week", "month", "year"],
@@ -637,7 +1013,9 @@
                 "type": "string"
               },
               "type": { "example": "relative", "type": "string" },
-              "value": { "$ref": "#/components/schemas/RelativeTimeDurationModel" }
+              "value": {
+                "$ref": "#/components/schemas/RelativeTimeDurationModel"
+              }
             },
             "required": ["value"],
             "type": "object"
@@ -646,7 +1024,10 @@
       },
       "RemediationAction": {
         "description": "Action for remediation for data policy.",
-        "properties": { "operation": { "type": "string" }, "payload": { "type": "string" } },
+        "properties": {
+          "operation": { "type": "string" },
+          "payload": { "type": "string" }
+        },
         "type": "object"
       },
       "RemediationCliModel": {
@@ -657,9 +1038,18 @@
             "description": "Map of alert ID to CLI script",
             "type": "object"
           },
-          "cliDescription": { "description": "CLI script description", "type": "string" },
-          "cliScript": { "description": "CLI script to resolve an alert", "type": "string" },
-          "scriptImpact": { "description": "CLI script impact", "type": "string" }
+          "cliDescription": {
+            "description": "CLI script description",
+            "type": "string"
+          },
+          "cliScript": {
+            "description": "CLI script to resolve an alert",
+            "type": "string"
+          },
+          "scriptImpact": {
+            "description": "CLI script impact",
+            "type": "string"
+          }
         },
         "type": "object"
       },
@@ -671,20 +1061,31 @@
             "items": { "$ref": "#/components/schemas/RemediationAction" },
             "type": "array"
           },
-          "cliScriptTemplate": { "description": "CLI Script Template", "type": "string" },
+          "cliScriptTemplate": {
+            "description": "CLI Script Template",
+            "type": "string"
+          },
           "description": { "description": "Description", "type": "string" }
         },
         "type": "object"
       },
       "RequireDismissalNoteConfigModel": {
         "description": "Model for Require Dismissal Note Config",
-        "properties": { "requireDismissalNote": { "description": "Require Dismissal Note", "type": "boolean" } },
+        "properties": {
+          "requireDismissalNote": {
+            "description": "Require Dismissal Note",
+            "type": "boolean"
+          }
+        },
         "type": "object"
       },
       "RiskDetailModel": {
         "description": "Model for Risk Detail",
         "properties": {
-          "policyScores": { "items": { "$ref": "#/components/schemas/PolicyRiskScoreModel" }, "type": "array" },
+          "policyScores": {
+            "items": { "$ref": "#/components/schemas/PolicyRiskScoreModel" },
+            "type": "array"
+          },
           "rating": { "description": "Rating", "type": "string" },
           "riskScore": { "$ref": "#/components/schemas/ScoreModel" },
           "score": { "description": "Score", "type": "string" }
@@ -696,17 +1097,36 @@
         "properties": {
           "classificationResult": { "type": "string" },
           "exposure": { "type": "string" },
-          "extension": { "items": { "type": "string" }, "type": "array", "uniqueItems": true }
+          "extension": {
+            "items": { "type": "string" },
+            "type": "array",
+            "uniqueItems": true
+          }
         },
         "type": "object"
       },
       "RuleModel": {
         "description": "Model for Rule",
         "properties": {
-          "apiName": { "description": "API name", "readOnly": true, "type": "string" },
-          "cloudAccount": { "description": "Cloud account", "readOnly": true, "type": "string" },
-          "cloudType": { "description": "Cloud type", "readOnly": true, "type": "string" },
-          "criteria": { "description": "Saved search ID that defines the rule criteria.", "type": "string" },
+          "apiName": {
+            "description": "API name",
+            "readOnly": true,
+            "type": "string"
+          },
+          "cloudAccount": {
+            "description": "Cloud account",
+            "readOnly": true,
+            "type": "string"
+          },
+          "cloudType": {
+            "description": "Cloud type",
+            "readOnly": true,
+            "type": "string"
+          },
+          "criteria": {
+            "description": "Saved search ID that defines the rule criteria.",
+            "type": "string"
+          },
           "dataCriteria": { "$ref": "#/components/schemas/RuleCriteria" },
           "name": { "description": "Name", "type": "string" },
           "parameters": {
@@ -714,8 +1134,16 @@
             "description": "Parameters (e.g. {\"savedSearch\": \"true\"})",
             "type": "object"
           },
-          "resourceIdPath": { "description": "Resource ID path", "readOnly": true, "type": "string" },
-          "resourceType": { "description": "Resource type", "readOnly": true, "type": "string" },
+          "resourceIdPath": {
+            "description": "Resource ID path",
+            "readOnly": true,
+            "type": "string"
+          },
+          "resourceType": {
+            "description": "Resource type",
+            "readOnly": true,
+            "type": "string"
+          },
           "type": {
             "description": "Type of rule or RQL query",
             "enum": ["Config", "Network", "AuditEvent"],
@@ -728,8 +1156,16 @@
       "ScoreModel": {
         "description": "Model for Score",
         "properties": {
-          "maxScore": { "description": "Max Score", "format": "int64", "type": "integer" },
-          "score": { "description": "Score", "format": "int64", "type": "integer" }
+          "maxScore": {
+            "description": "Max Score",
+            "format": "int64",
+            "type": "integer"
+          },
+          "score": {
+            "description": "Score",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -746,7 +1182,11 @@
             "items": { "type": "string" },
             "type": "array"
           },
-          "regions": { "description": "List of regions", "items": { "type": "string" }, "type": "array" },
+          "regions": {
+            "description": "List of regions",
+            "items": { "type": "string" },
+            "type": "array"
+          },
           "tags": {
             "description": "List of TargetTag models (resource tags)",
             "items": { "$ref": "#/components/schemas/TargetTagModel" },
@@ -770,8 +1210,16 @@
       "TimeModel": {
         "description": "Model for Time",
         "properties": {
-          "endTime": { "description": "End timestamp", "format": "int64", "type": "integer" },
-          "startTime": { "description": "Start timestamp", "format": "int64", "type": "integer" }
+          "endTime": {
+            "description": "End timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
+          "startTime": {
+            "description": "Start timestamp",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -790,7 +1238,9 @@
           { "$ref": "#/components/schemas/AbsoluteTimeRangeConfigModel" },
           { "$ref": "#/components/schemas/ToNowTimeRangeConfigModel" }
         ],
-        "properties": { "type": { "description": "Time type", "type": "string" } },
+        "properties": {
+          "type": { "description": "Time type", "type": "string" }
+        },
         "required": ["type"],
         "type": "object"
       },
@@ -802,7 +1252,16 @@
             "properties": {
               "value": {
                 "description": "Time range object",
-                "enum": ["MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR", "EPOCH", "LOGIN"],
+                "enum": [
+                  "MINUTE",
+                  "HOUR",
+                  "DAY",
+                  "WEEK",
+                  "MONTH",
+                  "YEAR",
+                  "EPOCH",
+                  "LOGIN"
+                ],
                 "type": "string"
               }
             },
@@ -814,14 +1273,21 @@
         "description": "Model for UIFilter",
         "properties": {
           "name": { "description": "Name", "type": "string" },
-          "operator": { "description": "Operator", "enum": ["="], "type": "string" },
+          "operator": {
+            "description": "Operator",
+            "enum": ["="],
+            "type": "string"
+          },
           "value": { "description": "Value", "type": "string" }
         },
         "type": "object"
       },
       "WeekDay": {
         "properties": {
-          "day": { "enum": ["SU", "MO", "TU", "WE", "TH", "FR", "SA"], "type": "string" },
+          "day": {
+            "enum": ["SU", "MO", "TU", "WE", "TH", "FR", "SA"],
+            "type": "string"
+          },
           "offset": { "format": "int32", "type": "integer" }
         },
         "type": "object"
@@ -836,7 +1302,9 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The Alert APIs are listed below.", "name": "Alerts" }],
+  "tags": [
+    { "description": "The Alert APIs are listed below.", "name": "Alerts" }
+  ],
   "paths": {
     "/filter/alert/suggest": {
       "get": {
@@ -845,7 +1313,11 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/AlertFilterSuggestion" } }
+              "application/json; charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertFilterSuggestion"
+                }
+              }
             },
             "description": "success"
           }
@@ -869,12 +1341,18 @@
         "operationId": "get-alert-filter-options",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
+            }
           }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ParsedTableFilter" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ParsedTableFilter" }
+              }
+            },
             "description": "successful operation"
           }
         },
@@ -917,7 +1395,10 @@
             "in": "query",
             "name": "timeUnit",
             "required": true,
-            "schema": { "enum": ["minute", "hour", "day", "week", "month", "year"], "type": "string" }
+            "schema": {
+              "enum": ["minute", "hour", "day", "week", "month", "year"],
+              "type": "string"
+            }
           },
           {
             "description": "true = Return detailed alert data.",
@@ -1022,7 +1503,10 @@
             "in": "query",
             "name": "policy.type",
             "required": false,
-            "schema": { "enum": ["config", "network", "audit_event"], "type": "string" }
+            "schema": {
+              "enum": ["config", "network", "audit_event"],
+              "type": "string"
+            }
           },
           {
             "description": "Policy compliance standard name",
@@ -1091,7 +1575,12 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "items": { "$ref": "#/components/schemas/AlertModel" }, "type": "array" } }
+              "*/*": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/AlertModel" },
+                  "type": "array"
+                }
+              }
             },
             "description": "successful operation"
           },
@@ -1124,12 +1613,21 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+          "content": {
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
+          }
         },
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "items": { "$ref": "#/components/schemas/AlertModel" }, "type": "array" } }
+              "*/*": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/AlertModel" },
+                  "type": "array"
+                }
+              }
             },
             "description": "successful operation"
           },
@@ -1174,7 +1672,10 @@
             "in": "query",
             "name": "timeUnit",
             "required": true,
-            "schema": { "enum": ["minute", "hour", "day", "week", "month", "year"], "type": "string" }
+            "schema": {
+              "enum": ["minute", "hour", "day", "week", "month", "year"],
+              "type": "string"
+            }
           },
           {
             "description": "true = Return detailed alert data.",
@@ -1308,7 +1809,10 @@
             "in": "query",
             "name": "policy.type",
             "required": false,
-            "schema": { "enum": ["config", "network", "audit_event"], "type": "string" }
+            "schema": {
+              "enum": ["config", "network", "audit_event"],
+              "type": "string"
+            }
           },
           {
             "description": "Policy compliance standard name",
@@ -1376,7 +1880,13 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/PagedResultsAlertModel" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedResultsAlertModel"
+                }
+              }
+            },
             "description": "successful operation"
           },
           "400": { "description": "internal_error" },
@@ -1409,11 +1919,21 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+          "content": {
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
+          }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/PagedResultsAlertModel" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedResultsAlertModel"
+                }
+              }
+            },
             "description": "successful operation"
           },
           "400": { "description": "internal_error" },
@@ -1528,7 +2048,10 @@
             "in": "query",
             "name": "policy.type",
             "required": false,
-            "schema": { "enum": ["config", "network", "audit_event"], "type": "string" }
+            "schema": {
+              "enum": ["config", "network", "audit_event"],
+              "type": "string"
+            }
           },
           {
             "description": "Policy compliance standard name",
@@ -1597,7 +2120,12 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "items": { "$ref": "#/components/schemas/AlertModel" }, "type": "array" } }
+              "*/*": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/AlertModel" },
+                  "type": "array"
+                }
+              }
             },
             "description": "successful operation"
           }
@@ -1630,7 +2158,9 @@
         ],
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
           },
           "description": "Model for Filter",
           "required": true
@@ -1638,7 +2168,12 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "items": { "$ref": "#/components/schemas/AlertModel" }, "type": "array" } }
+              "*/*": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/AlertModel" },
+                  "type": "array"
+                }
+              }
             },
             "description": "successful operation"
           }
@@ -1663,7 +2198,13 @@
         "description": "Returns information about an alert for the specified ID.  \r\n\r\nIn the response object, field **riskDetail** is deprecated.\n",
         "operationId": "get-alert",
         "parameters": [
-          { "description": "Alert ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } },
+          {
+            "description": "Alert ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
           {
             "description": "true = Return detailed alert data. Default is false.",
             "in": "query",
@@ -1674,7 +2215,9 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/AlertModel" } } },
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/AlertModel" } }
+            },
             "description": "successful operation"
           },
           "400": { "description": "internal_error/invalid_alert_id" },
@@ -1701,7 +2244,11 @@
         "operationId": "dismiss-alerts",
         "requestBody": {
           "content": {
-            "application/json": { "schema": { "$ref": "#/components/schemas/AlertStatusChangeRequestModel" } }
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlertStatusChangeRequestModel"
+              }
+            }
           },
           "description": "Model for Alert Status Change Request",
           "required": true
@@ -1735,7 +2282,13 @@
         "operationId": "is-dismissal-note-required",
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/RequireDismissalNoteConfigModel" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequireDismissalNoteConfigModel"
+                }
+              }
+            },
             "description": "successful operation"
           },
           "403": { "description": "permission_error" }
@@ -1759,7 +2312,11 @@
         "operationId": "set-dismissal-note-required",
         "requestBody": {
           "content": {
-            "application/json": { "schema": { "$ref": "#/components/schemas/RequireDismissalNoteConfigModel" } }
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequireDismissalNoteConfigModel"
+              }
+            }
           },
           "description": "Model for Require Dismissal Note Config"
         },
@@ -1789,13 +2346,19 @@
         "operationId": "reopen-alerts",
         "requestBody": {
           "content": {
-            "application/json": { "schema": { "$ref": "#/components/schemas/AlertStatusChangeRequestModel" } }
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlertStatusChangeRequestModel"
+              }
+            }
           },
           "description": "Model for Alert Status Change Request"
         },
         "responses": {
           "200": { "description": "successful operation" },
-          "400": { "description": "missing_required_parameter / invalid_parameter_value / internal_error" },
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value / internal_error"
+          },
           "403": { "description": "permission_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -1823,12 +2386,17 @@
             "in": "path",
             "name": "status",
             "required": true,
-            "schema": { "enum": ["open", "dismissed", "snoozed", "resolved"], "type": "string" }
+            "schema": {
+              "enum": ["open", "dismissed", "snoozed", "resolved"],
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/CountModel" } } },
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/CountModel" } }
+            },
             "description": "successful operation"
           },
           "400": { "description": "invalid_parameter_value" },
@@ -1855,14 +2423,20 @@
         "operationId": "submit-job-for-listing-alerts",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
           },
           "description": "Model for Filter",
           "required": true
         },
         "responses": {
           "200": {
-            "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/AsyncJob" } } },
+            "content": {
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/AsyncJob" }
+              }
+            },
             "description": "successful operation"
           },
           "400": { "description": "internal_error" }
@@ -1886,10 +2460,21 @@
       "get": {
         "description": "Get the status of the alerts list job with the specified job ID",
         "operationId": "get-alerts-job-status",
-        "parameters": [{ "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
         "responses": {
           "200": {
-            "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/AsyncJob" } } },
+            "content": {
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/AsyncJob" }
+              }
+            },
             "description": "successful operation"
           },
           "404": { "description": "Job Id <id> not found." }
@@ -1914,9 +2499,18 @@
         "description": "Downloads the generated alerts list in JSON format for the specified job ID.",
         "operationId": "download-alerts-list-json",
         "parameters": [
-          { "description": "Job ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }
+          {
+            "description": "Job ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
-        "responses": { "200": { "description": "successful operation" }, "400": { "description": "internal_error" } },
+        "responses": {
+          "200": { "description": "successful operation" },
+          "400": { "description": "internal_error" }
+        },
         "security": [{ "x-redlock-auth": [] }],
         "summary": "Download Alerts List JSON",
         "tags": ["Alerts"],
@@ -1947,13 +2541,19 @@
         ],
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
           },
           "required": true
         },
         "responses": {
           "200": {
-            "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/AsyncJob" } } },
+            "content": {
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/AsyncJob" }
+              }
+            },
             "description": "successful operation"
           },
           "400": { "description": "internal_error" }
@@ -1977,10 +2577,21 @@
       "get": {
         "description": "Returns the status of an alert CSV generation job with the specified job ID.",
         "operationId": "get-alert-csv-job-status",
-        "parameters": [{ "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
         "responses": {
           "200": {
-            "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/AsyncJob" } } },
+            "content": {
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/AsyncJob" }
+              }
+            },
             "description": "successful operation"
           },
           "404": { "description": "not_found" }
@@ -2005,7 +2616,13 @@
         "description": "Downloads the alert list in CSV format that Prisma Cloud generated for the specified job ID.",
         "operationId": "download-alert-csv",
         "parameters": [
-          { "description": "Job ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }
+          {
+            "description": "Job ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
         "responses": {
           "200": { "description": "successful operation" },
@@ -2032,11 +2649,17 @@
         "description": "Submits a job to generate a list of alerts grouped by the policy they violated. Returns the job ID and job submission status.  \r\n\r\nFilter model fields specific to pagination (**sortBy**, **limit**, and **pageToken**) do not apply to this request, \neven though the body parameters include them.\n\nThe **fields** body parameter allows you to request specific fields from the alert payload. These \nfields are separate from the filters you specify. The following are valid **fields** items.\n\n* alert.id\n* alert.status\n* alert.time\n* cloud.account\n* cloud.accountId\n* cloud.region\n* resource.id\n* resource.name\n* policy.name\n* policy.type\n* policy.severity\n\nThe **filters*8 body parameter enables you to narrow your request for alerts. \nSee [List Alert Filters](/api/cloud/cspm/alerts#operation/get-alert-filter-and-options)\nfor an API request to list all the valid filters.\n",
         "operationId": "submit-a-job-for-listing-alerts-grouped-by-policy",
         "requestBody": {
-          "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+          "content": {
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
+          }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/AsyncJob" } } },
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/AsyncJob" } }
+            },
             "description": "successful operation"
           },
           "400": { "description": "internal_error" }
@@ -2061,11 +2684,21 @@
         "description": "Returns the status of a job submitted to list alerts by policy. Uses the specified job ID to identify the job.",
         "operationId": "get-async-policy-alert-job-status",
         "parameters": [
-          { "description": "Job ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }
+          {
+            "description": "Job ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
         "responses": {
           "200": {
-            "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/AsyncJob" } } },
+            "content": {
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/AsyncJob" }
+              }
+            },
             "description": "successful operation"
           }
         },
@@ -2089,7 +2722,13 @@
         "description": "Downloads the policy alerts results in JSON format for the specified job ID.",
         "operationId": "download-policy-alerts-json",
         "parameters": [
-          { "description": "Job ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }
+          {
+            "description": "Job ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
         "responses": { "200": { "description": "successful operation" } },
         "security": [{ "x-redlock-auth": [] }],
@@ -2113,7 +2752,9 @@
         "operationId": "get-alerts-remediation",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/AlertsLookupKeyModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/AlertsLookupKeyModel" }
+            }
           },
           "description": "Model for AlertsLookupKey",
           "required": true
@@ -2121,11 +2762,15 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/RemediationCliModel" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/RemediationCliModel" }
+              }
             },
             "description": "successful operation"
           },
-          "400": { "description": "invalid_parameter_value / bad_request / cannot_remediate_multiple_policy_alerts" },
+          "400": {
+            "description": "invalid_parameter_value / bad_request / cannot_remediate_multiple_policy_alerts"
+          },
           "405": { "description": "remediation_unavailable" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -2148,11 +2793,19 @@
         "description": "Remediates the alert with the specified ID if that alert is associated with a remediable policy. ",
         "operationId": "perform-remediation-for-alert",
         "parameters": [
-          { "description": "Alert ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }
+          {
+            "description": "Alert ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
         "responses": {
           "200": { "description": "successful operation" },
-          "400": { "description": "invalid_parameter_value / bad_request / cannot_remediate_multiple_policy_alerts" },
+          "400": {
+            "description": "invalid_parameter_value / bad_request / cannot_remediate_multiple_policy_alerts"
+          },
           "405": { "description": "remediation_unavailable" }
         },
         "security": [{ "x-redlock-auth": [] }],

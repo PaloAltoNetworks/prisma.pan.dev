@@ -11,10 +11,20 @@
     "requestBodies": {
       "CreateDataPatternRequest": {
         "content": {
-          "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/CreateDataPatternRequest" } }
+          "application/json; charset=UTF-8": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateDataPatternRequest"
+            }
+          }
         }
       },
-      "DataProfile": { "content": { "application/json": { "schema": { "$ref": "#/components/schemas/DataProfile" } } } }
+      "DataProfile": {
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/DataProfile" }
+          }
+        }
+      }
     },
     "schemas": {
       "AbsoluteTimeRangeConfigModel": {
@@ -35,8 +45,14 @@
         "description": "Create/Update Pattern Model with limited input",
         "properties": {
           "delimiter": { "description": "Delimiter", "type": "string" },
-          "description": { "description": "Pattern description", "type": "string" },
-          "detectionTechnique": { "description": "Detection technique", "type": "string" },
+          "description": {
+            "description": "Pattern description",
+            "type": "string"
+          },
+          "detectionTechnique": {
+            "description": "Detection technique",
+            "type": "string"
+          },
           "entity": { "description": "Entity value", "type": "string" },
           "grammar": { "description": "Grammar value", "type": "string" },
           "name": { "description": "Pattern name", "type": "string" },
@@ -91,7 +107,10 @@
         "description": "Model for Enable/Disable Data Profiles",
         "properties": {
           "id": { "description": "Profile Id", "type": "string" },
-          "profileStatus": { "description": "Profile Status (active or disabled)", "type": "string" }
+          "profileStatus": {
+            "description": "Profile Status (active or disabled)",
+            "type": "string"
+          }
         },
         "required": ["id", "profileStatus"],
         "type": "object"
@@ -115,11 +134,21 @@
             "items": { "type": "string" },
             "type": "array"
           },
-          "description": { "description": "Pattern description", "type": "string" },
-          "detectionTechnique": { "description": "Pattern technique", "type": "string" },
+          "description": {
+            "description": "Pattern description",
+            "type": "string"
+          },
+          "detectionTechnique": {
+            "description": "Pattern technique",
+            "type": "string"
+          },
           "id": { "description": "Pattern id", "type": "string" },
           "name": { "description": "Pattern name", "type": "string" },
-          "proximityKeywords": { "description": "Proximity keywords", "items": { "type": "string" }, "type": "array" },
+          "proximityKeywords": {
+            "description": "Proximity keywords",
+            "items": { "type": "string" },
+            "type": "array"
+          },
           "status": { "description": "Pattern status", "type": "string" }
         },
         "type": "object"
@@ -132,7 +161,11 @@
             "items": { "type": "string" },
             "type": "array"
           },
-          "modeFilter": { "description": "Mode Filter", "items": { "type": "string" }, "type": "array" },
+          "modeFilter": {
+            "description": "Mode Filter",
+            "items": { "type": "string" },
+            "type": "array"
+          },
           "patterns": {
             "description": "Pattern List",
             "items": { "$ref": "#/components/schemas/DataPatternModel" },
@@ -149,15 +182,35 @@
             "items": { "type": "string" },
             "type": "array"
           },
-          "createdBy": { "description": "Created By", "readOnly": true, "type": "string" },
-          "delimiter": { "description": "Delimiter to separate the regex and weight in UI", "type": "string" },
-          "description": { "description": "Pattern Description", "type": "string" },
-          "detectionTechnique": { "description": "Detection technique", "type": "string" },
+          "createdBy": {
+            "description": "Created By",
+            "readOnly": true,
+            "type": "string"
+          },
+          "delimiter": {
+            "description": "Delimiter to separate the regex and weight in UI",
+            "type": "string"
+          },
+          "description": {
+            "description": "Pattern Description",
+            "type": "string"
+          },
+          "detectionTechnique": {
+            "description": "Detection technique",
+            "type": "string"
+          },
           "entity": { "description": "Entity", "type": "string" },
           "grammar": { "description": "Grammar", "type": "string" },
           "id": { "description": "Pattern id", "type": "string" },
-          "isEditable": { "description": "Is Editable", "readOnly": true, "type": "boolean" },
-          "mode": { "description": "Mode (custom/predefined)", "type": "string" },
+          "isEditable": {
+            "description": "Is Editable",
+            "readOnly": true,
+            "type": "boolean"
+          },
+          "mode": {
+            "description": "Mode (custom/predefined)",
+            "type": "string"
+          },
           "name": { "description": "Pattern Name", "type": "string" },
           "parentId": { "description": "Parent ID", "type": "string" },
           "proximityKeywords": {
@@ -171,10 +224,22 @@
             "type": "array"
           },
           "rootType": { "description": "Root Type", "type": "string" },
-          "s3Path": { "description": "S3 Path to the grammar", "type": "string" },
+          "s3Path": {
+            "description": "S3 Path to the grammar",
+            "type": "string"
+          },
           "status": { "description": "Pattern status", "type": "string" },
-          "updatedAt": { "description": "Last updated At", "format": "int64", "readOnly": true, "type": "integer" },
-          "updatedBy": { "description": "Updated By", "readOnly": true, "type": "string" }
+          "updatedAt": {
+            "description": "Last updated At",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "updatedBy": {
+            "description": "Updated By",
+            "readOnly": true,
+            "type": "string"
+          }
         },
         "required": [
           "confidenceLevels",
@@ -191,15 +256,36 @@
       "DataPatternRules": {
         "description": "Data Pattern rules",
         "properties": {
-          "confidencLevel": { "description": "Confidence level", "type": "string" },
-          "detectionTechnique": { "description": "Detection technique", "type": "string" },
+          "confidencLevel": {
+            "description": "Confidence level",
+            "type": "string"
+          },
+          "detectionTechnique": {
+            "description": "Detection technique",
+            "type": "string"
+          },
           "id": { "description": "Pattern id", "type": "string" },
           "matchType": { "description": "Match type", "type": "string" },
           "name": { "description": "Pattern name", "type": "string" },
-          "occurrenceCount": { "description": "Occurrence count", "format": "int32", "type": "integer" },
-          "occurrenceHigh": { "description": "High Occurrence value", "format": "int32", "type": "integer" },
-          "occurrenceLow": { "description": "Low Occurrence value", "format": "int32", "type": "integer" },
-          "occurrenceOperatorType": { "description": "Occurrence type", "type": "string" },
+          "occurrenceCount": {
+            "description": "Occurrence count",
+            "format": "int32",
+            "type": "integer"
+          },
+          "occurrenceHigh": {
+            "description": "High Occurrence value",
+            "format": "int32",
+            "type": "integer"
+          },
+          "occurrenceLow": {
+            "description": "Low Occurrence value",
+            "format": "int32",
+            "type": "integer"
+          },
+          "occurrenceOperatorType": {
+            "description": "Occurrence type",
+            "type": "string"
+          },
           "supportedConfidenceLevels": {
             "description": "List of supported confidence levels",
             "items": { "type": "string" },
@@ -216,40 +302,82 @@
             "items": { "$ref": "#/components/schemas/DataPatternRules" },
             "type": "array"
           },
-          "operatorType": { "description": "Pattern operator type", "type": "string" }
+          "operatorType": {
+            "description": "Pattern operator type",
+            "type": "string"
+          }
         },
         "type": "object"
       },
       "DataProfile": {
         "description": "Model class for Create and Update Data Profile",
         "properties": {
-          "dataPatternsRule1": { "$ref": "#/components/schemas/DataPatternRulesOne" },
-          "description": { "description": "Profile description", "type": "string" },
-          "id": { "description": "Profile id (required during update", "format": "int32", "type": "integer" },
+          "dataPatternsRule1": {
+            "$ref": "#/components/schemas/DataPatternRulesOne"
+          },
+          "description": {
+            "description": "Profile description",
+            "type": "string"
+          },
+          "id": {
+            "description": "Profile id (required during update",
+            "format": "int32",
+            "type": "integer"
+          },
           "name": { "description": "Profile name", "type": "string" },
-          "profileStatus": { "description": "Profile status", "type": "string" },
-          "profileType": { "description": "Profile Type (custom or system)", "type": "string" },
+          "profileStatus": {
+            "description": "Profile status",
+            "type": "string"
+          },
+          "profileType": {
+            "description": "Profile Type (custom or system)",
+            "type": "string"
+          },
           "status": { "description": "Status", "type": "string" },
-          "types": { "description": "Type (basic or advance)", "type": "string" }
+          "types": {
+            "description": "Type (basic or advance)",
+            "type": "string"
+          }
         },
-        "required": ["dataPatternsRule1", "description", "name", "profileStatus", "profileType", "status", "types"],
+        "required": [
+          "dataPatternsRule1",
+          "name",
+          "profileStatus",
+          "profileType",
+          "status",
+          "types"
+        ],
         "type": "object"
       },
       "DataProfileDetails": {
         "description": "DataProfile Model class",
         "properties": {
-          "createdAt": { "description": "Created at (unix time)", "type": "string" },
+          "createdAt": {
+            "description": "Created at (unix time)",
+            "type": "string"
+          },
           "createdBy": { "description": "Created by", "type": "string" },
-          "dataPatternsRulesOne": { "$ref": "#/components/schemas/DataPatternRulesOne" },
+          "dataPatternsRulesOne": {
+            "$ref": "#/components/schemas/DataPatternRulesOne"
+          },
           "description": { "description": "Description", "type": "string" },
           "id": { "description": "DataProfile id", "type": "string" },
           "name": { "description": "DataProfile name", "type": "string" },
-          "profileStatus": { "description": "Profile status", "type": "string" },
-          "profileType": { "description": "DataProfile type", "type": "string" },
+          "profileStatus": {
+            "description": "Profile status",
+            "type": "string"
+          },
+          "profileType": {
+            "description": "DataProfile type",
+            "type": "string"
+          },
           "status": { "description": "Status", "type": "string" },
           "tenantId": { "description": "Tenant Id", "type": "string" },
           "types": { "description": "Type", "type": "string" },
-          "updatedAt": { "description": "Updated at (unix time)", "type": "string" },
+          "updatedAt": {
+            "description": "Updated at (unix time)",
+            "type": "string"
+          },
           "updatedBy": { "description": "Updated by", "type": "string" }
         },
         "type": "object"
@@ -262,7 +390,10 @@
             "enum": ["no_mask", "partial_mask", "full_mask"],
             "type": "string"
           },
-          "snippetsEnabled": { "description": "Enable/Disable snippets", "type": "boolean" }
+          "snippetsEnabled": {
+            "description": "Enable/Disable snippets",
+            "type": "boolean"
+          }
         },
         "required": ["maskLevel", "snippetsEnabled"],
         "type": "object"
@@ -270,22 +401,40 @@
       "GetDataPatternFilterRequest": {
         "description": "Get data pattern with filters on mode, updatedBy and time range",
         "properties": {
-          "modeFilter": { "description": "Mode filter list", "items": { "type": "string" }, "type": "array" },
+          "modeFilter": {
+            "description": "Mode filter list",
+            "items": { "type": "string" },
+            "type": "array"
+          },
           "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" },
-          "updatedByFilter": { "description": "Updated By list", "items": { "type": "string" }, "type": "array" }
+          "updatedByFilter": {
+            "description": "Updated By list",
+            "items": { "type": "string" },
+            "type": "array"
+          }
         },
         "type": "object"
       },
       "Profiles": {
         "description": "Model for Profiles",
         "properties": {
-          "createdBy": { "description": "Profile created by service", "type": "string" },
+          "createdBy": {
+            "description": "Profile created by service",
+            "type": "string"
+          },
           "id": { "description": "Profile id", "type": "string" },
           "name": { "description": "Profile name", "type": "string" },
           "status": { "description": "Profile status", "type": "string" },
           "type": { "description": "Profile Type", "type": "string" },
-          "updatedAt": { "description": "Profile Updated time", "format": "date-time", "type": "string" },
-          "updatedBy": { "description": "Profile updated by service", "type": "string" }
+          "updatedAt": {
+            "description": "Profile Updated time",
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedBy": {
+            "description": "Profile updated by service",
+            "type": "string"
+          }
         },
         "type": "object"
       },
@@ -293,14 +442,22 @@
         "description": "Model for regex",
         "properties": {
           "regex": { "description": "Regex", "type": "string" },
-          "weight": { "description": "Weight", "format": "int32", "type": "integer" }
+          "weight": {
+            "description": "Weight",
+            "format": "int32",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
       "RelativeTimeDurationModel": {
         "description": "Model for RelativeTimeDuration",
         "properties": {
-          "amount": { "description": "Number of time units", "format": "int32", "type": "integer" },
+          "amount": {
+            "description": "Number of time units",
+            "format": "int32",
+            "type": "integer"
+          },
           "unit": {
             "description": "Time unit",
             "enum": ["minute", "hour", "day", "week", "month", "year"],
@@ -321,7 +478,9 @@
                 "type": "string"
               },
               "type": { "example": "relative", "type": "string" },
-              "value": { "$ref": "#/components/schemas/RelativeTimeDurationModel" }
+              "value": {
+                "$ref": "#/components/schemas/RelativeTimeDurationModel"
+              }
             },
             "required": ["value"],
             "type": "object"
@@ -331,8 +490,16 @@
       "TimeModel": {
         "description": "Model for Time",
         "properties": {
-          "endTime": { "description": "End timestamp", "format": "int64", "type": "integer" },
-          "startTime": { "description": "Start timestamp", "format": "int64", "type": "integer" }
+          "endTime": {
+            "description": "End timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
+          "startTime": {
+            "description": "Start timestamp",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -351,7 +518,9 @@
           { "$ref": "#/components/schemas/AbsoluteTimeRangeConfigModel" },
           { "$ref": "#/components/schemas/ToNowTimeRangeConfigModel" }
         ],
-        "properties": { "type": { "description": "Time type", "type": "string" } },
+        "properties": {
+          "type": { "description": "Time type", "type": "string" }
+        },
         "required": ["type"],
         "type": "object"
       },
@@ -363,7 +532,16 @@
             "properties": {
               "value": {
                 "description": "Time range object",
-                "enum": ["MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR", "EPOCH", "LOGIN"],
+                "enum": [
+                  "MINUTE",
+                  "HOUR",
+                  "DAY",
+                  "WEEK",
+                  "MONTH",
+                  "YEAR",
+                  "EPOCH",
+                  "LOGIN"
+                ],
                 "type": "string"
               }
             },
@@ -381,7 +559,12 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The Data Security Settings APIs are listed below.", "name": "Data Security Settings" }],
+  "tags": [
+    {
+      "description": "The Data Security Settings APIs are listed below.",
+      "name": "Data Security Settings"
+    }
+  ],
   "paths": {
     "/dlp/api/v1/dss-api/data-pattern": {
       "put": {
@@ -389,16 +572,28 @@
         "operationId": "get-all-data-patterns",
         "requestBody": {
           "content": {
-            "application/json": { "schema": { "$ref": "#/components/schemas/GetDataPatternFilterRequest" } }
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetDataPatternFilterRequest"
+              }
+            }
           }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DataPatternList" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DataPatternList" }
+              }
+            },
             "description": "success"
           },
           "400": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "bad_request"
           },
           "500": { "description": "internal_error" }
@@ -422,12 +617,20 @@
         "operationId": "add-data-pattern",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/CreateDataPatternRequest" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDataPatternRequest"
+              }
+            }
           }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "success"
           },
           "500": { "description": "internal_error" }
@@ -453,16 +656,26 @@
         "operationId": "clone-data-pattern",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/DataPatternModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/DataPatternModel" }
+            }
           }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "success"
           },
           "400": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "bad_request"
           },
           "500": { "description": "internal_error" }
@@ -497,7 +710,11 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DataPatternDetails" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DataPatternDetails" }
+              }
+            },
             "description": "success"
           },
           "500": { "description": "internal_error" }
@@ -525,13 +742,22 @@
           "200": {
             "content": {
               "*/*": {
-                "schema": { "items": { "$ref": "#/components/schemas/DataPatternConfidenceLevel" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/DataPatternConfidenceLevel"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "success"
           },
           "400": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "bad_request"
           },
           "500": { "description": "internal_error" }
@@ -566,16 +792,28 @@
         ],
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/CreateDataPatternRequest" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDataPatternRequest"
+              }
+            }
           }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "success"
           },
           "400": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "bad_request"
           },
           "500": { "description": "internal_error" }
@@ -608,11 +846,19 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "success"
           },
           "400": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "bad_request"
           },
           "500": { "description": "internal_error" }
@@ -638,7 +884,11 @@
         "operationId": "get-data-profiles",
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DSSDataProfiles" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DSSDataProfiles" }
+              }
+            },
             "description": "success"
           },
           "500": { "description": "internal_error" }
@@ -661,15 +911,27 @@
         "description": "Creates a data profile.",
         "operationId": "add-data-profile",
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/DataProfile" } } }
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/DataProfile" }
+            }
+          }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "success"
           },
           "400": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "bad_request"
           },
           "500": { "description": "internal_error" }
@@ -694,13 +956,20 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { "items": { "$ref": "#/components/schemas/DSSProfile" }, "type": "array" }
+              "schema": {
+                "items": { "$ref": "#/components/schemas/DSSProfile" },
+                "type": "array"
+              }
             }
           }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "success"
           },
           "500": { "description": "internal_error" }
@@ -735,7 +1004,11 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DataProfileDetails" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DataProfileDetails" }
+              }
+            },
             "description": "success"
           },
           "500": { "description": "internal_error" }
@@ -767,15 +1040,27 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/DataProfile" } } }
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/DataProfile" }
+            }
+          }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "success"
           },
           "400": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "bad_request"
           },
           "500": { "description": "internal_error" }
@@ -808,11 +1093,19 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "success"
           },
           "400": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "bad_request"
           },
           "500": { "description": "internal_error" }
@@ -846,7 +1139,11 @@
         "responses": {
           "200": { "description": "success" },
           "400": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "bad_request"
           },
           "500": { "description": "internal_error" }
@@ -872,7 +1169,11 @@
         "operationId": "get-snippets-config",
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DssSnippetConfig" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DssSnippetConfig" }
+              }
+            },
             "description": "success"
           },
           "400": { "description": "bad_request" },
@@ -896,15 +1197,27 @@
         "description": "Updates the snippet masking configuration for your tenant.",
         "operationId": "update-snippets",
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/DssSnippetConfig" } } }
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/DssSnippetConfig" }
+            }
+          }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "success"
           },
           "400": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPAPIResponse" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
             "description": "bad_request"
           },
           "500": { "description": "internal_error" }

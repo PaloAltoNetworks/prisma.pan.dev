@@ -227,6 +227,10 @@ components:
           description: Cloud type values
           enum:
             - aws
+            - azure
+            - gcp
+            - alibaba_cloud
+            - oci
         csvHeaderRequired:
           type: boolean
           description: CSV file header
@@ -434,6 +438,10 @@ components:
           description: Cloud type values
           enum:
             - aws
+            - azure
+            - gcp
+            - alibaba_cloud
+            - oci
         csvHeaderRequired:
           type: boolean
           description: CSV file header

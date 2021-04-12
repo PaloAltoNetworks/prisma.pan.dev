@@ -336,7 +336,6 @@ components:
           type: string
       required:
       - dataPatternsRule1
-      - description
       - name
       - profileStatus
       - profileType
