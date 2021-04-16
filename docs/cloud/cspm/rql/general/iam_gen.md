@@ -9,7 +9,7 @@ hide_title: true
 ## Sample IAM Security RQL Queries
 
 :::note
-The following guide will walk you through IAM Secrutiy RQL Query Examples, based on the CIEM Module
+The following guide will walk you through IAM Security RQL Query Examples, based on the CIEM Module
 :::
 
 ### Last accessed X days ago
