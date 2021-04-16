@@ -94,9 +94,3 @@ config from cloud.resource where cloud.type = 'aws' AND api.name = 'aws-ec2-desc
 ```bash
 config from cloud.resource where api.name = 'aws-ec2-describe-security-groups' and json.rule = "groupName does not equal default" as X; config from cloud.resource where api.name = 'aws-ec2-describe-network-interfaces' as Y; filter 'not ($.Y.groups[*].groupId contains $.X.groupId) '; show X;
 ```
-
-###  
-
-```bash
-
-```
