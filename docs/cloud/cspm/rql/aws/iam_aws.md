@@ -33,6 +33,6 @@ config from iam where action.name IN ( 'iam:CreateUser' , 'iam:AttachGroupPolicy
 
 ### Identify Lambda functions that can delete S3 buckets
 
-```
+```bash
 config from iam where dest.cloud.service.name = 's3' AND action.name IN ( 's3:deletebucket') and source.cloud.service.name = 'lambda'
 ```
