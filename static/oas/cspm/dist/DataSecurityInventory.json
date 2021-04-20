@@ -11,13 +11,17 @@
     "requestBodies": {
       "DLPInventoryFilterModel": {
         "content": {
-          "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/DLPInventoryFilterModel" } }
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/DLPInventoryFilterModel" }
+          }
         }
       },
       "DLPInventoryResourceExplorerRequest": {
         "content": {
           "application/json; charset=UTF-8": {
-            "schema": { "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest" }
+            "schema": {
+              "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest"
+            }
           }
         }
       }
@@ -40,8 +44,15 @@
       "CountByClassificationViewModel": {
         "description": "Model class for Bubble chart data",
         "properties": {
-          "classification": { "description": "Object classification", "type": "string" },
-          "count": { "description": "Object count", "format": "int32", "type": "integer" },
+          "classification": {
+            "description": "Object classification",
+            "type": "string"
+          },
+          "count": {
+            "description": "Object count",
+            "format": "int32",
+            "type": "integer"
+          },
           "exposure": { "description": "Object Exposure", "type": "string" },
           "severity": { "description": "Policy Severity", "type": "string" }
         },
@@ -50,8 +61,16 @@
       "DLPInventoryDataUsageModel": {
         "description": "Model class for filter sugegstions",
         "properties": {
-          "dataScanned": { "description": "Data Scanned", "format": "float", "type": "number" },
-          "limit": { "description": "Data limit", "format": "int64", "type": "integer" },
+          "dataScanned": {
+            "description": "Data Scanned",
+            "format": "float",
+            "type": "number"
+          },
+          "limit": {
+            "description": "Data limit",
+            "format": "int64",
+            "type": "integer"
+          },
           "unit": { "description": "Unit (daily/hourly)", "type": "string" }
         },
         "type": "object"
@@ -92,7 +111,12 @@
             "items": { "type": "string" },
             "type": "array"
           },
-          "tableLevel": { "description": "Table level", "enum": [1, 2, 3, 4], "format": "int32", "type": "integer" },
+          "tableLevel": {
+            "description": "Table level",
+            "enum": [1, 2, 3, 4],
+            "format": "int32",
+            "type": "integer"
+          },
           "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" }
         },
         "required": ["tableLevel"],
@@ -101,7 +125,10 @@
       "DLPInventoryObjectClassificationReport": {
         "description": "Model class for classification report",
         "properties": {
-          "detectionTime": { "description": "Detection time", "type": "string" },
+          "detectionTime": {
+            "description": "Detection time",
+            "type": "string"
+          },
           "identifiers": {
             "description": "List of identifiers",
             "items": { "$ref": "#/components/schemas/Identifiers" },
@@ -116,41 +143,81 @@
         "properties": {
           "dataPattern": { "description": "Pattern name", "type": "string" },
           "dataPatternId": { "description": "Pattern id", "type": "string" },
-          "dataProfiles": { "description": "List of data profiles", "items": { "type": "string" }, "type": "array" },
-          "detectionTime": { "description": "Detection time unix timestamp", "format": "int64", "type": "integer" },
-          "frequency": { "description": "Detection frequency", "format": "int32", "type": "integer" },
+          "dataProfiles": {
+            "description": "List of data profiles",
+            "items": { "type": "string" },
+            "type": "array"
+          },
+          "detectionTime": {
+            "description": "Detection time unix timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
+          "frequency": {
+            "description": "Detection frequency",
+            "format": "int32",
+            "type": "integer"
+          },
           "snippet": { "description": "Snippets data", "type": "string" },
-          "snippetViewed": { "description": "Viewed snippets", "type": "boolean" }
+          "snippetViewed": {
+            "description": "Viewed snippets",
+            "type": "boolean"
+          }
         },
         "type": "object"
       },
       "DLPInventoryObjectExplorer": {
         "description": "Model for DLP Object Inventory",
         "properties": {
-          "awsAccountId": { "description": "Cloud account ID", "type": "string" },
-          "contentType": { "description": "Object content type", "type": "string" },
-          "createdOn": { "description": "Object created on", "format": "int64", "type": "integer" },
+          "awsAccountId": {
+            "description": "Cloud account ID",
+            "type": "string"
+          },
+          "contentType": {
+            "description": "Object content type",
+            "type": "string"
+          },
+          "createdOn": {
+            "description": "Object created on",
+            "format": "int64",
+            "type": "integer"
+          },
           "exposureCalculatedOn": {
             "description": "Object exposure calculation time",
             "format": "int64",
             "type": "integer"
           },
-          "malware": { "description": "Object malware status", "type": "string" },
+          "malware": {
+            "description": "Object malware status",
+            "type": "string"
+          },
           "objectAcl": { "description": "Object Acls", "type": "string" },
-          "objectExposure": { "description": "Object exposure", "type": "string" },
+          "objectExposure": {
+            "description": "Object exposure",
+            "type": "string"
+          },
           "objectName": { "description": "Object name", "type": "string" },
           "objectOwner": { "description": "Object owner", "type": "string" },
           "objectTags": {
             "description": "List of Object tags",
-            "items": { "$ref": "#/components/schemas/DLPInventoryObjectExplorer" },
+            "items": {
+              "$ref": "#/components/schemas/DLPInventoryObjectExplorer"
+            },
             "type": "array"
           },
           "objectUrl": { "description": "Object URL", "type": "string" },
           "regionName": { "description": "Object region", "type": "string" },
-          "resourceName": { "description": "Object's resource name", "type": "string" },
+          "resourceName": {
+            "description": "Object's resource name",
+            "type": "string"
+          },
           "resourceRRN": { "description": "Resource ARN", "type": "string" },
           "sha256": { "description": "Object SHA256", "type": "string" },
-          "updatedOn": { "description": "Object updated on", "format": "int64", "type": "integer" }
+          "updatedOn": {
+            "description": "Object updated on",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -162,17 +229,61 @@
             "format": "int64",
             "type": "integer"
           },
-          "objectsDelta": { "description": "Objects changes", "format": "int64", "type": "integer" },
-          "publicObjectsDelta": { "description": "Public objects changed", "format": "int64", "type": "integer" },
-          "publicResourcesDelta": { "description": "Public resources changed", "format": "int64", "type": "integer" },
-          "resourcesDelta": { "description": "Resources changed", "format": "int64", "type": "integer" },
-          "sensitiveObjectsDelta": { "description": "Sensitive objects changed", "format": "int64", "type": "integer" },
-          "totalMalwareObjects": { "description": "Total malware objects", "format": "int64", "type": "integer" },
-          "totalObjects": { "description": "Total objects", "format": "int64", "type": "integer" },
-          "totalPublicObjects": { "description": "Public objects", "format": "int64", "type": "integer" },
-          "totalPublicResources": { "description": "Public resources", "format": "int64", "type": "integer" },
-          "totalResources": { "description": "Total resources", "format": "int64", "type": "integer" },
-          "totalSensitiveObjects": { "description": "Sensitive objects", "format": "int64", "type": "integer" }
+          "objectsDelta": {
+            "description": "Objects changes",
+            "format": "int64",
+            "type": "integer"
+          },
+          "publicObjectsDelta": {
+            "description": "Public objects changed",
+            "format": "int64",
+            "type": "integer"
+          },
+          "publicResourcesDelta": {
+            "description": "Public resources changed",
+            "format": "int64",
+            "type": "integer"
+          },
+          "resourcesDelta": {
+            "description": "Resources changed",
+            "format": "int64",
+            "type": "integer"
+          },
+          "sensitiveObjectsDelta": {
+            "description": "Sensitive objects changed",
+            "format": "int64",
+            "type": "integer"
+          },
+          "totalMalwareObjects": {
+            "description": "Total malware objects",
+            "format": "int64",
+            "type": "integer"
+          },
+          "totalObjects": {
+            "description": "Total objects",
+            "format": "int64",
+            "type": "integer"
+          },
+          "totalPublicObjects": {
+            "description": "Public objects",
+            "format": "int64",
+            "type": "integer"
+          },
+          "totalPublicResources": {
+            "description": "Public resources",
+            "format": "int64",
+            "type": "integer"
+          },
+          "totalResources": {
+            "description": "Total resources",
+            "format": "int64",
+            "type": "integer"
+          },
+          "totalSensitiveObjects": {
+            "description": "Sensitive objects",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -181,14 +292,27 @@
         "properties": {
           "accountName": { "description": "Cloud Name", "type": "string" },
           "cloudType": { "description": "Cloud Type", "type": "string" },
-          "regionName": { "description": "Cloud region name", "type": "string" },
+          "regionName": {
+            "description": "Cloud region name",
+            "type": "string"
+          },
           "resourceAcl": { "description": "Resource Acls", "type": "string" },
-          "resourceExposure": { "description": "Resource Exposure", "type": "string" },
+          "resourceExposure": {
+            "description": "Resource Exposure",
+            "type": "string"
+          },
           "resourceName": { "description": "Resource Name", "type": "string" },
-          "resourcePolicy": { "description": "Resource policy", "type": "string" },
+          "resourcePolicy": {
+            "description": "Resource policy",
+            "type": "string"
+          },
           "resourceTags": { "description": "Resource Tags", "type": "string" },
           "serviceName": { "description": "Service name", "type": "string" },
-          "updatedOn": { "description": "Resource updated time", "format": "int64", "type": "integer" }
+          "updatedOn": {
+            "description": "Resource updated time",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -209,7 +333,11 @@
             "items": { "$ref": "#/components/schemas/ResourceObjects" },
             "type": "array"
           },
-          "total": { "description": "Total objects", "format": "int32", "type": "integer" }
+          "total": {
+            "description": "Total objects",
+            "format": "int32",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -217,65 +345,147 @@
         "description": "Model for DLP Inventory View",
         "properties": {
           "accountId": { "description": "Cloud account id", "type": "string" },
-          "accountName": { "description": "Cloud account name", "type": "string" },
-          "alerts": { "description": "Total alerts", "format": "int64", "type": "integer" },
+          "accountName": {
+            "description": "Cloud account name",
+            "type": "string"
+          },
+          "alerts": {
+            "description": "Total alerts",
+            "format": "int64",
+            "type": "integer"
+          },
           "cloudType": { "description": "Cloud Type", "type": "string" },
-          "contentType": { "description": "Object Content Type", "type": "string" },
-          "dataPatterns": { "description": "List of Data Patterns", "items": { "type": "string" }, "type": "array" },
-          "dataProfiles": { "description": "List of Data Profiles", "items": { "type": "string" }, "type": "array" },
-          "dssScannedTime": { "description": "Classification Scanned Time", "format": "int64", "type": "integer" },
+          "contentType": {
+            "description": "Object Content Type",
+            "type": "string"
+          },
+          "dataPatterns": {
+            "description": "List of Data Patterns",
+            "items": { "type": "string" },
+            "type": "array"
+          },
+          "dataProfiles": {
+            "description": "List of Data Profiles",
+            "items": { "type": "string" },
+            "type": "array"
+          },
+          "dssScannedTime": {
+            "description": "Classification Scanned Time",
+            "format": "int64",
+            "type": "integer"
+          },
           "dssSnippetCreatedOn": {
             "description": "Snippets created on (unix timestamp)",
             "format": "int64",
             "type": "integer"
           },
-          "dssSnippetStatus": { "description": "Snippets Status", "type": "string" },
-          "dssSnippetViewed": { "description": "Snippets Viewed Status", "type": "boolean" },
+          "dssSnippetStatus": {
+            "description": "Snippets Status",
+            "type": "string"
+          },
+          "dssSnippetViewed": {
+            "description": "Snippets Viewed Status",
+            "type": "boolean"
+          },
           "malware": { "description": "Malware Result", "type": "string" },
-          "malwareObjects": { "description": "Total malware objects", "format": "int64", "type": "integer" },
-          "malwareScannedTime": { "description": "Malware Scanned Time", "format": "int64", "type": "integer" },
-          "metadataScannedTime": { "description": "Metadata Scanned Time", "format": "int64", "type": "integer" },
+          "malwareObjects": {
+            "description": "Total malware objects",
+            "format": "int64",
+            "type": "integer"
+          },
+          "malwareScannedTime": {
+            "description": "Malware Scanned Time",
+            "format": "int64",
+            "type": "integer"
+          },
+          "metadataScannedTime": {
+            "description": "Metadata Scanned Time",
+            "format": "int64",
+            "type": "integer"
+          },
           "objectAlerts": { "description": "Object Alerts", "type": "string" },
-          "objectExposure": { "description": "Object Exposure", "type": "string" },
+          "objectExposure": {
+            "description": "Object Exposure",
+            "type": "string"
+          },
           "objectId": { "description": "Object Id", "type": "string" },
           "objectName": { "description": "Object Name", "type": "string" },
           "objectOwner": { "description": "Object Owner", "type": "string" },
           "objectPath": { "description": "Object Path", "type": "string" },
-          "publicObjects": { "description": "Total public objects", "format": "int64", "type": "integer" },
-          "publicResource": { "description": "List of public resources", "type": "string" },
+          "publicObjects": {
+            "description": "Total public objects",
+            "format": "int64",
+            "type": "integer"
+          },
+          "publicResource": {
+            "description": "List of public resources",
+            "type": "string"
+          },
           "publicResources": {
             "description": "Total number of public resources",
             "format": "int64",
             "type": "integer"
           },
           "regionName": { "description": "Cloud region", "type": "string" },
-          "resourceExposure": { "description": "Resource Exposure", "type": "string" },
+          "resourceExposure": {
+            "description": "Resource Exposure",
+            "type": "string"
+          },
           "resourceName": { "description": "Resource name", "type": "string" },
           "resourceRrn": { "description": "resource RRN", "type": "string" },
-          "resourceStatus": { "description": "Resource status (true if active)", "type": "boolean" },
+          "resourceStatus": {
+            "description": "Resource status (true if active)",
+            "type": "boolean"
+          },
           "rrn": { "description": "object RRN", "type": "string" },
-          "sensitiveObjects": { "description": "Total sensitive objects", "format": "int64", "type": "integer" },
+          "sensitiveObjects": {
+            "description": "Total sensitive objects",
+            "format": "int64",
+            "type": "integer"
+          },
           "serviceName": { "description": "Service name", "type": "string" },
-          "totalObjects": { "description": "Total objects", "format": "int64", "type": "integer" },
-          "totalResources": { "description": "Total number of resources", "format": "int64", "type": "integer" }
+          "totalObjects": {
+            "description": "Total objects",
+            "format": "int64",
+            "type": "integer"
+          },
+          "totalResources": {
+            "description": "Total number of resources",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
       "Detection": {
         "description": "Model class Classification Detections",
         "properties": {
-          "detection": { "description": "Detection technique", "type": "string" },
+          "detection": {
+            "description": "Detection technique",
+            "type": "string"
+          },
           "left": { "description": "Left detection", "type": "string" },
-          "origOffSet": { "description": "Offset by", "format": "int64", "type": "integer" },
+          "origOffSet": {
+            "description": "Offset by",
+            "format": "int64",
+            "type": "integer"
+          },
           "right": { "description": "Right detection", "type": "string" },
-          "textLength": { "description": "Text Length", "format": "int64", "type": "integer" }
+          "textLength": {
+            "description": "Text Length",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
       "DssPatternSnippetViewModel": {
         "description": "Model class for viewing snippets",
         "properties": {
-          "dataPattern": { "description": "Matching data patterns", "type": "string" },
+          "dataPattern": {
+            "description": "Matching data patterns",
+            "type": "string"
+          },
           "highConfidenceDetections": {
             "description": "List of high confidence detections",
             "items": { "$ref": "#/components/schemas/Detection" },
@@ -286,20 +496,31 @@
             "items": { "$ref": "#/components/schemas/Detection" },
             "type": "array"
           },
-          "matchedConfidenceLevel": { "description": "Matched Confidence level", "type": "string" },
+          "matchedConfidenceLevel": {
+            "description": "Matched Confidence level",
+            "type": "string"
+          },
           "mediumConfidenceDetections": {
             "description": "List of medium confidence detections",
             "items": { "$ref": "#/components/schemas/Detection" },
             "type": "array"
           },
-          "statusCode": { "description": "Snippets status code", "format": "int32", "type": "integer" }
+          "statusCode": {
+            "description": "Snippets status code",
+            "format": "int32",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
       "Identifiers": {
         "description": "Model class for identifiers",
         "properties": {
-          "frequency": { "description": "Identifier frequency", "format": "int32", "type": "integer" },
+          "frequency": {
+            "description": "Identifier frequency",
+            "format": "int32",
+            "type": "integer"
+          },
           "name": { "description": "Identifier name", "type": "string" }
         },
         "type": "object"
@@ -307,7 +528,11 @@
       "RelativeTimeDurationModel": {
         "description": "Model for RelativeTimeDuration",
         "properties": {
-          "amount": { "description": "Number of time units", "format": "int32", "type": "integer" },
+          "amount": {
+            "description": "Number of time units",
+            "format": "int32",
+            "type": "integer"
+          },
           "unit": {
             "description": "Time unit",
             "enum": ["minute", "hour", "day", "week", "month", "year"],
@@ -328,7 +553,9 @@
                 "type": "string"
               },
               "type": { "example": "relative", "type": "string" },
-              "value": { "$ref": "#/components/schemas/RelativeTimeDurationModel" }
+              "value": {
+                "$ref": "#/components/schemas/RelativeTimeDurationModel"
+              }
             },
             "required": ["value"],
             "type": "object"
@@ -338,10 +565,22 @@
       "ResourceObjects": {
         "description": "Model class for resource objects",
         "properties": {
-          "dataClassifications": { "description": "Object classification", "type": "string" },
-          "dataIdentifiers": { "description": "Object identifiers", "type": "string" },
-          "malware": { "description": "Object malware result", "type": "string" },
-          "objectExposure": { "description": "Object exposure", "type": "string" },
+          "dataClassifications": {
+            "description": "Object classification",
+            "type": "string"
+          },
+          "dataIdentifiers": {
+            "description": "Object identifiers",
+            "type": "string"
+          },
+          "malware": {
+            "description": "Object malware result",
+            "type": "string"
+          },
+          "objectExposure": {
+            "description": "Object exposure",
+            "type": "string"
+          },
           "objectId": { "description": "Object Id", "type": "string" },
           "objectName": { "description": "Object name", "type": "string" },
           "sha256": { "description": "Object sha", "type": "string" }
@@ -351,8 +590,16 @@
       "TimeModel": {
         "description": "Model for Time",
         "properties": {
-          "endTime": { "description": "End timestamp", "format": "int64", "type": "integer" },
-          "startTime": { "description": "Start timestamp", "format": "int64", "type": "integer" }
+          "endTime": {
+            "description": "End timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
+          "startTime": {
+            "description": "Start timestamp",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -371,7 +618,9 @@
           { "$ref": "#/components/schemas/AbsoluteTimeRangeConfigModel" },
           { "$ref": "#/components/schemas/ToNowTimeRangeConfigModel" }
         ],
-        "properties": { "type": { "description": "Time type", "type": "string" } },
+        "properties": {
+          "type": { "description": "Time type", "type": "string" }
+        },
         "required": ["type"],
         "type": "object"
       },
@@ -383,7 +632,16 @@
             "properties": {
               "value": {
                 "description": "Time range object",
-                "enum": ["MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR", "EPOCH", "LOGIN"],
+                "enum": [
+                  "MINUTE",
+                  "HOUR",
+                  "DAY",
+                  "WEEK",
+                  "MONTH",
+                  "YEAR",
+                  "EPOCH",
+                  "LOGIN"
+                ],
                 "type": "string"
               }
             },
@@ -395,7 +653,11 @@
         "description": "Model for UIFilter",
         "properties": {
           "name": { "description": "Name", "type": "string" },
-          "operator": { "description": "Operator", "enum": ["="], "type": "string" },
+          "operator": {
+            "description": "Operator",
+            "enum": ["="],
+            "type": "string"
+          },
           "value": { "description": "Value", "type": "string" }
         },
         "type": "object"
@@ -410,7 +672,12 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The Data Security Inventory APIs are listed below.", "name": "Data Security Inventory" }],
+  "tags": [
+    {
+      "description": "The Data Security Inventory APIs are listed below.",
+      "name": "Data Security Inventory"
+    }
+  ],
   "paths": {
     "/dlp/api/v1/inventory/data-scanned": {
       "get": {
@@ -418,7 +685,13 @@
         "operationId": "get-data-usage",
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPInventoryDataUsageModel" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DLPInventoryDataUsageModel"
+                }
+              }
+            },
             "description": "success"
           },
           "500": { "description": "internal_error" }
@@ -445,7 +718,9 @@
         "requestBody": {
           "content": {
             "application/json; charset=UTF-8": {
-              "schema": { "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest" }
+              "schema": {
+                "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest"
+              }
             }
           }
         },
@@ -454,7 +729,9 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": { "$ref": "#/components/schemas/DLPInventoryObjectClassificationReportV2" },
+                  "items": {
+                    "$ref": "#/components/schemas/DLPInventoryObjectClassificationReportV2"
+                  },
                   "type": "array"
                 }
               }
@@ -486,7 +763,9 @@
         "requestBody": {
           "content": {
             "application/json; charset=UTF-8": {
-              "schema": { "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest" }
+              "schema": {
+                "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest"
+              }
             }
           }
         },
@@ -495,7 +774,9 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": { "$ref": "#/components/schemas/DLPInventoryObjectClassificationReport" },
+                  "items": {
+                    "$ref": "#/components/schemas/DLPInventoryObjectClassificationReport"
+                  },
                   "type": "array"
                 }
               }
@@ -525,14 +806,23 @@
         "operationId": "get-inventory-objects",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/DLPInventoryFilterModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/DLPInventoryFilterModel"
+              }
+            }
           }
         },
         "responses": {
           "200": {
             "content": {
               "*/*": {
-                "schema": { "items": { "$ref": "#/components/schemas/DLPInventoryViewModel" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/DLPInventoryViewModel"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "success"
@@ -561,13 +851,21 @@
         "requestBody": {
           "content": {
             "application/json; charset=UTF-8": {
-              "schema": { "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest" }
+              "schema": {
+                "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest"
+              }
             }
           }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPInventoryObjectExplorer" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DLPInventoryObjectExplorer"
+                }
+              }
+            },
             "description": "success"
           },
           "500": { "description": "internal_error" }
@@ -593,7 +891,11 @@
         "operationId": "get-inventory-objects-by-classification",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/DLPInventoryFilterModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/DLPInventoryFilterModel"
+              }
+            }
           }
         },
         "responses": {
@@ -601,7 +903,9 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": { "$ref": "#/components/schemas/CountByClassificationViewModel" },
+                  "items": {
+                    "$ref": "#/components/schemas/CountByClassificationViewModel"
+                  },
                   "type": "array"
                 }
               }
@@ -631,7 +935,11 @@
         "operationId": "get-inventory-aggregate-alerts-by-classification",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/DLPInventoryFilterModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/DLPInventoryFilterModel"
+              }
+            }
           }
         },
         "responses": {
@@ -639,7 +947,9 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": { "$ref": "#/components/schemas/CountByClassificationViewModel" },
+                  "items": {
+                    "$ref": "#/components/schemas/CountByClassificationViewModel"
+                  },
                   "type": "array"
                 }
               }
@@ -669,12 +979,22 @@
         "operationId": "get-inventory-aggregate-history",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/DLPInventoryFilterModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/DLPInventoryFilterModel"
+              }
+            }
           }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPInventoryObjectHistoryViewModel" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DLPInventoryObjectHistoryViewModel"
+                }
+              }
+            },
             "description": "success"
           },
           "500": { "description": "internal_error" }
@@ -710,12 +1030,19 @@
         "requestBody": {
           "content": {
             "application/json; charset=UTF-8": {
-              "schema": { "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest" }
+              "schema": {
+                "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest"
+              }
             }
           }
         },
         "responses": {
-          "200": { "content": { "application/xml": { "schema": { "type": "string" } } }, "description": "success" },
+          "200": {
+            "content": {
+              "application/xml": { "schema": { "type": "string" } }
+            },
+            "description": "success"
+          },
           "500": { "description": "internal_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -724,11 +1051,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/inventory/object/malware/report/hash/%7BfileHash%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/inventory/object/malware/report/hash/{fileHash}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/dlp/api/v1/inventory/object/malware/report/hash/%7BfileHash%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/dlp/api/v1/inventory/object/malware/report/hash/{fileHash} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -740,13 +1067,21 @@
         "requestBody": {
           "content": {
             "application/json; charset=UTF-8": {
-              "schema": { "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest" }
+              "schema": {
+                "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest"
+              }
             }
           }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPInventoryResourceExplorer" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DLPInventoryResourceExplorer"
+                }
+              }
+            },
             "description": "success"
           },
           "500": { "description": "internal_error" }
@@ -773,13 +1108,21 @@
         "requestBody": {
           "content": {
             "application/json; charset=UTF-8": {
-              "schema": { "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest" }
+              "schema": {
+                "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest"
+              }
             }
           }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPInventoryResourceObjects" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DLPInventoryResourceObjects"
+                }
+              }
+            },
             "description": "success"
           },
           "500": { "description": "internal_error" }
@@ -805,11 +1148,18 @@
         "operationId": "add-snippets",
         "requestBody": {
           "content": {
-            "application/json": { "schema": { "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest" } }
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DLPInventoryResourceExplorerRequest"
+              }
+            }
           }
         },
         "responses": {
-          "200": { "content": { "*/*": { "schema": { "type": "string" } } }, "description": "success" },
+          "200": {
+            "content": { "*/*": { "schema": { "type": "string" } } },
+            "description": "success"
+          },
           "400": { "description": "bad_request" },
           "500": { "description": "internal_error" }
         },
@@ -850,7 +1200,13 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DssPatternSnippetViewModel" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DssPatternSnippetViewModel"
+                }
+              }
+            },
             "description": "success"
           },
           "400": { "description": "bad_request" },
@@ -862,11 +1218,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/inventory/snippet/objects/%7BobjectId%7D/datapattern/%7BdataPatternId%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/inventory/snippet/objects/{objectId}/datapattern/{dataPatternId}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/dlp/api/v1/inventory/snippet/objects/%7BobjectId%7D/datapattern/%7BdataPatternId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/dlp/api/v1/inventory/snippet/objects/{objectId}/datapattern/{dataPatternId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }

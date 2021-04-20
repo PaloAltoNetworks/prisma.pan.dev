@@ -10,13 +10,27 @@
     },
     "requestBodies": {
       "ComplianceRequirementModel": {
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ComplianceRequirementModel" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ComplianceRequirementModel"
+            }
+          }
+        }
       },
       "ComplianceSectionModel": {
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ComplianceSectionModel" } } }
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/ComplianceSectionModel" }
+          }
+        }
       },
       "ComplianceStandardModel": {
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ComplianceStandardModel" } } }
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/ComplianceStandardModel" }
+          }
+        }
       }
     },
     "schemas": {
@@ -29,28 +43,65 @@
             "readOnly": true,
             "type": "string"
           },
-          "createdBy": { "description": "Created By", "readOnly": true, "type": "string" },
-          "createdOn": { "description": "Created On", "format": "int64", "readOnly": true, "type": "integer" },
+          "createdBy": {
+            "description": "Created By",
+            "readOnly": true,
+            "type": "string"
+          },
+          "createdOn": {
+            "description": "Created On",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
           "description": { "description": "Description", "type": "string" },
-          "id": { "description": "Compliance ID", "format": "uuid", "readOnly": true, "type": "string" },
-          "lastModifiedBy": { "description": "Last Modified By", "readOnly": true, "type": "string" },
+          "id": {
+            "description": "Compliance ID",
+            "format": "uuid",
+            "readOnly": true,
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "description": "Last Modified By",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedOn": {
             "description": "Last Modified On",
             "format": "int64",
             "readOnly": true,
             "type": "integer"
           },
-          "name": { "description": "Compliance Requirement Name", "type": "string" },
+          "name": {
+            "description": "Compliance Requirement Name",
+            "type": "string"
+          },
           "policiesAssignedCount": {
             "description": "Number Of Assigned Policies",
             "format": "int32",
             "readOnly": true,
             "type": "integer"
           },
-          "requirementId": { "description": "Compliance Requirement Number", "type": "string" },
-          "standardName": { "description": "Compliance Standard Name", "readOnly": true, "type": "string" },
-          "systemDefault": { "description": "System Default", "readOnly": true, "type": "boolean" },
-          "viewOrder": { "description": "View Order", "format": "int32", "readOnly": true, "type": "integer" }
+          "requirementId": {
+            "description": "Compliance Requirement Number",
+            "type": "string"
+          },
+          "standardName": {
+            "description": "Compliance Standard Name",
+            "readOnly": true,
+            "type": "string"
+          },
+          "systemDefault": {
+            "description": "System Default",
+            "readOnly": true,
+            "type": "boolean"
+          },
+          "viewOrder": {
+            "description": "View Order",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          }
         },
         "required": ["name", "requirementId"],
         "type": "object"
@@ -65,12 +116,34 @@
             "type": "array",
             "uniqueItems": true
           },
-          "createdBy": { "description": "Created By", "readOnly": true, "type": "string" },
-          "createdOn": { "description": "Created On", "format": "int64", "readOnly": true, "type": "integer" },
+          "createdBy": {
+            "description": "Created By",
+            "readOnly": true,
+            "type": "string"
+          },
+          "createdOn": {
+            "description": "Created On",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
           "description": { "description": "Description", "type": "string" },
-          "id": { "description": "Compliance ID", "format": "uuid", "readOnly": true, "type": "string" },
-          "label": { "description": "Section Label", "readOnly": true, "type": "string" },
-          "lastModifiedBy": { "description": "Last Modified By", "readOnly": true, "type": "string" },
+          "id": {
+            "description": "Compliance ID",
+            "format": "uuid",
+            "readOnly": true,
+            "type": "string"
+          },
+          "label": {
+            "description": "Section Label",
+            "readOnly": true,
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "description": "Last Modified By",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedOn": {
             "description": "Last Modified On",
             "format": "int64",
@@ -89,11 +162,31 @@
             "readOnly": true,
             "type": "string"
           },
-          "requirementName": { "description": "Compliance Requirement Name", "readOnly": true, "type": "string" },
-          "sectionId": { "description": "Compliance Section ID", "type": "string" },
-          "standardName": { "description": "Compliance Standard Name", "readOnly": true, "type": "string" },
-          "systemDefault": { "description": "System Default", "readOnly": true, "type": "boolean" },
-          "viewOrder": { "description": "View Order", "format": "int32", "readOnly": true, "type": "integer" }
+          "requirementName": {
+            "description": "Compliance Requirement Name",
+            "readOnly": true,
+            "type": "string"
+          },
+          "sectionId": {
+            "description": "Compliance Section ID",
+            "type": "string"
+          },
+          "standardName": {
+            "description": "Compliance Standard Name",
+            "readOnly": true,
+            "type": "string"
+          },
+          "systemDefault": {
+            "description": "System Default",
+            "readOnly": true,
+            "type": "boolean"
+          },
+          "viewOrder": {
+            "description": "View Order",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -102,30 +195,58 @@
         "properties": {
           "cloudType": {
             "description": "Cloud Type (determined based on policies assigned)",
-            "items": { "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"], "type": "string" },
+            "items": {
+              "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+              "type": "string"
+            },
             "readOnly": true,
             "type": "array",
             "uniqueItems": true
           },
-          "createdBy": { "description": "Created By", "readOnly": true, "type": "string" },
-          "createdOn": { "description": "Created On", "format": "int64", "readOnly": true, "type": "integer" },
+          "createdBy": {
+            "description": "Created By",
+            "readOnly": true,
+            "type": "string"
+          },
+          "createdOn": {
+            "description": "Created On",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
           "description": { "description": "Description", "type": "string" },
-          "id": { "description": "Compliance ID", "format": "uuid", "readOnly": true, "type": "string" },
-          "lastModifiedBy": { "description": "Last Modified By", "readOnly": true, "type": "string" },
+          "id": {
+            "description": "Compliance ID",
+            "format": "uuid",
+            "readOnly": true,
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "description": "Last Modified By",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedOn": {
             "description": "Last Modified On",
             "format": "int64",
             "readOnly": true,
             "type": "integer"
           },
-          "name": { "description": "Compliance Standard Name", "type": "string" },
+          "name": {
+            "description": "Compliance Standard Name",
+            "type": "string"
+          },
           "policiesAssignedCount": {
             "description": "Number Of Assigned Policies",
             "format": "int32",
             "readOnly": true,
             "type": "integer"
           },
-          "systemDefault": { "description": "System Default", "readOnly": true, "type": "boolean" }
+          "systemDefault": {
+            "description": "System Default",
+            "readOnly": true,
+            "type": "boolean"
+          }
         },
         "required": ["name"],
         "type": "object"
@@ -140,7 +261,12 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The Compliance Standard APIs are listed below.", "name": "Compliance Standards" }],
+  "tags": [
+    {
+      "description": "The Compliance Standard APIs are listed below.",
+      "name": "Compliance Standards"
+    }
+  ],
   "paths": {
     "/compliance": {
       "get": {
@@ -150,7 +276,12 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/ComplianceStandardModel" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ComplianceStandardModel"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -175,11 +306,19 @@
         "description": "Allows for the creation of a custom compliance standard.",
         "operationId": "add-standard",
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ComplianceStandardModel" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComplianceStandardModel"
+              }
+            }
+          }
         },
         "responses": {
           "200": { "description": "successful operation" },
-          "400": { "description": "missing_required_parameter / duplicate_name / bad_request" },
+          "400": {
+            "description": "missing_required_parameter / duplicate_name / bad_request"
+          },
           "500": { "description": "internal_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -214,7 +353,9 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "$ref": "#/components/schemas/ComplianceStandardModel" }
+                "schema": {
+                  "$ref": "#/components/schemas/ComplianceStandardModel"
+                }
               }
             },
             "description": "successful operation"
@@ -227,11 +368,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/%7BcomplianceId%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/{complianceId}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/compliance/%7BcomplianceId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/compliance/{complianceId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -248,11 +389,19 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ComplianceStandardModel" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComplianceStandardModel"
+              }
+            }
+          }
         },
         "responses": {
           "200": { "description": "successful operation" },
-          "400": { "description": "missing_required_parameter / duplicate_name / bad_request" },
+          "400": {
+            "description": "missing_required_parameter / duplicate_name / bad_request"
+          },
           "500": { "description": "internal_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -261,11 +410,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/%7BcomplianceId%7D\"\n\npayload = \"{\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/{complianceId}\"\n\npayload = \"{\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/compliance/%7BcomplianceId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/compliance/{complianceId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\"}'"
           }
         ]
       },
@@ -292,11 +441,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/%7BcomplianceId%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/{complianceId}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/compliance/%7BcomplianceId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/compliance/{complianceId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -315,11 +464,19 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ComplianceStandardModel" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComplianceStandardModel"
+              }
+            }
+          }
         },
         "responses": {
           "200": { "description": "successful operation" },
-          "400": { "description": "missing_required_parameter / duplicate_name / bad_request" },
+          "400": {
+            "description": "missing_required_parameter / duplicate_name / bad_request"
+          },
           "500": { "description": "internal_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -328,11 +485,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/clone/%7BcomplianceId%7D\"\n\npayload = \"{\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/clone/{complianceId}\"\n\npayload = \"{\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/clone/%7BcomplianceId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/clone/{complianceId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\"}'"
           }
         ]
       }
@@ -354,7 +511,12 @@
           "200": {
             "content": {
               "*/*": {
-                "schema": { "items": { "$ref": "#/components/schemas/ComplianceRequirementModel" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ComplianceRequirementModel"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -368,11 +530,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/%7BcomplianceId%7D/requirement\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/{complianceId}/requirement\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/compliance/%7BcomplianceId%7D/requirement \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/compliance/{complianceId}/requirement \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -389,11 +551,19 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ComplianceRequirementModel" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComplianceRequirementModel"
+              }
+            }
+          }
         },
         "responses": {
           "200": { "description": "success" },
-          "400": { "description": "missing_required_parameter / duplicate_name / bad_request" },
+          "400": {
+            "description": "missing_required_parameter / duplicate_name / bad_request"
+          },
           "500": { "description": "internal_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -402,11 +572,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/%7BcomplianceId%7D/requirement\"\n\npayload = \"{\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"requirementId\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/{complianceId}/requirement\"\n\npayload = \"{\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"requirementId\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/%7BcomplianceId%7D/requirement \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\",\"requirementId\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/{complianceId}/requirement \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\",\"requirementId\":\"string\"}'"
           }
         ]
       }
@@ -426,7 +596,13 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ComplianceRequirementModel" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComplianceRequirementModel"
+                }
+              }
+            },
             "description": "successful operation"
           },
           "400": { "description": "missing_required_parameter" },
@@ -438,11 +614,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/requirement/%7BrequirementId%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/requirement/{requirementId}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/compliance/requirement/%7BrequirementId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/compliance/requirement/{requirementId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -459,11 +635,19 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ComplianceRequirementModel" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComplianceRequirementModel"
+              }
+            }
+          }
         },
         "responses": {
           "200": { "description": "successful operation" },
-          "400": { "description": "missing_required_parameter / duplicate_name / bad_request" },
+          "400": {
+            "description": "missing_required_parameter / duplicate_name / bad_request"
+          },
           "500": { "description": "internal_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -472,11 +656,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/requirement/%7BrequirementId%7D\"\n\npayload = \"{\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"requirementId\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/requirement/{requirementId}\"\n\npayload = \"{\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"requirementId\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/compliance/requirement/%7BrequirementId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\",\"requirementId\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/compliance/requirement/{requirementId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\",\"requirementId\":\"string\"}'"
           }
         ]
       },
@@ -503,11 +687,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/requirement/%7BrequirementId%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/requirement/{requirementId}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/compliance/requirement/%7BrequirementId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/compliance/requirement/{requirementId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -529,7 +713,12 @@
           "200": {
             "content": {
               "*/*": {
-                "schema": { "items": { "$ref": "#/components/schemas/ComplianceSectionModel" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ComplianceSectionModel"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -543,11 +732,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/%7BrequirementId%7D/section\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/{requirementId}/section\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/compliance/%7BrequirementId%7D/section \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/compliance/{requirementId}/section \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -564,7 +753,13 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ComplianceSectionModel" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComplianceSectionModel"
+              }
+            }
+          }
         },
         "responses": {
           "200": { "description": "successful operation" },
@@ -577,11 +772,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/%7BrequirementId%7D/section\"\n\npayload = \"{\\\"description\\\":\\\"string\\\",\\\"sectionId\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/{requirementId}/section\"\n\npayload = \"{\\\"description\\\":\\\"string\\\",\\\"sectionId\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/%7BrequirementId%7D/section \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"sectionId\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/{requirementId}/section \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"sectionId\":\"string\"}'"
           }
         ]
       }
@@ -600,7 +795,13 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ComplianceSectionModel" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComplianceSectionModel"
+              }
+            }
+          }
         },
         "responses": {
           "200": { "description": "successful operation" },
@@ -613,11 +814,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/requirement/section/%7BsectionId%7D\"\n\npayload = \"{\\\"description\\\":\\\"string\\\",\\\"sectionId\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/requirement/section/{sectionId}\"\n\npayload = \"{\\\"description\\\":\\\"string\\\",\\\"sectionId\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/compliance/requirement/section/%7BsectionId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"sectionId\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/compliance/requirement/section/{sectionId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"sectionId\":\"string\"}'"
           }
         ]
       },
@@ -644,11 +845,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/requirement/section/%7BsectionId%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/requirement/section/{sectionId}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/compliance/requirement/section/%7BsectionId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/compliance/requirement/section/{sectionId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }

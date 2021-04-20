@@ -151,7 +151,7 @@ function Redocusaurus(props) {
       <RedocStandalone
         specUrl={props.spec}
         options={{
-          scrollYOffset: ".navbar",
+          scrollYOffset: "60",
           theme,
           hideDownloadButton: true,
           nativeScrollBars: false,

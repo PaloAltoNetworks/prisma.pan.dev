@@ -10,7 +10,13 @@
     },
     "requestBodies": {
       "UserAccessKeyRequestModel": {
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UserAccessKeyRequestModel" } } },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UserAccessKeyRequestModel"
+            }
+          }
+        },
         "description": "Model for user access key",
         "required": true
       }
@@ -28,13 +34,32 @@
         "description": "Model for get user access keys response",
         "properties": {
           "createdBy": { "description": "Created By", "type": "string" },
-          "createdTs": { "description": "Time access key was created", "format": "int64", "type": "integer" },
-          "expiresOn": { "description": "Access key expires on", "format": "int64", "type": "integer" },
+          "createdTs": {
+            "description": "Time access key was created",
+            "format": "int64",
+            "type": "integer"
+          },
+          "expiresOn": {
+            "description": "Access key expires on",
+            "format": "int64",
+            "type": "integer"
+          },
           "id": { "description": "Access key id", "type": "string" },
-          "lastUsedTime": { "description": "Access key last used", "format": "int64", "type": "integer" },
+          "lastUsedTime": {
+            "description": "Access key last used",
+            "format": "int64",
+            "type": "integer"
+          },
           "name": { "description": "Name", "type": "string" },
-          "role": { "additionalProperties": { "type": "string" }, "description": "Role of User", "type": "object" },
-          "roleType": { "description": "User role permission type", "type": "string" },
+          "role": {
+            "additionalProperties": { "type": "string" },
+            "description": "Role of User",
+            "type": "object"
+          },
+          "roleType": {
+            "description": "User role permission type",
+            "type": "string"
+          },
           "status": { "description": "Access key status", "type": "string" }
         },
         "type": "object"
@@ -75,7 +100,12 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The Access Keys APIs are listed below.", "name": "Access Keys" }],
+  "tags": [
+    {
+      "description": "The Access Keys APIs are listed below.",
+      "name": "Access Keys"
+    }
+  ],
   "paths": {
     "/access_keys": {
       "get": {
@@ -86,7 +116,9 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": { "$ref": "#/components/schemas/UserAccessKeyDetailResponseModel" },
+                  "items": {
+                    "$ref": "#/components/schemas/UserAccessKeyDetailResponseModel"
+                  },
                   "type": "array"
                 }
               }
@@ -115,13 +147,25 @@
         "description": "Adds a new access key for the current user. If you have API access, you can create up to two access keys.",
         "operationId": "add-access-keys",
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UserAccessKeyRequestModel" } } },
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAccessKeyRequestModel"
+              }
+            }
+          },
           "description": "Model for user access key",
           "required": true
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/CreateUserAccessKeyResponseModel" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserAccessKeyResponseModel"
+                }
+              }
+            },
             "description": "successful operation"
           },
           "400": {
@@ -160,7 +204,13 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/UserAccessKeyResponseModel" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAccessKeyResponseModel"
+                }
+              }
+            },
             "description": "successful operation"
           },
           "400": { "description": "user_inactive_or_not_exist" },
@@ -173,11 +223,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/access_keys/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/access_keys/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/access_keys/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/access_keys/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -194,7 +244,13 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UserAccessKeyRequestModel" } } },
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAccessKeyRequestModel"
+              }
+            }
+          },
           "description": "Model for user access key",
           "required": true
         },
@@ -212,11 +268,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/access_keys/%7Bid%7D\"\n\npayload = \"{\\\"expiresOn\\\":0,\\\"name\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/access_keys/{id}\"\n\npayload = \"{\\\"expiresOn\\\":0,\\\"name\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/access_keys/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"expiresOn\":0,\"name\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/access_keys/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"expiresOn\":0,\"name\":\"string\"}'"
           }
         ]
       },
@@ -236,7 +292,9 @@
           "200": { "description": "successful operation" },
           "400": { "description": "user_inactive_or_not_exist" },
           "403": { "description": "unauthorized_to_use_access_keys" },
-          "500": { "description": "failed_fetch_user_profile / non_existing_access_key" }
+          "500": {
+            "description": "failed_fetch_user_profile / non_existing_access_key"
+          }
         },
         "security": [{ "x-redlock-auth": [] }],
         "summary": "Delete Access Key",
@@ -244,11 +302,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/access_keys/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/access_keys/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/access_keys/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/access_keys/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -277,7 +335,9 @@
           "200": { "description": "successful operation" },
           "400": { "description": "empty_access_key_status_provided" },
           "403": { "description": "unauthorized_to_use_access_keys" },
-          "500": { "description": "non_existing_access_key / expired_access_key" }
+          "500": {
+            "description": "non_existing_access_key / expired_access_key"
+          }
         },
         "security": [{ "x-redlock-auth": [] }],
         "summary": "Update Access Key Status",
@@ -285,11 +345,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/access_keys/%7Bid%7D/status/%7Bstatus%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PATCH\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/access_keys/{id}/status/{status}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PATCH\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://api.prismacloud.io/access_keys/%7Bid%7D/status/%7Bstatus%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request PATCH \\\n  --url https://api.prismacloud.io/access_keys/{id}/status/{status} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }

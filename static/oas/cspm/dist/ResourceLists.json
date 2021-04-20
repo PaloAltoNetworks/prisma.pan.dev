@@ -14,8 +14,16 @@
         "description": "Model for Resource List",
         "properties": {
           "description": { "description": "Description", "type": "string" },
-          "id": { "description": "Resource list id", "readOnly": true, "type": "string" },
-          "lastModifiedBy": { "description": "Last modified by", "readOnly": true, "type": "string" },
+          "id": {
+            "description": "Resource list id",
+            "readOnly": true,
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "description": "Last modified by",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedTs": {
             "description": "Last modified time",
             "format": "int64",
@@ -26,8 +34,17 @@
             "description": "Resource list members. Each member is raw JSON. The content depends on the resource list type. For example, if the resource list type is TAG, then the member  is a JSON array of TAG key/value pairs.",
             "type": "string"
           },
-          "name": { "description": "Name", "maxLength": 256, "minLength": 0, "type": "string" },
-          "resourceListType": { "description": "Resource list type", "enum": ["TAG"], "type": "string" }
+          "name": {
+            "description": "Name",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          },
+          "resourceListType": {
+            "description": "Resource list type",
+            "enum": ["TAG"],
+            "type": "string"
+          }
         },
         "required": ["members", "name", "resourceListType"],
         "type": "object"
@@ -42,7 +59,12 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The Resource List APIs are listed below.", "name": "Resource Lists" }],
+  "tags": [
+    {
+      "description": "The Resource List APIs are listed below.",
+      "name": "Resource Lists"
+    }
+  ],
   "paths": {
     "/v1/resource_list": {
       "get": {
@@ -61,7 +83,10 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/ResourceListModel" }, "type": "array" }
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/ResourceListModel" },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -88,7 +113,9 @@
         "operationId": "add-resource-list",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ResourceListModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/ResourceListModel" }
+            }
           },
           "description": "Model for Resource List",
           "required": true
@@ -96,7 +123,9 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ResourceListModel" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/ResourceListModel" }
+              }
             },
             "description": "successful operation"
           },
@@ -125,7 +154,11 @@
         "operationId": "get-resource-list-types",
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "items": { "type": "string" }, "type": "array" } } },
+            "content": {
+              "*/*": {
+                "schema": { "items": { "type": "string" }, "type": "array" }
+              }
+            },
             "description": "successful operation"
           }
         },
@@ -148,11 +181,20 @@
       "get": {
         "description": "Returns the resource list that has the specified ID.",
         "operationId": "get-resource-list-by-id",
-        "parameters": [{ "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ResourceListModel" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/ResourceListModel" }
+              }
             },
             "description": "successful operation"
           },
@@ -165,27 +207,38 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v1/resource_list/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v1/resource_list/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/v1/resource_list/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/v1/resource_list/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
       "put": {
         "description": "Updates the resource list that has the specified ID.",
         "operationId": "update-resource-list",
-        "parameters": [{ "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ResourceListModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/ResourceListModel" }
+            }
           }
         },
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ResourceListModel" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/ResourceListModel" }
+              }
             },
             "description": "successful operation"
           },
@@ -201,18 +254,25 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v1/resource_list/%7Bid%7D\"\n\nheaders = {\n    'content-type': \"application/json; charset=UTF-8\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v1/resource_list/{id}\"\n\nheaders = {\n    'content-type': \"application/json; charset=UTF-8\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/v1/resource_list/%7Bid%7D \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/v1/resource_list/{id} \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
       "delete": {
         "description": "Deletes the resource list that has the specified ID.",
         "operationId": "delete-resource-list-by-id",
-        "parameters": [{ "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
         "responses": {
           "204": { "description": "successful operation" },
           "400": {
@@ -226,11 +286,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v1/resource_list/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v1/resource_list/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/v1/resource_list/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/v1/resource_list/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }

@@ -93,18 +93,6 @@ function APIDocItem(props) {
             {(editUrl || lastUpdatedAt || lastUpdatedBy) && (
               <div className="margin-vert--xl">
                 <div className="row">
-                  <div className="col">
-                    {editUrl && <EditThisPage editUrl={editUrl} />}
-                  </div>
-                  {(lastUpdatedAt || lastUpdatedBy) && (
-                    <LastUpdated
-                      lastUpdatedAt={lastUpdatedAt}
-                      formattedLastUpdatedAt={formattedLastUpdatedAt}
-                      lastUpdatedBy={lastUpdatedBy}
-                    />
-                  )}
-                </div>
-                <div className="row">
                   <div className="col text--right">
                     <Link
                       className={classnames(

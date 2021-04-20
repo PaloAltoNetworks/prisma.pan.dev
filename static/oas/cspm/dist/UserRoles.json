@@ -10,7 +10,11 @@
     },
     "requestBodies": {
       "UserRoleModel": {
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UserRoleModel" } } },
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/UserRoleModel" }
+          }
+        },
         "description": "User Role",
         "required": true
       }
@@ -19,7 +23,10 @@
       "Attributes": {
         "description": "Additional attributes of the the user role",
         "properties": {
-          "hasDefenderPermissions": { "description": "User has compute defender permissions", "type": "boolean" },
+          "hasDefenderPermissions": {
+            "description": "User has compute defender permissions",
+            "type": "boolean"
+          },
           "onlyAllowCIAccess": {
             "description": "User can only use access keys to use Prisma Cloud. UI access will be unavailable.",
             "type": "boolean"
@@ -47,8 +54,16 @@
             "type": "array"
           },
           "description": { "description": "Description", "type": "string" },
-          "id": { "description": "User Role ID", "readOnly": true, "type": "string" },
-          "lastModifiedBy": { "description": "Last Modified By", "readOnly": true, "type": "string" },
+          "id": {
+            "description": "User Role ID",
+            "readOnly": true,
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "description": "Last Modified By",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedTs": {
             "description": "Last Modified Time",
             "format": "int64",
@@ -88,7 +103,10 @@
           },
           "accountGroups": {
             "description": "Associated Account Groups",
-            "items": { "additionalProperties": { "type": "string" }, "type": "object" },
+            "items": {
+              "additionalProperties": { "type": "string" },
+              "type": "object"
+            },
             "readOnly": true,
             "type": "array"
           },
@@ -100,8 +118,16 @@
             "type": "array"
           },
           "description": { "description": "Description", "type": "string" },
-          "id": { "description": "User Role ID", "readOnly": true, "type": "string" },
-          "lastModifiedBy": { "description": "Last Modified By", "readOnly": true, "type": "string" },
+          "id": {
+            "description": "User Role ID",
+            "readOnly": true,
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "description": "Last Modified By",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedTs": {
             "description": "Last Modified Time",
             "format": "int64",
@@ -141,7 +167,12 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The User Role APIs are listed below.", "name": "User Roles" }],
+  "tags": [
+    {
+      "description": "The User Role APIs are listed below.",
+      "name": "User Roles"
+    }
+  ],
   "paths": {
     "/user/role": {
       "get": {
@@ -150,7 +181,12 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "items": { "$ref": "#/components/schemas/UserRoleViewModel" }, "type": "array" } }
+              "*/*": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/UserRoleViewModel" },
+                  "type": "array"
+                }
+              }
             },
             "description": "successful operation"
           },
@@ -175,7 +211,11 @@
         "description": "Creates a new user role.",
         "operationId": "add-user-role",
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UserRoleModel" } } },
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UserRoleModel" }
+            }
+          },
           "description": "User Role",
           "required": true
         },
@@ -211,7 +251,10 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": { "additionalProperties": { "type": "string" }, "type": "object" },
+                  "items": {
+                    "additionalProperties": { "type": "string" },
+                    "type": "object"
+                  },
                   "type": "array"
                 }
               }
@@ -251,7 +294,11 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/UserRoleViewModel" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/UserRoleViewModel" }
+              }
+            },
             "description": "successful operation"
           },
           "400": { "description": "invalid_id" },
@@ -264,11 +311,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/user/role/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/user/role/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -285,7 +332,11 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UserRoleModel" } } },
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UserRoleModel" }
+            }
+          },
           "description": "User Role",
           "required": true
         },
@@ -303,11 +354,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/%7Bid%7D\"\n\npayload = \"{\\\"accountGroupIds\\\":[\\\"string\\\"],\\\"additionalAttributes\\\":{\\\"hasDefenderPermissions\\\":true,\\\"onlyAllowCIAccess\\\":true,\\\"onlyAllowComputeAccess\\\":true},\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"resourceListIds\\\":[\\\"string\\\"],\\\"restrictDismissalAccess\\\":true,\\\"roleType\\\":\\\"System Admin\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/{id}\"\n\npayload = \"{\\\"accountGroupIds\\\":[\\\"string\\\"],\\\"additionalAttributes\\\":{\\\"hasDefenderPermissions\\\":true,\\\"onlyAllowCIAccess\\\":true,\\\"onlyAllowComputeAccess\\\":true},\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"resourceListIds\\\":[\\\"string\\\"],\\\"restrictDismissalAccess\\\":true,\\\"roleType\\\":\\\"System Admin\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/user/role/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountGroupIds\":[\"string\"],\"additionalAttributes\":{\"hasDefenderPermissions\":true,\"onlyAllowCIAccess\":true,\"onlyAllowComputeAccess\":true},\"description\":\"string\",\"name\":\"string\",\"resourceListIds\":[\"string\"],\"restrictDismissalAccess\":true,\"roleType\":\"System Admin\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/user/role/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountGroupIds\":[\"string\"],\"additionalAttributes\":{\"hasDefenderPermissions\":true,\"onlyAllowCIAccess\":true,\"onlyAllowComputeAccess\":true},\"description\":\"string\",\"name\":\"string\",\"resourceListIds\":[\"string\"],\"restrictDismissalAccess\":true,\"roleType\":\"System Admin\"}'"
           }
         ]
       },
@@ -325,7 +376,9 @@
         ],
         "responses": {
           "200": { "description": "successful operation" },
-          "400": { "description": "invalid_id / cannot_delete_role_users_associated / invalid_id" },
+          "400": {
+            "description": "invalid_id / cannot_delete_role_users_associated / invalid_id"
+          },
           "403": { "description": "unauthorized_access" },
           "500": { "description": "internal_error" }
         },
@@ -335,11 +388,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/user/role/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/user/role/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }

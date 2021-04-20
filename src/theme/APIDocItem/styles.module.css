@@ -11,9 +11,9 @@
 }
 
 .docItemContainer {
-  padding: 0 0.5rem;
-  margin: 0 auto;
-  box-sizing: content-box;
+  padding-top: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 @media only screen and (min-width: 997px) {

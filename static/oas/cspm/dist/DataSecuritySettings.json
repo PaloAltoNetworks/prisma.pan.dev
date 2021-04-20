@@ -725,11 +725,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/dss-api/data-pattern/id/%7BpatternId%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/dss-api/data-pattern/id/{patternId}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/dlp/api/v1/dss-api/data-pattern/id/%7BpatternId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/dlp/api/v1/dss-api/data-pattern/id/{patternId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -824,11 +824,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/dss-api/data-pattern/%7BpatternId%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/dss-api/data-pattern/{patternId}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/dlp/api/v1/dss-api/data-pattern/%7BpatternId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/dlp/api/v1/dss-api/data-pattern/{patternId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -869,11 +869,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/dss-api/data-pattern/%7BpatternId%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/dss-api/data-pattern/{patternId}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/dlp/api/v1/dss-api/data-pattern/%7BpatternId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/dlp/api/v1/dss-api/data-pattern/{patternId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -1019,11 +1019,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/%7BprofileId%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/{profileId}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/%7BprofileId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/{profileId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -1071,11 +1071,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/%7BprofileId%7D\"\n\npayload = \"{\\\"dataPatternsRule1\\\":{\\\"dataPatternRules\\\":[{\\\"confidencLevel\\\":\\\"string\\\",\\\"detectionTechnique\\\":\\\"string\\\",\\\"id\\\":\\\"string\\\",\\\"matchType\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"occurrenceCount\\\":0,\\\"occurrenceHigh\\\":0,\\\"occurrenceLow\\\":0,\\\"occurrenceOperatorType\\\":\\\"string\\\",\\\"supportedConfidenceLevels\\\":[\\\"string\\\"]}],\\\"operatorType\\\":\\\"string\\\"},\\\"description\\\":\\\"string\\\",\\\"id\\\":0,\\\"name\\\":\\\"string\\\",\\\"profileStatus\\\":\\\"string\\\",\\\"profileType\\\":\\\"string\\\",\\\"status\\\":\\\"string\\\",\\\"types\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/{profileId}\"\n\npayload = \"{\\\"dataPatternsRule1\\\":{\\\"dataPatternRules\\\":[{\\\"confidencLevel\\\":\\\"string\\\",\\\"detectionTechnique\\\":\\\"string\\\",\\\"id\\\":\\\"string\\\",\\\"matchType\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"occurrenceCount\\\":0,\\\"occurrenceHigh\\\":0,\\\"occurrenceLow\\\":0,\\\"occurrenceOperatorType\\\":\\\"string\\\",\\\"supportedConfidenceLevels\\\":[\\\"string\\\"]}],\\\"operatorType\\\":\\\"string\\\"},\\\"description\\\":\\\"string\\\",\\\"id\\\":0,\\\"name\\\":\\\"string\\\",\\\"profileStatus\\\":\\\"string\\\",\\\"profileType\\\":\\\"string\\\",\\\"status\\\":\\\"string\\\",\\\"types\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/%7BprofileId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"dataPatternsRule1\":{\"dataPatternRules\":[{\"confidencLevel\":\"string\",\"detectionTechnique\":\"string\",\"id\":\"string\",\"matchType\":\"string\",\"name\":\"string\",\"occurrenceCount\":0,\"occurrenceHigh\":0,\"occurrenceLow\":0,\"occurrenceOperatorType\":\"string\",\"supportedConfidenceLevels\":[\"string\"]}],\"operatorType\":\"string\"},\"description\":\"string\",\"id\":0,\"name\":\"string\",\"profileStatus\":\"string\",\"profileType\":\"string\",\"status\":\"string\",\"types\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/{profileId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"dataPatternsRule1\":{\"dataPatternRules\":[{\"confidencLevel\":\"string\",\"detectionTechnique\":\"string\",\"id\":\"string\",\"matchType\":\"string\",\"name\":\"string\",\"occurrenceCount\":0,\"occurrenceHigh\":0,\"occurrenceLow\":0,\"occurrenceOperatorType\":\"string\",\"supportedConfidenceLevels\":[\"string\"]}],\"operatorType\":\"string\"},\"description\":\"string\",\"id\":0,\"name\":\"string\",\"profileStatus\":\"string\",\"profileType\":\"string\",\"status\":\"string\",\"types\":\"string\"}'"
           }
         ]
       },
@@ -1116,11 +1116,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/%7BprofileId%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/{profileId}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/%7BprofileId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/{profileId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -1154,11 +1154,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/%7BprofileId%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/{profileId}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/%7BprofileId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/dlp/api/v1/dss-api/data-profile/id/{profileId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
