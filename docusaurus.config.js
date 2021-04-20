@@ -20,7 +20,7 @@ module.exports = {
     algolia: {
       apiKey: "caddcc77123a6dff437a768f47b785c3",
       indexName: "prisma_pan",
-      algoliaOptions: {}, // Optional, if provided by Algolia
+      searchParameters: {}, // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
     navbar: {
