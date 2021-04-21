@@ -1011,6 +1011,7 @@ components:
           - JSON
           - CLOUD_ACCOUNT
           - CLOUD_REGION
+          - STATE_ID
           type: string
       type: object
     TimeModel:

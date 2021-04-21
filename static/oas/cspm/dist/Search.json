@@ -842,7 +842,8 @@
               "INSERT_TS",
               "JSON",
               "CLOUD_ACCOUNT",
-              "CLOUD_REGION"
+              "CLOUD_REGION",
+              "STATE_ID"
             ],
             "type": "string"
           }
