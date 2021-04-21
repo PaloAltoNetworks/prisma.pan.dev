@@ -10,20 +10,28 @@
     },
     "requestBodies": {
       "IpAllowListParams": {
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/IpAllowListParams" } } },
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/IpAllowListParams" }
+          }
+        },
         "description": "Model for login IP allow list parameters",
         "required": true
       },
       "PublicNetwork": {
         "content": {
-          "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/PublicNetwork" } }
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/PublicNetwork" }
+          }
         },
         "description": "Model for Public Network",
         "required": true
       },
       "PublicNetworkCidrBlock": {
         "content": {
-          "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/PublicNetworkCidrBlock" } }
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/PublicNetworkCidrBlock" }
+          }
         },
         "description": "Model for Public Network CIDR Block",
         "required": true
@@ -38,8 +46,14 @@
             "items": { "type": "string" },
             "type": "array"
           },
-          "description": { "description": "Description of CIDR (IP addresses) allow list", "type": "string" },
-          "name": { "description": "Unique name for CIDR (IP addresses) allow list", "type": "string" }
+          "description": {
+            "description": "Description of CIDR (IP addresses) allow list",
+            "type": "string"
+          },
+          "name": {
+            "description": "Unique name for CIDR (IP addresses) allow list",
+            "type": "string"
+          }
         },
         "required": ["cidr", "name"],
         "type": "object"
@@ -75,7 +89,11 @@
             "type": "array"
           },
           "name": { "description": "Network Name", "type": "string" },
-          "uuid": { "description": "Network ID", "readOnly": true, "type": "string" }
+          "uuid": {
+            "description": "Network ID",
+            "readOnly": true,
+            "type": "string"
+          }
         },
         "required": ["name"],
         "type": "object"
@@ -86,9 +104,18 @@
             "description": "Valid CIDR. CIDR must be of the form [0-255].[0-255].[0-255].[0-255]/[1-32], must not have non-zero bits right of the netmask, and must not overlap any of the RFC 1918 defined private networks.",
             "type": "string"
           },
-          "createdOn": { "description": "Created On", "format": "int64", "readOnly": true, "type": "integer" },
+          "createdOn": {
+            "description": "Created On",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
           "description": { "description": "Description", "type": "string" },
-          "uuid": { "description": "CIDR ID", "readOnly": true, "type": "string" }
+          "uuid": {
+            "description": "CIDR ID",
+            "readOnly": true,
+            "type": "string"
+          }
         },
         "required": ["cidr"],
         "type": "object"
@@ -103,7 +130,12 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The IP Allow List APIs are listed below.", "name": "IP Allow List" }],
+  "tags": [
+    {
+      "description": "The IP Allow List APIs are listed below.",
+      "name": "IP Allow List"
+    }
+  ],
   "paths": {
     "/allow_list/network": {
       "get": {
@@ -113,7 +145,10 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/PublicNetwork" }, "type": "array" }
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/PublicNetwork" },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -138,7 +173,9 @@
         "operationId": "add-a-network",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/PublicNetwork" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/PublicNetwork" }
+            }
           },
           "description": "Model for Public Network",
           "required": true
@@ -146,7 +183,9 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/PublicNetwork" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/PublicNetwork" }
+              }
             },
             "description": "successful operation"
           },
@@ -183,7 +222,9 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/PublicNetwork" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/PublicNetwork" }
+              }
             },
             "description": "successful operation"
           },
@@ -196,11 +237,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/allow_list/network/%7BnetworkUuid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/allow_list/network/{networkUuid}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/allow_list/network/%7BnetworkUuid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/allow_list/network/{networkUuid} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -218,7 +259,9 @@
         ],
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/PublicNetwork" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/PublicNetwork" }
+            }
           },
           "description": "Model for Public Network",
           "required": true
@@ -234,11 +277,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/allow_list/network/%7BnetworkUuid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/allow_list/network/{networkUuid}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/allow_list/network/%7BnetworkUuid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/allow_list/network/{networkUuid} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -258,7 +301,11 @@
         ],
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/PublicNetworkCidrBlock" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/PublicNetworkCidrBlock"
+              }
+            }
           },
           "description": "Model for Public Network CIDR Block",
           "required": true
@@ -266,7 +313,11 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/PublicNetworkCidrBlock" } }
+              "application/json; charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicNetworkCidrBlock"
+                }
+              }
             },
             "description": "successful operation"
           },
@@ -278,11 +329,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/allow_list/network/%7BnetworkUuid%7D/cidr\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/allow_list/network/{networkUuid}/cidr\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/allow_list/network/%7BnetworkUuid%7D/cidr \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/allow_list/network/{networkUuid}/cidr \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -309,7 +360,11 @@
         ],
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/PublicNetworkCidrBlock" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/PublicNetworkCidrBlock"
+              }
+            }
           },
           "description": "Model for Public Network CIDR Block",
           "required": true
@@ -325,11 +380,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/allow_list/network/%7BnetworkUuid%7D/cidr/%7BcidrUuid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/allow_list/network/{networkUuid}/cidr/{cidrUuid}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/allow_list/network/%7BnetworkUuid%7D/cidr/%7BcidrUuid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/allow_list/network/{networkUuid}/cidr/{cidrUuid} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -363,11 +418,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/allow_list/network/%7BnetworkUuid%7D/cidr/%7BcidrUuid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/allow_list/network/{networkUuid}/cidr/{cidrUuid}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/allow_list/network/%7BnetworkUuid%7D/cidr/%7BcidrUuid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/allow_list/network/{networkUuid}/cidr/{cidrUuid} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -379,7 +434,14 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "items": { "$ref": "#/components/schemas/LoginIpAllowListData" }, "type": "array" } }
+              "*/*": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/LoginIpAllowListData"
+                  },
+                  "type": "array"
+                }
+              }
             },
             "description": "successful operation"
           },
@@ -405,13 +467,23 @@
         "description": "Adds a named list of CIDRs (IP addresses) that are in the allow list to access Prisma Cloud. You can add up to 10 CIDRs per named list, and there can be up to 50 named lists.",
         "operationId": "insert-login-ip-allow-list",
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/IpAllowListParams" } } },
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/IpAllowListParams" }
+            }
+          },
           "description": "Model for login IP allow list parameters",
           "required": true
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/LoginIpAllowListData" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginIpAllowListData"
+                }
+              }
+            },
             "description": "successful operation"
           },
           "400": {
@@ -451,7 +523,13 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/LoginIpAllowListData" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginIpAllowListData"
+                }
+              }
+            },
             "description": "successful operation"
           },
           "403": { "description": "login_ip_allow_list_feature_flag_disabled" },
@@ -464,11 +542,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/ip_allow_list_login/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/ip_allow_list_login/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/ip_allow_list_login/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/ip_allow_list_login/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -485,13 +563,23 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/IpAllowListParams" } } },
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/IpAllowListParams" }
+            }
+          },
           "description": "Model for login IP allow list parameters",
           "required": true
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/LoginIpAllowListData" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginIpAllowListData"
+                }
+              }
+            },
             "description": "successful operation"
           },
           "400": {
@@ -508,11 +596,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/ip_allow_list_login/%7Bid%7D\"\n\npayload = \"{\\\"cidr\\\":[\\\"string\\\"],\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/ip_allow_list_login/{id}\"\n\npayload = \"{\\\"cidr\\\":[\\\"string\\\"],\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/ip_allow_list_login/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"cidr\":[\"string\"],\"description\":\"string\",\"name\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/ip_allow_list_login/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"cidr\":[\"string\"],\"description\":\"string\",\"name\":\"string\"}'"
           }
         ]
       },
@@ -543,11 +631,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/ip_allow_list_login/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/ip_allow_list_login/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/ip_allow_list_login/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/ip_allow_list_login/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -558,7 +646,14 @@
         "operationId": "get-login-ip-allow-list-status",
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "additionalProperties": { "type": "boolean" }, "type": "object" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "additionalProperties": { "type": "boolean" },
+                  "type": "object"
+                }
+              }
+            },
             "description": "successful operation"
           },
           "500": { "description": "internal_error" }
@@ -582,7 +677,12 @@
         "operationId": "update-login-ip-allow-list-status",
         "requestBody": {
           "content": {
-            "application/json": { "schema": { "additionalProperties": { "type": "object" }, "type": "object" } }
+            "application/json": {
+              "schema": {
+                "additionalProperties": { "type": "object" },
+                "type": "object"
+              }
+            }
           },
           "description": "Generic parameters",
           "required": true
@@ -617,7 +717,14 @@
         "operationId": "get-login-ip-allow-list-tab-status",
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "additionalProperties": { "type": "boolean" }, "type": "object" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "additionalProperties": { "type": "boolean" },
+                  "type": "object"
+                }
+              }
+            },
             "description": "successful operation"
           },
           "500": { "description": "internal_error" }

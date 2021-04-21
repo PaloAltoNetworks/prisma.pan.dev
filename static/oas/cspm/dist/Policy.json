@@ -11,11 +11,17 @@
     "requestBodies": {
       "FilterSuggestionModel": {
         "content": {
-          "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" } }
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
+          }
         }
       },
       "PolicyModel": {
-        "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/PolicyModel" } } },
+        "content": {
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/PolicyModel" }
+          }
+        },
         "description": "Model for Policy",
         "required": true
       }
@@ -24,17 +30,38 @@
       "ComplianceMetadataModel": {
         "description": "Model for ComplianceMetadata",
         "properties": {
-          "complianceId": { "description": "Compliance Section UUID", "type": "string" },
+          "complianceId": {
+            "description": "Compliance Section UUID",
+            "type": "string"
+          },
           "customAssigned": { "type": "boolean" },
           "policyId": { "description": "Policy ID", "type": "string" },
-          "requirementDescription": { "description": "Requirement description", "type": "string" },
-          "requirementId": { "description": "Requirement ID", "type": "string" },
-          "requirementName": { "description": "Requirement name", "type": "string" },
-          "sectionDescription": { "description": "Section name", "type": "string" },
+          "requirementDescription": {
+            "description": "Requirement description",
+            "type": "string"
+          },
+          "requirementId": {
+            "description": "Requirement ID",
+            "type": "string"
+          },
+          "requirementName": {
+            "description": "Requirement name",
+            "type": "string"
+          },
+          "sectionDescription": {
+            "description": "Section name",
+            "type": "string"
+          },
           "sectionId": { "description": "Section Id", "type": "string" },
           "sectionLabel": { "description": "Section Label", "type": "string" },
-          "standardDescription": { "description": "Compliance standard description", "type": "string" },
-          "standardName": { "description": "Compliance standard name", "type": "string" }
+          "standardDescription": {
+            "description": "Compliance standard description",
+            "type": "string"
+          },
+          "standardName": {
+            "description": "Compliance standard name",
+            "type": "string"
+          }
         },
         "type": "object"
       },
@@ -52,7 +79,10 @@
             "type": "array",
             "uniqueItems": true
           },
-          "staticFilter": { "description": "Filter is a static filter", "type": "boolean" }
+          "staticFilter": {
+            "description": "Filter is a static filter",
+            "type": "boolean"
+          }
         },
         "type": "object"
       },
@@ -81,18 +111,41 @@
             "items": { "$ref": "#/components/schemas/ComplianceMetadataModel" },
             "type": "array"
           },
-          "createdBy": { "description": "Created by", "readOnly": true, "type": "string" },
+          "createdBy": {
+            "description": "Created by",
+            "readOnly": true,
+            "type": "string"
+          },
           "createdOn": {
             "description": "Created on this timestamp",
             "format": "int64",
             "readOnly": true,
             "type": "integer"
           },
-          "deleted": { "description": "Deleted", "readOnly": true, "type": "boolean" },
-          "description": { "description": "Policy description", "type": "string" },
-          "enabled": { "description": "Enabled. Default is true.", "type": "boolean" },
-          "labels": { "description": "Labels", "items": { "type": "string" }, "type": "array", "uniqueItems": true },
-          "lastModifiedBy": { "description": "Last modified by", "readOnly": true, "type": "string" },
+          "deleted": {
+            "description": "Deleted",
+            "readOnly": true,
+            "type": "boolean"
+          },
+          "description": {
+            "description": "Policy description",
+            "type": "string"
+          },
+          "enabled": {
+            "description": "Enabled. Default is true.",
+            "type": "boolean"
+          },
+          "labels": {
+            "description": "Labels",
+            "items": { "type": "string" },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "lastModifiedBy": {
+            "description": "Last modified by",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedOn": {
             "description": "Last modified on this timestamp",
             "format": "int64",
@@ -100,10 +153,22 @@
             "type": "integer"
           },
           "name": { "description": "Policy name", "type": "string" },
-          "openAlertsCount": { "description": "Open Alerts Count", "format": "int32", "type": "integer" },
-          "overridden": { "description": "Overridden", "readOnly": true, "type": "boolean" },
+          "openAlertsCount": {
+            "description": "Open Alerts Count",
+            "format": "int32",
+            "type": "integer"
+          },
+          "overridden": {
+            "description": "Overridden",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "owner": { "description": "Owner", "type": "string" },
-          "policyCategory": { "description": "PolicyCategory", "enum": ["risk", "incident"], "type": "string" },
+          "policyCategory": {
+            "description": "PolicyCategory",
+            "enum": ["risk", "incident"],
+            "type": "string"
+          },
           "policyClass": {
             "description": "PolicyClass",
             "enum": [
@@ -115,11 +180,27 @@
             ],
             "type": "string"
           },
-          "policyId": { "description": "Policy ID", "readOnly": true, "type": "string" },
-          "policyMode": { "description": "PolicyMode", "enum": ["custom/redlock_default"], "type": "string" },
+          "policyId": {
+            "description": "Policy ID",
+            "readOnly": true,
+            "type": "string"
+          },
+          "policyMode": {
+            "description": "PolicyMode",
+            "enum": ["custom/redlock_default"],
+            "type": "string"
+          },
           "policySubTypes": {
             "description": "Policy subtype",
-            "enum": ["audit", "build", "data_classification", "malware", "network_event", "run", "ueba"],
+            "enum": [
+              "audit",
+              "build",
+              "data_classification",
+              "malware",
+              "network_event",
+              "run",
+              "ueba"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -128,11 +209,26 @@
             "enum": ["config", "audit_event", "network"],
             "type": "string"
           },
-          "policyUpi": { "description": "Policy UPI", "readOnly": true, "type": "string" },
-          "recommendation": { "description": "Remediation recommendation", "type": "string" },
-          "remediable": { "description": "isRemediable", "readOnly": true, "type": "boolean" },
+          "policyUpi": {
+            "description": "Policy UPI",
+            "readOnly": true,
+            "type": "string"
+          },
+          "recommendation": {
+            "description": "Remediation recommendation",
+            "type": "string"
+          },
+          "remediable": {
+            "description": "isRemediable",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "remediation": { "$ref": "#/components/schemas/RemediationModel" },
-          "restrictAlertDismissal": { "description": "Restrict alert dismissal", "readOnly": true, "type": "boolean" },
+          "restrictAlertDismissal": {
+            "description": "Restrict alert dismissal",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "rule": { "$ref": "#/components/schemas/RuleModel" },
           "ruleLastModifiedOn": {
             "description": "Rule last modified on",
@@ -140,7 +236,11 @@
             "readOnly": true,
             "type": "integer"
           },
-          "severity": { "description": "Severity", "enum": ["high", "medium", "low"], "type": "string" },
+          "severity": {
+            "description": "Severity",
+            "enum": ["high", "medium", "low"],
+            "type": "string"
+          },
           "systemDefault": {
             "description": "true = Policy is a Prisma Cloud system default policy",
             "readOnly": true,
@@ -151,18 +251,41 @@
         "type": "object"
       },
       "NameValueIntegerString": {
-        "properties": { "id": { "format": "int32", "type": "integer" }, "name": { "type": "string" } },
+        "properties": {
+          "id": { "format": "int32", "type": "integer" },
+          "name": { "type": "string" }
+        },
         "type": "object"
       },
       "ParsedTableFilter": {
         "description": "Model for parsed table filter",
         "properties": {
-          "completeParameters": { "items": { "$ref": "#/components/schemas/UIFilterModel" }, "type": "array" },
-          "needsOffsetUpdate": { "description": "Needs offset update (for internal use)", "type": "boolean" },
-          "offset": { "description": "Offset within query", "format": "int32", "type": "integer" },
-          "queryRemainder": { "description": "Query remainder", "type": "string" },
-          "suggestions": { "description": "List of suggestions", "items": { "type": "string" }, "type": "array" },
-          "translate": { "description": "Translate (for internal use)", "type": "boolean" },
+          "completeParameters": {
+            "items": { "$ref": "#/components/schemas/UIFilterModel" },
+            "type": "array"
+          },
+          "needsOffsetUpdate": {
+            "description": "Needs offset update (for internal use)",
+            "type": "boolean"
+          },
+          "offset": {
+            "description": "Offset within query",
+            "format": "int32",
+            "type": "integer"
+          },
+          "queryRemainder": {
+            "description": "Query remainder",
+            "type": "string"
+          },
+          "suggestions": {
+            "description": "List of suggestions",
+            "items": { "type": "string" },
+            "type": "array"
+          },
+          "translate": {
+            "description": "Translate (for internal use)",
+            "type": "boolean"
+          },
           "valid": { "description": "Query is valid", "type": "boolean" }
         },
         "type": "object"
@@ -171,18 +294,34 @@
         "description": "Model for PolicyFilterSuggestion",
         "properties": {
           "cloud.type": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.category": { "$ref": "#/components/schemas/FilterSuggestion" },
+          "policy.category": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
           "policy.class": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.complianceRequirement": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.complianceSection": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.complianceStandard": { "$ref": "#/components/schemas/FilterSuggestion" },
+          "policy.complianceRequirement": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "policy.complianceSection": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "policy.complianceStandard": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
           "policy.enabled": { "$ref": "#/components/schemas/FilterSuggestion" },
           "policy.label": { "$ref": "#/components/schemas/FilterSuggestion" },
           "policy.name": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.policyMode": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.remediable": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.rule.type": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.severity": { "$ref": "#/components/schemas/FilterSuggestion" },
+          "policy.policyMode": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "policy.remediable": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "policy.rule.type": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "policy.severity": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
           "policy.subtype": { "$ref": "#/components/schemas/FilterSuggestion" },
           "policy.type": { "$ref": "#/components/schemas/FilterSuggestion" }
         },
@@ -201,18 +340,41 @@
             "items": { "$ref": "#/components/schemas/ComplianceMetadataModel" },
             "type": "array"
           },
-          "createdBy": { "description": "Created by", "readOnly": true, "type": "string" },
+          "createdBy": {
+            "description": "Created by",
+            "readOnly": true,
+            "type": "string"
+          },
           "createdOn": {
             "description": "Created on this timestamp",
             "format": "int64",
             "readOnly": true,
             "type": "integer"
           },
-          "deleted": { "description": "Deleted", "readOnly": true, "type": "boolean" },
-          "description": { "description": "Policy description", "type": "string" },
-          "enabled": { "description": "Enabled. Default is true.", "type": "boolean" },
-          "labels": { "description": "Labels", "items": { "type": "string" }, "type": "array", "uniqueItems": true },
-          "lastModifiedBy": { "description": "Last modified by", "readOnly": true, "type": "string" },
+          "deleted": {
+            "description": "Deleted",
+            "readOnly": true,
+            "type": "boolean"
+          },
+          "description": {
+            "description": "Policy description",
+            "type": "string"
+          },
+          "enabled": {
+            "description": "Enabled. Default is true.",
+            "type": "boolean"
+          },
+          "labels": {
+            "description": "Labels",
+            "items": { "type": "string" },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "lastModifiedBy": {
+            "description": "Last modified by",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedOn": {
             "description": "Last modified on this timestamp",
             "format": "int64",
@@ -220,11 +382,27 @@
             "type": "integer"
           },
           "name": { "description": "Policy name", "type": "string" },
-          "overridden": { "description": "Overridden", "readOnly": true, "type": "boolean" },
-          "policyId": { "description": "Policy ID", "readOnly": true, "type": "string" },
+          "overridden": {
+            "description": "Overridden",
+            "readOnly": true,
+            "type": "boolean"
+          },
+          "policyId": {
+            "description": "Policy ID",
+            "readOnly": true,
+            "type": "string"
+          },
           "policySubTypes": {
             "description": "Policy subtype",
-            "enum": ["audit", "build", "data_classification", "malware", "network_event", "run", "ueba"],
+            "enum": [
+              "audit",
+              "build",
+              "data_classification",
+              "malware",
+              "network_event",
+              "run",
+              "ueba"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -233,11 +411,26 @@
             "enum": ["config", "audit_event", "network"],
             "type": "string"
           },
-          "policyUpi": { "description": "Policy UPI", "readOnly": true, "type": "string" },
-          "recommendation": { "description": "Remediation recommendation", "type": "string" },
-          "remediable": { "description": "isRemediable", "readOnly": true, "type": "boolean" },
+          "policyUpi": {
+            "description": "Policy UPI",
+            "readOnly": true,
+            "type": "string"
+          },
+          "recommendation": {
+            "description": "Remediation recommendation",
+            "type": "string"
+          },
+          "remediable": {
+            "description": "isRemediable",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "remediation": { "$ref": "#/components/schemas/RemediationModel" },
-          "restrictAlertDismissal": { "description": "Restrict alert dismissal", "readOnly": true, "type": "boolean" },
+          "restrictAlertDismissal": {
+            "description": "Restrict alert dismissal",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "rule": { "$ref": "#/components/schemas/RuleModel" },
           "ruleLastModifiedOn": {
             "description": "Rule last modified on",
@@ -245,7 +438,11 @@
             "readOnly": true,
             "type": "integer"
           },
-          "severity": { "description": "Severity", "enum": ["high", "medium", "low"], "type": "string" },
+          "severity": {
+            "description": "Severity",
+            "enum": ["high", "medium", "low"],
+            "type": "string"
+          },
           "systemDefault": {
             "description": "true = Policy is a Prisma Cloud system default policy",
             "readOnly": true,
@@ -268,18 +465,41 @@
             "items": { "$ref": "#/components/schemas/ComplianceMetadataModel" },
             "type": "array"
           },
-          "createdBy": { "description": "Created by", "readOnly": true, "type": "string" },
+          "createdBy": {
+            "description": "Created by",
+            "readOnly": true,
+            "type": "string"
+          },
           "createdOn": {
             "description": "Created on this timestamp",
             "format": "int64",
             "readOnly": true,
             "type": "integer"
           },
-          "deleted": { "description": "Deleted", "readOnly": true, "type": "boolean" },
-          "description": { "description": "Policy description", "type": "string" },
-          "enabled": { "description": "Enabled. Default is true.", "type": "boolean" },
-          "labels": { "description": "Labels", "items": { "type": "string" }, "type": "array", "uniqueItems": true },
-          "lastModifiedBy": { "description": "Last modified by", "readOnly": true, "type": "string" },
+          "deleted": {
+            "description": "Deleted",
+            "readOnly": true,
+            "type": "boolean"
+          },
+          "description": {
+            "description": "Policy description",
+            "type": "string"
+          },
+          "enabled": {
+            "description": "Enabled. Default is true.",
+            "type": "boolean"
+          },
+          "labels": {
+            "description": "Labels",
+            "items": { "type": "string" },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "lastModifiedBy": {
+            "description": "Last modified by",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedOn": {
             "description": "Last modified on this timestamp",
             "format": "int64",
@@ -287,9 +507,17 @@
             "type": "integer"
           },
           "name": { "description": "Policy name", "type": "string" },
-          "overridden": { "description": "Overridden", "readOnly": true, "type": "boolean" },
+          "overridden": {
+            "description": "Overridden",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "owner": { "description": "Owner", "type": "string" },
-          "policyCategory": { "description": "PolicyCategory", "enum": ["risk", "incident"], "type": "string" },
+          "policyCategory": {
+            "description": "PolicyCategory",
+            "enum": ["risk", "incident"],
+            "type": "string"
+          },
           "policyClass": {
             "description": "PolicyClass",
             "enum": [
@@ -301,11 +529,27 @@
             ],
             "type": "string"
           },
-          "policyId": { "description": "Policy ID", "readOnly": true, "type": "string" },
-          "policyMode": { "description": "PolicyMode", "enum": ["custom/redlock_default"], "type": "string" },
+          "policyId": {
+            "description": "Policy ID",
+            "readOnly": true,
+            "type": "string"
+          },
+          "policyMode": {
+            "description": "PolicyMode",
+            "enum": ["custom/redlock_default"],
+            "type": "string"
+          },
           "policySubTypes": {
             "description": "Policy subtype",
-            "enum": ["audit", "build", "data_classification", "malware", "network_event", "run", "ueba"],
+            "enum": [
+              "audit",
+              "build",
+              "data_classification",
+              "malware",
+              "network_event",
+              "run",
+              "ueba"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -314,11 +558,26 @@
             "enum": ["config", "audit_event", "network"],
             "type": "string"
           },
-          "policyUpi": { "description": "Policy UPI", "readOnly": true, "type": "string" },
-          "recommendation": { "description": "Remediation recommendation", "type": "string" },
-          "remediable": { "description": "isRemediable", "readOnly": true, "type": "boolean" },
+          "policyUpi": {
+            "description": "Policy UPI",
+            "readOnly": true,
+            "type": "string"
+          },
+          "recommendation": {
+            "description": "Remediation recommendation",
+            "type": "string"
+          },
+          "remediable": {
+            "description": "isRemediable",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "remediation": { "$ref": "#/components/schemas/RemediationModel" },
-          "restrictAlertDismissal": { "description": "Restrict alert dismissal", "readOnly": true, "type": "boolean" },
+          "restrictAlertDismissal": {
+            "description": "Restrict alert dismissal",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "rule": { "$ref": "#/components/schemas/RuleModel" },
           "ruleLastModifiedOn": {
             "description": "Rule last modified on",
@@ -326,7 +585,11 @@
             "readOnly": true,
             "type": "integer"
           },
-          "severity": { "description": "Severity", "enum": ["high", "medium", "low"], "type": "string" },
+          "severity": {
+            "description": "Severity",
+            "enum": ["high", "medium", "low"],
+            "type": "string"
+          },
           "systemDefault": {
             "description": "true = Policy is a Prisma Cloud system default policy",
             "readOnly": true,
@@ -338,7 +601,10 @@
       },
       "RemediationAction": {
         "description": "Action for remediation for data policy.",
-        "properties": { "operation": { "type": "string" }, "payload": { "type": "string" } },
+        "properties": {
+          "operation": { "type": "string" },
+          "payload": { "type": "string" }
+        },
         "type": "object"
       },
       "RemediationModel": {
@@ -349,7 +615,10 @@
             "items": { "$ref": "#/components/schemas/RemediationAction" },
             "type": "array"
           },
-          "cliScriptTemplate": { "description": "CLI Script Template", "type": "string" },
+          "cliScriptTemplate": {
+            "description": "CLI Script Template",
+            "type": "string"
+          },
           "description": { "description": "Description", "type": "string" }
         },
         "type": "object"
@@ -359,17 +628,36 @@
         "properties": {
           "classificationResult": { "type": "string" },
           "exposure": { "type": "string" },
-          "extension": { "items": { "type": "string" }, "type": "array", "uniqueItems": true }
+          "extension": {
+            "items": { "type": "string" },
+            "type": "array",
+            "uniqueItems": true
+          }
         },
         "type": "object"
       },
       "RuleModel": {
         "description": "Model for Rule",
         "properties": {
-          "apiName": { "description": "API name", "readOnly": true, "type": "string" },
-          "cloudAccount": { "description": "Cloud account", "readOnly": true, "type": "string" },
-          "cloudType": { "description": "Cloud type", "readOnly": true, "type": "string" },
-          "criteria": { "description": "Saved search ID that defines the rule criteria.", "type": "string" },
+          "apiName": {
+            "description": "API name",
+            "readOnly": true,
+            "type": "string"
+          },
+          "cloudAccount": {
+            "description": "Cloud account",
+            "readOnly": true,
+            "type": "string"
+          },
+          "cloudType": {
+            "description": "Cloud type",
+            "readOnly": true,
+            "type": "string"
+          },
+          "criteria": {
+            "description": "Saved search ID that defines the rule criteria.",
+            "type": "string"
+          },
           "dataCriteria": { "$ref": "#/components/schemas/RuleCriteria" },
           "name": { "description": "Name", "type": "string" },
           "parameters": {
@@ -377,8 +665,16 @@
             "description": "Parameters (e.g. {\"savedSearch\": \"true\"})",
             "type": "object"
           },
-          "resourceIdPath": { "description": "Resource ID path", "readOnly": true, "type": "string" },
-          "resourceType": { "description": "Resource type", "readOnly": true, "type": "string" },
+          "resourceIdPath": {
+            "description": "Resource ID path",
+            "readOnly": true,
+            "type": "string"
+          },
+          "resourceType": {
+            "description": "Resource type",
+            "readOnly": true,
+            "type": "string"
+          },
           "type": {
             "description": "Type of rule or RQL query",
             "enum": ["Config", "Network", "AuditEvent"],
@@ -392,7 +688,11 @@
         "description": "Model for UIFilter",
         "properties": {
           "name": { "description": "Name", "type": "string" },
-          "operator": { "description": "Operator", "enum": ["="], "type": "string" },
+          "operator": {
+            "description": "Operator",
+            "enum": ["="],
+            "type": "string"
+          },
           "value": { "description": "Value", "type": "string" }
         },
         "type": "object"
@@ -407,7 +707,9 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The Policy APIs are listed below.", "name": "Policy" }],
+  "tags": [
+    { "description": "The Policy APIs are listed below.", "name": "Policy" }
+  ],
   "paths": {
     "/filter/policy/suggest": {
       "get": {
@@ -416,7 +718,11 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/PolicyFilterSuggestion" } }
+              "application/json; charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyFilterSuggestion"
+                }
+              }
             },
             "description": "successful operation"
           }
@@ -440,12 +746,18 @@
         "operationId": "get-policy-filter-options",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
+            }
           }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ParsedTableFilter" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ParsedTableFilter" }
+              }
+            },
             "description": "successful operation"
           }
         },
@@ -495,7 +807,10 @@
             "in": "query",
             "name": "policy.type",
             "required": false,
-            "schema": { "enum": ["config", "network", "audit_event"], "type": "string" }
+            "schema": {
+              "enum": ["config", "network", "audit_event"],
+              "type": "string"
+            }
           },
           {
             "description": "Policy compliance standard name",
@@ -530,7 +845,10 @@
             "in": "query",
             "name": "policy.policyMode",
             "required": false,
-            "schema": { "enum": ["custom", "redlock_default"], "type": "string" }
+            "schema": {
+              "enum": ["custom", "redlock_default"],
+              "type": "string"
+            }
           },
           {
             "description": "Policy is remediable",
@@ -551,7 +869,12 @@
           "200": {
             "content": {
               "*/*": {
-                "schema": { "items": { "$ref": "#/components/schemas/LegacyPolicyViewModel" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/LegacyPolicyViewModel"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -577,14 +900,20 @@
         "operationId": "add-policy",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/PolicyModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/PolicyModel" }
+            }
           },
           "description": "Model for Policy",
           "required": true
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/PolicyModel" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PolicyModel" }
+              }
+            },
             "description": "successful operation"
           },
           "400": {
@@ -645,14 +974,20 @@
             "in": "query",
             "name": "policy.subtype",
             "required": false,
-            "schema": { "enum": ["run", "build", "run_and_build"], "type": "string" }
+            "schema": {
+              "enum": ["run", "build", "run_and_build"],
+              "type": "string"
+            }
           },
           {
             "description": "Policy type",
             "in": "query",
             "name": "policy.type",
             "required": false,
-            "schema": { "enum": ["config", "network", "audit_event"], "type": "string" }
+            "schema": {
+              "enum": ["config", "network", "audit_event"],
+              "type": "string"
+            }
           },
           {
             "description": "Policy compliance standard name",
@@ -687,7 +1022,10 @@
             "in": "query",
             "name": "policy.policyMode",
             "required": false,
-            "schema": { "enum": ["custom", "redlock_default"], "type": "string" }
+            "schema": {
+              "enum": ["custom", "redlock_default"],
+              "type": "string"
+            }
           },
           {
             "description": "Policy is remediable",
@@ -707,7 +1045,12 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "items": { "$ref": "#/components/schemas/PolicyViewModel" }, "type": "array" } }
+              "*/*": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/PolicyViewModel" },
+                  "type": "array"
+                }
+              }
             },
             "description": "successful operation"
           },
@@ -733,11 +1076,21 @@
         "description": "Returns the policy that has the specified policy ID.",
         "operationId": "get-policy",
         "parameters": [
-          { "description": "Policy ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }
+          {
+            "description": "Policy ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/PolicyModel" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PolicyModel" }
+              }
+            },
             "description": "successful operation"
           },
           "400": { "description": "invalid_parameter_value" },
@@ -751,11 +1104,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/policy/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/policy/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/policy/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/policy/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -763,24 +1116,38 @@
         "description": "Updates the existing policy that has the specified policy ID.  \r\n\r\nAlthough multiple body parameters are marked as required, to update a policy, you need to provide only the \nbody parameters that you want to update with the exception of the boolean parameter **enabled**, which will \ndefault to a value of **true** unless otherwise specified. For this request, all other body parameters that \nyou do not provide will default to the values of the existing policy.\n\nYou can get the policy ID through the List Policies V2 request. Submit the policy name or other identifying information through the body parameters of this request to receive information about the policy, including the policy ID.\n",
         "operationId": "update-policy",
         "parameters": [
-          { "description": "Policy ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }
+          {
+            "description": "Policy ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/PolicyModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/PolicyModel" }
+            }
           },
           "description": "Model for Policy",
           "required": true
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/PolicyModel" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PolicyModel" }
+              }
+            },
             "description": "successful operation"
           },
           "400": {
             "description": "missing_required_parameter / invalid_parameter_value / policy_id_cannot_be_changed /type_cannot_be_changed / create_update_disallowed_for_json_schema_type_policy / duplicate_name / remediation_allowed_only_for_config_policies / policy_remediation_disallowed_for_non_sys_admins / unable_to_determine_sub_types / compliance_mapping_update_disallowed_for_policy_type"
           },
-          "403": { "description": "not_system_admin_user / not_owner_or_same_role" },
+          "403": {
+            "description": "not_system_admin_user / not_owner_or_same_role"
+          },
           "404": { "description": "not_found" },
           "500": { "description": "internal_error" }
         },
@@ -790,11 +1157,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/policy/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/policy/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/policy/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/policy/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -802,12 +1169,22 @@
         "description": "Delete a policy using its ID.",
         "operationId": "delete-policy",
         "parameters": [
-          { "description": "Policy ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }
+          {
+            "description": "Policy ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
         "responses": {
           "204": { "description": "success" },
-          "400": { "description": "missing_required_parameter/invalid_parameter_value" },
-          "403": { "description": "cannot_delete_default_policy/not_owner_or_same_role/cannot_delete_default_policy" },
+          "400": {
+            "description": "missing_required_parameter/invalid_parameter_value"
+          },
+          "403": {
+            "description": "cannot_delete_default_policy/not_owner_or_same_role/cannot_delete_default_policy"
+          },
           "404": { "description": "no_results" },
           "500": { "description": "internal_error" }
         },
@@ -817,11 +1194,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/policy/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/policy/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/policy/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/policy/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -831,7 +1208,13 @@
         "description": "Enable or disable a policy.",
         "operationId": "update-policy-status",
         "parameters": [
-          { "description": "Policy ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } },
+          {
+            "description": "Policy ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
           {
             "description": "Policy status (true = enabled)",
             "in": "path",
@@ -842,8 +1225,12 @@
         ],
         "responses": {
           "200": { "description": "successful operation" },
-          "400": { "description": "invalid_parameter_value / missing_required_param / " },
-          "403": { "description": "not_found / not_system_admin_user / not_owner_or_same_role" },
+          "400": {
+            "description": "invalid_parameter_value / missing_required_param / "
+          },
+          "403": {
+            "description": "not_found / not_system_admin_user / not_owner_or_same_role"
+          },
           "404": { "description": "not_found / failed_update_policy_status" },
           "500": { "description": "failed_update_policy_status" }
         },
@@ -853,11 +1240,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/policy/%7Bid%7D/status/%7Benabled%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PATCH\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/policy/{id}/status/{enabled}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PATCH\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://api.prismacloud.io/policy/%7Bid%7D/status/%7Benabled%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request PATCH \\\n  --url https://api.prismacloud.io/policy/{id}/status/{enabled} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -872,7 +1259,9 @@
               "*/*": {
                 "schema": {
                   "additionalProperties": {
-                    "items": { "$ref": "#/components/schemas/ComplianceMetadataModel" },
+                    "items": {
+                      "$ref": "#/components/schemas/ComplianceMetadataModel"
+                    },
                     "type": "array",
                     "uniqueItems": true
                   },

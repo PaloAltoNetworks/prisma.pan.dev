@@ -692,11 +692,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/%7BcomplianceId%7D\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\"}\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/{complianceId}\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\"}\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/compliance/posture/%7BcomplianceId%7D?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/compliance/posture/{complianceId}?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -737,11 +737,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/%7BcomplianceId%7D\"\n\npayload = \"{\\\"detailed\\\":true,\\\"fields\\\":[\\\"string\\\"],\\\"filters\\\":[{\\\"name\\\":\\\"string\\\",\\\"operator\\\":\\\"=\\\",\\\"value\\\":\\\"string\\\"}],\\\"groupBy\\\":[\\\"string\\\"],\\\"limit\\\":0,\\\"offset\\\":0,\\\"pageToken\\\":\\\"string\\\",\\\"sortBy\\\":[\\\"string\\\"],\\\"timeRange\\\":{\\\"relativeTimeType\\\":\\\"BACKWARD\\\",\\\"type\\\":\\\"relative\\\",\\\"value\\\":{\\\"amount\\\":0,\\\"unit\\\":\\\"minute\\\"}}}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/{complianceId}\"\n\npayload = \"{\\\"detailed\\\":true,\\\"fields\\\":[\\\"string\\\"],\\\"filters\\\":[{\\\"name\\\":\\\"string\\\",\\\"operator\\\":\\\"=\\\",\\\"value\\\":\\\"string\\\"}],\\\"groupBy\\\":[\\\"string\\\"],\\\"limit\\\":0,\\\"offset\\\":0,\\\"pageToken\\\":\\\"string\\\",\\\"sortBy\\\":[\\\"string\\\"],\\\"timeRange\\\":{\\\"relativeTimeType\\\":\\\"BACKWARD\\\",\\\"type\\\":\\\"relative\\\",\\\"value\\\":{\\\"amount\\\":0,\\\"unit\\\":\\\"minute\\\"}}}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/posture/%7BcomplianceId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/posture/{complianceId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }
@@ -836,11 +836,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/%7BcomplianceId%7D/%7BrequirementId%7D\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\"}\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/{complianceId}/{requirementId}\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\"}\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/compliance/posture/%7BcomplianceId%7D/%7BrequirementId%7D?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/compliance/posture/{complianceId}/{requirementId}?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -888,11 +888,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/%7BcomplianceId%7D/%7BrequirementId%7D\"\n\npayload = \"{\\\"detailed\\\":true,\\\"fields\\\":[\\\"string\\\"],\\\"filters\\\":[{\\\"name\\\":\\\"string\\\",\\\"operator\\\":\\\"=\\\",\\\"value\\\":\\\"string\\\"}],\\\"groupBy\\\":[\\\"string\\\"],\\\"limit\\\":0,\\\"offset\\\":0,\\\"pageToken\\\":\\\"string\\\",\\\"sortBy\\\":[\\\"string\\\"],\\\"timeRange\\\":{\\\"relativeTimeType\\\":\\\"BACKWARD\\\",\\\"type\\\":\\\"relative\\\",\\\"value\\\":{\\\"amount\\\":0,\\\"unit\\\":\\\"minute\\\"}}}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/{complianceId}/{requirementId}\"\n\npayload = \"{\\\"detailed\\\":true,\\\"fields\\\":[\\\"string\\\"],\\\"filters\\\":[{\\\"name\\\":\\\"string\\\",\\\"operator\\\":\\\"=\\\",\\\"value\\\":\\\"string\\\"}],\\\"groupBy\\\":[\\\"string\\\"],\\\"limit\\\":0,\\\"offset\\\":0,\\\"pageToken\\\":\\\"string\\\",\\\"sortBy\\\":[\\\"string\\\"],\\\"timeRange\\\":{\\\"relativeTimeType\\\":\\\"BACKWARD\\\",\\\"type\\\":\\\"relative\\\",\\\"value\\\":{\\\"amount\\\":0,\\\"unit\\\":\\\"minute\\\"}}}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/posture/%7BcomplianceId%7D/%7BrequirementId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/posture/{complianceId}/{requirementId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }
@@ -1131,11 +1131,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/trend/%7BcomplianceId%7D\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\"}\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/trend/{complianceId}\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\"}\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/compliance/posture/trend/%7BcomplianceId%7D?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/compliance/posture/trend/{complianceId}?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -1179,11 +1179,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/trend/%7BcomplianceId%7D\"\n\npayload = \"{\\\"detailed\\\":true,\\\"fields\\\":[\\\"string\\\"],\\\"filters\\\":[{\\\"name\\\":\\\"string\\\",\\\"operator\\\":\\\"=\\\",\\\"value\\\":\\\"string\\\"}],\\\"groupBy\\\":[\\\"string\\\"],\\\"limit\\\":0,\\\"offset\\\":0,\\\"pageToken\\\":\\\"string\\\",\\\"sortBy\\\":[\\\"string\\\"],\\\"timeRange\\\":{\\\"relativeTimeType\\\":\\\"BACKWARD\\\",\\\"type\\\":\\\"relative\\\",\\\"value\\\":{\\\"amount\\\":0,\\\"unit\\\":\\\"minute\\\"}}}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/trend/{complianceId}\"\n\npayload = \"{\\\"detailed\\\":true,\\\"fields\\\":[\\\"string\\\"],\\\"filters\\\":[{\\\"name\\\":\\\"string\\\",\\\"operator\\\":\\\"=\\\",\\\"value\\\":\\\"string\\\"}],\\\"groupBy\\\":[\\\"string\\\"],\\\"limit\\\":0,\\\"offset\\\":0,\\\"pageToken\\\":\\\"string\\\",\\\"sortBy\\\":[\\\"string\\\"],\\\"timeRange\\\":{\\\"relativeTimeType\\\":\\\"BACKWARD\\\",\\\"type\\\":\\\"relative\\\",\\\"value\\\":{\\\"amount\\\":0,\\\"unit\\\":\\\"minute\\\"}}}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/posture/trend/%7BcomplianceId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/posture/trend/{complianceId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }
@@ -1281,11 +1281,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/trend/%7BcomplianceId%7D/%7BrequirementId%7D\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\"}\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/trend/{complianceId}/{requirementId}\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\"}\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/compliance/posture/trend/%7BcomplianceId%7D/%7BrequirementId%7D?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/compliance/posture/trend/{complianceId}/{requirementId}?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -1336,11 +1336,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/trend/%7BcomplianceId%7D/%7BrequirementId%7D\"\n\npayload = \"{\\\"detailed\\\":true,\\\"fields\\\":[\\\"string\\\"],\\\"filters\\\":[{\\\"name\\\":\\\"string\\\",\\\"operator\\\":\\\"=\\\",\\\"value\\\":\\\"string\\\"}],\\\"groupBy\\\":[\\\"string\\\"],\\\"limit\\\":0,\\\"offset\\\":0,\\\"pageToken\\\":\\\"string\\\",\\\"sortBy\\\":[\\\"string\\\"],\\\"timeRange\\\":{\\\"relativeTimeType\\\":\\\"BACKWARD\\\",\\\"type\\\":\\\"relative\\\",\\\"value\\\":{\\\"amount\\\":0,\\\"unit\\\":\\\"minute\\\"}}}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/posture/trend/{complianceId}/{requirementId}\"\n\npayload = \"{\\\"detailed\\\":true,\\\"fields\\\":[\\\"string\\\"],\\\"filters\\\":[{\\\"name\\\":\\\"string\\\",\\\"operator\\\":\\\"=\\\",\\\"value\\\":\\\"string\\\"}],\\\"groupBy\\\":[\\\"string\\\"],\\\"limit\\\":0,\\\"offset\\\":0,\\\"pageToken\\\":\\\"string\\\",\\\"sortBy\\\":[\\\"string\\\"],\\\"timeRange\\\":{\\\"relativeTimeType\\\":\\\"BACKWARD\\\",\\\"type\\\":\\\"relative\\\",\\\"value\\\":{\\\"amount\\\":0,\\\"unit\\\":\\\"minute\\\"}}}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/posture/trend/%7BcomplianceId%7D/%7BrequirementId%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/posture/trend/{complianceId}/{requirementId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }

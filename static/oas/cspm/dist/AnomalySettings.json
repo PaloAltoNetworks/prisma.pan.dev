@@ -140,11 +140,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/settings/%7Bpolicyid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/settings/{policyid}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/anomalies/settings/%7Bpolicyid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/anomalies/settings/{policyid} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -183,11 +183,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/settings/%7Bpolicyid%7D\"\n\npayload = \"{\\\"alertDisposition\\\":\\\"Aggressive\\\",\\\"alertDispositionDescription\\\":{\\\"property1\\\":\\\"string\\\",\\\"property2\\\":\\\"string\\\"},\\\"policyDescription\\\":\\\"string\\\",\\\"policyName\\\":\\\"string\\\",\\\"trainingModelDescription\\\":{\\\"property1\\\":\\\"string\\\",\\\"property2\\\":\\\"string\\\"},\\\"trainingModelThreshold\\\":\\\"Low\\\"}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/settings/{policyid}\"\n\npayload = \"{\\\"alertDisposition\\\":\\\"Aggressive\\\",\\\"alertDispositionDescription\\\":{\\\"property1\\\":\\\"string\\\",\\\"property2\\\":\\\"string\\\"},\\\"policyDescription\\\":\\\"string\\\",\\\"policyName\\\":\\\"string\\\",\\\"trainingModelDescription\\\":{\\\"property1\\\":\\\"string\\\",\\\"property2\\\":\\\"string\\\"},\\\"trainingModelThreshold\\\":\\\"Low\\\"}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/anomalies/settings/%7Bpolicyid%7D \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"alertDisposition\":\"Aggressive\",\"alertDispositionDescription\":{\"property1\":\"string\",\"property2\":\"string\"},\"policyDescription\":\"string\",\"policyName\":\"string\",\"trainingModelDescription\":{\"property1\":\"string\",\"property2\":\"string\"},\"trainingModelThreshold\":\"Low\"}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/anomalies/settings/{policyid} \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"alertDisposition\":\"Aggressive\",\"alertDispositionDescription\":{\"property1\":\"string\",\"property2\":\"string\"},\"policyDescription\":\"string\",\"policyName\":\"string\",\"trainingModelDescription\":{\"property1\":\"string\",\"property2\":\"string\"},\"trainingModelThreshold\":\"Low\"}'"
           }
         ]
       }

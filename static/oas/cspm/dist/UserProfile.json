@@ -10,7 +10,11 @@
     },
     "requestBodies": {
       "MultiRoleUserProfile": {
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/MultiRoleUserProfile" } } },
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/MultiRoleUserProfile" }
+          }
+        },
         "description": "Model containing user profile",
         "required": true
       }
@@ -19,15 +23,40 @@
       "MultiRoleUserProfile": {
         "description": "Model containing user profile",
         "properties": {
-          "accessKeysAllowed": { "description": "Access keys allowed", "type": "boolean" },
-          "activeRole": { "$ref": "#/components/schemas/UserProfileRoleDetailModel" },
-          "defaultRoleId": { "description": "Default Role ID", "type": "string" },
-          "displayName": { "description": "Display name", "readOnly": true, "type": "string" },
+          "accessKeysAllowed": {
+            "description": "Access keys allowed",
+            "type": "boolean"
+          },
+          "activeRole": {
+            "$ref": "#/components/schemas/UserProfileRoleDetailModel"
+          },
+          "defaultRoleId": {
+            "description": "Default Role ID",
+            "type": "string"
+          },
+          "displayName": {
+            "description": "Display name",
+            "readOnly": true,
+            "type": "string"
+          },
           "email": { "description": "Email ID", "type": "string" },
-          "enabled": { "description": "Enabled", "readOnly": true, "type": "boolean" },
+          "enabled": {
+            "description": "Enabled",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "firstName": { "description": "First name", "type": "string" },
-          "lastLoginTs": { "description": "Last login time", "format": "int64", "readOnly": true, "type": "integer" },
-          "lastModifiedBy": { "description": "Last modified by", "readOnly": true, "type": "string" },
+          "lastLoginTs": {
+            "description": "Last login time",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "lastModifiedBy": {
+            "description": "Last modified by",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedTs": {
             "description": "Time profile was last updated",
             "format": "int64",
@@ -35,28 +64,64 @@
             "type": "integer"
           },
           "lastName": { "description": "Last name", "type": "string" },
-          "roleIds": { "description": "Role IDs", "items": { "type": "string" }, "type": "array" },
+          "roleIds": {
+            "description": "Role IDs",
+            "items": { "type": "string" },
+            "type": "array"
+          },
           "roles": {
             "description": "All Role Info",
-            "items": { "$ref": "#/components/schemas/UserProfileRoleDetailModel" },
+            "items": {
+              "$ref": "#/components/schemas/UserProfileRoleDetailModel"
+            },
             "readOnly": true,
             "type": "array"
           },
-          "timeZone": { "description": "Time zone (e.g. America/Los_Angeles)", "type": "string" }
+          "timeZone": {
+            "description": "Time zone (e.g. America/Los_Angeles)",
+            "type": "string"
+          }
         },
-        "required": ["defaultRoleId", "email", "firstName", "lastName", "roleIds", "timeZone"],
+        "required": [
+          "defaultRoleId",
+          "email",
+          "firstName",
+          "lastName",
+          "roleIds",
+          "timeZone"
+        ],
         "type": "object"
       },
       "UserProfileModel": {
         "description": "Model containing user profile",
         "properties": {
-          "accessKeysAllowed": { "description": "Access keys allowed", "type": "boolean" },
-          "displayName": { "description": "Display name", "readOnly": true, "type": "string" },
+          "accessKeysAllowed": {
+            "description": "Access keys allowed",
+            "type": "boolean"
+          },
+          "displayName": {
+            "description": "Display name",
+            "readOnly": true,
+            "type": "string"
+          },
           "email": { "description": "Email ID", "type": "string" },
-          "enabled": { "description": "Enabled", "readOnly": true, "type": "boolean" },
+          "enabled": {
+            "description": "Enabled",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "firstName": { "description": "First name", "type": "string" },
-          "lastLoginTs": { "description": "Last login time", "format": "int64", "readOnly": true, "type": "integer" },
-          "lastModifiedBy": { "description": "Last modified by", "readOnly": true, "type": "string" },
+          "lastLoginTs": {
+            "description": "Last login time",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "lastModifiedBy": {
+            "description": "Last modified by",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedTs": {
             "description": "Time profile was last updated",
             "format": "int64",
@@ -71,8 +136,15 @@
             "type": "object"
           },
           "roleId": { "description": "Role ID", "type": "string" },
-          "roleType": { "description": "Role type", "readOnly": true, "type": "string" },
-          "timeZone": { "description": "Time zone (e.g. America/Los_Angeles)", "type": "string" }
+          "roleType": {
+            "description": "Role type",
+            "readOnly": true,
+            "type": "string"
+          },
+          "timeZone": {
+            "description": "Time zone (e.g. America/Los_Angeles)",
+            "type": "string"
+          }
         },
         "required": ["email", "firstName", "lastName", "roleId", "timeZone"],
         "type": "object"
@@ -80,8 +152,16 @@
       "UserProfileRoleDetailModel": {
         "description": "Model for User Profile Role Detail",
         "properties": {
-          "id": { "description": "User Role ID", "readOnly": true, "type": "string" },
-          "name": { "description": "User Role Name", "readOnly": true, "type": "string" },
+          "id": {
+            "description": "User Role ID",
+            "readOnly": true,
+            "type": "string"
+          },
+          "name": {
+            "description": "User Role Name",
+            "readOnly": true,
+            "type": "string"
+          },
           "onlyAllowCIAccess": {
             "description": "true = Allow only CI Access for Build and Deploy security roles",
             "readOnly": true,
@@ -97,7 +177,11 @@
             "readOnly": true,
             "type": "boolean"
           },
-          "type": { "description": "User Role Type", "readOnly": true, "type": "string" }
+          "type": {
+            "description": "User Role Type",
+            "readOnly": true,
+            "type": "string"
+          }
         },
         "type": "object"
       }
@@ -111,7 +195,12 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The User Profile APIs are listed below.", "name": "User Profile" }],
+  "tags": [
+    {
+      "description": "The User Profile APIs are listed below.",
+      "name": "User Profile"
+    }
+  ],
   "paths": {
     "/user/me": {
       "get": {
@@ -119,7 +208,11 @@
         "operationId": "get-my-profile",
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/UserProfileModel" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/UserProfileModel" }
+              }
+            },
             "description": "successful operation"
           },
           "400": { "description": "user_inactive_or_not_exist" },
@@ -143,7 +236,11 @@
         "description": "Updates the current user's personal profile information.  \r\n\r\nAlthough the role ID is required when you are updating another user's profile, the role ID is not required when you are updating your own profile.\n```\n{\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"timeZone\": \"\"\n}\n```\n",
         "operationId": "update-my-profile",
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/MultiRoleUserProfile" } } },
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/MultiRoleUserProfile" }
+            }
+          },
           "description": "Model containing user profile",
           "required": true
         },
@@ -177,7 +274,12 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "items": { "$ref": "#/components/schemas/UserProfileModel" }, "type": "array" } }
+              "*/*": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/UserProfileModel" },
+                  "type": "array"
+                }
+              }
             },
             "description": "successful operation"
           },
@@ -201,7 +303,11 @@
         "description": "Adds a new administrative user. Supports multiple roles for a single user.",
         "operationId": "add-user-v2",
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/MultiRoleUserProfile" } } },
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/MultiRoleUserProfile" }
+            }
+          },
           "description": "Model containing user profile",
           "required": true
         },
@@ -243,7 +349,11 @@
         ],
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/UserProfileModel" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/UserProfileModel" }
+              }
+            },
             "description": "successful operation"
           },
           "400": { "description": "user_inactive_or_not_exist" },
@@ -255,11 +365,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/user/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/user/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/v2/user/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/v2/user/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -276,7 +386,11 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/MultiRoleUserProfile" } } }
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/MultiRoleUserProfile" }
+            }
+          }
         },
         "responses": {
           "200": { "description": "successful operation" },
@@ -292,11 +406,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/user/%7Bid%7D\"\n\npayload = \"{\\\"accessKeysAllowed\\\":true,\\\"activeRole\\\":{},\\\"defaultRoleId\\\":\\\"string\\\",\\\"email\\\":\\\"string\\\",\\\"firstName\\\":\\\"string\\\",\\\"lastName\\\":\\\"string\\\",\\\"roleIds\\\":[\\\"string\\\"],\\\"timeZone\\\":\\\"string\\\"}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/user/{id}\"\n\npayload = \"{\\\"accessKeysAllowed\\\":true,\\\"activeRole\\\":{},\\\"defaultRoleId\\\":\\\"string\\\",\\\"email\\\":\\\"string\\\",\\\"firstName\\\":\\\"string\\\",\\\"lastName\\\":\\\"string\\\",\\\"roleIds\\\":[\\\"string\\\"],\\\"timeZone\\\":\\\"string\\\"}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/v2/user/%7Bid%7D \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accessKeysAllowed\":true,\"activeRole\":{},\"defaultRoleId\":\"string\",\"email\":\"string\",\"firstName\":\"string\",\"lastName\":\"string\",\"roleIds\":[\"string\"],\"timeZone\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/v2/user/{id} \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accessKeysAllowed\":true,\"activeRole\":{},\"defaultRoleId\":\"string\",\"email\":\"string\",\"firstName\":\"string\",\"lastName\":\"string\",\"roleIds\":[\"string\"],\"timeZone\":\"string\"}'"
           }
         ]
       }
@@ -326,11 +440,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/user/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/user/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -362,11 +476,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/%7Bid%7D/status/%7Benabled%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PATCH\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/{id}/status/{enabled}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PATCH\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://api.prismacloud.io/user/%7Bid%7D/status/%7Benabled%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request PATCH \\\n  --url https://api.prismacloud.io/user/{id}/status/{enabled} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -380,7 +494,10 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": { "additionalProperties": { "type": "string" }, "type": "object" },
+                  "items": {
+                    "additionalProperties": { "type": "string" },
+                    "type": "object"
+                  },
                   "type": "array"
                 }
               }
@@ -460,7 +577,11 @@
         "operationId": "email-domains",
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "items": { "type": "string" }, "type": "array" } } },
+            "content": {
+              "*/*": {
+                "schema": { "items": { "type": "string" }, "type": "array" }
+              }
+            },
             "description": "successful operation"
           },
           "400": { "description": "no_user_added" },
@@ -487,7 +608,15 @@
         "operationId": "get-sso-bypass-allowed-users",
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "items": { "type": "string" }, "type": "array", "uniqueItems": true } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "items": { "type": "string" },
+                  "type": "array",
+                  "uniqueItems": true
+                }
+              }
+            },
             "description": "successful operation"
           },
           "500": { "description": "failed_fetch_sso_bypass_allowed_users" }
@@ -510,7 +639,11 @@
         "description": "Given a list of Prisma Cloud user emails, enables each user in the list to log into Prisma Cloud through either a SAML provider or direct user name and password entry.",
         "operationId": "update-sso-bypass-allowed-users",
         "requestBody": {
-          "content": { "application/json": { "schema": { "items": { "type": "string" }, "type": "array" } } },
+          "content": {
+            "application/json": {
+              "schema": { "items": { "type": "string" }, "type": "array" }
+            }
+          },
           "description": "SSO Bypass allowed users",
           "required": true
         },

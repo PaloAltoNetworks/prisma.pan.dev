@@ -11,7 +11,9 @@
     "requestBodies": {
       "FilterSuggestionModel": {
         "content": {
-          "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" } }
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
+          }
         }
       }
     },
@@ -33,7 +35,12 @@
       "ComplianceAggregateCount": {
         "description": "Model for compliance aggregate count",
         "properties": {
-          "failed": { "description": "Failed", "format": "int64", "readOnly": true, "type": "integer" },
+          "failed": {
+            "description": "Failed",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
           "highSeverityFailed": {
             "description": "Number of high-severity failures",
             "format": "int64",
@@ -52,8 +59,18 @@
             "readOnly": true,
             "type": "integer"
           },
-          "passed": { "description": "Passed", "format": "int64", "readOnly": true, "type": "integer" },
-          "total": { "description": "Total", "format": "int64", "readOnly": true, "type": "integer" }
+          "passed": {
+            "description": "Passed",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "total": {
+            "description": "Total",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -71,7 +88,10 @@
             "type": "array",
             "uniqueItems": true
           },
-          "staticFilter": { "description": "Filter is a static filter", "type": "boolean" }
+          "staticFilter": {
+            "description": "Filter is a static filter",
+            "type": "boolean"
+          }
         },
         "type": "object"
       },
@@ -88,18 +108,41 @@
         "type": "object"
       },
       "NameValueIntegerString": {
-        "properties": { "id": { "format": "int32", "type": "integer" }, "name": { "type": "string" } },
+        "properties": {
+          "id": { "format": "int32", "type": "integer" },
+          "name": { "type": "string" }
+        },
         "type": "object"
       },
       "ParsedTableFilter": {
         "description": "Model for parsed table filter",
         "properties": {
-          "completeParameters": { "items": { "$ref": "#/components/schemas/UIFilterModel" }, "type": "array" },
-          "needsOffsetUpdate": { "description": "Needs offset update (for internal use)", "type": "boolean" },
-          "offset": { "description": "Offset within query", "format": "int32", "type": "integer" },
-          "queryRemainder": { "description": "Query remainder", "type": "string" },
-          "suggestions": { "description": "List of suggestions", "items": { "type": "string" }, "type": "array" },
-          "translate": { "description": "Translate (for internal use)", "type": "boolean" },
+          "completeParameters": {
+            "items": { "$ref": "#/components/schemas/UIFilterModel" },
+            "type": "array"
+          },
+          "needsOffsetUpdate": {
+            "description": "Needs offset update (for internal use)",
+            "type": "boolean"
+          },
+          "offset": {
+            "description": "Offset within query",
+            "format": "int32",
+            "type": "integer"
+          },
+          "queryRemainder": {
+            "description": "Query remainder",
+            "type": "string"
+          },
+          "suggestions": {
+            "description": "List of suggestions",
+            "items": { "type": "string" },
+            "type": "array"
+          },
+          "translate": {
+            "description": "Translate (for internal use)",
+            "type": "boolean"
+          },
           "valid": { "description": "Query is valid", "type": "boolean" }
         },
         "type": "object"
@@ -107,7 +150,11 @@
       "RelativeTimeDurationModel": {
         "description": "Model for RelativeTimeDuration",
         "properties": {
-          "amount": { "description": "Number of time units", "format": "int32", "type": "integer" },
+          "amount": {
+            "description": "Number of time units",
+            "format": "int32",
+            "type": "integer"
+          },
           "unit": {
             "description": "Time unit",
             "enum": ["minute", "hour", "day", "week", "month", "year"],
@@ -128,7 +175,9 @@
                 "type": "string"
               },
               "type": { "example": "relative", "type": "string" },
-              "value": { "$ref": "#/components/schemas/RelativeTimeDurationModel" }
+              "value": {
+                "$ref": "#/components/schemas/RelativeTimeDurationModel"
+              }
             },
             "required": ["value"],
             "type": "object"
@@ -142,10 +191,18 @@
           "cloud.account": { "$ref": "#/components/schemas/FilterSuggestion" },
           "cloud.region": { "$ref": "#/components/schemas/FilterSuggestion" },
           "cloud.type": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "policy.complianceStandard": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "report.email.recipients": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "report.frequency": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "report.schedule": { "$ref": "#/components/schemas/FilterSuggestion" },
+          "policy.complianceStandard": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "report.email.recipients": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "report.frequency": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
+          "report.schedule": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
           "schedule.status": { "$ref": "#/components/schemas/FilterSuggestion" }
         },
         "type": "object"
@@ -165,15 +222,27 @@
             "type": "string"
           },
           "counts": { "$ref": "#/components/schemas/ComplianceAggregateCount" },
-          "createdBy": { "description": "User who created this report", "readOnly": true, "type": "string" },
+          "createdBy": {
+            "description": "User who created this report",
+            "readOnly": true,
+            "type": "string"
+          },
           "createdOn": {
             "description": "Report created on this timestamp",
             "format": "int64",
             "readOnly": true,
             "type": "integer"
           },
-          "id": { "description": "Report ID", "readOnly": true, "type": "string" },
-          "lastModifiedBy": { "description": "Last modified by", "readOnly": true, "type": "string" },
+          "id": {
+            "description": "Report ID",
+            "readOnly": true,
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "description": "Last modified by",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedOn": {
             "description": "Timestamp of last modification",
             "format": "int64",
@@ -186,7 +255,10 @@
             "readOnly": true,
             "type": "integer"
           },
-          "locale": { "description": "Locale of caller (e.g. en_us, jp). Default is en_us.", "type": "string" },
+          "locale": {
+            "description": "Locale of caller (e.g. en_us, jp). Default is en_us.",
+            "type": "string"
+          },
           "name": { "description": "Report name", "type": "string" },
           "nextSchedule": {
             "description": "Timestamp of next scheduled report",
@@ -194,7 +266,11 @@
             "readOnly": true,
             "type": "integer"
           },
-          "status": { "description": "Report generation status", "readOnly": true, "type": "string" },
+          "status": {
+            "description": "Report generation status",
+            "readOnly": true,
+            "type": "string"
+          },
           "target": { "$ref": "#/components/schemas/ReportTargetModel" },
           "totalInstanceCount": {
             "description": "Total number of reports for the report ID",
@@ -204,7 +280,12 @@
           },
           "type": {
             "description": "Report type. Default is COMPLIANCE.",
-            "enum": ["COMPLIANCE", "RIS", "INVENTORY_OVERVIEW", "INVENTORY_DETAIL"],
+            "enum": [
+              "COMPLIANCE",
+              "RIS",
+              "INVENTORY_OVERVIEW",
+              "INVENTORY_DETAIL"
+            ],
             "type": "string"
           }
         },
@@ -219,7 +300,11 @@
             "items": { "type": "string" },
             "type": "array"
           },
-          "accounts": { "description": "List of cloud accounts", "items": { "type": "string" }, "type": "array" },
+          "accounts": {
+            "description": "List of cloud accounts",
+            "items": { "type": "string" },
+            "type": "array"
+          },
           "complianceStandardIds": {
             "description": "List of compliance Standard IDs",
             "items": { "type": "string" },
@@ -229,16 +314,33 @@
             "description": "Business unit detailed report compression enabled",
             "type": "boolean"
           },
-          "downloadNow": { "description": "True = download now", "type": "boolean" },
-          "notificationTemplateId": { "description": "Notification template id", "readOnly": true, "type": "string" },
+          "downloadNow": {
+            "description": "True = download now",
+            "type": "boolean"
+          },
+          "notificationTemplateId": {
+            "description": "Notification template id",
+            "readOnly": true,
+            "type": "string"
+          },
           "notifyTo": {
             "description": "List of email addresses to receive notification",
             "items": { "type": "string" },
             "type": "array"
           },
-          "regions": { "description": "List of regions", "items": { "type": "string" }, "type": "array" },
-          "schedule": { "description": "Recurring report schedule in RRULE format", "type": "string" },
-          "scheduleEnabled": { "description": "Report scheduling enabled", "type": "boolean" },
+          "regions": {
+            "description": "List of regions",
+            "items": { "type": "string" },
+            "type": "array"
+          },
+          "schedule": {
+            "description": "Recurring report schedule in RRULE format",
+            "type": "string"
+          },
+          "scheduleEnabled": {
+            "description": "Report scheduling enabled",
+            "type": "boolean"
+          },
           "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" }
         },
         "required": ["timeRange"],
@@ -247,8 +349,16 @@
       "TimeModel": {
         "description": "Model for Time",
         "properties": {
-          "endTime": { "description": "End timestamp", "format": "int64", "type": "integer" },
-          "startTime": { "description": "Start timestamp", "format": "int64", "type": "integer" }
+          "endTime": {
+            "description": "End timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
+          "startTime": {
+            "description": "Start timestamp",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -267,7 +377,9 @@
           { "$ref": "#/components/schemas/AbsoluteTimeRangeConfigModel" },
           { "$ref": "#/components/schemas/ToNowTimeRangeConfigModel" }
         ],
-        "properties": { "type": { "description": "Time type", "type": "string" } },
+        "properties": {
+          "type": { "description": "Time type", "type": "string" }
+        },
         "required": ["type"],
         "type": "object"
       },
@@ -279,7 +391,16 @@
             "properties": {
               "value": {
                 "description": "Time range object",
-                "enum": ["MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR", "EPOCH", "LOGIN"],
+                "enum": [
+                  "MINUTE",
+                  "HOUR",
+                  "DAY",
+                  "WEEK",
+                  "MONTH",
+                  "YEAR",
+                  "EPOCH",
+                  "LOGIN"
+                ],
                 "type": "string"
               }
             },
@@ -291,7 +412,11 @@
         "description": "Model for UIFilter",
         "properties": {
           "name": { "description": "Name", "type": "string" },
-          "operator": { "description": "Operator", "enum": ["="], "type": "string" },
+          "operator": {
+            "description": "Operator",
+            "enum": ["="],
+            "type": "string"
+          },
           "value": { "description": "Value", "type": "string" }
         },
         "type": "object"
@@ -306,7 +431,12 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The Compliance Report APIs are listed below.", "name": "Reports" }],
+  "tags": [
+    {
+      "description": "The Compliance Report APIs are listed below.",
+      "name": "Reports"
+    }
+  ],
   "paths": {
     "/report": {
       "get": {
@@ -360,7 +490,10 @@
             "in": "query",
             "name": "report.schedule",
             "required": false,
-            "schema": { "enum": ["daily", "weekly", "monthly"], "type": "string" }
+            "schema": {
+              "enum": ["daily", "weekly", "monthly"],
+              "type": "string"
+            }
           },
           {
             "description": "Report email recipients",
@@ -374,7 +507,15 @@
             "in": "query",
             "name": "report_view",
             "required": false,
-            "schema": { "enum": ["COMPLIANCE", "RIS", "INVENTORY_DETAIL", "INVENTORY_OVERVIEW"], "type": "string" }
+            "schema": {
+              "enum": [
+                "COMPLIANCE",
+                "RIS",
+                "INVENTORY_DETAIL",
+                "INVENTORY_OVERVIEW"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -382,7 +523,9 @@
             "content": {
               "application/json; charset=UTF-8": {
                 "schema": {
-                  "items": { "$ref": "#/components/schemas/ReportGenerationConfigApiModel" },
+                  "items": {
+                    "$ref": "#/components/schemas/ReportGenerationConfigApiModel"
+                  },
                   "type": "array"
                 }
               }
@@ -410,7 +553,9 @@
         "requestBody": {
           "content": {
             "application/json; charset=UTF-8": {
-              "schema": { "$ref": "#/components/schemas/ReportGenerationConfigApiModel" }
+              "schema": {
+                "$ref": "#/components/schemas/ReportGenerationConfigApiModel"
+              }
             }
           },
           "description": "Model for report generation configuration",
@@ -420,12 +565,16 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "$ref": "#/components/schemas/ReportGenerationConfigApiModel" }
+                "schema": {
+                  "$ref": "#/components/schemas/ReportGenerationConfigApiModel"
+                }
               }
             },
             "description": "successful operation"
           },
-          "400": { "description": "missing_required_parameter / invalid_parameter_value" }
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value"
+          }
         },
         "security": [{ "x-redlock-auth": [] }],
         "summary": "Add Report Config",
@@ -451,7 +600,11 @@
             "content": {
               "application/json; charset=UTF-8": {
                 "schema": {
-                  "additionalProperties": { "items": { "type": "string" }, "type": "array", "uniqueItems": true },
+                  "additionalProperties": {
+                    "items": { "type": "string" },
+                    "type": "array",
+                    "uniqueItems": true
+                  },
                   "type": "object"
                 }
               }
@@ -480,13 +633,21 @@
         "description": "Returns the compliance report generation configuration with the specified ID. The response includes pass/fail counts for this ID.",
         "operationId": "get-specified-report",
         "parameters": [
-          { "description": "Report ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }
+          {
+            "description": "Report ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "$ref": "#/components/schemas/ReportGenerationConfigApiModel" }
+                "schema": {
+                  "$ref": "#/components/schemas/ReportGenerationConfigApiModel"
+                }
               }
             },
             "description": "success"
@@ -500,11 +661,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/report/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/report/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/report/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/report/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -512,12 +673,20 @@
         "description": "Updates the compliance report generation configuration with the specified ID.   \r\n\r\nYou can update a recurring report schedule through this request. \nWhen using this request to update a report schedule, the only body \nparameter that is required is **target**.\n",
         "operationId": "update-report",
         "parameters": [
-          { "description": "Report ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }
+          {
+            "description": "Report ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
         "requestBody": {
           "content": {
             "application/json; charset=UTF-8": {
-              "schema": { "$ref": "#/components/schemas/ReportGenerationConfigApiModel" }
+              "schema": {
+                "$ref": "#/components/schemas/ReportGenerationConfigApiModel"
+              }
             }
           }
         },
@@ -525,12 +694,16 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "$ref": "#/components/schemas/ReportGenerationConfigApiModel" }
+                "schema": {
+                  "$ref": "#/components/schemas/ReportGenerationConfigApiModel"
+                }
               }
             },
             "description": "success"
           },
-          "400": { "description": "missing_required_parameter / invalid_parameter_value" },
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value"
+          },
           "404": { "description": "not_found" },
           "500": { "description": "internal_error" }
         },
@@ -540,11 +713,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/report/%7Bid%7D\"\n\nheaders = {\n    'content-type': \"application/json; charset=UTF-8\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/report/{id}\"\n\nheaders = {\n    'content-type': \"application/json; charset=UTF-8\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/report/%7Bid%7D \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/report/{id} \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -552,7 +725,13 @@
         "description": "Deletes the compliance report generation configuration with the specified ID.",
         "operationId": "delete-report",
         "parameters": [
-          { "description": "Report ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }
+          {
+            "description": "Report ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
         "responses": {
           "204": { "description": "success" },
@@ -565,11 +744,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/report/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/report/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/report/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/report/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -579,7 +758,13 @@
         "description": "Downloads the compliance report with the specified ID. If the report is scheduled, then the request downloads the latest generated report.",
         "operationId": "download-report",
         "parameters": [
-          { "description": "Report ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }
+          {
+            "description": "Report ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
         "responses": {
           "200": { "description": "success" },
@@ -593,11 +778,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/report/%7Bid%7D/download\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/report/{id}/download\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/report/%7Bid%7D/download \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/report/{id}/download \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -607,14 +792,22 @@
         "description": "Returns a list of metadata for the scheduled compliance reports that have been run for the specified report ID.",
         "operationId": "get-historical-report-by-id",
         "parameters": [
-          { "description": "Report ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }
+          {
+            "description": "Report ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
                 "schema": {
-                  "items": { "$ref": "#/components/schemas/ReportGenerationConfigApiModel" },
+                  "items": {
+                    "$ref": "#/components/schemas/ReportGenerationConfigApiModel"
+                  },
                   "type": "array"
                 }
               }
@@ -631,11 +824,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/report/%7Bid%7D/history\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/report/{id}/history\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/report/%7Bid%7D/history \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/report/{id}/history \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -645,7 +838,13 @@
         "description": "Returns metadata for the scheduled compliance report that has the specified report ID and was generated on the given timestamp. Returned data includes pass/fail counts.",
         "operationId": "get-last-scheduled-report-by-id",
         "parameters": [
-          { "description": "Report ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } },
+          {
+            "description": "Report ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
           {
             "description": "Timestamp of report generation",
             "in": "path",
@@ -658,7 +857,9 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "$ref": "#/components/schemas/ReportGenerationConfigApiModel" }
+                "schema": {
+                  "$ref": "#/components/schemas/ReportGenerationConfigApiModel"
+                }
               }
             },
             "description": "success"
@@ -673,11 +874,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/report/%7Bid%7D/%7BlastScheduled%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/report/{id}/{lastScheduled}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/report/%7Bid%7D/%7BlastScheduled%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/report/{id}/{lastScheduled} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -687,7 +888,13 @@
         "description": "Downloads the compliance report that has the specified report ID and was generated on the specified timestamp.",
         "operationId": "download-historical-by-id",
         "parameters": [
-          { "description": "Report ID", "in": "path", "name": "id", "required": true, "schema": { "type": "string" } },
+          {
+            "description": "Report ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
           {
             "description": "Timestamp of report generation",
             "in": "path",
@@ -708,11 +915,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/report/%7Bid%7D/%7BlastScheduled%7D/download\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/report/{id}/{lastScheduled}/download\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/report/%7Bid%7D/%7BlastScheduled%7D/download \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/report/{id}/{lastScheduled}/download \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -723,7 +930,13 @@
         "operationId": "get-report-filters-and-options",
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ReportFilterSuggestion" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportFilterSuggestion"
+                }
+              }
+            },
             "description": "success"
           },
           "404": { "description": "not_found" },
@@ -748,15 +961,23 @@
         "operationId": "get-report-posture-filter-options",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
+            }
           }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ParsedTableFilter" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ParsedTableFilter" }
+              }
+            },
             "description": "success"
           },
-          "400": { "description": "missing_required_parameter / invalid_parameter_value" },
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value"
+          },
           "404": { "description": "not_found" },
           "500": { "description": "internal_error" }
         },

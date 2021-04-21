@@ -11,7 +11,9 @@
     "requestBodies": {
       "IntegrationModel": {
         "content": {
-          "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/IntegrationModel" } }
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/IntegrationModel" }
+          }
         },
         "description": "Model for Integration",
         "required": true
@@ -21,21 +23,51 @@
       "AlertRuleNotificationConfigModel": {
         "description": "Model for Alert Rule Notification Config",
         "properties": {
-          "dayOfMonth": { "description": "Day of month", "format": "int32", "readOnly": true, "type": "integer" },
+          "dayOfMonth": {
+            "description": "Day of month",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
           "daysOfWeek": {
             "description": "Days of week",
             "items": { "$ref": "#/components/schemas/WeekDay" },
             "readOnly": true,
             "type": "array"
           },
-          "detailedReport": { "description": "Provide csv detailed report", "type": "boolean" },
+          "detailedReport": {
+            "description": "Provide csv detailed report",
+            "type": "boolean"
+          },
           "enabled": { "description": "Scan enabled", "type": "boolean" },
-          "frequency": { "enum": ["as_it_happens", "daily", "weekly", "monthly"], "type": "string" },
-          "frequencyFromRRule": { "description": "Frequency from RRule", "readOnly": true, "type": "string" },
-          "hourOfDay": { "description": "Hour of day", "format": "int32", "readOnly": true, "type": "integer" },
-          "id": { "description": "Alert rule notification config ID", "type": "string" },
-          "includeRemediation": { "description": "Include remediation in detailed report", "type": "boolean" },
-          "lastUpdated": { "description": "Last Updated", "format": "int64", "type": "integer" },
+          "frequency": {
+            "enum": ["as_it_happens", "daily", "weekly", "monthly"],
+            "type": "string"
+          },
+          "frequencyFromRRule": {
+            "description": "Frequency from RRule",
+            "readOnly": true,
+            "type": "string"
+          },
+          "hourOfDay": {
+            "description": "Hour of day",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "id": {
+            "description": "Alert rule notification config ID",
+            "type": "string"
+          },
+          "includeRemediation": {
+            "description": "Include remediation in detailed report",
+            "type": "boolean"
+          },
+          "lastUpdated": {
+            "description": "Last Updated",
+            "format": "int64",
+            "type": "integer"
+          },
           "last_sent_ts": {
             "description": "Time of last notification in milliseconds",
             "format": "int64",
@@ -73,24 +105,41 @@
             ],
             "type": "string"
           },
-          "withCompression": { "description": "Compress detailed report", "type": "boolean" }
+          "withCompression": {
+            "description": "Compress detailed report",
+            "type": "boolean"
+          }
         },
         "type": "object"
       },
       "IntegrationModel": {
         "description": "Model for Integration",
         "properties": {
-          "alertRules": { "items": { "$ref": "#/components/schemas/PolicyScanConfigModel" }, "type": "array" },
-          "createdBy": { "description": "Created by", "readOnly": true, "type": "string" },
+          "alertRules": {
+            "items": { "$ref": "#/components/schemas/PolicyScanConfigModel" },
+            "type": "array"
+          },
+          "createdBy": {
+            "description": "Created by",
+            "readOnly": true,
+            "type": "string"
+          },
           "createdTs": {
             "description": "Creation timestamp in milliseconds",
             "format": "int64",
             "readOnly": true,
             "type": "integer"
           },
-          "description": { "description": "Integration description", "type": "string" },
+          "description": {
+            "description": "Integration description",
+            "type": "string"
+          },
           "enabled": { "description": "Enabled", "type": "boolean" },
-          "id": { "description": "Integration ID", "readOnly": true, "type": "string" },
+          "id": {
+            "description": "Integration ID",
+            "readOnly": true,
+            "type": "string"
+          },
           "integrationConfig": {
             "additionalProperties": { "type": "object" },
             "description": "Integration Configuration. The values depend on the integration type.",
@@ -118,7 +167,11 @@
             ],
             "type": "string"
           },
-          "lastModifiedBy": { "description": "Last modified by", "readOnly": true, "type": "string" },
+          "lastModifiedBy": {
+            "description": "Last modified by",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedTs": {
             "description": "Last modification timestamp in milliseconds",
             "format": "int64",
@@ -153,17 +206,39 @@
             "readOnly": true,
             "type": "string"
           },
-          "lastUpdated": { "description": "Last updated", "format": "int64", "readOnly": true, "type": "integer" },
-          "message": { "description": "Message", "readOnly": true, "type": "string" }
+          "lastUpdated": {
+            "description": "Last updated",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "message": {
+            "description": "Message",
+            "readOnly": true,
+            "type": "string"
+          }
         },
         "type": "object"
       },
       "MessageDetails": {
         "description": "Model for Message Details",
         "properties": {
-          "i18nKey": { "description": "Internationalization key", "readOnly": true, "type": "string" },
-          "statusCode": { "description": "Status code", "format": "int32", "readOnly": true, "type": "integer" },
-          "subject": { "description": "Subject", "readOnly": true, "type": "string" }
+          "i18nKey": {
+            "description": "Internationalization key",
+            "readOnly": true,
+            "type": "string"
+          },
+          "statusCode": {
+            "description": "Status code",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "subject": {
+            "description": "Subject",
+            "readOnly": true,
+            "type": "string"
+          }
         },
         "type": "object"
       },
@@ -172,23 +247,38 @@
         "properties": {
           "alertRuleNotificationConfig": {
             "description": "List of data for notifications to third-party tools",
-            "items": { "$ref": "#/components/schemas/AlertRuleNotificationConfigModel" },
+            "items": {
+              "$ref": "#/components/schemas/AlertRuleNotificationConfigModel"
+            },
             "type": "array"
           },
-          "allowAutoRemediate": { "description": "Allow Auto-Remediation", "type": "boolean" },
+          "allowAutoRemediate": {
+            "description": "Allow Auto-Remediation",
+            "type": "boolean"
+          },
           "delayNotificationMs": {
             "description": "Delay notifications by the specified milliseconds",
             "format": "int64",
             "type": "integer"
           },
-          "description": { "description": "Rule/Scan description", "type": "string" },
-          "enabled": { "description": "Rule/Scan is enabled", "type": "boolean" },
+          "description": {
+            "description": "Rule/Scan description",
+            "type": "string"
+          },
+          "enabled": {
+            "description": "Rule/Scan is enabled",
+            "type": "boolean"
+          },
           "excludedPolicies": {
             "description": "List of policies to exclude from scan",
             "items": { "type": "string" },
             "type": "array"
           },
-          "lastModifiedBy": { "description": "Last modified by", "readOnly": true, "type": "string" },
+          "lastModifiedBy": {
+            "description": "Last modified by",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedOn": {
             "description": "Last modified on this date/time in milliseconds",
             "format": "int64",
@@ -196,17 +286,36 @@
             "type": "integer"
           },
           "name": { "description": "Rule/Scan name", "type": "string" },
-          "notifyOnDismissed": { "description": "include dismissed alerts in notification", "type": "boolean" },
-          "notifyOnOpen": { "description": "include open alerts in notification", "type": "boolean" },
-          "notifyOnResolved": { "description": "include resolved alerts in notification", "type": "boolean" },
-          "notifyOnSnoozed": { "description": "include snoozed alerts in notification", "type": "boolean" },
+          "notifyOnDismissed": {
+            "description": "include dismissed alerts in notification",
+            "type": "boolean"
+          },
+          "notifyOnOpen": {
+            "description": "include open alerts in notification",
+            "type": "boolean"
+          },
+          "notifyOnResolved": {
+            "description": "include resolved alerts in notification",
+            "type": "boolean"
+          },
+          "notifyOnSnoozed": {
+            "description": "include snoozed alerts in notification",
+            "type": "boolean"
+          },
           "policies": {
             "description": "List of specific policies to scan",
             "items": { "type": "string" },
             "type": "array"
           },
-          "policyLabels": { "description": "Policy labels", "items": { "type": "string" }, "type": "array" },
-          "policyScanConfigId": { "description": "Policy Scan Config ID", "type": "string" },
+          "policyLabels": {
+            "description": "Policy labels",
+            "items": { "type": "string" },
+            "type": "array"
+          },
+          "policyScanConfigId": {
+            "description": "Policy Scan Config ID",
+            "type": "string"
+          },
           "scanAll": { "description": "Scan all policies", "type": "boolean" },
           "target": { "$ref": "#/components/schemas/TargetFilterModel" }
         },
@@ -216,7 +325,10 @@
       "ResponseStatus": {
         "properties": {
           "i18nKey": { "type": "string" },
-          "severity": { "enum": ["ERROR", "WARNING", "INFO"], "type": "string" },
+          "severity": {
+            "enum": ["ERROR", "WARNING", "INFO"],
+            "type": "string"
+          },
           "subject": { "type": "string" }
         },
         "type": "object"
@@ -234,7 +346,11 @@
             "items": { "type": "string" },
             "type": "array"
           },
-          "regions": { "description": "List of regions", "items": { "type": "string" }, "type": "array" },
+          "regions": {
+            "description": "List of regions",
+            "items": { "type": "string" },
+            "type": "array"
+          },
           "tags": {
             "description": "List of TargetTag models (resource tags)",
             "items": { "$ref": "#/components/schemas/TargetTagModel" },
@@ -266,16 +382,25 @@
       },
       "ValidatorResponse": {
         "properties": {
-          "errorMessages": { "items": { "$ref": "#/components/schemas/ResponseStatus" }, "type": "array" },
+          "errorMessages": {
+            "items": { "$ref": "#/components/schemas/ResponseStatus" },
+            "type": "array"
+          },
           "statusCode": { "format": "int32", "type": "integer" },
           "success": { "type": "boolean" },
-          "tests": { "items": { "$ref": "#/components/schemas/TestInfo" }, "type": "array" }
+          "tests": {
+            "items": { "$ref": "#/components/schemas/TestInfo" },
+            "type": "array"
+          }
         },
         "type": "object"
       },
       "WeekDay": {
         "properties": {
-          "day": { "enum": ["SU", "MO", "TU", "WE", "TH", "FR", "SA"], "type": "string" },
+          "day": {
+            "enum": ["SU", "MO", "TU", "WE", "TH", "FR", "SA"],
+            "type": "string"
+          },
           "offset": { "format": "int32", "type": "integer" }
         },
         "type": "object"
@@ -290,7 +415,12 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "THe Integration APIs are listed below.", "name": "Integrations" }],
+  "tags": [
+    {
+      "description": "THe Integration APIs are listed below.",
+      "name": "Integrations"
+    }
+  ],
   "paths": {
     "/integration/name": {
       "get": {
@@ -310,7 +440,10 @@
             "content": {
               "application/json; charset=UTF-8": {
                 "schema": {
-                  "items": { "additionalProperties": { "type": "string" }, "type": "object" },
+                  "items": {
+                    "additionalProperties": { "type": "string" },
+                    "type": "object"
+                  },
                   "type": "array"
                 }
               }
@@ -403,7 +536,10 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/IntegrationModel" }, "type": "array" }
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/IntegrationModel" },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -428,7 +564,9 @@
         "operationId": "save-integration",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/IntegrationModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/IntegrationModel" }
+            }
           },
           "description": "Model for Integration",
           "required": true
@@ -469,7 +607,9 @@
         ],
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/IntegrationModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/IntegrationModel" }
+            }
           },
           "description": "Model for Integration",
           "required": true
@@ -477,7 +617,9 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ValidatorResponse" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/ValidatorResponse" }
+              }
             },
             "description": "successful operation"
           },
@@ -516,7 +658,9 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/IntegrationModel" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/IntegrationModel" }
+              }
             },
             "description": "successful operation"
           },
@@ -528,11 +672,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/integration/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/integration/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/integration/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/integration/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -550,7 +694,9 @@
         ],
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/IntegrationModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/IntegrationModel" }
+            }
           },
           "description": "Model for Integration",
           "required": true
@@ -567,18 +713,25 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/integration/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/integration/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/integration/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/integration/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
       "delete": {
         "description": "Deletes the integration for the specified ID.",
         "operationId": "delete-integration",
-        "parameters": [{ "in": "path", "name": "id", "required": true, "schema": { "type": "string" } }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
         "responses": {
           "200": { "description": "successful operation" },
           "400": {
@@ -591,11 +744,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/integration/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/integration/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/integration/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/integration/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }

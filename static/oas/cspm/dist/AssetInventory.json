@@ -10,14 +10,24 @@
     },
     "requestBodies": {
       "FilterModel": {
-        "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+        "content": {
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/FilterModel" }
+          }
+        }
       },
       "FilterModel3": {
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/FilterModel" }
+          }
+        }
       },
       "FilterSuggestionModel": {
         "content": {
-          "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" } }
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
+          }
         }
       }
     },
@@ -39,10 +49,23 @@
       "AssetInventoryGroupedAggregate": {
         "description": "Model for Grouped Inventory Detail on Asset Inventory Dashboard API",
         "properties": {
-          "accountName": { "description": "Name of cloud account", "type": "string" },
-          "allowDrillDown": { "description": "Possible to drill down further", "type": "boolean" },
-          "cloudTypeName": { "description": "Name of cloud type", "type": "string" },
-          "failedResources": { "description": "Number of failed resources", "format": "int64", "type": "integer" },
+          "accountName": {
+            "description": "Name of cloud account",
+            "type": "string"
+          },
+          "allowDrillDown": {
+            "description": "Possible to drill down further",
+            "type": "boolean"
+          },
+          "cloudTypeName": {
+            "description": "Name of cloud type",
+            "type": "string"
+          },
+          "failedResources": {
+            "description": "Number of failed resources",
+            "format": "int64",
+            "type": "integer"
+          },
           "highSeverityFailedResources": {
             "description": "The number of resources that failed high severity policies",
             "format": "int64",
@@ -58,10 +81,23 @@
             "format": "int64",
             "type": "integer"
           },
-          "passedResources": { "description": "Number of passed resources", "format": "int64", "type": "integer" },
-          "regionName": { "description": "Name of cloud region", "type": "string" },
-          "resourceTypeName": { "description": "Name of resource type", "type": "string" },
-          "serviceName": { "description": "Name of cloud service", "type": "string" },
+          "passedResources": {
+            "description": "Number of passed resources",
+            "format": "int64",
+            "type": "integer"
+          },
+          "regionName": {
+            "description": "Name of cloud region",
+            "type": "string"
+          },
+          "resourceTypeName": {
+            "description": "Name of resource type",
+            "type": "string"
+          },
+          "serviceName": {
+            "description": "Name of cloud service",
+            "type": "string"
+          },
           "totalResources": {
             "description": "Total number of Compliance Standard/Requirement/Section scanned resources",
             "format": "int64",
@@ -80,19 +116,33 @@
         "properties": {
           "groupedAggregates": {
             "description": "List of grouped asset inventory aggregates",
-            "items": { "$ref": "#/components/schemas/AssetInventoryGroupedAggregate" },
+            "items": {
+              "$ref": "#/components/schemas/AssetInventoryGroupedAggregate"
+            },
             "type": "array"
           },
-          "requestedTimestamp": { "description": "Requested timestamp", "format": "int64", "type": "integer" },
+          "requestedTimestamp": {
+            "description": "Requested timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
           "summary": { "$ref": "#/components/schemas/AssetInventorySummary" },
-          "timestamp": { "description": "Timestamp", "format": "int64", "type": "integer" }
+          "timestamp": {
+            "description": "Timestamp",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
       "AssetInventorySummary": {
         "description": "Model for Asset Inventory Summary",
         "properties": {
-          "failedResources": { "description": "Number of failed resources", "format": "int64", "type": "integer" },
+          "failedResources": {
+            "description": "Number of failed resources",
+            "format": "int64",
+            "type": "integer"
+          },
           "highSeverityFailedResources": {
             "description": "The number of resources that failed high severity policies",
             "format": "int64",
@@ -108,9 +158,21 @@
             "format": "int64",
             "type": "integer"
           },
-          "passedResources": { "description": "Number of passed resources", "format": "int64", "type": "integer" },
-          "timestamp": { "description": "Timestamp", "format": "int64", "type": "integer" },
-          "totalResources": { "description": "Total number of resources", "format": "int64", "type": "integer" },
+          "passedResources": {
+            "description": "Number of passed resources",
+            "format": "int64",
+            "type": "integer"
+          },
+          "timestamp": {
+            "description": "Timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
+          "totalResources": {
+            "description": "Total number of resources",
+            "format": "int64",
+            "type": "integer"
+          },
           "unscannedResources": {
             "description": "Total number of unscanned resources",
             "format": "int64",
@@ -173,7 +235,10 @@
             "type": "array",
             "uniqueItems": true
           },
-          "staticFilter": { "description": "Filter is a static filter", "type": "boolean" }
+          "staticFilter": {
+            "description": "Filter is a static filter",
+            "type": "boolean"
+          }
         },
         "type": "object"
       },
@@ -201,18 +266,41 @@
         "type": "object"
       },
       "NameValueIntegerString": {
-        "properties": { "id": { "format": "int32", "type": "integer" }, "name": { "type": "string" } },
+        "properties": {
+          "id": { "format": "int32", "type": "integer" },
+          "name": { "type": "string" }
+        },
         "type": "object"
       },
       "ParsedTableFilter": {
         "description": "Model for parsed table filter",
         "properties": {
-          "completeParameters": { "items": { "$ref": "#/components/schemas/UIFilterModel" }, "type": "array" },
-          "needsOffsetUpdate": { "description": "Needs offset update (for internal use)", "type": "boolean" },
-          "offset": { "description": "Offset within query", "format": "int32", "type": "integer" },
-          "queryRemainder": { "description": "Query remainder", "type": "string" },
-          "suggestions": { "description": "List of suggestions", "items": { "type": "string" }, "type": "array" },
-          "translate": { "description": "Translate (for internal use)", "type": "boolean" },
+          "completeParameters": {
+            "items": { "$ref": "#/components/schemas/UIFilterModel" },
+            "type": "array"
+          },
+          "needsOffsetUpdate": {
+            "description": "Needs offset update (for internal use)",
+            "type": "boolean"
+          },
+          "offset": {
+            "description": "Offset within query",
+            "format": "int32",
+            "type": "integer"
+          },
+          "queryRemainder": {
+            "description": "Query remainder",
+            "type": "string"
+          },
+          "suggestions": {
+            "description": "List of suggestions",
+            "items": { "type": "string" },
+            "type": "array"
+          },
+          "translate": {
+            "description": "Translate (for internal use)",
+            "type": "boolean"
+          },
           "valid": { "description": "Query is valid", "type": "boolean" }
         },
         "type": "object"
@@ -220,7 +308,11 @@
       "RelativeTimeDurationModel": {
         "description": "Model for RelativeTimeDuration",
         "properties": {
-          "amount": { "description": "Number of time units", "format": "int32", "type": "integer" },
+          "amount": {
+            "description": "Number of time units",
+            "format": "int32",
+            "type": "integer"
+          },
           "unit": {
             "description": "Time unit",
             "enum": ["minute", "hour", "day", "week", "month", "year"],
@@ -241,7 +333,9 @@
                 "type": "string"
               },
               "type": { "example": "relative", "type": "string" },
-              "value": { "$ref": "#/components/schemas/RelativeTimeDurationModel" }
+              "value": {
+                "$ref": "#/components/schemas/RelativeTimeDurationModel"
+              }
             },
             "required": ["value"],
             "type": "object"
@@ -251,8 +345,16 @@
       "TimeModel": {
         "description": "Model for Time",
         "properties": {
-          "endTime": { "description": "End timestamp", "format": "int64", "type": "integer" },
-          "startTime": { "description": "Start timestamp", "format": "int64", "type": "integer" }
+          "endTime": {
+            "description": "End timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
+          "startTime": {
+            "description": "Start timestamp",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -271,7 +373,9 @@
           { "$ref": "#/components/schemas/AbsoluteTimeRangeConfigModel" },
           { "$ref": "#/components/schemas/ToNowTimeRangeConfigModel" }
         ],
-        "properties": { "type": { "description": "Time type", "type": "string" } },
+        "properties": {
+          "type": { "description": "Time type", "type": "string" }
+        },
         "required": ["type"],
         "type": "object"
       },
@@ -283,7 +387,16 @@
             "properties": {
               "value": {
                 "description": "Time range object",
-                "enum": ["MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR", "EPOCH", "LOGIN"],
+                "enum": [
+                  "MINUTE",
+                  "HOUR",
+                  "DAY",
+                  "WEEK",
+                  "MONTH",
+                  "YEAR",
+                  "EPOCH",
+                  "LOGIN"
+                ],
                 "type": "string"
               }
             },
@@ -295,7 +408,11 @@
         "description": "Model for UIFilter",
         "properties": {
           "name": { "description": "Name", "type": "string" },
-          "operator": { "description": "Operator", "enum": ["="], "type": "string" },
+          "operator": {
+            "description": "Operator",
+            "enum": ["="],
+            "type": "string"
+          },
           "value": { "description": "Value", "type": "string" }
         },
         "type": "object"
@@ -310,7 +427,12 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The Asset Inventory Dashboard APIs are listed below.", "name": "Asset Inventory" }],
+  "tags": [
+    {
+      "description": "The Asset Inventory Dashboard APIs are listed below.",
+      "name": "Asset Inventory"
+    }
+  ],
   "paths": {
     "/filter/v2/inventory/suggest": {
       "get": {
@@ -320,7 +442,9 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "$ref": "#/components/schemas/InventoryFilterSuggestion" }
+                "schema": {
+                  "$ref": "#/components/schemas/InventoryFilterSuggestion"
+                }
               }
             },
             "description": "success"
@@ -346,13 +470,17 @@
         "operationId": "get-asset-inventory-v2-dashboard-filter-options",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
+            }
           }
         },
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/ParsedTableFilter" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/ParsedTableFilter" }
+              }
             },
             "description": "success"
           },
@@ -381,7 +509,10 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/FilterModel" }, "type": "array" }
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/FilterModel" },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -406,7 +537,11 @@
         "description": "Saves the asset inventory filter.",
         "operationId": "save-asset-inventory-filter",
         "requestBody": {
-          "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+          "content": {
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
+          }
         },
         "responses": {
           "200": { "description": "successful operation" },
@@ -444,7 +579,9 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterModel" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/FilterModel" }
+              }
             },
             "description": "successful operation"
           },
@@ -456,11 +593,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/filter/inventory/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/filter/inventory/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/filter/inventory/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/filter/inventory/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -477,7 +614,11 @@
           }
         ],
         "requestBody": {
-          "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+          "content": {
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
+          }
         },
         "responses": {
           "200": { "description": "successful operation" },
@@ -490,11 +631,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/filter/inventory/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/filter/inventory/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/filter/inventory/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/filter/inventory/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -522,11 +663,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/filter/inventory/%7Bid%7D\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/filter/inventory/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/filter/inventory/%7Bid%7D \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request DELETE \\\n  --url https://api.prismacloud.io/filter/inventory/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -555,7 +696,10 @@
             "in": "query",
             "name": "timeUnit",
             "required": true,
-            "schema": { "enum": ["minute", "hour", "day", "week", "month", "year"], "type": "string" }
+            "schema": {
+              "enum": ["minute", "hour", "day", "week", "month", "year"],
+              "type": "string"
+            }
           },
           {
             "description": "Cloud account",
@@ -638,7 +782,11 @@
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/AssetInventorySnapshot" } }
+              "application/json; charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssetInventorySnapshot"
+                }
+              }
             },
             "description": "success"
           },
@@ -664,11 +812,21 @@
         "description": "Returns asset inventory pass/fail data for the specified time period.  \r\n\r\nYou can get a list of the valid names and values for the filters body parameter \nthrough [List Inventory Filters V2](/api/cloud/cspm/asset-inventory#operation/get-asset-inventory-v2-filters-and-options) and [List Inventory Dashboard Filter Autocomplete \nSuggestions V2](/api/cloud/cspm/asset-inventory#operation/get-asset-inventory-v2-dashboard-filter-options). \n",
         "operationId": "post-method-for-asset-inventory-v2",
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
+          }
         },
         "responses": {
           "200": {
-            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AssetInventorySnapshot" } } },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssetInventorySnapshot"
+                }
+              }
+            },
             "description": "success"
           },
           "404": { "description": "not_found" },
@@ -713,7 +871,10 @@
             "in": "query",
             "name": "timeUnit",
             "required": true,
-            "schema": { "enum": ["minute", "hour", "day", "week", "month", "year"], "type": "string" }
+            "schema": {
+              "enum": ["minute", "hour", "day", "week", "month", "year"],
+              "type": "string"
+            }
           },
           {
             "description": "Cloud account",
@@ -790,7 +951,12 @@
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/AssetInventorySummary" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AssetInventorySummary"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "success"
@@ -817,13 +983,22 @@
         "description": "Returns asset inventory pass/fail trends for the specified time period.  \r\n\r\nYou can get a list of the valid names and values for the filters body parameter \nthrough [List Inventory Filters V2](/api/cloud/cspm/asset-inventory#operation/get-asset-inventory-v2-filters-and-options) \nand [List Inventory Dashboard Filter Autocomplete Suggestions V2](/api/cloud/cspm/asset-inventory#operation/get-asset-inventory-v2-dashboard-filter-options).\n",
         "operationId": "post-method-asset-inventory-trend-v2",
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FilterModel" } } }
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FilterModel" }
+            }
+          }
         },
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": { "items": { "$ref": "#/components/schemas/AssetInventorySummary" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AssetInventorySummary"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "success"
