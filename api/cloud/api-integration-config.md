@@ -9,7 +9,7 @@ With the multiple out-of-the-box integration options that Prisma Cloud offers, y
 
 ## Integration Configuration
 
-The model for an integration between Prisma Cloud and an external system includes an integrationConfig parameter that is a map of key/value pairs. The type of integration defines the content of these key/value pairs.
+The model for an integration between Prisma Cloud and an external system includes an **integrationConfig** parameter that is a map of key/value pairs. The type of integration defines the content of these key/value pairs.
 
 ### Azure Service Bus Queue
 
@@ -17,9 +17,9 @@ Prisma Cloud can send alerts to an Azure Service Bus messaging service. To autho
 
 #### Add, Update, or Test an Azure Service Bus Queue Integration
 
-To add an Azure Service Bus queue integration, invoke the API with the corresponding request body described in [Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of that request body, the **integrationType** parameter for an SQS integration is **azure_service_bus_queue**.
+To add an Azure Service Bus queue integration, invoke the API with the corresponding request body described in [Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of that request body, the **integrationType** parameter for an Azure Service Bus queue integration is **azure_service_bus_queue**.
 
-If you want to use the service principal-based access provided when the Azure cloud account was on-boarded to Prisma Cloud, then the **integrationConfig** parameter contains the following key/value pairs.
+If you want to use the service principal-based access provided when the Azure cloud account was onboarded to Prisma Cloud, then the **integrationConfig** parameter contains the following key/value pairs.
 
 Key | Value Description | Value Type | Default Value or Required
 -----| ------------------ | ---------- | -------------
@@ -83,8 +83,8 @@ Key  |  Value Description | Value Type | Default Value or Required
 -----| ------------------ | ---------- | -------------
 queueUrl | The Queue URL you used when you configured Prisma Cloud in Amazon SQS | string | _required_
 moreInfo | true=specific IAM credentials are specified for SQS queue access | boolean | false
-accessKey | AWS access key belonging to AWS IAM credentials meant for SQS queue access | string | Access provided during on-boarding of AWS cloud account to which SQS queue belongs
-secretKey | AWS secret key for the given access key | string | Access provided during on-boarding of AWS cloud account to which SQS queue belongs
+accessKey | AWS access key belonging to AWS IAM credentials meant for SQS queue access | string | Access provided during onboarding of AWS cloud account to which SQS queue belongs
+secretKey | AWS secret key for the given access key | string | Access provided during onboarding of AWS cloud account to which SQS queue belongs
 
 The **integrationConfig** parameter contains the following key/value pairs when you are using the IAM Role associated with Prisma Cloud:
 
@@ -151,7 +151,7 @@ baseUrl | Qualys Security Operations Center server API URL (without **http(s)**)
 password | Qualys password | string |  _required_
 
 To update a Qualys integration, invoke the API with the corresponding request body described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the integrationConfig key/value pairs are updatable.
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are updatable.
 
 To test a Qualys integration, invoke the API with the corresponding request body described in
 [Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
@@ -190,7 +190,7 @@ password | ServiceNow password for login | string |  _required_
 tables | Array of key/value pairs that identify the ServiceNow module tables with which to integrate. The possible keys are: **incident**, **sn_si_incident**, **em_event**.<br/>The possible values for each key are: **true**, **false** | string |  _required_
 
 To update a ServicNow integration, invoke the API with the corresponding request body described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the integrationConfig key/value pairs are updatable.
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are updatable.
 
 To test a ServiceNow integration, invoke the API with the corresponding request body described in
 [Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
@@ -257,7 +257,7 @@ To update a webhook integration, invoke the API with the corresponding request b
 [Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are updatable.
 
 To test a webhook integration, invoke the API with the corresponding request body described in
-[Test Integration](/api/cloud/cspm/integrations#operation/test-integration). You must also include the integrationConfig.url parameter in your request body.
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration). You must also include the **integrationConfig.url** parameter in your request body.
 
 ##### Example Request Body to Add a Webhook Integration
 

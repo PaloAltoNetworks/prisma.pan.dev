@@ -203,9 +203,9 @@
               "GCP",
               "GCP_GOVERNMENT",
               "GCP_CHINA",
-              "ALIBABA",
-              "ALIBABA_GOVERNMENT",
-              "ALIBABA_CHINA"
+              "ALIBABA_CLOUD",
+              "ALIBABA_CLOUD_GOVERNMENT",
+              "ALIBABA_CLOUD_CHINA"
             ],
             "type": "string"
           },
@@ -331,9 +331,9 @@
               "GCP",
               "GCP_GOVERNMENT",
               "GCP_CHINA",
-              "ALIBABA",
-              "ALIBABA_GOVERNMENT",
-              "ALIBABA_CHINA"
+              "ALIBABA_CLOUD",
+              "ALIBABA_CLOUD_GOVERNMENT",
+              "ALIBABA_CLOUD_CHINA"
             ],
             "type": "string"
           },
