@@ -4,7 +4,7 @@ id: api-time-range-model
 
 title: Prisma Cloud API Time Range Model
 
-sidebar_label: API Time Range Model
+sidebar_label: Time Range Model
 
 hide_table_of_contents: false
 
