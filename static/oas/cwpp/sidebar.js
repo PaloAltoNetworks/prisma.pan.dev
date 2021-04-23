@@ -3,26 +3,32 @@ const yaml = require("js-yaml");
 const fs = require("fs");
 // Use the following to frontload docs
 var docs = [
-  "cloud/api-urls",
-  "cloud/api-headers",
-  "cloud/api-time-range-model",
-  "cloud/api-integration-config",
-  "cloud/api-errors",
+  {
+    type: "doc",
+    id: "cloud/cwpp/cwpp-home",
+  },
+  {
+    type: "doc",
+    id: "cloud/cwpp/curl-examples",
+  },
+  {
+    type: "doc",
+    id: "cloud/cwpp/how-to-eval-console",
+  },
+  {
+    type: "doc",
+    id: "cloud/cwpp/api-limits",
+  },
 ];
+
 // Change these variables to match your doc path
-const relativePath = "cloud/cspm";
-const absolutePath = "/api/cloud/cspm";
+const relativePath = "cloud/cwpp";
+const absolutePath = "/api/cloud/cwpp";
 function genEndpoints() {
   const endpoints = [];
-  var endEndpoints = [];
-  var pushToEnd = [
-    "IacScan",
-    "DataSecurityDashboard",
-    "DataSecurityInventory",
-    "DataSecuritySettings",
-  ];
+  const css_overrides = [];
   // Absolute path from project root
-  specs = globby.sync(["./static/oas/cspm/*.yaml"], {
+  specs = globby.sync(["./static/oas/cwpp/*.json"], {
     absolute: false,
     objectMode: true,
     deep: 1,
@@ -31,8 +37,7 @@ function genEndpoints() {
   specs.map((spec) => {
     const specContents = fs.readFileSync(spec.path, "utf8");
     const data = yaml.load(specContents);
-    const specSplit = spec.path.split("/");
-    const categoryLabel = specSplit[specSplit.length - 1].replace(".yaml", "");
+    const categoryLabel = data.tags[0].name;
     const docId = categoryLabel
       .replace(/([a-z])([A-Z])/g, "$1-$2")
       .replace(/[\s_]+/g, "-")
@@ -52,20 +57,20 @@ function genEndpoints() {
           label: linkLabel,
           href: `${absolutePath}/${docId}#operation/${operationId}`,
         };
+        var css_link =
+          ".menu__link[href$=operation/" + `${operationId}` + "]:after, ";
+        css_overrides[method] += css_link;
         items.push(item);
       }
     }
     category.items = items;
-    if (pushToEnd.includes(category.label)) {
-      endEndpoints.push(category);
-    } else {
-      endpoints.push(category);
-    }
+    endpoints.push(category);
   });
-  return [endpoints, endEndpoints];
+  //console.log(css_overrides);
+  return endpoints;
 }
-const [endpoints, endEndpoints] = genEndpoints();
-const sidebar = docs.concat(endpoints).concat(endEndpoints);
+const endpoints = genEndpoints();
+const sidebar = docs.concat(endpoints);
 module.exports = {
   sidebar: sidebar,
 };
