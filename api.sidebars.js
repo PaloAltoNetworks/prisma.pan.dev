@@ -6,5 +6,20 @@
  */
 
 module.exports = {
-  cspm: require('./static/oas/cspm/sidebar').sidebar,
+  cloud: [
+    {
+      type: "doc",
+      id: "cloud/api-reference-home",
+    },
+    {
+      type: "category",
+      label: "Cloud Security Posture Management",
+      items: require("./static/oas/cspm/sidebar").sidebar,
+    },
+    {
+      type: "category",
+      label: "Cloud Workload Protection",
+      items: require("./static/oas/cwpp/sidebar").sidebar,
+    },
+  ],
 };

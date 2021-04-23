@@ -110,6 +110,10 @@ module.exports = {
       collapsed: false,
       items: [
         'cloud/cwpp/cwpp-gs',
+        'cloud/cwpp/access-api-self-hosted',
+        'cloud/cwpp/access-api-saas',
+        'cloud/cwpp/stable-endpoints',
+        'cloud/cwpp/porting-guide',
         'cloud/cwpp/policy_samples',
         'cloud/cwpp/twistcli_gs',
         'cloud/cwpp/custom_compliance_samples',
@@ -119,6 +123,14 @@ module.exports = {
           href: 'https://cdn.twistlock.com/docs/api/twistlock_api.html',
         },
         'cloud/cwpp/cwpp_postman_collection',
+        {
+          type: 'category',
+          label: 'API workflows',
+          items: [
+            'cloud/cwpp/api-workflows/set-up-console',
+            'cloud/cwpp/api-workflows/manage-compliance-policy',
+          ],
+        },
         {
           type: 'category',
           label: 'Other Documentation',

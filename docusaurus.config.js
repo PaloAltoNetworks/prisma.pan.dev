@@ -38,7 +38,12 @@ module.exports = {
         },
         {
           label: "API Reference",
-          items: [{ to: "/api/cloud/", label: "Prisma Cloud Platform APIs" }],
+          items: [
+            {
+              to: "/api/cloud/",
+              label: "Prisma Cloud Platform",
+            },
+          ],
           position: "left",
         },
         {
