@@ -1,7 +1,7 @@
 ---
 id: api-headers
 title: Prisma Cloud API Headers
-sidebar_label: Prisma Cloud API Headers
+sidebar_label: Headers
 hide_table_of_contents: false
 keywords:
   - Developer

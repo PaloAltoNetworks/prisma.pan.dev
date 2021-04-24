@@ -1,7 +1,7 @@
 ---
 id: api-urls
 title: Prisma Cloud API URLs
-sidebar_label: Prisma Cloud API URLs
+sidebar_label: URLs
 keywords:
   - Developer
   - Prisma
