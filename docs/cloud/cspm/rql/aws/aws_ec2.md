@@ -59,6 +59,12 @@ config from cloud.resource where cloud.type = 'aws' AND cloud.service = 'EC2' AN
 config from cloud.resource where api.name = 'aws-ec2-describe-instances' as X; config from cloud.resource where api.name = 'aws-ec2-describe-images' AND json.rule = "_DateTime.ageInDays(image.creationDate) > 30" as Y; filter ' $.X.imageId==$.Y.image.imageId '; show X; 
 ```
 
+### Detect EC2 instances not using a specified AMI image
+
+```bash
+config where cloud.type = 'aws' AND api.name = 'aws-ec2-describe-instances' AND json.rule =  imageId does not contain <ami-AMI_ID>
+```
+
 ### Detect EC2 instances running for more than 1 day but less than 3 days
 
 ```bash
