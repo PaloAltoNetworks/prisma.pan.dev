@@ -26,7 +26,9 @@ components:
             example: absolute
             type: string
           value:
-            $ref: '#/components/schemas/TimeModel'
+            allOf:
+            - $ref: '#/components/schemas/TimeModel'
+            - description: Time range object
         required:
         - value
         type: object
@@ -311,7 +313,9 @@ components:
       description: Model class for Create and Update Data Profile
       properties:
         dataPatternsRule1:
-          $ref: '#/components/schemas/DataPatternRulesOne'
+          allOf:
+          - $ref: '#/components/schemas/DataPatternRulesOne'
+          - description: Profile patterns
         description:
           description: Profile description
           type: string
@@ -352,7 +356,9 @@ components:
           description: Created by
           type: string
         dataPatternsRulesOne:
-          $ref: '#/components/schemas/DataPatternRulesOne'
+          allOf:
+          - $ref: '#/components/schemas/DataPatternRulesOne'
+          - description: Pattern rules
         description:
           description: Description
           type: string
@@ -410,7 +416,9 @@ components:
             type: string
           type: array
         timeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Time Range
         updatedByFilter:
           description: Updated By list
           items:
@@ -487,7 +495,9 @@ components:
             example: relative
             type: string
           value:
-            $ref: '#/components/schemas/RelativeTimeDurationModel'
+            allOf:
+            - $ref: '#/components/schemas/RelativeTimeDurationModel'
+            - description: Time range object
         required:
         - value
         type: object

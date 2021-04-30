@@ -37,7 +37,9 @@ components:
             type: string
           type: array
         additionalAttributes:
-          $ref: '#/components/schemas/Attributes'
+          allOf:
+          - $ref: '#/components/schemas/Attributes'
+          - description: Additional attributes of the the user role
         associatedUsers:
           description: Associated application users which cannot exist in the system
             without the user role
@@ -102,7 +104,9 @@ components:
           readOnly: true
           type: array
         additionalAttributes:
-          $ref: '#/components/schemas/Attributes'
+          allOf:
+          - $ref: '#/components/schemas/Attributes'
+          - description: Additional attributes of the the user role
         associatedUsers:
           description: Associated application users which cannot exist in the system
             without the user role

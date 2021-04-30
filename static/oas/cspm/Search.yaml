@@ -30,7 +30,9 @@ components:
             example: absolute
             type: string
           value:
-            $ref: '#/components/schemas/TimeModel'
+            allOf:
+            - $ref: '#/components/schemas/TimeModel'
+            - description: Time range object
         required:
         - value
         type: object
@@ -328,7 +330,9 @@ components:
             $ref: '#/components/schemas/SortConfigRuleSortField'
           type: array
         timeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Time Range
         withResourceJson:
           type: boolean
       type: object
@@ -444,7 +448,9 @@ components:
             example: relative
             type: string
           value:
-            $ref: '#/components/schemas/RelativeTimeDurationModel'
+            allOf:
+            - $ref: '#/components/schemas/RelativeTimeDurationModel'
+            - description: Time range object
         required:
         - value
         type: object
@@ -566,7 +572,9 @@ components:
           description: Risk grade
           type: string
         rrn:
-          $ref: '#/components/schemas/RRNModel'
+          allOf:
+          - $ref: '#/components/schemas/RRNModel'
+          - description: RRN
         service:
           description: Service
           type: string
@@ -645,7 +653,9 @@ components:
           readOnly: true
           type: string
         timeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Time Range
       required:
       - query
       - timeRange
@@ -709,7 +719,9 @@ components:
           readOnly: true
           type: string
         timeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Time Range
       required:
       - query
       - timeRange
@@ -775,7 +787,9 @@ components:
           readOnly: true
           type: string
         timeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Time Range
       required:
       - query
       - timeRange
@@ -841,7 +855,9 @@ components:
           readOnly: true
           type: string
         timeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Time Range
       required:
       - query
       - timeRange
@@ -905,7 +921,9 @@ components:
           readOnly: true
           type: string
         timeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Time Range
       required:
       - query
       - timeRange
@@ -969,7 +987,9 @@ components:
           readOnly: true
           type: string
         timeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Time Range
       required:
       - query
       - timeRange

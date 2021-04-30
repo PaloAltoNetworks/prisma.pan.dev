@@ -179,7 +179,15 @@
             "type": "integer"
           },
           "name": { "description": "Integration name", "type": "string" },
-          "reason": { "$ref": "#/components/schemas/IntegrationStatusDetails" },
+          "reason": {
+            "allOf": [
+              { "$ref": "#/components/schemas/IntegrationStatusDetails" },
+              {
+                "description": "Reason for marking the integration faulty",
+                "readOnly": true
+              }
+            ]
+          },
           "status": {
             "description": "State of integration",
             "enum": ["GREEN", "RED", "YELLOW", "NA"],
@@ -192,7 +200,12 @@
       "IntegrationStatusDetails": {
         "description": "Model for Integration Status Details",
         "properties": {
-          "details": { "$ref": "#/components/schemas/MessageDetails" },
+          "details": {
+            "allOf": [
+              { "$ref": "#/components/schemas/MessageDetails" },
+              { "description": "Details", "readOnly": true }
+            ]
+          },
           "errorType": {
             "description": "Error type",
             "enum": [
@@ -317,7 +330,12 @@
             "type": "string"
           },
           "scanAll": { "description": "Scan all policies", "type": "boolean" },
-          "target": { "$ref": "#/components/schemas/TargetFilterModel" }
+          "target": {
+            "allOf": [
+              { "$ref": "#/components/schemas/TargetFilterModel" },
+              { "description": "TargetFilter model (target accounts)" }
+            ]
+          }
         },
         "required": ["name", "target"],
         "type": "object"

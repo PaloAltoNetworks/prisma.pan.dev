@@ -22,7 +22,12 @@
       "IntegrationStatusDetails": {
         "description": "Model for Integration Status Details",
         "properties": {
-          "details": { "$ref": "#/components/schemas/MessageDetails" },
+          "details": {
+            "allOf": [
+              { "$ref": "#/components/schemas/MessageDetails" },
+              { "description": "Details", "readOnly": true }
+            ]
+          },
           "errorType": {
             "description": "Error type",
             "enum": [
@@ -154,7 +159,12 @@
             "description": "Name. Cannot include special characters ('<', '>', '!', '=', '\\\\n', '\\\\r'). Maximum length is 99.",
             "type": "string"
           },
-          "reason": { "$ref": "#/components/schemas/IntegrationStatusDetails" },
+          "reason": {
+            "allOf": [
+              { "$ref": "#/components/schemas/IntegrationStatusDetails" },
+              { "description": "Integration status details", "readOnly": true }
+            ]
+          },
           "status": {
             "description": "Integration status (color)",
             "enum": ["GREEN", "RED", "YELLOW", "NA"],

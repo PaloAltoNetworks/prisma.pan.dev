@@ -24,7 +24,10 @@ components:
       description: Model for Integration Status Details
       properties:
         details:
-          $ref: '#/components/schemas/MessageDetails'
+          allOf:
+          - $ref: '#/components/schemas/MessageDetails'
+          - description: Details
+            readOnly: true
         errorType:
           description: Error type
           enum:
@@ -152,7 +155,10 @@ components:
             '\\n', '\\r'). Maximum length is 99.
           type: string
         reason:
-          $ref: '#/components/schemas/IntegrationStatusDetails'
+          allOf:
+          - $ref: '#/components/schemas/IntegrationStatusDetails'
+          - description: Integration status details
+            readOnly: true
         status:
           description: Integration status (color)
           enum:

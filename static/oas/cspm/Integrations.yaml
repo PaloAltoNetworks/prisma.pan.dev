@@ -174,7 +174,10 @@ components:
           description: Integration name
           type: string
         reason:
-          $ref: '#/components/schemas/IntegrationStatusDetails'
+          allOf:
+          - $ref: '#/components/schemas/IntegrationStatusDetails'
+          - description: Reason for marking the integration faulty
+            readOnly: true
         status:
           description: State of integration
           enum:
@@ -190,7 +193,10 @@ components:
       description: Model for Integration Status Details
       properties:
         details:
-          $ref: '#/components/schemas/MessageDetails'
+          allOf:
+          - $ref: '#/components/schemas/MessageDetails'
+          - description: Details
+            readOnly: true
         errorType:
           description: Error type
           enum:
@@ -296,7 +302,9 @@ components:
           description: Scan all policies
           type: boolean
         target:
-          $ref: '#/components/schemas/TargetFilterModel'
+          allOf:
+          - $ref: '#/components/schemas/TargetFilterModel'
+          - description: TargetFilter model (target accounts)
       required:
       - name
       - target

@@ -21,7 +21,9 @@ components:
             example: absolute
             type: string
           value:
-            $ref: '#/components/schemas/TimeModel'
+            allOf:
+            - $ref: '#/components/schemas/TimeModel'
+            - description: Time range object
         required:
         - value
         type: object
@@ -161,7 +163,9 @@ components:
             example: relative
             type: string
           value:
-            $ref: '#/components/schemas/RelativeTimeDurationModel'
+            allOf:
+            - $ref: '#/components/schemas/RelativeTimeDurationModel'
+            - description: Time range object
         required:
         - value
         type: object
@@ -169,23 +173,41 @@ components:
       description: Model for ReportFilterSuggestion
       properties:
         account.group:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - description: Account group
         cloud.account:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - description: Cloud account
         cloud.region:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - description: Cloud region
         cloud.type:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         policy.complianceStandard:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - description: Policy compliance standard
         report.email.recipients:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - description: Report email recepients
         report.frequency:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         report.schedule:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         schedule.status:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
       type: object
     ReportGenerationConfigApiModel:
       description: Model for report generation configuration
@@ -205,7 +227,10 @@ components:
           readOnly: true
           type: string
         counts:
-          $ref: '#/components/schemas/ComplianceAggregateCount'
+          allOf:
+          - $ref: '#/components/schemas/ComplianceAggregateCount'
+          - description: Model for compliance aggregate count
+            readOnly: true
         createdBy:
           description: User who created this report
           readOnly: true
@@ -249,7 +274,9 @@ components:
           readOnly: true
           type: string
         target:
-          $ref: '#/components/schemas/ReportTargetModel'
+          allOf:
+          - $ref: '#/components/schemas/ReportTargetModel'
+          - description: Report definition
         totalInstanceCount:
           description: Total number of reports for the report ID
           format: int32
@@ -313,7 +340,9 @@ components:
           description: Report scheduling enabled
           type: boolean
         timeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Time range
       required:
       - timeRange
       type: object

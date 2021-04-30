@@ -187,7 +187,12 @@
             "type": "string"
           },
           "scanAll": { "description": "Scan all policies", "type": "boolean" },
-          "target": { "$ref": "#/components/schemas/TargetFilterModel" }
+          "target": {
+            "allOf": [
+              { "$ref": "#/components/schemas/TargetFilterModel" },
+              { "description": "TargetFilter model (target accounts)" }
+            ]
+          }
         },
         "required": ["name", "target"],
         "type": "object"
@@ -282,7 +287,12 @@
             "type": "boolean"
           },
           "scanAll": { "description": "Scan all policies", "type": "boolean" },
-          "target": { "$ref": "#/components/schemas/TargetFilterModel" }
+          "target": {
+            "allOf": [
+              { "$ref": "#/components/schemas/TargetFilterModel" },
+              { "description": "TargetFilter model (target accounts)" }
+            ]
+          }
         },
         "required": ["name", "target"],
         "type": "object"

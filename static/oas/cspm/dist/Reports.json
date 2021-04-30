@@ -25,7 +25,12 @@
             "description": "Model for AbsoluteTimeRangeConfig",
             "properties": {
               "type": { "example": "absolute", "type": "string" },
-              "value": { "$ref": "#/components/schemas/TimeModel" }
+              "value": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/TimeModel" },
+                  { "description": "Time range object" }
+                ]
+              }
             },
             "required": ["value"],
             "type": "object"
@@ -176,7 +181,10 @@
               },
               "type": { "example": "relative", "type": "string" },
               "value": {
-                "$ref": "#/components/schemas/RelativeTimeDurationModel"
+                "allOf": [
+                  { "$ref": "#/components/schemas/RelativeTimeDurationModel" },
+                  { "description": "Time range object" }
+                ]
               }
             },
             "required": ["value"],
@@ -187,23 +195,60 @@
       "ReportFilterSuggestion": {
         "description": "Model for ReportFilterSuggestion",
         "properties": {
-          "account.group": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "cloud.account": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "cloud.region": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "cloud.type": { "$ref": "#/components/schemas/FilterSuggestion" },
+          "account.group": {
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "description": "Account group" }
+            ]
+          },
+          "cloud.account": {
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "description": "Cloud account" }
+            ]
+          },
+          "cloud.region": {
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "description": "Cloud region" }
+            ]
+          },
+          "cloud.type": {
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "readOnly": true }
+            ]
+          },
           "policy.complianceStandard": {
-            "$ref": "#/components/schemas/FilterSuggestion"
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "description": "Policy compliance standard" }
+            ]
           },
           "report.email.recipients": {
-            "$ref": "#/components/schemas/FilterSuggestion"
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "description": "Report email recepients" }
+            ]
           },
           "report.frequency": {
-            "$ref": "#/components/schemas/FilterSuggestion"
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "readOnly": true }
+            ]
           },
           "report.schedule": {
-            "$ref": "#/components/schemas/FilterSuggestion"
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "readOnly": true }
+            ]
           },
-          "schedule.status": { "$ref": "#/components/schemas/FilterSuggestion" }
+          "schedule.status": {
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "readOnly": true }
+            ]
+          }
         },
         "type": "object"
       },
@@ -221,7 +266,15 @@
             "readOnly": true,
             "type": "string"
           },
-          "counts": { "$ref": "#/components/schemas/ComplianceAggregateCount" },
+          "counts": {
+            "allOf": [
+              { "$ref": "#/components/schemas/ComplianceAggregateCount" },
+              {
+                "description": "Model for compliance aggregate count",
+                "readOnly": true
+              }
+            ]
+          },
           "createdBy": {
             "description": "User who created this report",
             "readOnly": true,
@@ -271,7 +324,12 @@
             "readOnly": true,
             "type": "string"
           },
-          "target": { "$ref": "#/components/schemas/ReportTargetModel" },
+          "target": {
+            "allOf": [
+              { "$ref": "#/components/schemas/ReportTargetModel" },
+              { "description": "Report definition" }
+            ]
+          },
           "totalInstanceCount": {
             "description": "Total number of reports for the report ID",
             "format": "int32",
@@ -341,7 +399,12 @@
             "description": "Report scheduling enabled",
             "type": "boolean"
           },
-          "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" }
+          "timeRange": {
+            "allOf": [
+              { "$ref": "#/components/schemas/TimeRangeConfigModel" },
+              { "description": "Time range" }
+            ]
+          }
         },
         "required": ["timeRange"],
         "type": "object"

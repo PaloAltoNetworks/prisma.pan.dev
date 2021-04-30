@@ -31,7 +31,9 @@ components:
             example: absolute
             type: string
           value:
-            $ref: '#/components/schemas/TimeModel'
+            allOf:
+            - $ref: '#/components/schemas/TimeModel'
+            - description: Time range object
         required:
         - value
         type: object
@@ -83,7 +85,9 @@ components:
           description: Region Name
           type: string
         rrn:
-          $ref: '#/components/schemas/RRNModel'
+          allOf:
+          - $ref: '#/components/schemas/RRNModel'
+          - description: RRN
         scannedPolicies:
           description: Scanned policies
           items:
@@ -94,7 +98,9 @@ components:
       description: Model for resource info and status list
       properties:
         nextPageToken:
-          $ref: '#/components/schemas/ResourceInfoPageOption'
+          allOf:
+          - $ref: '#/components/schemas/ResourceInfoPageOption'
+          - description: Use as page token to return next page of data
         pageSize:
           description: Page size
           format: int64
@@ -305,7 +311,9 @@ components:
             type: string
           type: array
         timeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Time range
       type: object
     FilterSuggestion:
       description: Model for FilterSuggestion
@@ -351,7 +359,9 @@ components:
         cloud.service:
           $ref: '#/components/schemas/FilterSuggestion'
         cloud.type:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
       type: object
     NameValueIntegerString:
       properties:
@@ -458,7 +468,9 @@ components:
             example: relative
             type: string
           value:
-            $ref: '#/components/schemas/RelativeTimeDurationModel'
+            allOf:
+            - $ref: '#/components/schemas/RelativeTimeDurationModel'
+            - description: Time range object
         required:
         - value
         type: object
@@ -606,7 +618,9 @@ components:
           description: Risk grade
           type: string
         rrn:
-          $ref: '#/components/schemas/RRNModel'
+          allOf:
+          - $ref: '#/components/schemas/RRNModel'
+          - description: RRN
         service:
           description: Service
           type: string
