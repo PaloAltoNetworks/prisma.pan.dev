@@ -34,7 +34,12 @@
             "description": "Model for AbsoluteTimeRangeConfig",
             "properties": {
               "type": { "example": "absolute", "type": "string" },
-              "value": { "$ref": "#/components/schemas/TimeModel" }
+              "value": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/TimeModel" },
+                  { "description": "Time range object" }
+                ]
+              }
             },
             "required": ["value"],
             "type": "object"
@@ -117,7 +122,12 @@
             "format": "int32",
             "type": "integer"
           },
-          "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" }
+          "timeRange": {
+            "allOf": [
+              { "$ref": "#/components/schemas/TimeRangeConfigModel" },
+              { "description": "Time range" }
+            ]
+          }
         },
         "required": ["tableLevel"],
         "type": "object"
@@ -554,7 +564,10 @@
               },
               "type": { "example": "relative", "type": "string" },
               "value": {
-                "$ref": "#/components/schemas/RelativeTimeDurationModel"
+                "allOf": [
+                  { "$ref": "#/components/schemas/RelativeTimeDurationModel" },
+                  { "description": "Time range object" }
+                ]
               }
             },
             "required": ["value"],

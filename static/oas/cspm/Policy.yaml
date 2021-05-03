@@ -122,7 +122,7 @@ components:
           description: Policy description
           type: string
         enabled:
-          description: Enabled. Default is true.
+          description: true=enabled. false=disabled.
           type: boolean
         labels:
           description: Labels
@@ -208,13 +208,17 @@ components:
           readOnly: true
           type: boolean
         remediation:
-          $ref: '#/components/schemas/RemediationModel'
+          allOf:
+          - $ref: '#/components/schemas/RemediationModel'
+          - description: Auto remediation info. Available only if policy is remediable.
         restrictAlertDismissal:
           description: Restrict alert dismissal
           readOnly: true
           type: boolean
         rule:
-          $ref: '#/components/schemas/RuleModel'
+          allOf:
+          - $ref: '#/components/schemas/RuleModel'
+          - description: Policy rule (Contains RQL search query or saved search)
         ruleLastModifiedOn:
           description: Rule last modified on
           format: int64
@@ -278,9 +282,13 @@ components:
       description: Model for PolicyFilterSuggestion
       properties:
         cloud.type:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         policy.category:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         policy.class:
           $ref: '#/components/schemas/FilterSuggestion'
         policy.complianceRequirement:
@@ -290,21 +298,33 @@ components:
         policy.complianceStandard:
           $ref: '#/components/schemas/FilterSuggestion'
         policy.enabled:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         policy.label:
           $ref: '#/components/schemas/FilterSuggestion'
         policy.name:
           $ref: '#/components/schemas/FilterSuggestion'
         policy.policyMode:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         policy.remediable:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         policy.rule.type:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         policy.severity:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         policy.subtype:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         policy.type:
           $ref: '#/components/schemas/FilterSuggestion'
       type: object
@@ -343,7 +363,7 @@ components:
           description: Policy description
           type: string
         enabled:
-          description: Enabled. Default is true.
+          description: true=enabled. false=disabled.
           type: boolean
         labels:
           description: Labels
@@ -402,13 +422,17 @@ components:
           readOnly: true
           type: boolean
         remediation:
-          $ref: '#/components/schemas/RemediationModel'
+          allOf:
+          - $ref: '#/components/schemas/RemediationModel'
+          - description: Auto remediation info. Available only if policy is remediable.
         restrictAlertDismissal:
           description: Restrict alert dismissal
           readOnly: true
           type: boolean
         rule:
-          $ref: '#/components/schemas/RuleModel'
+          allOf:
+          - $ref: '#/components/schemas/RuleModel'
+          - description: Policy rule (Contains RQL search query or saved search)
         ruleLastModifiedOn:
           description: Rule last modified on
           format: int64
@@ -466,7 +490,7 @@ components:
           description: Policy description
           type: string
         enabled:
-          description: Enabled. Default is true.
+          description: true=enabled. false=disabled.
           type: boolean
         labels:
           description: Labels
@@ -548,13 +572,17 @@ components:
           readOnly: true
           type: boolean
         remediation:
-          $ref: '#/components/schemas/RemediationModel'
+          allOf:
+          - $ref: '#/components/schemas/RemediationModel'
+          - description: Auto remediation info. Available only if policy is remediable.
         restrictAlertDismissal:
           description: Restrict alert dismissal
           readOnly: true
           type: boolean
         rule:
-          $ref: '#/components/schemas/RuleModel'
+          allOf:
+          - $ref: '#/components/schemas/RuleModel'
+          - description: Policy rule (Contains RQL search query or saved search)
         ruleLastModifiedOn:
           description: Rule last modified on
           format: int64
@@ -632,7 +660,9 @@ components:
           description: Saved search ID that defines the rule criteria.
           type: string
         dataCriteria:
-          $ref: '#/components/schemas/RuleCriteria'
+          allOf:
+          - $ref: '#/components/schemas/RuleCriteria'
+          - description: Criteria of rule for Data Policy for DLP
         name:
           description: Name
           type: string
@@ -839,8 +869,10 @@ paths:
     post:
       description: "Adds a new policy.  \r\n\r\nThe request to add a policy accepts\
         \ body parameters that involve the following areas:\n\n* General policy information,\
-        \ such as name, labels, and severity\n* A rule, which identifies a saved search\
-        \ that defines the policy constraints (i.e. RQL query)\n* Optional compliance\
+        \ such as name, labels, and severity\n\n* Whether or not the policy is enabled. \
+        \ If you don't specify a value for **enabled** when you add a policy, the\
+        \ default is **enabled**=true\n* A rule, which identifies a saved search that\
+        \ defines the policy constraints (i.e. RQL query)\n* Optional compliance\
         \ standards\n* Optional remediation details\n\nThe following are some examples\
         \ of body parameters for a request to add a policy.\n\nEvent policy with minimal\
         \ input parameters:\n```\n{\n  \"name\":\"test-event-policy\",\n  \"policyType\"\
@@ -919,8 +951,8 @@ paths:
       description: "Returns all available policies, both system default and custom.\
         \ You can apply filters to narrow the returned policy list to a subset of\
         \ policies or potentially to a specific policy. For improved performance,\
-        \ response does not include open alert counts.  \r\n\r\nFor a full list of\
-        \ supported filters, interact with the List Policy Filters API.\n"
+        \ response does not include open alert counts.  \r\n\r\nFor a request to get\
+        \ a full list of supported filters, see [List Policy Filters](/api/cloud/cspm/policy#operation/get-policy-filters-and-options).\n"
       operationId: get-policies-v2
       parameters:
       - description: Policy name
@@ -1077,13 +1109,10 @@ paths:
       description: "Updates the existing policy that has the specified policy ID.\
         \  \r\n\r\nAlthough multiple body parameters are marked as required, to update\
         \ a policy, you need to provide only the \nbody parameters that you want to\
-        \ update with the exception of the boolean parameter **enabled**, which will\
-        \ \ndefault to a value of **true** unless otherwise specified. For this request,\
-        \ all other body parameters that \nyou do not provide will default to the\
-        \ values of the existing policy.\n\nYou can get the policy ID through the\
-        \ List Policies V2 request. Submit the policy name or other identifying information\
-        \ through the body parameters of this request to receive information about\
-        \ the policy, including the policy ID.\n"
+        \ update. All body parameters that you don't update will\ndefault to the values\
+        \ of the existing policy.\n\nYou can get the policy ID with [List Policies\
+        \ V2](/api/cloud/cspm/policy#operation/get-policies-v2) when you narrow the\
+        \ response with query parameters that describe the policy you seek. \n"
       operationId: update-policy
       parameters:
       - description: Policy ID

@@ -176,7 +176,9 @@ components:
           description: Scan all policies
           type: boolean
         target:
-          $ref: '#/components/schemas/TargetFilterModel'
+          allOf:
+          - $ref: '#/components/schemas/TargetFilterModel'
+          - description: TargetFilter model (target accounts)
       required:
       - name
       - target
@@ -263,7 +265,9 @@ components:
           description: Scan all policies
           type: boolean
         target:
-          $ref: '#/components/schemas/TargetFilterModel'
+          allOf:
+          - $ref: '#/components/schemas/TargetFilterModel'
+          - description: TargetFilter model (target accounts)
       required:
       - name
       - target

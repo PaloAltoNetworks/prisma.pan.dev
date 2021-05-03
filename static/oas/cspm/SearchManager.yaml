@@ -16,7 +16,9 @@ components:
             example: absolute
             type: string
           value:
-            $ref: '#/components/schemas/TimeModel'
+            allOf:
+            - $ref: '#/components/schemas/TimeModel'
+            - description: Time range object
         required:
         - value
         type: object
@@ -53,7 +55,9 @@ components:
             example: relative
             type: string
           value:
-            $ref: '#/components/schemas/RelativeTimeDurationModel'
+            allOf:
+            - $ref: '#/components/schemas/RelativeTimeDurationModel'
+            - description: Time range object
         required:
         - value
         type: object
@@ -140,7 +144,9 @@ components:
           readOnly: true
           type: string
         timeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Time Range
       required:
       - query
       - timeRange
@@ -204,7 +210,9 @@ components:
           readOnly: true
           type: string
         timeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Time Range
       required:
       - query
       - timeRange

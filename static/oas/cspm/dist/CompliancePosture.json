@@ -32,7 +32,12 @@
             "description": "Model for AbsoluteTimeRangeConfig",
             "properties": {
               "type": { "example": "absolute", "type": "string" },
-              "value": { "$ref": "#/components/schemas/TimeModel" }
+              "value": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/TimeModel" },
+                  { "description": "Time range object" }
+                ]
+              }
             },
             "required": ["value"],
             "type": "object"
@@ -111,7 +116,12 @@
             "items": { "$ref": "#/components/schemas/RequirementSummary" },
             "type": "array"
           },
-          "summary": { "$ref": "#/components/schemas/PostureSummary" },
+          "summary": {
+            "allOf": [
+              { "$ref": "#/components/schemas/PostureSummary" },
+              { "description": "Posture summary" }
+            ]
+          },
           "timestamp": {
             "description": "Timestamp",
             "format": "int64",
@@ -123,18 +133,47 @@
       "CompliancePostureFilterSuggestion": {
         "description": "Model for CompliancePostureFilterSuggestion",
         "properties": {
-          "account.group": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "cloud.account": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "cloud.region": { "$ref": "#/components/schemas/FilterSuggestion" },
-          "cloud.type": { "$ref": "#/components/schemas/FilterSuggestion" },
+          "account.group": {
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "description": "Account group" }
+            ]
+          },
+          "cloud.account": {
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "description": "Cloud account" }
+            ]
+          },
+          "cloud.region": {
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "description": "Cloud region" }
+            ]
+          },
+          "cloud.type": {
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "readOnly": true }
+            ]
+          },
           "policy.complianceRequirement": {
-            "$ref": "#/components/schemas/FilterSuggestion"
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "description": "Policy compliance requirement" }
+            ]
           },
           "policy.complianceSection": {
-            "$ref": "#/components/schemas/FilterSuggestion"
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "description": "Policy compliance section" }
+            ]
           },
           "policy.complianceStandard": {
-            "$ref": "#/components/schemas/FilterSuggestion"
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "description": "Policy compliance standard" }
+            ]
           }
         },
         "type": "object"
@@ -175,7 +214,12 @@
             "items": { "type": "string" },
             "type": "array"
           },
-          "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" }
+          "timeRange": {
+            "allOf": [
+              { "$ref": "#/components/schemas/TimeRangeConfigModel" },
+              { "description": "Time range" }
+            ]
+          }
         },
         "type": "object"
       },
@@ -322,7 +366,10 @@
               },
               "type": { "example": "relative", "type": "string" },
               "value": {
-                "$ref": "#/components/schemas/RelativeTimeDurationModel"
+                "allOf": [
+                  { "$ref": "#/components/schemas/RelativeTimeDurationModel" },
+                  { "description": "Time range object" }
+                ]
               }
             },
             "required": ["value"],

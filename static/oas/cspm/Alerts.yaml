@@ -33,7 +33,9 @@ components:
             example: absolute
             type: string
           value:
-            $ref: '#/components/schemas/TimeModel'
+            allOf:
+            - $ref: '#/components/schemas/TimeModel'
+            - description: Time range object
         required:
         - value
         type: object
@@ -58,9 +60,13 @@ components:
         account.group:
           $ref: '#/components/schemas/FilterSuggestion'
         alert.id:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         alert.status:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         alertRule.name:
           $ref: '#/components/schemas/FilterSuggestion'
         cloud.account:
@@ -72,7 +78,9 @@ components:
         cloud.service:
           $ref: '#/components/schemas/FilterSuggestion'
         cloud.type:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         malware:
           $ref: '#/components/schemas/FilterSuggestion'
         object.classification:
@@ -92,9 +100,13 @@ components:
         policy.name:
           $ref: '#/components/schemas/FilterSuggestion'
         policy.remediable:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         policy.severity:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         policy.type:
           $ref: '#/components/schemas/FilterSuggestion'
         resource.id:
@@ -104,7 +116,9 @@ components:
         resource.type:
           $ref: '#/components/schemas/FilterSuggestion'
         risk.grade:
-          $ref: '#/components/schemas/FilterSuggestion'
+          allOf:
+          - $ref: '#/components/schemas/FilterSuggestion'
+          - readOnly: true
         timeRange.type:
           $ref: '#/components/schemas/FilterSuggestion'
       type: object
@@ -177,7 +191,9 @@ components:
         resource:
           $ref: '#/components/schemas/CloudResourceModel'
         riskDetail:
-          $ref: '#/components/schemas/RiskDetailModel'
+          allOf:
+          - $ref: '#/components/schemas/RiskDetailModel'
+          - description: Risk detail (Deprecated)
         saveSearchId:
           description: Saved Search ID
           type: string
@@ -302,9 +318,13 @@ components:
             endpoint)
           type: string
         dismissalTimeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Dismissal Time Range
         filter:
-          $ref: '#/components/schemas/FilterModel'
+          allOf:
+          - $ref: '#/components/schemas/FilterModel'
+          - description: Filter
         policies:
           description: Policy IDs
           items:
@@ -324,7 +344,9 @@ components:
             type: string
           type: array
         filter:
-          $ref: '#/components/schemas/FilterModel'
+          allOf:
+          - $ref: '#/components/schemas/FilterModel'
+          - description: Filter to narrow or manage the search
         policies:
           description: List of policy IDs. A single policy ID is required if no alerts
             are specified.
@@ -548,7 +570,9 @@ components:
             type: string
           type: array
         timeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Time range
       type: object
     FilterSuggestion:
       description: Model for FilterSuggestion
@@ -753,13 +777,17 @@ components:
           readOnly: true
           type: boolean
         remediation:
-          $ref: '#/components/schemas/RemediationModel'
+          allOf:
+          - $ref: '#/components/schemas/RemediationModel'
+          - description: Auto remediation info. Available only if policy is remediable.
         restrictAlertDismissal:
           description: Restrict alert dismissal
           readOnly: true
           type: boolean
         rule:
-          $ref: '#/components/schemas/RuleModel'
+          allOf:
+          - $ref: '#/components/schemas/RuleModel'
+          - description: Policy rule (Contains RQL search query or saved search)
         ruleLastModifiedOn:
           description: Rule last modified on
           format: int64
@@ -879,7 +907,9 @@ components:
           readOnly: true
           type: boolean
         remediation:
-          $ref: '#/components/schemas/RemediationModel'
+          allOf:
+          - $ref: '#/components/schemas/RemediationModel'
+          - description: Auto remediation info. Available only if policy is remediable.
         restrictAlertDismissal:
           description: Restrict alert dismissal
           readOnly: true
@@ -887,7 +917,9 @@ components:
         riskScore:
           $ref: '#/components/schemas/ScoreModel'
         rule:
-          $ref: '#/components/schemas/RuleModel'
+          allOf:
+          - $ref: '#/components/schemas/RuleModel'
+          - description: Policy rule (Contains RQL search query or saved search)
         ruleLastModifiedOn:
           description: Rule last modified on
           format: int64
@@ -977,7 +1009,9 @@ components:
           description: Scan all policies
           type: boolean
         target:
-          $ref: '#/components/schemas/TargetFilterModel'
+          allOf:
+          - $ref: '#/components/schemas/TargetFilterModel'
+          - description: TargetFilter model (target accounts)
       required:
       - name
       - target
@@ -1015,7 +1049,9 @@ components:
             example: relative
             type: string
           value:
-            $ref: '#/components/schemas/RelativeTimeDurationModel'
+            allOf:
+            - $ref: '#/components/schemas/RelativeTimeDurationModel'
+            - description: Time range object
         required:
         - value
         type: object
@@ -1115,7 +1151,9 @@ components:
           description: Saved search ID that defines the rule criteria.
           type: string
         dataCriteria:
-          $ref: '#/components/schemas/RuleCriteria'
+          allOf:
+          - $ref: '#/components/schemas/RuleCriteria'
+          - description: Criteria of rule for Data Policy for DLP
         name:
           description: Name
           type: string
@@ -1343,8 +1381,9 @@ paths:
       - Alerts
   /alert:
     get:
-      description: Returns a list of alerts that match the constraints specified in
-        the query parameters.
+      description: "Returns a list of alerts that match the constraints specified\
+        \ in the query parameters.  \r\n\r\nIn the response object, field **riskDetail**\
+        \ is deprecated.\n"
       operationId: get-alerts
       parameters:
       - description: Time Type

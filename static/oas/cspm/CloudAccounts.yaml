@@ -34,7 +34,9 @@ components:
             example: absolute
             type: string
           value:
-            $ref: '#/components/schemas/TimeModel'
+            allOf:
+            - $ref: '#/components/schemas/TimeModel'
+            - description: Time range object
         required:
         - value
         type: object
@@ -88,7 +90,9 @@ components:
           format: int32
           type: integer
         timeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Time range
       required:
       - accountIds
       - timeRange
@@ -479,7 +483,9 @@ components:
             example: relative
             type: string
           value:
-            $ref: '#/components/schemas/RelativeTimeDurationModel'
+            allOf:
+            - $ref: '#/components/schemas/RelativeTimeDurationModel'
+            - description: Time range object
         required:
         - value
         type: object

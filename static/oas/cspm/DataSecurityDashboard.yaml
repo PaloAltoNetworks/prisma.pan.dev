@@ -21,7 +21,9 @@ components:
             example: absolute
             type: string
           value:
-            $ref: '#/components/schemas/TimeModel'
+            allOf:
+            - $ref: '#/components/schemas/TimeModel'
+            - description: Time range object
         required:
         - value
         type: object
@@ -69,7 +71,9 @@ components:
           format: int32
           type: integer
         timeRange:
-          $ref: '#/components/schemas/TimeRangeConfigModel'
+          allOf:
+          - $ref: '#/components/schemas/TimeRangeConfigModel'
+          - description: Time Range
       required:
       - accountGroupIds
       - accountGroupNames
@@ -108,7 +112,9 @@ components:
       description: Model for DLP Object Owner
       properties:
         exposure:
-          $ref: '#/components/schemas/CountByExposure'
+          allOf:
+          - $ref: '#/components/schemas/CountByExposure'
+          - description: Object Exposure
         name:
           description: Object Name
           type: string
@@ -143,13 +149,17 @@ components:
       description: Model for DLP Resource Exposure
       properties:
         resources:
-          $ref: '#/components/schemas/DLPResource'
+          allOf:
+          - $ref: '#/components/schemas/DLPResource'
+          - description: Resource Data
       type: object
     DLPTotalSensitiveExposedObjectsViewModel:
       description: Model for Sensitive Exposed Objects
       properties:
         objects:
-          $ref: '#/components/schemas/DLPObject'
+          allOf:
+          - $ref: '#/components/schemas/DLPObject'
+          - description: DLP Object data
       type: object
     KeyAndCountPair:
       description: Model for Exposure
@@ -195,7 +205,9 @@ components:
             example: relative
             type: string
           value:
-            $ref: '#/components/schemas/RelativeTimeDurationModel'
+            allOf:
+            - $ref: '#/components/schemas/RelativeTimeDurationModel'
+            - description: Time range object
         required:
         - value
         type: object

@@ -38,7 +38,12 @@
             "description": "Model for AbsoluteTimeRangeConfig",
             "properties": {
               "type": { "example": "absolute", "type": "string" },
-              "value": { "$ref": "#/components/schemas/TimeModel" }
+              "value": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/TimeModel" },
+                  { "description": "Time range object" }
+                ]
+              }
             },
             "required": ["value"],
             "type": "object"
@@ -268,7 +273,12 @@
             "items": { "$ref": "#/components/schemas/SortConfigRuleSortField" },
             "type": "array"
           },
-          "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" },
+          "timeRange": {
+            "allOf": [
+              { "$ref": "#/components/schemas/TimeRangeConfigModel" },
+              { "description": "Time Range" }
+            ]
+          },
           "withResourceJson": { "type": "boolean" }
         },
         "type": "object"
@@ -381,7 +391,10 @@
               },
               "type": { "example": "relative", "type": "string" },
               "value": {
-                "$ref": "#/components/schemas/RelativeTimeDurationModel"
+                "allOf": [
+                  { "$ref": "#/components/schemas/RelativeTimeDurationModel" },
+                  { "description": "Time range object" }
+                ]
               }
             },
             "required": ["value"],
@@ -486,7 +499,12 @@
           "regionName": { "description": "Region name", "type": "string" },
           "resourceType": { "description": "Resource type", "type": "string" },
           "riskGrade": { "description": "Risk grade", "type": "string" },
-          "rrn": { "$ref": "#/components/schemas/RRNModel" },
+          "rrn": {
+            "allOf": [
+              { "$ref": "#/components/schemas/RRNModel" },
+              { "description": "RRN" }
+            ]
+          },
           "service": { "description": "Service", "type": "string" },
           "stateId": { "description": "State ID", "type": "string" },
           "tags": {
@@ -550,7 +568,12 @@
             "readOnly": true,
             "type": "string"
           },
-          "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" }
+          "timeRange": {
+            "allOf": [
+              { "$ref": "#/components/schemas/TimeRangeConfigModel" },
+              { "description": "Time Range" }
+            ]
+          }
         },
         "required": ["query", "timeRange"],
         "type": "object"
@@ -600,7 +623,12 @@
             "readOnly": true,
             "type": "string"
           },
-          "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" }
+          "timeRange": {
+            "allOf": [
+              { "$ref": "#/components/schemas/TimeRangeConfigModel" },
+              { "description": "Time Range" }
+            ]
+          }
         },
         "required": ["query", "timeRange"],
         "type": "object"
@@ -653,7 +681,12 @@
             "readOnly": true,
             "type": "string"
           },
-          "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" }
+          "timeRange": {
+            "allOf": [
+              { "$ref": "#/components/schemas/TimeRangeConfigModel" },
+              { "description": "Time Range" }
+            ]
+          }
         },
         "required": ["query", "timeRange"],
         "type": "object"
@@ -703,7 +736,12 @@
             "readOnly": true,
             "type": "string"
           },
-          "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" }
+          "timeRange": {
+            "allOf": [
+              { "$ref": "#/components/schemas/TimeRangeConfigModel" },
+              { "description": "Time Range" }
+            ]
+          }
         },
         "required": ["query", "timeRange"],
         "type": "object"
@@ -753,7 +791,12 @@
             "readOnly": true,
             "type": "string"
           },
-          "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" }
+          "timeRange": {
+            "allOf": [
+              { "$ref": "#/components/schemas/TimeRangeConfigModel" },
+              { "description": "Time Range" }
+            ]
+          }
         },
         "required": ["query", "timeRange"],
         "type": "object"
@@ -805,7 +848,12 @@
             "readOnly": true,
             "type": "string"
           },
-          "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" }
+          "timeRange": {
+            "allOf": [
+              { "$ref": "#/components/schemas/TimeRangeConfigModel" },
+              { "description": "Time Range" }
+            ]
+          }
         },
         "required": ["query", "timeRange"],
         "type": "object"

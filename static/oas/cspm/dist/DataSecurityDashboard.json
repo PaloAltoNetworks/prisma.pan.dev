@@ -11,7 +11,9 @@
     "requestBodies": {
       "DLPDashboardFilterModel": {
         "content": {
-          "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/DLPDashboardFilterModel" } }
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/DLPDashboardFilterModel" }
+          }
         }
       }
     },
@@ -23,7 +25,12 @@
             "description": "Model for AbsoluteTimeRangeConfig",
             "properties": {
               "type": { "example": "absolute", "type": "string" },
-              "value": { "$ref": "#/components/schemas/TimeModel" }
+              "value": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/TimeModel" },
+                  { "description": "Time range object" }
+                ]
+              }
             },
             "required": ["value"],
             "type": "object"
@@ -33,9 +40,21 @@
       "CountByExposure": {
         "description": "Model for DLP Exposure count",
         "properties": {
-          "conditional": { "description": "Conditional exposure count", "format": "int64", "type": "integer" },
-          "private": { "description": "Private exposure count", "format": "int64", "type": "integer" },
-          "public": { "description": "Public exposure count", "format": "int64", "type": "integer" }
+          "conditional": {
+            "description": "Conditional exposure count",
+            "format": "int64",
+            "type": "integer"
+          },
+          "private": {
+            "description": "Private exposure count",
+            "format": "int64",
+            "type": "integer"
+          },
+          "public": {
+            "description": "Public exposure count",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -52,16 +71,36 @@
             "items": { "type": "string" },
             "type": "array"
           },
-          "accountIds": { "description": "List of cloud account ids", "items": { "type": "string" }, "type": "array" },
+          "accountIds": {
+            "description": "List of cloud account ids",
+            "items": { "type": "string" },
+            "type": "array"
+          },
           "classifications": {
             "description": "List of Data classifications",
             "items": { "type": "string" },
             "type": "array"
           },
-          "limit": { "description": "Limit the records returned", "format": "int32", "type": "integer" },
-          "timeRange": { "$ref": "#/components/schemas/TimeRangeConfigModel" }
+          "limit": {
+            "description": "Limit the records returned",
+            "format": "int32",
+            "type": "integer"
+          },
+          "timeRange": {
+            "allOf": [
+              { "$ref": "#/components/schemas/TimeRangeConfigModel" },
+              { "description": "Time Range" }
+            ]
+          }
         },
-        "required": ["accountGroupIds", "accountGroupNames", "accountIds", "classifications", "limit", "timeRange"],
+        "required": [
+          "accountGroupIds",
+          "accountGroupNames",
+          "accountIds",
+          "classifications",
+          "limit",
+          "timeRange"
+        ],
         "type": "object"
       },
       "DLPObject": {
@@ -72,7 +111,11 @@
             "items": { "$ref": "#/components/schemas/KeyAndCountPair" },
             "type": "array"
           },
-          "total": { "description": "Total", "format": "int32", "type": "integer" }
+          "total": {
+            "description": "Total",
+            "format": "int32",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -84,14 +127,23 @@
             "items": { "$ref": "#/components/schemas/KeyAndCountPair" },
             "type": "array"
           },
-          "total": { "description": "Total number of resources", "format": "int32", "type": "integer" }
+          "total": {
+            "description": "Total number of resources",
+            "format": "int32",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
       "DLPTopNObjectsByOwnerViewModel": {
         "description": "Model for DLP Object Owner",
         "properties": {
-          "exposure": { "$ref": "#/components/schemas/CountByExposure" },
+          "exposure": {
+            "allOf": [
+              { "$ref": "#/components/schemas/CountByExposure" },
+              { "description": "Object Exposure" }
+            ]
+          },
           "name": { "description": "Object Name", "type": "string" }
         },
         "type": "object"
@@ -105,8 +157,16 @@
             "type": "array"
           },
           "cloudType": { "description": "Cloud Type", "type": "string" },
-          "latitude": { "description": "Latitude", "format": "double", "type": "number" },
-          "longitude": { "description": "Longitude", "format": "double", "type": "number" },
+          "latitude": {
+            "description": "Latitude",
+            "format": "double",
+            "type": "number"
+          },
+          "longitude": {
+            "description": "Longitude",
+            "format": "double",
+            "type": "number"
+          },
           "regionCode": { "description": "Cloud region", "type": "string" },
           "regionName": { "description": "Cloud region name", "type": "string" }
         },
@@ -114,18 +174,36 @@
       },
       "DLPTotalResourceByExposureViewModel": {
         "description": "Model for DLP Resource Exposure",
-        "properties": { "resources": { "$ref": "#/components/schemas/DLPResource" } },
+        "properties": {
+          "resources": {
+            "allOf": [
+              { "$ref": "#/components/schemas/DLPResource" },
+              { "description": "Resource Data" }
+            ]
+          }
+        },
         "type": "object"
       },
       "DLPTotalSensitiveExposedObjectsViewModel": {
         "description": "Model for Sensitive Exposed Objects",
-        "properties": { "objects": { "$ref": "#/components/schemas/DLPObject" } },
+        "properties": {
+          "objects": {
+            "allOf": [
+              { "$ref": "#/components/schemas/DLPObject" },
+              { "description": "DLP Object data" }
+            ]
+          }
+        },
         "type": "object"
       },
       "KeyAndCountPair": {
         "description": "Model for Exposure",
         "properties": {
-          "count": { "description": "Count", "format": "int32", "type": "integer" },
+          "count": {
+            "description": "Count",
+            "format": "int32",
+            "type": "integer"
+          },
           "name": { "description": "Name", "type": "string" }
         },
         "type": "object"
@@ -133,7 +211,11 @@
       "RelativeTimeDurationModel": {
         "description": "Model for RelativeTimeDuration",
         "properties": {
-          "amount": { "description": "Number of time units", "format": "int32", "type": "integer" },
+          "amount": {
+            "description": "Number of time units",
+            "format": "int32",
+            "type": "integer"
+          },
           "unit": {
             "description": "Time unit",
             "enum": ["minute", "hour", "day", "week", "month", "year"],
@@ -154,7 +236,12 @@
                 "type": "string"
               },
               "type": { "example": "relative", "type": "string" },
-              "value": { "$ref": "#/components/schemas/RelativeTimeDurationModel" }
+              "value": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/RelativeTimeDurationModel" },
+                  { "description": "Time range object" }
+                ]
+              }
             },
             "required": ["value"],
             "type": "object"
@@ -164,8 +251,16 @@
       "TimeModel": {
         "description": "Model for Time",
         "properties": {
-          "endTime": { "description": "End timestamp", "format": "int64", "type": "integer" },
-          "startTime": { "description": "Start timestamp", "format": "int64", "type": "integer" }
+          "endTime": {
+            "description": "End timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
+          "startTime": {
+            "description": "Start timestamp",
+            "format": "int64",
+            "type": "integer"
+          }
         },
         "type": "object"
       },
@@ -184,7 +279,9 @@
           { "$ref": "#/components/schemas/AbsoluteTimeRangeConfigModel" },
           { "$ref": "#/components/schemas/ToNowTimeRangeConfigModel" }
         ],
-        "properties": { "type": { "description": "Time type", "type": "string" } },
+        "properties": {
+          "type": { "description": "Time type", "type": "string" }
+        },
         "required": ["type"],
         "type": "object"
       },
@@ -196,7 +293,16 @@
             "properties": {
               "value": {
                 "description": "Time range object",
-                "enum": ["MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR", "EPOCH", "LOGIN"],
+                "enum": [
+                  "MINUTE",
+                  "HOUR",
+                  "DAY",
+                  "WEEK",
+                  "MONTH",
+                  "YEAR",
+                  "EPOCH",
+                  "LOGIN"
+                ],
                 "type": "string"
               }
             },
@@ -214,7 +320,12 @@
   },
   "openapi": "3.0.0",
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The Data Security Dashboard APIs are listed below.", "name": "Data Security Dashboard" }],
+  "tags": [
+    {
+      "description": "The Data Security Dashboard APIs are listed below.",
+      "name": "Data Security Dashboard"
+    }
+  ],
   "paths": {
     "/dlp/api/v1/dashboard/alerts/aggregate": {
       "post": {
@@ -222,13 +333,22 @@
         "operationId": "get-dashboard-alerts",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/DLPDashboardFilterModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/DLPDashboardFilterModel"
+              }
+            }
           }
         },
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "items": { "$ref": "#/components/schemas/KeyAndCountPair" }, "type": "array" } }
+              "*/*": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/KeyAndCountPair" },
+                  "type": "array"
+                }
+              }
             },
             "description": "success"
           },
@@ -255,13 +375,22 @@
         "operationId": "get-dashboard-object-by-classification",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/DLPDashboardFilterModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/DLPDashboardFilterModel"
+              }
+            }
           }
         },
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "items": { "$ref": "#/components/schemas/KeyAndCountPair" }, "type": "array" } }
+              "*/*": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/KeyAndCountPair" },
+                  "type": "array"
+                }
+              }
             },
             "description": "success"
           },
@@ -288,7 +417,11 @@
         "operationId": "get-dashboard-object-by-owner",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/DLPDashboardFilterModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/DLPDashboardFilterModel"
+              }
+            }
           }
         },
         "responses": {
@@ -296,7 +429,9 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": { "$ref": "#/components/schemas/DLPTopNObjectsByOwnerViewModel" },
+                  "items": {
+                    "$ref": "#/components/schemas/DLPTopNObjectsByOwnerViewModel"
+                  },
                   "type": "array"
                 }
               }
@@ -326,7 +461,11 @@
         "operationId": "get-dashboard-object-by-region",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/DLPDashboardFilterModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/DLPDashboardFilterModel"
+              }
+            }
           }
         },
         "responses": {
@@ -334,7 +473,9 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": { "$ref": "#/components/schemas/DLPTopNObjectsByRegionViewModel" },
+                  "items": {
+                    "$ref": "#/components/schemas/DLPTopNObjectsByRegionViewModel"
+                  },
                   "type": "array"
                 }
               }
@@ -364,13 +505,21 @@
         "operationId": "get-dashboard-object-sensitive",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/DLPDashboardFilterModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/DLPDashboardFilterModel"
+              }
+            }
           }
         },
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "$ref": "#/components/schemas/DLPTotalSensitiveExposedObjectsViewModel" } }
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DLPTotalSensitiveExposedObjectsViewModel"
+                }
+              }
             },
             "description": "success"
           },
@@ -397,12 +546,22 @@
         "operationId": "get-dashboard-resource-by-exposure",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/DLPDashboardFilterModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/DLPDashboardFilterModel"
+              }
+            }
           }
         },
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/DLPTotalResourceByExposureViewModel" } } },
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DLPTotalResourceByExposureViewModel"
+                }
+              }
+            },
             "description": "success"
           },
           "500": { "description": "internal_error" }
@@ -428,13 +587,22 @@
         "operationId": "get-dashboard-violations",
         "requestBody": {
           "content": {
-            "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/DLPDashboardFilterModel" } }
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/DLPDashboardFilterModel"
+              }
+            }
           }
         },
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "items": { "$ref": "#/components/schemas/KeyAndCountPair" }, "type": "array" } }
+              "*/*": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/KeyAndCountPair" },
+                  "type": "array"
+                }
+              }
             },
             "description": "success"
           },

@@ -21,7 +21,10 @@ components:
           description: Access keys allowed
           type: boolean
         activeRole:
-          $ref: '#/components/schemas/UserProfileRoleDetailModel'
+          allOf:
+          - $ref: '#/components/schemas/UserProfileRoleDetailModel'
+          - description: Active Role Info
+            readOnly: true
         defaultRoleId:
           description: Default Role ID
           type: string
@@ -299,8 +302,8 @@ paths:
       tags:
       - User Profile
     put:
-      description: Updates an administrative user's profile. Supports multiple roles
-        for a single user.
+      description: "Updates an administrative user's profile. Supports multiple roles\
+        \ for a single user."
       operationId: update-profile-v2
       parameters:
       - description: User email

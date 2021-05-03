@@ -28,7 +28,10 @@
             "type": "boolean"
           },
           "activeRole": {
-            "$ref": "#/components/schemas/UserProfileRoleDetailModel"
+            "allOf": [
+              { "$ref": "#/components/schemas/UserProfileRoleDetailModel" },
+              { "description": "Active Role Info", "readOnly": true }
+            ]
           },
           "defaultRoleId": {
             "description": "Default Role ID",
@@ -258,11 +261,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/me\"\n\npayload = \"{\\\"accessKeysAllowed\\\":true,\\\"activeRole\\\":{},\\\"defaultRoleId\\\":\\\"string\\\",\\\"email\\\":\\\"string\\\",\\\"firstName\\\":\\\"string\\\",\\\"lastName\\\":\\\"string\\\",\\\"roleIds\\\":[\\\"string\\\"],\\\"timeZone\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/me\"\n\npayload = \"{\\\"accessKeysAllowed\\\":true,\\\"defaultRoleId\\\":\\\"string\\\",\\\"email\\\":\\\"string\\\",\\\"firstName\\\":\\\"string\\\",\\\"lastName\\\":\\\"string\\\",\\\"roleIds\\\":[\\\"string\\\"],\\\"timeZone\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/user/me \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accessKeysAllowed\":true,\"activeRole\":{},\"defaultRoleId\":\"string\",\"email\":\"string\",\"firstName\":\"string\",\"lastName\":\"string\",\"roleIds\":[\"string\"],\"timeZone\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/user/me \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accessKeysAllowed\":true,\"defaultRoleId\":\"string\",\"email\":\"string\",\"firstName\":\"string\",\"lastName\":\"string\",\"roleIds\":[\"string\"],\"timeZone\":\"string\"}'"
           }
         ]
       }
@@ -325,11 +328,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/user\"\n\npayload = \"{\\\"accessKeysAllowed\\\":true,\\\"activeRole\\\":{},\\\"defaultRoleId\\\":\\\"string\\\",\\\"email\\\":\\\"string\\\",\\\"firstName\\\":\\\"string\\\",\\\"lastName\\\":\\\"string\\\",\\\"roleIds\\\":[\\\"string\\\"],\\\"timeZone\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/user\"\n\npayload = \"{\\\"accessKeysAllowed\\\":true,\\\"defaultRoleId\\\":\\\"string\\\",\\\"email\\\":\\\"string\\\",\\\"firstName\\\":\\\"string\\\",\\\"lastName\\\":\\\"string\\\",\\\"roleIds\\\":[\\\"string\\\"],\\\"timeZone\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/v2/user \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accessKeysAllowed\":true,\"activeRole\":{},\"defaultRoleId\":\"string\",\"email\":\"string\",\"firstName\":\"string\",\"lastName\":\"string\",\"roleIds\":[\"string\"],\"timeZone\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/v2/user \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accessKeysAllowed\":true,\"defaultRoleId\":\"string\",\"email\":\"string\",\"firstName\":\"string\",\"lastName\":\"string\",\"roleIds\":[\"string\"],\"timeZone\":\"string\"}'"
           }
         ]
       }
@@ -406,11 +409,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/user/{id}\"\n\npayload = \"{\\\"accessKeysAllowed\\\":true,\\\"activeRole\\\":{},\\\"defaultRoleId\\\":\\\"string\\\",\\\"email\\\":\\\"string\\\",\\\"firstName\\\":\\\"string\\\",\\\"lastName\\\":\\\"string\\\",\\\"roleIds\\\":[\\\"string\\\"],\\\"timeZone\\\":\\\"string\\\"}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/user/{id}\"\n\npayload = \"{\\\"accessKeysAllowed\\\":true,\\\"defaultRoleId\\\":\\\"string\\\",\\\"email\\\":\\\"string\\\",\\\"firstName\\\":\\\"string\\\",\\\"lastName\\\":\\\"string\\\",\\\"roleIds\\\":[\\\"string\\\"],\\\"timeZone\\\":\\\"string\\\"}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/v2/user/{id} \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accessKeysAllowed\":true,\"activeRole\":{},\"defaultRoleId\":\"string\",\"email\":\"string\",\"firstName\":\"string\",\"lastName\":\"string\",\"roleIds\":[\"string\"],\"timeZone\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/v2/user/{id} \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accessKeysAllowed\":true,\"defaultRoleId\":\"string\",\"email\":\"string\",\"firstName\":\"string\",\"lastName\":\"string\",\"roleIds\":[\"string\"],\"timeZone\":\"string\"}'"
           }
         ]
       }
