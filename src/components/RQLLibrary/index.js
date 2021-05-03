@@ -8,14 +8,13 @@
 import { translate } from "@docusaurus/Translate";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import IconArrow from "@theme/IconArrow";
-import Layout from "@theme/Layout";
 import clsx from "clsx";
 import queryString from "query-string";
 import React, { useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useLocation } from "react-router-dom";
 import Button from "../../theme/Button";
-import RQLLibrarySidebar from "../../theme/RQLLibrarySidebar";
+import RQLLibrarySidebar from "../../theme/RQLLibrary";
 import styles from "./styles.module.css";
 import CodeBlock from "../../theme/CodeBlock";
 
@@ -34,21 +33,22 @@ function RQLLibrary() {
     }
     setHiddenSidebarContainer(!hiddenSidebarContainer);
   }, [hiddenSidebar]);
-  const RQLLibrary = [
+
+  const QueryLibrary = [
     {
       id: "cft-ec2",
       description:
         "CloudFormation Template does not contain termination protection for EC2 Instances",
-      provider: ["aws", "gcp"],
-      service: ["iam"],
+      providers: ["aws", "gcp"],
+      services: ["iam"],
       query: "join people testing int float 10",
       votes: 1,
     },
     {
       id: "test-this",
       description: "Test2",
-      provider: ["azure"],
-      service: ["iam", "legend"],
+      providers: ["azure"],
+      services: ["iam", "legend"],
       query: "Will Smith but make it code",
       votes: 1,
     },
@@ -69,11 +69,11 @@ function RQLLibrary() {
     ...(service && { services: service }),
   };
 
-  const preFilteredRQLQueries = RQLLibrary.filter((rql_query) => {
+  const preFilteredRQLQueries = QueryLibrary.filter((rql_query) => {
     for (var key in filters) {
       if (key == "providers" && rql_query[key].includes(provider)) return true;
 
-      if (key == "services" && rql_query[key].includes(services)) return true;
+      if (key == "services" && rql_query[key].includes(service)) return true;
     }
     return true;
   });
@@ -82,7 +82,7 @@ function RQLLibrary() {
   const filteredRQLQueries = preFilteredRQLQueries.filter((rql_query) => {
     if (!value) return true;
     if (
-      rql_query.name.toLowerCase().includes(value.toLowerCase()) ||
+      rql_query.query.toLowerCase().includes(value.toLowerCase()) ||
       rql_query.description.toLowerCase().includes(value.toLowerCase())
     ) {
       return true;
@@ -91,13 +91,12 @@ function RQLLibrary() {
 
   const totalFilteredRQLQueries = filteredRQLQueries.length;
 
-  // Generate Provider options
   function generateProviders() {
     const dictionary = {};
-    let categories = [];
+    let providers = [];
     let combinedProviders = [];
-    filteredRQLQueries.map((pack) => {
-      combinedProviders.push(pack.categories);
+    filteredRQLQueries.map((rql_query) => {
+      combinedProviders.push(rql_query.providers);
     });
     const flattenedProviders = () => {
       var flat = [];
@@ -115,23 +114,22 @@ function RQLLibrary() {
     });
     const uniqueProviders = new Set(allProviders);
     uniqueProviders.forEach((provider) => {
-      categories.push({
+      providers.push({
         label: dictionary[provider]
           ? `${provider} (${dictionary[provider]["count"]})`
           : provider,
         value: provider,
       });
     });
-    return categories;
+    return providers;
   }
 
-  // Generate Service Options
   function generateServices() {
     const dictionary = {};
-    let categories = [];
+    let services = [];
     let combinedServices = [];
     filteredRQLQueries.map((rql_query) => {
-      combinedServices.push(rql_query.categories);
+      combinedServices.push(rql_query.services);
     });
     const flattenedServices = () => {
       var flat = [];
@@ -149,137 +147,143 @@ function RQLLibrary() {
     });
     const uniqueServices = new Set(allServices);
     uniqueServices.forEach((service) => {
-      categories.push({
+      services.push({
         label: dictionary[service]
           ? `${service} (${dictionary[service]["count"]})`
           : service,
         value: service,
       });
     });
-    return categories;
+    return services;
   }
 
   return (
-    <Layout
-      title={TITLE}
-      description={DESCRIPTION}
-      wrapperClassName="main-docs-wrapper"
-    >
-      <div
-        className={clsx(styles.docSidebarContainer, {
-          [styles.docSidebarContainerHidden]: hiddenSidebarContainer,
-        })}
-        onTransitionEnd={(e) => {
-          if (!e.currentTarget.classList.contains(styles.docSidebarContainer)) {
-            return;
-          }
-
-          if (hiddenSidebarContainer) {
-            setHiddenSidebar(true);
-          }
-        }}
-        role="complementary"
-      >
-        <RQLLibrarySidebar
-          sidebar={[
-            {
-              type: "select",
-              label: "Cloud Provider",
-              action: setProvider,
-              options: generateProviders(),
-              state: provider,
-            },
-            {
-              type: "select",
-              label: "Service",
-              action: setService,
-              options: generateServices(),
-              state: service,
-            },
-          ]}
-          path="/RQLLibrary/"
-          sidebarCollapsible={
-            siteConfig.themeConfig?.sidebarCollapsible ?? true
-          }
-          onCollapse={toggleSidebar}
-          isHidden={hiddenSidebar}
-          search={setValue}
-          totalRQLQueries={RQLLibrary.length}
-          totalFilteredRQLQueries={totalFilteredRQLQueries}
-        />
-
-        {hiddenSidebar && (
-          <div
-            className={styles.collapsedDocSidebar}
-            title={translate({
-              id: "theme.docs.sidebar.expandButtonTitle",
-              message: "Expand sidebar",
-              description:
-                "The ARIA label and title attribute for expand button of doc sidebar",
-            })}
-            aria-label={translate({
-              id: "theme.docs.sidebar.expandButtonAriaLabel",
-              message: "Expand sidebar",
-              description:
-                "The ARIA label and title attribute for expand button of doc sidebar",
-            })}
-            tabIndex={0}
-            role="button"
-            onKeyDown={toggleSidebar}
-            onClick={toggleSidebar}
-          >
-            <IconArrow className={styles.expandSidebarButtonIcon} />
-          </div>
-        )}
-      </div>
-
-      <main
-        className={clsx(styles.docMainContainer, {
-          [styles.docMainContainerEnhanced]: hiddenSidebarContainer,
-        })}
-      >
-        <div
-          className={clsx("container padding-vert--lg", styles.docItemWrapper, {
-            [styles.docItemWrapperEnhanced]: hiddenSidebarContainer,
+    <div className="row">
+      <div className={"col col--8"}>
+        <main
+          className={clsx(styles.docMainContainer, {
+            [styles.docMainContainerEnhanced]: hiddenSidebarContainer,
           })}
         >
-          <div className="row">
-            {filteredRQLQueries.map((rql_query) => (
-              <div
-                key={rql_query.id}
-                className={"col col--12 margin-bottom--lg"}
-              >
+          <div
+            className={clsx(
+              "container padding-vert--lg",
+              styles.docItemWrapper,
+              {
+                [styles.docItemWrapperEnhanced]: hiddenSidebarContainer,
+              }
+            )}
+          >
+            <div className="row">
+              {filteredRQLQueries.map((rql_query) => (
                 <div
-                  className={clsx("card shadow--md", styles.contentRQLQuery)}
+                  key={rql_query.id}
+                  className={"col col--12 margin-bottom--lg"}
                 >
-                  <div className="card__body">
-                    <div className="avatar">
-                      <div className="avatar__intro margin-left--none">
-                        <h4
-                          className={clsx(
-                            "avatar__name",
-                            "text text--primary",
-                            styles.rql_queryDescription,
-                            styles.ellipsis
-                          )}
-                          title={rql_query.description}
-                        >
-                          {rql_query.description}
-                        </h4>
-                        <CodeBlock className="bash">
-                          {rql_query.query}
-                        </CodeBlock>
+                  <div
+                    className={clsx("card shadow--md", styles.contentRQLQuery)}
+                  >
+                    <div className="card__body">
+                      <div className="avatar">
+                        <div className="avatar__intro margin-left--none">
+                          <h4
+                            className={clsx(
+                              "avatar__name",
+                              "text text--primary",
+                              styles.rql_queryDescription,
+                              styles.ellipsis
+                            )}
+                            title={rql_query.description}
+                          >
+                            {rql_query.description}
+                          </h4>
+                          <CodeBlock className="bash">
+                            {rql_query.query}
+                          </CodeBlock>
+                        </div>
                       </div>
                     </div>
+                    <div className="card__footer"></div>
                   </div>
-                  <div className="card__footer"></div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+        </main>
+      </div>
+
+      <div className={"col col--4"}>
+        <div
+          className={clsx(styles.docSidebarContainer, {
+            [styles.docSidebarContainerHidden]: hiddenSidebarContainer,
+          })}
+          onTransitionEnd={(e) => {
+            if (
+              !e.currentTarget.classList.contains(styles.docSidebarContainer)
+            ) {
+              return;
+            }
+
+            if (hiddenSidebarContainer) {
+              setHiddenSidebar(true);
+            }
+          }}
+          role="complementary"
+        >
+          <RQLLibrarySidebar
+            sidebar={[
+              {
+                type: "select",
+                label: "Cloud Provider",
+                action: setProvider,
+                options: generateProviders(),
+                state: provider,
+              },
+              {
+                type: "select",
+                label: "Service",
+                action: setService,
+                options: generateServices(),
+                state: service,
+              },
+            ]}
+            path="/RQLLibrary/"
+            sidebarCollapsible={
+              siteConfig.themeConfig?.sidebarCollapsible ?? true
+            }
+            onCollapse={toggleSidebar}
+            isHidden={hiddenSidebar}
+            search={setValue}
+            totalRQLQueries={QueryLibrary.length}
+            totalFilteredRQLQueries={totalFilteredRQLQueries}
+          />
+
+          {hiddenSidebar && (
+            <div
+              className={styles.collapsedDocSidebar}
+              title={translate({
+                id: "theme.docs.sidebar.expandButtonTitle",
+                message: "Expand sidebar",
+                description:
+                  "The ARIA label and title attribute for expand button of doc sidebar",
+              })}
+              aria-label={translate({
+                id: "theme.docs.sidebar.expandButtonAriaLabel",
+                message: "Expand sidebar",
+                description:
+                  "The ARIA label and title attribute for expand button of doc sidebar",
+              })}
+              tabIndex={0}
+              role="button"
+              onKeyDown={toggleSidebar}
+              onClick={toggleSidebar}
+            >
+              <IconArrow className={styles.expandSidebarButtonIcon} />
+            </div>
+          )}
         </div>
-      </main>
-    </Layout>
+      </div>
+    </div>
   );
 }
 

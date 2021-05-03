@@ -1,0 +1,6 @@
+{
+  "description": "CloudFormation Template does not contain termination protection for EC2 Instances",
+  "providers": ["aws", "gcp"],
+  "services": ["iam"],
+  "query": "join people testing int float 10"
+}
