@@ -4,6 +4,25 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+const globby = require("globby");
+const yaml = require("js-yaml");
+const fs = require("fs");
+
+function combineQueries() {
+  queries = globby.sync(["./static/rql_queries/*.yaml"], {
+    absolute: false,
+    objectMode: true,
+    deep: 1,
+    onlyDirectories: false,
+  });
+  var combined_queries = queries.map((q) => {
+    const queryContents = fs.readFileSync(q.path, "utf8");
+    const data = yaml.load(queryContents);
+    return data;
+  });
+  return combined_queries;
+}
+
 module.exports = {
   title: "Prisma Developer Docs | Palo Alto Networks",
   url: process.env.CI_PAGES_URL
@@ -172,6 +191,9 @@ module.exports = {
     ],
     onBrokenLinks: "warn",
     onDuplicateRoutes: "warn",
+  },
+  customFields: {
+    QueryLibrary: combineQueries(),
   },
   stylesheets: [
     {

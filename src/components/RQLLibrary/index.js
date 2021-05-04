@@ -13,7 +13,6 @@ import queryString from "query-string";
 import React, { useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useLocation } from "react-router-dom";
-import Button from "../../theme/Button";
 import RQLLibrarySidebar from "../../theme/RQLLibrarySidebar";
 import styles from "./styles.module.css";
 import CodeBlock from "../../theme/CodeBlock";
@@ -21,27 +20,11 @@ import CodeBlock from "../../theme/CodeBlock";
 const TITLE = "Prisma Cloud RQL Library";
 const DESCRIPTION = "Prisma Cloud RQL Query Examples";
 
-const QueryLibrary = () => {
-  var combined_queries = [];
-  queries = globby.sync(["./static/rql_queries/*.yaml"], {
-    absolute: false,
-    objectMode: true,
-    deep: 1,
-    onlyDirectories: false,
-  });
-  console.log(queries);
-  for (q in queries) {
-    const queryContents = fs.readFileSync(q.path, "utf8");
-    const data = yaml.load(queryContents);
-    combined_queries.push(data);
-  }
-  return combined_queries;
-};
-
 function RQLLibrary() {
   const location = useLocation();
   const params = queryString.parse(location.search);
   const { siteConfig } = useDocusaurusContext();
+  const QueryLibrary = siteConfig.customFields.QueryLibrary;
   const [hiddenSidebarContainer, setHiddenSidebarContainer] = useState(false);
   const [hiddenSidebar, setHiddenSidebar] = useState(false);
   const toggleSidebar = useCallback(() => {
@@ -50,8 +33,6 @@ function RQLLibrary() {
     }
     setHiddenSidebarContainer(!hiddenSidebarContainer);
   }, [hiddenSidebar]);
-
-  //console.log(QueryLibrary);
 
   const [provider, setProvider] = useState(false);
   const [service, setService] = useState(false);
