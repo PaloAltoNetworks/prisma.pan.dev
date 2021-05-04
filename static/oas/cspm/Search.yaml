@@ -1365,8 +1365,9 @@ paths:
       - Search
   /search/alert:
     get:
-      description: 'Returns search data that can be used to investigate the alert
-        with the specified ID. '
+      description: "Returns search data that can be used to investigate the alert\
+        \ with the specified ID.   \r\n\r\nThis request returns data for only the\
+        \ following types of alerts:\n* Anomaly alerts\n* Network alerts       \n"
       operationId: search-for-alert-by-id
       parameters:
       - description: Alert ID
