@@ -393,16 +393,6 @@ a[href="https://github.com/Redocly/redoc"]
   font-weight: bolder;
 }
 
-/* Show outlinks are leaving site */
-.markdown a[target="_blank"][href]::after,
-.menu--responsive a[target="_blank"][href]::after {
-  margin: 0 4px 0 4px;
-  font-family: "Font Awesome 5 Free" !important;
-  content: "\f35d";
-  font-size: x-small;
-  font-weight: 900;
-}
-
 /* Homepage features */
 .featuredContainer {
   width: 100%;
