@@ -382,12 +382,12 @@ function RQLLibrarySidebar({
           )}
         </button>
         <ul className="menu__list">
-          <li key="marketplace-search">
+          <li key="query-search">
             <div className={clsx(styles.webflow, "inputContainer")}>
               <input
                 className={styles.input}
                 type="filter"
-                placeholder="What can we help you automate?"
+                placeholder="Keyword Search"
                 onChange={(e) => search(e.target.value)}
                 autoComplete="false"
               ></input>
@@ -414,7 +414,7 @@ function RQLLibrarySidebar({
           ))}
           <small>
             Displaying <strong>{totalFilteredPacks} </strong>
-            of <strong>{totalPacks}</strong> content packs
+            of <strong>{totalPacks}</strong> RQL queries
           </small>
         </ul>
       </div>

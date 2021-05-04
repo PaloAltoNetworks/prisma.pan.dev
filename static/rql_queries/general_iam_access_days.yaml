@@ -1,0 +1,10 @@
+---
+id: general_iam_access_days
+description: Last accessed X days ago
+providers:
+- gcp
+- azure
+- aws
+services:
+- iam
+query: config from iam where action.lastaccess.days > 5

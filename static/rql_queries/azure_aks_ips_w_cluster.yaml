@@ -1,0 +1,8 @@
+---
+id: azure_aks_ips_w_cluser
+description: Authorized IPs that will connect to the cluster are not set
+providers:
+- azure
+services:
+- aks
+query: config from cloud.resource where cloud.type = 'azure' AND api.name = 'azure-kubernetes-cluster' AND json.rule = properties.apiServerAuthorizedIPRanges does not exist or properties.apiServerAuthorizedIPRanges is empty

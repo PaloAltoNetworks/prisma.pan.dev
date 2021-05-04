@@ -14,12 +14,29 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useLocation } from "react-router-dom";
 import Button from "../../theme/Button";
-import RQLLibrarySidebar from "../../theme/RQLLibrary";
+import RQLLibrarySidebar from "../../theme/RQLLibrarySidebar";
 import styles from "./styles.module.css";
 import CodeBlock from "../../theme/CodeBlock";
 
 const TITLE = "Prisma Cloud RQL Library";
 const DESCRIPTION = "Prisma Cloud RQL Query Examples";
+
+const QueryLibrary = () => {
+  var combined_queries = [];
+  queries = globby.sync(["./static/rql_queries/*.yaml"], {
+    absolute: false,
+    objectMode: true,
+    deep: 1,
+    onlyDirectories: false,
+  });
+  console.log(queries);
+  for (q in queries) {
+    const queryContents = fs.readFileSync(q.path, "utf8");
+    const data = yaml.load(queryContents);
+    combined_queries.push(data);
+  }
+  return combined_queries;
+};
 
 function RQLLibrary() {
   const location = useLocation();
@@ -34,25 +51,7 @@ function RQLLibrary() {
     setHiddenSidebarContainer(!hiddenSidebarContainer);
   }, [hiddenSidebar]);
 
-  const QueryLibrary = [
-    {
-      id: "cft-ec2",
-      description:
-        "CloudFormation Template does not contain termination protection for EC2 Instances",
-      providers: ["aws", "gcp"],
-      services: ["iam"],
-      query: "join people testing int float 10",
-      votes: 1,
-    },
-    {
-      id: "test-this",
-      description: "Test2",
-      providers: ["azure"],
-      services: ["iam", "legend"],
-      query: "Will Smith but make it code",
-      votes: 1,
-    },
-  ];
+  //console.log(QueryLibrary);
 
   const [provider, setProvider] = useState(false);
   const [service, setService] = useState(false);
@@ -178,32 +177,27 @@ function RQLLibrary() {
               {filteredRQLQueries.map((rql_query) => (
                 <div
                   key={rql_query.id}
-                  className={"col col--12 margin-bottom--lg"}
+                  className={"col col--12 margin-bottom--md"}
                 >
-                  <div
-                    className={clsx("card shadow--md", styles.contentRQLQuery)}
-                  >
+                  <div className={clsx("card", styles.queryContent)}>
+                    <div className="card__header">
+                      <h4
+                        className={clsx(
+                          "text text--primary",
+                          styles.queryDescription
+                        )}
+                        title={rql_query.description}
+                      >
+                        {rql_query.description}
+                      </h4>
+                    </div>
                     <div className="card__body">
-                      <div className="avatar">
-                        <div className="avatar__intro margin-left--none">
-                          <h4
-                            className={clsx(
-                              "avatar__name",
-                              "text text--primary",
-                              styles.rql_queryDescription,
-                              styles.ellipsis
-                            )}
-                            title={rql_query.description}
-                          >
-                            {rql_query.description}
-                          </h4>
-                          <CodeBlock className="bash">
-                            {rql_query.query}
-                          </CodeBlock>
-                        </div>
+                      <div className="queryCode">
+                        <CodeBlock className="bash">
+                          {rql_query.query}
+                        </CodeBlock>
                       </div>
                     </div>
-                    <div className="card__footer"></div>
                   </div>
                 </div>
               ))}

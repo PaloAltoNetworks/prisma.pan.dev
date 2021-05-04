@@ -58,7 +58,7 @@
 .codeBlockLines {
   font: var(--ifm-code-font-size) / var(--ifm-pre-line-height)
     var(--ifm-font-family-monospace);
-  white-space: pre;
+  white-space: pre-wrap;
   float: left;
   min-width: 100%;
   padding: var(--ifm-pre-padding);

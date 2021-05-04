@@ -4,7 +4,6 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 module.exports = {
   title: "Prisma Developer Docs | Palo Alto Networks",
   url: process.env.CI_PAGES_URL

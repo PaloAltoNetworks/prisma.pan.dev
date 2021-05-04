@@ -1,0 +1,8 @@
+---
+id: gcp_cloudstorage_list_private_public
+description: List storage buckets set to 'private' with object ACLs set to 'public'
+providers:
+- gcp
+services:
+- cloud-storage
+query: config from cloud.resource where cloud.type = 'gcp' AND api.name = 'gcloud-storage-buckets-list' AND json.rule = 'iam.bindings[*] size greater than 0 and iam.bindings[*].members[*] any equal allUsers and acl[*].entity contains "allUsers"'
