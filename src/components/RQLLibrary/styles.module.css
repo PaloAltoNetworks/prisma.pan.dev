@@ -8,11 +8,20 @@
 }
 
 .queryContent {
-  padding: 0;
-  margin: auto !important;
+  padding-top: 0;
+  margin-top: 1rem;
+  margin: 0 auto !important;
   box-shadow: none;
   border-width: 10px;
   border: 5px;
   border-style: outset;
   border-color: var(--ifm-color-primary);
+}
+
+.rqlRow {
+  width: 100%;
+  padding-bottom: 2rem;
+  top: var(--ifm-navbar-height);
+  z-index: 199;
+  position: fixed;
 }

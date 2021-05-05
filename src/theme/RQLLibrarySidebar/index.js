@@ -262,7 +262,7 @@ function SelectOne({
         }, 1000);
       });
     return (
-      <li className="menu__list-item" key={label}>
+      <div className={styles.rqlFilterItem} key={label}>
         <AsyncSelect
           placeholder={state ? state : `${label} (${options.length})`}
           onChange={(option) => {
@@ -273,38 +273,32 @@ function SelectOne({
           defaultOptions={options}
           loadOptions={promiseOptions}
         />
-      </li>
+      </div>
     );
   }
+  console.log(action);
   return (
-    <li className="menu__list-item" key={label}>
+    <div className={styles.rqlFilterItem} key={label}>
       <Select
         options={options}
         placeholder={state ? state : `${label} (${options.length})`}
         onChange={(option) => {
-          option ? action(option.value) : action("");
+          option ? console.log(action(option.value)) : console.log(action(""));
         }}
         isClearable={true}
         styles={colourStyles}
       />
-    </li>
+    </div>
   );
 }
 
 function DocSidebarItem(props) {
   switch (props.item.type) {
-    case "category":
-      return <DocSidebarItemCategory {...props} />;
-
     case "checkbox":
       return <Checkbox {...props} />;
 
     case "select":
       return <SelectOne {...props} />;
-
-    case "link":
-    default:
-      return <DocSidebarItemLink {...props} />;
   }
 }
 
@@ -315,16 +309,14 @@ function RQLLibrarySidebar({
   onCollapse,
   isHidden,
   search,
-  totalPacks,
-  totalFilteredPacks,
+  totalQueries,
+  totalFilteredQueries,
 }) {
   const [showResponsiveSidebar, setShowResponsiveSidebar] = useState(false);
   const {
     navbar: { hideOnScroll },
     hideableSidebar,
   } = useThemeConfig();
-  const { isAnnouncementBarClosed } = useUserPreferencesContext();
-  const { scrollY } = useScrollPosition();
   useLockBodyScroll(showResponsiveSidebar);
   const windowSize = useWindowSize();
   useEffect(() => {
@@ -333,104 +325,42 @@ function RQLLibrarySidebar({
     }
   }, [windowSize]);
   return (
-    <div
-      className={clsx(styles.sidebar, {
-        [styles.sidebarWithHideableNavbar]: hideOnScroll,
-        [styles.sidebarHidden]: isHidden,
+    <nav
+      className={clsx("navbar", "navbar--fixed-top", "rqlNavbar", {
+        "navbar--dark": styles === "dark",
+        "navbar--primary": styles === "primary",
       })}
     >
-      {hideOnScroll && <Logo tabIndex={-1} className={styles.sidebarLogo} />}
-      <div
-        className={clsx(
-          "menu",
-          "menu--responsive",
-          "thin-scrollbar",
-          styles.menu,
-          {
-            "menu--show": showResponsiveSidebar,
-            [styles.menuWithAnnouncementBar]:
-              !isAnnouncementBarClosed && scrollY === 0,
-          }
-        )}
-      >
-        <button
-          aria-label={showResponsiveSidebar ? "Close Menu" : "Open Menu"}
-          aria-haspopup="true"
-          className="button button--secondary button--sm menu__button"
-          type="button"
-          onClick={() => {
-            setShowResponsiveSidebar(!showResponsiveSidebar);
-          }}
-        >
-          {showResponsiveSidebar ? (
-            <span
-              className={clsx(
-                styles.sidebarMenuIcon,
-                styles.sidebarMenuCloseIcon
-              )}
-            >
-              &times;
-            </span>
-          ) : (
-            <IconMenu
-              className={styles.sidebarMenuIcon}
-              height={MOBILE_TOGGLE_SIZE}
-              width={MOBILE_TOGGLE_SIZE}
-            />
-          )}
-        </button>
-        <ul className="menu__list">
-          <li key="query-search">
-            <div className={clsx(styles.webflow, "inputContainer")}>
-              <input
-                className={styles.input}
-                type="filter"
-                placeholder="Keyword Search"
-                onChange={(e) => search(e.target.value)}
-                autoComplete="false"
-              ></input>
-              <button>
-                <i
-                  title="Keyword Search"
-                  className={clsx("fas fa-search", styles.searchIcon)}
-                ></i>
-              </button>
-            </div>
-          </li>
-          <br></br>
-          {sidebar.map((item) => (
-            <DocSidebarItem
-              key={item.label}
-              item={item}
-              onItemClick={(e) => {
-                e.target.blur();
-                setShowResponsiveSidebar(false);
-              }}
-              collapsible={sidebarCollapsible}
-              activePath={path}
-            />
-          ))}
-          <small>
-            Displaying <strong>{totalFilteredPacks} </strong>
-            of <strong>{totalPacks}</strong> RQL queries
-          </small>
-        </ul>
+      <div key="marketplace-search">
+        <div className={clsx(styles.webflow, "inputContainer")}>
+          <input
+            className={styles.input}
+            type="filter"
+            placeholder="Keyword Search"
+            onChange={(e) => search(e.target.value)}
+            autoComplete="false"
+          ></input>
+          <i
+            title="Keyword Search"
+            className={clsx("fas fa-search", styles.searchIcon)}
+          ></i>
+        </div>
       </div>
-      {hideableSidebar && (
-        <button
-          type="button"
-          title="Collapse sidebar"
-          aria-label="Collapse sidebar"
-          className={clsx(
-            "button button--secondary button--outline",
-            styles.collapseSidebarButton
-          )}
-          onClick={onCollapse}
-        >
-          <IconArrow className={styles.collapseSidebarButtonIcon} />
-        </button>
-      )}
-    </div>
+      {sidebar.map((item) => (
+        <div className="col col--3">
+          <DocSidebarItem
+            key={item.label}
+            item={item}
+            onItemClick={(e) => {
+              e.target.blur();
+              setShowResponsiveSidebar(false);
+            }}
+            collapsible={sidebarCollapsible}
+            activePath={path}
+          />
+        </div>
+      ))}
+    </nav>
   );
 }
 

@@ -4,24 +4,24 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import Link from '@docusaurus/Link';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import React, { useCallback, useState, useEffect } from 'react';
-import clsx from 'clsx';
-import SearchBar from '@theme/SearchBar';
-import Toggle from '@theme/Toggle';
-import useThemeContext from '@theme/hooks/useThemeContext';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import { useThemeConfig } from '@docusaurus/theme-common';
-import useHideableNavbar from '@theme/hooks/useHideableNavbar';
-import useLockBodyScroll from '@theme/hooks/useLockBodyScroll';
-import useWindowSize, { windowSizes } from '@theme/hooks/useWindowSize';
-import NavbarItem from '@theme/NavbarItem';
-import Logo from '@theme/Logo';
-import IconMenu from '@theme/IconMenu';
-import styles from './styles.module.css'; // retrocompatible with v1
+import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import React, { useCallback, useState, useEffect } from "react";
+import clsx from "clsx";
+import SearchBar from "@theme/SearchBar";
+import Toggle from "@theme/Toggle";
+import useThemeContext from "@theme/hooks/useThemeContext";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { useThemeConfig } from "@docusaurus/theme-common";
+import useHideableNavbar from "@theme/hooks/useHideableNavbar";
+import useLockBodyScroll from "@theme/hooks/useLockBodyScroll";
+import useWindowSize, { windowSizes } from "@theme/hooks/useWindowSize";
+import NavbarItem from "@theme/NavbarItem";
+import Logo from "@theme/Logo";
+import IconMenu from "@theme/IconMenu";
+import styles from "./styles.module.css"; // retrocompatible with v1
 
-const DefaultNavItemPosition = 'right'; // If split links by left/right
+const DefaultNavItemPosition = "right"; // If split links by left/right
 // if position is unspecified, fallback to right (as v1)
 
 function NavLink({
@@ -30,7 +30,7 @@ function NavLink({
   to,
   href,
   label,
-  activeclassname = 'navbar__link--active',
+  activeclassname = "navbar__link--active",
   prependBaseUrlToHref,
   ...props
 }) {
@@ -42,8 +42,8 @@ function NavLink({
     <Link
       {...(href
         ? {
-            target: '_blank',
-            rel: 'noopener noreferrer',
+            target: "_blank",
+            rel: "noopener noreferrer",
             href: prependBaseUrlToHref ? normalizedHref : href,
           }
         : {
@@ -73,7 +73,7 @@ function SiteLink({
   href,
   label,
   logo,
-  activeclassname = 'navbar__link--active',
+  activeclassname = "navbar__link--active",
   prependBaseUrlToHref,
   ...props
 }) {
@@ -85,8 +85,8 @@ function SiteLink({
     <Link
       {...(href
         ? {
-            target: '_self',
-            rel: 'noopener noreferrer',
+            target: "_self",
+            rel: "noopener noreferrer",
             href: prependBaseUrlToHref ? normalizedHref : href,
           }
         : {
@@ -116,11 +116,16 @@ function SiteLink({
   );
 }
 
-function SiteItem({ items, position = DefaultNavItemPosition, className, ...props }) {
+function SiteItem({
+  items,
+  position = DefaultNavItemPosition,
+  className,
+  ...props
+}) {
   const navLinkClassNames = (extraClassName, isDropdownItem = false) =>
     clsx(
       {
-        'navbar__item navbar__link': !isDropdownItem,
+        "navbar__item navbar__link": !isDropdownItem,
         dropdown__link: isDropdownItem,
       },
       extraClassName
@@ -132,9 +137,9 @@ function SiteItem({ items, position = DefaultNavItemPosition, className, ...prop
 
   return (
     <div
-      className={clsx('navbar__item', 'dropdown', 'dropdown--hoverable', {
-        'dropdown--right': position === 'right',
-        'dropdown--left': position === 'products',
+      className={clsx("navbar__item", "dropdown", "dropdown--hoverable", {
+        "dropdown--right": position === "right",
+        "dropdown--left": position === "products",
       })}
     >
       <NavLink
@@ -142,23 +147,25 @@ function SiteItem({ items, position = DefaultNavItemPosition, className, ...prop
         {...props}
         onClick={(e) => e.preventDefault()}
         onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            e.target.parentNode.classList.toggle('dropdown--show');
+          if (e.key === "Enter") {
+            e.target.parentNode.classList.toggle("dropdown--show");
           }
         }}
       >
         {props.label}
       </NavLink>
       <ul className="dropdown__menu">
-        {items.map(({ className: childItemClassName, ...childItemProps }, i) => (
-          <li key={i}>
-            <SiteLink
-              activeclassname="dropdown__link--active"
-              className={navLinkClassNames(childItemClassName, true)}
-              {...childItemProps}
-            />
-          </li>
-        ))}
+        {items.map(
+          ({ className: childItemClassName, ...childItemProps }, i) => (
+            <li key={i}>
+              <SiteLink
+                activeclassname="dropdown__link--active"
+                className={navLinkClassNames(childItemClassName, true)}
+                {...childItemProps}
+              />
+            </li>
+          )
+        )}
       </ul>
     </div>
   );
@@ -168,9 +175,9 @@ function MobileSiteItem({ items, position: _position, className, ...props }) {
   // Need to destructure position from props so that it doesn't get passed on.
   const navLinkClassNames = (extraClassName, isSubList = false) =>
     clsx(
-      'menu__link no_dropdown',
+      "menu__link no_dropdown",
       {
-        'menu__link--sublist': isSubList,
+        "menu__link--sublist": isSubList,
       },
       extraClassName
     );
@@ -189,25 +196,33 @@ function MobileSiteItem({ items, position: _position, className, ...props }) {
         {props.label}
       </NavLink>
       <ul className="menu__list">
-        {items.map(({ className: childItemClassName, ...childItemProps }, i) => (
-          <li className="menu__list-item" key={i}>
-            <SiteLink
-              activeClassName="menu__link--active"
-              className={navLinkClassNames(childItemClassName)}
-              {...childItemProps}
-              onClick={props.onClick}
-            />
-          </li>
-        ))}
+        {items.map(
+          ({ className: childItemClassName, ...childItemProps }, i) => (
+            <li className="menu__list-item" key={i}>
+              <SiteLink
+                activeClassName="menu__link--active"
+                className={navLinkClassNames(childItemClassName)}
+                {...childItemProps}
+                onClick={props.onClick}
+              />
+            </li>
+          )
+        )}
       </ul>
     </li>
   );
 }
 
 function splitNavItemsByPosition(items) {
-  const leftItems = items.filter((item) => (item.position ?? DefaultNavItemPosition) === 'left');
-  const rightItems = items.filter((item) => (item.position ?? DefaultNavItemPosition) === 'right');
-  const productItems = items.filter((item) => (item.position ?? DefaultNavItemPosition) === 'products');
+  const leftItems = items.filter(
+    (item) => (item.position ?? DefaultNavItemPosition) === "left"
+  );
+  const rightItems = items.filter(
+    (item) => (item.position ?? DefaultNavItemPosition) === "right"
+  );
+  const productItems = items.filter(
+    (item) => (item.position ?? DefaultNavItemPosition) === "products"
+  );
   return {
     leftItems,
     rightItems,
@@ -235,26 +250,28 @@ function Navbar() {
   const hideSidebar = useCallback(() => {
     setSidebarShown(false);
   }, [setSidebarShown]);
-  const onToggleChange = useCallback((e) => (e.target.checked ? setDarkTheme() : setLightTheme()), [
-    setLightTheme,
-    setDarkTheme,
-  ]);
+  const onToggleChange = useCallback(
+    (e) => (e.target.checked ? setDarkTheme() : setLightTheme()),
+    [setLightTheme, setDarkTheme]
+  );
   const windowSize = useWindowSize();
   useEffect(() => {
     if (windowSize === windowSizes.desktop) {
       setSidebarShown(false);
     }
   }, [windowSize]);
-  const hasSearchNavbarItem = items.some((item) => item.type === 'search');
+  const hasSearchNavbarItem = items.some((item) => item.type === "search");
   const allItems = items.concat(sites);
-  const { leftItems, rightItems, productItems } = splitNavItemsByPosition(allItems);
+  const { leftItems, rightItems, productItems } = splitNavItemsByPosition(
+    allItems
+  );
   return (
     <nav
       ref={navbarRef}
-      className={clsx('navbar', 'navbar--fixed-top', {
-        'navbar--dark': style === 'dark',
-        'navbar--primary': style === 'primary',
-        'navbar-sidebar--show': sidebarShown,
+      className={clsx("navbar", "navbar--fixed-top", {
+        "navbar--dark": style === "dark",
+        "navbar--primary": style === "primary",
+        "navbar-sidebar--show": sidebarShown,
         [styles.navbarHideable]: hideOnScroll,
         [styles.navbarHidden]: hideOnScroll && !isNavbarVisible,
       })}
@@ -273,7 +290,11 @@ function Navbar() {
               <IconMenu />
             </button>
           )}
-          <Logo className="navbar__brand" imageClassName="navbar__logo" titleClassName={clsx('navbar__title')} />
+          <Logo
+            className="navbar__brand"
+            imageClassName="navbar__logo"
+            titleClassName={clsx("navbar__title")}
+          />
           {leftItems.map((item, i) => (
             <NavbarItem {...item} key={i} />
           ))}
@@ -296,7 +317,11 @@ function Navbar() {
           {!hasSearchNavbarItem && <SearchBar />}
         </div>
       </div>
-      <div role="presentation" className="navbar-sidebar__backdrop" onClick={hideSidebar} />
+      <div
+        role="presentation"
+        className="navbar-sidebar__backdrop"
+        onClick={hideSidebar}
+      />
       <div className="navbar-sidebar">
         <div className="navbar-sidebar__brand">
           <Logo
@@ -306,7 +331,11 @@ function Navbar() {
             onClick={hideSidebar}
           />
           {!disableColorModeSwitch && sidebarShown && (
-            <Toggle aria-label="Dark mode toggle in sidebar" checked={isDarkTheme} onChange={onToggleChange} />
+            <Toggle
+              aria-label="Dark mode toggle in sidebar"
+              checked={isDarkTheme}
+              onChange={onToggleChange}
+            />
           )}
         </div>
         <div className="navbar-sidebar__items">
