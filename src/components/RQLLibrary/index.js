@@ -11,7 +11,6 @@ import IconArrow from "@theme/IconArrow";
 import clsx from "clsx";
 import queryString from "query-string";
 import React, { useCallback, useEffect, useState } from "react";
-import { useMediaQuery } from "react-responsive";
 import { useLocation } from "react-router-dom";
 import RQLLibrarySidebar from "../../theme/RQLLibrarySidebar";
 import styles from "./styles.module.css";
@@ -22,6 +21,7 @@ const DESCRIPTION = "Prisma Cloud RQL Query Examples";
 
 function RQLLibrary() {
   const location = useLocation();
+  console.log(location);
   const params = queryString.parse(location.search);
   const { siteConfig } = useDocusaurusContext();
   const QueryLibrary = siteConfig.customFields.QueryLibrary;
@@ -51,9 +51,12 @@ function RQLLibrary() {
 
   const preFilteredRQLQueries = QueryLibrary.filter((rql_query) => {
     for (var key in filters) {
-      if (key == "providers" && rql_query[key].includes(provider)) return true;
-
+      if (key == "providers" && rql_query[key].includes(provider)) {
+        return true;
+      }
       if (key == "services" && rql_query[key].includes(service)) return true;
+      if (rql_query[key] === undefined || rql_query[key] != filters[key])
+        return false;
     }
     return true;
   });
@@ -70,6 +73,7 @@ function RQLLibrary() {
   });
 
   const totalFilteredRQLQueries = filteredRQLQueries.length;
+  console.log(filteredRQLQueries);
 
   function generateProviders() {
     const dictionary = {};
@@ -222,7 +226,7 @@ function RQLLibrary() {
                 state: service,
               },
             ]}
-            path="/RQLLibrary/"
+            path="/docs/cloud/cspm/rql_library"
             sidebarCollapsible={
               siteConfig.themeConfig?.sidebarCollapsible ?? true
             }

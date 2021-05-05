@@ -255,14 +255,12 @@ function SelectOne({
         i.label.toLowerCase().includes(inputValue.toLowerCase())
       );
     };
-
     const promiseOptions = (inputValue) =>
       new Promise((resolve) => {
         setTimeout(() => {
           resolve(filterOptions(inputValue));
         }, 1000);
       });
-
     return (
       <li className="menu__list-item" key={label}>
         <AsyncSelect
