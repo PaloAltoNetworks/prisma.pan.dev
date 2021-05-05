@@ -134,6 +134,18 @@ html[data-theme="dark"] {
   align-self: center;
 }
 
+.rqlNavbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--ifm-z-index-fixed);
+  width: 100%;
+  background-color: var(--ifm-navbar-background-color);
+  box-shadow: none;
+  padding: var(--ifm-navbar-padding-vertical)
+    var(--ifm-navbar-padding-horizontal);
+  height: auto;
+}
+
 .main-wrapper h1[class^="docTitle"] {
   font-size: 2.8rem;
 }
@@ -227,8 +239,6 @@ blockquote {
   margin-top: 1rem;
   max-width: 1400px;
 }
-
-/* Code blocks */
 
 /* GitHub Header Link */
 .header-github-link:hover {

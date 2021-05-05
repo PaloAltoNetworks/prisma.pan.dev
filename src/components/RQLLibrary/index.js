@@ -42,6 +42,7 @@ function RQLLibrary() {
   useEffect(() => {
     if (!provider && params.provider) setProvider(params.provider);
     if (!service && params.service) setService(params.service);
+    if (!value && params.q) setValue(params.q);
   }, []);
 
   const filters = {
@@ -51,12 +52,16 @@ function RQLLibrary() {
 
   const preFilteredRQLQueries = QueryLibrary.filter((rql_query) => {
     for (var key in filters) {
-      if (key == "providers" && rql_query[key].includes(provider)) {
-        return true;
+      switch (key) {
+        case "providers":
+          if (!rql_query[key].includes(provider)) return false;
+          break;
+        case "services":
+          if (!rql_query[key].includes(service)) return false;
+          break;
+        default:
+          return false;
       }
-      if (key == "services" && rql_query[key].includes(service)) return true;
-      if (rql_query[key] === undefined || rql_query[key] != filters[key])
-        return false;
     }
     return true;
   });
@@ -73,7 +78,6 @@ function RQLLibrary() {
   });
 
   const totalFilteredRQLQueries = filteredRQLQueries.length;
-  console.log(filteredRQLQueries);
 
   function generateProviders() {
     const dictionary = {};
@@ -142,126 +146,107 @@ function RQLLibrary() {
   }
 
   return (
-    <div className="row">
-      <div className={"col col--8"}>
-        <main
-          className={clsx(styles.docMainContainer, {
-            [styles.docMainContainerEnhanced]: hiddenSidebarContainer,
-          })}
-        >
+    <div className="col">
+      <main
+        className={clsx(styles.docMainContainer, {
+          [styles.docMainContainerEnhanced]: hiddenSidebarContainer,
+        })}
+      >
+        <div className={styles.rqlRow}>
           <div
-            className={clsx(
-              "container padding-vert--lg",
-              styles.docItemWrapper,
-              {
-                [styles.docItemWrapperEnhanced]: hiddenSidebarContainer,
+            className={clsx(styles.docSidebarContainer, {
+              [styles.docSidebarContainerHidden]: hiddenSidebarContainer,
+            })}
+            onTransitionEnd={(e) => {
+              if (
+                !e.currentTarget.classList.contains(styles.docSidebarContainer)
+              ) {
+                return;
               }
-            )}
+
+              if (hiddenSidebarContainer) {
+                setHiddenSidebar(true);
+              }
+            }}
           >
-            <div className="row">
-              {filteredRQLQueries.map((rql_query) => (
-                <div
-                  key={rql_query.id}
-                  className={"col col--12 margin-bottom--md"}
-                >
-                  <div className={clsx("card", styles.queryContent)}>
-                    <div className="card__header">
-                      <h4
-                        className={clsx(
-                          "text text--primary",
-                          styles.queryDescription
-                        )}
-                        title={rql_query.description}
-                      >
-                        {rql_query.description}
-                      </h4>
-                    </div>
-                    <div className="card__body">
-                      <div className="queryCode">
-                        <CodeBlock className="bash">
-                          {rql_query.query}
-                        </CodeBlock>
-                      </div>
-                    </div>
+            <RQLLibrarySidebar
+              sidebar={[
+                {
+                  type: "select",
+                  label: "Cloud Provider",
+                  action: setProvider,
+                  options: generateProviders(),
+                  state: provider,
+                },
+                {
+                  type: "select",
+                  label: "Service",
+                  action: setService,
+                  options: generateServices(),
+                  state: service,
+                },
+              ]}
+              path="/docs/cloud/cspm/rql_library"
+              sidebarCollapsible={
+                siteConfig.themeConfig?.sidebarCollapsible ?? true
+              }
+              onCollapse={toggleSidebar}
+              isHidden={hiddenSidebar}
+              search={setValue}
+              totalRQLQueries={QueryLibrary.length}
+              totalFilteredRQLQueries={totalFilteredRQLQueries}
+            />
+
+            {hiddenSidebar && (
+              <div
+                className={styles.collapsedDocSidebar}
+                title={translate({
+                  id: "theme.docs.sidebar.expandButtonTitle",
+                  message: "Expand sidebar",
+                  description:
+                    "The ARIA label and title attribute for expand button of doc sidebar",
+                })}
+                aria-label={translate({
+                  id: "theme.docs.sidebar.expandButtonAriaLabel",
+                  message: "Expand sidebar",
+                  description:
+                    "The ARIA label and title attribute for expand button of doc sidebar",
+                })}
+                tabIndex={0}
+                role="button"
+                onKeyDown={toggleSidebar}
+                onClick={toggleSidebar}
+              >
+                <IconArrow className={styles.expandSidebarButtonIcon} />
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="row">
+          {filteredRQLQueries.map((rql_query) => (
+            <div key={rql_query.id} className={"col col--12 margin-top--md"}>
+              <div className={clsx("card", styles.queryContent)}>
+                <div className="card__header">
+                  <h4
+                    className={clsx(
+                      "text text--primary",
+                      styles.queryDescription
+                    )}
+                    title={rql_query.description}
+                  >
+                    {rql_query.description}
+                  </h4>
+                </div>
+                <div className="card__body">
+                  <div className="queryCode">
+                    <CodeBlock className="bash">{rql_query.query}</CodeBlock>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
-        </main>
-      </div>
-
-      <div className={"col col--4"}>
-        <div
-          className={clsx(styles.docSidebarContainer, {
-            [styles.docSidebarContainerHidden]: hiddenSidebarContainer,
-          })}
-          onTransitionEnd={(e) => {
-            if (
-              !e.currentTarget.classList.contains(styles.docSidebarContainer)
-            ) {
-              return;
-            }
-
-            if (hiddenSidebarContainer) {
-              setHiddenSidebar(true);
-            }
-          }}
-          role="complementary"
-        >
-          <RQLLibrarySidebar
-            sidebar={[
-              {
-                type: "select",
-                label: "Cloud Provider",
-                action: setProvider,
-                options: generateProviders(),
-                state: provider,
-              },
-              {
-                type: "select",
-                label: "Service",
-                action: setService,
-                options: generateServices(),
-                state: service,
-              },
-            ]}
-            path="/docs/cloud/cspm/rql_library"
-            sidebarCollapsible={
-              siteConfig.themeConfig?.sidebarCollapsible ?? true
-            }
-            onCollapse={toggleSidebar}
-            isHidden={hiddenSidebar}
-            search={setValue}
-            totalRQLQueries={QueryLibrary.length}
-            totalFilteredRQLQueries={totalFilteredRQLQueries}
-          />
-
-          {hiddenSidebar && (
-            <div
-              className={styles.collapsedDocSidebar}
-              title={translate({
-                id: "theme.docs.sidebar.expandButtonTitle",
-                message: "Expand sidebar",
-                description:
-                  "The ARIA label and title attribute for expand button of doc sidebar",
-              })}
-              aria-label={translate({
-                id: "theme.docs.sidebar.expandButtonAriaLabel",
-                message: "Expand sidebar",
-                description:
-                  "The ARIA label and title attribute for expand button of doc sidebar",
-              })}
-              tabIndex={0}
-              role="button"
-              onKeyDown={toggleSidebar}
-              onClick={toggleSidebar}
-            >
-              <IconArrow className={styles.expandSidebarButtonIcon} />
-            </div>
-          )}
+          ))}
         </div>
-      </div>
+      </main>
     </div>
   );
 }
