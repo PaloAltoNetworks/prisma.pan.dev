@@ -10,4 +10,6 @@ services:
 - elb
 - vpc
 - nat gateway
+query_types:
+- network
 query: network from vpc.flow_record where source.publicnetwork IN ( 'Internet IPs', 'Suspicious IPs' ) AND dest.resource IN ( resource where role NOT IN ( 'AWS ELB', 'AWS NAT Gateway', 'AZURE ELB', 'GCP ELB' ) AND finding.type IN ( 'Host Vulnerability', 'Prisma Cloud Alert', 'Serverless Vulnerability' ) ) AND bytes > 0

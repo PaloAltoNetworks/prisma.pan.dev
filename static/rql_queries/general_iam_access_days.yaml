@@ -7,4 +7,7 @@ providers:
 - aws
 services:
 - iam
+query_types:
+- config
+- iam
 query: config from iam where action.lastaccess.days > 5
