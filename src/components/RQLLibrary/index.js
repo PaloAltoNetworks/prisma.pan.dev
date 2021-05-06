@@ -21,7 +21,6 @@ const DESCRIPTION = "Prisma Cloud RQL Query Examples";
 
 function RQLLibrary() {
   const location = useLocation();
-  console.log(location);
   const params = queryString.parse(location.search);
   const { siteConfig } = useDocusaurusContext();
   const QueryLibrary = siteConfig.customFields.QueryLibrary;
@@ -36,28 +35,34 @@ function RQLLibrary() {
 
   const [provider, setProvider] = useState(false);
   const [service, setService] = useState(false);
+  const [type, setType] = useState(false);
   const [value, setValue] = useState("");
 
   // Parse URL query params
   useEffect(() => {
     if (!provider && params.provider) setProvider(params.provider);
     if (!service && params.service) setService(params.service);
+    if (!type && params.type) setService(params.type);
     if (!value && params.q) setValue(params.q);
   }, []);
 
   const filters = {
     ...(provider && { providers: provider }),
     ...(service && { services: service }),
+    ...(type && { types: type }),
   };
 
   const preFilteredRQLQueries = QueryLibrary.filter((rql_query) => {
     for (var key in filters) {
       switch (key) {
         case "providers":
-          if (!rql_query[key].includes(provider)) return false;
+          if (!rql_query.providers.includes(provider)) return false;
           break;
         case "services":
-          if (!rql_query[key].includes(service)) return false;
+          if (!rql_query.services.includes(service)) return false;
+          break;
+        case "types":
+          if (!rql_query.query_types.includes(type)) return false;
           break;
         default:
           return false;
@@ -145,6 +150,39 @@ function RQLLibrary() {
     return services;
   }
 
+  function generateTypes() {
+    const dictionary = {};
+    let types = [];
+    let combinedTypes = [];
+    filteredRQLQueries.map((rql_query) => {
+      combinedTypes.push(rql_query.query_types);
+    });
+    const flattenedTypes = () => {
+      var flat = [];
+      for (var i = 0; i < combinedTypes.length; i++) {
+        flat = flat.concat(combinedTypes[i]);
+      }
+      return flat;
+    };
+    const allTypes = flattenedTypes();
+    allTypes.map((type) => {
+      dictionary[type] = {
+        name: type,
+        count: dictionary[type] ? dictionary[type]["count"] + 1 : 1,
+      };
+    });
+    const uniqueTypes = new Set(allTypes);
+    uniqueTypes.forEach((type) => {
+      types.push({
+        label: dictionary[type]
+          ? `${type} (${dictionary[type]["count"]})`
+          : type,
+        value: type,
+      });
+    });
+    return types;
+  }
+
   return (
     <div className="col">
       <main
@@ -171,6 +209,13 @@ function RQLLibrary() {
           >
             <RQLLibrarySidebar
               sidebar={[
+                {
+                  type: "select",
+                  label: "Query Types",
+                  action: setType,
+                  options: generateTypes(),
+                  state: type,
+                },
                 {
                   type: "select",
                   label: "Cloud Provider",

@@ -5,4 +5,6 @@ providers:
 - azure
 services:
 - aks
+query_types:
+- config
 query: config from cloud.resource where cloud.type = 'azure' AND api.name = 'azure-kubernetes-cluster' AND json.rule = properties.apiServerAuthorizedIPRanges does not exist or properties.apiServerAuthorizedIPRanges is empty

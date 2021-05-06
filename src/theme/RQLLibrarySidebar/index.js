@@ -276,14 +276,13 @@ function SelectOne({
       </div>
     );
   }
-  console.log(action);
   return (
     <div className={styles.rqlFilterItem} key={label}>
       <Select
         options={options}
         placeholder={state ? state : `${label} (${options.length})`}
         onChange={(option) => {
-          option ? console.log(action(option.value)) : console.log(action(""));
+          option ? action(option.value) : action("");
         }}
         isClearable={true}
         styles={colourStyles}
@@ -347,7 +346,7 @@ function RQLLibrarySidebar({
         </div>
       </div>
       {sidebar.map((item) => (
-        <div className="col col--3">
+        <div className="col col--2">
           <DocSidebarItem
             key={item.label}
             item={item}
