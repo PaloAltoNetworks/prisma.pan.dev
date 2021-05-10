@@ -21,7 +21,6 @@
     },
     "schemas": {
       "AccountGroupMetadataViewModel": {
-        "description": "Account group metadata view model",
         "properties": {
           "autoCreated": {
             "description": "Boolean to indicate if account group is automatically created",
@@ -42,7 +41,8 @@
             "type": "array"
           },
           "autoCreated": {
-            "description": "Boolean to indicate if account group is automatically created",
+            "description": "Boolean read-only attribute to indicate if account group is automatically created",
+            "readOnly": true,
             "type": "boolean"
           },
           "cloudAccountCount": {
@@ -103,7 +103,8 @@
             "type": "array"
           },
           "autoCreated": {
-            "description": "Boolean to indicate if account group is automatically created",
+            "description": "Boolean read-only attribute to indicate if account group is automatically created",
+            "readOnly": true,
             "type": "boolean"
           },
           "cloudAccountCount": {
@@ -135,7 +136,13 @@
             "readOnly": true,
             "type": "integer"
           },
-          "name": { "description": "Name", "type": "string" }
+          "name": { "description": "Name", "type": "string" },
+          "parentInfo": {
+            "allOf": [
+              { "$ref": "#/components/schemas/AccountGroupMetadataViewModel" },
+              { "description": "For future use" }
+            ]
+          }
         },
         "required": ["accountIds", "name"],
         "type": "object"
@@ -236,7 +243,14 @@
           "required": true
         },
         "responses": {
-          "200": { "description": "successful operation" },
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/AccountGroupModel" }
+              }
+            },
+            "description": "successful operation"
+          },
           "400": {
             "description": "invalid_account_group_name / account_group_name_already_exists / invalid_account_ids"
           },
@@ -249,11 +263,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/group\"\n\npayload = \"{\\\"accountIds\\\":[\\\"string\\\"],\\\"autoCreated\\\":true,\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/group\"\n\npayload = \"{\\\"accountIds\\\":[\\\"string\\\"],\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/cloud/group \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountIds\":[\"string\"],\"autoCreated\":true,\"description\":\"string\",\"name\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/cloud/group \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountIds\":[\"string\"],\"description\":\"string\",\"name\":\"string\"}'"
           }
         ]
       }
@@ -431,11 +445,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/group/{id}\"\n\npayload = \"{\\\"accountIds\\\":[\\\"string\\\"],\\\"autoCreated\\\":true,\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/group/{id}\"\n\npayload = \"{\\\"accountIds\\\":[\\\"string\\\"],\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/cloud/group/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountIds\":[\"string\"],\"autoCreated\":true,\"description\":\"string\",\"name\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/cloud/group/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountIds\":[\"string\"],\"description\":\"string\",\"name\":\"string\"}'"
           }
         ]
       },

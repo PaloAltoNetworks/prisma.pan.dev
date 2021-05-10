@@ -718,7 +718,7 @@ components:
           description: Policy description
           type: string
         enabled:
-          description: Enabled. Default is true.
+          description: true=enabled. false=disabled.
           type: boolean
         labels:
           description: Labels
@@ -845,7 +845,7 @@ components:
           description: Policy description
           type: string
         enabled:
-          description: Enabled. Default is true.
+          description: true=enabled. false=disabled.
           type: boolean
         labels:
           description: Labels

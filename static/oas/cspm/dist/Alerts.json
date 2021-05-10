@@ -741,7 +741,7 @@
             "type": "string"
           },
           "enabled": {
-            "description": "Enabled. Default is true.",
+            "description": "true=enabled. false=disabled.",
             "type": "boolean"
           },
           "labels": {
@@ -880,7 +880,7 @@
             "type": "string"
           },
           "enabled": {
-            "description": "Enabled. Default is true.",
+            "description": "true=enabled. false=disabled.",
             "type": "boolean"
           },
           "labels": {

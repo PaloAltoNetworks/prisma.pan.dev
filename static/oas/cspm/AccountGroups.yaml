@@ -15,7 +15,6 @@ components:
       required: true
   schemas:
     AccountGroupMetadataViewModel:
-      description: Account group metadata view model
       properties:
         autoCreated:
           description: Boolean to indicate if account group is automatically created
@@ -38,7 +37,9 @@ components:
             type: string
           type: array
         autoCreated:
-          description: Boolean to indicate if account group is automatically created
+          description: Boolean read-only attribute to indicate if account group is
+            automatically created
+          readOnly: true
           type: boolean
         cloudAccountCount:
           description: Number of cloud accounts associated with this account group
@@ -99,7 +100,9 @@ components:
           readOnly: true
           type: array
         autoCreated:
-          description: Boolean to indicate if account group is automatically created
+          description: Boolean read-only attribute to indicate if account group is
+            automatically created
+          readOnly: true
           type: boolean
         cloudAccountCount:
           description: Number of cloud accounts associated with this account group
@@ -132,6 +135,10 @@ components:
         name:
           description: Name
           type: string
+        parentInfo:
+          allOf:
+          - $ref: '#/components/schemas/AccountGroupMetadataViewModel'
+          - description: For future use
       required:
       - accountIds
       - name
@@ -219,6 +226,10 @@ paths:
         $ref: '#/components/requestBodies/AccountGroupModel'
       responses:
         '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccountGroupModel'
           description: successful operation
         '400':
           description: invalid_account_group_name / account_group_name_already_exists
