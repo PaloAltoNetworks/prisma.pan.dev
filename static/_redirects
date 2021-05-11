@@ -1,2 +1,3 @@
 # Redirect domain aliases to primary domain
 https://panos.developers.paloaltonetworks.com/* https://panos.pan.dev/:splat 301!
+https://api.docs.prismacloud.io/* https://prisma.pan.dev/api/cloud 301!
