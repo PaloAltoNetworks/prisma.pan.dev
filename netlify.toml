@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "https://api.docs.prismacloud.io"
+  to = "/api/cloud/"
+  status = 301
+  force = true
