@@ -431,7 +431,7 @@ html[data-theme="dark"] .featuredContainer {
   bottom: 0 !important;
 }
 
-.get:after {
+.menu__link.get:after {
   content: "get";
   display: inline-block;
   position: relative;
@@ -448,7 +448,7 @@ html[data-theme="dark"] .featuredContainer {
   font-weight: 600;
 }
 
-.post:after {
+.menu__link.post:after {
   content: "post";
   display: inline-block;
   position: relative;
@@ -465,7 +465,7 @@ html[data-theme="dark"] .featuredContainer {
   font-weight: 600;
 }
 
-.delete:after {
+.menu__link.delete:after {
   content: "delete";
   display: inline-block;
   position: relative;
@@ -482,7 +482,7 @@ html[data-theme="dark"] .featuredContainer {
   font-weight: 600;
 }
 
-.patch:after {
+.menu__link.patch:after {
   content: "patch";
   display: inline-block;
   position: relative;
@@ -499,7 +499,7 @@ html[data-theme="dark"] .featuredContainer {
   font-weight: 600;
 }
 
-.put:after {
+.menu__link.put:after {
   content: "put";
   display: inline-block;
   position: relative;
@@ -514,4 +514,15 @@ html[data-theme="dark"] .featuredContainer {
   line-height: 10px;
   height: 10px;
   font-weight: 600;
+}
+
+.menu__link--sublist:after {
+  background: var(--ifm-menu-link-sublist-icon) 50% / 2rem 2rem;
+  content: " ";
+  display: inline-block;
+  height: 1.25rem;
+  transform: rotate(180deg);
+  width: 1.25rem;
+  transition: transform var(--ifm-transition-fast) linear;
+  filter: none;
 }
