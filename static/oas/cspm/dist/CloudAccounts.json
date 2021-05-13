@@ -1387,7 +1387,7 @@
     },
     "/cloud/gcp/parent/{parent_id}/children": {
       "post": {
-        "description": "For GCP only. List all the children, both folder resources and project resources, of the given parent. A parent can be an organization resource or a folder resource.",
+        "description": "For GCP only. List all the children, both folder resources and project resources, of the given parent. A parent can be an organization resource or a folder resource.  \r\n\r\nThe request body parameter is the content of the Service Account Key (JSON) file, which is required.\n",
         "operationId": "get-list-of-children-under-parent",
         "parameters": [
           {
@@ -1476,7 +1476,7 @@
     },
     "/cloud/{cloud_type}/parent/{parent_id}/folders": {
       "post": {
-        "description": "For GCP only. List all the child folders of the given parent. A parent can be an organization resource or a folder resource.",
+        "description": "For GCP only. List all the child folders of the given parent. A parent can be an organization resource or a folder resource.  \r\n\r\nThe request body parameter is the content of the Service Account Key (JSON) file, which is required.\n",
         "operationId": "get-list-of-folders-under-parent",
         "parameters": [
           {
