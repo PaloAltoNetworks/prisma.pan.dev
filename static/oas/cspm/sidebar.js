@@ -52,6 +52,9 @@ function genEndpoints() {
           type: "link",
           label: linkLabel,
           href: `${absolutePath}/${docId}#operation/${operationId}`,
+          customProps: {
+            method: method,
+          },
         };
         items.push(item);
       }

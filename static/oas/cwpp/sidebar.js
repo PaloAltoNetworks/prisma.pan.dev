@@ -56,17 +56,16 @@ function genEndpoints() {
           type: "link",
           label: linkLabel,
           href: `${absolutePath}/${docId}#operation/${operationId}`,
+          customProps: {
+            method: method,
+          },
         };
-        var css_link =
-          ".menu__link[href$=operation/" + `${operationId}` + "]:after, ";
-        css_overrides[method] += css_link;
         items.push(item);
       }
     }
     category.items = items;
     endpoints.push(category);
   });
-  //console.log(css_overrides);
   return endpoints;
 }
 const endpoints = genEndpoints();
