@@ -379,7 +379,7 @@ paths:
       description: "Adds a new alert rule.  \r\n\r\nBy default, all alerts that this\
         \ alert rule triggers will display on the Alerts page. \nYou can also send\
         \ Prisma Cloud alerts that this alert rule triggers to one or more third-party\
-        \ t\nools that you have integrated with the Prisma Cloud service. You can\
+        \ tools that you have integrated with the Prisma Cloud service. You can\
         \ also configure the alert rule \nto send email notifications.\n\nTo send\
         \ a Prisma Cloud alert to a third-party tool, you must configure an **AlertRuleNotificationConfig**\
         \ object \nas part of the body params of your call. The content of the **AlertRuleNotificationConfig**\
