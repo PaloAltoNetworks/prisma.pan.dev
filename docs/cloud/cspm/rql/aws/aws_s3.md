@@ -36,3 +36,9 @@ and tagSets.DataClassification != Public"
 ```bash
 config from cloud.resource where api.name = 'aws-cloudfront-list-distributions' as X; config from cloud.resource where api.name = 'aws-s3api-get-bucket-acl' as Y; filter '$.X.origins.items[*].id contains $.Y.bucketName'; show Y;
 ```
+
+### S3 buckets that have PUT actions with ALLOW effects to external AWS accounts (that are not monitored by Prisma Cloud)
+
+```bash
+config from cloud.resource where api.name='aws-s3api-get-bucket-acl' AND json.rule = policy.Statement[*].Principal.AWS[*] exists and _AWSCloudAccount.isRedLockMonitored(policy.Statement[*].Principal.AWS[*]) is false and policy.Statement[?(@.Effect=='Allow')].Action any equal s3:PutObject
+```
