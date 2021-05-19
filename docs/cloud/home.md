@@ -17,6 +17,7 @@ keywords:
 Prisma Cloud is a cloud native security platform that provides comprehensive visibility, threat prevention, compliance assurance and data protection consistently across the entire lifecycle of software and infrastructure delivery for an organization in hybrid, multi-cloud environments. 
 
 This site describes the APIs you can use to automate your usage of the following Prisma Cloud modules:
+
 * **Cloud Security Posture Management (CSPM)**
   Leverages data from public service providers to deliver continuous visibility, security policy
   compliance and threat detection across cloud resources, users, data and applications. This
@@ -28,13 +29,10 @@ This site describes the APIs you can use to automate your usage of the following
 * **Cloud Workload Protection (CWPP)**
   Helps secure cloud native applications across the application lifecycle, defined by the
   requirement to protect hosts (VMs), containers and serverless from a single console.
-  (API documentation is coming soon. For now, please see the
-  [Prisma Cloud Compute API documentation](https://cdn.twistlock.com/docs/api/twistlock_api.html).)
 
 
 For information about Prisma Cloud beyond its APIs, such as administration and policy management,
 see the [Prisma Cloud administration documentation](https://docs.paloaltonetworks.com/prisma/prisma-cloud.html).
-
 
 :::info
 
