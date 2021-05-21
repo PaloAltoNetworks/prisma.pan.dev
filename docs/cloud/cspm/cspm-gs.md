@@ -96,13 +96,13 @@ The Prisma Cloud REST API method for url is /login which is appended to the end 
 
      {
             "token": "shshjshjlsjjjjjjjjjjjjjjjjjjjjjjjjjss77sssggsstfsfsgssjhbshbsjhsbhsbsbsjhsbjhsbjhsbjhsbhsbhsvsgfdrsdtrcgjdhbjdbjdbjdbjdj",
-            "message": "login_successful",       
+            "message": "login_successful"    
     }
 
  
 **Note**: The JWT token is available for 10-minutes. After this time has elapsed, run this POST command again to generate a fresh JWT token.
 **Note**: If your POST call was successful you will get a 200 response status.
 
-## What’s next?
+## What's next?
 
-Now that you know how to generate a JWT token explore the various REST API methods in [pan.dev](https://prisma.pan.dev/api/cloud). 
+Now that you know how to generate a JWT token explore the various REST API methods in the [Prisma Cloud API Reference](https://prisma.pan.dev/api/cloud/cspm/cspm-api). 
