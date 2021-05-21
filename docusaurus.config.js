@@ -24,6 +24,7 @@ module.exports = {
     },
     sidebarCollapsible: true,
     navbar: {
+      title: "",
       logo: {
         alt: "Prisma for Developers",
         src: "/img/PAN_Prisma_Light.svg",
