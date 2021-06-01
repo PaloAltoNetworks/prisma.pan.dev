@@ -41,7 +41,7 @@ const toolList = [
   {
     title: <>Checkov</>,
     imageUrl: "/img/checkov.svg",
-    toSite: "https://www.checkov.io/1.Introduction/Getting%20Started.html",
+    toSite: "https://www.checkov.io/1.Welcome/What%20is%20Checkov.html",
     description: (
       <>Prevent cloud misconfigurations during build time with Checkov.</>
     ),
