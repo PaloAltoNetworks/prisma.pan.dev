@@ -20,7 +20,7 @@ function Home() {
 
   return (
     <Layout
-      title={`${siteConfig.themeConfig.navbar.title}`}
+      title={`${siteConfig.title}`}
       description="The home of developer docs for Prisma by Palo Alto Networks. Explore the RQL Library, Sample Policies, Prisma Cloud API docs and more."
       wrapperClassName="homepage"
     >
