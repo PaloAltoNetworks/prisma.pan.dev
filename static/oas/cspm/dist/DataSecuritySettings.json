@@ -514,6 +514,10 @@
             "items": { "$ref": "#/components/schemas/StorageResource" },
             "type": "array"
           },
+          "sizeReportingFrequency": {
+            "description": "Frequency of the s3 inventory configuration",
+            "type": "string"
+          },
           "totalRecords": {
             "description": "Total resources",
             "format": "int32",
