@@ -1,11 +1,12 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
+    Resources:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Resources'
+      description: Cloud service provider resource IDs
+      required: true
     add-cloud-accountBody:
       content:
         application/json:
@@ -24,6 +25,12 @@ components:
             type: object
       description: Service Account Key (JSON) file content
       required: true
+  securitySchemes:
+    x-redlock-auth:
+      description: JWT Based Authentication
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     AbsoluteTimeRangeConfigModel:
       allOf:
@@ -104,6 +111,378 @@ components:
         staticMessage:
           type: boolean
       type: object
+    AlibabaCloudAccountModel:
+      description: Model for Alibaba Cloud Account
+      properties:
+        accountGroupInfos:
+          description: Account group details of groups associated with this account
+          items:
+            $ref: '#/components/schemas/AccountGroupInfo'
+          type: array
+        accountId:
+          description: Account ID
+          type: string
+        accountType:
+          description: Cloud Account Type
+          enum:
+          - ACCOUNT
+          - MASTER_SERVICE_ACCOUNT
+          - COMPARTMENT
+          - ORGANIZATION
+          - TENANT
+          readOnly: true
+          type: string
+        addedOn:
+          description: Added On
+          format: int64
+          readOnly: true
+          type: integer
+        associatedAccountGroupsCount:
+          description: Associated Account Groups Count with this cloud account
+          format: int32
+          type: integer
+        cloudAccountOwner:
+          description: Cloud account Owner
+          type: string
+        cloudType:
+          description: Cloud Type
+          enum:
+          - ALL
+          - AWS
+          - AZURE
+          - GCP
+          - ALIBABA_CLOUD
+          - OCI
+          readOnly: true
+          type: string
+        deploymentType:
+          description: Deployment Type
+          enum:
+          - AZURE
+          - AZURE_GOVERNMENT
+          - AZURE_CHINA
+          - AWS
+          - AWS_GOVERNMENT
+          - AWS_CHINA
+          - OCI
+          - OCI_GOVERNMENT
+          - OCI_CHINA
+          - GCP
+          - GCP_GOVERNMENT
+          - GCP_CHINA
+          - ALIBABA_CLOUD
+          - ALIBABA_CLOUD_GOVERNMENT
+          - ALIBABA_CLOUD_CHINA
+          type: string
+        enabled:
+          description: Enabled
+          type: boolean
+        groupIds:
+          description: Group Ids
+          items:
+            type: string
+          readOnly: true
+          type: array
+        lastModifiedBy:
+          description: Last Modified By
+          readOnly: true
+          type: string
+        lastModifiedTs:
+          description: Time account was last updated
+          format: int64
+          readOnly: true
+          type: integer
+        name:
+          description: Name
+          type: string
+        protectionMode:
+          description: Protection Mode
+          enum:
+          - MONITOR
+          - MONITOR_AND_PROTECT
+          readOnly: true
+          type: string
+        ramArn:
+          description: Ram ARN
+          type: string
+        storageScanEnabled:
+          description: Storage Scan Enabled
+          type: boolean
+        storageUUID:
+          description: Storage UUID
+          type: string
+      type: object
+    AwsCloudAccountModel:
+      description: Model for AWS Cloud Account
+      properties:
+        accountGroupInfos:
+          description: Account group details of groups associated with this account
+          items:
+            $ref: '#/components/schemas/AccountGroupInfo'
+          type: array
+        accountId:
+          description: Account ID
+          type: string
+        accountType:
+          description: Cloud Account Type
+          enum:
+          - ACCOUNT
+          - MASTER_SERVICE_ACCOUNT
+          - COMPARTMENT
+          - ORGANIZATION
+          - TENANT
+          readOnly: true
+          type: string
+        addedOn:
+          description: Added On
+          format: int64
+          readOnly: true
+          type: integer
+        associatedAccountGroupsCount:
+          description: Associated Account Groups Count with this cloud account
+          format: int32
+          type: integer
+        cloudAccountOwner:
+          description: Cloud account Owner
+          type: string
+        cloudType:
+          description: Cloud Type
+          enum:
+          - ALL
+          - AWS
+          - AZURE
+          - GCP
+          - ALIBABA_CLOUD
+          - OCI
+          readOnly: true
+          type: string
+        deploymentType:
+          description: Deployment Type
+          enum:
+          - AZURE
+          - AZURE_GOVERNMENT
+          - AZURE_CHINA
+          - AWS
+          - AWS_GOVERNMENT
+          - AWS_CHINA
+          - OCI
+          - OCI_GOVERNMENT
+          - OCI_CHINA
+          - GCP
+          - GCP_GOVERNMENT
+          - GCP_CHINA
+          - ALIBABA_CLOUD
+          - ALIBABA_CLOUD_GOVERNMENT
+          - ALIBABA_CLOUD_CHINA
+          type: string
+        enabled:
+          description: Enabled
+          type: boolean
+        externalId:
+          description: External ID
+          readOnly: true
+          type: string
+        groupIds:
+          description: Group Ids
+          items:
+            type: string
+          readOnly: true
+          type: array
+        lastModifiedBy:
+          description: Last Modified By
+          readOnly: true
+          type: string
+        lastModifiedTs:
+          description: Time account was last updated
+          format: int64
+          readOnly: true
+          type: integer
+        name:
+          description: Name
+          type: string
+        protectionMode:
+          description: Protection Mode
+          enum:
+          - MONITOR
+          - MONITOR_AND_PROTECT
+          readOnly: true
+          type: string
+        roleArn:
+          description: Role ARN
+          type: string
+        storageScanConfig:
+          allOf:
+          - $ref: '#/components/schemas/StorageScanConfigModel'
+          - description: Storage Scan Configurations
+        storageScanEnabled:
+          description: Storage Scan Enabled
+          type: boolean
+        storageUUID:
+          description: Storage UUID
+          type: string
+      type: object
+    AzureAncestorsModel:
+      description: Model for Azure GetAncestors API Response
+      properties:
+        ancestors:
+          description: List of ancestors
+          items:
+            $ref: '#/components/schemas/AzureHierarchyNodeModel'
+          type: array
+        resourceId:
+          description: Resource ID
+          type: string
+      type: object
+    AzureHierarchyNodeModel:
+      description: Model for AzureNode in the Tenant Hierarchy
+      properties:
+        displayName:
+          description: Display name
+          type: string
+        hasChild:
+          description: true = Has child
+          type: boolean
+        id:
+          description: Node ID
+          type: string
+        parent:
+          description: Parent
+          type: string
+        type:
+          description: Node type
+          enum:
+          - ORG
+          - FOLDER
+          - PROJECT
+          - SUBSCRIPTION
+          - MANAGEMENT_GROUP
+          - TENANT
+          type: string
+      type: object
+    AzureSubscriptionModel:
+      description: Model for Azure Cloud Account
+      properties:
+        accountGroupInfos:
+          description: Account group details of groups associated with this account
+          items:
+            $ref: '#/components/schemas/AccountGroupInfo'
+          type: array
+        accountId:
+          description: Account ID
+          readOnly: true
+          type: string
+        accountType:
+          description: Cloud Account Type
+          enum:
+          - ACCOUNT
+          - MASTER_SERVICE_ACCOUNT
+          - COMPARTMENT
+          - MANAGEMENT_GROUP
+          - ORGANIZATION
+          - TENANT
+          readOnly: true
+          type: string
+        associatedAccountGroupsCount:
+          description: Associated Account Groups Count with this cloud account
+          format: int32
+          type: integer
+        clientId:
+          description: Client ID
+          type: string
+        cloudAccount:
+          $ref: '#/components/schemas/GenericCloudAccountModel'
+        cloudAccountOwner:
+          description: Cloud account Owner
+          type: string
+        cloudType:
+          description: Cloud Type
+          enum:
+          - ALL
+          - AWS
+          - AZURE
+          - GCP
+          - ALIBABA_CLOUD
+          - OCI
+          readOnly: true
+          type: string
+        deploymentType:
+          description: Deployment Type
+          enum:
+          - AZURE
+          - AZURE_GOVERNMENT
+          - AZURE_CHINA
+          - AWS
+          - AWS_GOVERNMENT
+          - AWS_CHINA
+          - OCI
+          - OCI_GOVERNMENT
+          - OCI_CHINA
+          - GCP
+          - GCP_GOVERNMENT
+          - GCP_CHINA
+          - ALIBABA_CLOUD
+          - ALIBABA_CLOUD_GOVERNMENT
+          - ALIBABA_CLOUD_CHINA
+          type: string
+        enabled:
+          description: Enabled
+          type: boolean
+        environmentType:
+          enum:
+          - AZURE
+          - AZURE_GOVERNMENT
+          - AZURE_CHINA
+          type: string
+        groupIds:
+          description: Group Ids
+          items:
+            type: string
+          readOnly: true
+          type: array
+        key:
+          description: Key
+          type: string
+        lastModifiedBy:
+          description: Last Modified By
+          readOnly: true
+          type: string
+        lastModifiedTs:
+          description: Time account was last updated
+          format: int64
+          readOnly: true
+          type: integer
+        monitorFlowLogs:
+          description: Monitor Flow Logs
+          type: boolean
+        name:
+          description: Name
+          readOnly: true
+          type: string
+        protectionMode:
+          description: Protection Mode
+          enum:
+          - MONITOR
+          - MONITOR_AND_PROTECT
+          readOnly: true
+          type: string
+        servicePrincipalId:
+          readOnly: true
+          type: string
+        storageScanEnabled:
+          description: Storage Scan Enabled
+          type: boolean
+        storageUUID:
+          description: Storage UUID
+          type: string
+        subscriptionId:
+          readOnly: true
+          type: string
+        supportedAccountType:
+          type: boolean
+        tenantId:
+          description: Tenant ID
+          type: string
+      type: object
     CloudAccountConfigStatusView:
       description: Model for Cloud Account Config Status View
       properties:
@@ -148,7 +527,21 @@ components:
           type: string
       type: object
     CloudAccountModel:
+      oneOf:
+      - $ref: '#/components/schemas/AwsCloudAccountModel'
+      - $ref: '#/components/schemas/AzureSubscriptionModel'
+      - $ref: '#/components/schemas/GcpCloudProjectModel'
+      - $ref: '#/components/schemas/AlibabaCloudAccountModel'
+      - $ref: '#/components/schemas/OciCloudAccountModel'
       description: Model for Cloud Account Interface
+      discriminator:
+        mapping:
+          ALIBABA_CLOUD: '#/components/schemas/AlibabaCloudAccountModel'
+          AWS: '#/components/schemas/AwsCloudAccountModel'
+          AZURE: '#/components/schemas/AzureSubscriptionModel'
+          GCP: '#/components/schemas/GcpCloudProjectModel'
+          OCI: '#/components/schemas/OciCloudAccountModel'
+        propertyName: cloudType
       properties:
         accountGroupInfos:
           description: Account group details of groups associated with this account
@@ -387,6 +780,128 @@ components:
           description: Storage UUID
           type: string
       type: object
+    GcpCloudProjectModel:
+      description: Model for GCP Cloud Account
+      properties:
+        accountGroupCreationMode:
+          description: Cloud Account group creation mode
+          enum:
+          - MANUAL
+          - AUTO
+          - RECURSIVE
+          type: string
+        accountGroupInfos:
+          description: Account group details of groups associated with this account
+          items:
+            $ref: '#/components/schemas/AccountGroupInfo'
+          type: array
+        accountId:
+          description: Account ID
+          readOnly: true
+          type: string
+        accountType:
+          description: Cloud Account Type
+          enum:
+          - ACCOUNT
+          - MASTER_SERVICE_ACCOUNT
+          - COMPARTMENT
+          - MANAGEMENT_GROUP
+          - ORGANIZATION
+          - TENANT
+          readOnly: true
+          type: string
+        associatedAccountGroupsCount:
+          description: Associated Account Groups Count with this cloud account
+          format: int32
+          type: integer
+        autoAccountGroupCreationModeOn:
+          type: boolean
+        cloudAccount:
+          $ref: '#/components/schemas/GenericCloudAccountModel'
+        cloudAccountOwner:
+          description: Cloud account Owner
+          type: string
+        cloudType:
+          description: Cloud Type
+          enum:
+          - ALL
+          - AWS
+          - AZURE
+          - GCP
+          - ALIBABA_CLOUD
+          - OCI
+          readOnly: true
+          type: string
+        compressionEnabled:
+          description: Compression Enabled
+          type: boolean
+        credentials:
+          description: Credentials
+          type: object
+        dataflowEnabledProject:
+          description: Dataflow enabled project ID
+          type: string
+        deploymentType:
+          description: Deployment Type
+          enum:
+          - AZURE
+          - AZURE_GOVERNMENT
+          - AZURE_CHINA
+          - AWS
+          - AWS_GOVERNMENT
+          - AWS_CHINA
+          - OCI
+          - OCI_GOVERNMENT
+          - OCI_CHINA
+          - GCP
+          - GCP_GOVERNMENT
+          - GCP_CHINA
+          - ALIBABA_CLOUD
+          - ALIBABA_CLOUD_GOVERNMENT
+          - ALIBABA_CLOUD_CHINA
+          type: string
+        enabled:
+          description: Enabled
+          type: boolean
+        flowLogStorageBucket:
+          description: Flow Log Storage Bucket
+          type: string
+        groupIds:
+          description: Group Ids
+          items:
+            type: string
+          readOnly: true
+          type: array
+        lastModifiedBy:
+          description: Last Modified By
+          readOnly: true
+          type: string
+        lastModifiedTs:
+          description: Time account was last updated
+          format: int64
+          readOnly: true
+          type: integer
+        name:
+          description: Name
+          readOnly: true
+          type: string
+        projectId:
+          readOnly: true
+          type: string
+        protectionMode:
+          description: Protection Mode
+          enum:
+          - MONITOR
+          - MONITOR_AND_PROTECT
+          readOnly: true
+          type: string
+        storageScanEnabled:
+          description: Storage Scan Enabled
+          type: boolean
+        storageUUID:
+          description: Storage UUID
+          type: string
+      type: object
     GcpNodeModel:
       description: Model for GcpNode
       properties:
@@ -409,6 +924,103 @@ components:
           - ORG
           - FOLDER
           - PROJECT
+          type: string
+      type: object
+    GenericCloudAccountModel:
+      description: Model for Generic Cloud Account
+      properties:
+        accountGroupInfos:
+          description: Account group details of groups associated with this account
+          items:
+            $ref: '#/components/schemas/AccountGroupInfo'
+          type: array
+        accountId:
+          description: Account ID
+          type: string
+        accountType:
+          description: Cloud Account Type
+          enum:
+          - ACCOUNT
+          - MASTER_SERVICE_ACCOUNT
+          - COMPARTMENT
+          - ORGANIZATION
+          - TENANT
+          readOnly: true
+          type: string
+        addedOn:
+          description: Added On
+          format: int64
+          readOnly: true
+          type: integer
+        associatedAccountGroupsCount:
+          description: Associated Account Groups Count with this cloud account
+          format: int32
+          type: integer
+        cloudAccountOwner:
+          description: Cloud account Owner
+          type: string
+        cloudType:
+          description: Cloud Type
+          enum:
+          - ALL
+          - AWS
+          - AZURE
+          - GCP
+          - ALIBABA_CLOUD
+          - OCI
+          readOnly: true
+          type: string
+        deploymentType:
+          description: Deployment Type
+          enum:
+          - AZURE
+          - AZURE_GOVERNMENT
+          - AZURE_CHINA
+          - AWS
+          - AWS_GOVERNMENT
+          - AWS_CHINA
+          - OCI
+          - OCI_GOVERNMENT
+          - OCI_CHINA
+          - GCP
+          - GCP_GOVERNMENT
+          - GCP_CHINA
+          - ALIBABA_CLOUD
+          - ALIBABA_CLOUD_GOVERNMENT
+          - ALIBABA_CLOUD_CHINA
+          type: string
+        enabled:
+          description: Enabled
+          type: boolean
+        groupIds:
+          description: Group Ids
+          items:
+            type: string
+          readOnly: true
+          type: array
+        lastModifiedBy:
+          description: Last Modified By
+          readOnly: true
+          type: string
+        lastModifiedTs:
+          description: Time account was last updated
+          format: int64
+          readOnly: true
+          type: integer
+        name:
+          description: Name
+          type: string
+        protectionMode:
+          description: Protection Mode
+          enum:
+          - MONITOR
+          - MONITOR_AND_PROTECT
+          type: string
+        storageScanEnabled:
+          description: Storage Scan Enabled
+          type: boolean
+        storageUUID:
+          description: Storage UUID
           type: string
       type: object
     HierarchySelectionModel:
@@ -449,6 +1061,120 @@ components:
           items:
             $ref: '#/components/schemas/GcpNodeModel'
           type: array
+      type: object
+    OciCloudAccountModel:
+      description: Model for OCI Cloud Account
+      properties:
+        accountGroupInfos:
+          description: Account group details of groups associated with this account
+          items:
+            $ref: '#/components/schemas/AccountGroupInfo'
+          type: array
+        accountId:
+          description: Account ID
+          type: string
+        accountType:
+          description: Cloud Account Type
+          enum:
+          - ACCOUNT
+          - MASTER_SERVICE_ACCOUNT
+          - COMPARTMENT
+          - ORGANIZATION
+          - TENANT
+          readOnly: true
+          type: string
+        addedOn:
+          description: Added On
+          format: int64
+          readOnly: true
+          type: integer
+        associatedAccountGroupsCount:
+          description: Associated Account Groups Count with this cloud account
+          format: int32
+          type: integer
+        cloudAccountOwner:
+          description: Cloud account Owner
+          type: string
+        cloudType:
+          description: Cloud Type
+          enum:
+          - ALL
+          - AWS
+          - AZURE
+          - GCP
+          - ALIBABA_CLOUD
+          - OCI
+          type: string
+        defaultAccountGroupId:
+          description: Default Account Group Id
+          type: string
+        deploymentType:
+          description: Deployment Type
+          enum:
+          - AZURE
+          - AZURE_GOVERNMENT
+          - AZURE_CHINA
+          - AWS
+          - AWS_GOVERNMENT
+          - AWS_CHINA
+          - OCI
+          - OCI_GOVERNMENT
+          - OCI_CHINA
+          - GCP
+          - GCP_GOVERNMENT
+          - GCP_CHINA
+          - ALIBABA_CLOUD
+          - ALIBABA_CLOUD_GOVERNMENT
+          - ALIBABA_CLOUD_CHINA
+          type: string
+        enabled:
+          description: Enabled
+          type: boolean
+        groupIds:
+          description: Group Ids
+          items:
+            type: string
+          readOnly: true
+          type: array
+        groupName:
+          description: Group Name
+          type: string
+        homeRegion:
+          description: Home Region
+          type: string
+        lastModifiedBy:
+          description: Last Modified By
+          readOnly: true
+          type: string
+        lastModifiedTs:
+          description: Time account was last updated
+          format: int64
+          readOnly: true
+          type: integer
+        name:
+          description: Name
+          type: string
+        policyName:
+          description: Policy Name
+          type: string
+        protectionMode:
+          description: Protection Mode
+          enum:
+          - MONITOR
+          - MONITOR_AND_PROTECT
+          type: string
+        storageScanEnabled:
+          description: Storage Scan Enabled
+          type: boolean
+        storageUUID:
+          description: Storage UUID
+          type: string
+        userName:
+          description: User Name
+          type: string
+        userOcid:
+          description: User OCID
+          type: string
       type: object
     RelativeTimeDurationModel:
       description: Model for RelativeTimeDuration
@@ -493,11 +1219,34 @@ components:
       description: Resources Model for Identifying Ancestors
       properties:
         resourceIds:
-          description: Array of resource IDs (project IDs and/or folder IDs)
+          description: Array of resource IDs (Subscription and/or Management Group
+            IDs)
           items:
             type: string
           type: array
           uniqueItems: true
+      type: object
+    StorageScanConfigModel:
+      description: Model for AWS Storage Scan Configuration
+      properties:
+        buckets:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          description: Selected List of S3 Buckets for forward and backward scan
+          type: object
+        scanOption:
+          description: Storage Scan Option
+          enum:
+          - Realtime
+          - Custom
+          - Full
+          - Historical
+          type: string
+        snsTopicArn:
+          description: SNS Topic ARN created on DLP SNS topic
+          type: string
       type: object
     TerraformProvisionerRequest:
       description: Model for Generate Terraform Script API
@@ -586,11 +1335,6 @@ info:
   title: Prisma Cloud Accounts API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Cloud Account APIs are listed below.
-  name: Cloud Accounts
 paths:
   /cloud:
     get:
@@ -1651,12 +2395,7 @@ paths:
         schema:
           type: string
       requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Resources'
-        description: Cloud service provider resource IDs
-        required: true
+        $ref: '#/components/requestBodies/Resources'
       responses:
         '200':
           content:
@@ -1678,3 +2417,86 @@ paths:
       summary: List Ancestors (GCP)
       tags:
       - Cloud Accounts
+  /cloud-accounts-manager/v1/cloudAccounts/azureAccounts/{parent_id}/children:
+    post:
+      description: For Azure only. Lists all the children, both management groups
+        and subscriptions, under the given parent. A parent can be either an Azure
+        tenant or a management group.
+      operationId: list-children-under-parent
+      parameters:
+      - description: Parent Resource ID
+        in: path
+        name: parent_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties:
+                type: object
+              type: object
+        description: Azure Tenant JSON
+        required: true
+      responses:
+        '200':
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AzureHierarchyNodeModel'
+                type: array
+          description: success
+        '400':
+          description: bad_request / unauthorized_access
+        '500':
+          description: internal_error
+      security:
+      - x-redlock-auth: []
+      summary: List Children of Parent (Azure)
+      tags:
+      - Cloud Accounts
+  /cloud-accounts-manager/v1/cloudAccounts/azureAccounts/{account_id}/ancestors:
+    post:
+      description: For Azure only. Lists the ancestors of the given Azure management
+        groups and subscriptions for the specified cloud account (Azure tenant) ID.
+        Each resource ID in the request body is either a management group ID or a
+        subscription ID. A successful response returns an array of ancestors for each
+        given resource ID.
+      operationId: get-ancestors-for-given-subscriptions-and-management-groups
+      parameters:
+      - description: Account ID
+        in: path
+        name: account_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/Resources'
+      responses:
+        '200':
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AzureAncestorsModel'
+                type: array
+                uniqueItems: true
+          description: success
+        '400':
+          description: bad_request / unauthorized_access
+        '404':
+          description: invalid_account_id_format
+        '500':
+          description: internal_error
+      security:
+      - x-redlock-auth: []
+      summary: List Ancestors (Azure)
+      tags:
+      - Cloud Accounts
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Cloud Account APIs are listed below.
+  name: Cloud Accounts
