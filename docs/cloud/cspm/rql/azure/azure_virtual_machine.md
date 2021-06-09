@@ -40,3 +40,9 @@ resource.status = Active AND json.rule = ['properties.licenseType'] contains "Wi
 config from cloud.resource where cloud.type = 'azure' AND api.name = 'azure-disk-list' and 
 json.rule = 'osType exists and (encryptionSettings does not exist or encryptionSettings.enabled == false)'
 ```
+
+### Azure NIC has a public IP address assigned
+
+```bash
+config from cloud.resource where api.name = 'azure-network-nic-list' AND json.rule = ['properties.ipConfigurations'][*].['properties.publicIPAddress'].['publicIpAddress'] exists 
+```
