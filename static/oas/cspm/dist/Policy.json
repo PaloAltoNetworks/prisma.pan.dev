@@ -790,7 +790,7 @@
   "paths": {
     "/filter/policy/suggest": {
       "get": {
-        "description": "Returns an object whose keys are the supported policy filters and corresponding values are the  default or recent options for that filter.",
+        "description": "Returns an object whose keys are the supported policy filters and corresponding values are the default or recent options for that filter.",
         "operationId": "get-policy-filters-and-options",
         "responses": {
           "200": {

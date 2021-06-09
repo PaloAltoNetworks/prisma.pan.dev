@@ -109,7 +109,7 @@
   "paths": {
     "/access_keys": {
       "get": {
-        "description": "Returns a list of access keys that belong to the current user.",
+        "description": "Returns all access keys for your tenant if you have a Prisma Cloud System Admin role. Returns just your access keys if you don't have this role.",
         "operationId": "get-my-access-keys",
         "responses": {
           "200": {
