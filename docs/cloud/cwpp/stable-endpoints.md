@@ -19,53 +19,74 @@ Reporting API calls are the ones used to download health or scan data such as vu
 Access to the underlying data in JSON and CSV formats allows customers to easily access & transform data into business intelligence in the forms that meet their needs.  
 The output may be human-readable reports or, in other cases, the reporting data may feed automated decisions & processes.
 
-These are mostly under **Monitor** section in Compute:
+These are mostly under **Monitor** section in Compute.
 
-* `/registry`
+Supported reporting endpoints:
+
+* `/audits/incidents`
+* `/cloud`
 * `/containers`
 * `/images`
-* `/incidents`
-* `/scans`
-  - `type=ciServerless`
-  - `type=ciImage`
 * `/hosts`
-* `/stats/vulnerabilities`
-* `/stats/compliance`
+* `/profiles`
+* `/registry`
+* `/scans`
+* `/serverless`
+* `/stats`
+* `/statuses/registry`
 
 
 ## Config as Code
 
-"Configuration as code is the formal migration of config between environments, backed by a version control system."  
+Configuration as code is the formal migration of config between environments, backed by a version control system. 
 Customers who want to programmatically store and manage the configuration of infrastructure components, can utilize these to automate these components using the same approaches that they've used for production code & services. 
 
-Key C-as-C endpoints:
+Supported C-as-C endpoints:
 
-* `/policies`
-  - `/runtime/container`
-  - `/runtime/host`
-  - `/runtime/serverless`
-  - `/vulnerability/images`
-  - `/vulnerability/ci/images`
-  - `/vulnerability/vms`
-  - `/vulnerability/serverless`
-  - `/compliance`
-* `/settings`
-  - `/registry`
 * `/collections`
+* `/custom-compliance`
+* `/policies/runtime`
+  - `/app-embedded`
+  - `/container`
+  - `/custom-rules`
+  - `/host`
+  - `/serverless`
+* `/policies/vulnerability`
+  - `/base-images`
+  - `/ci/images`
+  - `/ci/serverless`
+  - `/coderepos`
+  - `/host`
+  - `/images`
+  - `/serverless`
+* `/policies/compliance`
+  - `/ci/images`
+  - `/ci/serverless`
+  - `/container`
+  - `/host`
+  - `/serverless`
+* `/policies/firewall/app`
+* `/policies/firewall/network`
+* `/settings`
+  - `/coderepos`
+  - `/serverless-scan`
+  - `/registry`
 
 
 ## Deployment & Config
 
-Deployment and config endpoints are essential for properly being able to automate the installation of the console, defenders, as well as any configuration that deals with integrations.  
+Deployment and config endpoints are essential for properly being able to automate the installation of Console, Defenders, as well as any configuration that deals with integrations.  
 These are useful to those who base their management of environments on automation, using tools such as Ansible, Puppet, Terraform etc to define desired configurations.
 
-Key deployment and config endpoints:
+Supported deployment and config endpoints:
   
-* `/users`
-* `/version`
-* `/authenticate-client`
 * `/authenticate`
-* `/util/twistcli`
+* `/authenticate-client`
+* `/credentials`
+* `/current`
 * `/defenders`
+* `/groups`
+* `/users`
+* `/util/twistcli`
+* `/version`
 * `/_ping`
-
