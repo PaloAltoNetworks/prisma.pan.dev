@@ -4196,6 +4196,10 @@
       "prisma.IaCJobResult": {
         "description": "IaCJobResult represents the result of a performed IaC scan job and its final status",
         "properties": {
+          "completed": {
+            "description": "Completed indicates if the scan is completed.\n",
+            "type": "boolean"
+          },
           "passed": {
             "description": "Passed indicates if the scan passed or failed.\n",
             "type": "boolean"
@@ -4343,8 +4347,8 @@
         },
         "type": "object"
       },
-      "prisma.IaCScanJobAttributes": {
-        "description": "IaCScanJobAttributes holds the data needed to trigger an IaC scan job",
+      "prisma.IaCScanJobConfig": {
+        "description": "IaCScanJobConfig holds the configurations needed to trigger an IaC scan job",
         "properties": {
           "attributes": {
             "$ref": "#/components/schemas/prisma.IaCAttributes"
@@ -4352,6 +4356,10 @@
           "id": {
             "description": "ID is the identifier of the scan to be triggered.\n",
             "type": "string"
+          },
+          "skipTriggerScan": {
+            "description": "SkipTriggerScan indicates if a new scan should be initialization should be skipped.\n",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -15801,6 +15809,10 @@
           "previousName": {
             "description": "Previous name of the rule. Required for rule renaming.\n",
             "type": "string"
+          },
+          "readTimeoutSeconds": {
+            "description": "ReadTimeout is the timeout of request reads in seconds, when no value is specified (0) the timeout is 5 seconds.\n",
+            "type": "integer"
           }
         },
         "type": "object"
@@ -15905,7 +15917,7 @@
   },
   "info": {
     "title": "Containers Overview",
-    "version": "21.04.409",
+    "version": "21.04.421",
     "description": {
       "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/containers/containers.md"
     }
