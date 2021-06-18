@@ -1,10 +1,4 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     IpAllowListParams:
       content:
@@ -27,6 +21,12 @@ components:
             $ref: '#/components/schemas/PublicNetworkCidrBlock'
       description: Model for Public Network CIDR Block
       required: true
+  securitySchemes:
+    x-redlock-auth:
+      description: JWT Based Authentication
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     IpAllowListParams:
       description: Model for login IP allow list parameters
@@ -120,11 +120,6 @@ info:
   title: Prisma Cloud IP Allow List API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The IP Allow List APIs are listed below.
-  name: IP Allow List
 paths:
   /allow_list/network:
     get:
@@ -145,7 +140,9 @@ paths:
       tags:
       - IP Allow List
     post:
-      description: Add a new public network.
+      description: "Adds a public network.  \r\n\r\nThe resulting new network does\
+        \ not have any CIDR blocks, so none will be in the response object. You can\
+        \ add a CIDR to the network with [Add CIDR](/api/cloud/cspm/ipallow-list#operation/add-cidr-block)\n"
       operationId: add-a-network
       requestBody:
         $ref: '#/components/requestBodies/PublicNetwork'
@@ -165,7 +162,7 @@ paths:
       - IP Allow List
   /allow_list/network/{networkUuid}:
     get:
-      description: Retrieve a specific network using the network ID.
+      description: Returns the public network with the specified network ID.
       operationId: get-network-info
       parameters:
       - description: Network ID
@@ -216,7 +213,9 @@ paths:
       - IP Allow List
   /allow_list/network/{networkUuid}/cidr:
     post:
-      description: Add a new CIDR block.
+      description: Adds a new CIDR block. The CIDR block cannot overlap CIDR blocks
+        that already exist in the networks you manage. Also, IP addresses in the CIDR
+        block must be routable to the public internet.
       operationId: add-cidr-block
       parameters:
       - description: Network ID
@@ -243,7 +242,7 @@ paths:
       - IP Allow List
   /allow_list/network/{networkUuid}/cidr/{cidrUuid}:
     put:
-      description: Update an existing CIDR block.
+      description: Updates an existing CIDR block.
       operationId: update-cidr-block
       parameters:
       - description: Network ID
@@ -273,7 +272,7 @@ paths:
       tags:
       - IP Allow List
     delete:
-      description: Delete an existing CIDR block.
+      description: Deletes an existing CIDR block.
       operationId: delete-cidr-block
       parameters:
       - description: Network ID
@@ -516,3 +515,8 @@ paths:
       summary: Get Login IP Allow List Availability
       tags:
       - IP Allow List
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The IP Allow List APIs are listed below.
+  name: IP Allow List

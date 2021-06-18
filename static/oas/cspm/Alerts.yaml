@@ -1,10 +1,4 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     FilterModel:
       content:
@@ -23,6 +17,12 @@ components:
         application/json; charset=UTF-8:
           schema:
             $ref: '#/components/schemas/FilterSuggestionModel'
+  securitySchemes:
+    x-redlock-auth:
+      description: JWT Based Authentication
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     AbsoluteTimeRangeConfigModel:
       allOf:
@@ -661,6 +661,9 @@ components:
           items:
             $ref: '#/components/schemas/UIFilterModel'
           type: array
+        links:
+          description: JSON query builder links
+          type: string
         needsOffsetUpdate:
           description: Needs offset update (for internal use)
           type: boolean
@@ -759,11 +762,14 @@ components:
           readOnly: true
           type: string
         policyType:
-          description: Policy type
+          description: Policy type. Policy type **anomaly** is read-only.
           enum:
           - config
-          - audit_event
           - network
+          - audit_event
+          - anomaly
+          - data
+          - iam
           type: string
         policyUpi:
           description: Policy UPI
@@ -892,8 +898,11 @@ components:
           description: Policy type
           enum:
           - config
-          - audit_event
           - network
+          - audit_event
+          - anomaly
+          - data
+          - iam
           type: string
         policyUpi:
           description: Policy UPI
@@ -967,6 +976,7 @@ components:
           description: List of policies to exclude from scan
           items:
             type: string
+          readOnly: true
           type: array
         lastModifiedBy:
           description: Last modified by
@@ -1337,11 +1347,6 @@ info:
   title: Prisma Cloud Alerts API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Alert APIs are listed below.
-  name: Alerts
 paths:
   /filter/alert/suggest:
     get:
@@ -2552,3 +2557,8 @@ paths:
       summary: Remediate Alert
       tags:
       - Alerts
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Alert APIs are listed below.
+  name: Alerts

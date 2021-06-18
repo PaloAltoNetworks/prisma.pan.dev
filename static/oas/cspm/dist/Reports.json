@@ -1,13 +1,5 @@
 {
   "components": {
-    "securitySchemes": {
-      "x-redlock-auth": {
-        "description": "JWT Based Authentication",
-        "in": "header",
-        "name": "x-redlock-auth",
-        "type": "apiKey"
-      }
-    },
     "requestBodies": {
       "FilterSuggestionModel": {
         "content": {
@@ -15,6 +7,14 @@
             "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "x-redlock-auth": {
+        "description": "JWT Based Authentication",
+        "in": "header",
+        "name": "x-redlock-auth",
+        "type": "apiKey"
       }
     },
     "schemas": {
@@ -125,6 +125,10 @@
           "completeParameters": {
             "items": { "$ref": "#/components/schemas/UIFilterModel" },
             "type": "array"
+          },
+          "links": {
+            "description": "JSON query builder links",
+            "type": "string"
           },
           "needsOffsetUpdate": {
             "description": "Needs offset update (for internal use)",
@@ -493,13 +497,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The Compliance Report APIs are listed below.",
-      "name": "Reports"
-    }
-  ],
   "paths": {
     "/report": {
       "get": {
@@ -1059,5 +1056,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "The Compliance Report APIs are listed below.",
+      "name": "Reports"
+    }
+  ]
 }

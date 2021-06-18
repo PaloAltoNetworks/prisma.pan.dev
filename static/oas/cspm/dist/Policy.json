@@ -1,13 +1,5 @@
 {
   "components": {
-    "securitySchemes": {
-      "x-redlock-auth": {
-        "description": "JWT Based Authentication",
-        "in": "header",
-        "name": "x-redlock-auth",
-        "type": "apiKey"
-      }
-    },
     "requestBodies": {
       "FilterSuggestionModel": {
         "content": {
@@ -24,6 +16,14 @@
         },
         "description": "Model for Policy",
         "required": true
+      }
+    },
+    "securitySchemes": {
+      "x-redlock-auth": {
+        "description": "JWT Based Authentication",
+        "in": "header",
+        "name": "x-redlock-auth",
+        "type": "apiKey"
       }
     },
     "schemas": {
@@ -206,7 +206,14 @@
           },
           "policyType": {
             "description": "Policy type",
-            "enum": ["config", "audit_event", "network"],
+            "enum": [
+              "config",
+              "network",
+              "audit_event",
+              "anomaly",
+              "data",
+              "iam"
+            ],
             "type": "string"
           },
           "policyUpi": {
@@ -277,6 +284,10 @@
           "completeParameters": {
             "items": { "$ref": "#/components/schemas/UIFilterModel" },
             "type": "array"
+          },
+          "links": {
+            "description": "JSON query builder links",
+            "type": "string"
           },
           "needsOffsetUpdate": {
             "description": "Needs offset update (for internal use)",
@@ -451,8 +462,15 @@
             "type": "string"
           },
           "policyType": {
-            "description": "Policy type",
-            "enum": ["config", "audit_event", "network"],
+            "description": "Policy type. Policy type **anomaly** is read-only.",
+            "enum": [
+              "config",
+              "network",
+              "audit_event",
+              "anomaly",
+              "data",
+              "iam"
+            ],
             "type": "string"
           },
           "policyUpi": {
@@ -613,7 +631,14 @@
           },
           "policyType": {
             "description": "Policy type",
-            "enum": ["config", "audit_event", "network"],
+            "enum": [
+              "config",
+              "network",
+              "audit_event",
+              "anomaly",
+              "data",
+              "iam"
+            ],
             "type": "string"
           },
           "policyUpi": {
@@ -783,10 +808,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    { "description": "The Policy APIs are listed below.", "name": "Policy" }
-  ],
   "paths": {
     "/filter/policy/suggest": {
       "get": {
@@ -1364,5 +1385,9 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    { "description": "The Policy APIs are listed below.", "name": "Policy" }
+  ]
 }

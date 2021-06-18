@@ -52,15 +52,18 @@ components:
       properties:
         autoCreated:
           description: auto created
+          readOnly: true
           type: boolean
         groupId:
           description: group id
+          readOnly: true
           type: string
         groupName:
           description: Group name
           type: string
         lastModifiedBy:
           description: Last modified by
+          readOnly: true
           type: string
       type: object
     AccountListRequestModel:
@@ -392,8 +395,13 @@ components:
         cloudAccount:
           $ref: '#/components/schemas/GenericCloudAccountModel'
         cloudAccountOwner:
-          description: Cloud account Owner
+          description: Cloud account owner
           type: string
+        cloudAccountOwnerCount:
+          description: Cloud account owner count
+          format: int32
+          readOnly: true
+          type: integer
         cloudType:
           description: Cloud Type
           enum:
@@ -527,12 +535,6 @@ components:
           type: string
       type: object
     CloudAccountModel:
-      oneOf:
-      - $ref: '#/components/schemas/AwsCloudAccountModel'
-      - $ref: '#/components/schemas/AzureSubscriptionModel'
-      - $ref: '#/components/schemas/GcpCloudProjectModel'
-      - $ref: '#/components/schemas/AlibabaCloudAccountModel'
-      - $ref: '#/components/schemas/OciCloudAccountModel'
       description: Model for Cloud Account Interface
       discriminator:
         mapping:
@@ -542,6 +544,12 @@ components:
           GCP: '#/components/schemas/GcpCloudProjectModel'
           OCI: '#/components/schemas/OciCloudAccountModel'
         propertyName: cloudType
+      oneOf:
+      - $ref: '#/components/schemas/AwsCloudAccountModel'
+      - $ref: '#/components/schemas/AzureSubscriptionModel'
+      - $ref: '#/components/schemas/GcpCloudProjectModel'
+      - $ref: '#/components/schemas/AlibabaCloudAccountModel'
+      - $ref: '#/components/schemas/OciCloudAccountModel'
       properties:
         accountGroupInfos:
           description: Account group details of groups associated with this account
@@ -571,8 +579,13 @@ components:
           format: int32
           type: integer
         cloudAccountOwner:
-          description: Cloud account Owner
+          description: Cloud account owner
           type: string
+        cloudAccountOwnerCount:
+          description: Cloud account owner count
+          format: int32
+          readOnly: true
+          type: integer
         cloudType:
           description: Cloud Type
           enum:
@@ -701,6 +714,11 @@ components:
         cloudAccountOwner:
           description: Cloud account Owner
           type: string
+        cloudAccountOwnerCount:
+          description: Cloud account owner count
+          format: int32
+          readOnly: true
+          type: integer
         cloudType:
           description: Cloud Type
           enum:
@@ -821,6 +839,11 @@ components:
         cloudAccountOwner:
           description: Cloud account Owner
           type: string
+        cloudAccountOwnerCount:
+          description: Cloud account owner count
+          format: int32
+          readOnly: true
+          type: integer
         cloudType:
           description: Cloud Type
           enum:
@@ -1516,6 +1539,37 @@ paths:
       security:
       - x-redlock-auth: []
       summary: List Cloud Types
+      tags:
+      - Cloud Accounts
+  /cloud/{id}/owners:
+    get:
+      description: Returns the email addresses of all owners for the specified cloud
+        account ID.
+      operationId: get-cloud-account-owners
+      parameters:
+      - description: Account ID
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: .+
+          type: string
+      responses:
+        '200':
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: successful operation
+        '400':
+          description: invalid_account_id_format
+        '404':
+          description: invalid_account_id_format
+      security:
+      - x-redlock-auth: []
+      summary: List Cloud Account Owners
       tags:
       - Cloud Accounts
   /cloud/{cloud_type}:
