@@ -1,10 +1,4 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     FilterSuggestionModel:
       content:
@@ -18,6 +12,12 @@ components:
             $ref: '#/components/schemas/PolicyModel'
       description: Model for Policy
       required: true
+  securitySchemes:
+    x-redlock-auth:
+      description: JWT Based Authentication
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     ComplianceMetadataModel:
       description: Model for ComplianceMetadata
@@ -193,8 +193,11 @@ components:
           description: Policy type
           enum:
           - config
-          - audit_event
           - network
+          - audit_event
+          - anomaly
+          - data
+          - iam
           type: string
         policyUpi:
           description: Policy UPI
@@ -256,6 +259,9 @@ components:
           items:
             $ref: '#/components/schemas/UIFilterModel'
           type: array
+        links:
+          description: JSON query builder links
+          type: string
         needsOffsetUpdate:
           description: Needs offset update (for internal use)
           type: boolean
@@ -404,11 +410,14 @@ components:
           readOnly: true
           type: string
         policyType:
-          description: Policy type
+          description: Policy type. Policy type **anomaly** is read-only.
           enum:
           - config
-          - audit_event
           - network
+          - audit_event
+          - anomaly
+          - data
+          - iam
           type: string
         policyUpi:
           description: Policy UPI
@@ -557,8 +566,11 @@ components:
           description: Policy type
           enum:
           - config
-          - audit_event
           - network
+          - audit_event
+          - anomaly
+          - data
+          - iam
           type: string
         policyUpi:
           description: Policy UPI
@@ -718,11 +730,6 @@ info:
   title: Prisma Cloud User Policy API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Policy APIs are listed below.
-  name: Policy
 paths:
   /filter/policy/suggest:
     get:
@@ -1227,3 +1234,8 @@ paths:
       summary: List Policy Compliance Standards
       tags:
       - Policy
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Policy APIs are listed below.
+  name: Policy

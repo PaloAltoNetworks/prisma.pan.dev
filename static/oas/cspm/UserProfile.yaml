@@ -1,10 +1,4 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     MultiRoleUserProfile:
       content:
@@ -13,6 +7,12 @@ components:
             $ref: '#/components/schemas/MultiRoleUserProfile'
       description: Model containing user profile
       required: true
+  securitySchemes:
+    x-redlock-auth:
+      description: JWT Based Authentication
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     MultiRoleUserProfile:
       description: Model containing user profile
@@ -177,11 +177,6 @@ info:
   title: Prisma Cloud User Profile API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The User Profile APIs are listed below.
-  name: User Profile
 paths:
   /user/me:
     get:
@@ -205,10 +200,12 @@ paths:
       - User Profile
     put:
       description: "Updates the current user's personal profile information.  \r\n\
-        \r\nAlthough the role ID is required when you are updating another user's\
-        \ profile, the role ID is not required when you are updating your own profile.\n\
-        ```\n{\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"timeZone\": \"\"\
-        \n}\n```\n"
+        \r\nThis request supports four optional request body parameters, which you\
+        \ can see in the JSON example below:\n```\n{\n  \"defaultRoleId\": \"\",\n\
+        \  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"timeZone\": \"\",  \n\
+        }\n```\n\nThe red **required** labels in the request body schema below apply\
+        \ only when you create a new user profile, so the labels don't apply to this\
+        \ request.\n"
       operationId: update-my-profile
       requestBody:
         $ref: '#/components/requestBodies/MultiRoleUserProfile'
@@ -302,8 +299,12 @@ paths:
       tags:
       - User Profile
     put:
-      description: Updates an administrative user's profile. Supports multiple roles
-        for a single user.
+      description: "Updates an administrative user's profile. Supports multiple roles\
+        \ for a single user.  \r\n\r\nThe current **email** of the user whose profile\
+        \ you want to update is a required request parameter. All other request parameters\
+        \ are optional. \n\nThe red **required** labels in the request body schema\
+        \ below apply only when you create a new user profile. So, except for **email**,\
+        \ the labels don't apply to this request.\n"
       operationId: update-profile-v2
       parameters:
       - description: User email
@@ -513,3 +514,8 @@ paths:
       summary: Update SSO Bypass Allowed Users
       tags:
       - User Profile
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The User Profile APIs are listed below.
+  name: User Profile

@@ -66,11 +66,20 @@
       "AccountGroupInfo": {
         "description": "Account group info linked to a cloud account",
         "properties": {
-          "autoCreated": { "description": "auto created", "type": "boolean" },
-          "groupId": { "description": "group id", "type": "string" },
+          "autoCreated": {
+            "description": "auto created",
+            "readOnly": true,
+            "type": "boolean"
+          },
+          "groupId": {
+            "description": "group id",
+            "readOnly": true,
+            "type": "string"
+          },
           "groupName": { "description": "Group name", "type": "string" },
           "lastModifiedBy": {
             "description": "Last modified by",
+            "readOnly": true,
             "type": "string"
           }
         },
@@ -395,8 +404,14 @@
             "$ref": "#/components/schemas/GenericCloudAccountModel"
           },
           "cloudAccountOwner": {
-            "description": "Cloud account Owner",
+            "description": "Cloud account owner",
             "type": "string"
+          },
+          "cloudAccountOwnerCount": {
+            "description": "Cloud account owner count",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
           },
           "cloudType": {
             "description": "Cloud Type",
@@ -517,13 +532,6 @@
         "type": "object"
       },
       "CloudAccountModel": {
-        "oneOf": [
-          { "$ref": "#/components/schemas/AwsCloudAccountModel" },
-          { "$ref": "#/components/schemas/AzureSubscriptionModel" },
-          { "$ref": "#/components/schemas/GcpCloudProjectModel" },
-          { "$ref": "#/components/schemas/AlibabaCloudAccountModel" },
-          { "$ref": "#/components/schemas/OciCloudAccountModel" }
-        ],
         "description": "Model for Cloud Account Interface",
         "discriminator": {
           "mapping": {
@@ -535,6 +543,13 @@
           },
           "propertyName": "cloudType"
         },
+        "oneOf": [
+          { "$ref": "#/components/schemas/AwsCloudAccountModel" },
+          { "$ref": "#/components/schemas/AzureSubscriptionModel" },
+          { "$ref": "#/components/schemas/GcpCloudProjectModel" },
+          { "$ref": "#/components/schemas/AlibabaCloudAccountModel" },
+          { "$ref": "#/components/schemas/OciCloudAccountModel" }
+        ],
         "properties": {
           "accountGroupInfos": {
             "description": "Account group details of groups associated with this account",
@@ -566,8 +581,14 @@
             "type": "integer"
           },
           "cloudAccountOwner": {
-            "description": "Cloud account Owner",
+            "description": "Cloud account owner",
             "type": "string"
+          },
+          "cloudAccountOwnerCount": {
+            "description": "Cloud account owner count",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
           },
           "cloudType": {
             "description": "Cloud Type",
@@ -697,6 +718,12 @@
             "description": "Cloud account Owner",
             "type": "string"
           },
+          "cloudAccountOwnerCount": {
+            "description": "Cloud account owner count",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
           "cloudType": {
             "description": "Cloud Type",
             "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
@@ -814,6 +841,12 @@
           "cloudAccountOwner": {
             "description": "Cloud account Owner",
             "type": "string"
+          },
+          "cloudAccountOwnerCount": {
+            "description": "Cloud account owner count",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
           },
           "cloudType": {
             "description": "Cloud Type",
@@ -1574,6 +1607,46 @@
           {
             "lang": "Shell + Curl",
             "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/cloud/type?onlyAccessible=SOME_BOOLEAN_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+          }
+        ]
+      }
+    },
+    "/cloud/{id}/owners": {
+      "get": {
+        "description": "Returns the email addresses of all owners for the specified cloud account ID.",
+        "operationId": "get-cloud-account-owners",
+        "parameters": [
+          {
+            "description": "Account ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "pattern": ".+", "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json; charset=UTF-8": {
+                "schema": { "items": { "type": "string" }, "type": "array" }
+              }
+            },
+            "description": "successful operation"
+          },
+          "400": { "description": "invalid_account_id_format" },
+          "404": { "description": "invalid_account_id_format" }
+        },
+        "security": [{ "x-redlock-auth": [] }],
+        "summary": "List Cloud Account Owners",
+        "tags": ["Cloud Accounts"],
+        "x-codeSamples": [
+          {
+            "lang": "Python + Requests",
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/{id}/owners\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+          },
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/cloud/{id}/owners \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
