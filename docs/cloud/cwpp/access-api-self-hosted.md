@@ -116,7 +116,7 @@ You can retrieve a token using client certificates issued by your public key inf
 
 **Prerequisites:**
 
-* You have configured Prisma Cloud Console with your server certificate.
+* You have configured Prisma Cloud Console with your [server certificate](https://docs.paloaltonetworks.com/prisma/prisma-cloud/21-04/prisma-cloud-compute-edition-admin/authentication/use_custom_certs_for_auth.html).
 Go to **Manage > Authentication > Certificates > TLS certificate for Console**, and upload your certificate (cat the cert and private key into a single file).
 
 1. Install your client certificate on your local machine.
