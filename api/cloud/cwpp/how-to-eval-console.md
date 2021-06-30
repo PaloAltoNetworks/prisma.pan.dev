@@ -15,7 +15,7 @@ To find your `<CONSOLE>` path for a SaaS environment:
 2. Navigate to **Compute** > **Manage** > **System** > **Downloads**.
 3. You can find your `<CONSOLE>` path listed under **Path to Console**. Click **Copy** to quickly copy the path to your clipboard.
 
-<img src="console_saas.png" alt="console" width="100%"/>
+<img src="/img/console_saas.png" alt="console" width="100%"/>
 
 
 ## For Self-hosted Installations
