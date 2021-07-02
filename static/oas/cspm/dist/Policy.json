@@ -205,7 +205,7 @@
             "type": "string"
           },
           "policyType": {
-            "description": "Policy type",
+            "description": "Policy type. Policy type **anomaly** is read-only.",
             "enum": [
               "config",
               "network",
@@ -630,7 +630,7 @@
             "type": "string"
           },
           "policyType": {
-            "description": "Policy type",
+            "description": "Policy type. Policy type **anomaly** is read-only.",
             "enum": [
               "config",
               "network",
@@ -779,7 +779,7 @@
           },
           "type": {
             "description": "Type of rule or RQL query",
-            "enum": ["Config", "Network", "AuditEvent"],
+            "enum": ["Config", "Network", "AuditEvent", "DLP", "IAM"],
             "type": "string"
           }
         },

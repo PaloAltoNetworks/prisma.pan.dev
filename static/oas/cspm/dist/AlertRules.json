@@ -1,13 +1,5 @@
 {
   "components": {
-    "securitySchemes": {
-      "x-redlock-auth": {
-        "description": "JWT Based Authentication",
-        "in": "header",
-        "name": "x-redlock-auth",
-        "type": "apiKey"
-      }
-    },
     "requestBodies": {
       "PolicyScanConfigModel": {
         "content": {
@@ -17,6 +9,14 @@
         },
         "description": "Model for Policy Scan Config",
         "required": true
+      }
+    },
+    "securitySchemes": {
+      "x-redlock-auth": {
+        "description": "JWT Based Authentication",
+        "in": "header",
+        "name": "x-redlock-auth",
+        "type": "apiKey"
       }
     },
     "schemas": {
@@ -139,11 +139,6 @@
             "description": "Rule/Scan is enabled",
             "type": "boolean"
           },
-          "excludedPolicies": {
-            "description": "List of policies to exclude from scan",
-            "items": { "type": "string" },
-            "type": "array"
-          },
           "lastModifiedBy": {
             "description": "Last modified by",
             "readOnly": true,
@@ -223,11 +218,6 @@
           "enabled": {
             "description": "Rule/Scan is enabled",
             "type": "boolean"
-          },
-          "excludedPolicies": {
-            "description": "List of policies to exclude from scan",
-            "items": { "type": "string" },
-            "type": "array"
           },
           "lastModifiedBy": {
             "description": "Last modified by",
@@ -354,13 +344,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The Alert Rule APIs are listed below.",
-      "name": "Alert Rules"
-    }
-  ],
   "paths": {
     "/alert/rule": {
       "get": {
@@ -621,5 +604,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "The Alert Rule APIs are listed below.",
+      "name": "Alert Rules"
+    }
+  ]
 }

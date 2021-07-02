@@ -1,13 +1,5 @@
 {
   "components": {
-    "securitySchemes": {
-      "x-redlock-auth": {
-        "description": "JWT Based Authentication",
-        "in": "header",
-        "name": "x-redlock-auth",
-        "type": "apiKey"
-      }
-    },
     "requestBodies": {
       "FilterModel3": {
         "content": {
@@ -29,6 +21,14 @@
             "schema": { "$ref": "#/components/schemas/ResourceExplorerRequest" }
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "x-redlock-auth": {
+        "description": "JWT Based Authentication",
+        "in": "header",
+        "name": "x-redlock-auth",
+        "type": "apiKey"
       }
     },
     "schemas": {
@@ -351,6 +351,10 @@
           "completeParameters": {
             "items": { "$ref": "#/components/schemas/UIFilterModel" },
             "type": "array"
+          },
+          "links": {
+            "description": "JSON query builder links",
+            "type": "string"
           },
           "needsOffsetUpdate": {
             "description": "Needs offset update (for internal use)",
@@ -747,13 +751,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The Asset Explorer (a.k.a Resource Explorer) APIs are listed below.",
-      "name": "Resource Explorer"
-    }
-  ],
   "paths": {
     "/resource": {
       "post": {
@@ -1354,5 +1351,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "The Asset Explorer (a.k.a Resource Explorer) APIs are listed below.",
+      "name": "Resource Explorer"
+    }
+  ]
 }

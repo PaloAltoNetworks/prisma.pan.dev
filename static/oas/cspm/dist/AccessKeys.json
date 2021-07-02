@@ -1,13 +1,5 @@
 {
   "components": {
-    "securitySchemes": {
-      "x-redlock-auth": {
-        "description": "JWT Based Authentication",
-        "in": "header",
-        "name": "x-redlock-auth",
-        "type": "apiKey"
-      }
-    },
     "requestBodies": {
       "UserAccessKeyRequestModel": {
         "content": {
@@ -19,6 +11,14 @@
         },
         "description": "Model for user access key",
         "required": true
+      }
+    },
+    "securitySchemes": {
+      "x-redlock-auth": {
+        "description": "JWT Based Authentication",
+        "in": "header",
+        "name": "x-redlock-auth",
+        "type": "apiKey"
       }
     },
     "schemas": {
@@ -60,7 +60,8 @@
             "description": "User role permission type",
             "type": "string"
           },
-          "status": { "description": "Access key status", "type": "string" }
+          "status": { "description": "Access key status", "type": "string" },
+          "username": { "description": "Access key username", "type": "string" }
         },
         "type": "object"
       },
@@ -72,7 +73,11 @@
             "format": "int64",
             "type": "integer"
           },
-          "name": { "description": "Access key name", "type": "string" }
+          "name": { "description": "Access key name", "type": "string" },
+          "serviceAccountName": {
+            "description": "Service account name",
+            "type": "string"
+          }
         },
         "required": ["name"],
         "type": "object"
@@ -99,13 +104,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The Access Keys APIs are listed below.",
-      "name": "Access Keys"
-    }
-  ],
   "paths": {
     "/access_keys": {
       "get": {
@@ -180,11 +178,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/access_keys\"\n\npayload = \"{\\\"expiresOn\\\":0,\\\"name\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/access_keys\"\n\npayload = \"{\\\"expiresOn\\\":0,\\\"name\\\":\\\"string\\\",\\\"serviceAccountName\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/access_keys \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"expiresOn\":0,\"name\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/access_keys \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"expiresOn\":0,\"name\":\"string\",\"serviceAccountName\":\"string\"}'"
           }
         ]
       }
@@ -232,7 +230,7 @@
         ]
       },
       "put": {
-        "description": "Updates data for the access key that has the specified ID.",
+        "description": "Updates data for the access key that has the specified ID.  \r\n\r\nNote the request body parameter **serviceAccountName** is unused.\n",
         "operationId": "update-access-keys",
         "parameters": [
           {
@@ -268,11 +266,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/access_keys/{id}\"\n\npayload = \"{\\\"expiresOn\\\":0,\\\"name\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/access_keys/{id}\"\n\npayload = \"{\\\"expiresOn\\\":0,\\\"name\\\":\\\"string\\\",\\\"serviceAccountName\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/access_keys/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"expiresOn\":0,\"name\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/access_keys/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"expiresOn\":0,\"name\":\"string\",\"serviceAccountName\":\"string\"}'"
           }
         ]
       },
@@ -354,5 +352,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "The Access Keys APIs are listed below.",
+      "name": "Access Keys"
+    }
+  ]
 }

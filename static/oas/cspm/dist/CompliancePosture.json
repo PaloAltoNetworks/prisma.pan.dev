@@ -1,13 +1,5 @@
 {
   "components": {
-    "securitySchemes": {
-      "x-redlock-auth": {
-        "description": "JWT Based Authentication",
-        "in": "header",
-        "name": "x-redlock-auth",
-        "type": "apiKey"
-      }
-    },
     "requestBodies": {
       "FilterModel3": {
         "content": {
@@ -22,6 +14,14 @@
             "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "x-redlock-auth": {
+        "description": "JWT Based Authentication",
+        "in": "header",
+        "name": "x-redlock-auth",
+        "type": "apiKey"
       }
     },
     "schemas": {
@@ -270,6 +270,10 @@
             "items": { "$ref": "#/components/schemas/UIFilterModel" },
             "type": "array"
           },
+          "links": {
+            "description": "JSON query builder links",
+            "type": "string"
+          },
           "needsOffsetUpdate": {
             "description": "Needs offset update (for internal use)",
             "type": "boolean"
@@ -506,13 +510,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The Compliance Posture APIs are listed below.",
-      "name": "Compliance Posture"
-    }
-  ],
   "paths": {
     "/compliance/posture": {
       "get": {
@@ -1462,5 +1459,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "The Compliance Posture APIs are listed below.",
+      "name": "Compliance Posture"
+    }
+  ]
 }

@@ -1,10 +1,4 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     UserAccessKeyRequestModel:
       content:
@@ -13,6 +7,12 @@ components:
             $ref: '#/components/schemas/UserAccessKeyRequestModel'
       description: Model for user access key
       required: true
+  securitySchemes:
+    x-redlock-auth:
+      description: JWT Based Authentication
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     CreateUserAccessKeyResponseModel:
       description: Model for create user access key response
@@ -59,6 +59,9 @@ components:
         status:
           description: Access key status
           type: string
+        username:
+          description: Access key username
+          type: string
       type: object
     UserAccessKeyRequestModel:
       description: Model for create user access key request
@@ -69,6 +72,9 @@ components:
           type: integer
         name:
           description: Access key name
+          type: string
+        serviceAccountName:
+          description: Service account name
           type: string
       required:
       - name
@@ -98,11 +104,6 @@ info:
   title: Prisma Cloud Access Keys API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Access Keys APIs are listed below.
-  name: Access Keys
 paths:
   /access_keys:
     get:
@@ -185,7 +186,8 @@ paths:
       tags:
       - Access Keys
     put:
-      description: Updates data for the access key that has the specified ID.
+      description: Updates data for the access key that has the specified ID.  \r\
+        \n\r\nNote the request body parameter **serviceAccountName** is unused.\n
       operationId: update-access-keys
       parameters:
       - description: Access key ID
@@ -271,3 +273,8 @@ paths:
       summary: Update Access Key Status
       tags:
       - Access Keys
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Access Keys APIs are listed below.
+  name: Access Keys
