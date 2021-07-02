@@ -119,7 +119,7 @@
             ]
           }
         },
-        "required": ["accountIds", "timeRange"],
+        "required": ["timeRange"],
         "type": "object"
       },
       "AccountStatusMessage": {
@@ -162,8 +162,14 @@
             "type": "integer"
           },
           "cloudAccountOwner": {
-            "description": "Cloud account Owner",
+            "description": "Cloud account owner",
             "type": "string"
+          },
+          "cloudAccountOwnerCount": {
+            "description": "Cloud account owner count",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
           },
           "cloudType": {
             "description": "Cloud Type",
@@ -259,8 +265,14 @@
             "type": "integer"
           },
           "cloudAccountOwner": {
-            "description": "Cloud account Owner",
+            "description": "Cloud account owner",
             "type": "string"
+          },
+          "cloudAccountOwnerCount": {
+            "description": "Cloud account owner count",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
           },
           "cloudType": {
             "description": "Cloud Type",
@@ -715,7 +727,7 @@
             "type": "integer"
           },
           "cloudAccountOwner": {
-            "description": "Cloud account Owner",
+            "description": "Cloud account owner",
             "type": "string"
           },
           "cloudAccountOwnerCount": {
@@ -974,8 +986,14 @@
             "type": "integer"
           },
           "cloudAccountOwner": {
-            "description": "Cloud account Owner",
+            "description": "Cloud account owner",
             "type": "string"
+          },
+          "cloudAccountOwnerCount": {
+            "description": "Cloud account owner count",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
           },
           "cloudType": {
             "description": "Cloud Type",
@@ -1106,8 +1124,14 @@
             "type": "integer"
           },
           "cloudAccountOwner": {
-            "description": "Cloud account Owner",
+            "description": "Cloud account owner",
             "type": "string"
+          },
+          "cloudAccountOwnerCount": {
+            "description": "Cloud account owner count",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
           },
           "cloudType": {
             "description": "Cloud Type",

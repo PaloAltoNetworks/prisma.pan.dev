@@ -1,10 +1,4 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     FilterModel:
       content:
@@ -21,6 +15,12 @@ components:
         application/json; charset=UTF-8:
           schema:
             $ref: '#/components/schemas/FilterSuggestionModel'
+  securitySchemes:
+    x-redlock-auth:
+      description: JWT Based Authentication
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     AbsoluteTimeRangeConfigModel:
       allOf:
@@ -255,6 +255,9 @@ components:
           items:
             $ref: '#/components/schemas/UIFilterModel'
           type: array
+        links:
+          description: JSON query builder links
+          type: string
         needsOffsetUpdate:
           description: Needs offset update (for internal use)
           type: boolean
@@ -404,11 +407,6 @@ info:
   title: Prisma Cloud Asset Inventory API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Asset Inventory Dashboard APIs are listed below.
-  name: Asset Inventory
 paths:
   /filter/v2/inventory/suggest:
     get:
@@ -845,3 +843,8 @@ paths:
       summary: Asset Inventory Trend View V2 - POST
       tags:
       - Asset Inventory
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Asset Inventory Dashboard APIs are listed below.
+  name: Asset Inventory

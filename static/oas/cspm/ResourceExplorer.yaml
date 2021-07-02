@@ -1,10 +1,4 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     FilterModel3:
       content:
@@ -21,6 +15,12 @@ components:
         application/json; charset=UTF-8:
           schema:
             $ref: '#/components/schemas/ResourceExplorerRequest'
+  securitySchemes:
+    x-redlock-auth:
+      description: JWT Based Authentication
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     AbsoluteTimeRangeConfigModel:
       allOf:
@@ -378,6 +378,9 @@ components:
           items:
             $ref: '#/components/schemas/UIFilterModel'
           type: array
+        links:
+          description: JSON query builder links
+          type: string
         needsOffsetUpdate:
           description: Needs offset update (for internal use)
           type: boolean
@@ -807,11 +810,6 @@ info:
   title: Prisma Cloud Resource Explorer (Asset Explorer) API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Asset Explorer (a.k.a Resource Explorer) APIs are listed below.
-  name: Resource Explorer
 paths:
   /resource:
     post:
@@ -1274,3 +1272,8 @@ paths:
       summary: Resource Scan Info - POST
       tags:
       - Resource Explorer
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Asset Explorer (a.k.a Resource Explorer) APIs are listed below.
+  name: Resource Explorer

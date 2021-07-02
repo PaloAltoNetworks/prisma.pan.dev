@@ -895,7 +895,7 @@ components:
           readOnly: true
           type: string
         policyType:
-          description: Policy type
+          description: Policy type. Policy type **anomaly** is read-only.
           enum:
           - config
           - network
@@ -972,12 +972,6 @@ components:
         enabled:
           description: Rule/Scan is enabled
           type: boolean
-        excludedPolicies:
-          description: List of policies to exclude from scan
-          items:
-            type: string
-          readOnly: true
-          type: array
         lastModifiedBy:
           description: Last modified by
           readOnly: true
@@ -1186,6 +1180,8 @@ components:
           - Config
           - Network
           - AuditEvent
+          - DLP
+          - IAM
           type: string
       required:
       - criteria

@@ -104,7 +104,6 @@ components:
           - $ref: '#/components/schemas/TimeRangeConfigModel'
           - description: Time range
       required:
-      - accountIds
       - timeRange
       type: object
     AccountStatusMessage:
@@ -145,8 +144,13 @@ components:
           format: int32
           type: integer
         cloudAccountOwner:
-          description: Cloud account Owner
+          description: Cloud account owner
           type: string
+        cloudAccountOwnerCount:
+          description: Cloud account owner count
+          format: int32
+          readOnly: true
+          type: integer
         cloudType:
           description: Cloud Type
           enum:
@@ -246,8 +250,13 @@ components:
           format: int32
           type: integer
         cloudAccountOwner:
-          description: Cloud account Owner
+          description: Cloud account owner
           type: string
+        cloudAccountOwnerCount:
+          description: Cloud account owner count
+          format: int32
+          readOnly: true
+          type: integer
         cloudType:
           description: Cloud Type
           enum:
@@ -712,7 +721,7 @@ components:
           format: int32
           type: integer
         cloudAccountOwner:
-          description: Cloud account Owner
+          description: Cloud account owner
           type: string
         cloudAccountOwnerCount:
           description: Cloud account owner count
@@ -980,8 +989,13 @@ components:
           format: int32
           type: integer
         cloudAccountOwner:
-          description: Cloud account Owner
+          description: Cloud account owner
           type: string
+        cloudAccountOwnerCount:
+          description: Cloud account owner count
+          format: int32
+          readOnly: true
+          type: integer
         cloudType:
           description: Cloud Type
           enum:
@@ -1116,8 +1130,13 @@ components:
           format: int32
           type: integer
         cloudAccountOwner:
-          description: Cloud account Owner
+          description: Cloud account owner
           type: string
+        cloudAccountOwnerCount:
+          description: Cloud account owner count
+          format: int32
+          readOnly: true
+          type: integer
         cloudType:
           description: Cloud Type
           enum:

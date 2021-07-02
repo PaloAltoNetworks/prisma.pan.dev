@@ -190,7 +190,7 @@ components:
           readOnly: true
           type: string
         policyType:
-          description: Policy type
+          description: Policy type. Policy type **anomaly** is read-only.
           enum:
           - config
           - network
@@ -563,7 +563,7 @@ components:
           readOnly: true
           type: string
         policyType:
-          description: Policy type
+          description: Policy type. Policy type **anomaly** is read-only.
           enum:
           - config
           - network
@@ -697,6 +697,8 @@ components:
           - Config
           - Network
           - AuditEvent
+          - DLP
+          - IAM
           type: string
       required:
       - criteria

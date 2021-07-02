@@ -1,10 +1,4 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     AuditEventSearchParamsModel:
       content:
@@ -20,6 +14,12 @@ components:
             $ref: '#/components/schemas/SearchModel'
       description: Search model
       required: true
+  securitySchemes:
+    x-redlock-auth:
+      description: JWT Based Authentication
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     AbsoluteTimeRangeConfigModel:
       allOf:
@@ -281,6 +281,9 @@ components:
     AutocompleteInfo:
       description: Model for AutocompleteInfo
       properties:
+        links:
+          description: JSON query builder links
+          type: string
         needsOffsetUpdate:
           description: Needs offset update (for internal use)
           type: boolean
@@ -1133,11 +1136,6 @@ info:
   title: Prisma Cloud Search API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Search APIs are listed below.
-  name: Search
 paths:
   /search/config:
     post:
@@ -1441,3 +1439,8 @@ paths:
       summary: Download Event Search CSV
       tags:
       - Search
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Search APIs are listed below.
+  name: Search
