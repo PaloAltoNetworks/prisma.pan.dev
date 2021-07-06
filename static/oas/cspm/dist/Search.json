@@ -1005,7 +1005,7 @@
   "paths": {
     "/search/config": {
       "post": {
-        "description": "Returns the results of an RQL Config query. With Config queries, you can retrieve resource information, identify misconfigurations, gain operational insights, and uncover policy and compliance violations.  \r\n\r\nThis API requires Prisma Cloud system administrator role access.\n\n### Download Config Search CSV \nIn addition to performing a config search, this API can perform the config \nsearch and download the results as a CSV file. To download the config search CSV, \nadd the request HTTP header **Accept: text/csv**.\n\nAn example request body is:\n```\n{\n  \"query\":\"config where api.name = 'aws-iam-get-account-summary' \",\n  \"timeRange\":{\n     \"type\":\"relative\",\n     \"value\":{\n        \"unit\":\"hour\",\n        \"amount\":24\n     }\n  }\n}\n```\n",
+        "description": "Returns the results of an RQL config query. With config queries, you can retrieve resource information, identify misconfigurations, gain operational insights, and uncover policy and compliance violations.  \r\n\r\n### Download Config Search CSV \nIn addition to performing a config search, this endpoint can perform the config \nsearch and download the results as a CSV file. To download the config search CSV, \nadd the request HTTP header **Accept: text/csv**.\n\nAn example request body is:\n```\n{\n  \"query\":\"config where api.name = 'aws-iam-get-account-summary' \",\n  \"timeRange\":{\n     \"type\":\"relative\",\n     \"value\":{\n        \"unit\":\"hour\",\n        \"amount\":24\n     }\n  }\n}\n```\n",
         "operationId": "search-config",
         "requestBody": {
           "content": {
@@ -1050,7 +1050,7 @@
     },
     "/search": {
       "post": {
-        "description": "Perform a search against flow logs with an RQL query.  \r\n\r\nThis API ignores the body param **default**. \n\n### Download Network Search CSV \nIn addition to performing a network search, this API can perform the network \nsearch and download the results as a CSV file. To download the network search CSV, \nadd the request HTTP header **Accept: text/csv**.\n\nAn example request body is:\n```\n{\n  \"cloudType\": \"\",\n  \"id\":\"\",\n  \"name\":\"\",\n  \"description:\"\",\n  \"saved\":false,\n  \"default\":false,\n  \"query\": \"\",\n    \"timeRange\": {\n      \"type\": \"\",\n      \"value\": \"\"\n    }\n}\n```\n",
+        "description": "Perform a search against flow logs with an RQL query.  \r\n\r\nThis endpoint ignores the body param **default**. \n\n### Download Network Search CSV \nIn addition to performing a network search, this endpoint can perform the network \nsearch and download the results as a CSV file. To download the network search CSV, \nadd the request HTTP header **Accept: text/csv**.\n\nAn example request body is:\n```\n{\n  \"cloudType\": \"\",\n  \"id\":\"\",\n  \"name\":\"\",\n  \"description:\"\",\n  \"saved\":false,\n  \"default\":false,\n  \"query\": \"\",\n    \"timeRange\": {\n      \"type\": \"\",\n      \"value\": \"\"\n    }\n}\n```\n",
         "operationId": "search-network",
         "requestBody": {
           "content": {

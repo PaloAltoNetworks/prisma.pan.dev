@@ -1,11 +1,11 @@
 components:
+  requestBodies: {}
   securitySchemes:
     x-redlock-auth:
       description: JWT Based Authentication
       in: header
       name: x-redlock-auth
       type: apiKey
-  requestBodies: {}
   schemas:
     AbsoluteTimeRangeConfigModel:
       allOf:
@@ -291,12 +291,6 @@ info:
   title: Prisma Cloud Search Manager API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The APIs to save a search and manage your saved searches are listed
-    below.
-  name: Search Manager
 paths:
   /search/history:
     get:
@@ -367,7 +361,7 @@ paths:
         \ the saved search. A best \npractice is to copy data from the results of\
         \ a search history, update the \ndata as necessary, and set the **saved**\
         \ parameter to **true**.\n\nThis API requires Prisma Cloud system administrator\
-        \ role access.\n"
+        \ role access if you don't own the search with the given search ID.\n"
       operationId: search-history-save
       parameters:
       - description: Search ID
@@ -430,3 +424,9 @@ paths:
       summary: Delete Saved Search Query
       tags:
       - Search Manager
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The APIs to save a search and manage your saved searches are listed
+    below.
+  name: Search Manager

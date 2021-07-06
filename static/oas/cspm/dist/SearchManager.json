@@ -1,5 +1,6 @@
 {
   "components": {
+    "requestBodies": {},
     "securitySchemes": {
       "x-redlock-auth": {
         "description": "JWT Based Authentication",
@@ -8,7 +9,6 @@
         "type": "apiKey"
       }
     },
-    "requestBodies": {},
     "schemas": {
       "AbsoluteTimeRangeConfigModel": {
         "allOf": [
@@ -282,13 +282,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The APIs to save a search and manage your saved searches are listed below.",
-      "name": "Search Manager"
-    }
-  ],
   "paths": {
     "/search/history": {
       "get": {
@@ -378,7 +371,7 @@
         ]
       },
       "post": {
-        "description": "Saves a search query to the **Saved Searches** list under the specified ID.  \r\n\r\nRequired parameters include the search ID, the RQL query, the flag that \nmarks this search as saved, and a unique name for the saved search. A best \npractice is to copy data from the results of a search history, update the \ndata as necessary, and set the **saved** parameter to **true**.\n\nThis API requires Prisma Cloud system administrator role access.\n",
+        "description": "Saves a search query to the **Saved Searches** list under the specified ID.  \r\n\r\nRequired parameters include the search ID, the RQL query, the flag that \nmarks this search as saved, and a unique name for the saved search. A best \npractice is to copy data from the results of a search history, update the \ndata as necessary, and set the **saved** parameter to **true**.\n\nThis API requires Prisma Cloud system administrator role access if you don't own the search with the given search ID.\n",
         "operationId": "search-history-save",
         "parameters": [
           {
@@ -466,5 +459,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "The APIs to save a search and manage your saved searches are listed below.",
+      "name": "Search Manager"
+    }
+  ]
 }
