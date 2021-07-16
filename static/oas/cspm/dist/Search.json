@@ -1050,7 +1050,7 @@
     },
     "/search": {
       "post": {
-        "description": "Perform a search against flow logs with an RQL query.  \r\n\r\nThis endpoint ignores the body param **default**. \n\n### Download Network Search CSV \nIn addition to performing a network search, this endpoint can perform the network \nsearch and download the results as a CSV file. To download the network search CSV, \nadd the request HTTP header **Accept: text/csv**.\n\nAn example request body is:\n```\n{\n  \"cloudType\": \"\",\n  \"id\":\"\",\n  \"name\":\"\",\n  \"description:\"\",\n  \"saved\":false,\n  \"default\":false,\n  \"query\": \"\",\n    \"timeRange\": {\n      \"type\": \"\",\n      \"value\": \"\"\n    }\n}\n```\n",
+        "description": "Perform a search against flow logs with an RQL query.  \r\n\r\nThis endpoint ignores the body param **default**. \n\n### Download Network Search CSV \nIn addition to performing a network search, this API can perform the network \nsearch and download the results as a CSV file. To download the network search CSV, \nadd the request HTTP header **Accept: text/csv**.\n\nAn example request body is:\n```\n{\n  \"cloudType\": \"\",\n  \"id\":\"\",\n  \"name\":\"\",\n  \"description:\"\",\n  \"saved\":false,\n  \"default\":false,\n  \"query\": \"\",\n    \"timeRange\": {\n      \"type\": \"\",\n      \"value\": \"\"\n    }\n}\n```\n",
         "operationId": "search-network",
         "requestBody": {
           "content": {

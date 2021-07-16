@@ -300,6 +300,8 @@ components:
           - pager_duty
           - azure_service_bus_queue
           - demisto
+          - aws_s3
+          - snowflake
           type: string
         withCompression:
           description: Compress detailed report
@@ -438,6 +440,12 @@ components:
             type: string
           type: array
           uniqueItems: true
+        cloudAccountOwners:
+          description: Cloud account owners. For Azure and GCP.
+          items:
+            type: string
+          readOnly: true
+          type: array
         cloudType:
           description: Cloud Type
           enum:
@@ -690,13 +698,15 @@ components:
       description: Model for Policy
       properties:
         cloudType:
-          description: Cloud type (Required for config policies)
+          description: Cloud type (Required for config policies). Not case-sensitive.
+            Default is **ALL**.
           enum:
-          - aws
-          - azure
-          - gcp
-          - alibaba_cloud
-          - oci
+          - ALL
+          - AWS
+          - AZURE
+          - GCP
+          - ALIBABA_CLOUD
+          - OCI
           type: string
         complianceMetadata:
           description: List of compliance data. Each item has compliance standard,
@@ -1127,10 +1137,17 @@ components:
       description: Criteria for Rule
       properties:
         classificationResult:
+          description: Data policy. Required for DLP rule criteria.
           type: string
         exposure:
+          description: File exposure
+          enum:
+          - private
+          - public
+          - conditional
           type: string
         extension:
+          description: File extensions
           items:
             type: string
           type: array
@@ -1157,7 +1174,7 @@ components:
         dataCriteria:
           allOf:
           - $ref: '#/components/schemas/RuleCriteria'
-          - description: Criteria of rule for Data Policy for DLP
+          - description: Rule criteria for DLP data policy
         name:
           description: Name
           type: string

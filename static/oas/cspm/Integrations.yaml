@@ -104,6 +104,8 @@ components:
           - pager_duty
           - azure_service_bus_queue
           - demisto
+          - aws_s3
+          - snowflake
           type: string
         withCompression:
           description: Compress detailed report

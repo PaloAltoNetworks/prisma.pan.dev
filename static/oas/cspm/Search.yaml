@@ -1143,11 +1143,11 @@ paths:
         \ you can retrieve resource information, identify misconfigurations, gain\
         \ operational insights, and uncover policy and compliance violations.  \r\n\
         \r\n### Download Config Search CSV \nIn addition to performing a config search,\
-        \ this endpoint can perform the config \nsearch and download the results as a CSV\
-        \ file. To download the config search CSV, \nadd the request HTTP header **Accept:\
-        \ text/csv**.\n\nAn example request body is:\n```\n{\n  \"query\":\"config\
-        \ where api.name = 'aws-iam-get-account-summary' \",\n  \"timeRange\":{\n\
-        \     \"type\":\"relative\",\n     \"value\":{\n        \"unit\":\"hour\"\
+        \ this endpoint can perform the config \nsearch and download the results as\
+        \ a CSV file. To download the config search CSV, \nadd the request HTTP header\
+        \ **Accept: text/csv**.\n\nAn example request body is:\n```\n{\n  \"query\"\
+        :\"config where api.name = 'aws-iam-get-account-summary' \",\n  \"timeRange\"\
+        :{\n     \"type\":\"relative\",\n     \"value\":{\n        \"unit\":\"hour\"\
         ,\n        \"amount\":24\n     }\n  }\n}\n```\n"
       operationId: search-config
       requestBody:
@@ -1178,10 +1178,10 @@ paths:
   /search:
     post:
       description: "Perform a search against flow logs with an RQL query.  \r\n\r\n\
-        This endpoint ignores the body param **default**. \n\n### Download Network Search\
-        \ CSV \nIn addition to performing a network search, this endpoint can perform the\
-        \ network \nsearch and download the results as a CSV file. To download the\
-        \ network search CSV, \nadd the request HTTP header **Accept: text/csv**.\n\
+        This endpoint ignores the body param **default**. \n\n### Download Network\
+        \ Search CSV \nIn addition to performing a network search, this API can perform\
+        \ the network \nsearch and download the results as a CSV file. To download\
+        \ the network search CSV, \nadd the request HTTP header **Accept: text/csv**.\n\
         \nAn example request body is:\n```\n{\n  \"cloudType\": \"\",\n  \"id\":\"\
         \",\n  \"name\":\"\",\n  \"description:\"\",\n  \"saved\":false,\n  \"default\"\
         :false,\n  \"query\": \"\",\n    \"timeRange\": {\n      \"type\": \"\",\n\

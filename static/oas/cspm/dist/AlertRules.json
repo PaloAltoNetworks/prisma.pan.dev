@@ -101,7 +101,9 @@
               "service_now",
               "pager_duty",
               "azure_service_bus_queue",
-              "demisto"
+              "demisto",
+              "aws_s3",
+              "snowflake"
             ],
             "type": "string"
           },
