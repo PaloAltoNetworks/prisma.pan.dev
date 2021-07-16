@@ -102,7 +102,12 @@ paths:
       tags:
         - Licensing
       summary: Get Usage CSV
-      description: Get usage breakdown in a CSV file.
+      description: |
+        Get usage breakdown in a CSV file.
+
+        Note that the following are required:
+        * Request header: **Accept: application/octet-stream**
+        * Request body parameter: **csvHeaderRequired** = **true**.
       operationId: license-get-usage-csv
       requestBody:
         content:

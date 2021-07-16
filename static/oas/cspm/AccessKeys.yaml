@@ -186,8 +186,8 @@ paths:
       tags:
       - Access Keys
     put:
-      description: Updates data for the access key that has the specified ID.  \r\
-        \n\r\nNote the request body parameter **serviceAccountName** is unused.\n
+      description: "Updates data for the access key that has the specified ID.  \r\
+        \n\r\nNote the request body parameter **serviceAccountName** is unused.\n"
       operationId: update-access-keys
       parameters:
       - description: Access key ID
