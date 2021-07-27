@@ -1,6 +1,6 @@
 ---
 id: api-integration-config
-title: Prisma Cloud Intergation API Configurations 
+title: Prisma Cloud Integration API Configurations 
 sidebar_label: Integration Configurations
 hide_table_of_contents: false
 ---
