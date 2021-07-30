@@ -25,7 +25,7 @@
     },
     "securitySchemes": {
       "x-redlock-auth": {
-        "description": "JWT Based Authentication",
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
         "in": "header",
         "name": "x-redlock-auth",
         "type": "apiKey"
@@ -1045,7 +1045,7 @@
   "servers": [{ "url": "https://api.prismacloud.io" }],
   "tags": [
     {
-      "description": "The Asset Inventory Dashboard APIs are listed below.",
+      "description": "The Asset Inventory Dashboard endpoints are listed below.",
       "name": "Asset Inventory"
     }
   ]

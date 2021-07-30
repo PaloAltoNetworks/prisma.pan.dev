@@ -37,7 +37,7 @@
     },
     "securitySchemes": {
       "x-redlock-auth": {
-        "description": "JWT Based Authentication",
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
         "in": "header",
         "name": "x-redlock-auth",
         "type": "apiKey"
@@ -171,8 +171,13 @@
             "readOnly": true,
             "type": "integer"
           },
+          "cloudAccountStatus": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "object"
+          },
           "cloudType": {
-            "description": "Cloud Type",
+            "description": "Cloud type",
             "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
             "readOnly": true,
             "type": "string"
@@ -204,6 +209,12 @@
             "items": { "type": "string" },
             "readOnly": true,
             "type": "array"
+          },
+          "ingestionMode": {
+            "description": "Ingestion Mode",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
           },
           "lastModifiedBy": {
             "description": "Last Modified By",
@@ -264,6 +275,16 @@
             "format": "int32",
             "type": "integer"
           },
+          "assumeRoleAccount": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "string"
+          },
+          "canonicalId": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "string"
+          },
           "cloudAccountOwner": {
             "description": "Cloud account owner",
             "type": "string"
@@ -274,6 +295,11 @@
             "readOnly": true,
             "type": "integer"
           },
+          "cloudAccountStatus": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "object"
+          },
           "cloudType": {
             "description": "Cloud Type",
             "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
@@ -283,12 +309,12 @@
           "deploymentType": {
             "description": "Deployment Type",
             "enum": [
-              "AZURE",
-              "AZURE_GOVERNMENT",
-              "AZURE_CHINA",
               "AWS",
               "AWS_GOVERNMENT",
               "AWS_CHINA",
+              "AZURE",
+              "AZURE_GOVERNMENT",
+              "AZURE_CHINA",
               "OCI",
               "OCI_GOVERNMENT",
               "OCI_CHINA",
@@ -312,6 +338,12 @@
             "items": { "type": "string" },
             "readOnly": true,
             "type": "array"
+          },
+          "ingestionMode": {
+            "description": "Ingestion Mode",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
           },
           "lastModifiedBy": {
             "description": "Last Modified By",
@@ -411,6 +443,168 @@
             "format": "int32",
             "type": "integer"
           },
+          "clientId": {
+            "description": "Application (Client) ID",
+            "type": "string"
+          },
+          "cloudAccount": {
+            "$ref": "#/components/schemas/GenericCloudAccountModel"
+          },
+          "cloudAccountOwner": {
+            "description": "Cloud account owner",
+            "type": "string"
+          },
+          "cloudAccountOwnerCount": {
+            "description": "Cloud account owner count",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "cloudAccountStatus": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "object"
+          },
+          "cloudType": {
+            "description": "Cloud Type",
+            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "readOnly": true,
+            "type": "string"
+          },
+          "cspAccountId": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "string"
+          },
+          "deleted": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "boolean"
+          },
+          "deploymentType": {
+            "description": "Deployment Type",
+            "enum": [
+              "AWS",
+              "AWS_GOVERNMENT",
+              "AWS_CHINA",
+              "AZURE",
+              "AZURE_GOVERNMENT",
+              "AZURE_CHINA",
+              "OCI",
+              "OCI_GOVERNMENT",
+              "OCI_CHINA",
+              "GCP",
+              "GCP_GOVERNMENT",
+              "GCP_CHINA",
+              "ALIBABA_CLOUD",
+              "ALIBABA_CLOUD_GOVERNMENT",
+              "ALIBABA_CLOUD_CHINA"
+            ],
+            "type": "string"
+          },
+          "enabled": { "description": "Enabled", "type": "boolean" },
+          "environmentType": {
+            "enum": ["AZURE", "AZURE_GOVERNMENT", "AZURE_CHINA"],
+            "type": "string"
+          },
+          "groupIds": {
+            "description": "Group Ids",
+            "items": { "type": "string" },
+            "readOnly": true,
+            "type": "array"
+          },
+          "id": {
+            "description": "Internal use only",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "key": {
+            "description": "Application client secret",
+            "readOnly": true,
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "description": "Last Modified By",
+            "readOnly": true,
+            "type": "string"
+          },
+          "lastModifiedTs": {
+            "description": "Time account was last updated",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "monitorFlowLogs": {
+            "description": "Monitor Flow Logs",
+            "type": "boolean"
+          },
+          "name": { "description": "Name", "readOnly": true, "type": "string" },
+          "parentId": {
+            "description": "Internal use only",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "protectionMode": {
+            "description": "Protection Mode",
+            "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
+            "readOnly": true,
+            "type": "string"
+          },
+          "servicePrincipalId": {
+            "description": "Enterprise application object ID",
+            "readOnly": true,
+            "type": "string"
+          },
+          "storageScanEnabled": {
+            "description": "Storage Scan Enabled",
+            "type": "boolean"
+          },
+          "storageUUID": { "description": "Storage UUID", "type": "string" },
+          "subscriptionId": {
+            "description": "Subscription ID",
+            "readOnly": true,
+            "type": "string"
+          },
+          "tenantId": {
+            "description": "Directory (Tenant ID))",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "AzureTenantModel": {
+        "description": "Model for Azure Tenant",
+        "properties": {
+          "accountGroupInfos": {
+            "description": "Account group details of groups associated with this account",
+            "items": { "$ref": "#/components/schemas/AccountGroupInfo" },
+            "type": "array"
+          },
+          "accountId": {
+            "description": "Account ID",
+            "readOnly": true,
+            "type": "string"
+          },
+          "accountType": {
+            "description": "Cloud Account Type",
+            "enum": [
+              "ACCOUNT",
+              "MASTER_SERVICE_ACCOUNT",
+              "COMPARTMENT",
+              "MANAGEMENT_GROUP",
+              "ORGANIZATION",
+              "TENANT"
+            ],
+            "readOnly": true,
+            "type": "string"
+          },
+          "associatedAccountGroupsCount": {
+            "description": "Associated Account Groups Count with this cloud account",
+            "format": "int32",
+            "type": "integer"
+          },
           "clientId": { "description": "Client ID", "type": "string" },
           "cloudAccount": {
             "$ref": "#/components/schemas/GenericCloudAccountModel"
@@ -425,11 +619,30 @@
             "readOnly": true,
             "type": "integer"
           },
+          "cloudAccountStatus": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "object"
+          },
           "cloudType": {
             "description": "Cloud Type",
             "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
             "readOnly": true,
             "type": "string"
+          },
+          "cspAccountId": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "string"
+          },
+          "defaultAccountGroupId": {
+            "description": "Default account group associated with tenant",
+            "type": "string"
+          },
+          "deleted": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "boolean"
           },
           "deploymentType": {
             "description": "Deployment Type",
@@ -463,7 +676,22 @@
             "readOnly": true,
             "type": "array"
           },
-          "key": { "description": "Key", "type": "string" },
+          "hierarchySelections": {
+            "description": "List of selected resource hierarchy selections",
+            "items": { "$ref": "#/components/schemas/HierarchySelectionModel" },
+            "type": "array"
+          },
+          "id": {
+            "description": "Internal use only",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "key": {
+            "description": "Application key",
+            "readOnly": true,
+            "type": "string"
+          },
           "lastModifiedBy": {
             "description": "Last Modified By",
             "readOnly": true,
@@ -480,20 +708,37 @@
             "type": "boolean"
           },
           "name": { "description": "Name", "readOnly": true, "type": "string" },
+          "parentId": {
+            "description": "Internal use only",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
           "protectionMode": {
             "description": "Protection Mode",
             "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
             "readOnly": true,
             "type": "string"
           },
-          "servicePrincipalId": { "readOnly": true, "type": "string" },
+          "rootSyncEnabled": {
+            "description": "true = Sync of root tenant is enabled",
+            "type": "boolean"
+          },
+          "servicePrincipalId": {
+            "description": "Enterprise application object ID",
+            "readOnly": true,
+            "type": "string"
+          },
           "storageScanEnabled": {
             "description": "Storage Scan Enabled",
             "type": "boolean"
           },
           "storageUUID": { "description": "Storage UUID", "type": "string" },
-          "subscriptionId": { "readOnly": true, "type": "string" },
-          "supportedAccountType": { "type": "boolean" },
+          "subscriptionId": {
+            "description": "Subscription ID",
+            "readOnly": true,
+            "type": "string"
+          },
           "tenantId": { "description": "Tenant ID", "type": "string" }
         },
         "type": "object"
@@ -548,6 +793,7 @@
         "oneOf": [
           { "$ref": "#/components/schemas/AwsCloudAccountModel" },
           { "$ref": "#/components/schemas/AzureSubscriptionModel" },
+          { "$ref": "#/components/schemas/AzureTenantModel" },
           { "$ref": "#/components/schemas/GcpCloudProjectModel" },
           { "$ref": "#/components/schemas/AlibabaCloudAccountModel" },
           { "$ref": "#/components/schemas/OciCloudAccountModel" }
@@ -769,6 +1015,12 @@
             "readOnly": true,
             "type": "array"
           },
+          "ingestionMode": {
+            "description": "Ingestion Mode",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
           "lastModifiedBy": {
             "description": "Last Modified By",
             "readOnly": true,
@@ -836,12 +1088,15 @@
             "format": "int32",
             "type": "integer"
           },
-          "autoAccountGroupCreationModeOn": { "type": "boolean" },
+          "autoAccountGroupCreationModeOn": {
+            "description": "true = Create account groups automatically",
+            "type": "boolean"
+          },
           "cloudAccount": {
             "$ref": "#/components/schemas/GenericCloudAccountModel"
           },
           "cloudAccountOwner": {
-            "description": "Cloud account Owner",
+            "description": "Cloud account owner",
             "type": "string"
           },
           "cloudAccountOwnerCount": {
@@ -849,6 +1104,11 @@
             "format": "int32",
             "readOnly": true,
             "type": "integer"
+          },
+          "cloudAccountStatus": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "object"
           },
           "cloudType": {
             "description": "Cloud Type",
@@ -897,6 +1157,12 @@
             "readOnly": true,
             "type": "array"
           },
+          "id": {
+            "description": "Internal use only",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
           "lastModifiedBy": {
             "description": "Last Modified By",
             "readOnly": true,
@@ -909,7 +1175,17 @@
             "type": "integer"
           },
           "name": { "description": "Name", "readOnly": true, "type": "string" },
-          "projectId": { "readOnly": true, "type": "string" },
+          "parentId": {
+            "description": "Internal use only",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "projectId": {
+            "description": "Project ID",
+            "readOnly": true,
+            "type": "string"
+          },
           "protectionMode": {
             "description": "Protection Mode",
             "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
@@ -1019,6 +1295,12 @@
             "readOnly": true,
             "type": "array"
           },
+          "ingestionMode": {
+            "description": "Ingestion Mode",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
           "lastModifiedBy": {
             "description": "Last Modified By",
             "readOnly": true,
@@ -1123,6 +1405,11 @@
             "readOnly": true,
             "type": "integer"
           },
+          "cloudAccountStatus": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "object"
+          },
           "cloudType": {
             "description": "Cloud Type",
             "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
@@ -1162,6 +1449,12 @@
           },
           "groupName": { "description": "Group Name", "type": "string" },
           "homeRegion": { "description": "Home Region", "type": "string" },
+          "ingestionMode": {
+            "description": "Ingestion Mode",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
           "lastModifiedBy": {
             "description": "Last Modified By",
             "readOnly": true,
@@ -1667,7 +1960,7 @@
     },
     "/cloud/{cloud_type}": {
       "post": {
-        "description": "Onboard a new cloud account onto the Prisma Cloud platform.  \r\n\r\nThe request body parameters differ depending on the cloud type of the account you want to add.\n### Add an AWS Account\n#### Request Body\nThe table below lists the request body parameters to add an AWS account.\n\nParameter  | Type | Description | Default Value or Required\n-----------| ---- | ----------- | -------------\naccountId | string | AWS account ID | _required_\nenabled | boolean | Whether or not the account is enabled | **false**\nexternalId | string  | AWS account external ID  | _required_\ngroupIds | array of strings  | List of account group IDs to which you are assigning this account  | _required_\nname | string  | Name to be used for the account on the Prisma Cloud platform (must be unique)  | _required_\nroleArn | string | Unique identifier for an AWS resource (ARN) | _required_\nprotectiveMode | string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | **MONITOR**\n\n##### Request Body Example\n```\n{\n  \"accountId\": \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"protectionMode\": \"MONITOR\"\n}\n```\n### Add an AWS Org Account\n#### Request Body\nThe table below lists the request body parameters to add an AWS org account.\n\nParameter  | Type | Description | Default Value or Required\n-----------| ---- | ----------- | -------------\naccountId | string | AWS account ID | _required_\nenabled | boolean | Whether or not the account is enabled | **false**\nexternalId | string  | AWS account external ID  | _required_\ngroupIds | array  | List of account group IDs to which you are assigning this account  | _required_\nname | string  | Name to be used for the account on the Prisma Cloud platform (must be unique)  | _required_\nroleArn | string | Unique identifier for an AWS resource (ARN) | _required_\naccountType | string | **organization** | _required_\nmemberRoleName | string | AWS Member account role name | _required_\nmemberExternalId | string | AWS Member account role's external ID | _required_\nmemberRoleStatus | boolean | **true** = The member role created using stack set exists in all the member accounts. All the Org accounts will be addeded.<br/>**false** = Only the master account will be added. | **false**\nprotectiveMode | string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | **MONITOR**\n\n##### Request Body Example\n```\n{\n  \"accountId\": \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"accountType\": \"organization\",\n  \"memberRoleName\": \"\",\n  \"memberExternalId\": \"\",\n  \"memberRoleStatus\": true,\n  \"protectionMode\": \"MONITOR\"\n}\n```\n\n### Add an Azure Account\n#### Request Body\nThe table below lists the request body parameters to add an Azure account.\n\nParameter  | Type | Description | Default Value or Required\n-----------| ---- | ----------- | -------------\nclientId | string | Application ID registered with Active Directory | _required_\ncloudAccount.accountId | string | Azure account ID.  If cloudAccount.accountType is **tenant**, then **cloudAccount.accountId** should be \"\" (empty)| Required unless **cloudAccount.accountType** is **tenant**\ncloudAccount.enabled | boolean  | Whether or not to enable the account  | **false**\ncloudAccount.groupIds | array of strings | List of account group IDs to which you are assigning this account  | _required_\ncloudAccount.name | string | Name to be used for the account on the Prisma Cloud platform (must be unique)  | _required_\ncloudAccount.accountType | string | Valid values are: **account**, **tenant** | **account**\ncloudAccount.protectionMode | string | If cloudAccount.accountType is **tenant**, then the valid value is **MONITOR** | **MONITOR**\ntenantId | string | Active Directory ID associated with Azure | _required_\nservicePrincipalId | string | Unique ID of the service principal object associated with the Prisma Cloud application that you create | _required_\nmonitorFlowLogs | boolean | Automatically ingest flow logs | _required_\nkey | string | Application ID key | _required_\n\n##### Request Body Example\n```\n{\n  \"cloudAccount\": {\n    \"accountId\": \"\",\n    \"enabled\": true,\n    \"groupIds\": [],\n    \"name\": \"\",\n    \"accountType\": \"\",\n    \"protectionMode\": \"MONITOR\"\n  },\n  \"clientId\": \"\",\n  \"key\": \"\",\n  \"monitorFlowLogs\": true,\n  \"tenantId\": \"\",\n  \"servicePrincipalId\": \"\"\n}\n```\n\n### Add a GCP Account\n#### Request Body\nThe table below lists the request body parameters to add a GCP account.\n\nParameter  | Type | Description | Default Value or Required \n-----------| ---- | ----------- | -------------\ncloudAccount.accountId | string | GCP project ID. GCP Org ID if adding org | _required_\ncloudAccount.name | string | Name to be used for the account on the Prisma Cloud platform (must be unique) | _required_\ncloudAccount.enabled | boolean | Whether or not the account is enabled | **false**\ncloudAccount.groupIds | array of strings | List of account group IDs to which you are assigning this account  | _required_\ncloudAccount.projectId | string | Existing GCP project ID | _required_\ncloudAccount.protectionMode | string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | _required_\ncloudAccount.accountType | string | Valid values: **organization**, **masterServiceAccount**, **account** | _required_\ncredentials | JSON object | Service account key | _required_\ncompressionEnabled | boolean | Enable flow log compression | **false**\ndataflowEnabledProject | string | GCP project for flow log compression | Required if compressionEnabled is **true**\nflowLogStorageBucket | string | GCP flow logs storage bucket | \"\"\norganizationName | string | GCP organization name | _required_\naccountGroupCreationMode | string | Cloud account group creation mode. Valid values:<br/>**MANUAL**: Create account groups manually<br/>**AUTO**: Create high-level account groups based on folders identified<br/>**RECURSIVE**: Drill down in folder tree to create account groups | default: **MANUAL**\nhierarchySelection.resourceId | string | Resource ID. For folders, format is folders/{folder ID}. For projects, format is {project number}. For orgs, format is organizations/{org ID} | _required if **hierarchySelection** is specified_\nhierarchySelection.displayName | string | Display name for folder, project, or organization | _required if **hierarchySelection** is specified_\nhierarchySelection.nodeType | string | Valid values: **FOLDER**, **PROJECT**, **ORG** | _required if **hierarchySelection** is specified_\nhierarchySelection.selectionType | string | Valid values: **INCLUDE**, **EXCLUDE**, **INCLUDE ALL**. If **hierarchySelection.nodeType** is **PROJECT** or **FOLDER**, then a valid value is either **INCLUDE** or **EXCLUDE** | _required if **hierarchySelection** is specified_\n\n##### Request Body Example\n```\n{\n  \"cloudAccount\": {\n    \"accountId\": \"\",\n    \"accountType\": \"organization\",\n    \"enabled\": true,\n    \"groupIds\": [],\n    \"name\": \"\",\n    \"projectId\":\"\",\n    \"protectionMode\": \"MONITOR\"\n},\n\"compressionEnabled\": false,\n\"dataflowEnabledProject\": \"\",\n\"flowLogStorageBucket\": \"\",\n\"organizationName\": \"\",\n\"accountGroupCreationMode\": \"\",\n\"credentials\": {\n    \"type\": \"\",\n    \"project_id\": \"\",\n    \"private_key_id\": \"\",\n    \"private_key\": \"\",\n    \"client_email\": \"\",\n    \"client_id\": \"\",\n    \"auth_uri\": \"\",\n    \"token_uri\": \"\",\n    \"auth_provider_x509_cert_url\": \"\",\n    \"client_x509_cert_url\": \"\"\n},\n\"hierarchySelection\": \n  [{\n    \"resourceId\": \"\",\n    \"displayName\": \"\",\n    \"nodeType\": \"FOLDER\",\n    \"selectionType\": \"EXCLUDE\"\n  }]    \n}\n```\n\n### Add an Alibaba Account\n#### Request Body\nThe table below lists the request body parameters to add an Alibaba account.\n\nParameter  | Type | Description | Default Value or Required\n-----------| ---- | ----------- | -------------\naccountId | string | AWS account ID | _required_\ngroupIds | array of strings  | List of account group IDs to which you are assigning this account  | _required_\nname | string  | Name to be used for the account on the Prisma Cloud platform (must be unique)  | _required_\nroleArn | string | Unique identifier for an Alibaba RAM role resource | _required_\nenabled | boolean | Whether or not the account is enabled | **false**\n\n##### Request Body Example\n```\n{\n  \"accountId\": \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"enabled\": true,\n  \"ramArn\": \"\"\n}\n```\n### Add an OCI Account\n#### Request Body\nTo add an Oracle Cloud Infrastructure (OCI) account, you must:\n\n1. Use [Generate Zipped Terraform Script (OCI)](/api/cloud/cspm/cloud-accounts#operation/generateterraformscript) to generate a zipped Terraform template.\n2. Log into your OCI Tenant Console to submit the zipped Terraform template as the Terraform configuration source for a stack you create.\n3. Use the resulting OCI user OCID and other parameters below in your API request to add your OCI account to Prisma Cloud.\n\nParameter  | Type | Description | Default Value or Required\n-----------| ---- | ----------- | -------------\naccountType | string | OCI Account type. Current valid value is **tenant**. | _required_\ndefaultAccountGroupId | string | Account group id for this account | _required_\nenabled | boolean | Whether or not to enable the account |_required_\nname | string  | Name of the OCI tenant you want Prisma Cloud to monitor | _required_\ngroupName | string | OCI identity group name that you define. Can be an existing group | _required_\nhomeRegion | string  | OCI tenancy home region | _required_\npolicyName | string  | OCI identity policy name that you define. Can be an existing policy that has the right policy statements. | _required_\naccountId | string  | OCID of your OCI tenancy | _required_\nuserName | string  | OCI identity user name that you define. Can be an existing user that has the right privileges. | _required_\nuserOcid | string  | User OCID from your OCI Tenant Console after you apply the zip file from [Generate Zipped Terraform Script (OCI)](/api/cloud/cspm/cloud-accounts#operation/generateterraformscript) in the console | _required_\n\n##### Request Body Example\n```\n{\n  \"accountType\":\"tenant\",\n  \"defaultAccountGroupId\":\"\",\n  \"enabled\":true,\n  \"name\":\"\",\n  \"groupName\":\"\",\n  \"homeRegion\":\"\",\n  \"policyName\":\"\",\n  \"accountId\":\"\",\n  \"userName\":\"\",\n  \"userOcid\":\"\"\n}\n```\n",
+        "description": "Onboard a new cloud account onto the Prisma Cloud platform.  \r\n\r\nThe request body parameters differ depending on the cloud type of the account you want to add.\n### Request Body to Add an AWS Account\nThe table below lists the request body parameters to add an AWS account.\n\nParameter  | Type | Description | Default Value or Required\n-----------| ---- | ----------- | -------------\naccountId | string | AWS account ID | Required\nenabled | boolean | Whether or not the account is enabled | Default is **false**\nexternalId | string  | AWS account external ID  | Required\ngroupIds | array of strings  | List of account group IDs for this account  | Required\nname | string  | Name to be used for the account on the Prisma Cloud platform (must be unique)  | Required\nroleArn | string | Unique identifier for an AWS resource (ARN) | Required\nprotectiveMode | string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Default is **MONITOR**\n\n#### Request Body Example\n```json\n{\n  \"accountId\": \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"protectionMode\": \"MONITOR\"\n}\n```\n### Request Body to Add an AWS Org Account\nThe table below lists the request body parameters to add an AWS org account.\n\nParameter  | Type | Description | Default Value or Required\n-----------| ---- | ----------- | -------------\naccountId | string | AWS account ID | Required\nenabled | boolean | Whether or not the account is enabled | Default is **false**\nexternalId | string  | AWS account external ID  | Required\ngroupIds | array  | List of account group IDs for account  | Required\nname | string  | Name to be used for the account on the Prisma Cloud platform (must be unique)  | Required\nroleArn | string | Unique identifier for an AWS resource (ARN) | Required\naccountType | string | **organization** | Required\nmemberRoleName | string | AWS Member account role name | Required\nmemberExternalId | string | AWS Member account role's external ID | Required\nmemberRoleStatus | boolean | **true**: The member role created using stack set exists in all the member accounts. All the Org accounts will be added.<br/>**false**: Only the master account will be added. | Default is **false**\nprotectiveMode | string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Default is **MONITOR**\n\n#### Request Body Example\n```json\n{\n  \"accountId\": \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"accountType\": \"organization\",\n  \"memberRoleName\": \"\",\n  \"memberExternalId\": \"\",\n  \"memberRoleStatus\": true,\n  \"protectionMode\": \"MONITOR\"\n}\n```\n\n### Request Body to  Add an Azure Account\nThe table below lists the request body parameters to add an Azure account.\n\nParameter  | Type | Description | Default Value or Required\n-----------| ---- | ----------- | -------------\ncloudAccount.accountId | string | Azure account ID. If **cloudAccount.accountType** is **tenant**, then **cloudAccount.accountId** should be \"\" (empty)| Required unless **cloudAccount.accountType** is **tenant**\ncloudAccount.enabled | boolean  | Whether or not to enable the account  | Default is **false**\ncloudAccount.groupIds | array of strings | List of account group IDs for this account  | Required\ncloudAccount.name | string | Name to be used for the account on the Prisma Cloud platform (must be unique)  | Required\ncloudAccount.accountType | string | Valid values: **account**, **tenant** | Default is **account**\ncloudAccount.protectionMode | string | If cloudAccount.accountType is **tenant**, then the valid value is **MONITOR** | Default is **MONITOR**\nclientId | string | Application ID registered with Active Directory | Required\ntenantId | string | Active Directory ID associated with Azure | Required\nservicePrincipalId | string | Unique ID of the service principal object associated with the Prisma Cloud application that you create | Required\nmonitorFlowLogs | boolean | Automatically ingest flow logs | Required\nkey | string | Application ID key | Required\n\n#### Request Body Example\n```json\n{\n  \"cloudAccount\": {\n    \"accountId\": \"\",\n    \"enabled\": true,\n    \"groupIds\": [],\n    \"name\": \"\",\n    \"accountType\": \"\",\n    \"protectionMode\": \"MONITOR\"\n  },\n  \"clientId\": \"\",\n  \"key\": \"\",\n  \"monitorFlowLogs\": true,\n  \"tenantId\": \"\",\n  \"servicePrincipalId\": \"\"\n}\n```\n\n### Request Body to Add a GCP Project\nThe table below lists the request body parameters.\n\nParameter  | Type | Description | Default Value or Required\n-----------| ---- | ----------- | -------------\ncloudAccount.accountId | string | GCP project ID | Required\ncloudAccount.name | string | Name to be used for the account on the Prisma Cloud platform (must be unique) | Required\ncloudAccount.enabled | boolean  | Whether or not the account is enabled | Defaults is **false**\ncloudAccount.groupIds | array of strings | List of account group IDs for this account | Required\ncloudAccount.projectId | string  | Existing GCP project ID | Required\ncloudAccount.protectionMode | string  | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required \ncloudAccount.accountType | string | Valid value: **account** | Required\ncredentials | JSON object | Service account key | Required\ncompressionEnabled |boolean | Enable flow log compression | Default is **false**\ndataflowEnabledProject | string | GCP project for flow log compression | Required if **compressionEnabled** is **true**\nflowLogStorageBucket | string | GCP flow logs storage bucket | Default is \"\"\n\n#### Request Body Example\n```json\n{\n  \"cloudAccount\": {\n    \"accountId\": \"\",\n    \"accountType\": \"account\",\n    \"enabled\": true,\n    \"groupIds\": [],\n    \"name\": \"\",\n    \"projectId\":\"\",\n    \"protectionMode\": \"MONITOR\"\n},\n\"compressionEnabled\": true,\n\"dataflowEnabledProject\": \"\",\n\"flowLogStorageBucket\": \"\",\n\"credentials\": {\n    \"type\": \"\",\n    \"project_id\": \"\",\n    \"private_key_id\": \"\",\n    \"private_key\": \"\",\n    \"client_email\": \"\",\n    \"client_id\": \"\",\n    \"auth_uri\": \"\",\n    \"token_uri\": \"\",\n    \"auth_provider_x509_cert_url\": \"\",\n    \"client_x509_cert_url\": \"\"\n}\n```\n\n### Request Body to Add a GCP Org\nThe table below lists the request body parameters.\n\nParameter  | Type | Description | Default Value or Required\n-----------| ---- | ----------- | -------------\ncloudAccount.accountId | string | GCP Org ID | Required\ncloudAccount.name | string | Name to be used for the account on the Prisma Cloud platform (must be unique) | Required\ncloudAccount.enabled | boolean  | Whether or not the account is enabled | Default is **false**\ncloudAccount.protectionMode | string  | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required \ncloudAccount.accountType | string | Valid value: **organization** | Required\ncredentials | JSON object | Service account key | Required\ncompressionEnabled |boolean | Enable flow log compression | Default is **false**\ndataflowEnabledProject | string | GCP project for flow log compression | Required if **compressionEnabled** is **true**\nflowLogStorageBucket | string | GCP flow logs storage bucket | Default is \"\"\norganizationName | string | GCP organization name | Required \naccountGroupCreationMode | string | Cloud account group creation mode. Valid values:<br/>**MANUAL**: Create account groups manually<br/>**AUTO**: Create high-level account groups based on folders identified<br/>**RECURSIVE**: Drill down in folder tree to create account groups | Default is **MANUAL**\ndefaultAccountGroupId | string |  Account group ID for this account | Required if **accountGroupCreationMode** is **MANUAL** \nhierarchySelection.resourceId | string | Resource ID. For folders, format is _folders/{folder ID}_. For projects, format is _{project number}_. For orgs, format is _organizations/{org ID}_ | Required if **hierarchySelection** is specified\nhierarchySelection.displayName | string | Display name for folder, project, or organization | Required if **hierarchySelection** is specified\nhierarchySelection.nodeType | string | Valid values: **FOLDER**, **PROJECT**, **ORG** |  Required if **hierarchySelection** is specified\nhierarchySelection.selectionType | string | Valid values: **INCLUDE**, **EXCLUDE**, **INCLUDE ALL**. If **hierarchySelection.nodeType** is **PROJECT** or **FOLDER**, valid values are  **INCLUDE**, **EXCLUDE**. |  Required if **hierarchySelection** is specified\n\n#### Request Body Example\n```json\n{\n  \"cloudAccount\": {\n    \"accountId\": \"\",\n    \"accountType\": \"organization\",\n    \"proectionMode\": \"MONITOR\"\n    \"enabled\": true,       \n    \"name\": \"\"\n},\n\"accountGroupCreationMode\": \"MANUAL\"\n\"compressionEnabled\": true,\n\"dataflowEnabledProject\": \"\",\n\"flowLogStorageBucket\": \"\",\n\"organizationName\": \"\",\n\"defaultAccountGroupId\": \"\",\n\"credentials\": {\n    \"type\": \"\",\n    \"project_id\": \"\",\n    \"private_key_id\": \"\",\n    \"private_key\": \"\",\n    \"client_email\": \"\",\n    \"client_id\": \"\",\n    \"auth_uri\": \"\",\n    \"token_uri\": \"\",\n    \"auth_provider_x509_cert_url\": \"\",\n    \"client_x509_cert_url\": \"\"\n},\n\"hierarchySelection\": \n  [{\n    \"resourceId\": \"\",\n    \"displayName\": \"\",\n    \"nodeType\": \"FOLDER\",\n    \"selectionType\": \"EXCLUDE\"\n  }]    \n}\n```\n\n### Request Body to Add a GCP Master Service Account\nThe table below lists the request body parameters.\n\nParameter  | Type | Description | Default Value or Required\n-----------| ---- | ----------- | -------------\ncloudAccount.accountId | string | GCP project ID | Required\ncloudAccount.name | string | Name to be used for the account on the Prisma Cloud platform (must be unique) | Required\ncloudAccount.enabled | boolean  | Whether or not the account is enabled | Default is **false**\ncloudAccount.groupIds | array of strings | List of account group IDs for this account | Required\ncloudAccount.projectId | string  | Existing GCP project ID | Required\ncloudAccount.protectionMode | string  | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required \ncloudAccount.accountType | string | Valid value: **masterServiceAccount** | Required\ndefaultAccountGroupId | string | Default account group ID for this account |  Required \ncredentials | JSON object | Service account key | Required\ncompressionEnabled |boolean | Enable flow log compression | Default is **false**\ndataflowEnabledProject | string | GCP project for flow log compression | Required if **compressionEnabled** is **true**\nflowLogStorageBucket | string | GCP flow logs storage bucket | Default is \"\"\n\n##### Request Body Example\n```json\n{\n  \"cloudAccount\": {\n    \"accountId\": \"\",\n    \"accountType\": \"masterServiceAccount\",\n    \"enabled\": true,\n    \"groupIds\": [],\n    \"name\": \"\",\n    \"projectId\":\"\",\n    \"protectionMode\": \"MONITOR\"\n},\n\"compressionEnabled\": true,\n\"dataflowEnabledProject\": \"\",\n\"flowLogStorageBucket\": \"\",\n\"organizationName\": \"\",\n\"credentials\": {\n    \"type\": \"\",\n    \"project_id\": \"\",\n    \"private_key_id\": \"\",\n    \"private_key\": \"\",\n    \"client_email\": \"\",\n    \"client_id\": \"\",\n    \"auth_uri\": \"\",\n    \"token_uri\": \"\",\n    \"auth_provider_x509_cert_url\": \"\",\n    \"client_x509_cert_url\": \"\"\n}\n```\n\n### Request Body to Add an Alibaba Account\nThe table below lists the request body parameters to add an Alibaba account.\n\nParameter  | Type | Description | Default Value or Required\n-----------| ---- | ----------- | -------------\naccountId | string | AWS account ID | Required\ngroupIds | array of strings  | List of account group IDs for this account  | Required\nname | string  | Name to be used for the account on the Prisma Cloud platform (must be unique)  | Required\nroleArn | string | Unique identifier for an Alibaba RAM role resource | Required\nenabled | boolean | Whether or not the account is enabled | Default is **false**\n\n#### Request Body Example\n```json\n{\n  \"accountId\": \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"enabled\": true,\n  \"ramArn\": \"\"\n}\n```\n### Requirements and Request Body to Add an OCI Account\nTo add an Oracle Cloud Infrastructure (OCI) account, you must:\n\n1. Use [Generate Zipped Terraform Script (OCI)](/api/cloud/cspm/cloud-accounts#operation/generateterraformscript) to generate a zipped Terraform template.\n2. Log into your OCI Tenant Console to submit the zipped Terraform template as the Terraform configuration source for a stack you create.\n3. Use the resulting Oracle Cloud Identifier (OCID) and other parameters below in your API request to add your OCI account to Prisma Cloud.\n\nThe table below lists the request body parameters to add an OCI account.\n\nParameter  | Type | Description | Default Value or Required\n-----------| ---- | ----------- | -------------\naccountType | string | OCI Account type. Current valid value is **tenant**. | Required\ndefaultAccountGroupId | string | Account group ID for this account | Required\nenabled | boolean | Whether or not to enable the account |Required\nname | string  | Name of the OCI tenant you want Prisma Cloud to monitor | Required\ngroupName | string | OCI identity group name that you define. Can be an existing group | Required\nhomeRegion | string  | OCI tenancy home region | Required\npolicyName | string  | OCI identity policy name that you define. Can be an existing policy that has the right policy statements. | Required\naccountId | string  | OCID of your OCI tenancy | Required\nuserName | string  | OCI identity user name that you define. Can be an existing user that has the right privileges. | Required\nuserOcid | string  | User OCID from your OCI Tenant Console after you apply the zip file from [Generate Zipped Terraform Script (OCI)](/api/cloud/cspm/cloud-accounts#operation/generateterraformscript) in the console | Required\n\n#### Request Body Example\n```json\n{\n  \"accountType\":\"tenant\",\n  \"defaultAccountGroupId\":\"\",\n  \"enabled\":true,\n  \"name\":\"\",\n  \"groupName\":\"\",\n  \"homeRegion\":\"\",\n  \"policyName\":\"\",\n  \"accountId\":\"\",\n  \"userName\":\"\",\n  \"userOcid\":\"\"\n}\n```\n",
         "operationId": "add-cloud-account",
         "parameters": [
           {
@@ -1811,7 +2104,7 @@
         ]
       },
       "put": {
-        "description": "Update information related to a cloud account.  \r\n\r\nThe request body parameters differ depending on the cloud type of the account you want to add.\n### Update an AWS Account\n#### Request Body\nThe table below lists the request body parameters.\n\nParameter  | Type | Description | Required?\n-----------| ---- | ----------- | -------------\naccountId | string | AWS account ID | _required_\nenabled | boolean | Whether or not the account is enabled | _required_\nexternalId | string | AWS account external ID  | _required_\ngroupIds | array of strings | List of account group IDs to which you are assigning this account  | _required_\nname | string  | Name to be used for the account on the Prisma Cloud platform (must be unique)  | _required_\nroleArn | string | Unique identifier for an AWS resource (ARN) | _required_\nprotectiveMode |string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | _required_\n\n##### Request Body Example\n```\n{\n  \"accountId\": \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"protectionMode\": \"MONITOR\"\n}\n```\n### Update an AWS Org Account\n#### Request Body\nThe table below lists the request body parameters.\n\nParameter  | Type | Description | Required?\n-----------| ---- | ----------- | -------------\naccountId | string | AWS account ID | _required_\nenabled | boolean | Whether or not the account is enabled | _required_\nexternalId | string  | AWS account external ID | _required_\ngroupIds | array of strings  | List of account group IDs to which you are assigning this account | _required_\nname | string  | Name to be used for the account on the Prisma Cloud platform (must be unique) | _required_\nroleArn | string | Unique identifier for an AWS resource (ARN) | _required_\naccountType | string | **organization** | _required_\nmemberRoleName | string | AWS Member account role name | _required_\nmemberExternalId | string | AWS Member account role's external ID | _required_\nmemberRoleStatus | boolean | **true** = The member role created using stack set exists in all the member accounts. All the Org accounts will be added.<br/>**false** = Only the master account will be added. | _required_\nprotectiveMode | string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | _required_\n\n##### Request Body Example\n```\n{\n  \"accountId\": \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"accountType\": \"organization\",\n  \"memberRoleName\": \"\",\n  \"memberExternalId\": \"\",\n  \"memberRoleStatus\": true,\n  \"protectionMode\": \"MONITOR\"\n}\n```\n\n### Update an Azure Account\n#### Request Body\nThe table below lists the request body parameters.\n\nParameter  | Type | Description | Required?\n-----------| ---- | ----------- | -------------\nclientId | string | Application ID registered with Active Directory | _required_\ncloudAccount.accountId | string | Azure account ID.  If cloudAccount.accountType is **tenant**, then cloudAccount.accountId should be \"\" (empty).| Required unless cloudAccount.accountType is **tenant**\ncloudAccount.enabled | boolean  | Whether or not to enable the account | _optional_  \ncloudAccount.groupIds | array of strings | List of account group IDs to which you are assigning this account | _required_\ncloudAccount.name | string  | Name to be used for the account on the Prisma Cloud platform (must be unique) | _required_\ncloudAccount.accountType | string | Valid values are: **account**, **tenant** | _required_\ncloudAccount.protectionMode | string | If cloudAccount.accountType is tenant, then the valid value is **MONITOR** | _required_\ntenantId | string | Active Directory ID associated with Azure | _required_\nservicePrincipalId | string | Unique ID of the service principal object associated with the Prisma Cloud application that you create | _required_\nmonitorFlowLogs | boolean | Automatically ingest flow logs | _required_\nkey | string | Application ID key | _required_\n\n##### Request Body Example\n```\n{\n  \"cloudAccount\": {\n    \"accountId\": \"\",\n    \"enabled\": true,\n    \"groupIds\": [],\n    \"name\": \"\",\n    \"accountType\": \"\",\n    \"protectionMode\": \"MONITOR\"\n  },\n  \"clientId\": \"\",\n  \"key\": \"\",\n  \"monitorFlowLogs\": true,\n  \"tenantId\": \"\",\n  \"servicePrincipalId\": \"\"\n}\n```\n\n### Update a GCP Account\n#### Request Body\nThe table below lists the request body parameters.\n\nParameter  | Type | Description | Required?\n-----------| ---- | ----------- | -------------\ncloudAccount.accountId | string | GCP project ID. GCP Org ID if adding org | _required_\ncloudAccount.name | string | Name to be used for the account on the Prisma Cloud platform (must be unique) | _required_\ncloudAccount.enabled | boolean  | Whether or not the account is enabled | _required_\ncloudAccount.groupIds | array of strings | List of account group IDs to which you are assigning this account | _required_\ncloudAccount.projectId | string  | Existing GCP project ID | _required_\ncloudAccount.protectionMode | string  | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | _required_ \ncloudAccount.accountType | string | Valid values: **organization**, **masterServiceAccount**, **account** | _required_\ncredentials | JSON object | Service account key | _required_\ncompressionEnabled |boolean | Enable flow log compression | _required_\ndataflowEnabledProject | string | GCP project for flow log compression | _required if **compressionEnabled** is **true**_\nflowLogStorageBucket | string | GCP flow logs storage bucket | _required_\norganizationName | string | GCP organization name | _required_\naccountGroupCreationMode | string | Cloud account group creation mode. Valid values:<br/>**MANUAL**: Create account groups manually<br/>**AUTO**: Create high-level account groups based on folders identified<br/>**RECURSIVE**: Drill down in folder tree to create account groups | default: **MANUAL**\nhierarchySelection.resourceId | string | Resource ID. For folders, format is folders/{folder ID}. For projects, format is {project number}. For orgs, format is organizations/{org ID} | _required if **hierarchySelection** is specified_\nhierarchySelection.displayName | string | Display name for folder, project, or organization | _required if **hierarchySelection** is specified_\nhierarchySelection.nodeType | string | Valid values: **FOLDER**, **PROJECT**, **ORG** |  _required if **hierarchySelection** is specified_\nhierarchySelection.selectionType | string | Valid values: **INCLUDE**, **EXCLUDE**, **INCLUDE ALL**. If **hierarchySelection.nodeType** is **PROJECT** or **FOLDER**, then valid values are  **INCLUDE**, **EXCLUDE**. |  _required if **hierarchySelection** is specified_\n\n##### Request Body Example\n```\n{\n  \"cloudAccount\": {\n    \"accountId\": \"\",\n    \"accountType\": \"organization\",\n    \"enabled\": true,\n    \"groupIds\": [],\n    \"name\": \"\",\n    \"projectId\":\"\",\n    \"protectionMode\": \"MONITOR\"\n},\n\"compressionEnabled\": false,\n\"dataflowEnabledProject\": \"\",\n\"flowLogStorageBucket\": \"\",\n\"organizationName\": \"\",\n\"accountGroupCreationMode\": \"\",\n\"credentials\": {\n    \"type\": \"\",\n    \"project_id\": \"\",\n    \"private_key_id\": \"\",\n    \"private_key\": \"\",\n    \"client_email\": \"\",\n    \"client_id\": \"\",\n    \"auth_uri\": \"\",\n    \"token_uri\": \"\",\n    \"auth_provider_x509_cert_url\": \"\",\n    \"client_x509_cert_url\": \"\"\n},\n\"hierarchySelection\": \n  [{\n    \"resourceId\": \"\",\n    \"displayName\": \"\",\n    \"nodeType\": \"FOLDER\",\n    \"selectionType\": \"EXCLUDE\"\n  }]    \n}\n```\n\n### Update an Alibaba Account\n#### Request Body\nThe table below lists the request body parameters.\n\nParameter  | Type | Description |  Required?\n-----------| ---- | ----------- | -------------\naccountId |string | AWS account ID | _required_\ngroupIds | array of strings  | List of account group IDs to which you are assigning this account  | _required_\nname | string  | Name to be used for the account on the Prisma Cloud platform (must be unique)  | _required_\nroleArn | string | Unique identifier for an Alibaba RAM role resource | _required_\nenabled | boolean | Whether or not the account is enabled | _required_\n\n##### Request Body Example\n```\n{\n  \"accountId\": \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"enabled\": true,\n  \"ramArn\": \"\"\n}\n```\n  ### Update an OCI Account\n#### Request Body\nThe table below lists the request body parameters to add an OCI account.\n\nParameter  | Type | Description | Required?\n-----------| ---- | ----------- | -------------\naccountType | string | OCI Account type. Current valid value is **tenant**. | _required_\ndefaultAccountGroupId | string | Account group id for this account |  _required_\nenabled | boolean | Whether or not to enable the account |  _required_\nname | string  | Name of the OCI tenant you want Prisma Cloud to monitor | _required_\ngroupName | string | OCI identity group name that you define. Can be an existing group |  _required_\nhomeRegion | string  | OCI tenancy home region |  _required_\npolicyName | string  | OCI identity policy name that you define. Can be an existing policy that has the right policy statements. |  _required_\naccountId | string  | OCID of your OCI tenancy | _required_\nuserName | string  | OCI identity user name that you define. Can be an existing user that has the right privileges. |  _required_\nuserOcid | string  | User OCID from your OCI Tenant Console after you apply the zip file from [Generate Zipped Terraform Script (OCI)](/api/cloud/cspm/cloud-accounts#operation/generateterraformscript) in the console |  _required_\n\n##### Request Body Example\n```\n{\n  \"accountType\":\"tenant\",\n  \"defaultAccountGroupId\":\"\",\n  \"enabled\":true,\n  \"name\":\"\",\n  \"groupName\":\"\",\n  \"homeRegion\":\"\",\n  \"policyName\":\"\",\n  \"accountId\":\"\",\n  \"userName\":\"\",\n  \"userOcid\":\"\"\n}\n```      \n",
+        "description": "Update information related to a cloud account.  \r\n\r\nThe request body parameters differ depending on the cloud type of the account you want to add.\n### Request Body to Update an AWS Account\nThe table below lists the request body parameters.\n\nParameter  | Type | Description | Required?\n-----------| ---- | ----------- | -------------\naccountId | string | AWS account ID | Required\nenabled | boolean | Whether or not the account is enabled | Required\nexternalId | string | AWS account external ID  | Required\ngroupIds | array of strings | List of account group IDs for this account  | Required\nname | string  | Name to be used for the account on the Prisma Cloud platform (must be unique)  | Required\nroleArn | string | Unique identifier for an AWS resource (ARN) | Required\nprotectiveMode |string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required\n\n#### Request Body Example\n```json\n{\n  \"accountId\": \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"protectionMode\": \"MONITOR\"\n}\n```\n### Request Body to Update an AWS Org Account\nThe table below lists the request body parameters.\n\nParameter  | Type | Description | Required?\n-----------| ---- | ----------- | -------------\naccountId | string | AWS account ID | Required\nenabled | boolean | Whether or not the account is enabled | Required\nexternalId | string  | AWS account external ID | Required\ngroupIds | array of strings  | List of account group IDs for this account | Required\nname | string  | Name to be used for the account on the Prisma Cloud platform (must be unique) | Required\nroleArn | string | Unique identifier for an AWS resource (ARN) | Required\naccountType | string | **organization** | Required\nmemberRoleName | string | AWS Member account role name | Required\nmemberExternalId | string | AWS Member account role's external ID | Required\nmemberRoleStatus | boolean | **true**: The member role created using stack set exists in all the member accounts. All the Org accounts will be added.<br/>**false**: Only the master account will be added. | Required\nprotectiveMode | string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required\n\n#### Request Body Example\n```json\n{\n  \"accountId\": \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"accountType\": \"organization\",\n  \"memberRoleName\": \"\",\n  \"memberExternalId\": \"\",\n  \"memberRoleStatus\": true,\n  \"protectionMode\": \"MONITOR\"\n}\n```\n\n### Request Body to Update an Azure Account\nThe table below lists the request body parameters.\n\nParameter  | Type | Description | Required?\n-----------| ---- | ----------- | -------------\nclientId | string | Application ID registered with Active Directory | Required\ncloudAccount.accountId | string | Azure account ID.  If **cloudAccount.accountType** is **tenant**, then **cloudAccount.accountId** should be \"\" (empty).| Required unless cloudAccount.accountType is **tenant**\ncloudAccount.enabled | boolean  | Whether or not to enable the account | Optional  \ncloudAccount.groupIds | array of strings | List of account group IDs for this account | Required\ncloudAccount.name | string  | Name to be used for the account on the Prisma Cloud platform (must be unique) | Required\ncloudAccount.accountType | string | Valid values: **account**, **tenant** | Required\ncloudAccount.protectionMode | string | If **cloudAccount.accountType** is **tenant**, then the valid value is **MONITOR** | Required\ntenantId | string | Active Directory ID associated with Azure | Required\nservicePrincipalId | string | Unique ID of the service principal object associated with the Prisma Cloud application that you create | Required\nmonitorFlowLogs | boolean | Automatically ingest flow logs | Required\nkey | string | Application ID key | Required\n\n#### Request Body Example\n```json\n{\n  \"cloudAccount\": {\n    \"accountId\": \"\",\n    \"enabled\": true,\n    \"groupIds\": [],\n    \"name\": \"\",\n    \"accountType\": \"\",\n    \"protectionMode\": \"MONITOR\"\n  },\n  \"clientId\": \"\",\n  \"key\": \"\",\n  \"monitorFlowLogs\": true,\n  \"tenantId\": \"\",\n  \"servicePrincipalId\": \"\"\n}\n```\n\n### Request Body to Update a GCP Project\nThe table below lists the request body parameters.\n\nParameter  | Type | Description | Required?\n-----------| ---- | ----------- | -------------\ncloudAccount.accountId | string | GCP project ID | Required\ncloudAccount.name | string | Name to be used for the account on the Prisma Cloud platform (must be unique) | Required\ncloudAccount.enabled | boolean  | Whether or not the account is enabled | Required\ncloudAccount.groupIds | array of strings | List of account group IDs for this account | Required\ncloudAccount.projectId | string  | Existing GCP project ID | Required\ncloudAccount.protectionMode | string  | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required \ncloudAccount.accountType | string | Valid value for GCP project: **account** | Required\ncredentials | JSON object | Service account key | Required\ncompressionEnabled |boolean | Enable flow log compression | Optional\ndataflowEnabledProject | string | GCP project for flow log compression | Required if **compressionEnabled** is **true**\nflowLogStorageBucket | string | GCP flow logs storage bucket | Optional\n\n#### Request Body Example\n```json\n{\n  \"cloudAccount\": {\n    \"accountId\": \"\",\n    \"accountType\": \"account\",\n    \"enabled\": true,\n    \"groupIds\": [],\n    \"name\": \"\",\n    \"projectId\":\"\",\n    \"protectionMode\": \"MONITOR\"\n},\n\"compressionEnabled\": true,\n\"dataflowEnabledProject\": \"\",\n\"flowLogStorageBucket\": \"\",\n\"credentials\": {\n    \"type\": \"\",\n    \"project_id\": \"\",\n    \"private_key_id\": \"\",\n    \"private_key\": \"\",\n    \"client_email\": \"\",\n    \"client_id\": \"\",\n    \"auth_uri\": \"\",\n    \"token_uri\": \"\",\n    \"auth_provider_x509_cert_url\": \"\",\n    \"client_x509_cert_url\": \"\"\n}\n```\n\n### Request Body to Update a GCP Org\nThe table below lists the request body parameters.\n\nParameter  | Type | Description | Required?\n-----------| ---- | ----------- | -------------\ncloudAccount.accountId | string | GCP Org ID | Required\ncloudAccount.name | string | Name to be used for the account on the Prisma Cloud platform (must be unique) | Required\ncloudAccount.enabled | boolean  | Whether or not the account is enabled | Optional\ncloudAccount.protectionMode | string  | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required \ncloudAccount.accountType | string | Valid value: **organization** | Required\ncredentials | JSON object | Service account key | Required\ncompressionEnabled |boolean | Enable flow log compression | Optional\ndataflowEnabledProject | string | GCP project for flow log compression | Required if **compressionEnabled** is **true**\nflowLogStorageBucket | string | GCP flow logs storage bucket | Optional\norganizationName | string | GCP organization name | Required \naccountGroupCreationMode | string | Cloud account group creation mode. Valid values:<br/>**MANUAL**: Create account groups manually<br/>**AUTO**: Create high-level account groups based on folders identified<br/>**RECURSIVE**: Drill down in folder tree to create account groups | Optional\ndefaultAccountGroupId | string | Account group ID for this account |  Required if **accountGroupCreationMode** is **MANUAL** \nhierarchySelection.resourceId | string | Resource ID. For folders, format is _folders/{folder ID}_. For projects, format is _{project number}_. For orgs, _format is organizations/{org ID}_ | Required if **hierarchySelection** is specified\nhierarchySelection.displayName | string | Display name for folder, project, or organization | Required if **hierarchySelection** is specified\nhierarchySelection.nodeType | string | Valid values: **FOLDER**, **PROJECT**, **ORG** |  Required if **hierarchySelection** is specified\nhierarchySelection.selectionType | string | Valid values: **INCLUDE**, **EXCLUDE**, **INCLUDE ALL**. If **hierarchySelection.nodeType** is **PROJECT** or **FOLDER**, valid values are  **INCLUDE**, **EXCLUDE**. |  Required if **hierarchySelection** is specified\n\n#### Request Body Example\n```json\n{\n  \"cloudAccount\": {\n    \"accountId\": \"\",\n    \"accountType\": \"organization\",\n    \"proectionMode\": \"MONITOR\"\n    \"enabled\": true,\n    \"groupIds\": [],\n    \"name\": \"\",\n    \"projectId\":\"\",\n    \"protectionMode\": \"MONITOR\"\n},\n\"accountGroupCreationMode\": \"MANUAL\"\n\"compressionEnabled\": true,\n\"dataflowEnabledProject\": \"\",\n\"flowLogStorageBucket\": \"\",\n\"credentials\": {\n    \"type\": \"\",\n    \"project_id\": \"\",\n    \"private_key_id\": \"\",\n    \"private_key\": \"\",\n    \"client_email\": \"\",\n    \"client_id\": \"\",\n    \"auth_uri\": \"\",\n    \"token_uri\": \"\",\n    \"auth_provider_x509_cert_url\": \"\",\n    \"client_x509_cert_url\": \"\"\n},\n\"hierarchySelection\": \n  [{\n    \"resourceId\": \"\",\n    \"displayName\": \"\",\n    \"nodeType\": \"FOLDER\",\n    \"selectionType\": \"EXCLUDE\"\n  }]    \n}\n```\n\n### Request Body to Update a GCP Master Service Account\nThe table below lists the request body parameters.\n\nParameter  | Type | Description | Required?\n-----------| ---- | ----------- | -------------\ncloudAccount.accountId | string | GCP project ID | Required\ncloudAccount.name | string | Name to be used for the account on the Prisma Cloud platform (must be unique) | Required\ncloudAccount.enabled | boolean  | Whether or not the account is enabled | Optional\ncloudAccount.groupIds | array of strings | List of account group IDs for this account | Required\ncloudAccount.projectId | string  | Existing GCP project ID | Required\ncloudAccount.protectionMode | string  | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required \ncloudAccount.accountType | string | Valid value: **masterServiceAccount** | Required\ndefaultAccountGroupId | string |  Default account group ID for this account | Required \ncredentials | JSON object | Service account key | Required\ncompressionEnabled |boolean | Enable flow log compression | Optional\ndataflowEnabledProject | string | GCP project for flow log compression | Required if **compressionEnabled** is **true**\nflowLogStorageBucket | string | GCP flow logs storage bucket | Optional\n\n#### Request Body Example\n```json\n{\n  \"cloudAccount\": {\n    \"accountId\": \"\",\n    \"accountType\": \"masterServiceAccount\",\n    \"enabled\": true,\n    \"groupIds\": [],\n    \"name\": \"\",\n    \"projectId\":\"\",\n    \"protectionMode\": \"MONITOR\"\n},\n\"defaultAccountGroupId\": \"\",\n\"compressionEnabled\": true,\n\"dataflowEnabledProject\": \"\",\n\"flowLogStorageBucket\": \"\",\n\"credentials\": {\n    \"type\": \"\",\n    \"project_id\": \"\",\n    \"private_key_id\": \"\",\n    \"private_key\": \"\",\n    \"client_email\": \"\",\n    \"client_id\": \"\",\n    \"auth_uri\": \"\",\n    \"token_uri\": \"\",\n    \"auth_provider_x509_cert_url\": \"\",\n    \"client_x509_cert_url\": \"\"\n}\n```\n\n### Request Body to Update an Alibaba Account\nThe table below lists the request body parameters.\n\nParameter  | Type | Description |  Required?\n-----------| ---- | ----------- | -------------\naccountId |string | AWS account ID | Required\ngroupIds | array of strings  | List of account group IDs for this account  | Required\nname | string  | Name to be used for the account on the Prisma Cloud platform (must be unique)  | Required\nroleArn | string | Unique identifier for an Alibaba RAM role resource | Required\nenabled | boolean | Whether or not the account is enabled | Required\n\n#### Request Body Example\n```json\n{\n  \"accountId\": \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"enabled\": true,\n  \"ramArn\": \"\"\n}\n```\n### Request Body to Update an OCI Account\nThe table below lists the request body parameters to add an OCI account.\n\nParameter  | Type | Description | Required?\n-----------| ---- | ----------- | -------------\naccountType | string | OCI Account type. Current valid value is **tenant**. | Required\ndefaultAccountGroupId | string | Account group ID for this account |  Required\nenabled | boolean | Whether or not to enable the account |  Required\nname | string  | Name of the OCI tenant you want Prisma Cloud to monitor | Required\ngroupName | string | OCI identity group name that you define. Can be an existing group |  Required\nhomeRegion | string  | OCI tenancy home region |  Required\npolicyName | string  | OCI identity policy name that you define. Can be an existing policy that has the right policy statements. |  Required\naccountId | string  | OCID of your OCI tenancy | Required\nuserName | string  | OCI identity user name that you define. Can be an existing user that has the right privileges. |  Required\nuserOcid | string  | User OCID from your OCI Tenant Console after you apply the zip file from [Generate Zipped Terraform Script (OCI)](/api/cloud/cspm/cloud-accounts#operation/generateterraformscript) in the console |  Required\n\n#### Request Body Example\n```json\n{\n  \"accountType\":\"tenant\",\n  \"defaultAccountGroupId\":\"\",\n  \"enabled\":true,\n  \"name\":\"\",\n  \"groupName\":\"\",\n  \"homeRegion\":\"\",\n  \"policyName\":\"\",\n  \"accountId\":\"\",\n  \"userName\":\"\",\n  \"userOcid\":\"\"\n}\n```      \n",
         "operationId": "update-cloud-account",
         "parameters": [
           {
@@ -2608,7 +2901,7 @@
   "servers": [{ "url": "https://api.prismacloud.io" }],
   "tags": [
     {
-      "description": "The Cloud Account APIs are listed below.",
+      "description": "The Cloud Account endpoints are listed below.",
       "name": "Cloud Accounts"
     }
   ]

@@ -1,13 +1,5 @@
 {
   "components": {
-    "securitySchemes": {
-      "x-redlock-auth": {
-        "description": "JWT Based Authentication",
-        "in": "header",
-        "name": "x-redlock-auth",
-        "type": "apiKey"
-      }
-    },
     "requestBodies": {
       "AnomaliesTrustedListSummaryModel": {
         "content": {
@@ -18,6 +10,14 @@
           }
         },
         "description": "Model for Anomaly Trusted List Request"
+      }
+    },
+    "securitySchemes": {
+      "x-redlock-auth": {
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
+        "in": "header",
+        "name": "x-redlock-auth",
+        "type": "apiKey"
       }
     },
     "schemas": {
@@ -229,13 +229,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "THe APIs to manage anomaly trusted lists are listed below.",
-      "name": "Anomaly Trusted List"
-    }
-  ],
   "paths": {
     "/anomalies/trusted_list": {
       "get": {
@@ -488,5 +481,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "THe endpoints to manage anomaly trusted lists are listed below.",
+      "name": "Anomaly Trusted List"
+    }
+  ]
 }

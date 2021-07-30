@@ -1,11 +1,11 @@
 components:
+  requestBodies: {}
   securitySchemes:
     x-redlock-auth:
-      description: JWT Based Authentication
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
       in: header
       name: x-redlock-auth
       type: apiKey
-  requestBodies: {}
   schemas:
     RedLockAuditLogBeanModel:
       description: Model for RedLockAuditLogBean
@@ -38,11 +38,6 @@ info:
   title: Prisma Cloud Audit Logs API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Audit Log APIs are listed below.
-  name: Audit Logs
 paths:
   /audit/redlock:
     get:
@@ -94,3 +89,8 @@ paths:
       summary: Prisma Cloud Audit Logs
       tags:
       - Audit Logs
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Audit Log endpoints are listed below.
+  name: Audit Logs

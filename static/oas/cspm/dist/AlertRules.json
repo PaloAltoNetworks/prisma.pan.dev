@@ -13,7 +13,7 @@
     },
     "securitySchemes": {
       "x-redlock-auth": {
-        "description": "JWT Based Authentication",
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
         "in": "header",
         "name": "x-redlock-auth",
         "type": "apiKey"
@@ -610,7 +610,7 @@
   "servers": [{ "url": "https://api.prismacloud.io" }],
   "tags": [
     {
-      "description": "The Alert Rule APIs are listed below.",
+      "description": "The Alert Rule endpoints are listed below.",
       "name": "Alert Rules"
     }
   ]

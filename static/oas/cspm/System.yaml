@@ -15,11 +15,6 @@ info:
   title: Prisma Cloud System API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: This API runs a quick check for availability.
-  name: System
 paths:
   /check:
     get:
@@ -38,3 +33,8 @@ paths:
       summary: Health Check
       tags:
       - System
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: This API runs a quick check for availability.
+  name: System

@@ -1,13 +1,5 @@
 {
   "components": {
-    "securitySchemes": {
-      "x-redlock-auth": {
-        "description": "JWT Based Authentication",
-        "in": "header",
-        "name": "x-redlock-auth",
-        "type": "apiKey"
-      }
-    },
     "requestBodies": {
       "AccountGroupModel": {
         "content": {
@@ -17,6 +9,14 @@
         },
         "description": "Account Group",
         "required": true
+      }
+    },
+    "securitySchemes": {
+      "x-redlock-auth": {
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
+        "in": "header",
+        "name": "x-redlock-auth",
+        "type": "apiKey"
       }
     },
     "schemas": {
@@ -179,13 +179,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The Account Group API are listed below.",
-      "name": "Account Groups"
-    }
-  ],
   "paths": {
     "/cloud/group": {
       "get": {
@@ -489,5 +482,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "The Account Group API are listed below.",
+      "name": "Account Groups"
+    }
+  ]
 }

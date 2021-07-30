@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Prisma Cloud License V2 API Overview",
-    "description": "The Prisma Cloud License APIs enable you to query your Prisma Cloud usage.",
+    "description": "The Prisma Cloud License endpoints enable you to query your Prisma Cloud usage.",
     "version": "Latest",
     "contact": {}
   },
@@ -586,7 +586,7 @@
     },
     "securitySchemes": {
       "x-redlock-auth": {
-        "description": "Your API header requires a JSON Web Token (JWT) token for authentication.",
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
         "in": "header",
         "name": "x-redlock-auth",
         "type": "apiKey"

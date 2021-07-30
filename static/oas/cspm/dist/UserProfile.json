@@ -13,7 +13,7 @@
     },
     "securitySchemes": {
       "x-redlock-auth": {
-        "description": "JWT Based Authentication",
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
         "in": "header",
         "name": "x-redlock-auth",
         "type": "apiKey"
@@ -348,7 +348,9 @@
           "400": {
             "description": "empty_user_profile_provided / missing_first_name / missing_time_zone / invalid_time_zone / user_inactive_or_not_exist / default_role_not_belonging_to_user_role_list / invalid_user_role"
           },
-          "403": { "description": "cannot_disable_own_profile" },
+          "403": {
+            "description": "cannot_disable_own_profile / access_keys_cannot_update_owner_profile"
+          },
           "500": { "description": "failed_update_user_profile" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -846,7 +848,7 @@
   "servers": [{ "url": "https://api.prismacloud.io" }],
   "tags": [
     {
-      "description": "The User Profile APIs are listed below.",
+      "description": "The User Profile endpoints are listed below.",
       "name": "User Profile"
     }
   ]

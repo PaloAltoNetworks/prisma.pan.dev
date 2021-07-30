@@ -1,20 +1,28 @@
 {
   "components": {
+    "requestBodies": {},
     "securitySchemes": {
       "x-redlock-auth": {
-        "description": "JWT Based Authentication",
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
         "in": "header",
         "name": "x-redlock-auth",
         "type": "apiKey"
       }
     },
-    "requestBodies": {},
     "schemas": {
       "CustomerNamesResponseModel": {
         "description": "Model for Customer Info shown during customer selection ",
         "properties": {
-          "customerName": { "description": "Customer Name", "readOnly": true, "type": "string" },
-          "tosAccepted": { "description": "Terms of Service Accepted", "readOnly": true, "type": "boolean" }
+          "customerName": {
+            "description": "Customer Name",
+            "readOnly": true,
+            "type": "string"
+          },
+          "tosAccepted": {
+            "description": "Terms of Service Accepted",
+            "readOnly": true,
+            "type": "boolean"
+          }
         },
         "type": "object"
       },
@@ -33,10 +41,15 @@
         "properties": {
           "customerNames": {
             "description": "Customer names and property list",
-            "items": { "$ref": "#/components/schemas/CustomerNamesResponseModel" },
+            "items": {
+              "$ref": "#/components/schemas/CustomerNamesResponseModel"
+            },
             "type": "array"
           },
-          "message": { "description": "Authentication status", "type": "string" },
+          "message": {
+            "description": "Authentication status",
+            "type": "string"
+          },
           "token": { "description": "JSON Web Token (JWT)", "type": "string" }
         },
         "type": "object"
@@ -50,26 +63,32 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The Login APIs are listed below.", "name": "Login" }],
   "paths": {
     "/login": {
       "post": {
         "description": "Returns a JWT auth token for accessing the Prisma Cloud APIs.  To generate a token, you must have an access key and include the following values in the request body parameter — access key ID as the username and your secret key as the password. Prisma Cloud requires this JWT in the request header to authorize API access. Note that access keys maintain the same level of permissions as the permission group of the account that created them.   \r\n\r\nIf you are a multi-tenant user and the body parameters of your login call include a user name and password instead of an access key ID and secret key, then you will also need to provide the **customerName**.\n",
         "operationId": "app-login",
         "requestBody": {
-          "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/LoginModel" } } },
+          "content": {
+            "application/json; charset=UTF-8": {
+              "schema": { "$ref": "#/components/schemas/LoginModel" }
+            }
+          },
           "description": "Model used for authentication",
           "required": true
         },
         "responses": {
           "200": {
             "content": {
-              "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/LoginResponseModel" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/LoginResponseModel" }
+              }
             },
             "description": "successful operation"
           },
-          "401": { "description": "sso_enabled_password_login_attempt / invalid_credentials" },
+          "401": {
+            "description": "sso_enabled_password_login_attempt / invalid_credentials"
+          },
           "500": { "description": "login_failed_unknown_error" }
         },
         "summary": "Login",
@@ -92,7 +111,11 @@
         "operationId": "extend-session",
         "responses": {
           "200": {
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/LoginResponseModel" } } },
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/LoginResponseModel" }
+              }
+            },
             "description": "successful operation"
           },
           "401": { "description": "token_expired" },
@@ -113,5 +136,9 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    { "description": "The Login endpoints are listed below.", "name": "Login" }
+  ]
 }

@@ -16,7 +16,7 @@ components:
       required: true
   securitySchemes:
     x-redlock-auth:
-      description: JWT Based Authentication
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
       in: header
       name: x-redlock-auth
       type: apiKey
@@ -1145,7 +1145,7 @@ paths:
         \r\n### Download Config Search CSV \nIn addition to performing a config search,\
         \ this endpoint can perform the config \nsearch and download the results as\
         \ a CSV file. To download the config search CSV, \nadd the request HTTP header\
-        \ **Accept: text/csv**.\n\nAn example request body is:\n```\n{\n  \"query\"\
+        \ **Accept: text/csv**.\n\nAn example request body is:\n```json\n{\n  \"query\"\
         :\"config where api.name = 'aws-iam-get-account-summary' \",\n  \"timeRange\"\
         :{\n     \"type\":\"relative\",\n     \"value\":{\n        \"unit\":\"hour\"\
         ,\n        \"amount\":24\n     }\n  }\n}\n```\n"
@@ -1182,10 +1182,10 @@ paths:
         \ Search CSV \nIn addition to performing a network search, this API can perform\
         \ the network \nsearch and download the results as a CSV file. To download\
         \ the network search CSV, \nadd the request HTTP header **Accept: text/csv**.\n\
-        \nAn example request body is:\n```\n{\n  \"cloudType\": \"\",\n  \"id\":\"\
-        \",\n  \"name\":\"\",\n  \"description:\"\",\n  \"saved\":false,\n  \"default\"\
-        :false,\n  \"query\": \"\",\n    \"timeRange\": {\n      \"type\": \"\",\n\
-        \      \"value\": \"\"\n    }\n}\n```\n"
+        \nAn example request body is:\n```json\n{\n  \"cloudType\": \"\",\n  \"id\"\
+        :\"\",\n  \"name\":\"\",\n  \"description:\"\",\n  \"saved\":false,\n  \"\
+        default\":false,\n  \"query\": \"\",\n    \"timeRange\": {\n      \"type\"\
+        : \"\",\n      \"value\": \"\"\n    }\n}\n```\n"
       operationId: search-network
       requestBody:
         $ref: '#/components/requestBodies/SearchModel'
@@ -1441,5 +1441,5 @@ paths:
 servers:
 - url: https://api.prismacloud.io
 tags:
-- description: The Search APIs are listed below.
+- description: The Search endpoints are listed below.
   name: Search

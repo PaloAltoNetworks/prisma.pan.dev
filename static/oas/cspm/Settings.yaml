@@ -1,11 +1,11 @@
 components:
+  requestBodies: {}
   securitySchemes:
     x-redlock-auth:
-      description: JWT Based Authentication
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
       in: header
       name: x-redlock-auth
       type: apiKey
-  requestBodies: {}
   schemas:
     EnterpriseSettingsRequestModel:
       description: Model used for EnterpriseSettings
@@ -51,11 +51,6 @@ info:
   title: Prisma Cloud Enterprise Settings API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Enterprise Settings APIs are listed below.
-  name: Settings
 paths:
   /settings/enterprise:
     get:
@@ -95,3 +90,8 @@ paths:
       summary: Enterprise Settings - POST
       tags:
       - Settings
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Enterprise Settings endpoints are listed below.
+  name: Settings

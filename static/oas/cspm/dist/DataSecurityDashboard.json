@@ -1,13 +1,5 @@
 {
   "components": {
-    "securitySchemes": {
-      "x-redlock-auth": {
-        "description": "JWT Based Authentication",
-        "in": "header",
-        "name": "x-redlock-auth",
-        "type": "apiKey"
-      }
-    },
     "requestBodies": {
       "DLPDashboardFilterModel": {
         "content": {
@@ -15,6 +7,14 @@
             "schema": { "$ref": "#/components/schemas/DLPDashboardFilterModel" }
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "x-redlock-auth": {
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
+        "in": "header",
+        "name": "x-redlock-auth",
+        "type": "apiKey"
       }
     },
     "schemas": {
@@ -319,13 +319,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The Data Security Dashboard APIs are listed below.",
-      "name": "Data Security Dashboard"
-    }
-  ],
   "paths": {
     "/dlp/api/v1/dashboard/alerts/aggregate": {
       "post": {
@@ -623,5 +616,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "The Data Security Dashboard endpoints are listed below.",
+      "name": "Data Security Dashboard"
+    }
+  ]
 }
