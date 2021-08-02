@@ -3,7 +3,7 @@
     "requestBodies": {},
     "securitySchemes": {
       "x-redlock-auth": {
-        "description": "JWT Based Authentication",
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
         "in": "header",
         "name": "x-redlock-auth",
         "type": "apiKey"
@@ -463,7 +463,7 @@
   "servers": [{ "url": "https://api.prismacloud.io" }],
   "tags": [
     {
-      "description": "The APIs to save a search and manage your saved searches are listed below.",
+      "description": "The endpoints to save a search and manage your saved searches are listed below.",
       "name": "Search Manager"
     }
   ]

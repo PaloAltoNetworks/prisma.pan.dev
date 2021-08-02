@@ -19,7 +19,7 @@ components:
             $ref: '#/components/schemas/FilterSuggestionModel'
   securitySchemes:
     x-redlock-auth:
-      description: JWT Based Authentication
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
       in: header
       name: x-redlock-auth
       type: apiKey
@@ -108,6 +108,8 @@ components:
           - $ref: '#/components/schemas/FilterSuggestion'
           - readOnly: true
         policy.type:
+          $ref: '#/components/schemas/FilterSuggestion'
+        resource.group:
           $ref: '#/components/schemas/FilterSuggestion'
         resource.id:
           $ref: '#/components/schemas/FilterSuggestion'
@@ -432,10 +434,16 @@ components:
         additionalInfo:
           additionalProperties:
             type: string
-          description: Additional Info
+          description: Additional info
           type: object
+        cloudAccountAncestors:
+          description: Cloud Account Ancestors. For GCP.
+          items:
+            type: string
+          readOnly: true
+          type: array
         cloudAccountGroups:
-          description: Cloud Account Groups
+          description: Cloud account groups
           items:
             type: string
           type: array
@@ -447,7 +455,7 @@ components:
           readOnly: true
           type: array
         cloudType:
-          description: Cloud Type
+          description: Cloud type
           enum:
           - ALL
           - AWS
@@ -467,22 +475,22 @@ components:
           description: Name
           type: string
         region:
-          description: Region Name
+          description: Region name
           type: string
         regionId:
-          description: Region API Identifier
+          description: Region API identifier
           type: string
         resourceApiName:
-          description: Resource API Name
+          description: Resource API name
           readOnly: true
           type: string
         resourceTags:
           additionalProperties:
             type: string
-          description: Resource Tags
+          description: Resource tags
           type: object
         resourceType:
-          description: Resource Type
+          description: Resource type
           readOnly: true
           type: string
         rrn:
@@ -761,16 +769,22 @@ components:
           type: string
         policySubTypes:
           description: Policy subtype
-          enum:
-          - audit
-          - build
-          - data_classification
-          - malware
-          - network_event
-          - run
-          - ueba
+          items:
+            enum:
+            - run
+            - build
+            - run_and_build
+            - audit
+            - data_classification
+            - malware
+            - network_event
+            - network
+            - ueba
+            - permissions
+            type: string
           readOnly: true
-          type: string
+          type: array
+          uniqueItems: true
         policyType:
           description: Policy type. Policy type **anomaly** is read-only.
           enum:
@@ -830,13 +844,15 @@ components:
       description: Model for Policy Risk Score
       properties:
         cloudType:
-          description: Cloud type (Required for config policies)
+          description: Cloud type (Required for config policies). Not case-sensitive.
+            Default is **ALL**.
           enum:
-          - aws
-          - azure
-          - gcp
-          - alibaba_cloud
-          - oci
+          - ALL
+          - AWS
+          - AZURE
+          - GCP
+          - ALIBABA_CLOUD
+          - OCI
           type: string
         complianceMetadata:
           description: List of compliance data. Each item has compliance standard,
@@ -894,16 +910,22 @@ components:
           type: string
         policySubTypes:
           description: Policy subtype
-          enum:
-          - audit
-          - build
-          - data_classification
-          - malware
-          - network_event
-          - run
-          - ueba
+          items:
+            enum:
+            - run
+            - build
+            - run_and_build
+            - audit
+            - data_classification
+            - malware
+            - network_event
+            - network
+            - ueba
+            - permissions
+            type: string
           readOnly: true
-          type: string
+          type: array
+          uniqueItems: true
         policyType:
           description: Policy type. Policy type **anomaly** is read-only.
           enum:
@@ -2573,5 +2595,5 @@ paths:
 servers:
 - url: https://api.prismacloud.io
 tags:
-- description: The Alert APIs are listed below.
+- description: The Alert endpoints are listed below.
   name: Alerts

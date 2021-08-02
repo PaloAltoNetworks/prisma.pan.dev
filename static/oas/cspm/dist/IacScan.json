@@ -7,7 +7,7 @@
     "contact": {}
   },
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "security": [{ "xRedlockAuth": [] }],
+  "security": [{ "x-redlock-auth": [] }],
   "tags": [
     {
       "description": "The Asyncronous Scan APIs enable you to invoke IaC Scans.",
@@ -590,7 +590,8 @@
   },
   "components": {
     "securitySchemes": {
-      "xRedlockAuth": {
+      "x-redlock-auth": {
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
         "type": "apiKey",
         "in": "header",
         "name": "x-redlock-auth"

@@ -1,10 +1,4 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     AnomaliesTrustedListSummaryModel:
       content:
@@ -12,6 +6,12 @@ components:
           schema:
             $ref: '#/components/schemas/AnomaliesTrustedListSummaryModel'
       description: Model for Anomaly Trusted List Request
+  securitySchemes:
+    x-redlock-auth:
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     AnomaliesTrustedListEntryModel:
       description: Model for Anomaly Trusted List Entry
@@ -220,11 +220,6 @@ info:
   title: Prisma Cloud Anomaly Trusted List API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: THe APIs to manage anomaly trusted lists are listed below.
-  name: Anomaly Trusted List
 paths:
   /anomalies/trusted_list:
     get:
@@ -388,3 +383,8 @@ paths:
       summary: List Allowed Trusted List Types
       tags:
       - Anomaly Trusted List
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: THe endpoints to manage anomaly trusted lists are listed below.
+  name: Anomaly Trusted List

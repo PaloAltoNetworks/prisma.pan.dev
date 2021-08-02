@@ -23,7 +23,7 @@ components:
       required: true
   securitySchemes:
     x-redlock-auth:
-      description: JWT Based Authentication
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
       in: header
       name: x-redlock-auth
       type: apiKey
@@ -497,6 +497,7 @@ paths:
       - IP Allow List
   /ip_allow_list_login/tab:
     get:
+      deprecated: true
       description: Returns whether or not the login IP allow list feature is available.
       operationId: get-login-ip-allow-list-tab-status
       responses:
@@ -518,5 +519,5 @@ paths:
 servers:
 - url: https://api.prismacloud.io
 tags:
-- description: The IP Allow List APIs are listed below.
+- description: The IP Allow List endpoints are listed below.
   name: IP Allow List

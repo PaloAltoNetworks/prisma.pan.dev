@@ -1,11 +1,11 @@
 components:
+  requestBodies: {}
   securitySchemes:
     x-redlock-auth:
-      description: JWT Based Authentication
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
       in: header
       name: x-redlock-auth
       type: apiKey
-  requestBodies: {}
   schemas:
     CustomerNamesResponseModel:
       description: 'Model for Customer Info shown during customer selection '
@@ -69,11 +69,6 @@ info:
   title: Prisma Cloud Login API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Login APIs are listed below.
-  name: Login
 paths:
   /login:
     post:
@@ -130,3 +125,8 @@ paths:
       summary: Refresh Session
       tags:
       - Login
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Login endpoints are listed below.
+  name: Login

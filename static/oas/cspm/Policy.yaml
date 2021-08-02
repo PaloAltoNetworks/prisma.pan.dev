@@ -14,7 +14,7 @@ components:
       required: true
   securitySchemes:
     x-redlock-auth:
-      description: JWT Based Authentication
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
       in: header
       name: x-redlock-auth
       type: apiKey
@@ -91,13 +91,15 @@ components:
       description: Model for Policy View
       properties:
         cloudType:
-          description: Cloud type (Required for config policies)
+          description: Cloud type (Required for config policies). Not case-sensitive.
+            Default is **ALL**.
           enum:
-          - aws
-          - azure
-          - gcp
-          - alibaba_cloud
-          - oci
+          - ALL
+          - AWS
+          - AZURE
+          - GCP
+          - ALIBABA_CLOUD
+          - OCI
           type: string
         complianceMetadata:
           description: List of compliance data. Each item has compliance standard,
@@ -179,16 +181,22 @@ components:
           type: string
         policySubTypes:
           description: Policy subtype
-          enum:
-          - audit
-          - build
-          - data_classification
-          - malware
-          - network_event
-          - run
-          - ueba
+          items:
+            enum:
+            - run
+            - build
+            - run_and_build
+            - audit
+            - data_classification
+            - malware
+            - network_event
+            - network
+            - ueba
+            - permissions
+            type: string
           readOnly: true
-          type: string
+          type: array
+          uniqueItems: true
         policyType:
           description: Policy type. Policy type **anomaly** is read-only.
           enum:
@@ -401,16 +409,22 @@ components:
           type: string
         policySubTypes:
           description: Policy subtype
-          enum:
-          - audit
-          - build
-          - data_classification
-          - malware
-          - network_event
-          - run
-          - ueba
+          items:
+            enum:
+            - run
+            - build
+            - run_and_build
+            - audit
+            - data_classification
+            - malware
+            - network_event
+            - network
+            - ueba
+            - permissions
+            type: string
           readOnly: true
-          type: string
+          type: array
+          uniqueItems: true
         policyType:
           description: Policy type. Policy type **anomaly** is read-only.
           enum:
@@ -470,13 +484,15 @@ components:
       description: Model for Policy View V2
       properties:
         cloudType:
-          description: Cloud type (Required for config policies)
+          description: Cloud type (Required for config policies). Not case-sensitive.
+            Default is **ALL**.
           enum:
-          - aws
-          - azure
-          - gcp
-          - alibaba_cloud
-          - oci
+          - ALL
+          - AWS
+          - AZURE
+          - GCP
+          - ALIBABA_CLOUD
+          - OCI
           type: string
         complianceMetadata:
           description: List of compliance data. Each item has compliance standard,
@@ -554,16 +570,22 @@ components:
           type: string
         policySubTypes:
           description: Policy subtype
-          enum:
-          - audit
-          - build
-          - data_classification
-          - malware
-          - network_event
-          - run
-          - ueba
+          items:
+            enum:
+            - run
+            - build
+            - run_and_build
+            - audit
+            - data_classification
+            - malware
+            - network_event
+            - network
+            - ueba
+            - permissions
+            type: string
           readOnly: true
-          type: string
+          type: array
+          uniqueItems: true
         policyType:
           description: Policy type. Policy type **anomaly** is read-only.
           enum:
@@ -997,7 +1019,7 @@ paths:
           - cft
           - k8s
           type: string
-      - description: Policy sub type
+      - description: Policy subtype
         in: query
         name: policy.subtype
         required: false
@@ -1006,6 +1028,13 @@ paths:
           - run
           - build
           - run_and_build
+          - audit
+          - data_classification
+          - malware
+          - network_event
+          - network
+          - ueba
+          - permissions
           type: string
       - description: Policy type
         in: query
@@ -1240,5 +1269,5 @@ paths:
 servers:
 - url: https://api.prismacloud.io
 tags:
-- description: The Policy APIs are listed below.
+- description: The Policy endpoints are listed below.
   name: Policy

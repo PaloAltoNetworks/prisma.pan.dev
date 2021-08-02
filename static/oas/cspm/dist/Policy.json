@@ -20,7 +20,7 @@
     },
     "securitySchemes": {
       "x-redlock-auth": {
-        "description": "JWT Based Authentication",
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
         "in": "header",
         "name": "x-redlock-auth",
         "type": "apiKey"
@@ -102,8 +102,8 @@
         "description": "Model for Policy View",
         "properties": {
           "cloudType": {
-            "description": "Cloud type (Required for config policies)",
-            "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"],
+            "description": "Cloud type (Required for config policies). Not case-sensitive. Default is **ALL**.",
+            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
             "type": "string"
           },
           "complianceMetadata": {
@@ -192,17 +192,24 @@
           },
           "policySubTypes": {
             "description": "Policy subtype",
-            "enum": [
-              "audit",
-              "build",
-              "data_classification",
-              "malware",
-              "network_event",
-              "run",
-              "ueba"
-            ],
+            "items": {
+              "enum": [
+                "run",
+                "build",
+                "run_and_build",
+                "audit",
+                "data_classification",
+                "malware",
+                "network_event",
+                "network",
+                "ueba",
+                "permissions"
+              ],
+              "type": "string"
+            },
             "readOnly": true,
-            "type": "string"
+            "type": "array",
+            "uniqueItems": true
           },
           "policyType": {
             "description": "Policy type. Policy type **anomaly** is read-only.",
@@ -449,17 +456,24 @@
           },
           "policySubTypes": {
             "description": "Policy subtype",
-            "enum": [
-              "audit",
-              "build",
-              "data_classification",
-              "malware",
-              "network_event",
-              "run",
-              "ueba"
-            ],
+            "items": {
+              "enum": [
+                "run",
+                "build",
+                "run_and_build",
+                "audit",
+                "data_classification",
+                "malware",
+                "network_event",
+                "network",
+                "ueba",
+                "permissions"
+              ],
+              "type": "string"
+            },
             "readOnly": true,
-            "type": "string"
+            "type": "array",
+            "uniqueItems": true
           },
           "policyType": {
             "description": "Policy type. Policy type **anomaly** is read-only.",
@@ -532,8 +546,8 @@
         "description": "Model for Policy View V2",
         "properties": {
           "cloudType": {
-            "description": "Cloud type (Required for config policies)",
-            "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"],
+            "description": "Cloud type (Required for config policies). Not case-sensitive. Default is **ALL**.",
+            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
             "type": "string"
           },
           "complianceMetadata": {
@@ -617,17 +631,24 @@
           },
           "policySubTypes": {
             "description": "Policy subtype",
-            "enum": [
-              "audit",
-              "build",
-              "data_classification",
-              "malware",
-              "network_event",
-              "run",
-              "ueba"
-            ],
+            "items": {
+              "enum": [
+                "run",
+                "build",
+                "run_and_build",
+                "audit",
+                "data_classification",
+                "malware",
+                "network_event",
+                "network",
+                "ueba",
+                "permissions"
+              ],
+              "type": "string"
+            },
             "readOnly": true,
-            "type": "string"
+            "type": "array",
+            "uniqueItems": true
           },
           "policyType": {
             "description": "Policy type. Policy type **anomaly** is read-only.",
@@ -1076,12 +1097,23 @@
             "schema": { "enum": ["tf", "cft", "k8s"], "type": "string" }
           },
           {
-            "description": "Policy sub type",
+            "description": "Policy subtype",
             "in": "query",
             "name": "policy.subtype",
             "required": false,
             "schema": {
-              "enum": ["run", "build", "run_and_build"],
+              "enum": [
+                "run",
+                "build",
+                "run_and_build",
+                "audit",
+                "data_classification",
+                "malware",
+                "network_event",
+                "network",
+                "ueba",
+                "permissions"
+              ],
               "type": "string"
             }
           },
@@ -1396,6 +1428,9 @@
   },
   "servers": [{ "url": "https://api.prismacloud.io" }],
   "tags": [
-    { "description": "The Policy APIs are listed below.", "name": "Policy" }
+    {
+      "description": "The Policy endpoints are listed below.",
+      "name": "Policy"
+    }
   ]
 }

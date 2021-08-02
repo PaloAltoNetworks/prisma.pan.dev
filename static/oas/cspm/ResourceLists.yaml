@@ -1,11 +1,11 @@
 components:
+  requestBodies: {}
   securitySchemes:
     x-redlock-auth:
-      description: JWT Based Authentication
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
       in: header
       name: x-redlock-auth
       type: apiKey
-  requestBodies: {}
   schemas:
     ResourceListModel:
       description: Model for Resource List
@@ -53,11 +53,6 @@ info:
   title: Prisma Cloud Resource Lists API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Resource List APIs are listed below.
-  name: Resource Lists
 paths:
   /v1/resource_list:
     get:
@@ -220,3 +215,8 @@ paths:
       summary: Delete Resource List
       tags:
       - Resource Lists
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Resource List endpoints are listed below.
+  name: Resource Lists
