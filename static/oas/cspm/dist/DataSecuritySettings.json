@@ -710,7 +710,7 @@
   },
   "openapi": "3.0.0",
   "paths": {
-    "/dlp/api/v1/object-inventory/resource": {
+    "/dlp/api/v1/object-inventory/resources": {
       "get": {
         "description": "Lists all AWS S3 bucket resources for your onboarded cloud account(s). The response indicates the amount of data eligible for sensitive data scans, malware scans, or both based on the supported file types and file size.",
         "operationId": "get-resource-inventory",

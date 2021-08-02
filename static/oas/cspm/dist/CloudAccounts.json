@@ -568,7 +568,7 @@
             "type": "string"
           },
           "tenantId": {
-            "description": "Directory (Tenant ID))",
+            "description": "Directory (Tenant ID)",
             "type": "string"
           }
         },
