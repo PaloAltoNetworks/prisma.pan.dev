@@ -1,13 +1,5 @@
 {
   "components": {
-    "securitySchemes": {
-      "x-redlock-auth": {
-        "description": "JWT Based Authentication",
-        "in": "header",
-        "name": "x-redlock-auth",
-        "type": "apiKey"
-      }
-    },
     "requestBodies": {
       "MultiRoleUserProfile": {
         "content": {
@@ -19,7 +11,23 @@
         "required": true
       }
     },
+    "securitySchemes": {
+      "x-redlock-auth": {
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
+        "in": "header",
+        "name": "x-redlock-auth",
+        "type": "apiKey"
+      }
+    },
     "schemas": {
+      "CreateUserAccessKeyResponseModel": {
+        "description": "Model for create user access key response",
+        "properties": {
+          "id": { "description": "Access key ID", "type": "string" },
+          "secretKey": { "description": "Access key secret", "type": "string" }
+        },
+        "type": "object"
+      },
       "MultiRoleUserProfile": {
         "description": "Model containing user profile",
         "properties": {
@@ -93,6 +101,101 @@
           "roleIds",
           "timeZone"
         ],
+        "type": "object"
+      },
+      "UserAccountModel": {
+        "description": "Model for User Account",
+        "properties": {
+          "accessKeyExpiration": {
+            "description": "Access key expiration timestamp in milliseconds",
+            "format": "int64",
+            "type": "integer"
+          },
+          "accessKeyName": {
+            "description": "Access key name",
+            "type": "string"
+          },
+          "accessKeysAllowed": {
+            "description": "Access keys allowed",
+            "type": "boolean"
+          },
+          "accessKeysCount": {
+            "description": "Access key count",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "activeRole": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UserProfileRoleDetailModel" },
+              { "description": "Active Role Info", "readOnly": true }
+            ]
+          },
+          "defaultRoleId": {
+            "description": "Default Role ID",
+            "type": "string"
+          },
+          "displayName": {
+            "description": "Display name",
+            "readOnly": true,
+            "type": "string"
+          },
+          "email": { "description": "Email ID", "type": "string" },
+          "enableKeyExpiration": {
+            "description": "true = Enable access key expiration. Default is false.",
+            "type": "boolean"
+          },
+          "enabled": {
+            "description": "Enabled",
+            "readOnly": true,
+            "type": "boolean"
+          },
+          "firstName": { "description": "First name", "type": "string" },
+          "lastLoginTs": {
+            "description": "Last login time",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "lastModifiedBy": {
+            "description": "Last modified by",
+            "readOnly": true,
+            "type": "string"
+          },
+          "lastModifiedTs": {
+            "description": "Time profile was last updated",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "lastName": { "description": "Last name", "type": "string" },
+          "roleIds": {
+            "description": "Role IDs",
+            "items": { "type": "string" },
+            "type": "array"
+          },
+          "roles": {
+            "description": "All Role Info",
+            "items": {
+              "$ref": "#/components/schemas/UserProfileRoleDetailModel"
+            },
+            "readOnly": true,
+            "type": "array"
+          },
+          "timeZone": {
+            "description": "Time zone (e.g. America/Los_Angeles)",
+            "type": "string"
+          },
+          "type": {
+            "description": "User type. Default is USER_ACCOUNT.",
+            "enum": ["USER_ACCOUNT", "SERVICE_ACCOUNT"],
+            "type": "string"
+          },
+          "username": {
+            "description": "User or service account name",
+            "type": "string"
+          }
+        },
         "type": "object"
       },
       "UserProfileModel": {
@@ -197,13 +300,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The User Profile APIs are listed below.",
-      "name": "User Profile"
-    }
-  ],
   "paths": {
     "/user/me": {
       "get": {
@@ -236,7 +332,7 @@
         ]
       },
       "put": {
-        "description": "Updates the current user's personal profile information.  \r\n\r\nAlthough the role ID is required when you are updating another user's profile, the role ID is not required when you are updating your own profile.\n```\n{\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"timeZone\": \"\"\n}\n```\n",
+        "description": "Updates the current user's personal profile information.  \r\n\r\nThis request supports four optional request body parameters, which you can see in the JSON example below:\n```\n{\n  \"defaultRoleId\": \"\",\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"timeZone\": \"\",  \n}\n```\n\nThe red **required** labels in the request body schema below apply only when you create a new user profile, so the labels don't apply to this request.\n",
         "operationId": "update-my-profile",
         "requestBody": {
           "content": {
@@ -252,7 +348,9 @@
           "400": {
             "description": "empty_user_profile_provided / missing_first_name / missing_time_zone / invalid_time_zone / user_inactive_or_not_exist / default_role_not_belonging_to_user_role_list / invalid_user_role"
           },
-          "403": { "description": "cannot_disable_own_profile" },
+          "403": {
+            "description": "cannot_disable_own_profile / access_keys_cannot_update_owner_profile"
+          },
           "500": { "description": "failed_update_user_profile" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -266,6 +364,82 @@
           {
             "lang": "Shell + Curl",
             "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/user/me \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accessKeysAllowed\":true,\"defaultRoleId\":\"string\",\"email\":\"string\",\"firstName\":\"string\",\"lastName\":\"string\",\"roleIds\":[\"string\"],\"timeZone\":\"string\"}'"
+          }
+        ]
+      }
+    },
+    "/v3/user": {
+      "get": {
+        "description": "Lists all users and service accounts for your tenant.",
+        "operationId": "get-user-profiles-v3",
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/UserAccountModel" },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "successful operation"
+          },
+          "500": { "description": "failed_fetch_user_profile" }
+        },
+        "security": [{ "x-redlock-auth": [] }],
+        "summary": "List Users V3",
+        "tags": ["User Profile"],
+        "x-codeSamples": [
+          {
+            "lang": "Python + Requests",
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v3/user\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+          },
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/v3/user \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+          }
+        ]
+      },
+      "post": {
+        "description": "Adds either a user profile or a service account profile.  \r\n\r\nThe required request body parameters differ, depending on whether you are adding a user account or a service account. Specify whether \nyou're adding a user account or service account through the request parameter **type**.\n\nThe required parameters to add a user account are:\n\n* **email**\n* **firstName**\n* **lastName**\n* **roleIds**\n* **defaultRoleId**\n* **timeZone**\n\nThe required parameters to add a service account are:\n\n- **username**\n- **accessKeyName**\n- **accessKeyExpiration** (Required only if **enableKeyExpiration** is **true**)\n- **defaultRoleId**\n- **timeZone**\n",
+        "operationId": "add-user-v3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UserAccountModel" }
+            }
+          },
+          "description": "Model for User Account",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserAccessKeyResponseModel"
+                }
+              }
+            },
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "empty_user_profile_provided / missing_email / wrong_email_format / missing_first_name / missing_time_zoneinvalid_time_zone /  missing_required_parameter / no_role_assigned_to_user / exceeding_role_limit_number / default_role_not_belonging_to_user_role_list / invalid_user_role"
+          },
+          "409": { "description": "duplicate_user_name" },
+          "500": { "description": "failed_add_user_profile" }
+        },
+        "security": [{ "x-redlock-auth": [] }],
+        "summary": "Add User Profile V3",
+        "tags": ["User Profile"],
+        "x-codeSamples": [
+          {
+            "lang": "Python + Requests",
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v3/user\"\n\npayload = \"{\\\"accessKeyExpiration\\\":0,\\\"accessKeyName\\\":\\\"string\\\",\\\"accessKeysAllowed\\\":true,\\\"defaultRoleId\\\":\\\"string\\\",\\\"email\\\":\\\"string\\\",\\\"enableKeyExpiration\\\":true,\\\"firstName\\\":\\\"string\\\",\\\"lastName\\\":\\\"string\\\",\\\"roleIds\\\":[\\\"string\\\"],\\\"timeZone\\\":\\\"string\\\",\\\"type\\\":\\\"USER_ACCOUNT\\\",\\\"username\\\":\\\"string\\\"}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+          },
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/v3/user \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accessKeyExpiration\":0,\"accessKeyName\":\"string\",\"accessKeysAllowed\":true,\"defaultRoleId\":\"string\",\"email\":\"string\",\"enableKeyExpiration\":true,\"firstName\":\"string\",\"lastName\":\"string\",\"roleIds\":[\"string\"],\"timeZone\":\"string\",\"type\":\"USER_ACCOUNT\",\"username\":\"string\"}'"
           }
         ]
       }
@@ -377,7 +551,7 @@
         ]
       },
       "put": {
-        "description": "Updates an administrative user's profile. Supports multiple roles for a single user.",
+        "description": "Updates an administrative user's profile. Supports multiple roles for a single user.  \r\n\r\nThe current **email** of the user whose profile you want to update is a required request parameter. All other request parameters are optional. The red **required** labels in the request body schema below apply only when you create a new user profile.\n",
         "operationId": "update-profile-v2",
         "parameters": [
           {
@@ -420,11 +594,11 @@
     },
     "/user/{id}": {
       "delete": {
-        "description": "Deletes an administrative user's profile.",
+        "description": "Deletes a user or service account profile.",
         "operationId": "delete-user",
         "parameters": [
           {
-            "description": "User email",
+            "description": "User email or service account name",
             "in": "path",
             "name": "id",
             "required": true,
@@ -670,5 +844,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "The User Profile endpoints are listed below.",
+      "name": "User Profile"
+    }
+  ]
 }

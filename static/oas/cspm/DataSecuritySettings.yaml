@@ -1,10 +1,4 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     CreateDataPatternRequest:
       content:
@@ -16,6 +10,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/DataProfile'
+  securitySchemes:
+    x-redlock-auth:
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     AbsoluteTimeRangeConfigModel:
       allOf:
@@ -686,13 +686,8 @@ info:
   title: Prisma Cloud Data Security Settings API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Data Security Settings APIs are listed below.
-  name: Data Security Settings
 paths:
-  /dlp/api/v1/object-inventory/resource:
+  /dlp/api/v1/object-inventory/resources:
     get:
       description: Lists all AWS S3 bucket resources for your onboarded cloud account(s).
         The response indicates the amount of data eligible for sensitive data scans,
@@ -1168,3 +1163,8 @@ paths:
       summary: Update Snippet Configuration
       tags:
       - Data Security Settings
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Data Security Settings endpoints are listed below.
+  name: Data Security Settings

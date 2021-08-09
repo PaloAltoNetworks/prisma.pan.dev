@@ -1,16 +1,16 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     FilterSuggestionModel:
       content:
         application/json; charset=UTF-8:
           schema:
             $ref: '#/components/schemas/FilterSuggestionModel'
+  securitySchemes:
+    x-redlock-auth:
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     AbsoluteTimeRangeConfigModel:
       allOf:
@@ -108,6 +108,9 @@ components:
           items:
             $ref: '#/components/schemas/UIFilterModel'
           type: array
+        links:
+          description: JSON query builder links
+          type: string
         needsOffsetUpdate:
           description: Needs offset update (for internal use)
           type: boolean
@@ -426,11 +429,6 @@ info:
   title: Prisma Cloud Reports API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Compliance Report APIs are listed below.
-  name: Reports
 paths:
   /report:
     get:
@@ -841,3 +839,8 @@ paths:
       summary: List Report Overview Filter Autocomplete Suggestions
       tags:
       - Reports
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Compliance Report endpoints are listed below.
+  name: Reports

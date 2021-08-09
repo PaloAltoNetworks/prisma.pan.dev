@@ -1,10 +1,4 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     UserRoleModel:
       content:
@@ -13,6 +7,12 @@ components:
             $ref: '#/components/schemas/UserRoleModel'
       description: User Role
       required: true
+  securitySchemes:
+    x-redlock-auth:
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     Attributes:
       description: Additional attributes of the the user role
@@ -160,11 +160,6 @@ info:
   title: Prisma Cloud User Roles API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The User Role APIs are listed below.
-  name: User Roles
 paths:
   /user/role:
     get:
@@ -312,3 +307,8 @@ paths:
       summary: Delete User Role
       tags:
       - User Roles
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The User Role endpoints are listed below.
+  name: User Roles

@@ -1,15 +1,13 @@
 ---
 id: api-integration-config
-title: Prisma Cloud Intergation API Configurations 
+title: Prisma Cloud Integration API Configurations 
 sidebar_label: Integration Configurations
 hide_table_of_contents: false
 ---
 
-With the multiple out-of-the-box integration options that Prisma Cloud offers, you can integrate Prisma Cloud into your organization's existing security workflows and technologies.
+The  integration endpoints enable you to  receive Prisma Cloud alerts in external systems. The [integration endpoint documentation](/api/cloud/cspm/integrations) describes request and response details for each endpoint.
 
-## Integration Configuration
-
-The model for an integration between Prisma Cloud and an external system includes an **integrationConfig** parameter that is a map of key/value pairs. The type of integration defines the content of these key/value pairs.
+The request body for some of the endpoints includes an **integrationConfig** parameter that is a map of key/value pairs. The type of integration defines the content of these key/value pairs. The information below provides the details for this **integrationConfig** parameter for each listed technology.
 
 ### Azure Service Bus Queue
 
@@ -17,7 +15,7 @@ Prisma Cloud can send alerts to an Azure Service Bus messaging service. To autho
 
 #### Add, Update, or Test an Azure Service Bus Queue Integration
 
-To add an Azure Service Bus queue integration, invoke the API with the corresponding request body described in [Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of that request body, the **integrationType** parameter for an Azure Service Bus queue integration is **azure_service_bus_queue**.
+To add an Azure Service Bus queue integration, make your request as described in [Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of the request body, the **integrationType** parameter for an Azure Service Bus queue integration is **azure_service_bus_queue**.
 
 If you want to use the service principal-based access provided when the Azure cloud account was onboarded to Prisma Cloud, then the **integrationConfig** parameter contains the following key/value pairs.
 
@@ -33,13 +31,13 @@ Key  |  Value Description | Value Type | Default Value or Required
 connectionString | Azure Shared Access String connection string | string | _required_
 queueUrl | The URL configured in the Azure Service Bus queue where Prisma sends alerts | string | _required_
 
-To update an Azure Service Bus queue integration, invoke the API with the corresponding request body described in [Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The **queueUrl** in **integrationConfig** is editable.
+To update an Azure Service Bus queue integration, make your request as described in [Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The **queueUrl** in **integrationConfig** is editable.
 
-To test an Azure Service Bus queue integration, invoke the API with the corresponding request body described in [Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+To test an Azure Service Bus queue integration, make your request as described in [Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
 
 ##### Example Request Body to Add or Test an Azure Service Bus Queue with Azure Account ID
 
-```
+```json
 {
     "description": "",
     "enabled": true,
@@ -55,7 +53,7 @@ To test an Azure Service Bus queue integration, invoke the API with the correspo
 
 ##### Example Request Body to Add or Test an Azure Service Bus Queue with a Shared Access String
 
-```
+```json
 {
     "description": "",
     "enabled": true,
@@ -71,11 +69,11 @@ To test an Azure Service Bus queue integration, invoke the API with the correspo
 
 ### Amazon SQS
 
-Prisma Cloud supports Amazon Simple Queue Service (SQS) to send alerts to customers, who can consume these alerts through a Splunk add-on or through the AWS CloudFormation service to enable custom workflows. Once you configure Amazon SQS to receive Prisma Cloud alerts, including enabling required permissions, you can use the REST API to set up the Amazon SQS integration in Prisma Cloud.
+Prisma Cloud supports Amazon Simple Queue Service (SQS) to send alerts to customers who can then consume these alerts through a Splunk add-on or through the AWS CloudFormation service to enable custom workflows. Once you configure Amazon SQS to receive Prisma Cloud alerts, including enabling required permissions, you can use the REST API to set up the Amazon SQS integration in Prisma Cloud.
 
 #### Add, Update, or Test an Amazon SQS Integration
 
-To add an Amazon SQS integration, invoke the API with the corresponding request body described  in [Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of that request body, the **integrationType** parameter for an SQS integration is **amazon_sqs**.
+To add an Amazon SQS integration, make the request with the corresponding request body described  in [Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of the request body, the **integrationType** parameter for an SQS integration is **amazon_sqs**.
 
 The **integrationConfig** parameter contains the following key/value pairs when you are using IAM access keys:
 
@@ -95,13 +93,13 @@ moreInfo | true=specific IAM credentials are specified for SQS queue access | bo
 roleArn | Role ARN associated with the IAM role on Prisma Cloud | string |  _required_
 externalId | External ID associated with the IAM role on Prisma Cloud. New or updated value must be a unique 128-bit UUID | string | _required_
 
-To update an Amazon SQS integration, invoke the API with the corresponding request body described in [Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The **queueUrl** in **integrationConfig** is editable.
+To update an Amazon SQS integration, make your request as described in [Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The **queueUrl** in **integrationConfig** is editable.
 
-To test an Amazon SQS integration, invoke the API with the corresponding request body described  in [Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+To test an Amazon SQS integration, make the request with the corresponding request body described  in [Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
 
 ##### Example Request Body to Add or Test an Amazon SQS Integration with IAM Access Keys
 
-```
+```json
 {
     "description": "",
     "enabled": true,
@@ -119,7 +117,7 @@ To test an Amazon SQS integration, invoke the API with the corresponding request
 
 ##### Example Request Body to Add or Test an Amazon SQS Integration with IAM Role
 
-```
+```json
 {
     "description": "",
     "enabled": true,
@@ -141,8 +139,8 @@ Prisma Cloud integrates with the Qualys platform to ingest and visualize vulnera
 
 #### Add, Update, or Test a Qualys Integration
 
-To add a Qualys integration, invoke the API with the corresponding request body described in
-[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of that request body, the integrationType parameter for an SQS integration is **qualys**, and the **integrationConfig** parameter contains the following key/value pairs.
+To add a Qualys integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of the request body, the **integrationType** parameter for an SQS integration is **qualys**, and the **integrationConfig** parameter contains the following key/value pairs.
 
 Key  |  Value Description | Value Type | Default Value or Required
 -----| ------------------ | ---------- | -------------
@@ -150,15 +148,15 @@ login | Qualys login | string | _required_
 baseUrl | Qualys Security Operations Center server API URL (without **http(s)**) | string | _required_
 password | Qualys password | string |  _required_
 
-To update a Qualys integration, invoke the API with the corresponding request body described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are updatable.
+To update a Qualys integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are editable.
 
-To test a Qualys integration, invoke the API with the corresponding request body described in
+To test a Qualys integration, make your request as described in
 [Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
 
 ##### Example Request Body to Add or Test a Qualys Integration
 
-```
+```json
 {
   "description": "",
   "enabled": true,
@@ -179,8 +177,8 @@ Integrate Prisma Cloud with ServiceNow and get automatically notified about Pris
 
 #### Add, Update, or Test a ServiceNow Integration
 
-To add a ServiceNow integration, invoke the API with the corresponding request body described in
-[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of that request body, the **integrationType** parameter for an SQS integration is **service_now**, and the **integrationConfig** parameter contains the following key/value pairs.
+To add a ServiceNow integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of the request body, the **integrationType** parameter for an SQS integration is **service_now**, and the **integrationConfig** parameter contains the following key/value pairs.
 
 Key  |  Value Description | Value Type | Default Value or Required
 -----| ------------------ | ---------- | -------------
@@ -189,15 +187,15 @@ login | ServiceNow login | string | _required_
 password | ServiceNow password for login | string |  _required_
 tables | Array of key/value pairs that identify the ServiceNow module tables with which to integrate. The possible keys are: **incident**, **sn_si_incident**, **em_event**.<br/>The possible values for each key are: **true**, **false** | string |  _required_
 
-To update a ServicNow integration, invoke the API with the corresponding request body described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are updatable.
+To update a ServicNow integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are editable.
 
-To test a ServiceNow integration, invoke the API with the corresponding request body described in
+To test a ServiceNow integration, make your request as described in
 [Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
 
 ##### Example Request Body to Add a ServiceNow Integration
 
-```
+```json
 {
   "description": "",
   "enabled": true,
@@ -219,7 +217,7 @@ To test a ServiceNow integration, invoke the API with the corresponding request 
 
 ##### Example Request Body to Test a ServiceNow Integration
 
-```
+```json
 {
   "description": "",
   "enabled": true,
@@ -245,23 +243,23 @@ The webhook integration enables you to pass information in a JSON format to any 
 
 #### Add, Update, or Test a Webhook Integration
 
-To add a webhook integration, invoke the API with the corresponding request body described in
-[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of that request body, the **integrationType** parameter for a webhook integration is **webhook**, and the **integrationConfig** parameter contains the following key/value pairs.
+To add a webhook integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of the request body, the **integrationType** parameter for a webhook integration is **webhook**, and the **integrationConfig** parameter contains the following key/value pairs.
 
 Key  |  Value Description | Value Type | Default Value or Required
 -----| ------------------ | ---------- | -------------
 url | Webhook URL | string | _required_
 authToken | The authentication token for the event collector | string | _required_
 
-To update a webhook integration, invoke the API with the corresponding request body described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are updatable.
+To update a webhook integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are editable.
 
-To test a webhook integration, invoke the API with the corresponding request body described in
+To test a webhook integration, make your request as described in
 [Test Integration](/api/cloud/cspm/integrations#operation/test-integration). You must also include the **integrationConfig.url** parameter in your request body.
 
 ##### Example Request Body to Add a Webhook Integration
 
-```
+```json
 {
   "description": "",
   "enabled": true,
@@ -277,7 +275,7 @@ To test a webhook integration, invoke the API with the corresponding request bod
 
 ##### Example Request Body to Test a Webhook Integration
 
-```
+```json
 {
     "name": "",
     "integrationType": "webhook",
@@ -293,22 +291,22 @@ Integration with PagerDuty aids alerting, on-call scheduling, escalation policie
 
 #### Add, Update, or Test a PagerDuty Integration
 
-To add a PagerDuty integration, invoke the API with the corresponding request body described in
-[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of that request body, the **integrationType** parameter for a PagerDuty integration is **pager_duty**, and the **integrationConfig** parameter contains the following key/value pairs.
+To add a PagerDuty integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of the request body, the **integrationType** parameter for a PagerDuty integration is **pager_duty**, and the **integrationConfig** parameter contains the following key/value pairs.
 
 Key  |  Value Description | Value Type | Default Value or Required
 -----| ------------------ | ---------- | -------------
 integrationKey | PagerDuty integration key | string | _required_
 
-To update a PagerDuty integration, invoke the API with the corresponding request body described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are updatable.
+To update a PagerDuty integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are editable.
 
-To test a PagerDuty integration, invoke the API with the corresponding request body described in
+To test a PagerDuty integration, make your request as described in
 [Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
 
 ##### Example Request Body to Add a PagerDuty Integration
 
-```
+```json
 {
   "description": "",
   "enabled": true,
@@ -323,7 +321,7 @@ To test a PagerDuty integration, invoke the API with the corresponding request b
 
 ##### Example Request Body to Test a PagerDuty Integration
 
-```
+```json
 {
     "name": "",
     "integrationType": "pager_duty",
@@ -333,3 +331,73 @@ To test a PagerDuty integration, invoke the API with the corresponding request b
 }
 ```
 
+### Slack
+
+Prisma Cloud integrates with Slack to post instant messages to your Slack channels.
+
+#### Add, Update, or Test a Slack Integration
+
+To add a Slack integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of the request body, the **integrationType** parameter is **slack**, and the **integrationConfig** parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+webhookUrl | Slack webhook URL starting with `https://hooks.slack.com/` | string | _required_
+
+To update a Slack integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are editable.
+
+To test a Slack integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+
+##### Example Request Body to Add or Test a Slack Integration
+
+```json
+{
+  "description": "",
+  "enabled": true,
+  "integrationConfig":
+  {
+    "webhookUrl": "https://hooks.slack.com/services/ABC123"
+  },
+  "integrationType": "slack",
+  "name": ""
+}
+```
+
+### Splunk
+
+Prisma Cloud integrates with Splunk to send Splunk alerts for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
+
+#### Add, Update, or Test a Splunk Integration
+
+To add a Splunk integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of the request body, the **integrationType** parameter is **splunk**, and the **integrationConfig** parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+authToken | Splunk HTTP event collector | string | _required_
+url | Splunk HTTP event collector URL | string | _required_
+sourceType | Splunk source type  | string | Default is **_json**
+
+To update a Splunk integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are editable.
+
+To test a Splunk integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+
+##### Example Request Body to Add or Test a Splunk Integration
+
+```json
+{
+  "description": "",
+  "enabled": true,
+  "integrationConfig":
+  {
+    "authToken": "",
+    "url": "",
+  },
+  "integrationType": "splunk",
+  "name": ""
+}
+```

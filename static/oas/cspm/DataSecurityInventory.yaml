@@ -1,10 +1,4 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     DLPInventoryFilterModel:
       content:
@@ -16,6 +10,12 @@ components:
         application/json; charset=UTF-8:
           schema:
             $ref: '#/components/schemas/DLPInventoryResourceExplorerRequest'
+  securitySchemes:
+    x-redlock-auth:
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     AbsoluteTimeRangeConfigModel:
       allOf:
@@ -660,11 +660,6 @@ info:
   title: Prisma Cloud Data Security Inventory API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Data Security Inventory APIs are listed below.
-  name: Data Security Inventory
 paths:
   /dlp/api/v1/inventory/data-scanned:
     get:
@@ -736,69 +731,69 @@ paths:
         \ level you specify in the request body parameters.  \r\n\r\nThe **tableLevel**\
         \ and **groupBy** request body parameters determine which \nresponse object\
         \ fields a successful API request returns.\n\nIF \"tableLevel\" = 1 and \"\
-        groupBy\" is unspecified, the response fields are as shown below:\n```\n[\n\
-        \  {\n    \"cloudType\": \"\",\n    \"serviceName\": \"\",\n    \"totalResources\"\
+        groupBy\" is unspecified, the response fields are as shown below:\n```json\n\
+        [\n  {\n    \"cloudType\": \"\",\n    \"serviceName\": \"\",\n    \"totalResources\"\
         : 0,\n    \"publicResources\": ,\n    \"totalObjects\": 0,\n    \"publicObjects\"\
         : 0,\n    \"sensitiveObjects\": 0,\n    \"malwareObjects\": 0,\n    \"alerts\"\
         : 0\n  }\n]\n``` \nIf \"tableLevel\" = 1 and \"groupBy\" is specified, the\
-        \ response fields are as shown below:\n```\n[\n  {\n    \"cloudType\": \"\"\
-        ,\n    \"accountName\": \"\",\n    \"regionName\": \"\",\n    \"serviceName\"\
+        \ response fields are as shown below:\n```json\n[\n  {\n    \"cloudType\"\
+        : \"\",\n    \"accountName\": \"\",\n    \"regionName\": \"\",\n    \"serviceName\"\
         : \"\",\n    \"totalResources\": 0,\n    \"publicResources\": 0,\n    \"totalObjects\"\
         : 0,\n    \"publicObjects\": 0,\n    \"sensitiveObjects\": 0,\n    \"malwareObjects\"\
         : 0,\n    \"alerts\": 0\n  }\n]\n```\nIf \"tableLevel\" = 2 and \"groupBy\"\
-        \ is unspecified, the response fields are as shown below:\n```\n[\n  {\n \
-        \   \"cloudType\": \"\",\n    \"serviceName\": \"\",\n    \"totalResources\"\
+        \ is unspecified, the response fields are as shown below:\n```json\n[\n  {\n\
+        \    \"cloudType\": \"\",\n    \"serviceName\": \"\",\n    \"totalResources\"\
         : 0,\n    \"publicResources\": 0,\n    \"totalObjects\": 0,\n    \"publicObjects\"\
         : 0,\n    \"sensitiveObjects\": 0,\n    \"malwareObjects\": 0,\n    \"alerts\"\
         : 0\n  }\n]\n```\nIf \"tableLevel\" = 2 and \"groupBy\" = \"cloud.region\"\
-        , the response fields are as shown below:\n```\n[\n  {\n    \"cloudType\"\
+        , the response fields are as shown below:\n```json\n[\n  {\n    \"cloudType\"\
         : \"\",\n    \"regionName\": \"\",\n    \"serviceName\": \"\",\n    \"totalResources\"\
         : 0,\n    \"publicResources\": 0,\n    \"totalObjects\": 0,\n    \"publicObjects\"\
         : 0,\n    \"sensitiveObjects\": 0,\n    \"malwareObjects\": 0,\n    \"alerts\"\
         : 0\n  }\n]\n```\nIf \"tableLevel\" = 2 and \"groupBy\" = \"cloud.account\"\
-        , the response fields are as shown below:\n```\n[\n  {\n    \"cloudType\"\
+        , the response fields are as shown below:\n```json\n[\n  {\n    \"cloudType\"\
         : \"\",\n    \"accountName\": \"\",\n    \"serviceName\": \"\",\n    \"totalResources\"\
         : 0,\n    \"publicResources\": 0,\n    \"totalObjects\": 0,\n    \"publicObjects\"\
         : 0,\n    \"sensitiveObjects\": 0,\n    \"malwareObjects\": 0,\n    \"alerts\"\
         : 0\n  }\n]\n```\nIf tableLevel\" = 2 and \"groupBy\" = [\"cloud.region\"\
-        , \"cloud.account\"], the response fields are as shown below:\n```\n[\n  {\n\
-        \    \"cloudType\": \"\",\n    \"accountName\": \"\",\n    \"regionName\"\
+        , \"cloud.account\"], the response fields are as shown below:\n```json\n[\n\
+        \  {\n    \"cloudType\": \"\",\n    \"accountName\": \"\",\n    \"regionName\"\
         : \"\",\n    \"serviceName\": \"\",\n    \"totalResources\": 0,\n    \"publicResources\"\
         : 0,\n    \"totalObjects\": 0,\n    \"publicObjects\": 0,\n    \"sensitiveObjects\"\
         : 0,\n    \"malwareObjects\": 20,\n    \"alerts\": 0\n  }\n]\n```\nIf \"tableLevel\"\
         \ = 3 and \"groupBy\" is unspecified, the response fields are as shown below:\n\
-        ```\n[\n  {\n    \"cloudType\": \"\",\n    \"resourceName\": \"\",\n    \"\
-        publicResource\": \"\",\n    \"totalObjects\": 0,\n    \"publicObjects\":\
-        \ 0,\n    \"sensitiveObjects\": 0,\n    \"malwareObjects\": 0,\n    \"alerts\"\
+        ```json\n[\n  {\n    \"cloudType\": \"\",\n    \"resourceName\": \"\",\n \
+        \   \"publicResource\": \"\",\n    \"totalObjects\": 0,\n    \"publicObjects\"\
+        : 0,\n    \"sensitiveObjects\": 0,\n    \"malwareObjects\": 0,\n    \"alerts\"\
         : 0,\n    \"bucketRrn\":\"\"\n  }\n]\n```\nIf \"tableLevel\" = 3 and \"groupBy\"\
         \ = [\"cloud.account\", \"cloud.region\"], the response fields are as shown\
-        \ below:\n```\n[\n  {\n    \"cloudType\": \"\",\n    \"accountName\": \"\"\
-        ,\n    \"regionName\": \"\",\n    \"resourceName\": \"\",\n    \"publicResource\"\
+        \ below:\n```json\n[\n  {\n    \"cloudType\": \"\",\n    \"accountName\":\
+        \ \"\",\n    \"regionName\": \"\",\n    \"resourceName\": \"\",\n    \"publicResource\"\
         : \"\",\n    \"totalObjects\": 0,\n    \"publicObjects\": 0,\n    \"sensitiveObjects\"\
         : 0,\n    \"malwareObjects\": 0,\n    \"alerts\": 0,\n    \"bucketRrn\":\"\
         \"\n  }\n]\n```\nIf \"tableLevel\" = 3 and \"groupBy\" = [\"cloud.region\"\
-        , \"cloud.service\"], the response fields are as shown below:\n```\n[\n  {\n\
-        \    \"cloudType\": \"\",\n    \"regionName\": \"\",\n    \"serviceName\"\
+        , \"cloud.service\"], the response fields are as shown below:\n```json\n[\n\
+        \  {\n    \"cloudType\": \"\",\n    \"regionName\": \"\",\n    \"serviceName\"\
         : \"\",\n    \"resourceName\": \"\",\n    \"publicResource\": \"\",\n    \"\
         totalObjects\": 0,\n    \"publicObjects\": 0,\n    \"sensitiveObjects\": 0,\n\
         \    \"malwareObjects\": 0,\n    \"alerts\": 0,\n    \"bucketRrn\":\"\"\n\
         \  }\n]\n```\nIf \"tableLevel\" = 3 and \"groupBy\" = [\"cloud.account\",\
         \ \"cloud.region\", \"cloud.service\"], the response fields are as shown below:\n\
-        ```\n[\n  {\n    \"cloudType\": \"\",\n    \"accountName\": \"\",\n    \"\
-        regionName\": \"\",\n    \"serviceName\": \"\",\n    \"resourceName\": \"\"\
-        ,\n    \"publicResource\": \"\",\n    \"totalObjects\": 0,\n    \"publicObjects\"\
+        ```json\n[\n  {\n    \"cloudType\": \"\",\n    \"accountName\": \"\",\n  \
+        \  \"regionName\": \"\",\n    \"serviceName\": \"\",\n    \"resourceName\"\
+        : \"\",\n    \"publicResource\": \"\",\n    \"totalObjects\": 0,\n    \"publicObjects\"\
         : 0,\n    \"sensitiveObjects\": 0,\n    \"malwareObjects\": 0,\n    \"alerts\"\
         : 0,\n    \"bucketRrn\":\"\"\n  }\n]\n```\nIf \"tableLevel\" = 4, the response\
-        \ fields are as shown below:\n```\n[\n  {\n    \"cloudType\": \"\",\n    \"\
-        accountName\": \",\n    \"regionName\": \"\",\n    \"serviceName\": \"\",\n\
-        \    \"resourceName\": \"\",\n    \"publicResource\": \"\",\n    \"objectName\"\
-        : \"\",\n    \"objectExposure\": \"\",\n    \"objectOwner\": \"\",\n    \"\
-        contentType\": \"\",\n    \"dataProfiles\": \"\",\n    \"dataPatterns\": \"\
-        \",\n    \"malware\": \"\",\n    \"metadataScannedTime\": 0, \n    \"malwareScannedTime\"\
-        : 0, \n    \"dssScannedTime\": 0, \n    \"dssSnippetStatus\": \"\",\n    \"\
-        dssSnippetCreatedOn\": \"\",\n    \"dssSnippetViewed\": false\n  }\n]\n```\
-        \                                                                        \
-        \                  "
+        \ fields are as shown below:\n```json\n[\n  {\n    \"cloudType\": \"\",\n\
+        \    \"accountName\": \",\n    \"regionName\": \"\",\n    \"serviceName\"\
+        : \"\",\n    \"resourceName\": \"\",\n    \"publicResource\": \"\",\n    \"\
+        objectName\": \"\",\n    \"objectExposure\": \"\",\n    \"objectOwner\": \"\
+        \",\n    \"contentType\": \"\",\n    \"dataProfiles\": \"\",\n    \"dataPatterns\"\
+        : \"\",\n    \"malware\": \"\",\n    \"metadataScannedTime\": 0, \n    \"\
+        malwareScannedTime\": 0, \n    \"dssScannedTime\": 0, \n    \"dssSnippetStatus\"\
+        : \"\",\n    \"dssSnippetCreatedOn\": \"\",\n    \"dssSnippetViewed\": false\n\
+        \  }\n]\n```                                                             \
+        \                             "
       operationId: get-inventory-objects
       requestBody:
         $ref: '#/components/requestBodies/DLPInventoryFilterModel'
@@ -1031,3 +1026,8 @@ paths:
       summary: Get Snippet
       tags:
       - Data Security Inventory
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Data Security Inventory endpoints are listed below.
+  name: Data Security Inventory

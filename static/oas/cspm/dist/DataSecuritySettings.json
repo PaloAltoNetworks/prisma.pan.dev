@@ -1,13 +1,5 @@
 {
   "components": {
-    "securitySchemes": {
-      "x-redlock-auth": {
-        "description": "JWT Based Authentication",
-        "in": "header",
-        "name": "x-redlock-auth",
-        "type": "apiKey"
-      }
-    },
     "requestBodies": {
       "CreateDataPatternRequest": {
         "content": {
@@ -24,6 +16,14 @@
             "schema": { "$ref": "#/components/schemas/DataProfile" }
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "x-redlock-auth": {
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
+        "in": "header",
+        "name": "x-redlock-auth",
+        "type": "apiKey"
       }
     },
     "schemas": {
@@ -709,15 +709,8 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The Data Security Settings APIs are listed below.",
-      "name": "Data Security Settings"
-    }
-  ],
   "paths": {
-    "/dlp/api/v1/object-inventory/resource": {
+    "/dlp/api/v1/object-inventory/resources": {
       "get": {
         "description": "Lists all AWS S3 bucket resources for your onboarded cloud account(s). The response indicates the amount of data eligible for sensitive data scans, malware scans, or both based on the supported file types and file size.",
         "operationId": "get-resource-inventory",
@@ -1471,5 +1464,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "The Data Security Settings endpoints are listed below.",
+      "name": "Data Security Settings"
+    }
+  ]
 }

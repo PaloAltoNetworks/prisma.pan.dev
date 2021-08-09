@@ -1,14 +1,14 @@
 {
   "components": {
+    "requestBodies": {},
     "securitySchemes": {
       "x-redlock-auth": {
-        "description": "JWT Based Authentication",
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
         "in": "header",
         "name": "x-redlock-auth",
         "type": "apiKey"
       }
     },
-    "requestBodies": {},
     "schemas": {
       "RedLockAuditLogBeanModel": {
         "description": "Model for RedLockAuditLogBean",
@@ -18,7 +18,11 @@
           "resourceName": { "type": "string" },
           "resourceType": { "type": "string" },
           "result": { "type": "string" },
-          "timestamp": { "description": "Timestamp", "format": "int64", "type": "integer" },
+          "timestamp": {
+            "description": "Timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
           "user": { "description": "User", "type": "string" }
         },
         "type": "object"
@@ -32,8 +36,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "The Audit Log APIs are listed below.", "name": "Audit Logs" }],
   "paths": {
     "/audit/redlock": {
       "get": {
@@ -59,14 +61,22 @@
             "in": "query",
             "name": "timeUnit",
             "required": false,
-            "schema": { "enum": ["minute", "hour", "day", "week", "month", "year"], "type": "string" }
+            "schema": {
+              "enum": ["minute", "hour", "day", "week", "month", "year"],
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json; charset=UTF-8": {
-                "schema": { "items": { "$ref": "#/components/schemas/RedLockAuditLogBeanModel" }, "type": "array" }
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/RedLockAuditLogBeanModel"
+                  },
+                  "type": "array"
+                }
               }
             },
             "description": "successful operation"
@@ -88,5 +98,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "The Audit Log endpoints are listed below.",
+      "name": "Audit Logs"
+    }
+  ]
 }

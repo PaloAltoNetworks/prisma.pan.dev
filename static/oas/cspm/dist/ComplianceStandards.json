@@ -1,13 +1,5 @@
 {
   "components": {
-    "securitySchemes": {
-      "x-redlock-auth": {
-        "description": "JWT Based Authentication",
-        "in": "header",
-        "name": "x-redlock-auth",
-        "type": "apiKey"
-      }
-    },
     "requestBodies": {
       "ComplianceRequirementModel": {
         "content": {
@@ -31,6 +23,14 @@
             "schema": { "$ref": "#/components/schemas/ComplianceStandardModel" }
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "x-redlock-auth": {
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
+        "in": "header",
+        "name": "x-redlock-auth",
+        "type": "apiKey"
       }
     },
     "schemas": {
@@ -260,13 +260,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The Compliance Standard APIs are listed below.",
-      "name": "Compliance Standards"
-    }
-  ],
   "paths": {
     "/compliance": {
       "get": {
@@ -854,5 +847,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "The Compliance Standard endpoints are listed below.",
+      "name": "Compliance Standards"
+    }
+  ]
 }

@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
-  title: IaC Scan API Version 2 Overview
+  title: IaC Scan API V2 Overview
   description: |
     The Infrastructure-As-Code (IaC) scan service receives and assesses customer IaC resources.
-    With version 2 of the IaC scan API, you can initiate IaC scans asynchronously to evaluate your templates against
+    With IaC Scan API V2, you can initiate IaC scans asynchronously to evaluate your templates against
     Prisma Cloud policies and integrate your IaC scan results with Prisma Cloud. The basic steps to run an IaC scan
     job in Prisma Cloud are as follows:
 
@@ -13,14 +13,14 @@ info:
     4. You can query your job status with [Get Scan Job Status](/api/cloud/cspm/iac-scan#operation/getAsyncScanStatus).
     5. Once the job has successfully completed, you can request the results with [Get Scan Result Details](/api/cloud/cspm/iac-scan#operation/getScanResult).
 
-    Note that version 2 of the IaC scan API is JSON API compliant. Also note that error responses include error codes and details.
+    Note that IaC scan API V2 is JSON API compliant. Also note that error responses include error codes and details.
 
     For more information about the IaC scan API, see [Use the Prisma Cloud IaC Scan REST API](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/prisma-cloud-devops-security/use-the-prisma-cloud-iac-scan-rest-api.html).
 
     ### Error Handling
 
-    As with other Prisma Cloud public API requests, the version 2 IaC scan API requests return standard HTTP response
-    codes. In addition, in an error response, the version 2 IaC scan API requests return details about the error
+    As with other Prisma Cloud public API requests, the IaC scan API V2 requests return standard HTTP response
+    codes. In addition, in an error response, the IaC scan API V2 requests return details about the error
     in an array of objects in the response object. The following table lists the properties of a single object in
     the array.
 
@@ -36,7 +36,7 @@ info:
 servers:
 - url: https://api.prismacloud.io
 security:
-- xRedlockAuth: []
+- x-redlock-auth: []
 tags:
 - description: The Asyncronous Scan APIs enable you to invoke IaC Scans.
   name: Async Scan
@@ -200,12 +200,12 @@ paths:
         After you've created an IaC scan asset in Prisma Cloud but before you initiate an 
         IaC scan job, you must upload the template(s) to be scanned, to the presigned URL 
         from the response object of your scan asset creation request. An example of a curl 
-        request to upload a file is:
+        command to upload a file is:
         ```
-        curl -v -X PUT 'presigned URL' -T path and file name of file to be uploaded
+        curl -v -X PUT '<presigned URL>' -T <file name of file to be uploaded>
         ```
 
-        See Use the IaC Scan API Version 2 for more details.
+        See [Use the Prisma Cloud IaC Scan REST API](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/prisma-cloud-devops-security/use-the-prisma-cloud-iac-scan-rest-api.html) for more details.
       operationId: triggerAsyncScan
       parameters:
       - in: path
@@ -431,10 +431,11 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   securitySchemes:
-    xRedlockAuth:
-      type: apiKey
+    x-redlock-auth:
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
       in: header
       name: x-redlock-auth
+      type: apiKey
   responses:
     ErrorResponse:
       description: JSON.API error response

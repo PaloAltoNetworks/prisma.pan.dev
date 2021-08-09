@@ -41,6 +41,13 @@ Get your Compute Console's address and then use basic auth to access the API.
 
 Get your Compute Console's address, retrieve an token, then use the token to access the API.
 
+The Prisma Cloud Compute token is valid for 60 minutes, and you can use it to access Compute APIs for 60 minutes.
+Internally the token contains a Prisma Cloud platform token, which is only valid for 10 minutes.
+To renew the Compute token, you must have a valid platform token, since Prisma Cloud platform handles all authentication.
+
+As a result, you must renew your Compute token every 10 minutes.
+We recommend that you renew the Compute token every 5 minutes (half the lifetime of the platform token).
+
 1. Get the path to your Console.
 
    1. Go to **Compute > Manage > System > Downloads**.

@@ -1,13 +1,5 @@
 {
   "components": {
-    "securitySchemes": {
-      "x-redlock-auth": {
-        "description": "JWT Based Authentication",
-        "in": "header",
-        "name": "x-redlock-auth",
-        "type": "apiKey"
-      }
-    },
     "requestBodies": {
       "FilterModel": {
         "content": {
@@ -29,6 +21,14 @@
             "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "x-redlock-auth": {
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
+        "in": "header",
+        "name": "x-redlock-auth",
+        "type": "apiKey"
       }
     },
     "schemas": {
@@ -299,6 +299,10 @@
             "items": { "$ref": "#/components/schemas/UIFilterModel" },
             "type": "array"
           },
+          "links": {
+            "description": "JSON query builder links",
+            "type": "string"
+          },
           "needsOffsetUpdate": {
             "description": "Needs offset update (for internal use)",
             "type": "boolean"
@@ -449,13 +453,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The Asset Inventory Dashboard APIs are listed below.",
-      "name": "Asset Inventory"
-    }
-  ],
   "paths": {
     "/filter/v2/inventory/suggest": {
       "get": {
@@ -1044,5 +1041,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "The Asset Inventory Dashboard endpoints are listed below.",
+      "name": "Asset Inventory"
+    }
+  ]
 }

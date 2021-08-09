@@ -1,10 +1,4 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     PolicyScanConfigModel:
       content:
@@ -13,6 +7,12 @@ components:
             $ref: '#/components/schemas/PolicyScanConfigModel'
       description: Model for Policy Scan Config
       required: true
+  securitySchemes:
+    x-redlock-auth:
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     AlertRuleNotificationConfigModel:
       description: Model for Alert Rule Notification Config
@@ -104,6 +104,8 @@ components:
           - pager_duty
           - azure_service_bus_queue
           - demisto
+          - aws_s3
+          - snowflake
           type: string
         withCompression:
           description: Compress detailed report
@@ -130,11 +132,6 @@ components:
         enabled:
           description: Rule/Scan is enabled
           type: boolean
-        excludedPolicies:
-          description: List of policies to exclude from scan
-          items:
-            type: string
-          type: array
         lastModifiedBy:
           description: Last modified by
           readOnly: true
@@ -204,11 +201,6 @@ components:
         enabled:
           description: Rule/Scan is enabled
           type: boolean
-        excludedPolicies:
-          description: List of policies to exclude from scan
-          items:
-            type: string
-          type: array
         lastModifiedBy:
           description: Last modified by
           readOnly: true
@@ -336,11 +328,6 @@ info:
   title: Prisma Cloud Alert Rules API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Alert Rule APIs are listed below.
-  name: Alert Rules
 paths:
   /alert/rule:
     get:
@@ -532,3 +519,8 @@ paths:
       summary: Delete Alert Rule
       tags:
       - Alert Rules
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Alert Rule endpoints are listed below.
+  name: Alert Rules

@@ -1,13 +1,5 @@
 {
   "components": {
-    "securitySchemes": {
-      "x-redlock-auth": {
-        "description": "JWT Based Authentication",
-        "in": "header",
-        "name": "x-redlock-auth",
-        "type": "apiKey"
-      }
-    },
     "requestBodies": {
       "FilterModel": {
         "content": {
@@ -31,6 +23,14 @@
             "schema": { "$ref": "#/components/schemas/FilterSuggestionModel" }
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "x-redlock-auth": {
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
+        "in": "header",
+        "name": "x-redlock-auth",
+        "type": "apiKey"
       }
     },
     "schemas": {
@@ -135,6 +135,7 @@
             ]
           },
           "policy.type": { "$ref": "#/components/schemas/FilterSuggestion" },
+          "resource.group": { "$ref": "#/components/schemas/FilterSuggestion" },
           "resource.id": { "$ref": "#/components/schemas/FilterSuggestion" },
           "resource.name": { "$ref": "#/components/schemas/FilterSuggestion" },
           "resource.type": { "$ref": "#/components/schemas/FilterSuggestion" },
@@ -311,7 +312,9 @@
               "service_now",
               "pager_duty",
               "azure_service_bus_queue",
-              "demisto"
+              "demisto",
+              "aws_s3",
+              "snowflake"
             ],
             "type": "string"
           },
@@ -450,17 +453,29 @@
           "accountId": { "description": "Account ID", "type": "string" },
           "additionalInfo": {
             "additionalProperties": { "type": "string" },
-            "description": "Additional Info",
+            "description": "Additional info",
             "type": "object"
           },
+          "cloudAccountAncestors": {
+            "description": "Cloud Account Ancestors. For GCP.",
+            "items": { "type": "string" },
+            "readOnly": true,
+            "type": "array"
+          },
           "cloudAccountGroups": {
-            "description": "Cloud Account Groups",
+            "description": "Cloud account groups",
             "items": { "type": "string" },
             "type": "array",
             "uniqueItems": true
           },
+          "cloudAccountOwners": {
+            "description": "Cloud account owners. For Azure and GCP.",
+            "items": { "type": "string" },
+            "readOnly": true,
+            "type": "array"
+          },
           "cloudType": {
-            "description": "Cloud Type",
+            "description": "Cloud type",
             "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
             "type": "string"
           },
@@ -471,23 +486,23 @@
           },
           "id": { "description": "Id", "type": "string" },
           "name": { "description": "Name", "type": "string" },
-          "region": { "description": "Region Name", "type": "string" },
+          "region": { "description": "Region name", "type": "string" },
           "regionId": {
-            "description": "Region API Identifier",
+            "description": "Region API identifier",
             "type": "string"
           },
           "resourceApiName": {
-            "description": "Resource API Name",
+            "description": "Resource API name",
             "readOnly": true,
             "type": "string"
           },
           "resourceTags": {
             "additionalProperties": { "type": "string" },
-            "description": "Resource Tags",
+            "description": "Resource tags",
             "type": "object"
           },
           "resourceType": {
-            "description": "Resource Type",
+            "description": "Resource type",
             "readOnly": true,
             "type": "string"
           },
@@ -681,6 +696,10 @@
             "items": { "$ref": "#/components/schemas/UIFilterModel" },
             "type": "array"
           },
+          "links": {
+            "description": "JSON query builder links",
+            "type": "string"
+          },
           "needsOffsetUpdate": {
             "description": "Needs offset update (for internal use)",
             "type": "boolean"
@@ -711,8 +730,8 @@
         "description": "Model for Policy",
         "properties": {
           "cloudType": {
-            "description": "Cloud type (Required for config policies)",
-            "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"],
+            "description": "Cloud type (Required for config policies). Not case-sensitive. Default is **ALL**.",
+            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
             "type": "string"
           },
           "complianceMetadata": {
@@ -774,21 +793,35 @@
           },
           "policySubTypes": {
             "description": "Policy subtype",
-            "enum": [
-              "audit",
-              "build",
-              "data_classification",
-              "malware",
-              "network_event",
-              "run",
-              "ueba"
-            ],
+            "items": {
+              "enum": [
+                "run",
+                "build",
+                "run_and_build",
+                "audit",
+                "data_classification",
+                "malware",
+                "network_event",
+                "network",
+                "ueba",
+                "permissions"
+              ],
+              "type": "string"
+            },
             "readOnly": true,
-            "type": "string"
+            "type": "array",
+            "uniqueItems": true
           },
           "policyType": {
-            "description": "Policy type",
-            "enum": ["config", "audit_event", "network"],
+            "description": "Policy type. Policy type **anomaly** is read-only.",
+            "enum": [
+              "config",
+              "network",
+              "audit_event",
+              "anomaly",
+              "data",
+              "iam"
+            ],
             "type": "string"
           },
           "policyUpi": {
@@ -850,8 +883,8 @@
         "description": "Model for Policy Risk Score",
         "properties": {
           "cloudType": {
-            "description": "Cloud type (Required for config policies)",
-            "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"],
+            "description": "Cloud type (Required for config policies). Not case-sensitive. Default is **ALL**.",
+            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
             "type": "string"
           },
           "complianceMetadata": {
@@ -914,21 +947,35 @@
           },
           "policySubTypes": {
             "description": "Policy subtype",
-            "enum": [
-              "audit",
-              "build",
-              "data_classification",
-              "malware",
-              "network_event",
-              "run",
-              "ueba"
-            ],
+            "items": {
+              "enum": [
+                "run",
+                "build",
+                "run_and_build",
+                "audit",
+                "data_classification",
+                "malware",
+                "network_event",
+                "network",
+                "ueba",
+                "permissions"
+              ],
+              "type": "string"
+            },
             "readOnly": true,
-            "type": "string"
+            "type": "array",
+            "uniqueItems": true
           },
           "policyType": {
-            "description": "Policy type",
-            "enum": ["config", "audit_event", "network"],
+            "description": "Policy type. Policy type **anomaly** is read-only.",
+            "enum": [
+              "config",
+              "network",
+              "audit_event",
+              "anomaly",
+              "data",
+              "iam"
+            ],
             "type": "string"
           },
           "policyUpi": {
@@ -1013,11 +1060,6 @@
           "enabled": {
             "description": "Rule/Scan is enabled",
             "type": "boolean"
-          },
-          "excludedPolicies": {
-            "description": "List of policies to exclude from scan",
-            "items": { "type": "string" },
-            "type": "array"
           },
           "lastModifiedBy": {
             "description": "Last modified by",
@@ -1185,9 +1227,17 @@
       "RuleCriteria": {
         "description": "Criteria for Rule",
         "properties": {
-          "classificationResult": { "type": "string" },
-          "exposure": { "type": "string" },
+          "classificationResult": {
+            "description": "Data policy. Required for DLP rule criteria.",
+            "type": "string"
+          },
+          "exposure": {
+            "description": "File exposure",
+            "enum": ["private", "public", "conditional"],
+            "type": "string"
+          },
           "extension": {
+            "description": "File extensions",
             "items": { "type": "string" },
             "type": "array",
             "uniqueItems": true
@@ -1220,7 +1270,7 @@
           "dataCriteria": {
             "allOf": [
               { "$ref": "#/components/schemas/RuleCriteria" },
-              { "description": "Criteria of rule for Data Policy for DLP" }
+              { "description": "Rule criteria for DLP data policy" }
             ]
           },
           "name": { "description": "Name", "type": "string" },
@@ -1241,7 +1291,7 @@
           },
           "type": {
             "description": "Type of rule or RQL query",
-            "enum": ["Config", "Network", "AuditEvent"],
+            "enum": ["Config", "Network", "AuditEvent", "DLP", "IAM"],
             "type": "string"
           }
         },
@@ -1396,10 +1446,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    { "description": "The Alert APIs are listed below.", "name": "Alerts" }
-  ],
   "paths": {
     "/filter/alert/suggest": {
       "get": {
@@ -2918,5 +2964,9 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    { "description": "The Alert endpoints are listed below.", "name": "Alerts" }
+  ]
 }

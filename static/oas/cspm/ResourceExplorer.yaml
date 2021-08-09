@@ -1,10 +1,4 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     FilterModel3:
       content:
@@ -21,6 +15,12 @@ components:
         application/json; charset=UTF-8:
           schema:
             $ref: '#/components/schemas/ResourceExplorerRequest'
+  securitySchemes:
+    x-redlock-auth:
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     AbsoluteTimeRangeConfigModel:
       allOf:
@@ -378,6 +378,9 @@ components:
           items:
             $ref: '#/components/schemas/UIFilterModel'
           type: array
+        links:
+          description: JSON query builder links
+          type: string
         needsOffsetUpdate:
           description: Needs offset update (for internal use)
           type: boolean
@@ -807,11 +810,6 @@ info:
   title: Prisma Cloud Resource Explorer (Asset Explorer) API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: The Asset Explorer (a.k.a Resource Explorer) APIs are listed below.
-  name: Resource Explorer
 paths:
   /resource:
     post:
@@ -945,11 +943,11 @@ paths:
         \ Analysis | **inspector_rba_count**\nCIS Compliance | **compliance_cis**\n\
         Host Vulnerability | **host_vulnerability_cve**\n\nOnly the **rrn** parameter\
         \ in the request body is used for this API. Ignore the **timelineItemId**\
-        \ \nfield for this API.\n\nAn example request body with  a specified finding\
-        \ type is:\n```\n{\n  \"findingType\": [ \"host_vulnerability_cve\", \"inspector_sbp\"\
-        \ ],\n  \"rrn\": \"rrn::instance:us-east-1:i-xxxxxxxxxx\"\n}\n``` \n\nAn example\
-        \ request body for all finding types is:\n```\n{\n  \"rrn\": \"rrn::instance:us-east-1:i-xxxxxxxxxx\"\
-        \n}\n"
+        \ \nfield for this API.\n\nAn example request body with a specified finding\
+        \ type is:\n```json\n{\n  \"findingType\": [ \"host_vulnerability_cve\", \"\
+        inspector_sbp\" ],\n  \"rrn\": \"rrn::instance:us-east-1:i-xxxxxxxxxx\"\n\
+        }\n``` \n\nAn example request body for all finding types is:\n```json\n{\n\
+        \  \"rrn\": \"rrn::instance:us-east-1:i-xxxxxxxxxx\"\n}\n"
       operationId: get-host-findings
       requestBody:
         $ref: '#/components/requestBodies/ResourceExplorerRequest'
@@ -974,7 +972,7 @@ paths:
       description: "Returns a timeline of events and alerts for the given resource.\
         \  \r\n\r\nOnly the **rrn** parameter in the request body is used for this\
         \ API. Ignore the **timelineItemId** and \n**findingType** fields for this\
-        \ API.\n\nAn example request body is:\n```\n{\n  \"\"rrn\": \"rrn::instance:us-east-1:i-xxxxxxxxxx\"\
+        \ API.\n\nAn example request body is:\n```json\n{\n  \"\"rrn\": \"rrn::instance:us-east-1:i-xxxxxxxxxx\"\
         \n}\n```\n"
       operationId: get-timeline-for-resource
       requestBody:
@@ -1008,7 +1006,7 @@ paths:
         \ API. Ignore the **findingType** \nfield for this API.\n\nYou can find the\
         \ **timelineItemId** for your resource from the timeline results that \n[Get\
         \ Resource Timeline](/api/cloud/cspm/resource-explorer#operation/get-timeline-for-resource)\n\
-        returns.\n\nAn example request body is:\n```\n{\n  \"rrn\": \"rrn::instance:us-east-1:i-xxxxxxxxxx\"\
+        returns.\n\nAn example request body is:\n```json\n{\n  \"rrn\": \"rrn::instance:us-east-1:i-xxxxxxxxxx\"\
         ,\n  \"timelineItemId\": \"xxxxxxxxxxxxxx\"\n}\n```\n"
       operationId: get-resource-raw
       requestBody:
@@ -1215,7 +1213,7 @@ paths:
           - failed
           type: string
       - description: Token identifying the required page of data. When there are multiple
-          pages of data, the **NextPageToken** from the response can be used in this
+          pages of data, the **nextPageToken** from the response can be used in this
           parameter
         in: query
         name: pageToken
@@ -1274,3 +1272,8 @@ paths:
       summary: Resource Scan Info - POST
       tags:
       - Resource Explorer
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: The Asset Explorer (a.k.a Resource Explorer) endpoints are listed below.
+  name: Resource Explorer

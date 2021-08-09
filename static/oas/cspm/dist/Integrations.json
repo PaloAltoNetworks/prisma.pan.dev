@@ -1,13 +1,5 @@
 {
   "components": {
-    "securitySchemes": {
-      "x-redlock-auth": {
-        "description": "JWT Based Authentication",
-        "in": "header",
-        "name": "x-redlock-auth",
-        "type": "apiKey"
-      }
-    },
     "requestBodies": {
       "IntegrationModel": {
         "content": {
@@ -17,6 +9,14 @@
         },
         "description": "Model for Integration",
         "required": true
+      }
+    },
+    "securitySchemes": {
+      "x-redlock-auth": {
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
+        "in": "header",
+        "name": "x-redlock-auth",
+        "type": "apiKey"
       }
     },
     "schemas": {
@@ -101,7 +101,9 @@
               "service_now",
               "pager_duty",
               "azure_service_bus_queue",
-              "demisto"
+              "demisto",
+              "aws_s3",
+              "snowflake"
             ],
             "type": "string"
           },
@@ -159,6 +161,8 @@
               "SERVICE_NOW",
               "PAGER_DUTY",
               "DEMISTO",
+              "AWS_S3",
+              "SNOWFLAKE",
               "TENABLE",
               "QUALYS",
               "GOOGLE_CSCC",
@@ -281,11 +285,6 @@
           "enabled": {
             "description": "Rule/Scan is enabled",
             "type": "boolean"
-          },
-          "excludedPolicies": {
-            "description": "List of policies to exclude from scan",
-            "items": { "type": "string" },
-            "type": "array"
           },
           "lastModifiedBy": {
             "description": "Last modified by",
@@ -432,13 +431,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "THe Integration APIs are listed below.",
-      "name": "Integrations"
-    }
-  ],
   "paths": {
     "/integration/name": {
       "get": {
@@ -507,6 +499,8 @@
                       "SERVICE_NOW",
                       "PAGER_DUTY",
                       "DEMISTO",
+                      "AWS_S3",
+                      "SNOWFLAKE",
                       "TENABLE",
                       "QUALYS",
                       "GOOGLE_CSCC",
@@ -771,5 +765,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "THe Integration endpoints are listed below.",
+      "name": "Integrations"
+    }
+  ]
 }

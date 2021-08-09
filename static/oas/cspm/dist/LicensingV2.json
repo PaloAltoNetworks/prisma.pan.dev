@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Prisma Cloud License V2 API Overview",
-    "description": "The Prisma Cloud License APIs enable you to query your Prisma Cloud usage.",
+    "description": "The Prisma Cloud License endpoints enable you to query your Prisma Cloud usage.",
     "version": "Latest",
     "contact": {}
   },
@@ -149,7 +149,7 @@
       "post": {
         "tags": ["Licensing"],
         "summary": "Get Usage CSV",
-        "description": "Get usage breakdown in a CSV file.",
+        "description": "Get usage breakdown in a CSV file.\n\nNote that the following are required:\n* Request header: **Accept: application/octet-stream**\n* Request body parameter: **csvHeaderRequired** = **true**.\n",
         "operationId": "license-get-usage-csv",
         "requestBody": {
           "content": {
@@ -199,11 +199,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/license/api/v1/usage\"\n\nheaders = {\n    'content-type': \"application/json; charset=UTF-8\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/license/api/v1/usage\"\n\nheaders = {\n    'content-type': \"application/json; charset=UTF-8\",\n    'accept': \"application/octet-stream\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/license/api/v1/usage \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/license/api/v1/usage \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'accept: application/octet-stream' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -586,7 +586,7 @@
     },
     "securitySchemes": {
       "x-redlock-auth": {
-        "description": "Your API header requires a JSON Web Token (JWT) token for authentication.",
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
         "in": "header",
         "name": "x-redlock-auth",
         "type": "apiKey"

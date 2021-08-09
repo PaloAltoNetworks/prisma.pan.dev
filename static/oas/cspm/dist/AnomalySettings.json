@@ -1,14 +1,14 @@
 {
   "components": {
+    "requestBodies": {},
     "securitySchemes": {
       "x-redlock-auth": {
-        "description": "JWT Based Authentication",
+        "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
         "in": "header",
         "name": "x-redlock-auth",
         "type": "apiKey"
       }
     },
-    "requestBodies": {},
     "schemas": {
       "AnomaliesSettingsRequestModel": {
         "description": "Model for Anomaly Settings Request",
@@ -50,13 +50,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The APIs to manage anomaly setting thresholds and alert disposition for anomalies are listed below.",
-      "name": "Anomaly Settings"
-    }
-  ],
   "paths": {
     "/anomalies/settings": {
       "get": {
@@ -192,5 +185,12 @@
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "The endpoints to manage anomaly setting thresholds and alert disposition for anomalies are listed below.",
+      "name": "Anomaly Settings"
+    }
+  ]
 }

@@ -1,10 +1,4 @@
 components:
-  securitySchemes:
-    x-redlock-auth:
-      description: JWT Based Authentication
-      in: header
-      name: x-redlock-auth
-      type: apiKey
   requestBodies:
     IntegrationModel:
       content:
@@ -13,6 +7,12 @@ components:
             $ref: '#/components/schemas/IntegrationModel'
       description: Model for Integration
       required: true
+  securitySchemes:
+    x-redlock-auth:
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
+      in: header
+      name: x-redlock-auth
+      type: apiKey
   schemas:
     AlertRuleNotificationConfigModel:
       description: Model for Alert Rule Notification Config
@@ -104,6 +104,8 @@ components:
           - pager_duty
           - azure_service_bus_queue
           - demisto
+          - aws_s3
+          - snowflake
           type: string
         withCompression:
           description: Compress detailed report
@@ -155,6 +157,8 @@ components:
           - SERVICE_NOW
           - PAGER_DUTY
           - DEMISTO
+          - AWS_S3
+          - SNOWFLAKE
           - TENABLE
           - QUALYS
           - GOOGLE_CSCC
@@ -256,11 +260,6 @@ components:
         enabled:
           description: Rule/Scan is enabled
           type: boolean
-        excludedPolicies:
-          description: List of policies to exclude from scan
-          items:
-            type: string
-          type: array
         lastModifiedBy:
           description: Last modified by
           readOnly: true
@@ -415,11 +414,6 @@ info:
   title: Prisma Cloud Integration API Overview
   version: Latest
 openapi: 3.0.0
-servers:
-- url: https://api.prismacloud.io
-tags:
-- description: THe Integration APIs are listed below.
-  name: Integrations
 paths:
   /integration/name:
     get:
@@ -472,6 +466,8 @@ paths:
                   - SERVICE_NOW
                   - PAGER_DUTY
                   - DEMISTO
+                  - AWS_S3
+                  - SNOWFLAKE
                   - TENABLE
                   - QUALYS
                   - GOOGLE_CSCC
@@ -654,3 +650,8 @@ paths:
       summary: Delete Integration
       tags:
       - Integrations
+servers:
+- url: https://api.prismacloud.io
+tags:
+- description: THe Integration endpoints are listed below.
+  name: Integrations
