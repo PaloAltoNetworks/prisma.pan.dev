@@ -22,7 +22,6 @@ module.exports = {
       indexName: "prisma_pan",
       searchParameters: {}, // Optional, if provided by Algolia
     },
-    sidebarCollapsible: true,
     navbar: {
       title: "",
       logo: {
@@ -112,6 +111,7 @@ module.exports = {
           path: "docs",
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
+          sidebarCollapsible: true,
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -147,6 +147,7 @@ module.exports = {
       },
     ],
   ],
+  themes: [require.resolve("./docusaurus-plugin-webpack/src/index.cjs")],
   customFields: {
     sites: [
       {

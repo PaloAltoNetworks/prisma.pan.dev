@@ -45,6 +45,8 @@
   /* Tables */
   /* --ifm-table-stripe-background: var(--ifm-background-color); */
   --ifm-table-border-width: 0px;
+
+  --ifm-blockquote-background-color: var(--ifm-background-color);
 }
 
 /* Dark mode overrides */
@@ -74,22 +76,8 @@ html[data-theme="dark"] {
   --ifm-hero-color: var(--ifm-color-gray-600);
 
   --ifm-color-gray-switch: var(--ifm-color-gray-300);
-}
 
-.alert--secondary svg {
-  fill: white;
-}
-
-.alert--secondary {
-  color: white;
-}
-
-.alert--secondary p {
-  color: white !important;
-}
-
-.alert--secondary a {
-  color: white;
+  --ifm-blockquote-background-color: var(--ifm-background-color);
 }
 
 .footer--dark {

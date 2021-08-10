@@ -19,7 +19,8 @@ const toolList = [
     imageUrl: "/img/policies-white.svg",
     description: (
       <>
-        JSON policies for Config, Network, Audit Event, and IAM on GitHub.
+        JSON policies for Config, Network, Audit Event, and IAM on GitHub.{" "}
+        <br></br>
         <img className={styles.gh} src="/img/octocat.svg"></img>
       </>
     ),
