@@ -61,7 +61,10 @@
             "type": "string"
           },
           "status": { "description": "Access key status", "type": "string" },
-          "username": { "description": "Access key username", "type": "string" }
+          "username": {
+            "description": "Access key user name",
+            "type": "string"
+          }
         },
         "type": "object"
       },

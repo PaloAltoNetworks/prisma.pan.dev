@@ -1,6 +1,15 @@
 {
   "components": {
     "requestBodies": {
+      "AWSOrgRequestConfigModel": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AWSOrgRequestConfigModel"
+            }
+          }
+        }
+      },
       "Resources": {
         "content": {
           "application/json": {
@@ -44,6 +53,160 @@
       }
     },
     "schemas": {
+      "AWSOrgConfig": {
+        "description": "Model for AWSOrgConfig",
+        "properties": {
+          "accountId": { "description": "AWS account ID", "type": "string" },
+          "masterCftLandingPage": {
+            "description": "AWS master CFT landing page",
+            "type": "string"
+          },
+          "masterCftTemplate": {
+            "description": "AWS member CFT template",
+            "type": "string"
+          },
+          "masterCftUrl": {
+            "description": "AWS master CFT URL",
+            "type": "string"
+          },
+          "masterExternalId": {
+            "description": "AWS master external ID, which establishes trust between your Prisma Cloud and AWS accounts",
+            "type": "string"
+          },
+          "masterRoleArn": {
+            "description": "AWS master role ARN for your Prisma Cloud role",
+            "type": "string"
+          },
+          "memberCftTemplate": {
+            "description": "AWS member CFT template",
+            "type": "string"
+          },
+          "memberCftUrl": {
+            "description": "AWS member CFT URL",
+            "type": "string"
+          },
+          "memberExternalId": {
+            "description": "AWS member external ID",
+            "type": "string"
+          },
+          "memberRoleName": {
+            "description": "AWS member role name",
+            "type": "string"
+          },
+          "scanOption": { "description": "Scan option", "type": "string" },
+          "snsEndpointUrl": {
+            "description": "SNS subscription URL",
+            "type": "string"
+          },
+          "snsTopicArn": {
+            "description": "SNS topic ARN for notification of storage object changes",
+            "type": "string"
+          },
+          "storageUUID": { "description": "Storage UUID", "type": "string" }
+        },
+        "required": [
+          "masterCftLandingPage",
+          "masterCftTemplate",
+          "masterCftUrl",
+          "masterExternalId",
+          "masterRoleArn",
+          "memberCftTemplate",
+          "memberCftUrl",
+          "memberExternalId",
+          "memberRoleName",
+          "scanOption",
+          "snsEndpointUrl",
+          "snsTopicArn",
+          "storageUUID"
+        ],
+        "type": "object"
+      },
+      "AWSOrgRequestConfigModel": {
+        "description": "Model for AWS Org Request Config",
+        "properties": {
+          "accountId": { "description": "AWS Account Id", "type": "string" },
+          "cloudType": {
+            "description": "Cloud type",
+            "enum": ["AWS"],
+            "type": "string"
+          },
+          "masterExternalId": {
+            "description": "AWS master external ID, which establishes trust between your Prisma Cloud and AWS accounts",
+            "type": "string"
+          },
+          "masterRoleArn": {
+            "description": "AWS master role ARN for your Prisma Cloud role",
+            "type": "string"
+          },
+          "memberExternalId": {
+            "description": "AWS member external ID",
+            "type": "string"
+          },
+          "memberRoleName": {
+            "description": "AWS memeber role name",
+            "type": "string"
+          },
+          "scanOption": {
+            "description": "Scan option",
+            "enum": ["Full", "Custom"],
+            "type": "string"
+          },
+          "snsTopicArn": {
+            "description": "SNS topic ARN for notification of storage object changes",
+            "type": "string"
+          },
+          "storageUUID": { "description": "Storage UUID", "type": "string" }
+        },
+        "required": [
+          "accountId",
+          "cloudType",
+          "masterExternalId",
+          "masterRoleArn",
+          "memberExternalId",
+          "memberRoleName",
+          "scanOption",
+          "snsTopicArn",
+          "storageUUID"
+        ],
+        "type": "object"
+      },
+      "AWSOrgStatusConfigModel": {
+        "description": "Model for AWSOrgStatusConfig",
+        "properties": {
+          "accountId": { "description": "AWS account ID", "type": "string" },
+          "externalId": {
+            "description": "AWS master external ID",
+            "type": "string"
+          },
+          "roleArn": { "description": "AWS master role ARN", "type": "string" },
+          "snsTopicArn": {
+            "description": "SNS topic ARN for data security",
+            "type": "string"
+          },
+          "tenantId": { "description": "Tenant Id", "type": "string" }
+        },
+        "required": ["accountId", "externalId", "roleArn", "snsTopicArn"],
+        "type": "object"
+      },
+      "AWSOrgStatusResponseModel": {
+        "description": "Response for status check before AWS Org onboarding",
+        "properties": {
+          "isSuccess": {
+            "description": "Boolean indicating if the operation was a success",
+            "type": "boolean"
+          },
+          "message": {
+            "description": "List of error messages if the status check failed",
+            "type": "string"
+          },
+          "sections": {
+            "description": "List indicating the location of failure",
+            "items": { "type": "string" },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
       "AbsoluteTimeRangeConfigModel": {
         "allOf": [
           { "$ref": "#/components/schemas/TimeRangeConfigModel" },
@@ -309,12 +472,12 @@
           "deploymentType": {
             "description": "Deployment Type",
             "enum": [
-              "AWS",
-              "AWS_GOVERNMENT",
-              "AWS_CHINA",
               "AZURE",
               "AZURE_GOVERNMENT",
               "AZURE_CHINA",
+              "AWS",
+              "AWS_GOVERNMENT",
+              "AWS_CHINA",
               "OCI",
               "OCI_GOVERNMENT",
               "OCI_CHINA",
@@ -378,6 +541,157 @@
         },
         "type": "object"
       },
+      "AwsCloudOrgModel": {
+        "description": "Model for AWS Cloud Org",
+        "properties": {
+          "accountGroupInfos": {
+            "description": "Account group details of groups associated with this account",
+            "items": { "$ref": "#/components/schemas/AccountGroupInfo" },
+            "type": "array"
+          },
+          "accountId": { "description": "Account ID", "type": "string" },
+          "accountType": {
+            "description": "Cloud Account Type",
+            "enum": [
+              "ACCOUNT",
+              "MASTER_SERVICE_ACCOUNT",
+              "COMPARTMENT",
+              "ORGANIZATION",
+              "TENANT"
+            ],
+            "readOnly": true,
+            "type": "string"
+          },
+          "addedOn": {
+            "description": "Added On",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "associatedAccountGroupsCount": {
+            "description": "Associated Account Groups Count with this cloud account",
+            "format": "int32",
+            "type": "integer"
+          },
+          "assumeRoleAccount": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "string"
+          },
+          "canonicalId": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "string"
+          },
+          "cloudAccountOwner": {
+            "description": "Cloud account owner",
+            "type": "string"
+          },
+          "cloudAccountOwnerCount": {
+            "description": "Cloud account owner count",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "cloudAccountStatus": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "object"
+          },
+          "cloudType": {
+            "description": "Cloud Type",
+            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "readOnly": true,
+            "type": "string"
+          },
+          "defaultAccountGroupId": {
+            "description": "Default Account Group",
+            "type": "string"
+          },
+          "deploymentType": {
+            "description": "Deployment Type",
+            "enum": [
+              "AZURE",
+              "AZURE_GOVERNMENT",
+              "AZURE_CHINA",
+              "AWS",
+              "AWS_GOVERNMENT",
+              "AWS_CHINA",
+              "OCI",
+              "OCI_GOVERNMENT",
+              "OCI_CHINA",
+              "GCP",
+              "GCP_GOVERNMENT",
+              "GCP_CHINA",
+              "ALIBABA_CLOUD",
+              "ALIBABA_CLOUD_GOVERNMENT",
+              "ALIBABA_CLOUD_CHINA"
+            ],
+            "type": "string"
+          },
+          "enabled": { "description": "Enabled", "type": "boolean" },
+          "externalId": {
+            "description": "External ID",
+            "readOnly": true,
+            "type": "string"
+          },
+          "groupIds": {
+            "description": "Group Ids",
+            "items": { "type": "string" },
+            "readOnly": true,
+            "type": "array"
+          },
+          "ingestionMode": {
+            "description": "Ingestion Mode",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "lastModifiedBy": {
+            "description": "Last Modified By",
+            "readOnly": true,
+            "type": "string"
+          },
+          "lastModifiedTs": {
+            "description": "Time account was last updated",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "memberExternalId": {
+            "description": "External Id in Member Accounts",
+            "type": "string"
+          },
+          "memberRoleName": {
+            "description": "Role Name in Member Accounts",
+            "type": "string"
+          },
+          "memberRoleStatus": {
+            "description": "Role Creation Status in Member Accounts",
+            "type": "boolean"
+          },
+          "name": { "description": "Name", "type": "string" },
+          "protectionMode": {
+            "description": "Protection Mode",
+            "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
+            "readOnly": true,
+            "type": "string"
+          },
+          "roleArn": { "description": "Role ARN", "type": "string" },
+          "storageScanConfig": {
+            "allOf": [
+              { "$ref": "#/components/schemas/StorageScanConfigModel" },
+              { "description": "Storage Scan Configurations" }
+            ]
+          },
+          "storageScanEnabled": {
+            "description": "Storage Scan Enabled",
+            "type": "boolean"
+          },
+          "storageUUID": { "description": "Storage UUID", "type": "string" }
+        },
+        "type": "object"
+      },
       "AzureAncestorsModel": {
         "description": "Model for Azure GetAncestors API Response",
         "properties": {
@@ -405,7 +719,9 @@
               "PROJECT",
               "SUBSCRIPTION",
               "MANAGEMENT_GROUP",
-              "TENANT"
+              "TENANT",
+              "ACCOUNT",
+              "OU"
             ],
             "type": "string"
           }
@@ -484,12 +800,12 @@
           "deploymentType": {
             "description": "Deployment Type",
             "enum": [
-              "AWS",
-              "AWS_GOVERNMENT",
-              "AWS_CHINA",
               "AZURE",
               "AZURE_GOVERNMENT",
               "AZURE_CHINA",
+              "AWS",
+              "AWS_GOVERNMENT",
+              "AWS_CHINA",
               "OCI",
               "OCI_GOVERNMENT",
               "OCI_CHINA",
@@ -508,7 +824,7 @@
             "type": "string"
           },
           "groupIds": {
-            "description": "Group Ids",
+            "description": "Group IDs",
             "items": { "type": "string" },
             "readOnly": true,
             "type": "array"
@@ -536,7 +852,7 @@
             "type": "integer"
           },
           "monitorFlowLogs": {
-            "description": "Monitor Flow Logs",
+            "description": "Monitor flow logs",
             "type": "boolean"
           },
           "name": { "description": "Name", "readOnly": true, "type": "string" },
@@ -552,23 +868,15 @@
             "readOnly": true,
             "type": "string"
           },
-          "servicePrincipalId": {
-            "description": "Enterprise application object ID",
-            "readOnly": true,
-            "type": "string"
-          },
+          "servicePrincipalId": { "readOnly": true, "type": "string" },
           "storageScanEnabled": {
             "description": "Storage Scan Enabled",
             "type": "boolean"
           },
           "storageUUID": { "description": "Storage UUID", "type": "string" },
-          "subscriptionId": {
-            "description": "Subscription ID",
-            "readOnly": true,
-            "type": "string"
-          },
+          "subscriptionId": { "readOnly": true, "type": "string" },
           "tenantId": {
-            "description": "Directory (Tenant ID)",
+            "description": "Directory (Tenant) ID",
             "type": "string"
           }
         },
@@ -605,7 +913,10 @@
             "format": "int32",
             "type": "integer"
           },
-          "clientId": { "description": "Client ID", "type": "string" },
+          "clientId": {
+            "description": "Application (Client) ID",
+            "type": "string"
+          },
           "cloudAccount": {
             "$ref": "#/components/schemas/GenericCloudAccountModel"
           },
@@ -671,7 +982,7 @@
             "type": "string"
           },
           "groupIds": {
-            "description": "Group Ids",
+            "description": "Group IDs",
             "items": { "type": "string" },
             "readOnly": true,
             "type": "array"
@@ -688,7 +999,7 @@
             "type": "integer"
           },
           "key": {
-            "description": "Application key",
+            "description": "Application client secret",
             "readOnly": true,
             "type": "string"
           },
@@ -704,7 +1015,7 @@
             "type": "integer"
           },
           "monitorFlowLogs": {
-            "description": "Monitor Flow Logs",
+            "description": "Monitor flow logs",
             "type": "boolean"
           },
           "name": { "description": "Name", "readOnly": true, "type": "string" },
@@ -721,7 +1032,7 @@
             "type": "string"
           },
           "rootSyncEnabled": {
-            "description": "true = Sync of root tenant is enabled",
+            "description": "true = Cloud account sync of tenant root group is enabled",
             "type": "boolean"
           },
           "servicePrincipalId": {
@@ -739,7 +1050,10 @@
             "readOnly": true,
             "type": "string"
           },
-          "tenantId": { "description": "Tenant ID", "type": "string" }
+          "tenantId": {
+            "description": "Directory (Tenant) ID",
+            "type": "string"
+          }
         },
         "type": "object"
       },
@@ -792,9 +1106,11 @@
         "description": "Model for Cloud Account Interface",
         "oneOf": [
           { "$ref": "#/components/schemas/AwsCloudAccountModel" },
+          { "$ref": "#/components/schemas/AwsCloudOrgModel" },
           { "$ref": "#/components/schemas/AzureSubscriptionModel" },
           { "$ref": "#/components/schemas/AzureTenantModel" },
           { "$ref": "#/components/schemas/GcpCloudProjectModel" },
+          { "$ref": "#/components/schemas/GcpCloudOrgModel" },
           { "$ref": "#/components/schemas/AlibabaCloudAccountModel" },
           { "$ref": "#/components/schemas/OciCloudAccountModel" }
         ],
@@ -1052,6 +1368,155 @@
         },
         "type": "object"
       },
+      "DLPAPIResponse": {
+        "description": "Model for response from API",
+        "properties": {
+          "detail": { "description": "Exception details", "type": "string" },
+          "message": { "description": "API response", "type": "string" },
+          "name": { "description": "Exception name", "type": "string" }
+        },
+        "type": "object"
+      },
+      "GcpCloudOrgModel": {
+        "description": "Model for GCP Cloud Account",
+        "properties": {
+          "accountGroupCreationMode": {
+            "description": "Cloud Account group creation mode",
+            "enum": ["MANUAL", "AUTO", "RECURSIVE"],
+            "type": "string"
+          },
+          "accountGroupInfos": {
+            "description": "Account group details of groups associated with this account",
+            "items": { "$ref": "#/components/schemas/AccountGroupInfo" },
+            "type": "array"
+          },
+          "accountId": { "description": "Account ID", "type": "string" },
+          "accountType": {
+            "description": "Cloud Account Type",
+            "enum": [
+              "ACCOUNT",
+              "MASTER_SERVICE_ACCOUNT",
+              "COMPARTMENT",
+              "ORGANIZATION",
+              "TENANT"
+            ],
+            "readOnly": true,
+            "type": "string"
+          },
+          "associatedAccountGroupsCount": {
+            "description": "Associated Account Groups Count with this cloud account",
+            "format": "int32",
+            "type": "integer"
+          },
+          "autoAccountGroupCreationModeOn": { "type": "boolean" },
+          "cloudAccount": {
+            "$ref": "#/components/schemas/GenericCloudAccountModel"
+          },
+          "cloudAccountOwner": {
+            "description": "Cloud account owner",
+            "type": "string"
+          },
+          "cloudAccountOwnerCount": {
+            "description": "Cloud account owner count",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "cloudAccountStatus": {
+            "description": "Internal use only",
+            "readOnly": true,
+            "type": "object"
+          },
+          "cloudType": {
+            "description": "Cloud Type",
+            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "readOnly": true,
+            "type": "string"
+          },
+          "compressionEnabled": {
+            "description": "Compression Enabled",
+            "type": "boolean"
+          },
+          "credentials": { "description": "Credentials", "type": "object" },
+          "dataflowEnabledProject": {
+            "description": "Dataflow enabled project ID",
+            "type": "string"
+          },
+          "defaultAccountGroupId": {
+            "description": "Default Account Group",
+            "type": "string"
+          },
+          "deploymentType": {
+            "description": "Deployment Type",
+            "enum": [
+              "AZURE",
+              "AZURE_GOVERNMENT",
+              "AZURE_CHINA",
+              "AWS",
+              "AWS_GOVERNMENT",
+              "AWS_CHINA",
+              "OCI",
+              "OCI_GOVERNMENT",
+              "OCI_CHINA",
+              "GCP",
+              "GCP_GOVERNMENT",
+              "GCP_CHINA",
+              "ALIBABA_CLOUD",
+              "ALIBABA_CLOUD_GOVERNMENT",
+              "ALIBABA_CLOUD_CHINA"
+            ],
+            "type": "string"
+          },
+          "enabled": { "description": "Enabled", "type": "boolean" },
+          "flowLogStorageBucket": {
+            "description": "Flow Log Storage Bucket",
+            "type": "string"
+          },
+          "groupIds": {
+            "description": "Group Ids",
+            "items": { "type": "string" },
+            "readOnly": true,
+            "type": "array"
+          },
+          "hierarchySelection": {
+            "items": { "$ref": "#/components/schemas/HierarchySelectionModel" },
+            "type": "array"
+          },
+          "lastModifiedBy": {
+            "description": "Last Modified By",
+            "readOnly": true,
+            "type": "string"
+          },
+          "lastModifiedTs": {
+            "description": "Time account was last updated",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "name": { "description": "Name", "type": "string" },
+          "organizationName": {
+            "description": "Organization Display Name in Cloud",
+            "type": "string"
+          },
+          "projectId": { "readOnly": true, "type": "string" },
+          "protectionMode": {
+            "description": "Protection Mode",
+            "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
+            "readOnly": true,
+            "type": "string"
+          },
+          "storageScanEnabled": {
+            "description": "Storage Scan Enabled",
+            "type": "boolean"
+          },
+          "storageUUID": { "description": "Storage UUID", "type": "string" },
+          "transitionMode": {
+            "enum": ["NO_TRANSITION", "MANUAL_TO_AUTO"],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "GcpCloudProjectModel": {
         "description": "Model for GCP Cloud Account",
         "properties": {
@@ -1088,10 +1553,7 @@
             "format": "int32",
             "type": "integer"
           },
-          "autoAccountGroupCreationModeOn": {
-            "description": "true = Create account groups automatically",
-            "type": "boolean"
-          },
+          "autoAccountGroupCreationModeOn": { "type": "boolean" },
           "cloudAccount": {
             "$ref": "#/components/schemas/GenericCloudAccountModel"
           },
@@ -1181,11 +1643,7 @@
             "readOnly": true,
             "type": "integer"
           },
-          "projectId": {
-            "description": "Project ID",
-            "readOnly": true,
-            "type": "string"
-          },
+          "projectId": { "readOnly": true, "type": "string" },
           "protectionMode": {
             "description": "Protection Mode",
             "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
@@ -1213,7 +1671,11 @@
           "parent": { "description": "Parent", "type": "string" },
           "type": {
             "description": "Node type",
-            "enum": ["ORG", "FOLDER", "PROJECT"],
+            "enum": [
+              "ORG",
+              "FOLDER",
+              "PROJECT"
+            ],
             "type": "string"
           }
         },
@@ -1332,7 +1794,16 @@
           "displayName": { "description": "Display name", "type": "string" },
           "nodeType": {
             "description": "Node type",
-            "enum": ["ORG", "FOLDER", "PROJECT"],
+            "enum": [
+              "ORG",
+              "FOLDER",
+              "PROJECT",
+              "SUBSCRIPTION",
+              "MANAGEMENT_GROUP",
+              "TENANT",
+              "ACCOUNT",
+              "OU"
+            ],
             "type": "string"
           },
           "resourceId": { "description": "Resource ID", "type": "string" },
@@ -2893,6 +3364,170 @@
           {
             "lang": "Shell + Curl",
             "source": "curl --request POST \\\n  --url https://api.prismacloud.io/cloud-accounts-manager/v1/cloudAccounts/azureAccounts/{account_id}/ancestors \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"resourceIds\":[\"string\"]}'"
+          }
+        ]
+      }
+    },
+    "/dlp/api/v1/config/awsorg/status": {
+      "post": {
+        "description": "Returns whether or not the set up for your AWS Organization meets the prerequisites for successful creation of a data security configuration.",
+        "operationId": "get-status-for-org",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AWSOrgStatusConfigModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AWSOrgStatusResponseModel"
+                }
+              }
+            },
+            "description": "success"
+          },
+          "400": {
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
+            "description": "bad_request"
+          },
+          "500": { "description": "internal_error" }
+        },
+        "security": [{ "x-redlock-auth": [] }],
+        "summary": "Check Data Security Preconditions (AWS Org)",
+        "tags": ["Cloud Accounts"],
+        "x-codeSamples": [
+          {
+            "lang": "Python + Requests",
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/config/awsorg/status\"\n\npayload = \"{\\\"accountId\\\":\\\"string\\\",\\\"externalId\\\":\\\"string\\\",\\\"roleArn\\\":\\\"string\\\",\\\"snsTopicArn\\\":\\\"string\\\",\\\"tenantId\\\":\\\"string\\\"}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+          },
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/dlp/api/v1/config/awsorg/status \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountId\":\"string\",\"externalId\":\"string\",\"roleArn\":\"string\",\"snsTopicArn\":\"string\",\"tenantId\":\"string\"}'"
+          }
+        ]
+      }
+    },
+    "/dlp/api/config/v2": {
+      "post": {
+        "description": "Creates a data security configuration for an AWS Organization.",
+        "operationId": "onboard-aws-org-scan",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AWSOrgRequestConfigModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
+            "description": "success"
+          },
+          "500": { "description": "internal_error" }
+        },
+        "security": [{ "x-redlock-auth": [] }],
+        "summary": "Add Data Security Config (AWS Org)",
+        "tags": ["Cloud Accounts"],
+        "x-codeSamples": [
+          {
+            "lang": "Python + Requests",
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/config/v2\"\n\npayload = \"{\\\"accountId\\\":\\\"string\\\",\\\"cloudType\\\":\\\"AWS\\\",\\\"masterExternalId\\\":\\\"string\\\",\\\"masterRoleArn\\\":\\\"string\\\",\\\"memberExternalId\\\":\\\"string\\\",\\\"memberRoleName\\\":\\\"string\\\",\\\"scanOption\\\":\\\"Full\\\",\\\"snsTopicArn\\\":\\\"string\\\",\\\"storageUUID\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+          },
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/dlp/api/config/v2 \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountId\":\"string\",\"cloudType\":\"AWS\",\"masterExternalId\":\"string\",\"masterRoleArn\":\"string\",\"memberExternalId\":\"string\",\"memberRoleName\":\"string\",\"scanOption\":\"Full\",\"snsTopicArn\":\"string\",\"storageUUID\":\"string\"}'"
+          }
+        ]
+      },
+      "put": {
+        "description": "Updates the data security configuration for the AWS Organization with the specified account ID.",
+        "operationId": "update-aws-org-scan-config",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AWSOrgRequestConfigModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/DLPAPIResponse" }
+              }
+            },
+            "description": "success"
+          },
+          "500": { "description": "internal_error" }
+        },
+        "security": [{ "x-redlock-auth": [] }],
+        "summary": "Update Data Security Config (AWS Org)",
+        "tags": ["Cloud Accounts"],
+        "x-codeSamples": [
+          {
+            "lang": "Python + Requests",
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/config/v2\"\n\npayload = \"{\\\"accountId\\\":\\\"string\\\",\\\"cloudType\\\":\\\"AWS\\\",\\\"masterExternalId\\\":\\\"string\\\",\\\"masterRoleArn\\\":\\\"string\\\",\\\"memberExternalId\\\":\\\"string\\\",\\\"memberRoleName\\\":\\\"string\\\",\\\"scanOption\\\":\\\"Full\\\",\\\"snsTopicArn\\\":\\\"string\\\",\\\"storageUUID\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
+          },
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/dlp/api/config/v2 \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountId\":\"string\",\"cloudType\":\"AWS\",\"masterExternalId\":\"string\",\"masterRoleArn\":\"string\",\"memberExternalId\":\"string\",\"memberRoleName\":\"string\",\"scanOption\":\"Full\",\"snsTopicArn\":\"string\",\"storageUUID\":\"string\"}'"
+          }
+        ]
+      }
+    },
+    "/dlp/api/config/v2/{accountId}": {
+      "get": {
+        "description": "Returns the data security configuration for the AWS Organization with the specified account ID.",
+        "operationId": "get-aws-org-scan-details",
+        "parameters": [
+          {
+            "description": "AWS account ID",
+            "in": "path",
+            "name": "accountId",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/AWSOrgConfig" }
+              }
+            },
+            "description": "success"
+          },
+          "500": { "description": "internal_error" }
+        },
+        "security": [{ "x-redlock-auth": [] }],
+        "summary": "Get Data Security Config (AWS Org)",
+        "tags": ["Cloud Accounts"],
+        "x-codeSamples": [
+          {
+            "lang": "Python + Requests",
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/config/v2/{accountId}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+          },
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/dlp/api/config/v2/{accountId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }

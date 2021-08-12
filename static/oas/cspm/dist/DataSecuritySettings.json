@@ -529,19 +529,10 @@
       "StorageResource": {
         "description": "Storage resource model",
         "properties": {
-          "accountId": {
-            "description": "Prisma Cloud account ID",
-            "format": "int32",
-            "readOnly": true,
-            "type": "integer"
-          },
+          "accountId": { "description": "Account number", "type": "string" },
           "accountName": {
             "description": "Account name",
             "readOnly": true,
-            "type": "string"
-          },
-          "accountNumber": {
-            "description": "Account number",
             "type": "string"
           },
           "cloudType": {
@@ -549,9 +540,23 @@
             "readOnly": true,
             "type": "string"
           },
+          "isConfigurable": {
+            "description": "To check if a resource can be configured",
+            "type": "boolean"
+          },
+          "isSystemBucket": {
+            "description": "To check if a resource is a system bucket, AWS coudtrail etc.",
+            "type": "boolean"
+          },
           "lastEstimate": {
             "description": "Size updated on",
             "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "redlockAccountId": {
+            "description": "Prisma Cloud account ID",
+            "format": "int32",
             "readOnly": true,
             "type": "integer"
           },
@@ -560,6 +565,12 @@
             "description": "Resource RRN to link to resource page",
             "readOnly": true,
             "type": "string"
+          },
+          "scanOption": {
+            "description": "Scan option exposure only, all",
+            "format": "int32",
+            "readOnly": true,
+            "type": "integer"
           },
           "scanStatus": {
             "description": "Scan status",
@@ -580,7 +591,7 @@
             ]
           }
         },
-        "required": ["accountNumber", "resourceName", "serviceName"],
+        "required": ["accountId", "resourceName", "serviceName"],
         "type": "object"
       },
       "StorageSize": {
@@ -602,6 +613,11 @@
           "isScanComplete": {
             "description": "Status of size estimation. true = scan complete",
             "type": "boolean"
+          },
+          "sensitiveEligiblePubliclyExposed": {
+            "description": "Total size for publicly exposed files eligible for DSS scan",
+            "format": "int64",
+            "type": "integer"
           },
           "size": {
             "description": "Total size",
@@ -690,6 +706,12 @@
             "items": { "$ref": "#/components/schemas/StorageResource" },
             "type": "array"
           },
+          "scanOption": {
+            "description": "Scan option. Required if **enableScanning** is true. 0 = Exposure only, 2 = All ",
+            "enum": [0, 2],
+            "format": "int32",
+            "type": "integer"
+          },
           "scanType": {
             "description": "Scan type. Required if **enableScanning** is true. 1 = forward and backward, 2 = forward",
             "enum": [1, 2],
@@ -710,7 +732,7 @@
   },
   "openapi": "3.0.0",
   "paths": {
-    "/dlp/api/v1/object-inventory/resources": {
+    "/dlp/api/v1/resource-inventory/resources": {
       "get": {
         "description": "Lists all AWS S3 bucket resources for your onboarded cloud account(s). The response indicates the amount of data eligible for sensitive data scans, malware scans, or both based on the supported file types and file size.",
         "operationId": "get-resource-inventory",
@@ -739,11 +761,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/object-inventory/resource\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/v1/resource-inventory/resources\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/dlp/api/v1/object-inventory/resource \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/dlp/api/v1/resource-inventory/resources \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -784,11 +806,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/config/v2/resource\"\n\npayload = \"{\\\"enableScanning\\\":true,\\\"resources\\\":[{\\\"accountNumber\\\":\\\"string\\\",\\\"resourceName\\\":\\\"string\\\",\\\"serviceName\\\":\\\"string\\\"}],\\\"scanType\\\":1}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/config/v2/resource\"\n\npayload = \"{\\\"enableScanning\\\":true,\\\"resources\\\":[{\\\"accountId\\\":\\\"string\\\",\\\"isConfigurable\\\":true,\\\"isSystemBucket\\\":true,\\\"resourceName\\\":\\\"string\\\",\\\"serviceName\\\":\\\"string\\\"}],\\\"scanOption\\\":0,\\\"scanType\\\":1}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/dlp/api/config/v2/resource \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"enableScanning\":true,\"resources\":[{\"accountNumber\":\"string\",\"resourceName\":\"string\",\"serviceName\":\"string\"}],\"scanType\":1}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/dlp/api/config/v2/resource \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"enableScanning\":true,\"resources\":[{\"accountId\":\"string\",\"isConfigurable\":true,\"isSystemBucket\":true,\"resourceName\":\"string\",\"serviceName\":\"string\"}],\"scanOption\":0,\"scanType\":1}'"
           }
         ]
       }

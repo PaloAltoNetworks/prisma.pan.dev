@@ -457,7 +457,7 @@
             "type": "object"
           },
           "cloudAccountAncestors": {
-            "description": "Cloud Account Ancestors. For GCP.",
+            "description": "Cloud account ancestors. For GCP.",
             "items": { "type": "string" },
             "readOnly": true,
             "type": "array"

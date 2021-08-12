@@ -60,7 +60,7 @@ components:
           description: Access key status
           type: string
         username:
-          description: Access key username
+          description: Access key user name
           type: string
       type: object
     UserAccessKeyRequestModel:
