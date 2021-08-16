@@ -13,7 +13,9 @@ info:
     4. You can query your job status with [Get Scan Job Status](/api/cloud/cspm/iac-scan#operation/getAsyncScanStatus).
     5. Once the job has successfully completed, you can request the results with [Get Scan Result Details](/api/cloud/cspm/iac-scan#operation/getScanResult).
 
-    Note that IaC scan API V2 is JSON API compliant. Also note that error responses include error codes and details.
+    The IaC scan API V2 is [JSON:API](https://jsonapi.org/) compliant.
+
+    **Note:** The IaC scan API V2 is not available at https://api.uk.prismacloud.io.
 
     For more information about the IaC scan API, see [Use the Prisma Cloud IaC Scan REST API](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/prisma-cloud-devops-security/use-the-prisma-cloud-iac-scan-rest-api.html).
 

@@ -381,7 +381,7 @@ paths:
       description: "Clones an existing notification template to create a new template.\
         \  \r\n\r\nThere is currently only one body parameter, as shown below.\n\n\
         Parameter | Type | Value | Required \n-------------| ---- | ----------- |\
-        \ ---\nname | string | The name of the new notification template | _required_\
+        \ ---\nname | string | The name of the new notification template | Required\
         \ \n"
       operationId: clone-notification-template
       parameters:

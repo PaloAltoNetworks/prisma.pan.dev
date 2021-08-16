@@ -614,6 +614,10 @@ components:
           - alibaba_cloud
           - oci
           type: string
+        cursor:
+          description: Cursor
+          format: int32
+          type: integer
         default:
           type: boolean
         description:
@@ -678,6 +682,10 @@ components:
           - alibaba_cloud
           - oci
           type: string
+        cursor:
+          description: Cursor
+          format: int32
+          type: integer
         data:
           type: object
         default:
@@ -726,6 +734,7 @@ components:
           - $ref: '#/components/schemas/TimeRangeConfigModel'
           - description: Time Range
       required:
+      - cursor
       - query
       - timeRange
       type: object
@@ -744,6 +753,10 @@ components:
           - alibaba_cloud
           - oci
           type: string
+        cursor:
+          description: Cursor
+          format: int32
+          type: integer
         data:
           items:
             $ref: '#/components/schemas/AggregateAuditEvent'
@@ -794,6 +807,7 @@ components:
           - $ref: '#/components/schemas/TimeRangeConfigModel'
           - description: Time Range
       required:
+      - cursor
       - query
       - timeRange
       type: object
@@ -812,6 +826,10 @@ components:
           - alibaba_cloud
           - oci
           type: string
+        cursor:
+          description: Cursor
+          format: int32
+          type: integer
         data:
           items:
             type: object
@@ -862,6 +880,7 @@ components:
           - $ref: '#/components/schemas/TimeRangeConfigModel'
           - description: Time Range
       required:
+      - cursor
       - query
       - timeRange
       type: object
@@ -880,6 +899,10 @@ components:
           - alibaba_cloud
           - oci
           type: string
+        cursor:
+          description: Cursor
+          format: int32
+          type: integer
         data:
           $ref: '#/components/schemas/PagedResultsAuditEvent'
         default:
@@ -928,6 +951,7 @@ components:
           - $ref: '#/components/schemas/TimeRangeConfigModel'
           - description: Time Range
       required:
+      - cursor
       - query
       - timeRange
       type: object
@@ -946,6 +970,10 @@ components:
           - alibaba_cloud
           - oci
           type: string
+        cursor:
+          description: Cursor
+          format: int32
+          type: integer
         data:
           $ref: '#/components/schemas/PagedResultsResourceMetaModel'
         default:
@@ -994,6 +1022,7 @@ components:
           - $ref: '#/components/schemas/TimeRangeConfigModel'
           - description: Time Range
       required:
+      - cursor
       - query
       - timeRange
       type: object

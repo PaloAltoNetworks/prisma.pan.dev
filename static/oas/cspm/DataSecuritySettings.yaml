@@ -521,24 +521,30 @@ components:
       description: Storage resource model
       properties:
         accountId:
-          description: Prisma Cloud account ID
-          format: int32
-          readOnly: true
-          type: integer
+          description: Account number
+          type: string
         accountName:
           description: Account name
           readOnly: true
-          type: string
-        accountNumber:
-          description: Account number
           type: string
         cloudType:
           description: Cloud type
           readOnly: true
           type: string
+        isConfigurable:
+          description: To check if a resource can be configured
+          type: boolean
+        isSystemBucket:
+          description: To check if a resource is a system bucket, AWS coudtrail etc.
+          type: boolean
         lastEstimate:
           description: Size updated on
           format: int64
+          readOnly: true
+          type: integer
+        redlockAccountId:
+          description: Prisma Cloud account ID
+          format: int32
           readOnly: true
           type: integer
         resourceName:
@@ -548,6 +554,11 @@ components:
           description: Resource RRN to link to resource page
           readOnly: true
           type: string
+        scanOption:
+          description: Scan option exposure only, all
+          format: int32
+          readOnly: true
+          type: integer
         scanStatus:
           description: Scan status
           readOnly: true
@@ -566,7 +577,7 @@ components:
           - description: Storage size
             readOnly: true
       required:
-      - accountNumber
+      - accountId
       - resourceName
       - serviceName
       type: object
@@ -587,6 +598,10 @@ components:
         isScanComplete:
           description: Status of size estimation. true = scan complete
           type: boolean
+        sensitiveEligiblePubliclyExposed:
+          description: Total size for publicly exposed files eligible for DSS scan
+          format: int64
+          type: integer
         size:
           description: Total size
           format: int64
@@ -659,6 +674,14 @@ components:
           items:
             $ref: '#/components/schemas/StorageResource'
           type: array
+        scanOption:
+          description: 'Scan option. Required if **enableScanning** is true. 0 = Exposure
+            only, 2 = All '
+          enum:
+          - 0
+          - 2
+          format: int32
+          type: integer
         scanType:
           description: Scan type. Required if **enableScanning** is true. 1 = forward
             and backward, 2 = forward
@@ -687,7 +710,7 @@ info:
   version: Latest
 openapi: 3.0.0
 paths:
-  /dlp/api/v1/object-inventory/resources:
+  /dlp/api/v1/resource-inventory/resources:
     get:
       description: Lists all AWS S3 bucket resources for your onboarded cloud account(s).
         The response indicates the amount of data eligible for sensitive data scans,
