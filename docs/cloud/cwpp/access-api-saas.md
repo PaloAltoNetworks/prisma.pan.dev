@@ -22,7 +22,7 @@ Get your Compute Console's address and then use basic auth to access the API.
 
 1. Get the path to your Console.
 
-   1. Go to **Compute > Manage > System > Downloads**.
+   1. Go to **Compute > Manage > System > Utilities**.
 
    1. Under **Path to Console**, click **Copy**.
 
@@ -50,7 +50,7 @@ We recommend that you renew the Compute token every 5 minutes (half the lifetime
 
 1. Get the path to your Console.
 
-   1. Go to **Compute > Manage > System > Downloads**.
+   1. Go to **Compute > Manage > System > Utilities**.
 
    1. Under **Path to Console**, click **Copy**.
 
