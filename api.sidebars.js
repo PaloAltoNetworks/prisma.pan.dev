@@ -22,4 +22,5 @@ module.exports = {
       items: require("./static/oas/cwpp/sidebar").sidebar,
     },
   ],
+  cwpp_version: require("./static/oas/cwpp/21-04/sidebar").sidebar,
 };
