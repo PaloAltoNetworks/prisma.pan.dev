@@ -1,7 +1,7 @@
 ---
 id: cwpp-home
 title: CWPP API
-sidebar_label: CWPP API
+sidebar_label: CWPP API - 21.08
 slug: /cloud/cwpp
 ---
 

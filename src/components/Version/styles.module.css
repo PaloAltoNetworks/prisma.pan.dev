@@ -1,0 +1,81 @@
+.imageContainer {
+  position: relative;
+  text-align: center;
+}
+
+.imageContainer .toolsImage {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.toolSection {
+  text-align: center;
+  padding-top: 2rem;
+  color: white;
+}
+
+.toolsButton {
+  width: 100%;
+  height: auto;
+  padding: 0.1em;
+}
+
+/* Cards styling */
+.tools {
+  min-width: 100%;
+  background-color: transparent !important;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+.tools:hover {
+  opacity: 1;
+  box-shadow: 5rem;
+}
+
+/* Image on cards */
+.toolsImage {
+  height: auto;
+  width: auto;
+  max-height: 40px !important;
+  max-width: 40px !important;
+}
+
+.toolsBorder {
+  height: auto;
+  width: auto;
+  max-height: 80px !important;
+  vertical-align: middle;
+  -webkit-transition: -webkit-transform 0.8s ease-in-out;
+  transition: transform 0.8s ease-in-out;
+}
+
+.toolsButton:hover > .tools .toolsBorder {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.toolsTitle {
+  overflow: hidden;
+  font-weight: 600;
+  color: white;
+  font-size: var(--ifm-h4-font-size);
+  text-align: center;
+  position: relative;
+}
+
+.toolsSummary {
+  color: var(--ifm-color-gray-500);
+  font-size: small;
+  font-weight: 400;
+  position: relative;
+  text-align: center;
+}
+
+.gh {
+  max-height: 40px;
+}
