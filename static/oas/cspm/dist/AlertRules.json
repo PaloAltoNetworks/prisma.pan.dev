@@ -303,12 +303,12 @@
             "type": "array"
           },
           "regions": {
-            "description": "List of regions",
+            "description": "List of regions for which alerts will be triggered for account groups. Alerts not associated with specific regions will be triggered regardless of listed regions. If no regions are specified, then the alerts will be triggered for all regions.",
             "items": { "type": "string" },
             "type": "array"
           },
           "tags": {
-            "description": "List of TargetTag models (resource tags)",
+            "description": "List of TargetTag models (resource tags) for which alerts should be triggered",
             "items": { "$ref": "#/components/schemas/TargetTagModel" },
             "type": "array"
           }
@@ -392,7 +392,7 @@
         ]
       },
       "post": {
-        "description": "Adds a new alert rule.  \r\n\r\nBy default, all alerts that this alert rule triggers will display on the Alerts page. \nYou can also send Prisma Cloud alerts that this alert rule triggers to one or more third-party\ntools that you have integrated with the Prisma Cloud service. You can also configure the alert rule \nto send email notifications.\n\nTo send a Prisma Cloud alert to a third-party tool, you must configure an **AlertRuleNotificationConfig** object \nas part of the body params of your call. The content of the **AlertRuleNotificationConfig** object \ndepends on the third-party tool. For tools that require an id or template id, you can use the \nPrisma Cloud API to get integrations. The recipients in the response result provide the necessary \ndata for a particular type of service.\n\nTo add an Alert Rule, the required body parameters are:\n\n* **name**\n* **description**\n* **allowAutoRemediate**\n* **enabled**\n* **target**\n* **target.accountGroups**\n\nIf **policies** is empty, then Prisma Cloud will scan all policies.\n",
+        "description": "Adds a new alert rule.  \r\n\r\nBy default, all alerts that this alert rule triggers will display on the Alerts page. \nYou can also send Prisma Cloud alerts that this alert rule triggers to one or more third-party\ntools that you have integrated with the Prisma Cloud service. You can also configure the alert rule \nto send email notifications.\n\nTo send a Prisma Cloud alert to a third-party tool, you must configure an **AlertRuleNotificationConfig** object \nas part of your request body parameters. The content of the **AlertRuleNotificationConfig** object \ndepends on the third-party tool. If the tools require **AlertRuleNotificationConfig.id** or \n**AlertRuleNotificationConfig.templateId**, you can use \n[Get Integrations](/api/cloud/cspm/integrations#operation/get-all-integrations) to get such information. \n\nTo add an Alert Rule, the required body parameters are:\n\n* **name**\n* **description**\n* **allowAutoRemediate**\n* **enabled**\n* **target**\n* **target.accountGroups**\n\nYou can also specify addition **target** parameters to narrow the conditions that trigger alerts for this alert rule.\n\nIf **policies** is empty, then Prisma Cloud will scan all policies.\n",
         "operationId": "add-alert-rule",
         "requestBody": {
           "content": {

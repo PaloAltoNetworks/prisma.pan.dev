@@ -734,7 +734,6 @@ components:
           - $ref: '#/components/schemas/TimeRangeConfigModel'
           - description: Time Range
       required:
-      - cursor
       - query
       - timeRange
       type: object
@@ -807,7 +806,6 @@ components:
           - $ref: '#/components/schemas/TimeRangeConfigModel'
           - description: Time Range
       required:
-      - cursor
       - query
       - timeRange
       type: object
@@ -880,7 +878,6 @@ components:
           - $ref: '#/components/schemas/TimeRangeConfigModel'
           - description: Time Range
       required:
-      - cursor
       - query
       - timeRange
       type: object
@@ -951,7 +948,6 @@ components:
           - $ref: '#/components/schemas/TimeRangeConfigModel'
           - description: Time Range
       required:
-      - cursor
       - query
       - timeRange
       type: object
@@ -1022,7 +1018,6 @@ components:
           - $ref: '#/components/schemas/TimeRangeConfigModel'
           - description: Time Range
       required:
-      - cursor
       - query
       - timeRange
       type: object

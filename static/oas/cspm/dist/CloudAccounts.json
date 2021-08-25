@@ -54,7 +54,7 @@
     },
     "schemas": {
       "AWSOrgConfig": {
-        "description": "Model for AWSOrgConfig",
+        "description": "Model for AWS Org Config",
         "properties": {
           "accountId": { "description": "AWS account ID", "type": "string" },
           "masterCftLandingPage": {
@@ -93,7 +93,11 @@
             "description": "AWS member role name",
             "type": "string"
           },
-          "scanOption": { "description": "Scan option", "type": "string" },
+          "scanOption": {
+            "description": "Scan option",
+            "enum": ["Full", "Custom"],
+            "type": "string"
+          },
           "snsEndpointUrl": {
             "description": "SNS subscription URL",
             "type": "string"
@@ -124,7 +128,7 @@
       "AWSOrgRequestConfigModel": {
         "description": "Model for AWS Org Request Config",
         "properties": {
-          "accountId": { "description": "AWS Account Id", "type": "string" },
+          "accountId": { "description": "AWS account ID", "type": "string" },
           "cloudType": {
             "description": "Cloud type",
             "enum": ["AWS"],
@@ -171,7 +175,7 @@
         "type": "object"
       },
       "AWSOrgStatusConfigModel": {
-        "description": "Model for AWSOrgStatusConfig",
+        "description": "Model for AWS Org Status Config",
         "properties": {
           "accountId": { "description": "AWS account ID", "type": "string" },
           "externalId": {
@@ -180,7 +184,7 @@
           },
           "roleArn": { "description": "AWS master role ARN", "type": "string" },
           "snsTopicArn": {
-            "description": "SNS topic ARN for data security",
+            "description": "SNS topic ARN for notification of storage object changes",
             "type": "string"
           },
           "tenantId": { "description": "Tenant Id", "type": "string" }
@@ -189,7 +193,7 @@
         "type": "object"
       },
       "AWSOrgStatusResponseModel": {
-        "description": "Response for status check before AWS Org onboarding",
+        "description": "Model for AWS Org Status Response",
         "properties": {
           "isSuccess": {
             "description": "Boolean indicating if the operation was a success",
@@ -713,16 +717,7 @@
           "parent": { "description": "Parent", "type": "string" },
           "type": {
             "description": "Node type",
-            "enum": [
-              "ORG",
-              "FOLDER",
-              "PROJECT",
-              "SUBSCRIPTION",
-              "MANAGEMENT_GROUP",
-              "TENANT",
-              "ACCOUNT",
-              "OU"
-            ],
+            "enum": ["MANAGEMENT_GROUP", "TENANT", "ACCOUNT"],
             "type": "string"
           }
         },
@@ -868,13 +863,21 @@
             "readOnly": true,
             "type": "string"
           },
-          "servicePrincipalId": { "readOnly": true, "type": "string" },
+          "servicePrincipalId": {
+            "description": "Enterprise application object ID",
+            "readOnly": true,
+            "type": "string"
+          },
           "storageScanEnabled": {
             "description": "Storage Scan Enabled",
             "type": "boolean"
           },
           "storageUUID": { "description": "Storage UUID", "type": "string" },
-          "subscriptionId": { "readOnly": true, "type": "string" },
+          "subscriptionId": {
+            "description": "Subscription ID",
+            "readOnly": true,
+            "type": "string"
+          },
           "tenantId": {
             "description": "Directory (Tenant) ID",
             "type": "string"
@@ -1674,7 +1677,12 @@
             "enum": [
               "ORG",
               "FOLDER",
-              "PROJECT"
+              "PROJECT",
+              "SUBSCRIPTION",
+              "MANAGEMENT_GROUP",
+              "TENANT",
+              "ACCOUNT",
+              "OU"
             ],
             "type": "string"
           }

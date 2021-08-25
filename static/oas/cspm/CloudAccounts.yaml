@@ -38,7 +38,7 @@ components:
       type: apiKey
   schemas:
     AWSOrgConfig:
-      description: Model for AWSOrgConfig
+      description: Model for AWS Org Config
       properties:
         accountId:
           description: AWS account ID
@@ -73,6 +73,9 @@ components:
           type: string
         scanOption:
           description: Scan option
+          enum:
+          - Full
+          - Custom
           type: string
         snsEndpointUrl:
           description: SNS subscription URL
@@ -102,7 +105,7 @@ components:
       description: Model for AWS Org Request Config
       properties:
         accountId:
-          description: AWS Account Id
+          description: AWS account ID
           type: string
         cloudType:
           description: Cloud type
@@ -146,7 +149,7 @@ components:
       - storageUUID
       type: object
     AWSOrgStatusConfigModel:
-      description: Model for AWSOrgStatusConfig
+      description: Model for AWS Org Status Config
       properties:
         accountId:
           description: AWS account ID
@@ -158,7 +161,7 @@ components:
           description: AWS master role ARN
           type: string
         snsTopicArn:
-          description: SNS topic ARN for data security
+          description: SNS topic ARN for notification of storage object changes
           type: string
         tenantId:
           description: Tenant Id
@@ -170,7 +173,7 @@ components:
       - snsTopicArn
       type: object
     AWSOrgStatusResponseModel:
-      description: Response for status check before AWS Org onboarding
+      description: Model for AWS Org Status Response
       properties:
         isSuccess:
           description: Boolean indicating if the operation was a success
@@ -824,6 +827,7 @@ components:
           readOnly: true
           type: string
         servicePrincipalId:
+          description: Enterprise application object ID
           readOnly: true
           type: string
         storageScanEnabled:
@@ -833,6 +837,7 @@ components:
           description: Storage UUID
           type: string
         subscriptionId:
+          description: Subscription ID
           readOnly: true
           type: string
         tenantId:
@@ -1628,6 +1633,11 @@ components:
           - ORG
           - FOLDER
           - PROJECT
+          - SUBSCRIPTION
+          - MANAGEMENT_GROUP
+          - TENANT
+          - ACCOUNT
+          - OU
           type: string
       type: object
     GenericCloudAccountModel:

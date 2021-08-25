@@ -49,15 +49,56 @@ paths:
                 $ref: '#/components/schemas/SpringErrorResponse'
       security:
         - x-redlock-auth: []
-  /license/api/v1/usage/:
+  /license/api/v1/usage:
     post:
       tags:
         - Licensing
-      summary: Usage Count By Cloud Type Paginated
-      description: >-
-        Get a paginated, full breakdown of resources used per account under a
-        single cloud type.
-      operationId: license-usage-count-by-cloud-paginated_1
+      summary: Usage Count By Cloud Type
+      description: |
+        Returns a breakdown of resources used per account for a single cloud type. 
+
+
+        You can request usage data in one of the following formats;
+        * Receive paginated usage data in the response object 
+        * Download usage data in a CSV file
+
+
+        By default, you will receive your paginated usage data in the response object. You can control the number of items in the 
+        response object through the **limit** request body parameter. If data beyond what's in the response object is available,
+        the response object attribute **nextPageToken** will provide a token you can set in the request parameter **pageToken** of your
+        next request to get the next page of usage data.
+
+
+        To download the usage data in a CSV file, set the following:
+        * Request header: **Accept: application/octet-stream**
+        * Request body parameter: **csvHeaderRequired** = **true**.
+
+
+        The following example curl command requests usage data in a CSV file:
+
+        ```bash
+        curl --location --request POST 'https://api.prismacloud.io/license/api/v1/usage' \
+        --header 'x-redlock-auth:<your JWT>' \
+        --header 'Content-Type: application/json' \
+        --header 'Accept: application/octet-stream' \
+        --data-raw '{
+            "timeRange": {
+                "type": "relative",
+                "value": {
+                    "amount": 1,
+                    "unit": "month"
+                }
+            },
+            "accountIds": [
+                "123456789987", 
+                "987654321123"
+            ],
+            "cloudType": "AWS",
+            "csvHeaderRequired": true
+        }'
+        ````
+        
+      operationId: get-license-usage
       parameters:
         - name: cloud_type
           in: query
@@ -74,70 +115,28 @@ paths:
         '200':
           description: Successful operation
           content:
-            application/json; charset=UTF-8:
+            'application/json':
               schema:
                 $ref: '#/components/schemas/LicenseResponseModel'
-        '400':
-          description: invalid_parameter_value
-          content:
-            application/json; charset=UTF-8:
-              schema:
-                $ref: '#/components/schemas/SpringErrorResponse'
-        '403':
-          description: Forbidden
-          content:
-            application/json; charset=UTF-8:
-              schema:
-                $ref: '#/components/schemas/SpringErrorResponse'
-        '500':
-          description: internal_error
-          content:
-            application/json; charset=UTF-8:
-              schema:
-                $ref: '#/components/schemas/SpringErrorResponse'
-      security:
-        - x-redlock-auth: []
-  /license/api/v1/usage:
-    post:
-      tags:
-        - Licensing
-      summary: Get Usage CSV
-      description: |
-        Get usage breakdown in a CSV file.
-
-        Note that the following are required:
-        * Request header: **Accept: application/octet-stream**
-        * Request body parameter: **csvHeaderRequired** = **true**.
-      operationId: license-get-usage-csv
-      requestBody:
-        content:
-          application/json; charset=UTF-8:
-            schema:
-              $ref: '#/components/schemas/AccountListRequestModel'
-        required: true
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/octet-stream:
+            'application/octet-stream':
               schema:
                 $ref: '#/components/schemas/CsvMessage'
         '400':
           description: invalid_parameter_value
           content:
-            application/octet-stream:
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/SpringErrorResponse'
         '403':
           description: Forbidden
           content:
-            application/octet-stream:
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/SpringErrorResponse'
         '500':
           description: internal_error
           content:
-            application/octet-stream:
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/SpringErrorResponse'
       security:

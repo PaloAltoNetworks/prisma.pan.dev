@@ -561,39 +561,6 @@ paths:
       summary: List User Emails
       tags:
       - User Profile
-  /user/role/type:
-    get:
-      description: Returns a list of permission groups to which users can belong.
-      operationId: get-user-role-types
-      responses:
-        '200':
-          content:
-            '*/*':
-              schema:
-                items:
-                  enum:
-                  - SYSTEM_ADMIN
-                  - ACCOUNT_ADMIN
-                  - ACCOUNT_READ_ONLY
-                  - SSO_ADMIN
-                  - CLOUD_PROVISIONING_ADMIN
-                  - TENANT_PROVISIONING_ADMIN
-                  - PRISMA_SERVICE_USER
-                  - ACCOUNT_AND_CLOUD_PROVISIONING_ADMIN
-                  - BUILD_AND_DEPLOY_SECURITY
-                  - BUILD_AND_DEPLOY_SECURITY_CI
-                  - COMPUTE_ADMIN
-                  - NETWORK_SECURITY_OPERATOR
-                  - NETWORK_SECURITY_OPERATOR_READ_ONLY
-                  - COMPUTE_ACCOUNT_ADMIN
-                  type: string
-                type: array
-          description: successful operation
-      security:
-      - x-redlock-auth: []
-      summary: List User Role Types
-      tags:
-      - User Profile
   /user/domain:
     get:
       description: Returns a list of domains in allow list.
