@@ -16749,9 +16749,9 @@
   },
   "info": {
     "title": "Custom-Compliance Overview",
-    "version": "21.08.512",
+    "version": "21.08.514",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/custom-compliance/custom-compliance.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/custom-compliance/custom-compliance.md"
     }
   },
   "openapi": "3.0.3",
@@ -16764,7 +16764,7 @@
     "/api/v21.08/custom-compliance": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/custom-compliance/get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/custom-compliance/get.md"
         },
         "responses": {
           "200": {
@@ -16795,7 +16795,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/custom-compliance/put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/custom-compliance/put.md"
         },
         "requestBody": {
           "content": {
@@ -16837,7 +16837,7 @@
     "/api/v21.08/custom-compliance/{id}": {
       "delete": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/custom-compliance/id_delete.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/custom-compliance/id_delete.md"
         },
         "parameters": [
           {

@@ -973,7 +973,15 @@
       },
       "api.AuthType": {
         "description": "AuthType is the user authentication type",
-        "enum": [["saml", "ldap", "basic", "oauth", "oidc"]],
+        "enum": [
+          [
+            "saml",
+            "ldap",
+            "basic",
+            "oauth",
+            "oidc"
+          ]
+        ],
         "type": "string"
       },
       "api.AuthenticationRequest": {
@@ -1093,7 +1101,14 @@
       },
       "api.PagerDutyAlertSeverity": {
         "description": "PagerDutyAlertSeverity is the severity of an alert triggered in PagerDuty",
-        "enum": [["critical", "error", "warning", "info"]],
+        "enum": [
+          [
+            "critical",
+            "error",
+            "warning",
+            "info"
+          ]
+        ],
         "type": "string"
       },
       "api.Permission": {
@@ -1188,7 +1203,12 @@
       },
       "api.ServiceNowApp": {
         "description": "ServiceNowApp identifies a ServiceNow application (there are several)\nfor more details, see:\nhttps://docs.servicenow.com/bundle/orlando-security-management/page/product/security-operations/concept/security-operations-intro.html",
-        "enum": [["securityIncidentsResponse", "vulnerabilityResponse"]],
+        "enum": [
+          [
+            "securityIncidentsResponse",
+            "vulnerabilityResponse"
+          ]
+        ],
         "type": "string"
       },
       "api.User": {
@@ -1476,7 +1496,11 @@
       },
       "cnnf.NetworkFirewallAttackType": {
         "description": "NetworkFirewallAttackType is the network firewall type of attack",
-        "enum": [["unexpectedConnection"]],
+        "enum": [
+          [
+            "unexpectedConnection"
+          ]
+        ],
         "type": "string"
       },
       "cnnf.Policy": {
@@ -1629,7 +1653,14 @@
       },
       "cnnf.RuleEntityType": {
         "description": "RuleEntityType is the network firewall rule entity type",
-        "enum": [["container", "host", "subnet", "dns"]],
+        "enum": [
+          [
+            "container",
+            "host",
+            "subnet",
+            "dns"
+          ]
+        ],
         "type": "string"
       },
       "cnnf.RuleID": {
@@ -1948,7 +1979,15 @@
       },
       "collection.UsageType": {
         "description": "UsageType represents a collection usage type",
-        "enum": [["policy", "settings", "user", "group", "registryScan"]],
+        "enum": [
+          [
+            "policy",
+            "settings",
+            "user",
+            "group",
+            "registryScan"
+          ]
+        ],
         "type": "string"
       },
       "common.CloudMetadata": {
@@ -1993,7 +2032,15 @@
       },
       "common.CloudProvider": {
         "description": "CloudProvider represents the cloud provider",
-        "enum": [["aws", "azure", "gcp", "alibaba", "others"]],
+        "enum": [
+          [
+            "aws",
+            "azure",
+            "gcp",
+            "alibaba",
+            "others"
+          ]
+        ],
         "type": "string"
       },
       "common.DaemonSetOptions": {
@@ -2097,7 +2144,15 @@
       },
       "common.Effect": {
         "description": "Effect is the effect that is used in the CNNF rule",
-        "enum": [["allow", "alert", "prevent", "monitor", ""]],
+        "enum": [
+          [
+            "allow",
+            "alert",
+            "prevent",
+            "monitor",
+            ""
+          ]
+        ],
         "type": "string"
       },
       "common.ExternalLabel": {
@@ -2128,7 +2183,15 @@
       },
       "common.ExternalLabelSourceType": {
         "description": "ExternalLabelSourceType indicates the source of the labels",
-        "enum": [["namespace", "deployment", "aws", "azure", "gcp"]],
+        "enum": [
+          [
+            "namespace",
+            "deployment",
+            "aws",
+            "azure",
+            "gcp"
+          ]
+        ],
         "type": "string"
       },
       "common.HostForensicSettings": {
@@ -2181,7 +2244,14 @@
       },
       "common.PolicyEffect": {
         "description": "PolicyEffect state the effect of evaluating the given policy",
-        "enum": [["allow", "deny", "block", "alert"]],
+        "enum": [
+          [
+            "allow",
+            "deny",
+            "block",
+            "alert"
+          ]
+        ],
         "type": "string"
       },
       "common.PortData": {
@@ -2495,12 +2565,26 @@
       },
       "customrules.Action": {
         "description": "Action is the action to perform if the custom rule applies",
-        "enum": [["audit", "incident"]],
+        "enum": [
+          [
+            "audit",
+            "incident"
+          ]
+        ],
         "type": "string"
       },
       "customrules.Effect": {
         "description": "Effect is the effect that will be used for custom rule",
-        "enum": [["block", "prevent", "alert", "allow", "ban", "disable"]],
+        "enum": [
+          [
+            "block",
+            "prevent",
+            "alert",
+            "allow",
+            "ban",
+            "disable"
+          ]
+        ],
         "type": "string"
       },
       "customrules.Ref": {
@@ -2580,7 +2664,14 @@
       },
       "defender.Category": {
         "description": "Category represents the defender target category",
-        "enum": [["container", "host", "serverless", "appEmbedded"]],
+        "enum": [
+          [
+            "container",
+            "host",
+            "serverless",
+            "appEmbedded"
+          ]
+        ],
         "type": "string"
       },
       "defender.Defender": {
@@ -2707,7 +2798,13 @@
       },
       "defender.ProxyListenerType": {
         "description": "ProxyListenerType is the proxy listener type of defenders",
-        "enum": [["none", "tcp", "default"]],
+        "enum": [
+          [
+            "none",
+            "tcp",
+            "default"
+          ]
+        ],
         "type": "string"
       },
       "defender.ScanStatus": {
@@ -3249,7 +3346,12 @@
       },
       "identity.ProviderName": {
         "description": "ProviderName is the identity provider name",
-        "enum": [["github", "openshift"]],
+        "enum": [
+          [
+            "github",
+            "openshift"
+          ]
+        ],
         "type": "string"
       },
       "identity.ProviderSettings": {
@@ -3372,7 +3474,16 @@
       },
       "identity.SamlType": {
         "description": "SamlType represents the type of a SAML configured settings",
-        "enum": [["okta", "gsuite", "ping", "shibboleth", "azure", "adfs"]],
+        "enum": [
+          [
+            "okta",
+            "gsuite",
+            "ping",
+            "shibboleth",
+            "azure",
+            "adfs"
+          ]
+        ],
         "type": "string"
       },
       "identity.Settings": {
@@ -5396,7 +5507,14 @@
       },
       "runtime.RuleEffect": {
         "description": "RuleEffect is the effect that will be used in the runtime rule",
-        "enum": [["block", "prevent", "alert", "disable"]],
+        "enum": [
+          [
+            "block",
+            "prevent",
+            "alert",
+            "disable"
+          ]
+        ],
         "type": "string"
       },
       "runtime.SSHEvent": {
@@ -6454,7 +6572,14 @@
       },
       "shared.AwsRegionType": {
         "description": "AwsRegionType is the type of aws region",
-        "enum": [["regular", "gov", "china", "all"]],
+        "enum": [
+          [
+            "regular",
+            "gov",
+            "china",
+            "all"
+          ]
+        ],
         "type": "string"
       },
       "shared.BackupSpec": {
@@ -7013,7 +7138,12 @@
       },
       "shared.CodeRepoProviderType": {
         "description": "CodeRepoProviderType is the type of provider for the code repository, e.g., GitHub, GitLab etc",
-        "enum": [["github", "CI"]],
+        "enum": [
+          [
+            "github",
+            "CI"
+          ]
+        ],
         "type": "string"
       },
       "shared.CodeRepoSettings": {
@@ -7666,7 +7796,16 @@
       "shared.CveType": {
         "description": "CveType represents the type of a CVE",
         "enum": [
-          ["python", "gem", "nodejs", "jar", "package", "product", "app", "go"]
+          [
+            "python",
+            "gem",
+            "nodejs",
+            "jar",
+            "package",
+            "product",
+            "app",
+            "go"
+          ]
         ],
         "type": "string"
       },
@@ -7763,7 +7902,15 @@
       "shared.EntityType": {
         "description": "EntityType represents the type of the resource identifier",
         "enum": [
-          ["", "docker", "kubernetes", "tas", "swarm", "istio", "internet"]
+          [
+            "",
+            "docker",
+            "kubernetes",
+            "tas",
+            "swarm",
+            "istio",
+            "internet"
+          ]
         ],
         "type": "string"
       },
@@ -7854,7 +8001,13 @@
       },
       "shared.FileIntegrityEventType": {
         "description": "FileIntegrityEventType represents the type of the file integrity event",
-        "enum": [["metadata", "read", "write"]],
+        "enum": [
+          [
+            "metadata",
+            "read",
+            "write"
+          ]
+        ],
         "type": "string"
       },
       "shared.FileMetadata": {
@@ -9259,7 +9412,14 @@
       },
       "shared.IncidentType": {
         "description": "IncidentType is the type of the incident",
-        "enum": [["host", "container", "function", "appEmbedded"]],
+        "enum": [
+          [
+            "host",
+            "container",
+            "function",
+            "appEmbedded"
+          ]
+        ],
         "type": "string"
       },
       "shared.InstalledProducts": {
@@ -9370,7 +9530,13 @@
       },
       "shared.JFrogRepoType": {
         "description": "JFrogRepoType represents the type of JFrog Artifactory repository",
-        "enum": [["local", "remote", "virtual"]],
+        "enum": [
+          [
+            "local",
+            "remote",
+            "virtual"
+          ]
+        ],
         "type": "string"
       },
       "shared.KeyValues": {
@@ -9616,7 +9782,12 @@
       },
       "shared.KubernetesDeploymentType": {
         "description": "KubernetesDeploymentType specifies the type of Kubernetes deployment",
-        "enum": [["default", "gke"]],
+        "enum": [
+          [
+            "default",
+            "gke"
+          ]
+        ],
         "type": "string"
       },
       "shared.KubernetesEventUserInfo": {
@@ -9751,7 +9922,14 @@
       },
       "shared.LicenseContractType": {
         "description": "LicenseContractType is the license contract type",
-        "enum": [["", "host", "avg", "burndown"]],
+        "enum": [
+          [
+            "",
+            "host",
+            "avg",
+            "burndown"
+          ]
+        ],
         "type": "string"
       },
       "shared.LicenseThreshold": {
@@ -9771,7 +9949,15 @@
       },
       "shared.LicenseTier": {
         "description": "LicenseTier represents the license tier of the customer",
-        "enum": [["", "developer", "enterprise", "evaluation", "oem"]],
+        "enum": [
+          [
+            "",
+            "developer",
+            "enterprise",
+            "evaluation",
+            "oem"
+          ]
+        ],
         "type": "string"
       },
       "shared.LogInspectionEvent": {
@@ -10305,7 +10491,12 @@
       },
       "shared.RegistryOSType": {
         "description": "RegistryOSType specifies the registry images base OS type",
-        "enum": [["linux", "windows"]],
+        "enum": [
+          [
+            "linux",
+            "windows"
+          ]
+        ],
         "type": "string"
       },
       "shared.RegistryScanRequest": {
@@ -10675,12 +10866,25 @@
       },
       "shared.RuntimeSeverity": {
         "description": "RuntimeSeverity represents the runtime severity",
-        "enum": [["low", "medium", "high"]],
+        "enum": [
+          [
+            "low",
+            "medium",
+            "high"
+          ]
+        ],
         "type": "string"
       },
       "shared.RuntimeType": {
         "description": "RuntimeType represents the runtime protection type",
-        "enum": [["processes", "network", "kubernetes", "filesystem"]],
+        "enum": [
+          [
+            "processes",
+            "network",
+            "kubernetes",
+            "filesystem"
+          ]
+        ],
         "type": "string"
       },
       "shared.ScanResultType": {
@@ -10829,7 +11033,12 @@
       },
       "shared.SecretsInjectionType": {
         "description": "SecretsInjectionType is the method used to inject secrets to containers",
-        "enum": [["envvar", "filesystem"]],
+        "enum": [
+          [
+            "envvar",
+            "filesystem"
+          ]
+        ],
         "type": "string"
       },
       "shared.SecretsPolicy": {
@@ -11686,7 +11895,12 @@
       },
       "trust.Status": {
         "description": "Status is the trust status for an image",
-        "enum": [["trusted", "untrusted"]],
+        "enum": [
+          [
+            "trusted",
+            "untrusted"
+          ]
+        ],
         "type": "string"
       },
       "types.AccessStats": {
@@ -14160,7 +14374,15 @@
       },
       "vuln.ComplianceTemplate": {
         "description": "ComplianceTemplate represents the compliance template",
-        "enum": [["PCI", "HIPAA", "NIST SP 800-190", "GDPR", "DISA STIG"]],
+        "enum": [
+          [
+            "PCI",
+            "HIPAA",
+            "NIST SP 800-190",
+            "GDPR",
+            "DISA STIG"
+          ]
+        ],
         "type": "string"
       },
       "vuln.Condition": {
@@ -14266,7 +14488,13 @@
       },
       "vuln.Effect": {
         "description": "Effect specifies relevant action for a vulnerability",
-        "enum": [["ignore", "alert", "block"]],
+        "enum": [
+          [
+            "ignore",
+            "alert",
+            "block"
+          ]
+        ],
         "type": "string"
       },
       "vuln.ExpirationDate": {
@@ -14286,7 +14514,13 @@
       },
       "vuln.ExploitType": {
         "description": "ExploitType represents the type of an exploit",
-        "enum": [["", "exploit-db", "exploit-windows"]],
+        "enum": [
+          [
+            "",
+            "exploit-db",
+            "exploit-windows"
+          ]
+        ],
         "type": "string"
       },
       "vuln.PackageType": {
@@ -14993,7 +15227,16 @@
       },
       "waas.Effect": {
         "description": "Effect is the effect that will be used in the rule",
-        "enum": [["ban", "prevent", "alert", "allow", "disable", "reCAPTCHA"]],
+        "enum": [
+          [
+            "ban",
+            "prevent",
+            "alert",
+            "allow",
+            "disable",
+            "reCAPTCHA"
+          ]
+        ],
         "type": "string"
       },
       "waas.Endpoint": {
@@ -15353,7 +15596,16 @@
       },
       "waas.ParamType": {
         "description": "ParamType is the type of a parameter, defined by OpenAPI specification\nRef: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types",
-        "enum": [["integer", "number", "string", "boolean", "array", "object"]],
+        "enum": [
+          [
+            "integer",
+            "number",
+            "string",
+            "boolean",
+            "array",
+            "object"
+          ]
+        ],
         "type": "string"
       },
       "waas.Path": {
@@ -15400,7 +15652,15 @@
       },
       "waas.Protection": {
         "description": "Protection is the type of protection",
-        "enum": [["firewall", "dos", "bot", "custom", "accessControl"]],
+        "enum": [
+          [
+            "firewall",
+            "dos",
+            "bot",
+            "custom",
+            "accessControl"
+          ]
+        ],
         "type": "string"
       },
       "waas.ProtectionConfig": {
@@ -15463,7 +15723,12 @@
       },
       "waas.ReCAPTCHAType": {
         "description": "ReCAPTCHAType is the reCAPTCHA configured type",
-        "enum": [["checkbox", "invisible"]],
+        "enum": [
+          [
+            "checkbox",
+            "invisible"
+          ]
+        ],
         "type": "string"
       },
       "waas.RemoteHostForwardingConfig": {
@@ -15494,7 +15759,13 @@
       },
       "waas.RequestAnomalyThreshold": {
         "description": "RequestAnomalyThreshold is the score threshold for which request anomaly violation is triggered",
-        "enum": [["3", "6", "9"]],
+        "enum": [
+          [
+            "3",
+            "6",
+            "9"
+          ]
+        ],
         "type": "integer"
       },
       "waas.Rule": {
@@ -15646,9 +15917,9 @@
   },
   "info": {
     "title": "Users Overview",
-    "version": "21.04.421",
+    "version": "21.04.439",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/users/users.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/users/users.md"
     }
   },
   "openapi": "3.0.3",
@@ -15661,7 +15932,7 @@
     "/api/v1/users": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/users/get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/users/get.md"
         },
         "responses": {
           "200": {
@@ -15675,7 +15946,9 @@
             "description": "UserList represents a list of users"
           }
         },
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "auth",
           "saas": true,
@@ -15686,7 +15959,7 @@
       },
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/users/post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/users/post.md"
         },
         "requestBody": {
           "content": {
@@ -15702,7 +15975,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "auth",
           "saas": false,
@@ -15713,7 +15988,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/users/put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/users/put.md"
         },
         "requestBody": {
           "content": {
@@ -15729,7 +16004,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "auth",
           "saas": false,
@@ -15754,7 +16031,9 @@
             "description": "ImpersonatedUserResp holds the response for the impersonating request"
           }
         },
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "privilegedOperations",
           "saas": false,
@@ -15767,7 +16046,7 @@
     "/api/v1/users/password": {
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/users/password_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/users/password_put.md"
         },
         "requestBody": {
           "content": {
@@ -15783,7 +16062,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "user",
           "saas": false,
@@ -15796,7 +16077,7 @@
     "/api/v1/users/{id}": {
       "delete": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/users/id_delete.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/users/id_delete.md"
         },
         "parameters": [
           {
@@ -15813,7 +16094,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "auth",
           "saas": false,

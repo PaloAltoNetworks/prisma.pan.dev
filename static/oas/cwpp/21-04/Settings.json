@@ -15917,9 +15917,9 @@
   },
   "info": {
     "title": "Settings Overview",
-    "version": "21.04.421",
+    "version": "21.04.439",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/settings/settings.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/settings.md"
     }
   },
   "openapi": "3.0.3",
@@ -15932,7 +15932,7 @@
     "/api/v1/settings/coderepos": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/settings/coderepos_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/coderepos_get.md"
         },
         "responses": {
           "200": {
@@ -15959,7 +15959,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/settings/coderepos_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/coderepos_put.md"
         },
         "requestBody": {
           "content": {
@@ -15990,7 +15990,7 @@
     "/api/v1/settings/registry": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/settings/registry_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/registry_get.md"
         },
         "responses": {
           "200": {
@@ -16017,7 +16017,7 @@
       },
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/settings/registry_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/registry_post.md"
         },
         "requestBody": {
           "content": {
@@ -16046,7 +16046,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/settings/registry_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/registry_put.md"
         },
         "requestBody": {
           "content": {
@@ -16077,7 +16077,7 @@
     "/api/v1/settings/serverless-scan": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/settings/serverless-scan_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/serverless-scan_get.md"
         },
         "responses": {
           "200": {
@@ -16104,7 +16104,7 @@
       },
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/settings/serverless-scan_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/serverless-scan_post.md"
         },
         "requestBody": {
           "content": {
