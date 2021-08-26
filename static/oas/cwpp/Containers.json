@@ -16749,9 +16749,9 @@
   },
   "info": {
     "title": "Containers Overview",
-    "version": "21.08.512",
+    "version": "21.08.514",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/containers/containers.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/containers/containers.md"
     }
   },
   "openapi": "3.0.3",
@@ -16764,7 +16764,7 @@
     "/api/v21.08/containers": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/containers/get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/containers/get.md"
         },
         "parameters": [
           {
@@ -16987,7 +16987,7 @@
     "/api/v21.08/containers/count": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/containers/count_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/containers/count_get.md"
         },
         "parameters": [
           {
@@ -17210,7 +17210,7 @@
     "/api/v21.08/containers/download": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/containers/download_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/containers/download_get.md"
         },
         "parameters": [
           {
@@ -17426,7 +17426,7 @@
     "/api/v21.08/containers/names": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/containers/names_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/containers/names_get.md"
         },
         "parameters": [
           {
@@ -17649,7 +17649,7 @@
     "/api/v21.08/containers/scan": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/containers/scan_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/containers/scan_post.md"
         },
         "responses": {
           "200": {

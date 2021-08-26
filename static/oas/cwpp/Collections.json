@@ -16749,9 +16749,9 @@
   },
   "info": {
     "title": "Collections Overview",
-    "version": "21.08.512",
+    "version": "21.08.514",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/collections/collections.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/collections/collections.md"
     }
   },
   "openapi": "3.0.3",
@@ -16764,7 +16764,7 @@
     "/api/v21.08/collections": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/collections/get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/collections/get.md"
         },
         "parameters": [
           {
@@ -16805,7 +16805,7 @@
       },
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/collections/post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/collections/post.md"
         },
         "requestBody": {
           "content": {
@@ -16840,7 +16840,7 @@
     "/api/v21.08/collections/{id}": {
       "delete": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/collections/name_delete.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/collections/name_delete.md"
         },
         "parameters": [
           {
@@ -16874,7 +16874,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/collections/name_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/collections/name_put.md"
         },
         "parameters": [
           {
@@ -16919,7 +16919,7 @@
     "/api/v21.08/collections/{id}/usages": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/collections/name_usages_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/collections/name_usages_get.md"
         },
         "parameters": [
           {

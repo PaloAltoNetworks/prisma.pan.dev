@@ -16749,9 +16749,9 @@
   },
   "info": {
     "title": "Cloud Overview",
-    "version": "21.08.512",
+    "version": "21.08.514",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/cloud/cloud.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/cloud/cloud.md"
     }
   },
   "openapi": "3.0.3",
@@ -16764,7 +16764,7 @@
     "/api/v21.08/cloud/discovery": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/cloud/discovery_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/cloud/discovery_get.md"
         },
         "parameters": [
           {
@@ -16907,7 +16907,7 @@
     "/api/v21.08/cloud/discovery/download": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/cloud/discovery_download_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/cloud/discovery_download_get.md"
         },
         "parameters": [
           {
@@ -17043,7 +17043,7 @@
     "/api/v21.08/cloud/discovery/progress": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/cloud/discovery_progress_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/cloud/discovery_progress_get.md"
         },
         "responses": {
           "200": {
@@ -17076,7 +17076,7 @@
     "/api/v21.08/cloud/discovery/scan": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/cloud/discovery_scan_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/cloud/discovery_scan_post.md"
         },
         "responses": {
           "200": {
@@ -17102,7 +17102,7 @@
     "/api/v21.08/cloud/discovery/stop": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/cloud/discovery_stop_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/cloud/discovery_stop_post.md"
         },
         "responses": {
           "200": {

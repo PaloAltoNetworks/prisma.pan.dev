@@ -16749,9 +16749,9 @@
   },
   "info": {
     "title": "Users Overview",
-    "version": "21.08.512",
+    "version": "21.08.514",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/users/users.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/users/users.md"
     }
   },
   "openapi": "3.0.3",
@@ -16764,7 +16764,7 @@
     "/api/v21.08/users": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/users/get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/users/get.md"
         },
         "responses": {
           "200": {
@@ -16795,7 +16795,7 @@
       },
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/users/post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/users/post.md"
         },
         "requestBody": {
           "content": {
@@ -16828,7 +16828,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/users/put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/users/put.md"
         },
         "requestBody": {
           "content": {
@@ -16863,7 +16863,7 @@
     "/api/v21.08/users/password": {
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/users/password_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/users/password_put.md"
         },
         "requestBody": {
           "content": {
@@ -16898,7 +16898,7 @@
     "/api/v21.08/users/{id}": {
       "delete": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/users/id_delete.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/users/id_delete.md"
         },
         "parameters": [
           {

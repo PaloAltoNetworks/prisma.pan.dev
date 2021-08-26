@@ -973,7 +973,15 @@
       },
       "api.AuthType": {
         "description": "AuthType is the user authentication type",
-        "enum": [["saml", "ldap", "basic", "oauth", "oidc"]],
+        "enum": [
+          [
+            "saml",
+            "ldap",
+            "basic",
+            "oauth",
+            "oidc"
+          ]
+        ],
         "type": "string"
       },
       "api.AuthenticationRequest": {
@@ -1093,7 +1101,14 @@
       },
       "api.PagerDutyAlertSeverity": {
         "description": "PagerDutyAlertSeverity is the severity of an alert triggered in PagerDuty",
-        "enum": [["critical", "error", "warning", "info"]],
+        "enum": [
+          [
+            "critical",
+            "error",
+            "warning",
+            "info"
+          ]
+        ],
         "type": "string"
       },
       "api.Permission": {
@@ -1188,7 +1203,12 @@
       },
       "api.ServiceNowApp": {
         "description": "ServiceNowApp identifies a ServiceNow application (there are several)\nfor more details, see:\nhttps://docs.servicenow.com/bundle/orlando-security-management/page/product/security-operations/concept/security-operations-intro.html",
-        "enum": [["securityIncidentsResponse", "vulnerabilityResponse"]],
+        "enum": [
+          [
+            "securityIncidentsResponse",
+            "vulnerabilityResponse"
+          ]
+        ],
         "type": "string"
       },
       "api.User": {
@@ -1476,7 +1496,11 @@
       },
       "cnnf.NetworkFirewallAttackType": {
         "description": "NetworkFirewallAttackType is the network firewall type of attack",
-        "enum": [["unexpectedConnection"]],
+        "enum": [
+          [
+            "unexpectedConnection"
+          ]
+        ],
         "type": "string"
       },
       "cnnf.Policy": {
@@ -1629,7 +1653,14 @@
       },
       "cnnf.RuleEntityType": {
         "description": "RuleEntityType is the network firewall rule entity type",
-        "enum": [["container", "host", "subnet", "dns"]],
+        "enum": [
+          [
+            "container",
+            "host",
+            "subnet",
+            "dns"
+          ]
+        ],
         "type": "string"
       },
       "cnnf.RuleID": {
@@ -1948,7 +1979,15 @@
       },
       "collection.UsageType": {
         "description": "UsageType represents a collection usage type",
-        "enum": [["policy", "settings", "user", "group", "registryScan"]],
+        "enum": [
+          [
+            "policy",
+            "settings",
+            "user",
+            "group",
+            "registryScan"
+          ]
+        ],
         "type": "string"
       },
       "common.CloudMetadata": {
@@ -1993,7 +2032,15 @@
       },
       "common.CloudProvider": {
         "description": "CloudProvider represents the cloud provider",
-        "enum": [["aws", "azure", "gcp", "alibaba", "others"]],
+        "enum": [
+          [
+            "aws",
+            "azure",
+            "gcp",
+            "alibaba",
+            "others"
+          ]
+        ],
         "type": "string"
       },
       "common.DaemonSetOptions": {
@@ -2097,7 +2144,15 @@
       },
       "common.Effect": {
         "description": "Effect is the effect that is used in the CNNF rule",
-        "enum": [["allow", "alert", "prevent", "monitor", ""]],
+        "enum": [
+          [
+            "allow",
+            "alert",
+            "prevent",
+            "monitor",
+            ""
+          ]
+        ],
         "type": "string"
       },
       "common.ExternalLabel": {
@@ -2128,7 +2183,15 @@
       },
       "common.ExternalLabelSourceType": {
         "description": "ExternalLabelSourceType indicates the source of the labels",
-        "enum": [["namespace", "deployment", "aws", "azure", "gcp"]],
+        "enum": [
+          [
+            "namespace",
+            "deployment",
+            "aws",
+            "azure",
+            "gcp"
+          ]
+        ],
         "type": "string"
       },
       "common.HostForensicSettings": {
@@ -2181,7 +2244,14 @@
       },
       "common.PolicyEffect": {
         "description": "PolicyEffect state the effect of evaluating the given policy",
-        "enum": [["allow", "deny", "block", "alert"]],
+        "enum": [
+          [
+            "allow",
+            "deny",
+            "block",
+            "alert"
+          ]
+        ],
         "type": "string"
       },
       "common.PortData": {
@@ -2495,12 +2565,26 @@
       },
       "customrules.Action": {
         "description": "Action is the action to perform if the custom rule applies",
-        "enum": [["audit", "incident"]],
+        "enum": [
+          [
+            "audit",
+            "incident"
+          ]
+        ],
         "type": "string"
       },
       "customrules.Effect": {
         "description": "Effect is the effect that will be used for custom rule",
-        "enum": [["block", "prevent", "alert", "allow", "ban", "disable"]],
+        "enum": [
+          [
+            "block",
+            "prevent",
+            "alert",
+            "allow",
+            "ban",
+            "disable"
+          ]
+        ],
         "type": "string"
       },
       "customrules.Ref": {
@@ -2580,7 +2664,14 @@
       },
       "defender.Category": {
         "description": "Category represents the defender target category",
-        "enum": [["container", "host", "serverless", "appEmbedded"]],
+        "enum": [
+          [
+            "container",
+            "host",
+            "serverless",
+            "appEmbedded"
+          ]
+        ],
         "type": "string"
       },
       "defender.Defender": {
@@ -2707,7 +2798,13 @@
       },
       "defender.ProxyListenerType": {
         "description": "ProxyListenerType is the proxy listener type of defenders",
-        "enum": [["none", "tcp", "default"]],
+        "enum": [
+          [
+            "none",
+            "tcp",
+            "default"
+          ]
+        ],
         "type": "string"
       },
       "defender.ScanStatus": {
@@ -3249,7 +3346,12 @@
       },
       "identity.ProviderName": {
         "description": "ProviderName is the identity provider name",
-        "enum": [["github", "openshift"]],
+        "enum": [
+          [
+            "github",
+            "openshift"
+          ]
+        ],
         "type": "string"
       },
       "identity.ProviderSettings": {
@@ -3372,7 +3474,16 @@
       },
       "identity.SamlType": {
         "description": "SamlType represents the type of a SAML configured settings",
-        "enum": [["okta", "gsuite", "ping", "shibboleth", "azure", "adfs"]],
+        "enum": [
+          [
+            "okta",
+            "gsuite",
+            "ping",
+            "shibboleth",
+            "azure",
+            "adfs"
+          ]
+        ],
         "type": "string"
       },
       "identity.Settings": {
@@ -5396,7 +5507,14 @@
       },
       "runtime.RuleEffect": {
         "description": "RuleEffect is the effect that will be used in the runtime rule",
-        "enum": [["block", "prevent", "alert", "disable"]],
+        "enum": [
+          [
+            "block",
+            "prevent",
+            "alert",
+            "disable"
+          ]
+        ],
         "type": "string"
       },
       "runtime.SSHEvent": {
@@ -6454,7 +6572,14 @@
       },
       "shared.AwsRegionType": {
         "description": "AwsRegionType is the type of aws region",
-        "enum": [["regular", "gov", "china", "all"]],
+        "enum": [
+          [
+            "regular",
+            "gov",
+            "china",
+            "all"
+          ]
+        ],
         "type": "string"
       },
       "shared.BackupSpec": {
@@ -7013,7 +7138,12 @@
       },
       "shared.CodeRepoProviderType": {
         "description": "CodeRepoProviderType is the type of provider for the code repository, e.g., GitHub, GitLab etc",
-        "enum": [["github", "CI"]],
+        "enum": [
+          [
+            "github",
+            "CI"
+          ]
+        ],
         "type": "string"
       },
       "shared.CodeRepoSettings": {
@@ -7666,7 +7796,16 @@
       "shared.CveType": {
         "description": "CveType represents the type of a CVE",
         "enum": [
-          ["python", "gem", "nodejs", "jar", "package", "product", "app", "go"]
+          [
+            "python",
+            "gem",
+            "nodejs",
+            "jar",
+            "package",
+            "product",
+            "app",
+            "go"
+          ]
         ],
         "type": "string"
       },
@@ -7763,7 +7902,15 @@
       "shared.EntityType": {
         "description": "EntityType represents the type of the resource identifier",
         "enum": [
-          ["", "docker", "kubernetes", "tas", "swarm", "istio", "internet"]
+          [
+            "",
+            "docker",
+            "kubernetes",
+            "tas",
+            "swarm",
+            "istio",
+            "internet"
+          ]
         ],
         "type": "string"
       },
@@ -7854,7 +8001,13 @@
       },
       "shared.FileIntegrityEventType": {
         "description": "FileIntegrityEventType represents the type of the file integrity event",
-        "enum": [["metadata", "read", "write"]],
+        "enum": [
+          [
+            "metadata",
+            "read",
+            "write"
+          ]
+        ],
         "type": "string"
       },
       "shared.FileMetadata": {
@@ -9259,7 +9412,14 @@
       },
       "shared.IncidentType": {
         "description": "IncidentType is the type of the incident",
-        "enum": [["host", "container", "function", "appEmbedded"]],
+        "enum": [
+          [
+            "host",
+            "container",
+            "function",
+            "appEmbedded"
+          ]
+        ],
         "type": "string"
       },
       "shared.InstalledProducts": {
@@ -9370,7 +9530,13 @@
       },
       "shared.JFrogRepoType": {
         "description": "JFrogRepoType represents the type of JFrog Artifactory repository",
-        "enum": [["local", "remote", "virtual"]],
+        "enum": [
+          [
+            "local",
+            "remote",
+            "virtual"
+          ]
+        ],
         "type": "string"
       },
       "shared.KeyValues": {
@@ -9616,7 +9782,12 @@
       },
       "shared.KubernetesDeploymentType": {
         "description": "KubernetesDeploymentType specifies the type of Kubernetes deployment",
-        "enum": [["default", "gke"]],
+        "enum": [
+          [
+            "default",
+            "gke"
+          ]
+        ],
         "type": "string"
       },
       "shared.KubernetesEventUserInfo": {
@@ -9751,7 +9922,14 @@
       },
       "shared.LicenseContractType": {
         "description": "LicenseContractType is the license contract type",
-        "enum": [["", "host", "avg", "burndown"]],
+        "enum": [
+          [
+            "",
+            "host",
+            "avg",
+            "burndown"
+          ]
+        ],
         "type": "string"
       },
       "shared.LicenseThreshold": {
@@ -9771,7 +9949,15 @@
       },
       "shared.LicenseTier": {
         "description": "LicenseTier represents the license tier of the customer",
-        "enum": [["", "developer", "enterprise", "evaluation", "oem"]],
+        "enum": [
+          [
+            "",
+            "developer",
+            "enterprise",
+            "evaluation",
+            "oem"
+          ]
+        ],
         "type": "string"
       },
       "shared.LogInspectionEvent": {
@@ -10305,7 +10491,12 @@
       },
       "shared.RegistryOSType": {
         "description": "RegistryOSType specifies the registry images base OS type",
-        "enum": [["linux", "windows"]],
+        "enum": [
+          [
+            "linux",
+            "windows"
+          ]
+        ],
         "type": "string"
       },
       "shared.RegistryScanRequest": {
@@ -10675,12 +10866,25 @@
       },
       "shared.RuntimeSeverity": {
         "description": "RuntimeSeverity represents the runtime severity",
-        "enum": [["low", "medium", "high"]],
+        "enum": [
+          [
+            "low",
+            "medium",
+            "high"
+          ]
+        ],
         "type": "string"
       },
       "shared.RuntimeType": {
         "description": "RuntimeType represents the runtime protection type",
-        "enum": [["processes", "network", "kubernetes", "filesystem"]],
+        "enum": [
+          [
+            "processes",
+            "network",
+            "kubernetes",
+            "filesystem"
+          ]
+        ],
         "type": "string"
       },
       "shared.ScanResultType": {
@@ -10829,7 +11033,12 @@
       },
       "shared.SecretsInjectionType": {
         "description": "SecretsInjectionType is the method used to inject secrets to containers",
-        "enum": [["envvar", "filesystem"]],
+        "enum": [
+          [
+            "envvar",
+            "filesystem"
+          ]
+        ],
         "type": "string"
       },
       "shared.SecretsPolicy": {
@@ -11686,7 +11895,12 @@
       },
       "trust.Status": {
         "description": "Status is the trust status for an image",
-        "enum": [["trusted", "untrusted"]],
+        "enum": [
+          [
+            "trusted",
+            "untrusted"
+          ]
+        ],
         "type": "string"
       },
       "types.AccessStats": {
@@ -14160,7 +14374,15 @@
       },
       "vuln.ComplianceTemplate": {
         "description": "ComplianceTemplate represents the compliance template",
-        "enum": [["PCI", "HIPAA", "NIST SP 800-190", "GDPR", "DISA STIG"]],
+        "enum": [
+          [
+            "PCI",
+            "HIPAA",
+            "NIST SP 800-190",
+            "GDPR",
+            "DISA STIG"
+          ]
+        ],
         "type": "string"
       },
       "vuln.Condition": {
@@ -14266,7 +14488,13 @@
       },
       "vuln.Effect": {
         "description": "Effect specifies relevant action for a vulnerability",
-        "enum": [["ignore", "alert", "block"]],
+        "enum": [
+          [
+            "ignore",
+            "alert",
+            "block"
+          ]
+        ],
         "type": "string"
       },
       "vuln.ExpirationDate": {
@@ -14286,7 +14514,13 @@
       },
       "vuln.ExploitType": {
         "description": "ExploitType represents the type of an exploit",
-        "enum": [["", "exploit-db", "exploit-windows"]],
+        "enum": [
+          [
+            "",
+            "exploit-db",
+            "exploit-windows"
+          ]
+        ],
         "type": "string"
       },
       "vuln.PackageType": {
@@ -14993,7 +15227,16 @@
       },
       "waas.Effect": {
         "description": "Effect is the effect that will be used in the rule",
-        "enum": [["ban", "prevent", "alert", "allow", "disable", "reCAPTCHA"]],
+        "enum": [
+          [
+            "ban",
+            "prevent",
+            "alert",
+            "allow",
+            "disable",
+            "reCAPTCHA"
+          ]
+        ],
         "type": "string"
       },
       "waas.Endpoint": {
@@ -15353,7 +15596,16 @@
       },
       "waas.ParamType": {
         "description": "ParamType is the type of a parameter, defined by OpenAPI specification\nRef: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types",
-        "enum": [["integer", "number", "string", "boolean", "array", "object"]],
+        "enum": [
+          [
+            "integer",
+            "number",
+            "string",
+            "boolean",
+            "array",
+            "object"
+          ]
+        ],
         "type": "string"
       },
       "waas.Path": {
@@ -15400,7 +15652,15 @@
       },
       "waas.Protection": {
         "description": "Protection is the type of protection",
-        "enum": [["firewall", "dos", "bot", "custom", "accessControl"]],
+        "enum": [
+          [
+            "firewall",
+            "dos",
+            "bot",
+            "custom",
+            "accessControl"
+          ]
+        ],
         "type": "string"
       },
       "waas.ProtectionConfig": {
@@ -15463,7 +15723,12 @@
       },
       "waas.ReCAPTCHAType": {
         "description": "ReCAPTCHAType is the reCAPTCHA configured type",
-        "enum": [["checkbox", "invisible"]],
+        "enum": [
+          [
+            "checkbox",
+            "invisible"
+          ]
+        ],
         "type": "string"
       },
       "waas.RemoteHostForwardingConfig": {
@@ -15494,7 +15759,13 @@
       },
       "waas.RequestAnomalyThreshold": {
         "description": "RequestAnomalyThreshold is the score threshold for which request anomaly violation is triggered",
-        "enum": [["3", "6", "9"]],
+        "enum": [
+          [
+            "3",
+            "6",
+            "9"
+          ]
+        ],
         "type": "integer"
       },
       "waas.Rule": {
@@ -15646,9 +15917,9 @@
   },
   "info": {
     "title": "Policies Overview",
-    "version": "21.04.421",
+    "version": "21.04.439",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/policies.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/policies.md"
     }
   },
   "openapi": "3.0.3",
@@ -15661,7 +15932,7 @@
     "/api/v1/policies/compliance/ci/images": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/compliance_ci_images_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_ci_images_get.md"
         },
         "responses": {
           "200": {
@@ -15675,7 +15946,9 @@
             "description": "Policy represents a policy that should be enforced by the Auditor"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyContainers",
           "saas": true,
@@ -15686,7 +15959,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/compliance_ci_images_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_ci_images_put.md"
         },
         "requestBody": {
           "content": {
@@ -15702,7 +15975,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyContainers",
           "saas": true,
@@ -15715,7 +15990,7 @@
     "/api/v1/policies/compliance/ci/serverless": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/compliance_ci_serverless_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_ci_serverless_get.md"
         },
         "responses": {
           "200": {
@@ -15729,7 +16004,9 @@
             "description": "Policy represents a policy that should be enforced by the Auditor"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyServerless",
           "saas": true,
@@ -15740,7 +16017,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/compliance_ci_serverless_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_ci_serverless_put.md"
         },
         "requestBody": {
           "content": {
@@ -15756,7 +16033,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyServerless",
           "saas": true,
@@ -15769,7 +16048,7 @@
     "/api/v1/policies/compliance/container": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/compliance_container_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_container_get.md"
         },
         "responses": {
           "200": {
@@ -15783,7 +16062,9 @@
             "description": "Policy represents a policy that should be enforced by the Auditor"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyContainers",
           "saas": true,
@@ -15794,7 +16075,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/compliance_container_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_container_put.md"
         },
         "requestBody": {
           "content": {
@@ -15810,7 +16091,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyContainers",
           "saas": true,
@@ -15823,7 +16106,7 @@
     "/api/v1/policies/compliance/container/impacted": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/compliance_container_impacted_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_container_impacted_get.md"
         },
         "parameters": [
           {
@@ -15923,7 +16206,9 @@
             "description": ""
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyContainers",
           "saas": true,
@@ -15936,7 +16221,7 @@
     "/api/v1/policies/compliance/host": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/compliance_host_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_host_get.md"
         },
         "responses": {
           "200": {
@@ -15950,7 +16235,9 @@
             "description": "Policy represents a policy that should be enforced by the Auditor"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyHosts",
           "saas": true,
@@ -15961,7 +16248,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/compliance_host_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_host_put.md"
         },
         "requestBody": {
           "content": {
@@ -15977,7 +16264,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyHosts",
           "saas": true,
@@ -15990,7 +16279,7 @@
     "/api/v1/policies/compliance/serverless": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/compliance_serverless_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_serverless_get.md"
         },
         "responses": {
           "200": {
@@ -16004,7 +16293,9 @@
             "description": "Policy represents a policy that should be enforced by the Auditor"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyServerless",
           "saas": true,
@@ -16015,7 +16306,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/compliance_serverless_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_serverless_put.md"
         },
         "requestBody": {
           "content": {
@@ -16031,7 +16322,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyServerless",
           "saas": true,
@@ -16044,7 +16337,7 @@
     "/api/v1/policies/firewall/app/apispec": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/firewall_app_apispec_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_apispec_post.md"
         },
         "responses": {
           "200": {
@@ -16058,7 +16351,9 @@
             "description": "APISpec is an API specification"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyWAAS",
           "saas": true,
@@ -16071,7 +16366,7 @@
     "/api/v1/policies/firewall/app/app-embedded": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/firewall_app-embedded_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app-embedded_get.md"
         },
         "responses": {
           "200": {
@@ -16085,7 +16380,9 @@
             "description": "Policy represents the policy"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyWAAS",
           "saas": true,
@@ -16096,7 +16393,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/firewall_app-embedded_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app-embedded_put.md"
         },
         "requestBody": {
           "content": {
@@ -16112,7 +16409,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyWAAS",
           "saas": true,
@@ -16125,7 +16424,7 @@
     "/api/v1/policies/firewall/app/container": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/firewall_app_container_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_container_get.md"
         },
         "responses": {
           "200": {
@@ -16139,7 +16438,9 @@
             "description": "Policy represents the policy"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyWAAS",
           "saas": true,
@@ -16150,7 +16451,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/firewall_app_container_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_container_put.md"
         },
         "requestBody": {
           "content": {
@@ -16166,7 +16467,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyWAAS",
           "saas": true,
@@ -16277,7 +16580,9 @@
             "description": ""
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyWAAS",
           "saas": true,
@@ -16290,7 +16595,7 @@
     "/api/v1/policies/firewall/app/host": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/firewall_app_host_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_host_get.md"
         },
         "responses": {
           "200": {
@@ -16304,7 +16609,9 @@
             "description": "Policy represents the policy"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyWAAS",
           "saas": true,
@@ -16315,7 +16622,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/firewall_app_host_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_host_put.md"
         },
         "requestBody": {
           "content": {
@@ -16331,7 +16638,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyWAAS",
           "saas": true,
@@ -16442,7 +16751,9 @@
             "description": ""
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyWAAS",
           "saas": true,
@@ -16455,7 +16766,7 @@
     "/api/v1/policies/firewall/app/network-list": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/firewall_app_network_list_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_network_list_get.md"
         },
         "responses": {
           "200": {
@@ -16469,7 +16780,9 @@
             "description": ""
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyWAAS",
           "saas": true,
@@ -16480,7 +16793,7 @@
       },
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/firewall_app_network_list_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_network_list_post.md"
         },
         "requestBody": {
           "content": {
@@ -16496,7 +16809,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyWAAS",
           "saas": true,
@@ -16507,7 +16822,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/firewall_app_network_list_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_network_list_put.md"
         },
         "requestBody": {
           "content": {
@@ -16523,7 +16838,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyWAAS",
           "saas": true,
@@ -16536,7 +16853,7 @@
     "/api/v1/policies/firewall/app/network-list/{id}": {
       "delete": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/firewall_app_network_list_id_delete.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_network_list_id_delete.md"
         },
         "parameters": [
           {
@@ -16553,7 +16870,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyWAAS",
           "saas": true,
@@ -16566,7 +16885,7 @@
     "/api/v1/policies/firewall/app/serverless": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/firewall_app_serverless_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_serverless_get.md"
         },
         "responses": {
           "200": {
@@ -16580,7 +16899,9 @@
             "description": "Policy represents the policy"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyWAAS",
           "saas": true,
@@ -16591,7 +16912,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/firewall_app_serverless_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_serverless_put.md"
         },
         "requestBody": {
           "content": {
@@ -16607,7 +16928,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyWAAS",
           "saas": true,
@@ -16632,7 +16955,9 @@
             "description": "Policy holds the data for firewall policies (host and container)"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyCNNF",
           "saas": true,
@@ -16657,7 +16982,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyCNNF",
           "saas": true,
@@ -16670,7 +16997,7 @@
     "/api/v1/policies/runtime/app-embedded": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/runtime_app-embedded_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_app-embedded_get.md"
         },
         "responses": {
           "200": {
@@ -16684,7 +17011,9 @@
             "description": "ContainerPolicy represents a runtime policy enforced for a given running resource"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyRuntimeServerless",
           "saas": true,
@@ -16695,7 +17024,7 @@
       },
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/runtime_app-embedded_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_app-embedded_post.md"
         },
         "requestBody": {
           "content": {
@@ -16711,7 +17040,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyRuntimeServerless",
           "saas": true,
@@ -16722,7 +17053,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/runtime_app-embedded_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_app-embedded_put.md"
         },
         "requestBody": {
           "content": {
@@ -16738,7 +17069,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyRuntimeServerless",
           "saas": true,
@@ -16751,7 +17084,7 @@
     "/api/v1/policies/runtime/container": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/runtime_container_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_container_get.md"
         },
         "responses": {
           "200": {
@@ -16765,7 +17098,9 @@
             "description": "ContainerPolicy represents a runtime policy enforced for a given running resource"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyRuntimeContainer",
           "saas": true,
@@ -16790,7 +17125,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyRuntimeContainer",
           "saas": true,
@@ -16801,7 +17138,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/runtime_container_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_container_put.md"
         },
         "requestBody": {
           "content": {
@@ -16817,7 +17154,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyRuntimeContainer",
           "saas": true,
@@ -16830,7 +17169,7 @@
     "/api/v1/policies/runtime/container/impacted": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/runtime_container_impacted_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_container_impacted_get.md"
         },
         "parameters": [
           {
@@ -16930,7 +17269,9 @@
             "description": ""
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyRuntimeContainer",
           "saas": true,
@@ -16943,7 +17284,7 @@
     "/api/v1/policies/runtime/host": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/runtime_host_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_host_get.md"
         },
         "responses": {
           "200": {
@@ -16957,7 +17298,9 @@
             "description": "HostPolicy represents a host runtime policy enforced for a given running resource"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyRuntimeHosts",
           "saas": true,
@@ -16982,7 +17325,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyRuntimeHosts",
           "saas": true,
@@ -16993,7 +17338,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/runtime_host_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_host_put.md"
         },
         "requestBody": {
           "content": {
@@ -17009,7 +17354,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyRuntimeHosts",
           "saas": true,
@@ -17022,7 +17369,7 @@
     "/api/v1/policies/runtime/serverless": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/runtime_serverless_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_serverless_get.md"
         },
         "responses": {
           "200": {
@@ -17036,7 +17383,9 @@
             "description": "ContainerPolicy represents a runtime policy enforced for a given running resource"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyRuntimeServerless",
           "saas": true,
@@ -17061,7 +17410,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyRuntimeServerless",
           "saas": true,
@@ -17072,7 +17423,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/runtime_serverless_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_serverless_put.md"
         },
         "requestBody": {
           "content": {
@@ -17088,7 +17439,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyRuntimeServerless",
           "saas": true,
@@ -17113,7 +17466,9 @@
             "description": ""
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyContainers",
           "saas": true,
@@ -17138,7 +17493,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyContainers",
           "saas": true,
@@ -17156,7 +17513,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyContainers",
           "saas": true,
@@ -17184,7 +17543,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyContainers",
           "saas": true,
@@ -17197,7 +17558,7 @@
     "/api/v1/policies/vulnerability/ci/images": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/vulnerability_ci_images_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_ci_images_get.md"
         },
         "responses": {
           "200": {
@@ -17211,7 +17572,9 @@
             "description": "Policy represents a policy that should be enforced by the Auditor"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyContainers",
           "saas": true,
@@ -17222,7 +17585,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/vulnerability_ci_images_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_ci_images_put.md"
         },
         "requestBody": {
           "content": {
@@ -17238,7 +17601,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyContainers",
           "saas": true,
@@ -17251,7 +17616,7 @@
     "/api/v1/policies/vulnerability/ci/serverless": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/vulnerability_ci_serverless_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_ci_serverless_get.md"
         },
         "responses": {
           "200": {
@@ -17265,7 +17630,9 @@
             "description": "Policy represents a policy that should be enforced by the Auditor"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyServerless",
           "saas": true,
@@ -17276,7 +17643,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/vulnerability_ci_serverless_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_ci_serverless_put.md"
         },
         "requestBody": {
           "content": {
@@ -17292,7 +17659,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyServerless",
           "saas": true,
@@ -17305,7 +17674,7 @@
     "/api/v1/policies/vulnerability/coderepos": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/vulnerability_coderepos_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_coderepos_get.md"
         },
         "responses": {
           "200": {
@@ -17319,7 +17688,9 @@
             "description": "Policy represents a policy that should be enforced by the Auditor"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyCodeRepos",
           "saas": true,
@@ -17330,7 +17701,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/vulnerability_coderepos_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_coderepos_put.md"
         },
         "requestBody": {
           "content": {
@@ -17346,7 +17717,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyCodeRepos",
           "saas": true,
@@ -17359,7 +17732,7 @@
     "/api/v1/policies/vulnerability/coderepos/impacted": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/vulnerability_coderepos_impacted_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_coderepos_impacted_get.md"
         },
         "parameters": [
           {
@@ -17459,7 +17832,9 @@
             "description": ""
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyCodeRepos",
           "saas": true,
@@ -17472,7 +17847,7 @@
     "/api/v1/policies/vulnerability/host": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/vulnerability_host_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_host_get.md"
         },
         "responses": {
           "200": {
@@ -17486,7 +17861,9 @@
             "description": "Policy represents a policy that should be enforced by the Auditor"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyHosts",
           "saas": true,
@@ -17497,7 +17874,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/vulnerability_host_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_host_put.md"
         },
         "requestBody": {
           "content": {
@@ -17513,7 +17890,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyHosts",
           "saas": true,
@@ -17526,7 +17905,7 @@
     "/api/v1/policies/vulnerability/host/impacted": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/vulnerability_host_impacted_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_host_impacted_get.md"
         },
         "parameters": [
           {
@@ -17626,7 +18005,9 @@
             "description": ""
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyHosts",
           "saas": true,
@@ -17639,7 +18020,7 @@
     "/api/v1/policies/vulnerability/images": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/vulnerability_images_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_images_get.md"
         },
         "responses": {
           "200": {
@@ -17653,7 +18034,9 @@
             "description": "Policy represents a policy that should be enforced by the Auditor"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyContainers",
           "saas": true,
@@ -17664,7 +18047,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/vulnerability_images_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_images_put.md"
         },
         "requestBody": {
           "content": {
@@ -17680,7 +18063,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyContainers",
           "saas": true,
@@ -17693,7 +18078,7 @@
     "/api/v1/policies/vulnerability/images/impacted": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/vulnerability_images_impacted_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_images_impacted_get.md"
         },
         "parameters": [
           {
@@ -17793,7 +18178,9 @@
             "description": ""
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyContainers",
           "saas": true,
@@ -17806,7 +18193,7 @@
     "/api/v1/policies/vulnerability/serverless": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/vulnerability_serverless_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_serverless_get.md"
         },
         "responses": {
           "200": {
@@ -17820,7 +18207,9 @@
             "description": "Policy represents a policy that should be enforced by the Auditor"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyServerless",
           "saas": true,
@@ -17831,7 +18220,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/policies/vulnerability_serverless_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_serverless_put.md"
         },
         "requestBody": {
           "content": {
@@ -17847,7 +18236,9 @@
             "description": "OK"
           }
         },
-        "tags": ["Policies"],
+        "tags": [
+          "Policies"
+        ],
         "x-prisma-cloud-target-env": {
           "permission": "policyServerless",
           "saas": true,

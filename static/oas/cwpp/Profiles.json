@@ -16749,9 +16749,9 @@
   },
   "info": {
     "title": "Profiles Overview",
-    "version": "21.08.512",
+    "version": "21.08.514",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/profiles/profiles.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/profiles.md"
     }
   },
   "openapi": "3.0.3",
@@ -16764,7 +16764,7 @@
     "/api/v1/profiles/container/{id}/forensic": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/profiles/container_id_forensic_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/container_id_forensic_get.md"
         },
         "parameters": [
           {
@@ -16871,7 +16871,7 @@
     "/api/v1/profiles/container/{id}/forensic/bundle": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/profiles/container_id_forensic_bundle_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/container_id_forensic_bundle_get.md"
         },
         "parameters": [
           {
@@ -16971,7 +16971,7 @@
     "/api/v1/profiles/container/{id}/hosts": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/profiles/container_id_hosts_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/container_id_hosts_get.md"
         },
         "parameters": [
           {
@@ -17193,7 +17193,7 @@
     "/api/v1/profiles/container/{id}/learn": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/profiles/container_id_learn_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/container_id_learn_post.md"
         },
         "parameters": [
           {
@@ -17237,7 +17237,7 @@
     "/api/v1/profiles/container/{id}/rule": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/profiles/container_id_rule_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/container_id_rule_get.md"
         },
         "parameters": [
           {
@@ -17279,7 +17279,7 @@
     "/api/v1/profiles/host/{id}/forensic": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/profiles/host_id_forensic_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/host_id_forensic_get.md"
         },
         "parameters": [
           {
@@ -17386,7 +17386,7 @@
     "/api/v1/profiles/host/{id}/forensic/download": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/profiles/host_id_forensic_download_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/host_id_forensic_download_get.md"
         },
         "parameters": [
           {
@@ -17486,7 +17486,7 @@
     "/api/v21.08/profiles/container": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/profiles/container_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/container_get.md"
         },
         "parameters": [
           {
@@ -17701,7 +17701,7 @@
     "/api/v21.08/profiles/container/download": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/profiles/container_download_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/container_download_get.md"
         },
         "parameters": [
           {
@@ -17909,7 +17909,7 @@
     "/api/v21.08/profiles/container/learn": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/profiles/container_learn_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/container_learn_post.md"
         },
         "responses": {
           "200": {
@@ -17935,7 +17935,7 @@
     "/api/v21.08/profiles/host": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/profiles/host_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/host_get.md"
         },
         "parameters": [
           {
@@ -18150,7 +18150,7 @@
     "/api/v21.08/profiles/host/download": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/profiles/host_download_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/host_download_get.md"
         },
         "parameters": [
           {

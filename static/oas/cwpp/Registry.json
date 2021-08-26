@@ -16749,9 +16749,9 @@
   },
   "info": {
     "title": "Registry Overview",
-    "version": "21.08.512",
+    "version": "21.08.514",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/registry/registry.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/registry.md"
     }
   },
   "openapi": "3.0.3",
@@ -16817,7 +16817,7 @@
     "/api/v21.08/registry": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/registry/get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/get.md"
         },
         "parameters": [
           {
@@ -17020,7 +17020,7 @@
     "/api/v21.08/registry/download": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/registry/download_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/download_get.md"
         },
         "parameters": [
           {
@@ -17216,7 +17216,7 @@
     "/api/v21.08/registry/names": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/registry/names_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/names_get.md"
         },
         "parameters": [
           {
@@ -17419,7 +17419,7 @@
     "/api/v21.08/registry/scan": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/registry/scan_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/scan_post.md"
         },
         "requestBody": {
           "content": {
@@ -17454,7 +17454,7 @@
     "/api/v21.08/registry/stop": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/twistlock/docs/master/api/descriptions/registry/stop_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/stop_post.md"
         },
         "responses": {
           "200": {
