@@ -51,7 +51,7 @@ components:
         role:
           additionalProperties:
             type: string
-          description: Role of User
+          description: User role
           type: object
         roleType:
           description: User role permission type

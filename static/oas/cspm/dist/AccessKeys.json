@@ -53,7 +53,7 @@
           "name": { "description": "Name", "type": "string" },
           "role": {
             "additionalProperties": { "type": "string" },
-            "description": "Role of User",
+            "description": "User role",
             "type": "object"
           },
           "roleType": {

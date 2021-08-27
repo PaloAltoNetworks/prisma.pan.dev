@@ -154,7 +154,7 @@
           },
           "name": { "description": "Policy name", "type": "string" },
           "openAlertsCount": {
-            "description": "Open Alerts Count",
+            "description": "Open Alerts Count (Deprecated)",
             "format": "int32",
             "type": "integer"
           },
