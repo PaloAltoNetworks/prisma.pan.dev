@@ -16763,7 +16763,9 @@
   "paths": {
     "/api/v1/registry/webhook/webhook": {
       "delete": {
-        "description": "RegistryWebhook listen to registry updates\n",
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/webhook_webhook_delete.md"
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -16784,7 +16786,9 @@
         "summary": " Registry Webhook"
       },
       "post": {
-        "description": "RegistryWebhook listen to registry updates\n",
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/webhook_webhook_post.md"
+        },
         "requestBody": {
           "content": {
             "application/json": {

@@ -113,7 +113,6 @@ module.exports = {
         'cloud/cwpp/access-api-self-hosted',
         'cloud/cwpp/access-api-saas',
         'cloud/cwpp/stable-endpoints',
-        'cloud/cwpp/porting-guide',
         'cloud/cwpp/policy_samples',
         'cloud/cwpp/twistcli_gs',
         'cloud/cwpp/custom_compliance_samples',
@@ -124,6 +123,14 @@ module.exports = {
           items: [
             'cloud/cwpp/api-workflows/set-up-console',
             'cloud/cwpp/api-workflows/manage-compliance-policy',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Porting guides',
+          items: [
+            'cloud/cwpp/porting-guides/porting-guide-21-08',
+            'cloud/cwpp/porting-guides/porting-guide-21-04',
           ],
         },
         {
