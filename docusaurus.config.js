@@ -46,9 +46,34 @@ module.exports = {
           position: "left",
         },
         {
-          href: "https://medium.com/palo-alto-networks-developer-blog",
-          label: "Blog",
+          label: "Products",
+          items: [
+            {
+              href: "https://cortex.pan.dev",
+              label: "Cortex Data Lake",
+              className: "cortexItem",
+              target: "_self",
+            },
+            {
+              href: "https://xsoar.pan.dev",
+              label: "Cortex XSOAR",
+              className: "xsoarItem",
+              target: "_self",
+            },
+            {
+              href: "https://panos.pan.dev",
+              label: "Strata",
+              className: "strataItem",
+              target: "_self",
+            },
+          ],
           position: "right",
+        },
+        {
+          href: "https://medium.com/palo-alto-networks-developer-blog",
+          position: "right",
+          className: "header-medium-link",
+          "aria-label": "Palo Alto Networks Developer Blog",
         },
         {
           href: "https://github.com/PaloAltoNetworks",

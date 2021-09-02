@@ -78,7 +78,7 @@ let DARK_THEME_OPTIONS = {
  */
 function getThemeOptions(isDarkMode) {
   let baseTheme = {
-    spacing: {sectionVertical: '60', unit: '2',},
+    spacing: {unit: '2'},
     colors: {
       primary: {
         main: "#00c0e8"
