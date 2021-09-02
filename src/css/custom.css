@@ -478,10 +478,6 @@ table td {
   background-color: var(--ifm-background-color);
 }
 
-[id^="operation"] {
-  scroll-margin-top: 60px;
-}
-
 .redocusaurus .react-tabs__tab-list {
   margin-bottom: 0.1rem;
 }

@@ -154,7 +154,7 @@ function Redocusaurus(props) {
           scrollYOffset: ".navbar",
           theme,
           hideDownloadButton: true,
-          nativeScrollBars: false,
+          nativeScrollbars: false,
           disableSearch: true,
           hideSchemaPattern: false,
           pathInMiddlePanel: true,
