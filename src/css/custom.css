@@ -499,3 +499,7 @@ html[data-theme="dark"] .featuredContainer {
   height: 10px;
   font-weight: 600;
 }
+
+.button--version {
+  margin-bottom: 0 !important;
+}

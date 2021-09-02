@@ -614,6 +614,10 @@ components:
           - alibaba_cloud
           - oci
           type: string
+        cursor:
+          description: Cursor
+          format: int32
+          type: integer
         default:
           type: boolean
         description:
@@ -678,6 +682,10 @@ components:
           - alibaba_cloud
           - oci
           type: string
+        cursor:
+          description: Cursor
+          format: int32
+          type: integer
         data:
           type: object
         default:
@@ -744,6 +752,10 @@ components:
           - alibaba_cloud
           - oci
           type: string
+        cursor:
+          description: Cursor
+          format: int32
+          type: integer
         data:
           items:
             $ref: '#/components/schemas/AggregateAuditEvent'
@@ -812,6 +824,10 @@ components:
           - alibaba_cloud
           - oci
           type: string
+        cursor:
+          description: Cursor
+          format: int32
+          type: integer
         data:
           items:
             type: object
@@ -880,6 +896,10 @@ components:
           - alibaba_cloud
           - oci
           type: string
+        cursor:
+          description: Cursor
+          format: int32
+          type: integer
         data:
           $ref: '#/components/schemas/PagedResultsAuditEvent'
         default:
@@ -946,6 +966,10 @@ components:
           - alibaba_cloud
           - oci
           type: string
+        cursor:
+          description: Cursor
+          format: int32
+          type: integer
         data:
           $ref: '#/components/schemas/PagedResultsResourceMetaModel'
         default:

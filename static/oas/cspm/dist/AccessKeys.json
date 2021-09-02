@@ -53,7 +53,7 @@
           "name": { "description": "Name", "type": "string" },
           "role": {
             "additionalProperties": { "type": "string" },
-            "description": "Role of User",
+            "description": "User role",
             "type": "object"
           },
           "roleType": {
@@ -61,7 +61,10 @@
             "type": "string"
           },
           "status": { "description": "Access key status", "type": "string" },
-          "username": { "description": "Access key username", "type": "string" }
+          "username": {
+            "description": "Access key user name",
+            "type": "string"
+          }
         },
         "type": "object"
       },

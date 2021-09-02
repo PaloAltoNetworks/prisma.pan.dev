@@ -101,6 +101,11 @@
             "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"],
             "type": "string"
           },
+          "cursor": {
+            "description": "Cursor",
+            "format": "int32",
+            "type": "integer"
+          },
           "default": { "type": "boolean" },
           "description": {
             "description": "Search Description",
@@ -154,6 +159,11 @@
             "description": "Cloud Type",
             "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"],
             "type": "string"
+          },
+          "cursor": {
+            "description": "Cursor",
+            "format": "int32",
+            "type": "integer"
           },
           "data": { "$ref": "#/components/schemas/SearchModel" },
           "default": { "type": "boolean" },
@@ -416,11 +426,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/history/{id}\"\n\npayload = \"{\\\"cloudType\\\":\\\"aws\\\",\\\"default\\\":true,\\\"description\\\":\\\"string\\\",\\\"id\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"query\\\":\\\"string\\\",\\\"saved\\\":true,\\\"timeRange\\\":{\\\"relativeTimeType\\\":\\\"BACKWARD\\\",\\\"type\\\":\\\"relative\\\",\\\"value\\\":{\\\"amount\\\":0,\\\"unit\\\":\\\"minute\\\"}}}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/history/{id}\"\n\npayload = \"{\\\"cloudType\\\":\\\"aws\\\",\\\"cursor\\\":0,\\\"default\\\":true,\\\"description\\\":\\\"string\\\",\\\"id\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"query\\\":\\\"string\\\",\\\"saved\\\":true,\\\"timeRange\\\":{\\\"relativeTimeType\\\":\\\"BACKWARD\\\",\\\"type\\\":\\\"relative\\\",\\\"value\\\":{\\\"amount\\\":0,\\\"unit\\\":\\\"minute\\\"}}}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/history/{id} \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"cloudType\":\"aws\",\"default\":true,\"description\":\"string\",\"id\":\"string\",\"name\":\"string\",\"query\":\"string\",\"saved\":true,\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/history/{id} \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"cloudType\":\"aws\",\"cursor\":0,\"default\":true,\"description\":\"string\",\"id\":\"string\",\"name\":\"string\",\"query\":\"string\",\"saved\":true,\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       },

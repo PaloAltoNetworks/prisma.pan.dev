@@ -18,6 +18,8 @@ function genEndpoints() {
   var endEndpoints = [];
   var pushToEnd = [
     "IacScan",
+    "IAM",
+    "IAMIdp",
     "DataSecurityDashboard",
     "DataSecurityInventory",
     "DataSecuritySettings",

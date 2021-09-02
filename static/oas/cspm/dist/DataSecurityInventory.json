@@ -744,6 +744,9 @@
             },
             "description": "success"
           },
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value / internal_error / violates_minimum_alert_dismiss_duration_time"
+          },
           "500": { "description": "internal_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -788,6 +791,9 @@
               }
             },
             "description": "success"
+          },
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value / internal_error / violates_minimum_alert_dismiss_duration_time"
           },
           "500": { "description": "internal_error" }
         },
@@ -873,6 +879,9 @@
               }
             },
             "description": "success"
+          },
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value / internal_error / violates_minimum_alert_dismiss_duration_time"
           },
           "500": { "description": "internal_error" }
         },
@@ -1049,6 +1058,9 @@
             },
             "description": "success"
           },
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value / internal_error / violates_minimum_alert_dismiss_duration_time"
+          },
           "500": { "description": "internal_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
@@ -1166,7 +1178,9 @@
             "content": { "*/*": { "schema": { "type": "string" } } },
             "description": "success"
           },
-          "400": { "description": "bad_request" },
+          "400": {
+            "description": "missing_required_parameter / invalid_parameter_value / internal_error / violates_minimum_alert_dismiss_duration_time"
+          },
           "500": { "description": "internal_error" }
         },
         "security": [{ "x-redlock-auth": [] }],

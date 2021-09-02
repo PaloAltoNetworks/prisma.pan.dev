@@ -695,6 +695,9 @@ paths:
                   $ref: '#/components/schemas/DLPInventoryObjectClassificationReportV2'
                 type: array
           description: success
+        '400':
+          description: missing_required_parameter / invalid_parameter_value / internal_error
+            / violates_minimum_alert_dismiss_duration_time
         '500':
           description: internal_error
       security:
@@ -718,6 +721,9 @@ paths:
                   $ref: '#/components/schemas/DLPInventoryObjectClassificationReport'
                 type: array
           description: success
+        '400':
+          description: missing_required_parameter / invalid_parameter_value / internal_error
+            / violates_minimum_alert_dismiss_duration_time
         '500':
           description: internal_error
       security:
@@ -826,6 +832,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/DLPInventoryObjectExplorer'
           description: success
+        '400':
+          description: missing_required_parameter / invalid_parameter_value / internal_error
+            / violates_minimum_alert_dismiss_duration_time
         '500':
           description: internal_error
       security:
@@ -920,6 +929,9 @@ paths:
               schema:
                 type: string
           description: success
+        '400':
+          description: missing_required_parameter / invalid_parameter_value / internal_error
+            / violates_minimum_alert_dismiss_duration_time
         '500':
           description: internal_error
       security:
@@ -985,7 +997,8 @@ paths:
                 type: string
           description: success
         '400':
-          description: bad_request
+          description: missing_required_parameter / invalid_parameter_value / internal_error
+            / violates_minimum_alert_dismiss_duration_time
         '500':
           description: internal_error
       security:

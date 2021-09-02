@@ -457,7 +457,7 @@
             "type": "object"
           },
           "cloudAccountAncestors": {
-            "description": "Cloud Account Ancestors. For GCP.",
+            "description": "Cloud account ancestors. For GCP.",
             "items": { "type": "string" },
             "readOnly": true,
             "type": "array"
@@ -1328,12 +1328,12 @@
             "type": "array"
           },
           "regions": {
-            "description": "List of regions",
+            "description": "List of regions for which alerts will be triggered for account groups. Alerts not associated with specific regions will be triggered regardless of listed regions. If no regions are specified, then the alerts will be triggered for all regions.",
             "items": { "type": "string" },
             "type": "array"
           },
           "tags": {
-            "description": "List of TargetTag models (resource tags)",
+            "description": "List of TargetTag models (resource tags) for which alerts should be triggered",
             "items": { "$ref": "#/components/schemas/TargetTagModel" },
             "type": "array"
           }

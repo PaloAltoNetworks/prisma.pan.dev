@@ -184,7 +184,8 @@ paths:
       tags:
       - User Roles
     post:
-      description: Creates a new user role.
+      description: "Creates a new user role.  \r\n\r\nNote that the request body parameter\
+        \ **accountGroupIds** is required but can be an empty array.\n"
       operationId: add-user-role
       requestBody:
         $ref: '#/components/requestBodies/UserRoleModel'

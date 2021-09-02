@@ -102,6 +102,10 @@ components:
           - alibaba_cloud
           - oci
           type: string
+        cursor:
+          description: Cursor
+          format: int32
+          type: integer
         default:
           type: boolean
         description:
@@ -166,6 +170,10 @@ components:
           - alibaba_cloud
           - oci
           type: string
+        cursor:
+          description: Cursor
+          format: int32
+          type: integer
         data:
           $ref: '#/components/schemas/SearchModel'
         default:

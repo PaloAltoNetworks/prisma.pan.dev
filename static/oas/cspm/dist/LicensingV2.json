@@ -74,12 +74,12 @@
         ]
       }
     },
-    "/license/api/v1/usage/": {
+    "/license/api/v1/usage": {
       "post": {
         "tags": ["Licensing"],
-        "summary": "Usage Count By Cloud Type Paginated",
-        "description": "Get a paginated, full breakdown of resources used per account under a single cloud type.",
-        "operationId": "license-usage-count-by-cloud-paginated_1",
+        "summary": "Usage Count By Cloud Type",
+        "description": "Returns a breakdown of resources used per account for a single cloud type. \n\n\nYou can request usage data in one of the following formats;\n* Receive paginated usage data in the response object \n* Download usage data in a CSV file\n\n\nBy default, you will receive your paginated usage data in the response object. You can control the number of items in the \nresponse object through the **limit** request body parameter. If data beyond what's in the response object is available,\nthe response object attribute **nextPageToken** will provide a token you can set in the request parameter **pageToken** of your\nnext request to get the next page of usage data.\n\n\nTo download the usage data in a CSV file, set the following:\n* Request header: **Accept: application/octet-stream**\n* Request body parameter: **csvHeaderRequired** = **true**.\n\n\nThe following example curl command requests usage data in a CSV file:\n\n```bash\ncurl --location --request POST 'https://api.prismacloud.io/license/api/v1/usage' \\\n--header 'x-redlock-auth:<your JWT>' \\\n--header 'Content-Type: application/json' \\\n--header 'Accept: application/octet-stream' \\\n--data-raw '{\n    \"timeRange\": {\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 1,\n            \"unit\": \"month\"\n        }\n    },\n    \"accountIds\": [\n        \"123456789987\", \n        \"987654321123\"\n    ],\n    \"cloudType\": \"AWS\",\n    \"csvHeaderRequired\": true\n}'\n````\n",
+        "operationId": "get-license-usage",
         "parameters": [
           {
             "name": "cloud_type",
@@ -100,71 +100,11 @@
           "200": {
             "description": "Successful operation",
             "content": {
-              "application/json; charset=UTF-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/LicenseResponseModel"
                 }
-              }
-            }
-          },
-          "400": {
-            "description": "invalid_parameter_value",
-            "content": {
-              "application/json; charset=UTF-8": {
-                "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json; charset=UTF-8": {
-                "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
-              }
-            }
-          },
-          "500": {
-            "description": "internal_error",
-            "content": {
-              "application/json; charset=UTF-8": {
-                "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
-              }
-            }
-          }
-        },
-        "security": [{ "x-redlock-auth": [] }],
-        "x-codeSamples": [
-          {
-            "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/license/api/v1/usage/\"\n\nquerystring = {\"cloud_type\":\"SOME_STRING_VALUE\"}\n\nheaders = {\n    'content-type': \"application/json; charset=UTF-8\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, headers=headers, params=querystring)\n\nprint(response.text)"
-          },
-          {
-            "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/license/api/v1/usage/?cloud_type=SOME_STRING_VALUE' \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
-          }
-        ]
-      }
-    },
-    "/license/api/v1/usage": {
-      "post": {
-        "tags": ["Licensing"],
-        "summary": "Get Usage CSV",
-        "description": "Get usage breakdown in a CSV file.\n\nNote that the following are required:\n* Request header: **Accept: application/octet-stream**\n* Request body parameter: **csvHeaderRequired** = **true**.\n",
-        "operationId": "license-get-usage-csv",
-        "requestBody": {
-          "content": {
-            "application/json; charset=UTF-8": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountListRequestModel"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
+              },
               "application/octet-stream": {
                 "schema": { "$ref": "#/components/schemas/CsvMessage" }
               }
@@ -173,7 +113,7 @@
           "400": {
             "description": "invalid_parameter_value",
             "content": {
-              "application/octet-stream": {
+              "application/json; charset=UTF-8": {
                 "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
               }
             }
@@ -181,7 +121,7 @@
           "403": {
             "description": "Forbidden",
             "content": {
-              "application/octet-stream": {
+              "application/json; charset=UTF-8": {
                 "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
               }
             }
@@ -189,7 +129,7 @@
           "500": {
             "description": "internal_error",
             "content": {
-              "application/octet-stream": {
+              "application/json; charset=UTF-8": {
                 "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
               }
             }
@@ -199,11 +139,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/license/api/v1/usage\"\n\nheaders = {\n    'content-type': \"application/json; charset=UTF-8\",\n    'accept': \"application/octet-stream\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/license/api/v1/usage\"\n\nquerystring = {\"cloud_type\":\"SOME_STRING_VALUE\"}\n\nheaders = {\n    'content-type': \"application/json; charset=UTF-8\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/license/api/v1/usage \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'accept: application/octet-stream' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/license/api/v1/usage?cloud_type=SOME_STRING_VALUE' \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }

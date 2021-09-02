@@ -540,6 +540,11 @@
             "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"],
             "type": "string"
           },
+          "cursor": {
+            "description": "Cursor",
+            "format": "int32",
+            "type": "integer"
+          },
           "default": { "type": "boolean" },
           "description": {
             "description": "Search Description",
@@ -593,6 +598,11 @@
             "description": "Cloud Type",
             "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"],
             "type": "string"
+          },
+          "cursor": {
+            "description": "Cursor",
+            "format": "int32",
+            "type": "integer"
           },
           "data": { "type": "object" },
           "default": { "type": "boolean" },
@@ -648,6 +658,11 @@
             "description": "Cloud Type",
             "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"],
             "type": "string"
+          },
+          "cursor": {
+            "description": "Cursor",
+            "format": "int32",
+            "type": "integer"
           },
           "data": {
             "items": { "$ref": "#/components/schemas/AggregateAuditEvent" },
@@ -707,6 +722,11 @@
             "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"],
             "type": "string"
           },
+          "cursor": {
+            "description": "Cursor",
+            "format": "int32",
+            "type": "integer"
+          },
           "data": { "items": { "type": "object" }, "type": "array" },
           "default": { "type": "boolean" },
           "description": {
@@ -762,6 +782,11 @@
             "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"],
             "type": "string"
           },
+          "cursor": {
+            "description": "Cursor",
+            "format": "int32",
+            "type": "integer"
+          },
           "data": { "$ref": "#/components/schemas/PagedResultsAuditEvent" },
           "default": { "type": "boolean" },
           "description": {
@@ -816,6 +841,11 @@
             "description": "Cloud Type",
             "enum": ["aws", "azure", "gcp", "alibaba_cloud", "oci"],
             "type": "string"
+          },
+          "cursor": {
+            "description": "Cursor",
+            "format": "int32",
+            "type": "integer"
           },
           "data": {
             "$ref": "#/components/schemas/PagedResultsResourceMetaModel"
@@ -1080,11 +1110,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search\"\n\npayload = \"{\\\"cloudType\\\":\\\"aws\\\",\\\"default\\\":true,\\\"description\\\":\\\"string\\\",\\\"id\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"query\\\":\\\"string\\\",\\\"saved\\\":true,\\\"timeRange\\\":{\\\"relativeTimeType\\\":\\\"BACKWARD\\\",\\\"type\\\":\\\"relative\\\",\\\"value\\\":{\\\"amount\\\":0,\\\"unit\\\":\\\"minute\\\"}}}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search\"\n\npayload = \"{\\\"cloudType\\\":\\\"aws\\\",\\\"cursor\\\":0,\\\"default\\\":true,\\\"description\\\":\\\"string\\\",\\\"id\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"query\\\":\\\"string\\\",\\\"saved\\\":true,\\\"timeRange\\\":{\\\"relativeTimeType\\\":\\\"BACKWARD\\\",\\\"type\\\":\\\"relative\\\",\\\"value\\\":{\\\"amount\\\":0,\\\"unit\\\":\\\"minute\\\"}}}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"cloudType\":\"aws\",\"default\":true,\"description\":\"string\",\"id\":\"string\",\"name\":\"string\",\"query\":\"string\",\"saved\":true,\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"cloudType\":\"aws\",\"cursor\":0,\"default\":true,\"description\":\"string\",\"id\":\"string\",\"name\":\"string\",\"query\":\"string\",\"saved\":true,\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }
@@ -1336,11 +1366,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/suggest\"\n\npayload = \"{\\\"cloudType\\\":\\\"aws\\\",\\\"default\\\":true,\\\"description\\\":\\\"string\\\",\\\"id\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"query\\\":\\\"string\\\",\\\"saved\\\":true,\\\"timeRange\\\":{\\\"relativeTimeType\\\":\\\"BACKWARD\\\",\\\"type\\\":\\\"relative\\\",\\\"value\\\":{\\\"amount\\\":0,\\\"unit\\\":\\\"minute\\\"}}}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/suggest\"\n\npayload = \"{\\\"cloudType\\\":\\\"aws\\\",\\\"cursor\\\":0,\\\"default\\\":true,\\\"description\\\":\\\"string\\\",\\\"id\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"query\\\":\\\"string\\\",\\\"saved\\\":true,\\\"timeRange\\\":{\\\"relativeTimeType\\\":\\\"BACKWARD\\\",\\\"type\\\":\\\"relative\\\",\\\"value\\\":{\\\"amount\\\":0,\\\"unit\\\":\\\"minute\\\"}}}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/suggest \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"cloudType\":\"aws\",\"default\":true,\"description\":\"string\",\"id\":\"string\",\"name\":\"string\",\"query\":\"string\",\"saved\":true,\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/suggest \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"cloudType\":\"aws\",\"cursor\":0,\"default\":true,\"description\":\"string\",\"id\":\"string\",\"name\":\"string\",\"query\":\"string\",\"saved\":true,\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }

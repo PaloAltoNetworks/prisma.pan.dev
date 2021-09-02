@@ -335,12 +335,16 @@ components:
             type: string
           type: array
         regions:
-          description: List of regions
+          description: List of regions for which alerts will be triggered for account
+            groups. Alerts not associated with specific regions will be triggered
+            regardless of listed regions. If no regions are specified, then the alerts
+            will be triggered for all regions.
           items:
             type: string
           type: array
         tags:
-          description: List of TargetTag models (resource tags)
+          description: List of TargetTag models (resource tags) for which alerts should
+            be triggered
           items:
             $ref: '#/components/schemas/TargetTagModel'
           type: array
@@ -426,6 +430,13 @@ paths:
         required: true
         schema:
           type: string
+      - description: Only enabled integration
+        in: query
+        name: onlyEnabled
+        required: false
+        schema:
+          default: false
+          type: boolean
       responses:
         '200':
           content:
@@ -510,12 +521,12 @@ paths:
       description: "Adds an integration with the specified external system.  \r\n\r\
         \n### Request Body\n\nParameter | Type | Description | Default Value or Required\
         \ \n-------------| ---- | ----------- | ---\nname | string | Integration name.\
-        \ Must be unique. | _required_\nintegrationType | string | For valid values,\
+        \ Must be unique. | Required\nintegrationType | string | For valid values,\
         \ see [List All Integration Types](/api/cloud/cspm/integrations#operation/get-all-integrations-types)\
-        \ | _required_\ndescription | string | Description of the integration. | _required_\n\
-        enabled | boolean | If true, then enable the integration. | _required_\nintegrationConfig\
+        \ | Required\ndescription | string | Description of the integration. | Required\n\
+        enabled | boolean | If true, then enable the integration. | Required\nintegrationConfig\
         \ | Map<String, String> | Map of key/value pairs. Integration specific. |\
-        \ _required_ \n\nThe **integrationConfig** field that is a map of key/value\
+        \ Required \n\nThe **integrationConfig** field that is a map of key/value\
         \ pairs. The type of integration \ndefines the content of these key/value\
         \ pairs. See [Integration Configuration](/api/cloud/api-integration-config)\
         \ for valid \nkey/value pairs for the **integrationConfig** for your specific\
@@ -643,7 +654,7 @@ paths:
         '200':
           description: successful operation
         '400':
-          description: invalid_id / conflict_deleting_integration_in_use / missing_integration_config
+          description: invalid_id / conflict_deleting_integration / missing_integration_config
             / internal_error
       security:
       - x-redlock-auth: []
