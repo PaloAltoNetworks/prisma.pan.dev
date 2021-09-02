@@ -250,6 +250,11 @@ html[data-theme="dark"] .header-github-link:before {
   }
 }
 
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 /* Redocusaurus overrides follow */
 
 .redocusaurus table {
