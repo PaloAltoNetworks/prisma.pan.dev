@@ -4,35 +4,29 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 import React from "react";
-import Link from "@docusaurus/Link";
+import clsx from "clsx";
+import { useActivePlugin, useVersions } from "@theme/hooks/useDocs";
+import useWindowSize from "@theme/hooks/useWindowSize";
 import DocPaginator from "@theme/DocPaginator";
-import DocVersionSuggestions from "@theme/DocVersionSuggestions";
+import DocVersionBanner from "@theme/DocVersionBanner";
 import Seo from "@theme/Seo";
 import LastUpdated from "@theme/LastUpdated";
 import TOC from "@theme/TOC";
-import classnames from "classnames";
+import TOCCollapsible from "@theme/TOCCollapsible";
 import EditThisPage from "@theme/EditThisPage";
-import clsx from "clsx";
+import { MainHeading } from "@theme/Heading";
 import styles from "./styles.module.css";
-import {
-  useActivePlugin,
-  useVersions,
-  useActiveVersion,
-} from "@theme/hooks/useDocs";
 
-function APIDocItem(props) {
-  const { content: DocContent } = props;
+function DocItem(props) {
+  const { content: DocContent, versionMetadata } = props;
+  const { metadata, frontMatter } = DocContent;
   const {
-    metadata,
-    frontMatter: {
-      image,
-      keywords,
-      hide_title: hideTitle,
-      hide_table_of_contents: hideTableOfContents,
-    },
-  } = DocContent;
+    image,
+    keywords,
+    hide_title: hideTitle,
+    hide_table_of_contents: hideTableOfContents,
+  } = frontMatter;
   const {
     description,
     title,
@@ -40,20 +34,25 @@ function APIDocItem(props) {
     lastUpdatedAt,
     formattedLastUpdatedAt,
     lastUpdatedBy,
-    source,
   } = metadata;
-  const issueTitle = `Issue with "${title}" in ${source}`;
-  const issueUrl = `https://github.com/PaloAltoNetworks/prisma.pan.dev/issues/new?labels=documentation&template=developer-documentation-issue.md&title=${issueTitle}`;
-
   const { pluginId } = useActivePlugin({
     failfast: true,
   });
-  const versions = useVersions(pluginId);
-  const version = useActiveVersion(pluginId); // If site is not versioned or only one version is included
+  const versions = useVersions(pluginId); // If site is not versioned or only one version is included
   // we don't show the version badge
   // See https://github.com/facebook/docusaurus/issues/3362
 
-  const showVersionBadge = versions.length > 1;
+  const showVersionBadge = versions.length > 1; // We only add a title if:
+  // - user asks to hide it with frontmatter
+  // - the markdown content does not already contain a top-level h1 heading
+
+  const shouldAddTitle =
+    !hideTitle && typeof DocContent.contentTitle === "undefined";
+  const windowSize = useWindowSize();
+  const canRenderTOC =
+    !hideTableOfContents && DocContent.toc && DocContent.toc.length > 0;
+  const renderTocDesktop =
+    canRenderTOC && (windowSize === "desktop" || windowSize === "ssr");
   return (
     <>
       <Seo
@@ -71,48 +70,38 @@ function APIDocItem(props) {
             [styles.docItemCol]: !hideTableOfContents,
           })}
         >
-          <DocVersionSuggestions />
+          <DocVersionBanner versionMetadata={versionMetadata} />
           <div className={styles.docItemContainer}>
             <article>
               {showVersionBadge && (
-                <div>
-                  <span className="badge badge--secondary">
-                    Version: {version.label}
-                  </span>
-                </div>
+                <span className="badge badge--secondary">
+                  Version: {versionMetadata.label}
+                </span>
               )}
-              {!hideTitle && (
-                <header>
-                  <h1 className={styles.docTitle}>{title}</h1>
-                </header>
+
+              {canRenderTOC && (
+                <TOCCollapsible
+                  toc={DocContent.toc}
+                  className={styles.tocMobile}
+                />
               )}
+
               <div className="markdown">
+                {/*
+                Title can be declared inside md content or declared through frontmatter and added manually
+                To make both cases consistent, the added title is added under the same div.markdown block
+                See https://github.com/facebook/docusaurus/pull/4882#issuecomment-853021120
+                */}
+                {shouldAddTitle && <MainHeading>{title}</MainHeading>}
+
                 <DocContent />
               </div>
             </article>
-            {(editUrl || lastUpdatedAt || lastUpdatedBy) && (
-              <div className="margin-vert--xl">
-                <div className="row">
-                  <div className="col text--right">
-                    <Link
-                      className={classnames(
-                        "button button--outline button--primary button--md"
-                      )}
-                      href={issueUrl}
-                      target="_blank"
-                    >
-                      Report an Issue
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            )}
-            <div className="margin-vert--lg">
-              <DocPaginator metadata={metadata} />
-            </div>
+
+            <DocPaginator metadata={metadata} />
           </div>
         </div>
-        {!hideTableOfContents && DocContent.toc && (
+        {renderTocDesktop && (
           <div className="col col--3">
             <TOC toc={DocContent.toc} />
           </div>
@@ -122,4 +111,4 @@ function APIDocItem(props) {
   );
 }
 
-export default APIDocItem;
+export default DocItem;

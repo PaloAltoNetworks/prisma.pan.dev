@@ -78,7 +78,7 @@ let DARK_THEME_OPTIONS = {
  */
 function getThemeOptions(isDarkMode) {
   let baseTheme = {
-    spacing: {unit: '2'},
+    spacing: {sectionVertical: '60', unit: '2',},
     colors: {
       primary: {
         main: "#00c0e8"
@@ -154,7 +154,7 @@ function Redocusaurus(props) {
           scrollYOffset: ".navbar",
           theme,
           hideDownloadButton: true,
-          nativeScrollbars: false,
+          nativeScrollBars: false,
           disableSearch: true,
           hideSchemaPattern: false,
           pathInMiddlePanel: true,

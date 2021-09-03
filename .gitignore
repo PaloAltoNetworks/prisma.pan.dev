@@ -4,6 +4,8 @@
 # production
 /build
 
+/redoc
+
 # generated files
 .docusaurus
 .cache-loader
