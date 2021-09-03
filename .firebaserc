@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "pan-dev-f1b58"
+  },
+  "targets": {
+    "pan-dev-f1b58": {
+      "hosting": {
+        "prisma.pan.dev": [
+          "prisma-pan-dev"
+        ]
+      }
+    }
+  }
+}
