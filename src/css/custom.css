@@ -212,6 +212,11 @@ blockquote {
   max-width: 1400px;
 }
 
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 /* GitHub Header Link */
 .header-github-link:hover {
   opacity: 0.6;
@@ -248,11 +253,6 @@ html[data-theme="dark"] .header-github-link:before {
   .navbar__logo {
     content: url("/img/prismafavicon.png") !important;
   }
-}
-
-pre {
-  white-space: pre-wrap;
-  word-wrap: break-word;
 }
 
 /* Redocusaurus overrides follow */
@@ -481,6 +481,10 @@ table td {
 
 .redocusaurus table.security-details tr {
   background-color: var(--ifm-background-color);
+}
+
+[id^="operation"] {
+  scroll-margin-top: 60px;
 }
 
 .redocusaurus .react-tabs__tab-list {
