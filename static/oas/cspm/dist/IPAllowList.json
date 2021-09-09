@@ -677,7 +677,7 @@
               }
             }
           },
-          "description": "Generic parameters",
+          "description": "The property name is **enabled**. Valid values are **true**, **false**. JSON example: {\"enabled\":false}",
           "required": true
         },
         "responses": {

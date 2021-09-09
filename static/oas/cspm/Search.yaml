@@ -135,6 +135,12 @@ components:
         cityId:
           format: int32
           type: integer
+        cityLatitude:
+          format: double
+          type: number
+        cityLongitude:
+          format: double
+          type: number
         cityName:
           type: string
         countryId:
@@ -218,6 +224,8 @@ components:
           type: string
         success:
           type: boolean
+        timezone:
+          type: string
         type:
           enum:
           - UNKNOWN

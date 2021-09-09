@@ -448,7 +448,7 @@
             "type": "string"
           },
           "canonicalId": {
-            "description": "Internal use only",
+            "description": "Internal use only (Deprecated)",
             "readOnly": true,
             "type": "string"
           },
@@ -463,7 +463,7 @@
             "type": "integer"
           },
           "cloudAccountStatus": {
-            "description": "Internal use only",
+            "description": "Internal use only (Deprecated)",
             "readOnly": true,
             "type": "object"
           },
@@ -583,7 +583,7 @@
             "type": "string"
           },
           "canonicalId": {
-            "description": "Internal use only",
+            "description": "Internal use only (Deprecated)",
             "readOnly": true,
             "type": "string"
           },
@@ -598,7 +598,7 @@
             "type": "integer"
           },
           "cloudAccountStatus": {
-            "description": "Internal use only",
+            "description": "Internal use only (Deprecated)",
             "readOnly": true,
             "type": "object"
           },
