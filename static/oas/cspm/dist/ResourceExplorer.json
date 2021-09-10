@@ -610,6 +610,7 @@
       "ResourceTimelineItem": {
         "properties": {
           "alertIds": { "items": { "type": "string" }, "type": "array" },
+          "discoveredTs": { "format": "int64", "type": "integer" },
           "eventName": { "type": "string" },
           "eventType": { "type": "string" },
           "firstState": { "type": "boolean" },

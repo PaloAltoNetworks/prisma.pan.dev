@@ -167,7 +167,7 @@ components:
           - behavioral
           - privileged_activity_monitoring
           - network_protection
-          - misconfiguration
+          - exposure
           - vulnerabilities
           type: string
         policyId:
@@ -556,7 +556,7 @@ components:
           - behavioral
           - privileged_activity_monitoring
           - network_protection
-          - misconfiguration
+          - exposure
           - vulnerabilities
           type: string
         policyId:

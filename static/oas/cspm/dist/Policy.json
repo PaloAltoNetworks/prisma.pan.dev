@@ -175,7 +175,7 @@
               "behavioral",
               "privileged_activity_monitoring",
               "network_protection",
-              "misconfiguration",
+              "exposure",
               "vulnerabilities"
             ],
             "type": "string"
@@ -614,7 +614,7 @@
               "behavioral",
               "privileged_activity_monitoring",
               "network_protection",
-              "misconfiguration",
+              "exposure",
               "vulnerabilities"
             ],
             "type": "string"

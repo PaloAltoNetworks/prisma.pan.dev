@@ -105,6 +105,8 @@
           "anomalyId": { "type": "string" },
           "browser": { "type": "string" },
           "cityId": { "format": "int32", "type": "integer" },
+          "cityLatitude": { "format": "double", "type": "number" },
+          "cityLongitude": { "format": "double", "type": "number" },
           "cityName": { "type": "string" },
           "countryId": { "format": "int32", "type": "integer" },
           "countryName": { "type": "string" },
@@ -161,6 +163,7 @@
             "type": "string"
           },
           "success": { "type": "boolean" },
+          "timezone": { "type": "string" },
           "type": {
             "enum": [
               "UNKNOWN",

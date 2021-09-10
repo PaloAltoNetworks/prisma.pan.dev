@@ -131,8 +131,11 @@ paths:
       tags:
       - Access Keys
     post:
-      description: Adds a new access key for the current user. If you have API access,
-        you can create up to two access keys.
+      description: "Adds a new access key for the current user. If you have API access,\
+        \ you can create up to two access keys.  \r\n\r\nIf you want to create an\
+        \ access key for an existing Prisma Cloud service account instead of for the\
+        \ current user, then\nspecify the name of the existing service account as\
+        \ the value for the request body parameter **serviceAccountName**.\n"
       operationId: add-access-keys
       requestBody:
         $ref: '#/components/requestBodies/UserAccessKeyRequestModel'
