@@ -37,3 +37,6 @@ Build previews will be automatically generated for merges into the `upstream/dev
 ### Contributing
 
 Contributing guidelines can be found [here](https://panos.pan.dev/docs/contributing).
+
+### Support
+See [SUPPORT.md](SUPPORT.md). 
