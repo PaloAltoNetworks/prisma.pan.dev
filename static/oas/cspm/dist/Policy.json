@@ -368,10 +368,7 @@
             ]
           },
           "policy.rule.type": {
-            "allOf": [
-              { "$ref": "#/components/schemas/FilterSuggestion" },
-              { "readOnly": true }
-            ]
+            "$ref": "#/components/schemas/FilterSuggestion"
           },
           "policy.severity": {
             "allOf": [
