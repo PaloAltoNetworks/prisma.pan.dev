@@ -642,7 +642,9 @@ paths:
       tags:
       - Integrations
     delete:
-      description: Deletes the integration for the specified ID.
+      description: "Deletes the integration for the specified ID.  \r\n\r\n**Deprecation\
+        \ Notice:** This endpoint is deprecated for integrations with all external\
+        \ systems except the following:\n\n* Okta\n* Qualys\n* Tenable\n"
       operationId: delete-integration
       parameters:
       - in: path

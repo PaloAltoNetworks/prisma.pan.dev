@@ -5,7 +5,7 @@ sidebar_label: Integration Configurations
 hide_table_of_contents: false
 ---
 
-The  integration endpoints enable you to  receive Prisma Cloud alerts in external systems. The [integration endpoint documentation](/api/cloud/cspm/integrations) describes request and response details for each endpoint.
+The integration endpoints enable you to receive Prisma Cloud alerts in external systems. The [integration endpoint documentation](/api/cloud/cspm/integrations) describes request and response details for each endpoint.
 
 The request body for some of the endpoints includes an **integrationConfig** parameter that is a map of key/value pairs. The type of integration defines the content of these key/value pairs. The information below provides the details for this **integrationConfig** parameter for each listed technology.
 
@@ -182,10 +182,10 @@ To add a ServiceNow integration, make your request as described in
 
 Key  |  Value Description | Value Type | Default Value or Required
 -----| ------------------ | ---------- | -------------
-hostUrl | ServiceNow Url | string | _required_
+hostUrl | ServiceNow URL | string | _required_
 login | ServiceNow login | string | _required_
 password | ServiceNow password for login | string |  _required_
-tables | Array of key/value pairs that identify the ServiceNow module tables with which to integrate. The possible keys are: **incident**, **sn_si_incident**, **em_event**.<br/>The possible values for each key are: **true**, **false** | string |  _required_
+tables | Array of key/value pairs that identify the ServiceNow module tables with which to integrate. The possible keys are: **incident**, **sn_si_incident**, **em_event**.<br/>The possible values for each key are: **true**, **false** | array of objects |  _required_
 
 To update a ServicNow integration, make your request as described in
 [Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are editable.
@@ -395,9 +395,184 @@ To test a Splunk integration, make your request as described in
   "integrationConfig":
   {
     "authToken": "",
-    "url": "",
+    "url": ""
   },
   "integrationType": "splunk",
+  "name": ""
+}
+```
+
+### Microsoft Teams
+
+Prisma Cloud integrates with Microsoft Teams to send Microsoft Teams alerts for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
+
+#### Add, Update, or Test a Microsoft Teams Integration
+
+To add a Microsoft Teams integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of the request body, the **integrationType** parameter is **microsoft_teams**, and the **integrationConfig** parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+url | Webhook URL | string | _required_
+
+To update a Microsoft Teams integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The value of the **integrationConfig** key/value pair is editable.
+
+To test a Microsoft Teams integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+
+##### Example Request Body to Add or Test a Microsoft Teams Integration
+
+```json
+{
+  "description": "",
+  "enabled": true,
+  "integrationConfig":
+  {
+    "url": ""
+  },
+  "integrationType": "microsoft_teams",
+  "name": ""
+}
+```
+
+### Cortex XSOAR
+
+Prisma Cloud integrates with Cortex XSOAR to send alerts to Cortex XSOAR for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
+
+#### Add or Update a Cortex XSOAR Integration
+
+To add a Cortex XSOAR integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of the request body, the **integrationType** parameter is **demisto**, and the **integrationConfig** parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+hostUrl | The Cortex XSOAR instance FQDN/IP&mdash;either the name or the IP address of the instance | string | _required_
+apiKey | The consumer key you configured when you created the Prisma Cloud application access in your Cortex XSOAR environment. | string | _required_
+
+To update a Cortex XSOAR integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are editable.
+
+##### Example Request Body to Add a Cortex XSOAR Integration
+
+```json
+{
+  "description": "",
+  "enabled": true,
+  "integrationConfig":
+  {
+    "apiKey": "",
+    "hostUrl": ""
+  },
+  "integrationType": "demisto",
+  "name": ""
+}
+```
+
+### Tenable
+
+Prisma Cloud integrates with Tenable to send alerts to Tenable for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
+
+#### Add, Update, or Test a Tenable Integration
+
+To add a Tenable integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of the request body, the **integrationType** parameter is **tenable**, and the **integrationConfig** parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+accessKey | Access key from Tenable.io | string | _required_
+secretKey | Secret key from Tenable.io | string | _required_
+
+To update a Tenable integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are editable.
+
+To test a Tenable integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+
+##### Example Request Body to Add or Test a Tenable Integration
+
+```json
+{
+  "description": "",
+  "enabled": true,
+  "integrationConfig":
+  {
+    "accessKey": "",
+    "secretKey": ""
+  },
+  "integrationType": "tenable",
+  "name": ""
+}
+```
+
+### Google Cloud SCC
+
+Prisma Cloud integrates with Google Cloud Security Command Center (SCC) to send alerts to Google Cloud SCC for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
+
+#### Add, Update, or Test a Google Cloud SCC Integration
+
+To add a Google Cloud SCC integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of the request body, the **integrationType** parameter is **google_cscc**, and the **integrationConfig** parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+orgId | GCP organization ID | string | _required_
+sourceId | GCP source ID for the service account you used to onboard your GCP organization to Prisma Cloud | string | _required_
+
+To update a Google Cloud SCC integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are editable.
+
+To test a Google Cloud SCC integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+
+##### Example Request Body to Add or Test a Google Cloud SCC Integration
+
+```json
+{
+  "description": "",
+  "enabled": true,
+  "integrationConfig":
+  {
+    "orgId": "",
+    "sourceId": ""
+  },
+  "integrationType": "google_cscc",
+  "name": ""
+}
+```
+
+### Okta
+
+Prisma Cloud integrates with Okta to send alerts to Okta for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
+
+#### Add, Update, or Test a Okta Integration
+
+To add an Okta integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of the request body, the **integrationType** parameter is **okta**, and the **integrationConfig** parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+domain | Okta domain name | string | _required_
+apiToken | The authentication API token for Okta. The token must be of type Read-Only Admin.| string | _required_
+
+To update an Okta integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are editable.
+
+To test an Okta integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+
+##### Example Request Body to Add or Test an Okta Integration
+
+```json
+{
+  "description": "",
+  "enabled": true,
+  "integrationConfig":
+  {
+    "domain": "",
+    "apiToken": ""
+  },
+  "integrationType": "okta",
   "name": ""
 }
 ```
