@@ -65,7 +65,9 @@ info:
     \ the JWT when necessary. The JWT is valid for 10 minutes, and you must refresh\
     \ the token for \n   continued access to the Prisma Cloud API. An expired JWT\
     \ request causes an HTTP 401 (Unauthorized) \n   response. You can use the GET\
-    \ /auth_token/extend request to obtain a refreshed JWT.  \n"
+    \ /auth_token/extend request to obtain a refreshed JWT.  \r\n\r\n
+    To make a **POST /login** request, you should specify not only the URL and required headers, but also the request body or payload. 
+    See <a href='https://prisma.pan.dev/docs/cloud/cspm/cspm-gs#use-curl-to-generate-jwt-tokens-in-prisma-cloud' target='_blank'>Use Curl to Generate JWT Tokens in Prisma Cloud</a> for a detailed example."
   title: Prisma Cloud Login API Overview
   version: Latest
 openapi: 3.0.0
