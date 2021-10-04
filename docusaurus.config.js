@@ -13,7 +13,7 @@ module.exports = {
   baseUrl: process.env.CI_MERGE_REQUEST_IID
     ? `/-/${process.env.CI_PROJECT_NAME}/-/jobs/${process.env.CI_JOB_ID}/artifacts/public/`
     : "/",
-  favicon: "img/prismafavicon.png",
+  favicon: "img/prisma_favicon.png",
   organizationName: "PaloAltoNetworks", // Usually your GitHub org/user name.
   projectName: "prisma.pan.dev", // Usually your repo name.
   themeConfig: {
@@ -172,7 +172,7 @@ module.exports = {
       },
     ],
   ],
-  themes: [require.resolve("./docusaurus-plugin-webpack/src/index.cjs")],
+  themes: [require.resolve("./docusaurus-plugin-panw/src/index.cjs")],
   customFields: {
     sites: [
       {
@@ -181,12 +181,12 @@ module.exports = {
           {
             href: "https://cortex.pan.dev",
             label: "Cortex",
-            logo: "/img/cortexfavicon.png",
+            logo: "/img/cortex_favicon.png",
           },
           {
             href: "https://xsoar.pan.dev",
             label: "Cortex XSOAR",
-            logo: "/img/Cortex-XSOAR-product-green.svg",
+            logo: "/img/xsoar_favicon.png",
           },
           {
             href: "https://panos.pan.dev",
@@ -196,15 +196,17 @@ module.exports = {
           {
             href: "https://prisma.pan.dev",
             label: "Prisma",
-            logo: "/img/prismafavicon.png",
+            logo: "/img/prisma_favicon.png",
           },
         ],
         position: "products",
       },
     ],
-    onBrokenLinks: "warn",
-    onDuplicateRoutes: "warn",
+    issueUrl:
+      "https://github.com/PaloAltoNetworks/prisma.pan.dev/issues/new?assignees=&labels=&template=developer-documentation-issue.md&title=%5BDOCUMENTATION%5D",
   },
+  onBrokenLinks: "warn",
+  onDuplicateRoutes: "warn",
   stylesheets: [
     {
       href: "https://use.fontawesome.com/releases/v5.11.0/css/all.css",

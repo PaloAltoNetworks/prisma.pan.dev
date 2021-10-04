@@ -15,14 +15,14 @@ const versions = [
 function Version(docVer) {
   return (
     <div>
-      <div class="dropdown dropdown--hoverable">
-        <button class="button button--secondary button--version">
+      <div className="dropdown dropdown--hoverable">
+        <button className="button button--secondary button--version">
           Choose Version
         </button>
-        <ul class="dropdown__menu">
+        <ul className="dropdown__menu">
           {versions.map((props, i) => (
             <li key={i}>
-              <a class="dropdown__link" href={useBaseUrl(props.to)}>
+              <a className="dropdown__link" href={useBaseUrl(props.to)}>
                 {props.title}
               </a>
             </li>

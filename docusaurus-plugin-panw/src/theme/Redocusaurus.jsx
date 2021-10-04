@@ -5,6 +5,7 @@ import useThemeContext from "@theme/hooks/useThemeContext";
 
 
 let RedocStandalone = () => <div></div>;
+RedocStandalone = require("redoc").RedocStandalone;
 let MenuStore = () => <div></div>;
 if (ExecutionEnvironment.canUseDOM) {
   RedocStandalone = require("redoc").RedocStandalone;
@@ -24,8 +25,8 @@ const DOCUSAURUS = {
   fontFamily: "var(--ifm-font-family-base)",
   fontSize: "var(--ifm-font-size-base)",
   dark: {
-    primaryText: "#f5f6f7", // var(--ifm-font-color-base)
-    secondaryText: "#00c0e8", // var(--ifm-font-color-secondary)
+    primaryText: "#c3c3c1",
+    secondaryText: "#f4f4f2",
     backgroundColor: "#121212",
   }
 };
@@ -78,22 +79,22 @@ let DARK_THEME_OPTIONS = {
  */
 function getThemeOptions(isDarkMode) {
   let baseTheme = {
-    spacing: {sectionVertical: '60', unit: '2',},
+    spacing: { unit: '2',},
     colors: {
       primary: {
-        main: "#00c0e8"
+        main: "#fa582d"
       },
       success: {
-        main: "#00c0e8"
+        main: "#4ab061"
       },
       error: {
-        main: "#fa383e"
+        main: "#d13c3c"
       },
       info: {
-        main: "#54c7ec"
+        main: "#fcdd70"
       },
       warning: {
-        main: "#ffba00"
+        main: "#ef9e00"
       },
       http: {
         get: ({ colors }) => (colors.info.main),
@@ -151,7 +152,6 @@ function Redocusaurus(props) {
       <RedocStandalone
         specUrl={props.spec}
         options={{
-          scrollYOffset: ".navbar",
           theme,
           hideDownloadButton: true,
           nativeScrollBars: false,

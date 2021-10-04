@@ -8,6 +8,9 @@ const webpack = require("webpack");
 module.exports = function redocWebpack() {
   return {
     name: "docusaurus-plugin-webpack",
+    getClientModules() {
+      return [path.join(__dirname, "custom.css")];
+    },
     configureWebpack() {
       return {
         resolve: {

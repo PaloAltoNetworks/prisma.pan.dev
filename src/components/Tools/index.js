@@ -4,7 +4,7 @@ import classnames from "classnames";
 import React, { useRef } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.css";
-import Button from "../../theme/Button";
+import Button from "@theme/Button";
 import { useMediaQuery } from "react-responsive";
 
 const toolList = [
