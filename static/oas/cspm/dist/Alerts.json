@@ -134,6 +134,12 @@
               { "readOnly": true }
             ]
           },
+          "policy.subtype": {
+            "allOf": [
+              { "$ref": "#/components/schemas/FilterSuggestion" },
+              { "readOnly": true }
+            ]
+          },
           "policy.type": { "$ref": "#/components/schemas/FilterSuggestion" },
           "resource.group": { "$ref": "#/components/schemas/FilterSuggestion" },
           "resource.id": { "$ref": "#/components/schemas/FilterSuggestion" },

@@ -114,9 +114,121 @@ components:
     IntegrationModel:
       description: Model for Integration
       properties:
+        createdBy:
+          description: Created by
+          readOnly: true
+          type: string
+        createdTs:
+          description: Creation timestamp in milliseconds
+          format: int64
+          readOnly: true
+          type: integer
+        description:
+          description: Integration description
+          type: string
+        enabled:
+          description: Enabled
+          type: boolean
+        id:
+          description: Integration ID
+          readOnly: true
+          type: string
+        integrationConfig:
+          additionalProperties:
+            type: object
+          description: Integration Configuration. The values depend on the integration
+            type.
+          type: object
+        integrationType:
+          description: Integration type
+          enum:
+          - EMAIL
+          - SLACK
+          - SPLUNK
+          - AMAZON_SQS
+          - WEBHOOK
+          - MICROSOFT_TEAMS
+          - AZURE_SERVICE_BUS_QUEUE
+          - JIRA
+          - SERVICE_NOW
+          - PAGER_DUTY
+          - DEMISTO
+          - AWS_S3
+          - SNOWFLAKE
+          - TENABLE
+          - QUALYS
+          - GOOGLE_CSCC
+          - AWS_SECURITY_HUB
+          - OKTA_IDP
+          type: string
+        lastModifiedBy:
+          description: Last modified by
+          readOnly: true
+          type: string
+        lastModifiedTs:
+          description: Last modification timestamp in milliseconds
+          format: int64
+          readOnly: true
+          type: integer
+        name:
+          description: Integration name
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/IntegrationStatusDetails'
+          - description: Reason for marking the integration faulty
+            readOnly: true
+        status:
+          description: State of integration
+          enum:
+          - GREEN
+          - RED
+          - YELLOW
+          - NA
+          readOnly: true
+          type: string
+        valid:
+          description: true = is valid
+          readOnly: true
+          type: boolean
+      type: object
+    IntegrationStatusDetails:
+      description: Model for Integration Status Details
+      properties:
+        details:
+          allOf:
+          - $ref: '#/components/schemas/MessageDetails'
+          - description: Details
+            readOnly: true
+        errorType:
+          description: Error type
+          enum:
+          - INVALID_CONFIG
+          - TRANSLATION_EXCEPTION
+          - INVALID_TEMPLATE_CONFIG
+          - HTTP_EXCEPTION
+          - OTHERS
+          - TEST
+          readOnly: true
+          type: string
+        lastUpdated:
+          description: Last updated
+          format: int64
+          readOnly: true
+          type: integer
+        message:
+          description: Message
+          readOnly: true
+          type: string
+      type: object
+    IntegrationViewModel:
+      description: Model for IntegrationViewModel
+      properties:
         alertRules:
+          description: Alert Rules
           items:
             $ref: '#/components/schemas/PolicyScanConfigModel'
+          readOnly: true
           type: array
         createdBy:
           description: Created by
@@ -189,38 +301,12 @@ components:
           - RED
           - YELLOW
           - NA
+          readOnly: true
           type: string
         valid:
+          description: true = is valid
+          readOnly: true
           type: boolean
-      type: object
-    IntegrationStatusDetails:
-      description: Model for Integration Status Details
-      properties:
-        details:
-          allOf:
-          - $ref: '#/components/schemas/MessageDetails'
-          - description: Details
-            readOnly: true
-        errorType:
-          description: Error type
-          enum:
-          - INVALID_CONFIG
-          - TRANSLATION_EXCEPTION
-          - INVALID_TEMPLATE_CONFIG
-          - HTTP_EXCEPTION
-          - OTHERS
-          - TEST
-          readOnly: true
-          type: string
-        lastUpdated:
-          description: Last updated
-          format: int64
-          readOnly: true
-          type: integer
-        message:
-          description: Message
-          readOnly: true
-          type: string
       type: object
     MessageDetails:
       description: Model for Message Details
@@ -503,13 +589,19 @@ paths:
         required: false
         schema:
           type: string
+      - description: Include only Okta, Tenable, and Qualys integrations
+        in: query
+        name: internalOnly
+        required: false
+        schema:
+          type: boolean
       responses:
         '200':
           content:
             application/json; charset=UTF-8:
               schema:
                 items:
-                  $ref: '#/components/schemas/IntegrationModel'
+                  $ref: '#/components/schemas/IntegrationViewModel'
                 type: array
           description: successful operation
       security:
@@ -519,16 +611,12 @@ paths:
       - Integrations
     post:
       description: "Adds an integration with the specified external system.  \r\n\r\
-        \n### Request Body\n\nParameter | Type | Description | Default Value or Required\
-        \ \n-------------| ---- | ----------- | ---\nname | string | Integration name.\
-        \ Must be unique. | Required\nintegrationType | string | For valid values,\
-        \ see [List All Integration Types](/api/cloud/cspm/integrations#operation/get-all-integrations-types)\
-        \ | Required\ndescription | string | Description of the integration. | Required\n\
-        enabled | boolean | If true, then enable the integration. | Required\nintegrationConfig\
-        \ | Map<String, String> | Map of key/value pairs. Integration specific. |\
-        \ Required \n\nThe **integrationConfig** field that is a map of key/value\
-        \ pairs. The type of integration \ndefines the content of these key/value\
-        \ pairs. See [Integration Configuration](/api/cloud/api-integration-config)\
+        \n**Deprecation Notice:** This endpoint is deprecated for integrations with\
+        \ all external systems except the following:\n\n* Okta\n* Qualys\n* Tenable\n\
+        \nThe following request body parameters are required:\n\n* **name**\n* **integrationType**\n\
+        * **integrationConfig**\n* **enabled**\n\nThe **integrationConfig** field\
+        \ that is a map of key/value pairs. The type of integration \ndefines the\
+        \ content of these key/value pairs. See [Integration Configuration](/api/cloud/api-integration-config)\
         \ for valid \nkey/value pairs for the **integrationConfig** for your specific\
         \ external integration.\n"
       operationId: save-integration
@@ -549,14 +637,11 @@ paths:
     post:
       description: "Runs a test of the integration for the specified data.   \r\n\r\
         \nAn integration test requires the following request body parameters:\n\n\
-        Parameter | Type | Description \n-------------| ---- | ----------\nname |\
-        \ string | Integration name\nintegrationType | string | For valid values,\
-        \ see [List All Integration Types](/api/cloud/cspm/integrations#operation/get-all-integrations-types)\
-        \ \nintegrationConfig | Map<String, String> | Map of key/value pairs. Integration\
-        \ specific.\n\nThe request body to test an integration between Prisma Cloud\
-        \ and an external system \nincludes an **integrationConfig** field that is\
-        \ a map of key/value pairs. The type of \nintegration defines the content\
-        \ of these key/value pairs. See [Integration Configuration](/api/cloud/api-integration-config)\
+        The following request body parameters are required:\n\n* **name**\n* **integrationType**\n\
+        * **integrationConfig**\n\nThe request body to test an integration between\
+        \ Prisma Cloud and an external system \nincludes an **integrationConfig**\
+        \ field that is a map of key/value pairs. The type of \nintegration defines\
+        \ the content of these key/value pairs. See [Integration Configuration](/api/cloud/api-integration-config)\
         \ \n for request body details, including the **integrationConfig** for your\
         \ specific integration test.\n"
       operationId: test-integration
@@ -619,7 +704,9 @@ paths:
         \ for valid \nkey/value pairs for the **integrationConfig** for your specific\
         \ external integration.\n\nThe fields you can update in an integration are:\n\
         \n* **name**\n* **integrationConfig**, depending on integration type\n* **description**\n\
-        * **enabled** \n"
+        * **enabled** \n\n**Deprecation Notice:** This endpoint is deprecated for\
+        \ integrations with all external systems except the following:\n\n* Okta\n\
+        * Qualys\n* Tenable\n"
       operationId: update-integration
       parameters:
       - description: Integration ID

@@ -21,6 +21,15 @@ components:
             type: object
       description: Cloud Account
       required: true
+    get-list-of-children-under-parent-awsBody:
+      content:
+        application/json:
+          schema:
+            additionalProperties:
+              type: object
+            type: object
+      description: Cloud Account JSON
+      required: true
     get-list-of-children-under-parentBody:
       content:
         application/json:
@@ -610,6 +619,11 @@ components:
             type: string
           readOnly: true
           type: array
+        hierarchySelection:
+          description: List of selected resources for hierarchy selection
+          items:
+            $ref: '#/components/schemas/HierarchySelectionModel'
+          type: array
         ingestionMode:
           description: Ingestion Mode
           format: int32
@@ -655,6 +669,71 @@ components:
           type: boolean
         storageUUID:
           description: Storage UUID
+          type: string
+      type: object
+    AwsListChildrenApiResponseModel:
+      description: Model for AwsListChildrenApiResponse
+      properties:
+        accountNextPageToken:
+          description: Next page token for account
+          type: string
+        ouNextPageToken:
+          description: Next page token for Organizational Unit
+          type: string
+        response:
+          description: List of node info
+          items:
+            $ref: '#/components/schemas/AwsOrgTreeNode'
+          type: array
+      type: object
+    AwsNodeModel:
+      description: Model for AncestorApiResponse
+      properties:
+        ancestors:
+          description: List of ancestors
+          items:
+            $ref: '#/components/schemas/AwsOrgTreeNode'
+          type: array
+        resourceId:
+          description: Resource ID
+          type: string
+        responseCode:
+          description: Response code
+          format: int32
+          type: integer
+        status:
+          description: Status
+          type: string
+      type: object
+    AwsOrgTreeNode:
+      description: Model for Aws Org Tree Node
+      properties:
+        displayName:
+          description: Display name
+          type: string
+        hasChild:
+          description: Has Child
+          enum:
+          - true
+          - false
+          type: boolean
+        id:
+          description: Node ID
+          type: string
+        parent:
+          description: Parent
+          type: string
+        type:
+          description: Node type
+          enum:
+          - ORG
+          - FOLDER
+          - PROJECT
+          - SUBSCRIPTION
+          - MANAGEMENT_GROUP
+          - TENANT
+          - ACCOUNT
+          - OU
           type: string
       type: object
     AzureAncestorsModel:
@@ -2325,12 +2404,27 @@ paths:
         \ set exists in all the member accounts. All the Org accounts will be added.<br/>**false**:\
         \ Only the master account will be added. | Default is **false**\nprotectiveMode\
         \ | string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Default\
-        \ is **MONITOR**\n\n#### Request Body Example\n```json\n{\n  \"accountId\"\
-        : \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n  \"groupIds\": [],\n\
+        \ is **MONITOR**\nhierarchySelection | array of objects | List of AWS Organization\
+        \ Units (OU), AWS accounts, and AWS Organizations to onboard under this organization\
+        \ | Default is none\nhierarchySelection.resourceId | string | Resource ID.\
+        \ Valid values are AWS OU ID, AWS account ID, or AWS Organization ID.<br/>Note\
+        \ you must escape any double quotes in the resource ID with a backslash. |\
+        \ Required if **hierarchySelection** is specified\nhierarchySelection.displayName\
+        \ | string | Display name for AWS OU, AWS account, or AWS organization | Required\
+        \ if **hierarchySelection** is specified\nhierarchySelection.nodeType | string\
+        \ | Valid values: **OU**, **ACCOUNT**, **ORG** |  Required if **hierarchySelection**\
+        \ is specified\nhierarchySelection.selectionType | string | Valid values:\
+        \ **INCLUDE** to include the specified resource to onboard, **EXCLUDE** to\
+        \ exclude the specified resource and onboard the rest, **ALL** to onboard\
+        \ all resources in the organization. |  Required if **hierarchySelection**\
+        \ is specified\n\n#### Request Body Example\n```json\n{\n  \"accountId\":\
+        \ \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n  \"groupIds\": [],\n\
         \  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"accountType\": \"organization\"\
         ,\n  \"memberRoleName\": \"\",\n  \"memberExternalId\": \"\",\n  \"memberRoleStatus\"\
-        : true,\n  \"protectionMode\": \"MONITOR\"\n}\n```\n\n### Request Body to\
-        \  Add an Azure Account\nThe table below lists the request body parameters\
+        : true,\n  \"protectionMode\": \"MONITOR\",\n  \"hierarchySelection\": \n\
+        \  [{\n    \"resourceId\": \"\",\n    \"displayName\": \"\",\n    \"nodeType\"\
+        : \"OU\",\n    \"selectionType\": \"EXCLUDE\"\n  }]  \n}\n```\n\n### Request\
+        \ Body to  Add an Azure Account\nThe table below lists the request body parameters\
         \ to add an Azure account.\n\nParameter  | Type | Description | Default Value\
         \ or Required\n-----------| ---- | ----------- | -------------\ncloudAccount.accountId\
         \ | string | Azure account ID. If **cloudAccount.accountType** is **tenant**,\
@@ -2395,37 +2489,39 @@ paths:
         \ Create high-level account groups based on folders identified<br/>**RECURSIVE**:\
         \ Drill down in folder tree to create account groups | Default is **MANUAL**\n\
         defaultAccountGroupId | string |  Account group ID for this account | Required\
-        \ if **accountGroupCreationMode** is **MANUAL** \nhierarchySelection.resourceId\
-        \ | string | Resource ID. For folders, format is _folders/{folder ID}_. For\
-        \ projects, format is _{project number}_. For orgs, format is _organizations/{org\
-        \ ID}_ | Required if **hierarchySelection** is specified\nhierarchySelection.displayName\
-        \ | string | Display name for folder, project, or organization | Required\
-        \ if **hierarchySelection** is specified\nhierarchySelection.nodeType | string\
-        \ | Valid values: **FOLDER**, **PROJECT**, **ORG** |  Required if **hierarchySelection**\
-        \ is specified\nhierarchySelection.selectionType | string | Valid values:\
-        \ **INCLUDE**, **EXCLUDE**, **INCLUDE ALL**. If **hierarchySelection.nodeType**\
-        \ is **PROJECT** or **FOLDER**, valid values are  **INCLUDE**, **EXCLUDE**.\
-        \ |  Required if **hierarchySelection** is specified\n\n#### Request Body\
-        \ Example\n```json\n{\n  \"cloudAccount\": {\n    \"accountId\": \"\",\n \
-        \   \"accountType\": \"organization\",\n    \"proectionMode\": \"MONITOR\"\
-        \n    \"enabled\": true,       \n    \"name\": \"\"\n},\n\"accountGroupCreationMode\"\
-        : \"MANUAL\"\n\"compressionEnabled\": true,\n\"dataflowEnabledProject\": \"\
-        \",\n\"flowLogStorageBucket\": \"\",\n\"organizationName\": \"\",\n\"defaultAccountGroupId\"\
-        : \"\",\n\"credentials\": {\n    \"type\": \"\",\n    \"project_id\": \"\"\
-        ,\n    \"private_key_id\": \"\",\n    \"private_key\": \"\",\n    \"client_email\"\
-        : \"\",\n    \"client_id\": \"\",\n    \"auth_uri\": \"\",\n    \"token_uri\"\
-        : \"\",\n    \"auth_provider_x509_cert_url\": \"\",\n    \"client_x509_cert_url\"\
-        : \"\"\n},\n\"hierarchySelection\": \n  [{\n    \"resourceId\": \"\",\n  \
-        \  \"displayName\": \"\",\n    \"nodeType\": \"FOLDER\",\n    \"selectionType\"\
-        : \"EXCLUDE\"\n  }]    \n}\n```\n\n### Request Body to Add a GCP Master Service\
-        \ Account\nThe table below lists the request body parameters.\n\nParameter\
-        \  | Type | Description | Default Value or Required\n-----------| ---- | -----------\
-        \ | -------------\ncloudAccount.accountId | string | GCP project ID | Required\n\
-        cloudAccount.name | string | Name to be used for the account on the Prisma\
-        \ Cloud platform (must be unique) | Required\ncloudAccount.enabled | boolean\
-        \  | Whether or not the account is enabled | Default is **false**\ncloudAccount.groupIds\
-        \ | array of strings | List of account group IDs for this account | Required\n\
-        cloudAccount.projectId | string  | Existing GCP project ID | Required\ncloudAccount.protectionMode\
+        \ if **accountGroupCreationMode** is **MANUAL** \nhierarchySelection | array\
+        \ of objects | List of folders and/or projects to onboard under this organization\
+        \ | Default is none\nhierarchySelection.resourceId | string | Resource ID.\
+        \ For folders, format is _folders/{folder ID}_. For projects, format is _{project\
+        \ number}_. For orgs, format is _organizations/{org ID}_ | Required if **hierarchySelection**\
+        \ is specified\nhierarchySelection.displayName | string | Display name for\
+        \ folder, project, or organization | Required if **hierarchySelection** is\
+        \ specified\nhierarchySelection.nodeType | string | Valid values: **FOLDER**,\
+        \ **PROJECT**, **ORG** |  Required if **hierarchySelection** is specified\n\
+        hierarchySelection.selectionType | string | Valid values: **INCLUDE**, **EXCLUDE**,\
+        \ **INCLUDE ALL**. If **hierarchySelection.nodeType** is **PROJECT** or **FOLDER**,\
+        \ valid values are  **INCLUDE**, **EXCLUDE**. |  Required if **hierarchySelection**\
+        \ is specified\n\n#### Request Body Example\n```json\n{\n  \"cloudAccount\"\
+        : {\n    \"accountId\": \"\",\n    \"accountType\": \"organization\",\n  \
+        \  \"proectionMode\": \"MONITOR\"\n    \"enabled\": true,       \n    \"name\"\
+        : \"\"\n},\n\"accountGroupCreationMode\": \"MANUAL\"\n\"compressionEnabled\"\
+        : true,\n\"dataflowEnabledProject\": \"\",\n\"flowLogStorageBucket\": \"\"\
+        ,\n\"organizationName\": \"\",\n\"defaultAccountGroupId\": \"\",\n\"credentials\"\
+        : {\n    \"type\": \"\",\n    \"project_id\": \"\",\n    \"private_key_id\"\
+        : \"\",\n    \"private_key\": \"\",\n    \"client_email\": \"\",\n    \"client_id\"\
+        : \"\",\n    \"auth_uri\": \"\",\n    \"token_uri\": \"\",\n    \"auth_provider_x509_cert_url\"\
+        : \"\",\n    \"client_x509_cert_url\": \"\"\n},\n\"hierarchySelection\": \n\
+        \  [{\n    \"resourceId\": \"\",\n    \"displayName\": \"\",\n    \"nodeType\"\
+        : \"FOLDER\",\n    \"selectionType\": \"EXCLUDE\"\n  }]    \n}\n```\n\n###\
+        \ Request Body to Add a GCP Master Service Account\nThe table below lists\
+        \ the request body parameters.\n\nParameter  | Type | Description | Default\
+        \ Value or Required\n-----------| ---- | ----------- | -------------\ncloudAccount.accountId\
+        \ | string | GCP project ID | Required\ncloudAccount.name | string | Name\
+        \ to be used for the account on the Prisma Cloud platform (must be unique)\
+        \ | Required\ncloudAccount.enabled | boolean  | Whether or not the account\
+        \ is enabled | Default is **false**\ncloudAccount.groupIds | array of strings\
+        \ | List of account group IDs for this account | Required\ncloudAccount.projectId\
+        \ | string  | Existing GCP project ID | Required\ncloudAccount.protectionMode\
         \ | string  | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required\
         \ \ncloudAccount.accountType | string | Valid value: **masterServiceAccount**\
         \ | Required\ndefaultAccountGroupId | string | Default account group ID for\
@@ -2616,40 +2712,54 @@ paths:
         \ member role created using stack set exists in all the member accounts. All\
         \ the Org accounts will be added.<br/>**false**: Only the master account will\
         \ be added. | Required\nprotectiveMode | string | Valid values: **MONITOR**,\
-        \ **MONITOR_AND_PROTECT** | Required\n\n#### Request Body Example\n```json\n\
-        {\n  \"accountId\": \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n\
-        \  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"accountType\"\
-        : \"organization\",\n  \"memberRoleName\": \"\",\n  \"memberExternalId\":\
-        \ \"\",\n  \"memberRoleStatus\": true,\n  \"protectionMode\": \"MONITOR\"\n\
-        }\n```\n\n### Request Body to Update an Azure Account\nThe table below lists\
-        \ the request body parameters.\n\nParameter  | Type | Description | Required?\n\
-        -----------| ---- | ----------- | -------------\nclientId | string | Application\
-        \ ID registered with Active Directory | Required\ncloudAccount.accountId |\
-        \ string | Azure account ID.  If **cloudAccount.accountType** is **tenant**,\
-        \ then **cloudAccount.accountId** should be \"\" (empty).| Required unless\
-        \ cloudAccount.accountType is **tenant**\ncloudAccount.enabled | boolean \
-        \ | Whether or not to enable the account | Optional  \ncloudAccount.groupIds\
-        \ | array of strings | List of account group IDs for this account | Required\n\
-        cloudAccount.name | string  | Name to be used for the account on the Prisma\
-        \ Cloud platform (must be unique) | Required\ncloudAccount.accountType | string\
-        \ | Valid values: **account**, **tenant** | Required\ncloudAccount.protectionMode\
-        \ | string | If **cloudAccount.accountType** is **tenant**, then the valid\
-        \ value is **MONITOR** | Required\ntenantId | string | Active Directory ID\
-        \ associated with Azure | Required\nservicePrincipalId | string | Unique ID\
-        \ of the service principal object associated with the Prisma Cloud application\
-        \ that you create | Required\nmonitorFlowLogs | boolean | Automatically ingest\
-        \ flow logs | Required\nkey | string | Application ID key | Required\n\n####\
-        \ Request Body Example\n```json\n{\n  \"cloudAccount\": {\n    \"accountId\"\
-        : \"\",\n    \"enabled\": true,\n    \"groupIds\": [],\n    \"name\": \"\"\
-        ,\n    \"accountType\": \"\",\n    \"protectionMode\": \"MONITOR\"\n  },\n\
-        \  \"clientId\": \"\",\n  \"key\": \"\",\n  \"monitorFlowLogs\": true,\n \
-        \ \"tenantId\": \"\",\n  \"servicePrincipalId\": \"\"\n}\n```\n\n### Request\
-        \ Body to Update a GCP Project\nThe table below lists the request body parameters.\n\
-        \nParameter  | Type | Description | Required?\n-----------| ---- | -----------\
-        \ | -------------\ncloudAccount.accountId | string | GCP project ID | Required\n\
-        cloudAccount.name | string | Name to be used for the account on the Prisma\
-        \ Cloud platform (must be unique) | Required\ncloudAccount.enabled | boolean\
-        \  | Whether or not the account is enabled | Required\ncloudAccount.groupIds\
+        \ **MONITOR_AND_PROTECT** | Required\nhierarchySelection | array of objects\
+        \ | List of AWS Organization Units (OU), AWS accounts, and AWS Organizations\
+        \ to onboard under this organization | Default is none\nhierarchySelection.resourceId\
+        \ | string | Resource ID. Valid values are AWS OU ID, AWS account ID, or AWS\
+        \ Organization ID.<br/>Note you must escape any double quotes in the resource\
+        \ ID with a backslash. | Required if **hierarchySelection** is specified\n\
+        hierarchySelection.displayName | string | Display name for AWS OU, AWS account,\
+        \ or AWS organization | Required if **hierarchySelection** is specified\n\
+        hierarchySelection.nodeType | string | Valid values: **OU**, **ACCOUNT**,\
+        \ **ORG** |  Required if **hierarchySelection** is specified\nhierarchySelection.selectionType\
+        \ | string | Valid values: **INCLUDE** to include the specified resource to\
+        \ onboard, **EXCLUDE** to exclude the specified resource and onboard the rest,\
+        \ **ALL** to onboard all resources in the organization. |  Required if **hierarchySelection**\
+        \ is specified\n\n\n#### Request Body Example\n```json\n{\n  \"accountId\"\
+        : \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n  \"groupIds\": [],\n\
+        \  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"accountType\": \"organization\"\
+        ,\n  \"memberRoleName\": \"\",\n  \"memberExternalId\": \"\",\n  \"memberRoleStatus\"\
+        : true,\n  \"protectionMode\": \"MONITOR\",\n  \"hierarchySelection\": \n\
+        \  [{\n    \"resourceId\": \"\",\n    \"displayName\": \"\",\n    \"nodeType\"\
+        : \"OU\",\n    \"selectionType\": \"EXCLUDE\"\n  }] \n}\n```\n\n### Request\
+        \ Body to Update an Azure Account\nThe table below lists the request body\
+        \ parameters.\n\nParameter  | Type | Description | Required?\n-----------|\
+        \ ---- | ----------- | -------------\nclientId | string | Application ID registered\
+        \ with Active Directory | Required\ncloudAccount.accountId | string | Azure\
+        \ account ID.  If **cloudAccount.accountType** is **tenant**, then **cloudAccount.accountId**\
+        \ should be \"\" (empty).| Required unless cloudAccount.accountType is **tenant**\n\
+        cloudAccount.enabled | boolean  | Whether or not to enable the account | Optional\
+        \  \ncloudAccount.groupIds | array of strings | List of account group IDs\
+        \ for this account | Required\ncloudAccount.name | string  | Name to be used\
+        \ for the account on the Prisma Cloud platform (must be unique) | Required\n\
+        cloudAccount.accountType | string | Valid values: **account**, **tenant**\
+        \ | Required\ncloudAccount.protectionMode | string | If **cloudAccount.accountType**\
+        \ is **tenant**, then the valid value is **MONITOR** | Required\ntenantId\
+        \ | string | Active Directory ID associated with Azure | Required\nservicePrincipalId\
+        \ | string | Unique ID of the service principal object associated with the\
+        \ Prisma Cloud application that you create | Required\nmonitorFlowLogs | boolean\
+        \ | Automatically ingest flow logs | Required\nkey | string | Application\
+        \ ID key | Required\n\n#### Request Body Example\n```json\n{\n  \"cloudAccount\"\
+        : {\n    \"accountId\": \"\",\n    \"enabled\": true,\n    \"groupIds\": [],\n\
+        \    \"name\": \"\",\n    \"accountType\": \"\",\n    \"protectionMode\":\
+        \ \"MONITOR\"\n  },\n  \"clientId\": \"\",\n  \"key\": \"\",\n  \"monitorFlowLogs\"\
+        : true,\n  \"tenantId\": \"\",\n  \"servicePrincipalId\": \"\"\n}\n```\n\n\
+        ### Request Body to Update a GCP Project\nThe table below lists the request\
+        \ body parameters.\n\nParameter  | Type | Description | Required?\n-----------|\
+        \ ---- | ----------- | -------------\ncloudAccount.accountId | string | GCP\
+        \ project ID | Required\ncloudAccount.name | string | Name to be used for\
+        \ the account on the Prisma Cloud platform (must be unique) | Required\ncloudAccount.enabled\
+        \ | boolean  | Whether or not the account is enabled | Required\ncloudAccount.groupIds\
         \ | array of strings | List of account group IDs for this account | Required\n\
         cloudAccount.projectId | string  | Existing GCP project ID | Required\ncloudAccount.protectionMode\
         \ | string  | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required\
@@ -2685,55 +2795,57 @@ paths:
         \ Create high-level account groups based on folders identified<br/>**RECURSIVE**:\
         \ Drill down in folder tree to create account groups | Optional\ndefaultAccountGroupId\
         \ | string | Account group ID for this account |  Required if **accountGroupCreationMode**\
-        \ is **MANUAL** \nhierarchySelection.resourceId | string | Resource ID. For\
-        \ folders, format is _folders/{folder ID}_. For projects, format is _{project\
-        \ number}_. For orgs, _format is organizations/{org ID}_ | Required if **hierarchySelection**\
-        \ is specified\nhierarchySelection.displayName | string | Display name for\
-        \ folder, project, or organization | Required if **hierarchySelection** is\
-        \ specified\nhierarchySelection.nodeType | string | Valid values: **FOLDER**,\
-        \ **PROJECT**, **ORG** |  Required if **hierarchySelection** is specified\n\
-        hierarchySelection.selectionType | string | Valid values: **INCLUDE**, **EXCLUDE**,\
-        \ **INCLUDE ALL**. If **hierarchySelection.nodeType** is **PROJECT** or **FOLDER**,\
-        \ valid values are  **INCLUDE**, **EXCLUDE**. |  Required if **hierarchySelection**\
-        \ is specified\n\n#### Request Body Example\n```json\n{\n  \"cloudAccount\"\
-        : {\n    \"accountId\": \"\",\n    \"accountType\": \"organization\",\n  \
-        \  \"proectionMode\": \"MONITOR\"\n    \"enabled\": true,\n    \"groupIds\"\
-        : [],\n    \"name\": \"\",\n    \"projectId\":\"\",\n    \"protectionMode\"\
-        : \"MONITOR\"\n},\n\"accountGroupCreationMode\": \"MANUAL\"\n\"compressionEnabled\"\
-        : true,\n\"dataflowEnabledProject\": \"\",\n\"flowLogStorageBucket\": \"\"\
-        ,\n\"credentials\": {\n    \"type\": \"\",\n    \"project_id\": \"\",\n  \
-        \  \"private_key_id\": \"\",\n    \"private_key\": \"\",\n    \"client_email\"\
-        : \"\",\n    \"client_id\": \"\",\n    \"auth_uri\": \"\",\n    \"token_uri\"\
-        : \"\",\n    \"auth_provider_x509_cert_url\": \"\",\n    \"client_x509_cert_url\"\
-        : \"\"\n},\n\"hierarchySelection\": \n  [{\n    \"resourceId\": \"\",\n  \
-        \  \"displayName\": \"\",\n    \"nodeType\": \"FOLDER\",\n    \"selectionType\"\
-        : \"EXCLUDE\"\n  }]    \n}\n```\n\n### Request Body to Update a GCP Master\
-        \ Service Account\nThe table below lists the request body parameters.\n\n\
-        Parameter  | Type | Description | Required?\n-----------| ---- | -----------\
-        \ | -------------\ncloudAccount.accountId | string | GCP project ID | Required\n\
-        cloudAccount.name | string | Name to be used for the account on the Prisma\
-        \ Cloud platform (must be unique) | Required\ncloudAccount.enabled | boolean\
-        \  | Whether or not the account is enabled | Optional\ncloudAccount.groupIds\
-        \ | array of strings | List of account group IDs for this account | Required\n\
-        cloudAccount.projectId | string  | Existing GCP project ID | Required\ncloudAccount.protectionMode\
-        \ | string  | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required\
-        \ \ncloudAccount.accountType | string | Valid value: **masterServiceAccount**\
-        \ | Required\ndefaultAccountGroupId | string |  Default account group ID for\
-        \ this account | Required \ncredentials | JSON object | Service account key\
-        \ | Required\ncompressionEnabled |boolean | Enable flow log compression |\
-        \ Optional\ndataflowEnabledProject | string | GCP project for flow log compression\
-        \ | Required if **compressionEnabled** is **true**\nflowLogStorageBucket |\
-        \ string | GCP flow logs storage bucket | Optional\n\n#### Request Body Example\n\
-        ```json\n{\n  \"cloudAccount\": {\n    \"accountId\": \"\",\n    \"accountType\"\
-        : \"masterServiceAccount\",\n    \"enabled\": true,\n    \"groupIds\": [],\n\
-        \    \"name\": \"\",\n    \"projectId\":\"\",\n    \"protectionMode\": \"\
-        MONITOR\"\n},\n\"defaultAccountGroupId\": \"\",\n\"compressionEnabled\": true,\n\
-        \"dataflowEnabledProject\": \"\",\n\"flowLogStorageBucket\": \"\",\n\"credentials\"\
-        : {\n    \"type\": \"\",\n    \"project_id\": \"\",\n    \"private_key_id\"\
-        : \"\",\n    \"private_key\": \"\",\n    \"client_email\": \"\",\n    \"client_id\"\
-        : \"\",\n    \"auth_uri\": \"\",\n    \"token_uri\": \"\",\n    \"auth_provider_x509_cert_url\"\
-        : \"\",\n    \"client_x509_cert_url\": \"\"\n}\n```\n\n### Request Body to\
-        \ Update an Alibaba Account\nThe table below lists the request body parameters.\n\
+        \ is **MANUAL** \nhierarchySelection | array of objects | List of folders\
+        \ and/or projects to onboard under this organization | Optional\nhierarchySelection.resourceId\
+        \ | string | Resource ID. For folders, format is _folders/{folder ID}_. For\
+        \ projects, format is _{project number}_. For orgs, _format is organizations/{org\
+        \ ID}_ | Required if **hierarchySelection** is specified\nhierarchySelection.displayName\
+        \ | string | Display name for folder, project, or organization | Required\
+        \ if **hierarchySelection** is specified\nhierarchySelection.nodeType | string\
+        \ | Valid values: **FOLDER**, **PROJECT**, **ORG** |  Required if **hierarchySelection**\
+        \ is specified\nhierarchySelection.selectionType | string | Valid values:\
+        \ **INCLUDE**, **EXCLUDE**, **INCLUDE ALL**. If **hierarchySelection.nodeType**\
+        \ is **PROJECT** or **FOLDER**, valid values are  **INCLUDE**, **EXCLUDE**.\
+        \ |  Required if **hierarchySelection** is specified\n\n#### Request Body\
+        \ Example\n```json\n{\n  \"cloudAccount\": {\n    \"accountId\": \"\",\n \
+        \   \"accountType\": \"organization\",\n    \"proectionMode\": \"MONITOR\"\
+        \n    \"enabled\": true,\n    \"groupIds\": [],\n    \"name\": \"\",\n   \
+        \ \"projectId\":\"\",\n    \"protectionMode\": \"MONITOR\"\n},\n\"accountGroupCreationMode\"\
+        : \"MANUAL\"\n\"compressionEnabled\": true,\n\"dataflowEnabledProject\": \"\
+        \",\n\"flowLogStorageBucket\": \"\",\n\"credentials\": {\n    \"type\": \"\
+        \",\n    \"project_id\": \"\",\n    \"private_key_id\": \"\",\n    \"private_key\"\
+        : \"\",\n    \"client_email\": \"\",\n    \"client_id\": \"\",\n    \"auth_uri\"\
+        : \"\",\n    \"token_uri\": \"\",\n    \"auth_provider_x509_cert_url\": \"\
+        \",\n    \"client_x509_cert_url\": \"\"\n},\n\"hierarchySelection\": \n  [{\n\
+        \    \"resourceId\": \"\",\n    \"displayName\": \"\",\n    \"nodeType\":\
+        \ \"FOLDER\",\n    \"selectionType\": \"EXCLUDE\"\n  }]    \n}\n```\n\n###\
+        \ Request Body to Update a GCP Master Service Account\nThe table below lists\
+        \ the request body parameters.\n\nParameter  | Type | Description | Required?\n\
+        -----------| ---- | ----------- | -------------\ncloudAccount.accountId |\
+        \ string | GCP project ID | Required\ncloudAccount.name | string | Name to\
+        \ be used for the account on the Prisma Cloud platform (must be unique) |\
+        \ Required\ncloudAccount.enabled | boolean  | Whether or not the account is\
+        \ enabled | Optional\ncloudAccount.groupIds | array of strings | List of account\
+        \ group IDs for this account | Required\ncloudAccount.projectId | string \
+        \ | Existing GCP project ID | Required\ncloudAccount.protectionMode | string\
+        \  | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required \ncloudAccount.accountType\
+        \ | string | Valid value: **masterServiceAccount** | Required\ndefaultAccountGroupId\
+        \ | string |  Default account group ID for this account | Required \ncredentials\
+        \ | JSON object | Service account key | Required\ncompressionEnabled |boolean\
+        \ | Enable flow log compression | Optional\ndataflowEnabledProject | string\
+        \ | GCP project for flow log compression | Required if **compressionEnabled**\
+        \ is **true**\nflowLogStorageBucket | string | GCP flow logs storage bucket\
+        \ | Optional\n\n#### Request Body Example\n```json\n{\n  \"cloudAccount\"\
+        : {\n    \"accountId\": \"\",\n    \"accountType\": \"masterServiceAccount\"\
+        ,\n    \"enabled\": true,\n    \"groupIds\": [],\n    \"name\": \"\",\n  \
+        \  \"projectId\":\"\",\n    \"protectionMode\": \"MONITOR\"\n},\n\"defaultAccountGroupId\"\
+        : \"\",\n\"compressionEnabled\": true,\n\"dataflowEnabledProject\": \"\",\n\
+        \"flowLogStorageBucket\": \"\",\n\"credentials\": {\n    \"type\": \"\",\n\
+        \    \"project_id\": \"\",\n    \"private_key_id\": \"\",\n    \"private_key\"\
+        : \"\",\n    \"client_email\": \"\",\n    \"client_id\": \"\",\n    \"auth_uri\"\
+        : \"\",\n    \"token_uri\": \"\",\n    \"auth_provider_x509_cert_url\": \"\
+        \",\n    \"client_x509_cert_url\": \"\"\n}\n```\n\n### Request Body to Update\
+        \ an Alibaba Account\nThe table below lists the request body parameters.\n\
         \nParameter  | Type | Description |  Required?\n-----------| ---- | -----------\
         \ | -------------\naccountId |string | AWS account ID | Required\ngroupIds\
         \ | array of strings  | List of account group IDs for this account  | Required\n\
@@ -3456,6 +3568,133 @@ paths:
       security:
       - x-redlock-auth: []
       summary: Get Data Security Config (AWS Org)
+      tags:
+      - Cloud Accounts
+  /cloud-accounts-manager/v1/cloudAccounts/awsAccounts/{parent_id}/children:
+    post:
+      description: "For AWS only. Lists all the children of the given parent organizational\
+        \ unit (OU).The listed children include both OU resources and account resources.\
+        \  \r\n\r\n### Request Body\nThe table below lists the required request body\
+        \ parameters.\n\nParameter  | Type | Description \n-----------| ---- | -----------\n\
+        accountId | string | AWS account ID \nexternalId | string  | AWS account external\
+        \ ID  \nname | string  |Account on  Prisma Cloud  \nroleArn | string | Amazon\
+        \ Resource Name (ARN) for the account \naccountType | string | Type of the\
+        \ given account, for example **organization** \nmemberRoleStatus | boolean\
+        \ | memberRoleStatus | boolean | **true**: The member role created using stack\
+        \ set exists in all the member accounts. All the Org accounts will be added.<br/>**false**:\
+        \ Only the master account will be added. | Default is existing value\n\n####\
+        \ Request Body Example\n```json\n{\n    \"accountId\": \"\",\n    \"externalId\"\
+        : \"\",\n    \"name\": \"\",\n    \"roleArn\": \"\",\n    \"accountType\"\
+        : \"\",\n    \"memberRoleStatus\": true\n}\n```\n"
+      operationId: get-list-of-children-under-parent-aws
+      parameters:
+      - description: Parent OU ID
+        in: path
+        name: parent_id
+        required: true
+        schema:
+          type: string
+      - description: The page token to request the next page of accounts. The response
+          from a previous request provides this token. If the token has characters
+          outside the ASCII character set, URL encode the token before using it to
+          make a request.
+        in: query
+        name: accountNextPageToken
+        required: false
+        schema:
+          type: string
+      - description: Total number of accounts to return. An  **accountFetchCount**
+          of 0 returns a nextPageToken but no accounts.
+        in: query
+        name: accountFetchCount
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - description: The page token to request next set of OUs. The response from
+          a previous request provides this token. If the token has characters outside
+          the ASCII character set, URL encode the token before using it to make a
+          request.
+        in: query
+        name: ouNextPageToken
+        required: false
+        schema:
+          type: string
+      - description: Total number of OUs to return. An **ouFetchCount** of 0 returns
+          a nextPageToken but no OUs.
+        in: query
+        name: ouFetchCount
+        required: false
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/get-list-of-children-under-parent-awsBody'
+      responses:
+        '200':
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/AwsListChildrenApiResponseModel'
+          description: success
+        '400':
+          description: permission_error / bad_request
+        '500':
+          description: internal_error
+      security:
+      - x-redlock-auth: []
+      summary: List Children of Parent (AWS)
+      tags:
+      - Cloud Accounts
+  /cloud-accounts-manager/v1/cloudAccounts/awsAccounts/{account_id}/ancestors:
+    post:
+      description: "For AWS only. Lists the ancestors of the given member accounts\
+        \ and organizational units (OUs) for the specified cloud account ID. A successful\
+        \ response returns an array of projects and/or folders each of which is mapped\
+        \ to an array of ancestor resource IDs.  \r\n\r\n### Request Body\nThe table\
+        \ below lists the required request body parameters.\n\nParameter  | Type |\
+        \ Description\n-----------| ---- | -----------\naccountId | string | AWS account\
+        \ ID\nexternalId | string  | AWS account external ID\nname | string  | Account\
+        \ name on Prisma Cloud\nroleArn | string | Amazon Resource Name (ARN) for\
+        \ the account\naccountType | string | Type of the given account, for example\
+        \ **organization**\nmemberRoleStatus | boolean | memberRoleStatus | boolean\
+        \ | **true**: The member role created using stack set exists in all the member\
+        \ accounts. All the Org accounts will be added.<br/>**false**: Only the master\
+        \ account will be added. | Default is existing value\nresourceIds | array\
+        \ of strings | Array of resource IDs. A resource ID can be an AWS account\
+        \ ID, an AWS Organization ID or an AWS Organization Unit (OU) ID\n\n#### Request\
+        \ Body Example\n```json\n{\n    \"accountId\": \"\",\n    \"externalId\":\
+        \ \"\",\n    \"name\": \"\",\n    \"roleArn\": \"\",\n    \"accountType\"\
+        : \"\",\n    \"memberRoleStatus\": true\n    \"resourceIds\": [\"\", \"\"\
+        , \"\"]\n}\n```\n"
+      operationId: get-ancestors-for-given-members-ous
+      parameters:
+      - description: Account ID
+        in: path
+        name: account_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/get-list-of-children-under-parent-awsBody'
+      responses:
+        '200':
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AwsNodeModel'
+                type: array
+          description: success
+        '400':
+          description: bad_request / unauthorized_access
+        '404':
+          description: invalid_account_id_format
+        '500':
+          description: internal_error
+      security:
+      - x-redlock-auth: []
+      summary: List Ancestors (AWS)
       tags:
       - Cloud Accounts
 servers:
