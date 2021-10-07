@@ -9,7 +9,6 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import classnames from "classnames";
 import React from "react";
-import ScrollUpButton from "react-scroll-up-button";
 import Featured from "../components/Featured";
 import Tools from "../components/Tools";
 import styles from "./styles.module.css";
@@ -23,7 +22,6 @@ function Home() {
       description="The home of developer docs for Prisma by Palo Alto Networks. Explore the RQL Library, Sample Policies, Prisma Cloud API docs and more."
       wrapperClassName="homepage"
     >
-      <ScrollUpButton />
       <header className={classnames("hero hero--primary", styles.heroBanner)}>
         <div className="container">
           <div className={styles.hero}>

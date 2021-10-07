@@ -1635,6 +1635,25 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@pandev/docusaurus-plugin-panw@2.0.0-beta.4":
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@pandev/docusaurus-plugin-panw/-/docusaurus-plugin-panw-2.0.0-beta.4.tgz#6ad7633ee1935250e43efa0091bcd075c483a75a"
+  integrity sha512-8QhGupI4hd1Nxk9Xnls6vK1XJFkFr8iDMGPnrVO0CPUQBYfwAttzLnphXL/O0jjLN6Blu9vyyL8AtLjBXu3rjQ==
+  dependencies:
+    "@docusaurus/core" "2.0.0-beta.4"
+    classnames "^2.2.6"
+    clsx "^1.1.1"
+    core-js "^3.6.5"
+    esbuild-loader "^2.14.0"
+    lodash.merge "^4.6.2"
+    mobx "6.1.8"
+    node "^15.12.0"
+    node-polyfill-webpack-plugin "^1.1.4"
+    react "^17.0.1"
+    react-dom "^17.0.1"
+    redoc "^2.0.0-rc.55"
+    styled-components "^5.2.0"
+
 "@philpl/buble@^0.19.7":
   version "0.19.7"
   resolved "https://registry.yarnpkg.com/@philpl/buble/-/buble-0.19.7.tgz#27231e6391393793b64bc1c982fc7b593198b893"
@@ -3747,11 +3766,6 @@ detect-node@^2.0.4:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/detect-node/-/detect-node-2.1.0.tgz#c9c70775a49c3d03bc2c06d9a73be550f978f8b1"
   integrity sha512-T0NIuQpnTvFDATNuHN5roPwSBG83rFsuO+MXXH9/3N1eFbn4wcPjttvjMLEPWJ0RGUYgQE7cGgS3tNxbqCGM7g==
-
-detect-passive-events@^1.0.4:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/detect-passive-events/-/detect-passive-events-1.0.5.tgz#ce324db665123bef9e368b8059ff95d95217cc05"
-  integrity sha512-foW7Q35wwOCxVzW0xLf5XeB5Fhe7oyRgvkBYdiP9IWgLMzjqUqTvsJv9ymuEWGjY6AoDXD3OC294+Z9iuOw0QA==
 
 detect-port-alt@1.1.6:
   version "1.1.6"
@@ -7730,20 +7744,15 @@ react-loadable@^5.5.0:
   dependencies:
     prop-types "^15.5.0"
 
-react-promise@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/react-promise/-/react-promise-3.0.2.tgz#1180f9e9d2e1a5362d005688c002366b4e9f2b67"
-  integrity sha512-Ez2aFel11b08H2HAWNnKf0GDV5ATGBmxK9UXHXxoKwCEoQey9manXDTwB2n3mhgOvMRzGH/YTHACdqQUjXf6Rw==
-
-react-responsive@^8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/react-responsive/-/react-responsive-8.2.0.tgz#e0ffb306cfd8f38c9c12e26725b9e1245fa9debc"
-  integrity sha512-iagCqVrw4QSjhxKp3I/YK6+ODkWY6G+YPElvdYKiUUbywwh9Ds0M7r26Fj2/7dWFFbOpcGnJE6uE7aMck8j5Qg==
+react-responsive@^9.0.0-beta.4:
+  version "9.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/react-responsive/-/react-responsive-9.0.0-beta.4.tgz#90c1f1a4048971497ca9795068af6803eabc0ddb"
+  integrity sha512-jQSs5kIi38T39Ku98r8s75jM6JAaNEeVrHPHTrL2EYWuv8nusV3KRQcZZ4VlfwndIRedxmpb4T8FXA9ltlCFiw==
   dependencies:
     hyphenate-style-name "^1.0.0"
     matchmediaquery "^0.3.0"
     prop-types "^15.6.1"
-    shallow-equal "^1.1.0"
+    shallow-equal "^1.2.1"
 
 react-router-config@^5.1.1:
   version "5.1.1"
@@ -7780,15 +7789,6 @@ react-router@5.2.1, react-router@^5.2.0:
     react-is "^16.6.0"
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
-
-react-scroll-up-button@^1.6.4:
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/react-scroll-up-button/-/react-scroll-up-button-1.6.4.tgz#9c4c45d1b58f2e4fcf60e44817a170becd25c7ba"
-  integrity sha512-ou/ZLbjAXgXnszmNp9g17XlZBat48V3Oz40ssEcu6dEIM2CVn/yWxej3Y4Fx1LyUtQ1cc/MoWOSXC2dufaiACg==
-  dependencies:
-    detect-passive-events "^1.0.4"
-    prop-types "^15.6.2"
-    tween-functions "^1.2.0"
 
 react-side-effect@^2.1.0:
   version "2.1.1"
@@ -8455,7 +8455,7 @@ shallow-clone@^3.0.0:
   dependencies:
     kind-of "^6.0.2"
 
-shallow-equal@^1.1.0:
+shallow-equal@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/shallow-equal/-/shallow-equal-1.2.1.tgz#4c16abfa56043aa20d050324efa68940b0da79da"
   integrity sha512-S4vJDjHHMBaiZuT9NPb616CSmLf618jawtv3sufLl6ivK8WocjAo58cXwbRV1cgqxH0Qbv+iUt6m05eqEa2IRA==
@@ -9172,11 +9172,6 @@ tty-browserify@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.1.tgz#3f05251ee17904dfd0677546670db9651682b811"
   integrity sha512-C3TaO7K81YvjCgQH9Q1S3R3P3BtN3RIM8n+OvX4il1K1zgE8ZhI0op7kClgkxtutIE8hQrcrHBXvIheqKUUCxw==
-
-tween-functions@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/tween-functions/-/tween-functions-1.2.0.tgz#1ae3a50e7c60bb3def774eac707acbca73bbc3ff"
-  integrity sha1-GuOlDnxguz3vd06scHrLynO7w/8=
 
 type-fest@^0.20.2:
   version "0.20.2"
