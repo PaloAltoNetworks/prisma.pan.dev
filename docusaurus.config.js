@@ -6,10 +6,13 @@
  */
 
 module.exports = {
-  title: "Next-gen Automation",
-  tagline: "with the only next-gen security platform",
-  url: "https://prisma.pan.dev",
-  baseUrl: "/",
+  title: "Prisma Developer Docs | Palo Alto Networks",
+  url: process.env.CI_PAGES_URL
+    ? process.env.CI_PAGES_URL
+    : "https://prisma.pan.dev",
+  baseUrl: process.env.CI_MERGE_REQUEST_IID
+    ? `/-/${process.env.CI_PROJECT_NAME}/-/jobs/${process.env.CI_JOB_ID}/artifacts/public/`
+    : "/",
   favicon: "img/prismafavicon.png",
   organizationName: "PaloAltoNetworks", // Usually your GitHub org/user name.
   projectName: "prisma.pan.dev", // Usually your repo name.
@@ -17,49 +20,84 @@ module.exports = {
     algolia: {
       apiKey: "caddcc77123a6dff437a768f47b785c3",
       indexName: "prisma_pan",
-      algoliaOptions: {} // Optional, if provided by Algolia
+      searchParameters: {}, // Optional, if provided by Algolia
     },
-    sidebarCollapsible: true,
     navbar: {
       title: "",
       logo: {
         alt: "Prisma for Developers",
-        src: "/img/Prisma_Light.svg",
-        srcDark: "/img/Prisma_Dark.svg"
+        src: "/img/PAN_Prisma_Light.svg",
+        srcDark: "/img/PAN_Prisma_Dark.svg",
       },
       items: [
         {
-          to: "/docs",
+          to: "/docs/cloud/",
           label: "Docs",
           position: "left",
         },
         {
+          label: "API Reference",
+          items: [
+            {
+              to: "/api/cloud/",
+              label: "Prisma Cloud Platform",
+            },
+          ],
+          position: "left",
+        },
+        {
+          label: "Products",
+          items: [
+            {
+              href: "https://cortex.pan.dev",
+              label: "Cortex Data Lake",
+              className: "cortexItem",
+              target: "_self",
+            },
+            {
+              href: "https://xsoar.pan.dev",
+              label: "Cortex XSOAR",
+              className: "xsoarItem",
+              target: "_self",
+            },
+            {
+              href: "https://panos.pan.dev",
+              label: "Strata",
+              className: "strataItem",
+              target: "_self",
+            },
+          ],
+          position: "right",
+        },
+        {
           href: "https://medium.com/palo-alto-networks-developer-blog",
-          label: "Blog",
-          position: "right"
+          position: "right",
+          className: "header-medium-link",
+          "aria-label": "Palo Alto Networks Developer Blog",
         },
         {
           href: "https://github.com/PaloAltoNetworks",
           position: "right",
           className: "header-github-link",
           "aria-label": "GitHub repository",
-        }
+        },
       ],
     },
-    
+
     footer: {
       style: "dark",
       links: [
         {
           title: "Docs",
           items: [
-            { 
-              to: "docs/whatisprisma", 
-              label: "About Prisma" },
             {
-              to: "docs/index",
-              label: "Docs Homepage"
-            }
+              to: "/api/cloud/",
+              label: "API Docs",
+            },
+            {
+              to: "docs/cloud",
+              label: "Docs Homepage",
+            },
           ],
         },
         {
@@ -67,28 +105,25 @@ module.exports = {
           items: [
             {
               label: "Blog",
-              href: "https://medium.com/palo-alto-networks-developer-blog"
-            }
-          ]
-        }
+              href: "https://medium.com/palo-alto-networks-developer-blog",
+            },
+          ],
+        },
       ],
       logo: {
         alt: "PAN-OS® for Developers",
         src: "/img/PANW_Parent_Brand_Primary_Logo_RGB_KO.svg",
-        href: "https://pan.dev"
+        href: "https://pan.dev",
       },
-      copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`
-    }
+      copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`,
+    },
   },
-  themes: [
-    require.resolve("@docusaurus/theme-live-codeblock"),
-  ],
+  themes: [require.resolve("@docusaurus/theme-live-codeblock")],
   presets: [
     [
       require.resolve("@docusaurus/preset-classic"),
       {
         docs: {
-          homePageId: "_index",
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl:
             "https://github.com/PaloAltoNetworks/prisma.pan.dev/tree/master/",
@@ -100,35 +135,49 @@ module.exports = {
           rehypePlugins: [],
           path: "docs",
           showLastUpdateAuthor: true,
-          showLastUpdateTime: true
+          showLastUpdateTime: true,
+          sidebarCollapsible: true,
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css")
-        }
-      }
-    ]
-  ],
-  plugins: [
-    [
-      '@docusaurus/plugin-sitemap',
-      {
-        id: "prisma-sitemap",
-        cacheTime: 600 * 1000, // 600 sec - cache purge period
-        changefreq: 'weekly',
-        priority: 0.5,
+          customCss: require.resolve("./src/css/custom.css"),
+        },
       },
     ],
   ],
+  plugins: [
+    [
+      "@docusaurus/plugin-sitemap",
+      {
+        id: "prisma-sitemap",
+        changefreq: "weekly",
+        priority: 0.5,
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "api",
+        sidebarPath: require.resolve("./api.sidebars.js"),
+        editUrl:
+          "https://github.com/PaloAltoNetworks/prisma.pan.dev/tree/master/",
+        routeBasePath: "api",
+        include: ["**/*.md", "**/*.mdx"], // Extensions to include.
+        docLayoutComponent: "@theme/DocPage",
+        docItemComponent: "@theme/APIDocItem",
+        remarkPlugins: [],
+        rehypePlugins: [],
+        path: "api",
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+      },
+    ],
+  ],
+  themes: [require.resolve("./docusaurus-plugin-webpack/src/index.cjs")],
   customFields: {
     sites: [
       {
         label: "Products",
         items: [
-          {
-            href: "https://panos.pan.dev",
-            label: "PAN-OS",
-            logo: "/img/strata_favicon.png",
-          },
           {
             href: "https://cortex.pan.dev",
             label: "Cortex",
@@ -139,6 +188,16 @@ module.exports = {
             label: "Cortex XSOAR",
             logo: "/img/Cortex-XSOAR-product-green.svg",
           },
+          {
+            href: "https://panos.pan.dev",
+            label: "PAN-OS",
+            logo: "/img/strata_favicon.png",
+          },
+          {
+            href: "https://prisma.pan.dev",
+            label: "Prisma",
+            logo: "/img/prismafavicon.png",
+          },
         ],
         position: "products",
       },
@@ -146,4 +205,10 @@ module.exports = {
     onBrokenLinks: "warn",
     onDuplicateRoutes: "warn",
   },
+  stylesheets: [
+    {
+      href: "https://use.fontawesome.com/releases/v5.11.0/css/all.css",
+      type: "text/css",
+    },
+  ],
 };

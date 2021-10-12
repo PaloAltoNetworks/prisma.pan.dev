@@ -1,10 +1,10 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/791dfbf1-c6e8-447d-ac4d-220cb8aa7c6f/deploy-status)](https://app.netlify.com/sites/condescending-mcclintock-5c4d6f/deploys)
 
-# PAN-OS® for Developers
+# Prisma Cloud 
 
 This website is built using Docusaurus 2, a modern static website generator.
 
-> URL: https://panos.pan.dev
+> URL: https://prisma.pan.dev
 
 ### Installation
 
@@ -37,3 +37,6 @@ Build previews will be automatically generated for merges into the `upstream/dev
 ### Contributing
 
 Contributing guidelines can be found [here](https://panos.pan.dev/docs/contributing).
+
+### Support
+See [SUPPORT.md](SUPPORT.md). 
