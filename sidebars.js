@@ -33,6 +33,7 @@ module.exports = {
                 "cloud/rql/aws/aws_cognito",
                 "cloud/rql/aws/aws_ecs",
                 "cloud/rql/aws/aws_guardduty",
+		"cloud/rql/aws/aws_route53",
                 //"cloud/rql/aws/aws_iam",
                 //"cloud/rql/aws/aws_kms",
                 //"cloud/rql/aws/aws_lambda",
