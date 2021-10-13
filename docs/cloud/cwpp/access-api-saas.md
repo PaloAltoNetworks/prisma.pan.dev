@@ -6,7 +6,7 @@ sidebar_label: Access the API (SaaS)
 
 To access the Compute API, you must first get your Compute Console's address.
 Retrieve your Compute Console's address directly from the UI.
-Go to **Compute > Manage > System > Downloads** and copy the **Path to Console**.
+Go to **Compute > Manage > System > Utilities** and copy the **Path to Console**.
 All example commands specify a variable called `CONSOLE`, which represents the address for your Console.
 
 You can access the Compute API with your Prisma Cloud user credentials.
@@ -22,7 +22,7 @@ Get your Compute Console's address and then use basic auth to access the API.
 
 1. Get the path to your Console.
 
-   1. Go to **Compute > Manage > System > Downloads**.
+   1. Go to **Compute > Manage > System > Utilities**.
 
    1. Under **Path to Console**, click **Copy**.
 
@@ -50,7 +50,7 @@ We recommend that you renew the Compute token every 5 minutes (half the lifetime
 
 1. Get the path to your Console.
 
-   1. Go to **Compute > Manage > System > Downloads**.
+   1. Go to **Compute > Manage > System > Utilities**.
 
    1. Under **Path to Console**, click **Copy**.
 
