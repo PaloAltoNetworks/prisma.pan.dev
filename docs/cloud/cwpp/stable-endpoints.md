@@ -4,19 +4,11 @@ title: Stable Endpoints
 sidebar_label: Stable Endpoints
 ---
 
-API calls are essential for developing scripts that automate reporting, deployment and configuration.
-New releases can introduce breaking changes in the API, which forces you to adapt scripts every time you upgrade.
-API versioning lets you call fixed, stable endpoints, which are supported and available for some guaranteed window of time.
-
-Starting in 21.08, Prisma Cloud Compute offers a versioned API.
-Each version will be supported for the subsequent two major releases.
-
-For example, today we ship 21.08, which is codenamed Iverson.
-After Iverson, we'll ship Joule.
-After Joule, we'll ship Kepler.
-And after Kepler, we'll ship Lagrange
-The 21.08 versioned API will be supported while Iverson, Joule, and Kepler are active.
-When Langrage ships, Iverson will be end-of-lifed, and the 21.08 API will longer be supported or available.
+Starting with 21.08, with every release the Compute APIs will be versioned to indicate the release number to which they correspond. 
+The version-specific APIs will be supported for the subsequent two major releases. 
+With API versioning, as your Console is upgraded to newer versions, you can continue to use older versioned APIs with stability and migrate to newer version APIs at your convenience within the N-2 support lifecycle. 
+The deployment scripts and Twistcli that you download from Console, will use the Prisma Cloud Compute APIs associated with the specific version of Console. 
+For example, the 21.08 release that is codenamed Iverson will be supported through the next two releases codenamed Joule and Kepler. When Langrage ships, the 21.08 API will no longer be supported. 
 
 
 ## Versioning
@@ -34,16 +26,30 @@ For example, the following endpoint points to a 21.08 endpoint:
 
 `api/v21.08/images`
 
+As a best practice, update your scripts to use the version-specific API endpoints to ensure that your implementation is fully supported.
+For the version-specific APIs, you will have access to the API Reference and Release Notes documentation for changes or updates that may impact you. 
+
+When using the version-specific endpoints, you will need to update your automation scripts approximately once-a- year to stay in sync with the product [support lifecycle]( https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/upgrade/support_lifecycle.html).
+
+**Note**: If you have a mixed environment  of 21.08, 21.12, and 22.04 Defenders then use the version of the API that matches the earliest version, which in this example is API v/21.08.
+
+If you use the /v1 APIs, Palo Alto Networks recommends that you consider revising your scripts to target the versioned API endpoints. 
+If you opt to continue using the v1 API endpoints, please adhere the following practices guidelines:
+* Review the list of v1 endpoints you are using and make sure the corresponding versioned endpoints are available.
+v1 API are a larger subset and not all endpoints are supported. 
+Only the versioned endpoints are supported and automatically mapped to the latest   release of the product.
+* If you are using an API that is only in the /v1 category and does not have a corresponding versioned API, you must review your implementation and update your scripts to adapt them to ensure that you do not  experience a disruption.
+* If you are using  /v1 endpoints that are not versioned and thereby are unsupported, you can submit a feature request. 
+Your request for supporting the endpoint will be considered when planning the product roadmap for future releases.
+
 
 ## Supported Endpoints
 
-For the most part, Prisma Cloud Compute supports versioned endpoints only (see exceptions below).
-The official documentation for the Compute APIs shows supported endpoints only.
-
-Prisma Cloud Compute Console lets you download a copy of the OpenAPI spec file for the API.
-This file lists all available endpoints, including unsupported endpoints.
-We offer no guarantees for unsupported endpoints.
-They can change, they could change frequently, and they could be deprecated without advanced notice.
+The API Reference documentation for the Compute APIs includes the supported endpoints only.
+From the Prisma Cloud Compute Console you can download a copy of the OpenAPI spec file.
+This file lists all available endpoints, including unsupported endpoints. 
+Use the supported endpoints for ensuring stability. 
+Because the unsupported endpoints are not documented for use, they are subject to change, deprecation, or removal without notice.
 
 In the OpenAPI spec, supported endpoints are tagged as supported.
 For example, the `POST /api/vX/authenticate` endpoint is tagged as follows:
@@ -54,11 +60,6 @@ For example, the `POST /api/vX/authenticate` endpoint is tagged as follows:
   "Supported API"
 ]
 ```
-
-A few endpoints have a special status.
-They're supported, but not versioned.
-These endpoints are shown in the documentation, and their status is clearly marked.
-
 
 ## Supported Endpoint Categories
 
