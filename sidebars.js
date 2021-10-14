@@ -40,6 +40,7 @@ module.exports = {
                 'cloud/cspm/rql/aws/aws_event',
                 'cloud/cspm/rql/aws/network_vpc_flows',
                 'cloud/cspm/rql/aws/aws_iam',
+		'cloud/cspm/rql/aws/aws_route53',
                 //"cloud/cspm/rql/aws/aws_kms",
                 //"cloud/cspm/rql/aws/aws_sns",
               ],
