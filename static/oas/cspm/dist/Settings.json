@@ -16,7 +16,6 @@
           "alarmEnabled": {
             "description": "Alarms enabled",
             "enum": [true, false],
-            "readOnly": true,
             "type": "boolean"
           },
           "applyDefaultPoliciesEnabled": {
@@ -109,11 +108,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/settings/enterprise\"\n\npayload = \"{\\\"applyDefaultPoliciesEnabled\\\":true,\\\"defaultPoliciesEnabled\\\":{\\\"property1\\\":true,\\\"property2\\\":true},\\\"requireAlertDismissalNote\\\":true,\\\"sessionTimeout\\\":0,\\\"userAttributionInNotification\\\":true}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/settings/enterprise\"\n\npayload = \"{\\\"alarmEnabled\\\":true,\\\"applyDefaultPoliciesEnabled\\\":true,\\\"defaultPoliciesEnabled\\\":{\\\"property1\\\":true,\\\"property2\\\":true},\\\"requireAlertDismissalNote\\\":true,\\\"sessionTimeout\\\":0,\\\"userAttributionInNotification\\\":true}\"\nheaders = {\n    'content-type': \"application/json\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/settings/enterprise \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"applyDefaultPoliciesEnabled\":true,\"defaultPoliciesEnabled\":{\"property1\":true,\"property2\":true},\"requireAlertDismissalNote\":true,\"sessionTimeout\":0,\"userAttributionInNotification\":true}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/settings/enterprise \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"alarmEnabled\":true,\"applyDefaultPoliciesEnabled\":true,\"defaultPoliciesEnabled\":{\"property1\":true,\"property2\":true},\"requireAlertDismissalNote\":true,\"sessionTimeout\":0,\"userAttributionInNotification\":true}'"
           }
         ]
       }

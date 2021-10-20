@@ -810,7 +810,8 @@
                 "network_event",
                 "network",
                 "ueba",
-                "permissions"
+                "permissions",
+                "network_config"
               ],
               "type": "string"
             },
@@ -964,7 +965,8 @@
                 "network_event",
                 "network",
                 "ueba",
-                "permissions"
+                "permissions",
+                "network_config"
               ],
               "type": "string"
             },

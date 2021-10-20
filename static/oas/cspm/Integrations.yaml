@@ -127,7 +127,7 @@ components:
           description: Integration description
           type: string
         enabled:
-          description: Enabled
+          description: true = Enabled
           type: boolean
         id:
           description: Integration ID
@@ -188,7 +188,7 @@ components:
           readOnly: true
           type: string
         valid:
-          description: true = is valid
+          description: true = Is valid
           readOnly: true
           type: boolean
       type: object
@@ -243,7 +243,7 @@ components:
           description: Integration description
           type: string
         enabled:
-          description: Enabled
+          description: true = Enabled
           type: boolean
         id:
           description: Integration ID
@@ -304,7 +304,7 @@ components:
           readOnly: true
           type: string
         valid:
-          description: true = is valid
+          description: true = Is valid
           readOnly: true
           type: boolean
       type: object
@@ -580,7 +580,10 @@ paths:
       - Integrations
   /integration:
     get:
-      description: Returns all your integrations, optionally filtered by type.
+      description: "Returns all your integrations, optionally filtered by type.  \r\
+        \n\r\n**Deprecation Notice:** This endpoint is deprecated for integrations\
+        \ with all external systems except the following:\n\n * Okta\n * Qualys\n\
+        \ * Tenable \n"
       operationId: get-all-integrations
       parameters:
       - description: Integration type
@@ -671,8 +674,11 @@ paths:
       - Integrations
   /integration/{id}:
     get:
-      description: "Returns integration details for the specified ID.  \r\n\r\nTo\
-        \ get the integration ID, [list the metadata for all integrations](/api/cloud/cspm/integrations#operation/get-all-integrations-metadata).\n"
+      description: "Returns integration details for the specified ID.  \r\n\r\n**Deprecation\
+        \ Notice:** This endpoint is deprecated for integrations with all external\
+        \ systems except the following:\n\n* Okta\n* Qualys\n* Tenable\n\nTo get the\
+        \ integration ID, [list the metadata for all integrations](/api/cloud/cspm/integrations#operation/get-all-integrations-metadata).\
+        \    \n"
       operationId: get-integration-by-id
       parameters:
       - description: Integration ID
@@ -696,17 +702,18 @@ paths:
       tags:
       - Integrations
     put:
-      description: "Updates the specified integration.  \r\n\r\nTo get the integration\
-        \ ID, list the metadata for all integrations.\n\nThe request body for an integration\
-        \ between Prisma Cloud and an external system includes \nan **integrationConfig**\
-        \ field that is a map of key/value pairs. The type of integration \ndefines\
-        \ the content of these key/value pairs. See [Integration Configuration](/api/cloud/api-integration-config)\
+      description: "Updates the specified integration.  \r\n\r\n**Deprecation Notice:**\
+        \ This endpoint is deprecated for integrations with all external systems except\
+        \ the following:\n\n* Okta\n* Qualys\n* Tenable \n\nTo get the integration\
+        \ ID, [list the metadata for all integrations](/api/cloud/cspm/integrations#operation/get-all-integrations-metadata).\n\
+        \nThe request body for an integration between Prisma Cloud and an external\
+        \ system includes \nan **integrationConfig** field that is a map of key/value\
+        \ pairs. The type of integration \ndefines the content of these key/value\
+        \ pairs. See [Integration Configuration](/api/cloud/api-integration-config)\
         \ for valid \nkey/value pairs for the **integrationConfig** for your specific\
         \ external integration.\n\nThe fields you can update in an integration are:\n\
         \n* **name**\n* **integrationConfig**, depending on integration type\n* **description**\n\
-        * **enabled** \n\n**Deprecation Notice:** This endpoint is deprecated for\
-        \ integrations with all external systems except the following:\n\n* Okta\n\
-        * Qualys\n* Tenable\n"
+        * **enabled** \n"
       operationId: update-integration
       parameters:
       - description: Integration ID

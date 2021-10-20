@@ -12,6 +12,15 @@
         "description": "Audit event search parameters model",
         "required": true
       },
+      "ConfigRuleSearchParams": {
+        "content": {
+          "application/json; charset=UTF-8": {
+            "schema": { "$ref": "#/components/schemas/ConfigRuleSearchParams" }
+          }
+        },
+        "description": "Config rule search parameters model",
+        "required": true
+      },
       "SearchModel": {
         "content": {
           "application/json": {
@@ -254,6 +263,29 @@
         },
         "type": "object"
       },
+      "ConfigCsvJobResponseModel": {
+        "description": " Response Model for CreateConfigRuleSearchCsvDownloadJob",
+        "properties": {
+          "createdBy": {
+            "description": "Job creator",
+            "readOnly": true,
+            "type": "string"
+          },
+          "createdOn": {
+            "description": "Creation timestamp",
+            "format": "int64",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "getdownloadUri": {
+            "description": "Status URI",
+            "readOnly": true,
+            "type": "string"
+          },
+          "id": { "description": "Job ID", "readOnly": true, "type": "string" }
+        },
+        "type": "object"
+      },
       "ConfigRulePageParams": {
         "properties": {
           "limit": {
@@ -270,23 +302,34 @@
         "properties": {
           "id": { "description": "Search ID", "type": "string" },
           "limit": {
-            "description": "Results per Page",
+            "description": "Results per page. Does not apply to asynchronous search jobs.",
             "format": "int32",
             "type": "integer"
           },
-          "query": { "description": "RQL Query", "type": "string" },
+          "query": { "description": "RQL query", "type": "string" },
+          "searchDescription": {
+            "description": "Search description. For asynchronouse search jobs only.",
+            "type": "string"
+          },
+          "searchName": {
+            "description": "Search name. For asynchronouse search jobs only.",
+            "type": "string"
+          },
           "sort": {
-            "description": "Sort Field Data",
+            "description": "Sort field data",
             "items": { "$ref": "#/components/schemas/SortConfigRuleSortField" },
             "type": "array"
           },
           "timeRange": {
             "allOf": [
               { "$ref": "#/components/schemas/TimeRangeConfigModel" },
-              { "description": "Time Range" }
+              { "description": "Time range" }
             ]
           },
-          "withResourceJson": { "type": "boolean" }
+          "withResourceJson": {
+            "description": "true = include resource JSON. Default is true.",
+            "type": "boolean"
+          }
         },
         "type": "object"
       },
@@ -1072,11 +1115,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/config\"\n\nheaders = {\n    'content-type': \"application/json; charset=UTF-8\",\n    'x-redlock-auth': \"REPLACE_KEY_VALUE\"\n    }\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/config\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/config \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/config \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }
@@ -1493,6 +1536,86 @@
             "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/event/filtered/download \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
+      }
+    },
+    "/search/config/jobs": {
+      "post": {
+        "description": "Submits a job to generate an RQL config query results list that matches the constraints in the body parameters and is downloadable as a CSV file. Returns the job ID and job submission status.  \r\n\r\nTo identify your config query, specify either (1) an **id** or (2) a **query** plus a unique **searchName** \nin the request body.\n\nIf you identify your search through an **id**, the following request body parameters apply:\n* **id** - The search ID that corresponds to an existing saved or recent search. You can request a list of\nsearch IDs through [View Search History](https://prisma.pan.dev/api/cloud/cspm/search-manager#operation/search-history) (Required)\n* **sort** - An array of sort field data (Optional)\n* **timeRange** - A time range filter. Default is the past seven days. (Optional)\n\nIf you identify your search through a **query** and **searchName**, the following request body parameters apply:\n* **query** - A valid RQL config query that defines your search (Required)\n* **searchName** - A unique name that identifies the search (Required)\n* **searchDescription** - A description for your search (Optional)\n* **sort** - An array of sort field data (Optional)\n* **timeRange** - A time range filter. Default is the past seven days. (Optional)\n",
+        "operationId": "submit-an-search-config-csv-download-job",
+        "requestBody": {
+          "content": {
+            "application/json; charset=UTF-8": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfigRuleSearchParams"
+              }
+            }
+          },
+          "description": "Config rule search parameters model",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json; charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigCsvJobResponseModel"
+                }
+              }
+            },
+            "description": "success"
+          },
+          "202": { "description": "in_process" },
+          "400": { "description": "invalid_parameter_value" },
+          "500": { "description": "internal_error" }
+        },
+        "security": [{ "x-redlock-auth": [] }],
+        "summary": "Submit Search Config CSV Generation Job",
+        "tags": ["Search"],
+        "x-codeSamples": [
+            {
+                "lang": "Python + Requests",
+                "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/config/jobs\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE', 'content-type':'application/json'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
+            },
+            {
+                "lang": "Shell + Curl",
+                "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/config/jobs \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' --header 'content-type: application/json'"
+            }
+            ]
+      }
+    },
+    "/search/config/jobs/{id}/download": {
+      "get": {
+        "description": "Returns the results of an RQL Config query as a CSV. With Config queries, you can retrieve resource information, identify misconfigurations, gain operational insights, and uncover policy and compliance violations.  \r\n\r\nThis request requires the HTTP header **Accept: text/csv**.\n",
+        "operationId": "async-search-config-csv",
+        "parameters": [
+          {
+            "description": "Job ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "successful operation" },
+          "202": { "description": "in_process" },
+          "400": { "description": "conflict_saved_search" },
+          "404": { "description": "not_found" },
+          "500": { "description": "internal_error" }
+        },
+        "security": [{ "x-redlock-auth": [] }],
+        "summary": "Download Async Config Search CSV",
+        "tags": ["Search"],
+        "x-codeSamples": [
+            {
+              "lang": "Python + Requests",
+              "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/config/jobs/{id}/download\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE', 'Accept': 'text/csv'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            },
+            {
+              "lang": "Shell + Curl",
+              "source": "curl --request GET \\\n  --url https://api.prismacloud.io/search/config/jobs/{id}/download \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --header 'content-type: application/json'  \\\n  --header 'Accept: text/csv'"
+            }
+          ]
       }
     }
   },
