@@ -15,7 +15,6 @@ components:
           enum:
           - true
           - false
-          readOnly: true
           type: boolean
         applyDefaultPoliciesEnabled:
           description: Apply default policies enabled
