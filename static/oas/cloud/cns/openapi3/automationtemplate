@@ -1,0 +1,156 @@
+{
+  "openapi": "3.0.3",
+  "components": {
+    "schemas": {
+      "automationtemplate": {
+        "description": "Templates that can be used in automations.",
+        "properties": {
+          "description": {
+            "description": "Description of the object.",
+            "type": "string"
+          },
+          "entitlements": {
+            "additionalProperties": {
+              "items": {
+                "enum": [
+                  "",
+                  "retrieve-many",
+                  "retrieve",
+                  "create",
+                  "update",
+                  "delete",
+                  "patch",
+                  "info"
+                ]
+              },
+              "type": "array"
+            },
+            "description": "Contains the entitlements needed for executing the function.",
+            "type": "object"
+          },
+          "function": {
+            "description": "Function contains the code.",
+            "type": "string"
+          },
+          "key": {
+            "description": "Contains the unique identifier key for the template.",
+            "type": "string"
+          },
+          "kind": {
+            "default": "Condition",
+            "description": "Represents the kind of template.",
+            "enum": [
+              "Action",
+              "Condition"
+            ]
+          },
+          "name": {
+            "description": "Name of the entity.",
+            "example": "the name",
+            "type": "string"
+          },
+          "parameters": {
+            "additionalProperties": {
+              "type": "object"
+            },
+            "description": "Contains the computed parameters.",
+            "type": "object"
+          },
+          "steps": {
+            "description": "Contains all the steps with parameters.",
+            "items": {
+              "$ref": "./uistep#/components/schemas/uistep"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "contact": {
+      "email": "dev@aporeto.com",
+      "name": "Aporeto Inc.",
+      "url": "go.aporeto.io/api"
+    },
+    "license": {
+      "name": "TODO"
+    },
+    "termsOfService": "https://localhost/TODO",
+    "title": "automationtemplate",
+    "version": "1.0"
+  },
+  "paths": {
+    "/automationtemplates": {
+      "get": {
+        "description": "Retrieves the list of automation templates.",
+        "operationId": "get-all-automationtemplates",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/automationtemplate"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "n/a"
+          }
+        },
+        "tags": [
+          "integration/automation",
+          "sephiroth"
+        ]
+      }
+    },
+    "/automationtemplates/{id}": {
+      "get": {
+        "description": "Retrieves the template with the given ID.",
+        "operationId": "get-automationtemplate-by-ID",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/automationtemplate"
+                }
+              }
+            },
+            "description": "n/a"
+          }
+        },
+        "tags": [
+          "integration/automation",
+          "sephiroth"
+        ]
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "tags": [
+    {
+      "description": "This tag is for group 'integration/automation'",
+      "name": "integration/automation"
+    },
+    {
+      "description": "This tag is for package 'sephiroth'",
+      "name": "sephiroth"
+    }
+  ]
+}
