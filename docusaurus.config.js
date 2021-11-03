@@ -118,7 +118,10 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`,
     },
   },
-  themes: [require.resolve("@docusaurus/theme-live-codeblock")],
+  themes: [
+    require.resolve("@docusaurus/theme-live-codeblock"),
+    require.resolve("./docusaurus-plugin-panw"),
+  ],
   presets: [
     [
       require.resolve("@docusaurus/preset-classic"),
@@ -172,7 +175,6 @@ module.exports = {
       },
     ],
   ],
-  themes: [require.resolve("./docusaurus-plugin-panw/src/index.cjs")],
   customFields: {
     sites: [
       {
