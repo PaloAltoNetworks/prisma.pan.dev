@@ -507,7 +507,10 @@ openapi: 3.0.0
 paths:
   /integration/name:
     get:
-      description: Returns the metadata for your integrations filtered by type.
+      description: "Returns the metadata for your integrations filtered by type. \
+        \ \r\n\r\n**Deprecation Notice:** This endpoint is deprecated for integrations\
+        \ with all external systems except the following:\n\n * Okta\n * Qualys\n\
+        \ * Tenable \n"
       operationId: get-all-integrations-metadata
       parameters:
       - description: Integration type
@@ -639,6 +642,8 @@ paths:
   /integration/test:
     post:
       description: "Runs a test of the integration for the specified data.   \r\n\r\
+        \n**Deprecation Notice:** This endpoint is deprecated for integrations with\
+        \ all external systems except the following:\n\n* Okta\n* Qualys\n* Tenable\n\
         \nAn integration test requires the following request body parameters:\n\n\
         The following request body parameters are required:\n\n* **name**\n* **integrationType**\n\
         * **integrationConfig**\n\nThe request body to test an integration between\

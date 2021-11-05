@@ -524,7 +524,10 @@
             "description": "Dynamic data",
             "type": "object"
           },
-          "hasAlert": { "description": "Has alert", "type": "boolean" },
+          "hasAlert": {
+            "description": "Has alert (Deprecated)",
+            "type": "boolean"
+          },
           "hasExtFindingRiskFactors": {
             "description": "Has risk factors",
             "type": "boolean"
@@ -1580,7 +1583,7 @@
                 "lang": "Shell + Curl",
                 "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/config/jobs \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' --header 'content-type: application/json'"
             }
-            ]
+         ]
       }
     },
     "/search/config/jobs/{id}/download": {

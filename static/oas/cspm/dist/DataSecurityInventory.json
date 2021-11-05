@@ -798,7 +798,7 @@
           "500": { "description": "internal_error" }
         },
         "security": [{ "x-redlock-auth": [] }],
-        "summary": "Get Classification Report (Deprecated)",
+        "summary": "Get Classification Report",
         "tags": ["Data Security Inventory"],
         "x-codeSamples": [
           {

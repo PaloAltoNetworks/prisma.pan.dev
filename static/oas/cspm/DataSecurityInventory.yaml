@@ -728,7 +728,7 @@ paths:
           description: internal_error
       security:
       - x-redlock-auth: []
-      summary: Get Classification Report (Deprecated)
+      summary: Get Classification Report
       tags:
       - Data Security Inventory
   /dlp/api/v1/inventory/objects/aggregate:
