@@ -214,6 +214,7 @@
   "paths": {
     "/notification/template": {
       "get": {
+        "deprecated": true,
         "description": "Returns a list of notification templates.",
         "operationId": "get-notification-templates",
         "parameters": [
@@ -259,6 +260,7 @@
         ]
       },
       "post": {
+        "deprecated": true,
         "description": "Adds a new notification template.  \r\n\r\nThe following is an example of the request body parameters to add an email notification template.\n\n```json\n{\n    \"enabled\": true,\n    \"templateConfig\": {\n        \"basic_config\": [\n            {\n                \"displayName\": \"Custom Note\",\n                \"fieldName\": \"custom_note\",\n                \"options\": [],\n                \"type\": \"text\",\n               \"value\": \"<p>This is a test</p>\\n\"\n            }\n        ],\n        \"dismissed\": [],\n        \"open\": [],\n        \"resolved\": []\n    },\n    \"integrationType\": \"email\",\n    \"templateType\": \"ticketing\",\n    \"name\": \"test_email_1\"\n}\n```\n\nThe following is an example of the request body parameters to add a ServiceNow notification template.\n\n```json\n{\n    \"integrationId\": \"d7bcc9b1-4f9b-4ac2-819e-d83c204f3ba2\",\n    \"integrationType\": \"service_now\",\n    \"integrationName\": \"DND-EI-SNOW-ORLANDO-copy2\",\n    \"customerId\": 6,\n    \"name\": \"SNOW-ORALNDO-INC-copy2\",\n    \"templateConfig\": {\n        \"open\": [\n            {\n                \"fieldName\": \"description\",\n                \"displayName\": \"Description (open_description)\",\n                \"type\": \"text\",\n                \"options\": [],\n                \"redlockMapping\": true,\n                \"required\": false,\n                \"value\": \"NS1.0\\nAccountId <$AccountId>\\nAccountName <$AccountName>\\nAlertDismissalNote <$AlertDismissalNote>\\nSeverity <$Severity>\\nStatus <$Status>\",\n                \"maxLength\": 4000\n            },\n            {\n                \"fieldName\": \"state\",\n                \"displayName\": \"State (open_state)\",\n                \"type\": \"list\",\n                \"options\": [\n                    {\n                        \"name\": \"New\",\n                        \"key\": \"1\"\n                    }\n                ],\n                \"redlockMapping\": false,\n                \"required\": true,\n                \"value\": \"New\",\n                \"maxLength\": 40\n            }\n        ],\n        \"resolved\": [\n            {\n                \"fieldName\": \"state\",\n                \"displayName\": \"State (resolved_state)\",\n                \"type\": \"list\",\n                \"options\": [\n                    {\n                        \"name\": \"Closed\",\n                        \"key\": \"7\"\n                    }\n                ],\n                \"redlockMapping\": false,\n                \"required\": true,\n                \"value\": \"Closed\",\n                \"maxLength\": 40\n            },\n            {\n                \"fieldName\": \"description\",\n                \"displayName\": \"Description (resolved_description)\",\n                \"type\": \"text\",\n                \"options\": [],\n                \"redlockMapping\": true,\n                \"required\": false,\n                \"value\": \"NS1.0\\nAccountId <$AccountId>\\nAccountName <$AccountName>\\nAlertDismissalNote <$AlertDismissalNote>\\nSeverity <$Severity>\\nStatus <$Status>\",\n                \"maxLength\": 4000\n            }\n        ],\n        \"dismissed\": [\n            {\n                \"fieldName\": \"description\",\n                \"displayName\": \"Description (dismissed_description)\",\n                \"type\": \"text\",\n                \"options\": [],\n                \"redlockMapping\": true,\n                \"required\": false,\n                \"value\": \"NS1.0\\nAccountId <$AccountId>\\nAccountName <$AccountName>\\nAlertDismissalNote <$AlertDismissalNote>\\nAlertId <$AlertId>\\nSeverity <$Severity>\\nStatus <$Status>\",\n                \"maxLength\": 4000\n            },\n            {\n                \"fieldName\": \"state\",\n                \"displayName\": \"State (dismissed_state)\",\n                \"type\": \"list\",\n                \"options\": [\n                    {\n                        \"name\": \"Closed\",\n                        \"key\": \"7\"\n                    }\n                ],\n                \"redlockMapping\": false,\n                \"required\": true,\n                \"value\": \"Closed\",\n                \"maxLength\": 40\n            }\n        ],\n        \"basic_config\": [\n            {\n                \"fieldName\": \"incidentType\",\n                \"displayName\": \"Incident Type\",\n                \"type\": \"list\",\n                \"options\": [\n                    {\n                        \"name\": \"Incident\",\n                        \"key\": \"incident\"\n                    }\n                ],\n                \"redlockMapping\": false,\n                \"required\": true,\n                \"value\": \"Incident\"\n            }\n        ]\n    },\n    \"enabled\": true,\n    \"status\": \"GREEN\",\n    \"valid\": true,\n    \"templateType\": \"ticketing\"\n}\n```\n\nThe following is an example of the request body parameters to add a Jira notification template.\n\n```json\n{\n    \"integrationType\": \"jira\",\n    \"templateType\": \"ticketing\",\n    \"name\": \"jira-template-example\",\n    \"integrationName\":\"qa-jira-D\",\n    \"status\": \"RED\",\n    \"valid\": false,\n    \"customerId\": 32,\n    \"integrationId\": \"017018f9-3d8b-4f9b-8534-a7043bea26ce\",\n    \"enabled\": true,\n    \"templateConfig\": {\n        \"basic_config\": [\n            {\n                \"fieldName\": \"issueType\",\n                \"displayName\": \"Issue Type\",\n                \"type\": \"list\",\n                \"options\": [\n                    {\n                        \"id\": \"10002\",\n                        \"name\": \"Task\"\n                    }\n                ],\n                \"redlockMapping\": false,\n                \"required\": true,\n                \"value\": \"Task\"\n            },\n            {\n                \"fieldName\": \"project\",\n                \"displayName\": \"Project\",\n                \"type\": \"list\",\n                \"options\": [\n                    {\n                        \"id\": \"JI\",\n                        \"name\": \"Jira-Integration\",\n                        \"key\": \"JI\"\n                    }\n                ],\n                \"redlockMapping\": false,\n                \"required\": false,\n                \"value\": \"RedLock-Jira-Integration\"\n            }\n        ],\n        \"dismissed\": [],\n        \"open\": [\n            {\n                \"fieldName\": \"summary\",\n                \"displayName\": \"Summary\",\n                \"type\": \"text\",\n                \"options\": [],\n                \"redlockMapping\": true,\n                \"required\": true,\n                \"disabled\": true,\n                \"value\": \"AccountId <$AccountId>\\nAccountName <$AccountName>\\nAlertDismissalNote <$Severity>\\nStatus <$Status>\\nUserAttributionData <$UserAttributionData>\"\n            },\n            {\n                \"fieldName\": \"description\",\n                \"displayName\": \"Description\",\n                \"type\": \"text\",\n                \"options\": [],\n                \"redlockMapping\": true,\n                \"required\": false,\n                \"disabled\": false,\n                \"value\": \"AccountId <$AccountId>\\nAccountName <$AccountName>\\nAlertDismissalNote <$AlertDismissalNote>\"\n            },\n            {\n                \"fieldName\": \"priority\",\n                \"displayName\": \"Priority\",\n                \"type\": \"list\",\n                \"options\": [\n                    {\n                        \"id\": \"5\",\n                        \"name\": \"Low\"\n                    }\n                ],\n                \"redlockMapping\": false,\n                \"required\": false,\n                \"disabled\": false,\n                \"value\": \"Low\"\n            }\n        ]\n    }\n}\n````      \n",
         "operationId": "add-notification-template",
         "requestBody": {
@@ -282,7 +284,7 @@
             "description": "successful operation"
           },
           "400": {
-            "description": "missing_required_parameter / invalid_parameter_value /  / invalid_template_name / missing_template_type /  / missing_integration_typebad_request"
+            "description": "missing_required_parameter / invalid_parameter_value / invalid_template_name / missing_template_type / missing_integration_typebad_request"
           },
           "500": { "description": "internal_error" }
         },
@@ -303,6 +305,7 @@
     },
     "/notification/template/{id}": {
       "get": {
+        "deprecated": true,
         "description": "Returns the notification template with the specified ID.",
         "operationId": "get-notification-template",
         "parameters": [
@@ -343,6 +346,7 @@
         ]
       },
       "put": {
+        "deprecated": true,
         "description": "Updates the notification template with the specified ID.",
         "operationId": "update-notification-template",
         "parameters": [
@@ -373,7 +377,7 @@
             "description": "successful operation"
           },
           "400": {
-            "description": "missing_required_parameter / invalid_parameter_value / invalid_template_name / missing_template_type /  / missing_integration_type"
+            "description": "missing_required_parameter / invalid_parameter_value / invalid_template_name / missing_template_type / missing_integration_type"
           },
           "500": { "description": "internal_error" }
         },
@@ -392,7 +396,8 @@
         ]
       },
       "delete": {
-        "description": "Deletes the notification template with the specified ID.  \r\n\r\n**Deprecation Notice:** This endpoint is deprecated for integrations with all external systems except the following:\n\n* Okta\n* Qualys\n* Tenable\n",
+        "deprecated": true,
+        "description": "Deletes the notification template with the specified ID.",
         "operationId": "delete-notification-template",
         "parameters": [
           {
@@ -427,7 +432,8 @@
     },
     "/notification/template/clone/{id}": {
       "post": {
-        "description": "Clones an existing notification template to create a new template.  \r\n\r\nThere is currently only one body parameter, as shown below.\n\nParameter | Type | Value | Required \n-------------| ---- | ----------- | ---\nname | string | The name of the new notification template | Required \n",
+        "deprecated": true,
+        "description": "Clones an existing notification template to create a new template.  \r\n\r\nThere is currently only one body parameter, as shown below.\n\nParameter | Type | Value | Required \n-------------| ---- | ----------- | ---\nname | string | The name of the new notification template | Required\n",
         "operationId": "clone-notification-template",
         "parameters": [
           {
@@ -479,7 +485,8 @@
     },
     "/template/servicenow/{integrationId}/{incidentType}/fields": {
       "get": {
-        "description": "Lists the fields available to include in a ServiceNow notification template.",
+        "deprecated": true,
+        "description": "Lists the fields available to include in a ServiceNow notification template.  \r\n\r\nYou can find the **integrationId** and **incidentType** in the [List Notification Template](/api/cloud/cspm/notification-templates#operation/get-notification-templates) \nresponse object. If you already know your **integrationId**, you can find the **incidentType** in the\n[Get Notifcation Template](/api/cloud/cspm/notification-templates#operation/get-notification-template) response object.\nIn each response object, the **incidentType** is the value of **templateConfig>basicConfig>options>key**.\n",
         "operationId": "get-snow-configurable-fields",
         "parameters": [
           {
@@ -530,7 +537,8 @@
     },
     "/template/servicenow/{integrationId}/{incidentType}/fields/{objectName}/{referenceField}/suggestions": {
       "get": {
-        "description": "Lists suggestions for the specified integration, service type, and field name. Accepts a query to narrow the list.",
+        "deprecated": true,
+        "description": "Lists suggestions for the specified integration, service type, and field name. Accepts a query to narrow the list.  \r\n\r\nYou can find\n\nAn example curl request is:\n```\ncurl --request \\\n--url 'https://api.prismacloud.io/template/servicenow/11111110-2222-3333-4444444/INCIDENT/fields/core_company/country/suggestions?query=japan'\n--header 'x-redlock-auth: <JWT>' \n```\n\nThe URL in tne example above includes the following:\n\n* **11111110-2222-3333-4444444**: Integration ID\n* **coreCompany**: ServiceNow table\n* **country**: Table column in **coreCompany**\n* **japan**: Query search field\n",
         "operationId": "get-snow-field-suggestions",
         "parameters": [
           {
@@ -600,6 +608,7 @@
     },
     "/template/servicenow/{integrationId}/types": {
       "get": {
+        "deprecated": true,
         "description": "Lists available ServiceNow service types.",
         "operationId": "get-snow-service-types",
         "parameters": [
@@ -640,6 +649,7 @@
     },
     "/template/fields/jira/projects/{integrationId}": {
       "get": {
+        "deprecated": true,
         "description": "Lists Jira projects for the specified integration ID.",
         "operationId": "get-jira-projects",
         "parameters": [
@@ -681,6 +691,7 @@
     },
     "/template/fields/jira/{integrationId}/{project}/{issueType}": {
       "get": {
+        "deprecated": true,
         "description": "Lists configurable fields for Jira notification template.",
         "operationId": "get-jira-fields",
         "parameters": [
@@ -739,6 +750,7 @@
     },
     "/template/fields/jira/issues/{integrationId}/{projectKey}": {
       "get": {
+        "deprecated": true,
         "description": "Lists Jira issue types for the specified integration ID and project key.",
         "operationId": "get-jira-issue-types",
         "parameters": [
@@ -787,6 +799,7 @@
     },
     "/template/fields/jira/{integrationId}/{project}/{issueType}/users/{searchKey}": {
       "get": {
+        "deprecated": true,
         "description": "Lists Jira users that you can include in a notification template.",
         "operationId": "get-jira-users",
         "parameters": [
@@ -850,6 +863,7 @@
     },
     "/template/fields/jira/{integrationId}/{project}/{issueType}/{jiraEndpoint}/{fieldType}/{field}": {
       "get": {
+        "deprecated": true,
         "description": "Lists Jira issue types for the specified integration ID and project key.",
         "operationId": "get-jira-auto-complete-fields",
         "parameters": [

@@ -287,8 +287,7 @@ components:
           type: array
         groupBy:
           description: For asset or data inventory only. Group returned items by **cloud.type**,
-            **cloud.service**, **cloud.region**, **cloud.account**, and/or **resource.type**.
-            Currently, if you specify both **cloud.service** and **resource.type**, only **cloud.service** will apply.
+            **cloud.service**, **cloud.region**, **cloud.account**, and/or **resource.type**
           items:
             type: string
           type: array
@@ -585,7 +584,7 @@ components:
           description: Dynamic data
           type: object
         hasAlert:
-          description: Has alert
+          description: Has alert (Deprecated)
           type: boolean
         hasExtFindingRiskFactors:
           description: Has risk factors
