@@ -5,9 +5,12 @@ sidebar_label: Integration Configurations
 hide_table_of_contents: false
 ---
 
-The integration endpoints enable you to receive Prisma Cloud alerts in external systems. The [integration endpoint documentation](/api/cloud/cspm/integrations) describes request and response details for each endpoint.
+
+The Prisma Cloud integration API endpoints enable you to receive Prisma Cloud alerts in external systems. The [integration endpoint documentation](/api/cloud/cspm/integrations) describes request and response details for each endpoint.
 
 The request body for some of the endpoints includes an **integrationConfig** parameter that is a map of key/value pairs. The type of integration defines the content of these key/value pairs. The information below provides the details for this **integrationConfig** parameter for each listed technology.
+
+Note that most external systems require some configuration before you can use the Prisma Cloud API endpoints to add an integration to that system. See [Prisma Cloud Integrations](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/configure-external-integrations-on-prisma-cloud/prisma-cloud-integrations.html) for details.
 
 ### Azure Service Bus Queue
 
@@ -574,5 +577,66 @@ To test an Okta integration, make your request as described in
   },
   "integrationType": "okta",
   "name": ""
+}
+```
+
+### Amazon S3
+
+Prisma Cloud integrates with Amazon S3 to stream Prisma Cloud alerts to an Amazon S3 bucket or folder.
+
+Note that Prisma Cloud supports this integration for only alerts 2.0-enabled tenants.
+
+#### Add, Update, or Test an Amazon S3 Integration
+
+To add an Amazon S3 integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/save-integration). As part of the request body, the **integrationType** parameter is **aws_s3**, and the **integrationConfig** parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+s3Uri | Amazon S3 bucket URI | string | _required_
+region | AWS region where the S3 bucket resides | string | _required_
+roleArn | Role ARN associated with the IAM role on Prisma Cloud | string | _required_
+externalId | External ID associated with the IAM role on Prisma Cloud. Any new or updated value must be a unique 128-bit UUID. | string | _required_
+rollUpInterval | Time at which batching of Prisma Cloud alerts would roll up. Valid values are in minutes: 15, 30, 60, 180. | string | Default is 60
+
+To update an Amazon S3 integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration). The values of the **integrationConfig** key/value pairs are editable.
+
+To test an Amazon S3 integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+
+##### Example Request Body to Add an Amazon S3 Integration
+
+```json
+{
+ "integrationType": "aws_s3",
+ "name": "",
+ "description": "",
+ "enabled": true,
+ "integrationConfig":
+ {
+     "s3Uri": "",
+     "region": "",
+     "roleArn": "",
+     "externalId": "",
+     "rollUpInterval": 60
+  }
+}
+```
+
+##### Example Request Body to Test an Amazon S3 Integration
+
+```json
+{
+ "integrationType": "aws_s3",
+ "name": "",
+ "integrationConfig":
+ {
+     "s3Uri": "",
+     "region": "",
+     "roleArn": "",
+     "externalId": "",
+     "rollUpInterval": 60
+  }
 }
 ```

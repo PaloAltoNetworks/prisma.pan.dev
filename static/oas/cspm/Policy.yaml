@@ -193,6 +193,7 @@ components:
             - network
             - ueba
             - permissions
+            - network_config
             type: string
           readOnly: true
           type: array
@@ -419,6 +420,7 @@ components:
             - network
             - ueba
             - permissions
+            - network_config
             type: string
           readOnly: true
           type: array
@@ -580,6 +582,7 @@ components:
             - network
             - ueba
             - permissions
+            - network_config
             type: string
           readOnly: true
           type: array

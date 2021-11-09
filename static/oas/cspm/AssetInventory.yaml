@@ -164,7 +164,8 @@ components:
           type: array
         groupBy:
           description: For asset or data inventory only. Group returned items by **cloud.type**,
-            **cloud.service**, **cloud.region**, **cloud.account**, and/or **resource.type**
+            **cloud.service**, **cloud.region**, **cloud.account**, and/or **resource.type**.
+            Currently, if you specify both **cloud.service** and **resource.type**, only **cloud.service** will apply.
           items:
             type: string
           type: array
@@ -626,7 +627,7 @@ paths:
           type: string
       - description: Comma-separated list of values by to group response items. Valid
           values are **cloud.type**, **cloud.account**, **cloud.region**, **cloud.service**,
-          and/or **resource.type**. Default is **cloud.type**.
+          and/or **resource.type**. Default is **cloud.type**. Currently, if you specify both **cloud.service** and **resource.type**, only **cloud.service** will apply.
         in: query
         name: groupBy
         required: false

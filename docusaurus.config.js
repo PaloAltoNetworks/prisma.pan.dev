@@ -174,6 +174,12 @@ module.exports = {
         showLastUpdateTime: true,
       },
     ],
+    [
+      require.resolve("./docusaurus-plugin-gtm/index.js"),
+      {
+        gtm: "GTM-P2DTTFC", //GTM-XXXXXX
+      },
+    ],
   ],
   customFields: {
     sites: [

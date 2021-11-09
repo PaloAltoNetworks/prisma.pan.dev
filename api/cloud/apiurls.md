@@ -13,7 +13,7 @@ keywords:
 The URL for the Prisma Cloud service varies depending on the cluster on which your tenant is deployed. Your order fulfillment email includes the URL for your Prisma Cloud service tenant. The admin console URLs and corresponding API URLs are in the table below.
 
 | Prisma Cloud Admin Console URL |  Prisma Cloud API URL |
-| ------------- | :-----------: |
+| ------------- | ----------- |
 | <https://app.prismacloud.io>   | <https://api.prismacloud.io> |
 | <https://app2.prismacloud.io>   | <https://api2.prismacloud.io> |
 | <https://app3.prismacloud.io>   | <https://api3.prismacloud.io> |
@@ -26,3 +26,4 @@ The URL for the Prisma Cloud service varies depending on the cluster on which yo
 | <https://app.ca.prismacloud.io>   | <https://api.ca.prismacloud.io> |
 | <https://app.sg.prismacloud.io>   | <https://api.sg.prismacloud.io> |
 | <https://app.uk.prismacloud.io>   | <https://api.uk.prismacloud.io> |
+| <https://app.ind.prismacloud.io>   | <https://api.ind.prismacloud.io> |
