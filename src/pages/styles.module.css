@@ -16,7 +16,9 @@
   text-align: center;
   position: relative;
   margin: auto;
-  background-color: var(--ifm-hero-color);
+  background-color: var(--ifm-navbar-background-color);
+  color: var(--ifm-navbar-link-color);
+  background: radial-gradient(100vw 100% at 50% 100%, #00c0e8, var(--ifm-background-color) 100%);
 }
 
 @media screen and (max-width: 966px) {
@@ -55,11 +57,32 @@
 }
 
 .heroProjectTagline {
-  color: var(--ifm-color-black);
-  font-size: clamp(2rem, -0.875rem + 8.333vw, 3rem);
-  margin: 0;
+  color: var(--ifm-font-color-base);
+  font-size: 4rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
   margin-top: 1rem;
   text-align: center;
+  padding-bottom: 1rem;
+  
+}
+
+@media only screen and (max-width: 768px) {
+
+  .heroProjectTagline {
+    font-size: 36px !important;
+    text-align: center !important;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .indexCtas {
+    text-align: center;
+  }
+
+  .indexCtasGitHubButton {
+    display: none;
+  }
 }
 
 .heroProjectKeywords {

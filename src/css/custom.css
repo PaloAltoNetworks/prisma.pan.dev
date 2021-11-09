@@ -47,6 +47,7 @@
   --ifm-table-border-width: 0px;
 
   --ifm-blockquote-background-color: var(--ifm-background-color);
+  --ifm-background-color: #fff;
 }
 
 /* Dark mode overrides */
@@ -148,7 +149,6 @@ html[data-theme="dark"] {
   width: 100%;
   max-width: 100%;
   max-height: 100%;
-  background-color: #303846;
 }
 
 /* Docs overrides */
@@ -501,21 +501,20 @@ table td {
 
 /* Homepage features */
 .featuredContainer {
+  align-items: center;
+  margin-bottom: 3rem;
   width: 100%;
   display: flex;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  flex: 1;
-  background-color: #fff;
-}
-
-html[data-theme="dark"] .featuredContainer {
-  background-color: #303846;
+  text-align: center;
+  justify-content: center;
+  background-color: var(--ifm-navbar-background-color);
+  color: var(--ifm-navbar-link-color);
+  background: radial-gradient(100vw 100% at 50% 0%, #00c0e8, var(--ifm-background-color) 100%);
 }
 
 /* Homepage tools */
 .toolsContainer {
-  background-color: #303846;
+  background-color: transparent;
   width: 100%;
   height: 200%;
   display: flex;
