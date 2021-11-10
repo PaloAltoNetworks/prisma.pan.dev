@@ -581,7 +581,7 @@ components:
           description: Dynamic data
           type: object
         hasAlert:
-          description: Has alert
+          description: Has alert (Deprecated)
           type: boolean
         hasExtFindingRiskFactors:
           description: Has risk factors

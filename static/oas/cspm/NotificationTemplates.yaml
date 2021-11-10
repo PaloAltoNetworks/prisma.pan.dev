@@ -202,6 +202,7 @@ openapi: 3.0.0
 paths:
   /notification/template:
     get:
+      deprecated: true
       description: Returns a list of notification templates.
       operationId: get-notification-templates
       parameters:
@@ -232,6 +233,7 @@ paths:
       tags:
       - Notification Templates
     post:
+      deprecated: true
       description: "Adds a new notification template.  \r\n\r\nThe following is an\
         \ example of the request body parameters to add an email notification template.\n\
         \n```json\n{\n    \"enabled\": true,\n    \"templateConfig\": {\n        \"\
@@ -355,8 +357,8 @@ paths:
                 $ref: '#/components/schemas/NotificationTemplate'
           description: successful operation
         '400':
-          description: missing_required_parameter / invalid_parameter_value /  / invalid_template_name
-            / missing_template_type /  / missing_integration_typebad_request
+          description: missing_required_parameter / invalid_parameter_value / invalid_template_name
+            / missing_template_type / missing_integration_typebad_request
         '500':
           description: internal_error
       security:
@@ -366,6 +368,7 @@ paths:
       - Notification Templates
   /notification/template/{id}:
     get:
+      deprecated: true
       description: Returns the notification template with the specified ID.
       operationId: get-notification-template
       parameters:
@@ -392,6 +395,7 @@ paths:
       tags:
       - Notification Templates
     put:
+      deprecated: true
       description: Updates the notification template with the specified ID.
       operationId: update-notification-template
       parameters:
@@ -415,7 +419,7 @@ paths:
           description: successful operation
         '400':
           description: missing_required_parameter / invalid_parameter_value / invalid_template_name
-            / missing_template_type /  / missing_integration_type
+            / missing_template_type / missing_integration_type
         '500':
           description: internal_error
       security:
@@ -424,9 +428,8 @@ paths:
       tags:
       - Notification Templates
     delete:
-      description: "Deletes the notification template with the specified ID.  \r\n\
-        \r\n**Deprecation Notice:** This endpoint is deprecated for integrations with\
-        \ all external systems except the following:\n\n* Okta\n* Qualys\n* Tenable\n"
+      deprecated: true
+      description: Deletes the notification template with the specified ID.
       operationId: delete-notification-template
       parameters:
       - description: Notification template ID
@@ -449,11 +452,11 @@ paths:
       - Notification Templates
   /notification/template/clone/{id}:
     post:
+      deprecated: true
       description: "Clones an existing notification template to create a new template.\
         \  \r\n\r\nThere is currently only one body parameter, as shown below.\n\n\
         Parameter | Type | Value | Required \n-------------| ---- | ----------- |\
-        \ ---\nname | string | The name of the new notification template | Required\
-        \ \n"
+        \ ---\nname | string | The name of the new notification template | Required\n"
       operationId: clone-notification-template
       parameters:
       - description: Notification template ID
@@ -487,8 +490,14 @@ paths:
       - Notification Templates
   /template/servicenow/{integrationId}/{incidentType}/fields:
     get:
-      description: Lists the fields available to include in a ServiceNow notification
-        template.
+      deprecated: true
+      description: "Lists the fields available to include in a ServiceNow notification\
+        \ template.  \r\n\r\nYou can find the **integrationId** and **incidentType**\
+        \ in the [List Notification Template](/api/cloud/cspm/notification-templates#operation/get-notification-templates)\
+        \ \nresponse object. If you already know your **integrationId**, you can find\
+        \ the **incidentType** in the\n[Get Notifcation Template](/api/cloud/cspm/notification-templates#operation/get-notification-template)\
+        \ response object.\nIn each response object, the **incidentType** is the value\
+        \ of **templateConfig>basicConfig>options>key**.\n"
       operationId: get-snow-configurable-fields
       parameters:
       - description: Integration ID
@@ -521,8 +530,14 @@ paths:
       - Notification Templates
   /template/servicenow/{integrationId}/{incidentType}/fields/{objectName}/{referenceField}/suggestions:
     get:
-      description: Lists suggestions for the specified integration, service type,
-        and field name. Accepts a query to narrow the list.
+      deprecated: true
+      description: "Lists suggestions for the specified integration, service type,\
+        \ and field name. Accepts a query to narrow the list.  \r\n\r\nYou can find\n\
+        \nAn example curl request is:\n```\ncurl --request \\\n--url 'https://api.prismacloud.io/template/servicenow/11111110-2222-3333-4444444/INCIDENT/fields/core_company/country/suggestions?query=japan'\n\
+        --header 'x-redlock-auth: <JWT>' \n```\n\nThe URL in tne example above includes\
+        \ the following:\n\n* **11111110-2222-3333-4444444**: Integration ID\n* **coreCompany**:\
+        \ ServiceNow table\n* **country**: Table column in **coreCompany**\n* **japan**:\
+        \ Query search field\n"
       operationId: get-snow-field-suggestions
       parameters:
       - description: Integration ID
@@ -574,6 +589,7 @@ paths:
       - Notification Templates
   /template/servicenow/{integrationId}/types:
     get:
+      deprecated: true
       description: Lists available ServiceNow service types.
       operationId: get-snow-service-types
       parameters:
@@ -597,6 +613,7 @@ paths:
       - Notification Templates
   /template/fields/jira/projects/{integrationId}:
     get:
+      deprecated: true
       description: Lists Jira projects for the specified integration ID.
       operationId: get-jira-projects
       parameters:
@@ -622,6 +639,7 @@ paths:
       - Notification Templates
   /template/fields/jira/{integrationId}/{project}/{issueType}:
     get:
+      deprecated: true
       description: Lists configurable fields for Jira notification template.
       operationId: get-jira-fields
       parameters:
@@ -661,6 +679,7 @@ paths:
       - Notification Templates
   /template/fields/jira/issues/{integrationId}/{projectKey}:
     get:
+      deprecated: true
       description: Lists Jira issue types for the specified integration ID and project
         key.
       operationId: get-jira-issue-types
@@ -693,6 +712,7 @@ paths:
       - Notification Templates
   /template/fields/jira/{integrationId}/{project}/{issueType}/users/{searchKey}:
     get:
+      deprecated: true
       description: Lists Jira users that you can include in a notification template.
       operationId: get-jira-users
       parameters:
@@ -739,6 +759,7 @@ paths:
       - Notification Templates
   /template/fields/jira/{integrationId}/{project}/{issueType}/{jiraEndpoint}/{fieldType}/{field}:
     get:
+      deprecated: true
       description: Lists Jira issue types for the specified integration ID and project
         key.
       operationId: get-jira-auto-complete-fields
