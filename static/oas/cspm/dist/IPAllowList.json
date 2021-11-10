@@ -333,7 +333,7 @@
     },
     "/allow_list/network/{networkUuid}/cidr/{cidrUuid}": {
       "put": {
-        "description": "Updates an existing CIDR block.",
+        "description": "Updates an existing CIDR block.  \r\n\r\nNote that the value for the request body parameter **description** will update the description for the CIDR block, even if the **description** \nvalue is blank. Providing a blank description will remove an existing CIDR block description.\n",
         "operationId": "update-cidr-block",
         "parameters": [
           {

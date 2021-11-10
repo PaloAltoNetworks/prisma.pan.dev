@@ -363,7 +363,7 @@ paths:
           description: internal_error
       security:
       - x-redlock-auth: []
-      summary: List Alert Rules (Deprecated)
+      summary: List Alert Rules
       tags:
       - Alert Rules
     post:
@@ -379,18 +379,18 @@ paths:
         \ to get such information. \n\nTo add an Alert Rule, the required request\
         \ body parameters are:\n\n* **name**\n* **description**\n* **allowAutoRemediate**\n\
         * **enabled**\n* **target**\n* **target.accountGroups**\n* **scanAll**\n\n\
-        The default values for the optional boolean parameters are in the table below:\n\n Optional Request Body\
-        \ Parameter | Default  \n---------------------------------| -------\n**allowAutoRemediate**\
-        \ | false\n**notifyOnDismissed** | false\n**notifyOnOpen** | true \n**notifyOnResolved**\
-        \ | false\n**notifyOnSnoozed** | false\n**deleted** | false\n\nYou can also\
-        \ specify addition **target** parameters to narrow the conditions that trigger\
-        \ alerts for this alert rule.\n\nIf **policies** is empty, then Prisma Cloud\
-        \ will scan all policies for violations to trigger alerts.\n\nUnder certain\
-        \ circumstances, you can also specify an array of **policyLabels** to identify\
-        \ policies. The following\nconditions must be met for you to use the **policyLabels**\
-        \ parameter:\n\n* The request body parameter **scanAll** must be false.\n\
-        * The policy associated with the policy label cannot be included in the request\
-        \ body parameter **policies**.\n"
+        The default values for the optional boolean parameters are in the table below:\n\
+        \n Optional Request Body Parameter | Default  \n---------------------------------|\
+        \ -------\n**allowAutoRemediate** | false\n**notifyOnDismissed** | false\n\
+        **notifyOnOpen** | true \n**notifyOnResolved** | false\n**notifyOnSnoozed**\
+        \ | false\n**deleted** | false\n\nYou can also specify addition **target**\
+        \ parameters to narrow the conditions that trigger alerts for this alert rule.\n\
+        \nIf **policies** is empty, then Prisma Cloud will scan all policies for violations\
+        \ to trigger alerts.\n\nUnder certain circumstances, you can also specify\
+        \ an array of **policyLabels** to identify policies. The following\nconditions\
+        \ must be met for you to use the **policyLabels** parameter:\n\n* The request\
+        \ body parameter **scanAll** must be false.\n* The policy associated with\
+        \ the policy label cannot be included in the request body parameter **policies**.\n"
       operationId: add-alert-rule
       requestBody:
         $ref: '#/components/requestBodies/PolicyScanConfigModel'

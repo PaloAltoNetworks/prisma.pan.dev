@@ -426,10 +426,6 @@ components:
           description: Internal use only
           readOnly: true
           type: string
-        canonicalId:
-          description: Internal use only (Deprecated)
-          readOnly: true
-          type: string
         cloudAccountOwner:
           description: Cloud account owner
           type: string
@@ -438,10 +434,6 @@ components:
           format: int32
           readOnly: true
           type: integer
-        cloudAccountStatus:
-          description: Internal use only (Deprecated)
-          readOnly: true
-          type: object
         cloudType:
           description: Cloud Type
           enum:
@@ -557,10 +549,6 @@ components:
           description: Internal use only
           readOnly: true
           type: string
-        canonicalId:
-          description: Internal use only (Deprecated)
-          readOnly: true
-          type: string
         cloudAccountOwner:
           description: Cloud account owner
           type: string
@@ -569,10 +557,6 @@ components:
           format: int32
           readOnly: true
           type: integer
-        cloudAccountStatus:
-          description: Internal use only (Deprecated)
-          readOnly: true
-          type: object
         cloudType:
           description: Cloud Type
           enum:
