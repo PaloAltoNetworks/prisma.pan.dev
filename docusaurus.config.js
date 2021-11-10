@@ -120,7 +120,12 @@ module.exports = {
   },
   themes: [
     require.resolve("@docusaurus/theme-live-codeblock"),
-    require.resolve("./docusaurus-plugin-panw"),
+    [
+      require.resolve("@pandev/docusaurus-plugin-panw"),
+      {
+        gtm: "GTM-P2DTTFC", //GTM-XXXXXX
+      },
+    ],
   ],
   presets: [
     [
@@ -172,12 +177,6 @@ module.exports = {
         path: "api",
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
-      },
-    ],
-    [
-      require.resolve("./docusaurus-plugin-gtm/index.js"),
-      {
-        gtm: "GTM-P2DTTFC", //GTM-XXXXXX
       },
     ],
   ],
