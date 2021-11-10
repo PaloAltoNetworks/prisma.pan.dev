@@ -28,21 +28,8 @@ function Home() {
             <div className={styles.heroInner}>
               <div className="row">
                 <div className={classnames("col col--12")}>
-                  <div className={styles.heroLogo}>
-                    <img src="img/PrismaCloud.svg" />
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className={classnames("col col--12")}>
                   <h1 className={styles.heroProjectTagline}>
-                    Welcome to the home of{" "}
-                    <span className={styles.heroProjectKeywords}>
-                      {" "}
-                      developer docs{" "}
-                    </span>{" "}
-                    for{" "}
-                    <span className={styles.heroProjectKeywords}>Prisma.</span>
+                    Welcome to the home of developer docs for Prisma
                   </h1>
                 </div>
               </div>
@@ -54,10 +41,6 @@ function Home() {
         <section className="featuredContainer">
           <div className="container">
             <Featured />
-          </div>
-        </section>
-        <section className="toolsContainer">
-          <div className="container">
             <Tools />
           </div>
         </section>

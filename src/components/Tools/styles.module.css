@@ -15,7 +15,7 @@
 .toolSection {
   text-align: center;
   padding-top: 2rem;
-  color: white;
+  color: var(--ifm-font-color-base);
 }
 
 .toolsButton {
@@ -62,14 +62,14 @@
 .toolsTitle {
   overflow: hidden;
   font-weight: 600;
-  color: white;
+  color: var(--ifm-font-color-base);
   font-size: var(--ifm-h4-font-size);
   text-align: center;
   position: relative;
 }
 
 .toolsSummary {
-  color: var(--ifm-color-gray-500);
+  color: var(--ifm-font-color-base);
   font-size: small;
   font-weight: 400;
   position: relative;

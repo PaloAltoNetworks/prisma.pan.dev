@@ -86,33 +86,10 @@ module.exports = {
 
     footer: {
       style: "dark",
-      links: [
-        {
-          title: "Docs",
-          items: [
-            {
-              to: "/api/cloud/",
-              label: "API Docs",
-            },
-            {
-              to: "docs/cloud",
-              label: "Docs Homepage",
-            },
-          ],
-        },
-        {
-          title: "Social",
-          items: [
-            {
-              label: "Blog",
-              href: "https://medium.com/palo-alto-networks-developer-blog",
-            },
-          ],
-        },
-      ],
       logo: {
         alt: "PAN-OS® for Developers",
-        src: "/img/PANW_Parent_Brand_Primary_Logo_RGB_KO.svg",
+        srcDark: "/img/PANW_Parent_Brand_Primary_Logo_RGB_Red_White.png",
+        src: "/img/PANW_Parent_Brand_Primary_Logo_RGB.png",
         href: "https://pan.dev",
       },
       copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`,
