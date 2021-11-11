@@ -259,7 +259,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/trusted_list\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/trusted_list\"\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
@@ -313,7 +313,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/trusted_list/{id}\"\n\npayload = \"{\\\"accountID\\\":\\\"string\\\",\\\"applicablePolicies\\\":[\\\"string\\\"],\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"trustedListEntries\\\":[{\\\"imageID\\\":\\\"string\\\",\\\"ipCIDR\\\":\\\"string\\\",\\\"port\\\":\\\"string\\\",\\\"resourceID\\\":\\\"string\\\",\\\"service\\\":\\\"string\\\",\\\"subject\\\":\\\"string\\\",\\\"tagKey\\\":\\\"string\\\",\\\"tagValue\\\":\\\"string\\\"}],\\\"trustedListType\\\":\\\"ip\\\",\\\"vpc\\\":\\\"string\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/trusted_list/{id}\"\n\npayload = {\n    \"accountID\": \"string\",\n    \"applicablePolicies\": [\"string\"],\n    \"description\": \"string\",\n    \"name\": \"string\",\n    \"trustedListEntries\": [\n        {\n            \"imageID\": \"string\",\n            \"ipCIDR\": \"string\",\n            \"port\": \"string\",\n            \"resourceID\": \"string\",\n            \"service\": \"string\",\n            \"subject\": \"string\",\n            \"tagKey\": \"string\",\n            \"tagValue\": \"string\"\n        }\n    ],\n    \"trustedListType\": \"ip\",\n    \"vpc\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
@@ -345,7 +345,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/trusted_list/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/trusted_list/{id}\"\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
@@ -386,7 +386,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/trusted_list/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/trusted_list/{id}\"\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
@@ -434,7 +434,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/policies\"\n\nquerystring = {\"trustedListType\":\"SOME_STRING_VALUE\"}\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/policies\"\n\nquerystring = {\"trustedListType\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
@@ -472,7 +472,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/trusted_list/types\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/anomalies/trusted_list/types\"\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",

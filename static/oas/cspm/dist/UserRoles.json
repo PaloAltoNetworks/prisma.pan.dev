@@ -202,7 +202,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role\"\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
@@ -236,7 +236,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role\"\n\npayload = \"{\\\"accountGroupIds\\\":[\\\"string\\\"],\\\"additionalAttributes\\\":{\\\"hasDefenderPermissions\\\":true,\\\"onlyAllowCIAccess\\\":true,\\\"onlyAllowComputeAccess\\\":true},\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"resourceListIds\\\":[\\\"string\\\"],\\\"restrictDismissalAccess\\\":true,\\\"roleType\\\":\\\"System Admin\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role\"\n\npayload = {\n    \"accountGroupIds\": [\"string\"],\n    \"additionalAttributes\": {\n        \"hasDefenderPermissions\": True,\n        \"onlyAllowCIAccess\": True,\n        \"onlyAllowComputeAccess\": True\n    },\n    \"description\": \"string\",\n    \"name\": \"string\",\n    \"resourceListIds\": [\"string\"],\n    \"restrictDismissalAccess\": True,\n    \"roleType\": \"System Admin\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
@@ -273,7 +273,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/name\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/name\"\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
@@ -314,7 +314,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/{id}\"\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
@@ -357,7 +357,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/{id}\"\n\npayload = \"{\\\"accountGroupIds\\\":[\\\"string\\\"],\\\"additionalAttributes\\\":{\\\"hasDefenderPermissions\\\":true,\\\"onlyAllowCIAccess\\\":true,\\\"onlyAllowComputeAccess\\\":true},\\\"description\\\":\\\"string\\\",\\\"name\\\":\\\"string\\\",\\\"resourceListIds\\\":[\\\"string\\\"],\\\"restrictDismissalAccess\\\":true,\\\"roleType\\\":\\\"System Admin\\\"}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"PUT\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/{id}\"\n\npayload = {\n    \"accountGroupIds\": [\"string\"],\n    \"additionalAttributes\": {\n        \"hasDefenderPermissions\": True,\n        \"onlyAllowCIAccess\": True,\n        \"onlyAllowComputeAccess\": True\n    },\n    \"description\": \"string\",\n    \"name\": \"string\",\n    \"resourceListIds\": [\"string\"],\n    \"restrictDismissalAccess\": True,\n    \"roleType\": \"System Admin\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
@@ -391,7 +391,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/{id}\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/{id}\"\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"DELETE\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
