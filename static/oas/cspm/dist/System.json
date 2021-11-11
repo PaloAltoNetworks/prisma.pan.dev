@@ -2,7 +2,12 @@
   "components": {
     "requestBodies": {},
     "schemas": {
-      "TmpModel": { "properties": { "message": { "description": "Message", "type": "string" } }, "type": "object" }
+      "TmpModel": {
+        "properties": {
+          "message": { "description": "Message", "type": "string" }
+        },
+        "type": "object"
+      }
     }
   },
   "info": {
@@ -12,8 +17,6 @@
     "version": "Latest"
   },
   "openapi": "3.0.0",
-  "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "description": "This API runs a quick check for availability.", "name": "System" }],
   "paths": {
     "/check": {
       "get": {
@@ -21,7 +24,11 @@
         "operationId": "health-check",
         "responses": {
           "200": {
-            "content": { "application/json; charset=UTF-8": { "schema": { "$ref": "#/components/schemas/TmpModel" } } },
+            "content": {
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/TmpModel" }
+              }
+            },
             "description": "successful operation"
           },
           "500": { "description": "" }
@@ -33,9 +40,19 @@
             "lang": "Python + Requests",
             "source": "import requests\n\nurl = \"https://api.prismacloud.io/check\"\n\nresponse = requests.request(\"GET\", url)\n\nprint(response.text)"
           },
-          { "lang": "Shell + Curl", "source": "curl --request GET \\\n  --url https://api.prismacloud.io/check" }
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/check"
+          }
         ]
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
+    {
+      "description": "This API runs a quick check for availability.",
+      "name": "System"
+    }
+  ]
 }

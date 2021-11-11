@@ -790,11 +790,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource\"\n\npayload = {\n    \"findingType\": [\"string\"],\n    \"riskFactors\": [\"CRITICAL_SEVERITY\"],\n    \"rrn\": \"string\",\n    \"timelineItemId\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"findingType\":[\"string\"],\"riskFactors\":[\"CRITICAL_SEVERITY\"],\"rrn\":\"string\",\"timelineItemId\":\"string\"}'"
           }
         ]
       }
@@ -834,11 +834,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/alert\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/alert\"\n\npayload = {\n    \"findingType\": [\"string\"],\n    \"riskFactors\": [\"CRITICAL_SEVERITY\"],\n    \"rrn\": \"string\",\n    \"timelineItemId\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource/alert \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource/alert \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"findingType\":[\"string\"],\"riskFactors\":[\"CRITICAL_SEVERITY\"],\"rrn\":\"string\",\"timelineItemId\":\"string\"}'"
           }
         ]
       }
@@ -878,11 +878,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/network\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/network\"\n\npayload = {\n    \"findingType\": [\"string\"],\n    \"riskFactors\": [\"CRITICAL_SEVERITY\"],\n    \"rrn\": \"string\",\n    \"timelineItemId\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource/network \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource/network \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"findingType\":[\"string\"],\"riskFactors\":[\"CRITICAL_SEVERITY\"],\"rrn\":\"string\",\"timelineItemId\":\"string\"}'"
           }
         ]
       }
@@ -935,7 +935,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/external_finding\"\n\nquerystring = {\"alertId\":\"SOME_STRING_VALUE\",\"type\":\"SOME_ARRAY_VALUE\",\"source\":\"SOME_ARRAY_VALUE\"}\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/external_finding\"\n\nquerystring = {\"alertId\":\"SOME_STRING_VALUE\",\"type\":\"SOME_ARRAY_VALUE\",\"source\":\"SOME_ARRAY_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
@@ -977,11 +977,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/external_finding\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/external_finding\"\n\npayload = {\n    \"findingType\": [\"string\"],\n    \"riskFactors\": [\"CRITICAL_SEVERITY\"],\n    \"rrn\": \"string\",\n    \"timelineItemId\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource/external_finding \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource/external_finding \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"findingType\":[\"string\"],\"riskFactors\":[\"CRITICAL_SEVERITY\"],\"rrn\":\"string\",\"timelineItemId\":\"string\"}'"
           }
         ]
       }
@@ -1023,11 +1023,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/timeline\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/timeline\"\n\npayload = {\n    \"findingType\": [\"string\"],\n    \"riskFactors\": [\"CRITICAL_SEVERITY\"],\n    \"rrn\": \"string\",\n    \"timelineItemId\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource/timeline \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource/timeline \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"findingType\":[\"string\"],\"riskFactors\":[\"CRITICAL_SEVERITY\"],\"rrn\":\"string\",\"timelineItemId\":\"string\"}'"
           }
         ]
       }
@@ -1064,11 +1064,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/raw\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/raw\"\n\npayload = {\n    \"findingType\": [\"string\"],\n    \"riskFactors\": [\"CRITICAL_SEVERITY\"],\n    \"rrn\": \"string\",\n    \"timelineItemId\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource/raw \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource/raw \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"findingType\":[\"string\"],\"riskFactors\":[\"CRITICAL_SEVERITY\"],\"rrn\":\"string\",\"timelineItemId\":\"string\"}'"
           }
         ]
       }
@@ -1096,7 +1096,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/filter/resource/scan_info/suggest\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/filter/resource/scan_info/suggest\"\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
@@ -1131,11 +1131,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/filter/resource/scan_info/suggest\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/filter/resource/scan_info/suggest\"\n\npayload = {\n    \"filterName\": \"string\",\n    \"query\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/filter/resource/scan_info/suggest \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/filter/resource/scan_info/suggest \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"filterName\":\"string\",\"query\":\"string\"}'"
           }
         ]
       }
@@ -1175,11 +1175,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/external_integration\"\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/external_integration\"\n\npayload = {\n    \"findingType\": [\"string\"],\n    \"riskFactors\": [\"CRITICAL_SEVERITY\"],\n    \"rrn\": \"string\",\n    \"timelineItemId\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource/external_integration \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource/external_integration \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"findingType\":[\"string\"],\"riskFactors\":[\"CRITICAL_SEVERITY\"],\"rrn\":\"string\",\"timelineItemId\":\"string\"}'"
           }
         ]
       }
@@ -1307,7 +1307,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/scan_info\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"account.group\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\",\"limit\":\"SOME_STRING_VALUE\",\"scan.status\":\"SOME_STRING_VALUE\",\"pageToken\":\"SOME_STRING_VALUE\"}\n\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/scan_info\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"account.group\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\",\"limit\":\"SOME_STRING_VALUE\",\"scan.status\":\"SOME_STRING_VALUE\",\"pageToken\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
@@ -1346,7 +1346,7 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/scan_info\"\n\npayload = \"{\\\"detailed\\\":true,\\\"fields\\\":[\\\"string\\\"],\\\"filters\\\":[{\\\"name\\\":\\\"string\\\",\\\"operator\\\":\\\"=\\\",\\\"value\\\":\\\"string\\\"}],\\\"groupBy\\\":[\\\"string\\\"],\\\"limit\\\":0,\\\"offset\\\":0,\\\"pageToken\\\":\\\"string\\\",\\\"sortBy\\\":[\\\"string\\\"],\\\"timeRange\\\":{\\\"relativeTimeType\\\":\\\"BACKWARD\\\",\\\"type\\\":\\\"relative\\\",\\\"value\\\":{\\\"amount\\\":0,\\\"unit\\\":\\\"minute\\\"}}}\"\nheaders = {'x-redlock-auth': 'REPLACE_KEY_VALUE'}\n\nresponse = requests.request(\"POST\", url, data=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/scan_info\"\n\npayload = {\n    \"detailed\": True,\n    \"fields\": [\"string\"],\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"limit\": 0,\n    \"offset\": 0,\n    \"pageToken\": \"string\",\n    \"sortBy\": [\"string\"],\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
