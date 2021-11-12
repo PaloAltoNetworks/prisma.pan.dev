@@ -43,7 +43,9 @@
   width: auto;
   max-height: 40px !important;
   max-width: 40px !important;
+  filter: brightness(var(--ifm-brightness));
 }
+
 
 .toolsBorder {
   height: auto;

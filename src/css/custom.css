@@ -20,6 +20,8 @@
 
   --ifm-blockquote-background-color: var(--ifm-background-color);
   --ifm-background-color: #fff;
+
+  --ifm-brightness: 0;
 }
 
 /* Dark mode overrides */
@@ -51,6 +53,7 @@ html[data-theme="dark"] {
   --ifm-color-gray-switch: var(--ifm-color-gray-300);
 
   --ifm-blockquote-background-color: var(--ifm-background-color);
+  --ifm-brightness: 1;
 }
 
 .footer--dark {
