@@ -4287,6 +4287,7 @@
             "monitorRuntimeHosts",
             "monitorRuntimeServerless",
             "monitorRuntimeIncidents",
+            "sandbox",
             "monitorWAAS",
             "monitorCNNF",
             "monitorAccessDocker",
@@ -11343,7 +11344,7 @@
             "type": "boolean"
           },
           "showNegligibleVulnerabilities": {
-            "description": "ShowNegligibleVulnerabilities indicates whether to display negligible vulnerabilities (low severity).\n",
+            "description": "ShowNegligibleVulnerabilities indicates whether to display negligible vulnerabilities (low severity or will not be fixed).\n",
             "type": "boolean"
           },
           "systemScanPeriodMs": {
@@ -15587,6 +15588,13 @@
             "description": "Indicates if session cookies are enabled (true) or not (false).\n",
             "type": "boolean"
           },
+          "sessionCookieSameSite": {
+            "$ref": "#/components/schemas/waas.SameSite"
+          },
+          "sessionCookieSecure": {
+            "description": "Indicates the Secure attribute of the session cookie.\n",
+            "type": "boolean"
+          },
           "shellshock": {
             "$ref": "#/components/schemas/waas.ProtectionConfig"
           },
@@ -16613,6 +16621,17 @@
         },
         "type": "object"
       },
+      "waas.SameSite": {
+        "description": "SameSite allows a server to define a cookie attribute making it impossible for\nthe browser to send this cookie along with cross-site requests. The main\ngoal is to mitigate the risk of cross-origin information leakage, and provide\nsome protection against cross-site request forgery attacks.\n\nSee https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite for details",
+        "enum": [
+          [
+            "Lax",
+            "Strict",
+            "None"
+          ]
+        ],
+        "type": "string"
+      },
       "waas.StatusCodeRange": {
         "description": "StatusCodeRange represents a status code range",
         "properties": {
@@ -16749,7 +16768,7 @@
   },
   "info": {
     "title": "Stats Overview",
-    "version": "21.08.514",
+    "version": "21.08.525",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/stats.md"
     }
