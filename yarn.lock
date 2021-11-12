@@ -1643,10 +1643,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@pandev/docusaurus-plugin-panw@2.0.0-beta.4c":
-  version "2.0.0-beta.4c"
-  resolved "https://registry.yarnpkg.com/@pandev/docusaurus-plugin-panw/-/docusaurus-plugin-panw-2.0.0-beta.4c.tgz#bf556d4e8085a03cfdce6db9bfd8de5a546bb317"
-  integrity sha512-Yz5fv/gkvs75s1G0mN2vfIso+R51tFsL4XkGQ16/jAKNw0VAN9XkBGeffOk80fzssoyKRUFrnmSxetXJs17bHw==
+"@pandev/docusaurus-plugin-panw@2.0.0-beta.4e":
+  version "2.0.0-beta.4e"
+  resolved "https://registry.yarnpkg.com/@pandev/docusaurus-plugin-panw/-/docusaurus-plugin-panw-2.0.0-beta.4e.tgz#04e0b1723122c373b21b7565da27b1fb74bbc58a"
+  integrity sha512-jtbqUF0itE4o8mCKVaPJyb8r8FdkimHTL4R9mMC4rb9Zt6/IHMp9p2LBlpQp49Z5zuHKx6mw2QiK7pIEuBLxOg==
   dependencies:
     "@docusaurus/core" "2.0.0-beta.4"
     classnames "^2.2.6"

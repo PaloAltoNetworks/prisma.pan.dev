@@ -17,7 +17,7 @@
     "@docusaurus/preset-classic": "2.0.0-beta.4",
     "@docusaurus/theme-classic": "2.0.0-beta.4",
     "@docusaurus/theme-live-codeblock": "2.0.0-beta.4",
-    "@pandev/docusaurus-plugin-panw": "2.0.0-beta.4c",
+    "@pandev/docusaurus-plugin-panw": "2.0.0-beta.4e",
     "classnames": "^2.2.6",
     "clsx": "^1.1.1",
     "react": "^17.0.1",
