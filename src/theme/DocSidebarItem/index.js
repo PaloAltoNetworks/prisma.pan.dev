@@ -75,7 +75,6 @@ function DocSidebarVersionDropdown({
   ...props
 }) {
   const { siteConfig } = useDocusaurusContext();
-  console.log(window.location.pathname);
   return (
     <div
       className="tab"
