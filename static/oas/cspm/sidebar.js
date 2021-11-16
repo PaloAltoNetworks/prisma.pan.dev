@@ -4,6 +4,7 @@ const fs = require("fs");
 // Use the following to frontload docs
 var docs = [
   "cloud/cspm/cspm-api",
+  "cloud/basic-request",
   "cloud/api-urls",
   "cloud/api-headers",
   "cloud/api-time-range-model",
