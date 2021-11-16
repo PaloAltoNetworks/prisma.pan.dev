@@ -205,9 +205,9 @@ module.exports = {
         version: "20-12",
       },
     ],
-    onBrokenLinks: "warn",
-    onDuplicateRoutes: "warn",
   },
+  onBrokenLinks: "warn",
+  onDuplicateRoutes: "warn",
   stylesheets: [
     {
       href: "https://use.fontawesome.com/releases/v5.11.0/css/all.css",
