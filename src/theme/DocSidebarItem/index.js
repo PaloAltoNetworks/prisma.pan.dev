@@ -18,6 +18,7 @@ import IconExternalLink from "@theme/IconExternalLink";
 import styles from "./styles.module.css";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
+import { Verify } from "crypto";
 
 const isActiveSidebarItem = (item, activePath) => {
   if (item.type === "link") {
@@ -75,50 +76,43 @@ function DocSidebarVersionDropdown({
   ...props
 }) {
   const { siteConfig } = useDocusaurusContext();
-  console.log(window.location.pathname);
   return (
-    <div
-      className="tab"
+    <nav
+      className="navbar navbar--fixed-top navbar--dark"
       style={{
-        backgroundColor: "var(--ifm-version-background)",
-        position: "sticky",
+        marginTop: "-.5 rem",
         top: "0",
-        zIndex: "var(--ifm-z-index-fixed)",
-        marginTop: "-.5rem",
-        marginBottom: ".5rem",
+        padding: "0 0 0 0",
+        height: "40px",
       }}
     >
-      <div
-        style={{
-          borderRadius: "0 0 0 0",
-          margin: "0",
-          align: "center",
-        }}
-      >
-        Select API Version
+      <div class="navbar__inner">
+        <div class="navbar__items">
+          <div class="navbar__item dropdown dropdown--hoverable">
+            <a class="navbar__link">
+              Select API Version: <b>{item.label} ▼</b>
+            </a>
+            <ul class="dropdown__menu">
+              {siteConfig.customFields.api_versions.map((Ver, i) => (
+                <li>
+                  <Link
+                    className={
+                      "dropdown__link " +
+                      (item.label === Ver.version
+                        ? "dropdown__link--active"
+                        : "")
+                    }
+                    to={Ver.to}
+                  >
+                    {Ver.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
-      {siteConfig.customFields.api_versions.map((Ver, i) => (
-        <Link
-          className={
-            "button button--primary button--outline " +
-            (item.label === Ver.version ? "button--active" : "")
-          }
-          style={{
-            borderRadius: "0 0 0 0",
-            borderColor: "var(--ifm-contents-border-color)",
-            borderWidth: "0",
-            margin: "0",
-            padding:
-              "calc( var(--ifm-button-padding-vertical) * 1.5  ) calc( var(--ifm-button-padding-horizontal) * .65 )",
-            color: "var(--ifm-font-color-base) !important",
-          }}
-          key={i}
-          to={useBaseUrl(Ver.to)}
-        >
-          {Ver.version}
-        </Link>
-      ))}
-    </div>
+    </nav>
   );
 }
 
