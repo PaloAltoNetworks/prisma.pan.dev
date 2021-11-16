@@ -16,11 +16,17 @@ module.exports = {
       label: "Cloud Security Posture Management",
       items: require("./static/oas/cspm/sidebar").sidebar,
     },
+  ],
+  cwpp: [
     {
       type: "category",
-      label: "Cloud Workload Protection",
+      label: "Cloud Workload Protection - 21.08",
       items: require("./static/oas/cwpp/sidebar").sidebar,
     },
+    {
+      type: "category",
+      label: "Cloud Workload Protection - 21.04",
+      items: require("./static/oas/cwpp/21-04/sidebar").sidebar,
+    },
   ],
-  cwpp_version: require("./static/oas/cwpp/21-04/sidebar").sidebar,
 };

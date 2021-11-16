@@ -17,7 +17,7 @@ import TOCCollapsible from "@theme/TOCCollapsible";
 import EditThisPage from "@theme/EditThisPage";
 import { MainHeading } from "@theme/Heading";
 import styles from "./styles.module.css";
-
+import Version from "../../components/Version";
 function DocItem(props) {
   const { content: DocContent, versionMetadata } = props;
   const { metadata, frontMatter } = DocContent;
@@ -26,6 +26,7 @@ function DocItem(props) {
     keywords,
     hide_title: hideTitle,
     hide_table_of_contents: hideTableOfContents,
+    versioned,
   } = frontMatter;
   const {
     description,
@@ -93,7 +94,7 @@ function DocItem(props) {
                 See https://github.com/facebook/docusaurus/pull/4882#issuecomment-853021120
                 */}
                 {shouldAddTitle && <MainHeading>{title}</MainHeading>}
-
+                <Version />
                 <DocContent />
               </div>
             </article>
