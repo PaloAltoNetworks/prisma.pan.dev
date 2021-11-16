@@ -39,8 +39,12 @@ module.exports = {
           label: "API Reference",
           items: [
             {
-              to: "/api/cloud/",
-              label: "Prisma Cloud Platform",
+              to: "/api/cloud/cspm",
+              label: "Cloud Security Posture Management",
+            },
+            {
+              to: "/api/cloud/cwpp",
+              label: "Cloud Workload Protection",
             },
           ],
           position: "left",
@@ -86,30 +90,6 @@ module.exports = {
 
     footer: {
       style: "dark",
-      links: [
-        {
-          title: "Docs",
-          items: [
-            {
-              to: "/api/cloud/",
-              label: "API Docs",
-            },
-            {
-              to: "docs/cloud",
-              label: "Docs Homepage",
-            },
-          ],
-        },
-        {
-          title: "Social",
-          items: [
-            {
-              label: "Blog",
-              href: "https://medium.com/palo-alto-networks-developer-blog",
-            },
-          ],
-        },
-      ],
       logo: {
         alt: "PAN-OS® for Developers",
         src: "/img/PANW_Parent_Brand_Primary_Logo_RGB_KO.svg",
@@ -206,6 +186,23 @@ module.exports = {
           },
         ],
         position: "products",
+      },
+    ],
+    api_versions: [
+      {
+        label: "21.08 (Latest)",
+        to: "/api/cloud/cwpp/",
+        version: "21-08",
+      },
+      {
+        label: "21.04",
+        to: "/api/cloud/cwpp/21-04/",
+        version: "21-04",
+      },
+      {
+        label: "20.12",
+        to: "/api/cloud/cwpp/20-12/",
+        version: "20-12",
       },
     ],
     onBrokenLinks: "warn",

@@ -1,34 +1,35 @@
 import React, { useRef, version } from "react";
 import useBaseUrl from "@docusaurus/useBaseUrl";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import Link from "@docusaurus/Link";
 
-const versions = [
-  {
-    title: "21.08 (Latest)",
-    to: "/api/cloud/cwpp",
-  },
-  {
-    title: "21.04",
-    to: "/api/cloud/cwpp/21-04/",
-  },
-];
-
-function Version(docVer) {
+function Version() {
+  const { siteConfig, siteMetadata } = useDocusaurusContext();
   return (
     <div>
-      <div class="dropdown dropdown--hoverable">
-        <button class="button button--secondary button--version">
-          Choose Version
-        </button>
-        <ul class="dropdown__menu">
-          {versions.map((props, i) => (
-            <li key={i}>
-              <a class="dropdown__link" href={useBaseUrl(props.to)}>
-                {props.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {siteConfig.customFields.api_versions.map((Ver, i) => (
+        <Link
+          className={
+            "button button--outline button--secondary button--md " +
+            (typeof window !== "undefined" &&
+            window.location.pathname.split("/")[2] ==
+              useBaseUrl(Ver.to).split("/")[2]
+              ? "button--active--tab shadow--lw"
+              : "")
+          }
+          style={{
+            borderRadius: "0 0 0 0",
+            borderColor: "var(--ifm-contents-border-color)",
+            borderWidth: "0",
+            padding:
+              "calc( var(--ifm-button-padding-vertical) * 1.5  ) calc( var(--ifm-button-padding-horizontal) * .65 )",
+          }}
+          key={i}
+          to={useBaseUrl(Ver.to)}
+        >
+          {Ver.label}
+        </Link>
+      ))}
     </div>
   );
 }

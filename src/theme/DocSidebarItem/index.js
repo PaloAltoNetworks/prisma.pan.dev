@@ -16,6 +16,8 @@ import Link from "@docusaurus/Link";
 import isInternalUrl from "@docusaurus/isInternalUrl";
 import IconExternalLink from "@theme/IconExternalLink";
 import styles from "./styles.module.css";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
 const isActiveSidebarItem = (item, activePath) => {
   if (item.type === "link") {
@@ -55,15 +57,72 @@ export default function DocSidebarItem({ item, ...props }) {
       if (item.items.length === 0) {
         return null;
       }
-
       return <DocSidebarItemCategory item={item} {...props} />;
 
     case "link":
+      if (item.customProps === "versioned") {
+        return <DocSidebarVersionDropdown item={item} {...props} />;
+      }
     default:
       return <DocSidebarItemLink item={item} {...props} />;
   }
-} // If we navigate to a category and it becomes active, it should automatically expand itself
+}
 
+function DocSidebarVersionDropdown({
+  item,
+  onItemClick,
+  activePath,
+  ...props
+}) {
+  const { siteConfig } = useDocusaurusContext();
+  console.log(window.location.pathname);
+  return (
+    <div
+      className="tab"
+      style={{
+        backgroundColor: "var(--ifm-version-background)",
+        position: "sticky",
+        top: "0",
+        zIndex: "var(--ifm-z-index-fixed)",
+        marginTop: "-.5rem",
+        marginBottom: ".5rem",
+      }}
+    >
+      <div
+        style={{
+          borderRadius: "0 0 0 0",
+          margin: "0",
+          align: "center",
+        }}
+      >
+        Select API Version
+      </div>
+      {siteConfig.customFields.api_versions.map((Ver, i) => (
+        <Link
+          className={
+            "button button--primary button--outline " +
+            (item.label === Ver.version ? "button--active" : "")
+          }
+          style={{
+            borderRadius: "0 0 0 0",
+            borderColor: "var(--ifm-contents-border-color)",
+            borderWidth: "0",
+            margin: "0",
+            padding:
+              "calc( var(--ifm-button-padding-vertical) * 1.5  ) calc( var(--ifm-button-padding-horizontal) * .65 )",
+            color: "var(--ifm-font-color-base) !important",
+          }}
+          key={i}
+          to={useBaseUrl(Ver.to)}
+        >
+          {Ver.version}
+        </Link>
+      ))}
+    </div>
+  );
+}
+
+// If we navigate to a category and it becomes active, it should automatically expand itself
 function useAutoExpandActiveCategory({ isActive, collapsed, setCollapsed }) {
   const wasActive = usePrevious(isActive);
   useEffect(() => {
