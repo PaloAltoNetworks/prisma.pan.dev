@@ -25,9 +25,7 @@ To make an API request, you must have a [Prisma Cloud role](https://docs.paloalt
 ### Authentication/Authorization
 
 Almost all CSPM API endpoints use JSON Web Tokens (JWT) to authorize requests.
-[Log in](/api/cloud/cspm/login#operation/app-login) to obtain a valid JWT.
-
-Note that for security, a JWT is valid for only ten minutes. If your session must be active beyond that limit, you can [extend a session](/api/cloud/cspm/login#operation/extend-session).
+[Log in](/api/cloud/cspm/login#operation/app-login) to obtain a valid JWT. Note that for security, a JWT is valid for only ten minutes. If your session must be active beyond that limit, you can [extend a session](/api/cloud/cspm/login#operation/extend-session).
 
 See [Getting Started](/docs/cloud/cspm/cspm-gs) for steps to obtain access keys and use them when you [log in](/api/cloud/cspm/login#operation/app-login).
 
@@ -43,10 +41,10 @@ The base URL of your CSPM API request depends on the region of your Prisma Cloud
 
 The CSPM API uses standard HTTP methods `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`.
 
-Certain resources are available through either a `GET` or a `POST` request. Examples include but are not limited to alert lists, compliance posture, and some asset inventory lists. While both options result in the same response, as a best practice, use `POST` if:
+Certain resources are available through either a `GET` or a `POST` request. Examples include but are not limited to alert lists, compliance posture, and some asset inventory lists. While both options result in the same response, use `POST` if:
 
-* You don’t want to include your request parameters in the request URL
-* Your request parameters are complex and, therefore, easier to define in the request body parameters of a `POST` request
+* You don’t want to include your request parameters in the request URL.
+* Your request parameters are complex and, therefore, easier to define in the body of a `POST` request.
 
 ### Request Headers
 
@@ -57,7 +55,6 @@ See [Headers](/api/cloud/api-headers) for information about required request hea
 Both query and request body parameters can include certain data models in CSPM. The following sections provide details about their use:
 
 * The [Time Range Model](/api/cloud/api-time-range-model) enables you to specify windows of time.
-
 * The [Integration Configurations](/api/cloud/api-integration-config) are specific to API requests that [add](/api/cloud/cspm/integrations#operation/save-integration), [update](/api/cloud/cspm/integrations#operation/update-integration), or [test](/api/cloud/cspm/integrations#operation/test-integration) a third-party integration with Prisma Cloud.
 
 ### Errors
