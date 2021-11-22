@@ -76,78 +76,49 @@ function DocSidebarVersionDropdown({
   ...props
 }) {
   const { siteConfig } = useDocusaurusContext();
-  const windowSize = useWindowSize();
 
   // Mobile sidebar not visible on hydration: can avoid SSR rendering
-  const shouldRender = windowSize === "mobile"; // || windowSize === 'ssr';
 
-  if (windowSize !== "mobile") {
-    return (
-      <nav
-        className="navbar navbar--fixed-top navbar--dark"
+  return (
+    <div
+      className="menu__list-item dropdown dropdown--hoverable button button--block button--secondary"
+      style={{
+        marginTop: "-.5rem",
+        padding: "-.5rem 0 0 0",
+        height: "40px",
+        position: "sticky",
+        top: "-.5rem",
+        zIndex: "200",
+        marginBottom: "0",
+        backgroundColor: "var(--ifm-font-color-base)",
+      }}
+    >
+      <a
+        className="menu__link"
         style={{
-          top: "0",
-          padding: "-.5rem 0 0 0",
-          height: "40px",
+          color: "var(--ifm-version-background)",
         }}
       >
-        <div className="navbar__inner">
-          <div className="navbar__items">
-            <div className="navbar__item dropdown dropdown--hoverable">
-              <a className="navbar__link">
-                Select API Version: <b>{item.label} ▼</b>
-              </a>
-              <ul className="dropdown__menu">
-                {siteConfig.customFields.api_versions.map((Ver, i) => (
-                  <li key={i}>
-                    <Link
-                      className={
-                        "dropdown__link " +
-                        (item.label === Ver.version
-                          ? "dropdown__link--active"
-                          : "")
-                      }
-                      to={Ver.to}
-                    >
-                      {Ver.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </nav>
-    );
-  } else {
-    return (
-      <div>
+        Select API Version: &ensp;
+        <b>{item.label} ▼</b>
+      </a>
+      <ul className="dropdown__menu">
         {siteConfig.customFields.api_versions.map((Ver, i) => (
-          <Link
-            className={
-              "button button--outline button--secondary button--md " +
-              (typeof window !== "undefined" &&
-              window.location.pathname.split("/")[2] ==
-                useBaseUrl(Ver.to).split("/")[2]
-                ? "button--active--tab shadow--lw"
-                : "")
-            }
-            style={{
-              borderRadius: "0 0 0 0",
-              borderColor: "var(--ifm-contents-border-color)",
-              borderWidth: "0",
-              padding:
-                "calc( var(--ifm-button-padding-vertical) * 1.5  ) calc( var(--ifm-button-padding-horizontal) * .65 )",
-            }}
-            key={i}
-            to={useBaseUrl(Ver.to)}
-          >
-            {Ver.label}
-          </Link>
+          <li key={i}>
+            <Link
+              className={
+                "dropdown__link " +
+                (item.label === Ver.version ? "dropdown__link--active" : "")
+              }
+              to={Ver.to}
+            >
+              {Ver.label}
+            </Link>
+          </li>
         ))}
-      </div>
-    );
-  }
+      </ul>
+    </div>
+  );
 }
 
 // If we navigate to a category and it becomes active, it should automatically expand itself
