@@ -17,8 +17,8 @@ import isInternalUrl from "@docusaurus/isInternalUrl";
 import IconExternalLink from "@theme/IconExternalLink";
 import styles from "./styles.module.css";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import useWindowSize from "@theme/hooks/useWindowSize";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import { Verify } from "crypto";
 
 const isActiveSidebarItem = (item, activePath) => {
   if (item.type === "link") {
@@ -76,44 +76,78 @@ function DocSidebarVersionDropdown({
   ...props
 }) {
   const { siteConfig } = useDocusaurusContext();
-  return (
-    <nav
-      className="navbar navbar--fixed-top navbar--dark"
-      style={{
-        marginTop: "-.5 rem",
-        top: "0",
-        padding: "0 0 0 0",
-        height: "40px",
-      }}
-    >
-      <div class="navbar__inner">
-        <div class="navbar__items">
-          <div class="navbar__item dropdown dropdown--hoverable">
-            <a class="navbar__link">
-              Select API Version: <b>{item.label} ▼</b>
-            </a>
-            <ul class="dropdown__menu">
-              {siteConfig.customFields.api_versions.map((Ver, i) => (
-                <li>
-                  <Link
-                    className={
-                      "dropdown__link " +
-                      (item.label === Ver.version
-                        ? "dropdown__link--active"
-                        : "")
-                    }
-                    to={Ver.to}
-                  >
-                    {Ver.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+  const windowSize = useWindowSize();
+
+  // Mobile sidebar not visible on hydration: can avoid SSR rendering
+  const shouldRender = windowSize === "mobile"; // || windowSize === 'ssr';
+
+  if (windowSize !== "mobile") {
+    return (
+      <nav
+        className="navbar navbar--fixed-top navbar--dark"
+        style={{
+          top: "0",
+          padding: "-.5rem 0 0 0",
+          height: "40px",
+        }}
+      >
+        <div className="navbar__inner">
+          <div className="navbar__items">
+            <div className="navbar__item dropdown dropdown--hoverable">
+              <a className="navbar__link">
+                Select API Version: <b>{item.label} ▼</b>
+              </a>
+              <ul className="dropdown__menu">
+                {siteConfig.customFields.api_versions.map((Ver, i) => (
+                  <li key={i}>
+                    <Link
+                      className={
+                        "dropdown__link " +
+                        (item.label === Ver.version
+                          ? "dropdown__link--active"
+                          : "")
+                      }
+                      to={Ver.to}
+                    >
+                      {Ver.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
+      </nav>
+    );
+  } else {
+    return (
+      <div>
+        {siteConfig.customFields.api_versions.map((Ver, i) => (
+          <Link
+            className={
+              "button button--outline button--secondary button--md " +
+              (typeof window !== "undefined" &&
+              window.location.pathname.split("/")[2] ==
+                useBaseUrl(Ver.to).split("/")[2]
+                ? "button--active--tab shadow--lw"
+                : "")
+            }
+            style={{
+              borderRadius: "0 0 0 0",
+              borderColor: "var(--ifm-contents-border-color)",
+              borderWidth: "0",
+              padding:
+                "calc( var(--ifm-button-padding-vertical) * 1.5  ) calc( var(--ifm-button-padding-horizontal) * .65 )",
+            }}
+            key={i}
+            to={useBaseUrl(Ver.to)}
+          >
+            {Ver.label}
+          </Link>
+        ))}
       </div>
-    </nav>
-  );
+    );
+  }
 }
 
 // If we navigate to a category and it becomes active, it should automatically expand itself
