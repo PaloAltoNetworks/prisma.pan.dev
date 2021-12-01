@@ -501,6 +501,18 @@ components:
         required:
         - value
         type: object
+    ResourceConfigurationStatus:
+      properties:
+        code:
+          description: Configuration Status Code
+          format: int32
+          type: integer
+        message:
+          description: Status message
+          items:
+            type: string
+          type: array
+      type: object
     ResourceInventory:
       description: Data resource inventory model
       properties:
@@ -531,12 +543,10 @@ components:
           description: Cloud type
           readOnly: true
           type: string
-        isConfigurable:
-          description: To check if a resource can be configured
-          type: boolean
-        isSystemBucket:
-          description: To check if a resource is a system bucket, AWS coudtrail etc.
-          type: boolean
+        configurationStatus:
+          allOf:
+          - $ref: '#/components/schemas/ResourceConfigurationStatus'
+          - description: Resource Configuration Status
         lastEstimate:
           description: Size updated on
           format: int64

@@ -3024,8 +3024,10 @@ paths:
   /cloud/status/{cloud_type}:
     post:
       description: "Lists status messages of the specified cloud account.  \r\n\r\n\
-        The request body parameter is the same request body as that for [Add Cloud\
-        \ Account](/api/cloud/cspm/cloud-accounts#operation/add-cloud-account).\n"
+        This request performs a cloud account on-boarding trial run. You can use this\
+        \ request to validate your parameters before \nyou use [Add Cloud Account](/api/cloud/cspm/cloud-accounts#operation/add-cloud-account).\n\
+        \nThe request body parameters for this request are the same as those for [Add\
+        \ Cloud Account](/api/cloud/cspm/cloud-accounts#operation/add-cloud-account).\n"
       operationId: get-cloud-account-status
       parameters:
       - description: Cloud Type

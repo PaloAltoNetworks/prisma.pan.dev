@@ -694,7 +694,7 @@
     },
     "/v2/inventory": {
       "get": {
-        "description": "Returns asset inventory pass/fail data for the specified time period.",
+        "description": "Returns asset inventory pass/fail data for the specified time period.  \r\n\r\nThe response includes an attribute **groupedAggregates**, whose content depends on the **groupBy** query parameter.\nThe following table shows the attributes that **groupedAggregates** will include for the specified **groupBy** query parameter:\n\n**groupBy**  | **groupedAggregates** Includes\n-------------| ------------------------------\nnot specified | **cloudTypeName**\n**cloudType** | **cloudTypeName**\n**cloud.account** | **accountName**\n**cloud.region** | **regionName**, **cloudTypeName**\n**cloud.service** | **serviceName**, **cloudTypeName**\n**resource.type** | **resourceTypeName**, **cloudTypeName**\n\nIf you specify **groupBy** multiple times in a single request, then **groupedAggregates** will include multiple attributes.\nFor example, you can set the following in the URL: **groupBy=cloud.account&groupBy=cloud.service**. Doing so will have the same effect\nas specifying a comma-separated list of values for **groupBy**.\n",
         "operationId": "asset-inventory-v2",
         "parameters": [
           {
@@ -829,7 +829,7 @@
         ]
       },
       "post": {
-        "description": "Returns asset inventory pass/fail data for the specified time period.  \r\n\r\nYou can get a list of the valid names and values for the filters body parameter \nthrough [List Inventory Filters V2](/api/cloud/cspm/asset-inventory#operation/get-asset-inventory-v2-filters-and-options) and [List Inventory Dashboard Filter Autocomplete \nSuggestions V2](/api/cloud/cspm/asset-inventory#operation/get-asset-inventory-v2-dashboard-filter-options). \n",
+        "description": "Returns asset inventory pass/fail data for the specified time period.  \r\n\r\nYou can get a list of the valid names and values for the filters body parameter \nthrough [List Inventory Filters V2](/api/cloud/cspm/asset-inventory#operation/get-asset-inventory-v2-filters-and-options) and [List Inventory Dashboard Filter Autocomplete \nSuggestions V2](/api/cloud/cspm/asset-inventory#operation/get-asset-inventory-v2-dashboard-filter-options).\n\nThe response includes an attribute **groupedAggregates**, whose content depends on the **groupBy** query parameter.\nThe following table shows the attributes that **groupedAggregates** will include for the specified **groupBy** query parameter:\n\n**groupBy**  | **groupedAggregates** Includes \n-------------| ------------------------------\n_not specified_ | **cloudTypeName**\n**cloudType** | **cloudTypeName**\n**cloud.account** | **accountName**\n**cloud.region** | **regionName**, **cloudTypeName**\n**cloud.service** | **serviceName**, **cloudTypeName**\n**resource.type** | **resourceTypeName**, **cloudTypeName**\n\nIf **groupBy** includes multiple values, then **groupedAggregates** will include multiple attributes. \n",
         "operationId": "post-method-for-asset-inventory-v2",
         "requestBody": {
           "content": {

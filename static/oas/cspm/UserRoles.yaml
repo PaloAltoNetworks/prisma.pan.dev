@@ -184,8 +184,10 @@ paths:
       tags:
       - User Roles
     post:
-      description: "Creates a new user role.  \r\n\r\nNote that the request body parameter\
-        \ **accountGroupIds** is required but can be an empty array.\n"
+      description: "Creates a new user role.  \r\n\r\nSee [Prisma Cloud Administrator\
+        \ Permissions](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/manage-prisma-cloud-administrators/prisma-cloud-admin-permissions.html)\
+        \ \nfor the permissions associated with each role.\n\nNote that the request\
+        \ body parameter **accountGroupIds** is required but can be an empty array.\n"
       operationId: add-user-role
       requestBody:
         $ref: '#/components/requestBodies/UserRoleModel'

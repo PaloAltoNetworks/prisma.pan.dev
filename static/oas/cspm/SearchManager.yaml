@@ -93,6 +93,14 @@ components:
           description: Alert ID
           readOnly: true
           type: string
+        async:
+          readOnly: true
+          type: boolean
+        asyncResultUrl:
+          description: Async Result Url
+          example: /search/config/jobs/2df49d4f72e842b582b123bc2b7826b3/download
+          readOnly: true
+          type: string
         cloudType:
           description: Cloud Type
           enum:
@@ -160,6 +168,12 @@ components:
         alertId:
           description: Alert ID
           readOnly: true
+          type: string
+        async:
+          type: boolean
+        asyncResultUrl:
+          description: Async Result Url
+          example: /search/config/jobs/2df49d4f72e842b582b123bc2b7826b3/download
           type: string
         cloudType:
           description: Cloud Type

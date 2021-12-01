@@ -20,7 +20,7 @@ Before you can make a CSPM API request, you need to make sure you have the right
 
 ### Roles
 
-To make an API request, you must have a [Prisma Cloud role](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/manage-prisma-cloud-administrators/prisma-cloud-administrator-roles.html) with sufficient permissions.
+To make an API request, you must have a [Prisma Cloud role](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/manage-prisma-cloud-administrators/prisma-cloud-administrator-roles.html) with sufficient permissions. See [Prisma Cloud Administrator Permissions](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/manage-prisma-cloud-administrators/prisma-cloud-admin-permissions.html) for the permissions associated with each role.
 
 ### Authentication/Authorization
 
