@@ -158,6 +158,10 @@
       "AlertModel": {
         "description": "Model for Alert",
         "properties": {
+          "alertAdditionalInfo": {
+            "additionalProperties": { "type": "string" },
+            "type": "object"
+          },
           "alertAttribution": {
             "$ref": "#/components/schemas/AlertAttributionModel"
           },

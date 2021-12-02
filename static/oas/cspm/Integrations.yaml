@@ -544,43 +544,6 @@ paths:
       summary: List Metadata for All Integrations
       tags:
       - Integrations
-  /integration/type:
-    get:
-      description: Returns a list of all supported integration types.
-      operationId: get-all-integrations-types
-      responses:
-        '200':
-          content:
-            application/json; charset=UTF-8:
-              schema:
-                items:
-                  enum:
-                  - EMAIL
-                  - SLACK
-                  - SPLUNK
-                  - AMAZON_SQS
-                  - WEBHOOK
-                  - MICROSOFT_TEAMS
-                  - AZURE_SERVICE_BUS_QUEUE
-                  - JIRA
-                  - SERVICE_NOW
-                  - PAGER_DUTY
-                  - DEMISTO
-                  - AWS_S3
-                  - SNOWFLAKE
-                  - TENABLE
-                  - QUALYS
-                  - GOOGLE_CSCC
-                  - AWS_SECURITY_HUB
-                  - OKTA_IDP
-                  type: string
-                type: array
-          description: successful operation
-      security:
-      - x-redlock-auth: []
-      summary: List All Integration Types
-      tags:
-      - Integrations
   /integration:
     get:
       description: "Returns all your integrations, optionally filtered by type.  \r\

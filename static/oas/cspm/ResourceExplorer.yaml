@@ -728,6 +728,9 @@ components:
           type: string
         ports:
           type: string
+        priority:
+          format: int32
+          type: integer
         protocol:
           type: string
       type: object
