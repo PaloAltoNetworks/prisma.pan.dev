@@ -484,6 +484,11 @@
             "readOnly": true,
             "type": "array"
           },
+          "cloudServiceName": {
+            "description": "Cloud service name",
+            "readOnly": true,
+            "type": "string"
+          },
           "cloudType": {
             "description": "Cloud type",
             "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
@@ -1526,7 +1531,7 @@
     },
     "/alert": {
       "get": {
-        "description": "Returns a list of alerts that match the constraints specified in the query parameters.  \r\n\r\nIn the response object, field **riskDetail** is deprecated.\n",
+        "description": "Returns a list of alerts that match the constraints specified in the query parameters.  \r\n\r\nIn the response object:\n\n* Property **riskDetail** is deprecated.\n* Property **resource.cloudServiceName** is populated only for alerts whose resources belong to a cloud service.\n",
         "operationId": "get-alerts",
         "parameters": [
           {
@@ -1754,7 +1759,7 @@
         ]
       },
       "post": {
-        "description": "Returns a list of alerts that matches the constraints specified in the body parameters.  \r\n\r\nThe **fields** body parameter allows you to request specific fields from the alert payload. These fields\nare separate from the filters you specify. The following are valid **fields** items.\n\n* alert.id\n* alert.status\n* alert.time\n* cloud.account\n* cloud.accountId\n* cloud.region\n* resource.id\n* resource.name\n* policy.name\n* policy.type\n* policy.severity\n\nThe **filters** body parameter enables you to narrow your request for alerts. See \n[List Alert Filters](/api/cloud/cspm/alerts#operation/get-alert-filter-and-options) \nfor an API request to list all the valid filters.\n\nData in the response object does not include alert rules.\n\nAlso, in the response object, field **riskDetail** is deprecated.\n",
+        "description": "Returns a list of alerts that matches the constraints specified in the body parameters.  \r\n\r\nThe **fields** body parameter allows you to request specific fields from the alert payload. These fields\nare separate from the filters you specify. The following are valid **fields** items.\n\n* alert.id\n* alert.status\n* alert.time\n* cloud.account\n* cloud.accountId\n* cloud.region\n* resource.id\n* resource.name\n* policy.name\n* policy.type\n* policy.severity\n\nThe **filters** body parameter enables you to narrow your request for alerts. See \n[List Alert Filters](/api/cloud/cspm/alerts#operation/get-alert-filter-and-options) \nfor an API request to list all the valid filters.\n\nData in the response object does not include alert rules.\n\nAlso, in the response object:\n\n* Property **riskDetail** is deprecated.\n* Property **resource.cloudServiceName** is populated only for alerts whose resources belong to a cloud service.\n",
         "operationId": "post-alerts",
         "parameters": [
           {
@@ -1803,7 +1808,7 @@
     },
     "/v2/alert": {
       "get": {
-        "description": "Returns a paginated list of alerts from the Prisma Cloud platform.  \r\n\r\nData in the response object does not include alert rules.\n\nAlso, in the response object, field **riskDetail** is deprecated.\n",
+        "description": "Returns a paginated list of alerts from the Prisma Cloud platform.  \r\n\r\nData in the response object does not include alert rules.\n\nAlso, in the response object:\n\n* Property **riskDetail** is deprecated.\n* Property **items[].resource.cloudServiceName** is populated only for alerts whose resources belong to a cloud service.\n",
         "operationId": "get-alerts-v2",
         "parameters": [
           {
@@ -2060,7 +2065,7 @@
         ]
       },
       "post": {
-        "description": "Returns a paginated list of alerts that matches the constraints specified in the body parameters.  \r\n\r\nThe **fields** body parameter allows you to request specific fields from the alert payload. \nThese fields are separate from the filters you specify. The following are valid **fields** items.\n\n* alert.id\n* alert.status\n* alert.time\n* cloud.account\n* cloud.accountId\n* cloud.region\n* resource.id\n* resource.name\n* policy.name\n* policy.type\n* policy.severity\n\nThe **filters** body parameter enables you to narrow your request for alerts. See \n[List Alert Filters](/api/cloud/cspm/alerts#operation/get-alert-filter-and-options) \nfor an API request to list all the valid filters.\n\nData in the response object does not include alert rules.\n\nAlso, in the response object, field **riskDetail** is deprecated.\n",
+        "description": "Returns a paginated list of alerts that matches the constraints specified in the body parameters.  \r\n\r\nThe **fields** body parameter allows you to request specific fields from the alert payload. \nThese fields are separate from the filters you specify. The following are valid **fields** items.\n\n* alert.id\n* alert.status\n* alert.time\n* cloud.account\n* cloud.accountId\n* cloud.region\n* resource.id\n* resource.name\n* policy.name\n* policy.type\n* policy.severity\n\nThe **filters** body parameter enables you to narrow your request for alerts. See \n[List Alert Filters](/api/cloud/cspm/alerts#operation/get-alert-filter-and-options) \nfor an API request to list all the valid filters.\n\nData in the response object does not include alert rules.\n\nAlso, in the response object:\n\n* Property **riskDetail** is deprecated.\n* Property **items[].resource.cloudServiceName** is populated only for alerts whose resources belong to a cloud service.\n",
         "operationId": "post-alerts-v2",
         "parameters": [
           {
@@ -2109,7 +2114,7 @@
     },
     "/alert/policy": {
       "get": {
-        "description": "Returns alert counts grouped by policy. You can use query parameters to narrow the response.  \r\n\r\nData in the response object does not include alert rules.\n\nAlso, in the response object, field **riskDetail** is deprecated.\n",
+        "description": "Returns alert counts grouped by policy. You can use query parameters to narrow the response.  \r\n\r\nIn the response object:\n\n* Property **alertRules** is not populated.         \n* Property **riskDetail** is deprecated.\n* Property **resource.cloudServiceName** is not populated.\n",
         "operationId": "get-alerts-grouped",
         "parameters": [
           {
@@ -2298,7 +2303,7 @@
         ]
       },
       "post": {
-        "description": "Returns alert counts grouped by policy. You can use body parameters to narrow the response.  \r\n\r\nData in response object does not include alert rules.\n\nAlso, in the response object, field **riskDetail** is deprecated.\n",
+        "description": "Returns alert counts grouped by policy. You can use body parameters to narrow the response.  \r\n\r\nIn the response object:\n\n* Property **alertRules** is not populated.       \n* Property **riskDetail** is deprecated.\n* Property **resource.cloudServiceName** is not populated.\n",
         "operationId": "post-alerts-grouped",
         "parameters": [
           {
