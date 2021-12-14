@@ -2548,11 +2548,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/{cloud_type}\"\n\nquerystring = {\"skipStatusChecks\":\"SOME_BOOLEAN_VALUE\"}\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/{cloud_type}\"\n\nquerystring = {\"skipStatusChecks\":\"SOME_BOOLEAN_VALUE\"}\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud/{cloud_type}?skipStatusChecks=SOME_BOOLEAN_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
+            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud/{cloud_type}?skipStatusChecks=SOME_BOOLEAN_VALUE' \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
           }
         ]
       }
@@ -2699,11 +2699,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/{cloud_type}/{id}\"\n\nquerystring = {\"skipStatusChecks\":\"SOME_BOOLEAN_VALUE\"}\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/{cloud_type}/{id}\"\n\nquerystring = {\"skipStatusChecks\":\"SOME_BOOLEAN_VALUE\"}\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url 'https://api.prismacloud.io/cloud/{cloud_type}/{id}?skipStatusChecks=SOME_BOOLEAN_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
+            "source": "curl --request PUT \\\n  --url 'https://api.prismacloud.io/cloud/{cloud_type}/{id}?skipStatusChecks=SOME_BOOLEAN_VALUE' \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
           }
         ]
       },
@@ -3095,11 +3095,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/gcp/parent/{parent_id}/children\"\n\nquerystring = {\"projectNextPageToken\":\"SOME_STRING_VALUE\",\"projectPageSize\":\"SOME_INTEGER_VALUE\",\"folderNextPageToken\":\"SOME_STRING_VALUE\",\"folderPageSize\":\"SOME_INTEGER_VALUE\",\"parentType\":\"SOME_STRING_VALUE\"}\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/gcp/parent/{parent_id}/children\"\n\nquerystring = {\"projectNextPageToken\":\"SOME_STRING_VALUE\",\"projectPageSize\":\"SOME_INTEGER_VALUE\",\"folderNextPageToken\":\"SOME_STRING_VALUE\",\"folderPageSize\":\"SOME_INTEGER_VALUE\",\"parentType\":\"SOME_STRING_VALUE\"}\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud/gcp/parent/{parent_id}/children?projectNextPageToken=SOME_STRING_VALUE&projectPageSize=SOME_INTEGER_VALUE&folderNextPageToken=SOME_STRING_VALUE&folderPageSize=SOME_INTEGER_VALUE&parentType=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
+            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud/gcp/parent/{parent_id}/children?projectNextPageToken=SOME_STRING_VALUE&projectPageSize=SOME_INTEGER_VALUE&folderNextPageToken=SOME_STRING_VALUE&folderPageSize=SOME_INTEGER_VALUE&parentType=SOME_STRING_VALUE' \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
           }
         ]
       }
@@ -3175,11 +3175,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/{cloud_type}/parent/{parent_id}/folders\"\n\nquerystring = {\"nextPageToken\":\"SOME_STRING_VALUE\",\"pageSize\":\"SOME_INTEGER_VALUE\",\"parentType\":\"SOME_STRING_VALUE\"}\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/{cloud_type}/parent/{parent_id}/folders\"\n\nquerystring = {\"nextPageToken\":\"SOME_STRING_VALUE\",\"pageSize\":\"SOME_INTEGER_VALUE\",\"parentType\":\"SOME_STRING_VALUE\"}\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud/{cloud_type}/parent/{parent_id}/folders?nextPageToken=SOME_STRING_VALUE&pageSize=SOME_INTEGER_VALUE&parentType=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
+            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud/{cloud_type}/parent/{parent_id}/folders?nextPageToken=SOME_STRING_VALUE&pageSize=SOME_INTEGER_VALUE&parentType=SOME_STRING_VALUE' \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
           }
         ]
       }
@@ -3255,11 +3255,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/{cloud_type}/parent/{parent_id}/projects\"\n\nquerystring = {\"nextPageToken\":\"SOME_STRING_VALUE\",\"pageSize\":\"SOME_INTEGER_VALUE\",\"parentType\":\"SOME_STRING_VALUE\"}\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/{cloud_type}/parent/{parent_id}/projects\"\n\nquerystring = {\"nextPageToken\":\"SOME_STRING_VALUE\",\"pageSize\":\"SOME_INTEGER_VALUE\",\"parentType\":\"SOME_STRING_VALUE\"}\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud/{cloud_type}/parent/{parent_id}/projects?nextPageToken=SOME_STRING_VALUE&pageSize=SOME_INTEGER_VALUE&parentType=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
+            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud/{cloud_type}/parent/{parent_id}/projects?nextPageToken=SOME_STRING_VALUE&pageSize=SOME_INTEGER_VALUE&parentType=SOME_STRING_VALUE' \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
           }
         ]
       }
@@ -3316,11 +3316,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/{cloud_type}/accounts/{account_id}/ancestors\"\n\npayload = {\"resourceIds\": [\"string\"]}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/{cloud_type}/accounts/{account_id}/ancestors\"\n\npayload = {\"resourceIds\": [\"string\"]}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/cloud/{cloud_type}/accounts/{account_id}/ancestors \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"resourceIds\":[\"string\"]}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/cloud/{cloud_type}/accounts/{account_id}/ancestors \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"resourceIds\":[\"string\"]}'"
           }
         ]
       }
@@ -3429,11 +3429,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud-accounts-manager/v1/cloudAccounts/azureAccounts/{account_id}/ancestors\"\n\npayload = {\"resourceIds\": [\"string\"]}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud-accounts-manager/v1/cloudAccounts/azureAccounts/{account_id}/ancestors\"\n\npayload = {\"resourceIds\": [\"string\"]}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/cloud-accounts-manager/v1/cloudAccounts/azureAccounts/{account_id}/ancestors \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"resourceIds\":[\"string\"]}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/cloud-accounts-manager/v1/cloudAccounts/azureAccounts/{account_id}/ancestors \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"resourceIds\":[\"string\"]}'"
           }
         ]
       }
@@ -3517,11 +3517,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/config/v2\"\n\npayload = {\n    \"accountId\": \"string\",\n    \"cloudType\": \"AWS\",\n    \"masterExternalId\": \"string\",\n    \"masterRoleArn\": \"string\",\n    \"memberExternalId\": \"string\",\n    \"memberRoleName\": \"string\",\n    \"scanOption\": \"Full\",\n    \"snsTopicArn\": \"string\",\n    \"storageUUID\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/config/v2\"\n\npayload = {\n    \"accountId\": \"string\",\n    \"cloudType\": \"AWS\",\n    \"masterExternalId\": \"string\",\n    \"masterRoleArn\": \"string\",\n    \"memberExternalId\": \"string\",\n    \"memberRoleName\": \"string\",\n    \"scanOption\": \"Full\",\n    \"snsTopicArn\": \"string\",\n    \"storageUUID\": \"string\"\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/dlp/api/config/v2 \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountId\":\"string\",\"cloudType\":\"AWS\",\"masterExternalId\":\"string\",\"masterRoleArn\":\"string\",\"memberExternalId\":\"string\",\"memberRoleName\":\"string\",\"scanOption\":\"Full\",\"snsTopicArn\":\"string\",\"storageUUID\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/dlp/api/config/v2 \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountId\":\"string\",\"cloudType\":\"AWS\",\"masterExternalId\":\"string\",\"masterRoleArn\":\"string\",\"memberExternalId\":\"string\",\"memberRoleName\":\"string\",\"scanOption\":\"Full\",\"snsTopicArn\":\"string\",\"storageUUID\":\"string\"}'"
           }
         ]
       },
@@ -3554,11 +3554,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/config/v2\"\n\npayload = {\n    \"accountId\": \"string\",\n    \"cloudType\": \"AWS\",\n    \"masterExternalId\": \"string\",\n    \"masterRoleArn\": \"string\",\n    \"memberExternalId\": \"string\",\n    \"memberRoleName\": \"string\",\n    \"scanOption\": \"Full\",\n    \"snsTopicArn\": \"string\",\n    \"storageUUID\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/dlp/api/config/v2\"\n\npayload = {\n    \"accountId\": \"string\",\n    \"cloudType\": \"AWS\",\n    \"masterExternalId\": \"string\",\n    \"masterRoleArn\": \"string\",\n    \"memberExternalId\": \"string\",\n    \"memberRoleName\": \"string\",\n    \"scanOption\": \"Full\",\n    \"snsTopicArn\": \"string\",\n    \"storageUUID\": \"string\"\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/dlp/api/config/v2 \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountId\":\"string\",\"cloudType\":\"AWS\",\"masterExternalId\":\"string\",\"masterRoleArn\":\"string\",\"memberExternalId\":\"string\",\"memberRoleName\":\"string\",\"scanOption\":\"Full\",\"snsTopicArn\":\"string\",\"storageUUID\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/dlp/api/config/v2 \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountId\":\"string\",\"cloudType\":\"AWS\",\"masterExternalId\":\"string\",\"masterRoleArn\":\"string\",\"memberExternalId\":\"string\",\"memberRoleName\":\"string\",\"scanOption\":\"Full\",\"snsTopicArn\":\"string\",\"storageUUID\":\"string\"}'"
           }
         ]
       }
@@ -3675,11 +3675,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud-accounts-manager/v1/cloudAccounts/awsAccounts/{parent_id}/children\"\n\nquerystring = {\"accountNextPageToken\":\"SOME_STRING_VALUE\",\"accountFetchCount\":\"SOME_INTEGER_VALUE\",\"ouNextPageToken\":\"SOME_STRING_VALUE\",\"ouFetchCount\":\"SOME_INTEGER_VALUE\"}\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud-accounts-manager/v1/cloudAccounts/awsAccounts/{parent_id}/children\"\n\nquerystring = {\"accountNextPageToken\":\"SOME_STRING_VALUE\",\"accountFetchCount\":\"SOME_INTEGER_VALUE\",\"ouNextPageToken\":\"SOME_STRING_VALUE\",\"ouFetchCount\":\"SOME_INTEGER_VALUE\"}\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud-accounts-manager/v1/cloudAccounts/awsAccounts/{parent_id}/children?accountNextPageToken=SOME_STRING_VALUE&accountFetchCount=SOME_INTEGER_VALUE&ouNextPageToken=SOME_STRING_VALUE&ouFetchCount=SOME_INTEGER_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
+            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud-accounts-manager/v1/cloudAccounts/awsAccounts/{parent_id}/children?accountNextPageToken=SOME_STRING_VALUE&accountFetchCount=SOME_INTEGER_VALUE&ouNextPageToken=SOME_STRING_VALUE&ouFetchCount=SOME_INTEGER_VALUE' \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
           }
         ]
       }
@@ -3731,11 +3731,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud-accounts-manager/v1/cloudAccounts/awsAccounts/{account_id}/ancestors\"\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud-accounts-manager/v1/cloudAccounts/awsAccounts/{account_id}/ancestors\"\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/cloud-accounts-manager/v1/cloudAccounts/awsAccounts/{account_id}/ancestors \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/cloud-accounts-manager/v1/cloudAccounts/awsAccounts/{account_id}/ancestors \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
           }
         ]
       }

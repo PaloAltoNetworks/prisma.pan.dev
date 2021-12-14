@@ -320,11 +320,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance\"\n\npayload = {\n    \"description\": \"string\",\n    \"name\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance\"\n\npayload = {\n    \"description\": \"string\",\n    \"name\": \"string\"\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\"}'"
           }
         ]
       }
@@ -403,11 +403,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/{complianceId}\"\n\npayload = {\n    \"description\": \"string\",\n    \"name\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/{complianceId}\"\n\npayload = {\n    \"description\": \"string\",\n    \"name\": \"string\"\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/compliance/{complianceId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/compliance/{complianceId} \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\"}'"
           }
         ]
       },
@@ -478,11 +478,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/clone/{complianceId}\"\n\npayload = {\n    \"description\": \"string\",\n    \"name\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/clone/{complianceId}\"\n\npayload = {\n    \"description\": \"string\",\n    \"name\": \"string\"\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/clone/{complianceId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/clone/{complianceId} \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\"}'"
           }
         ]
       }
@@ -565,11 +565,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/{complianceId}/requirement\"\n\npayload = {\n    \"description\": \"string\",\n    \"name\": \"string\",\n    \"requirementId\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/{complianceId}/requirement\"\n\npayload = {\n    \"description\": \"string\",\n    \"name\": \"string\",\n    \"requirementId\": \"string\"\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/{complianceId}/requirement \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\",\"requirementId\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/{complianceId}/requirement \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\",\"requirementId\":\"string\"}'"
           }
         ]
       }
@@ -649,11 +649,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/requirement/{requirementId}\"\n\npayload = {\n    \"description\": \"string\",\n    \"name\": \"string\",\n    \"requirementId\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/requirement/{requirementId}\"\n\npayload = {\n    \"description\": \"string\",\n    \"name\": \"string\",\n    \"requirementId\": \"string\"\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/compliance/requirement/{requirementId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\",\"requirementId\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/compliance/requirement/{requirementId} \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"name\":\"string\",\"requirementId\":\"string\"}'"
           }
         ]
       },
@@ -765,11 +765,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/{requirementId}/section\"\n\npayload = {\n    \"description\": \"string\",\n    \"sectionId\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/{requirementId}/section\"\n\npayload = {\n    \"description\": \"string\",\n    \"sectionId\": \"string\"\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/{requirementId}/section \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"sectionId\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/compliance/{requirementId}/section \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"sectionId\":\"string\"}'"
           }
         ]
       }
@@ -807,11 +807,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/requirement/section/{sectionId}\"\n\npayload = {\n    \"description\": \"string\",\n    \"sectionId\": \"string\"\n}\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/compliance/requirement/section/{sectionId}\"\n\npayload = {\n    \"description\": \"string\",\n    \"sectionId\": \"string\"\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/compliance/requirement/section/{sectionId} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"sectionId\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/compliance/requirement/section/{sectionId} \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"description\":\"string\",\"sectionId\":\"string\"}'"
           }
         ]
       },
