@@ -7,6 +7,8 @@ info:
    * Gonvernance&mdash;Monitor your cloud environment for overly-used permissions
    * Response&mdash;Automatically remediate permissions
 
+   The IAM security endpoints enable you to investigate IAM data programmatically.
+
    See [Primsa Cloud IAM Security](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/prisma-cloud-iam-security/what-is-prisma-cloud-iam-security.html)
    for more information.
 
