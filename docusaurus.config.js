@@ -199,11 +199,6 @@ module.exports = {
         to: "/api/cloud/cwpp/21-04/",
         version: "21-04",
       },
-      {
-        label: "20.12",
-        to: "/api/cloud/cwpp/20-12/",
-        version: "20-12",
-      },
     ],
   },
   onBrokenLinks: "warn",

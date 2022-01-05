@@ -7,39 +7,40 @@ slug: /cloud/cwpp
 import Link from "@docusaurus/Link";
 
 ### About
-The Prisma Cloud Workload Protection APIs enable both automation and integration.
-Use the REST APIs to set up, configure, reconfigure, and deploy Prisma Cloud Compute components that enable you to secure your host, container, and serverless computing environments against vulnerabilities, malware, and compliance violations.
-You can also use it to extract data and integrate it with monitoring, alerting, and other systems in your environment.
 
-The Compute APIs are the same for both the Prisma Cloud Enterprise Edition (SaaS) and the  Prisma Cloud Compute Edition (self-hosted). The method of accessing the API is slightly different, see [getting started](https://prisma.pan.dev/docs/cloud/cwpp/cwpp-gs) for information on how to access the APIs. 
-For important differences in the API across major releases, see the [porting guide](https://prisma.pan.dev/docs/cloud/cwpp/porting-guides/porting-guide-21-08).
+The Prisma Cloud Workload Protection REST API lets you automate workflows and integrate with external systems.
+Use the API to:
+
+* Set up, configure, reconfigure, and deploy Prisma Cloud Compute components to secure your hosts, containers, and serverless functions against vulnerabilities, malware, and compliance violations.
+* Extract the security data that Prisma Cloud Compute has collected about your environment and send it to your monitoring, alerting, and reporting systems.
+
+The Compute APIs are the same for both the Prisma Cloud Enterprise Edition (SaaS) and the Prisma Cloud Compute Edition (self-hosted).
+The method of accessing the API is slightly different, see [getting started](https://prisma.pan.dev/docs/cloud/cwpp/cwpp-gs) for information on how to access the APIs. 
 
 ### How to find your version 
 
-In order to find the current Prisma Cloud Workload Protection version you're runnning, follow the below steps:
-1. Go here
-2. Go there
-3. Slide to the right
-4. Slide to the left
-5. 1 hop this time
-6. cha cha real smooth
+To find the the version of Prisma Cloud Workload Protection that you're running:
+
+1. Log into your Prisma Cloud Compute console.
+
+1. Click the bell icon in the top right of the page.
+
+   The drop-down shows the currently running version:
+
+   ![Console screenshot](img/compute-version.png)
 
 
 ### Choose your Version:
+
 <div className="row">
   <Link to="/api/cloud/cwpp/">
-<button className="button button--secondary button--outline button--lg" href="/api/cloud/cwpp/">
+    <button className="button button--secondary button--outline button--lg" href="/api/cloud/cwpp/">
         21.08
-</button>
-</Link>
-<Link to="/api/cloud/cwpp/21-04">
-<button className="button button--secondary button--outline button--lg" href="/api/cloud/cwpp/21-04">
+    </button>
+  </Link>
+  <Link to="/api/cloud/cwpp/21-04">
+    <button className="button button--secondary button--outline button--lg" href="/api/cloud/cwpp/21-04">
         21.04
-</button>
-</Link>
-<Link to="/api/cloud/cwpp/20-12">
-<button className="button button--secondary button--outline button--lg" href="/api/cloud/cwpp/20-12">
-        20.12
-</button>
-</Link>
+    </button>
+  </Link>
 </div>
