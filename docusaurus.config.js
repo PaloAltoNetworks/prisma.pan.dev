@@ -18,9 +18,13 @@ module.exports = {
   projectName: "prisma.pan.dev", // Usually your repo name.
   themeConfig: {
     algolia: {
-      apiKey: "caddcc77123a6dff437a768f47b785c3",
-      indexName: "prisma_pan",
-      searchParameters: {}, // Optional, if provided by Algolia
+      apiKey: "6869800b232f5f8362e83901d79110ee",
+      appId: "XC7919KOX3",
+      indexName: "pan",
+      searchParameters: {
+        typoTolerance: false,
+        facetFilters: ["tags:prisma"],
+      }, // Optional, if provided by Algolia
     },
     navbar: {
       title: "",
