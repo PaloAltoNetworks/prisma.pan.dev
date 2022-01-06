@@ -408,10 +408,14 @@ h4 {
 /* ------- Right Panel Overrides ------- */
 
 .redocusaurus code {
-  color: var(--ifm-color-emphasis-100) !important;
+  color: var(--ifm-color-emphasis-100);
   padding: 0px;
   /* Fix weird overlay on curly braces */
   background-color: transparent;
+}
+
+.redocusaurus p code {
+  color: var(--ifm-color-emphasis-100);
 }
 
 html[data-theme="dark"] .redocusaurus code {
