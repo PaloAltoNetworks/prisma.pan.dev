@@ -157,6 +157,17 @@ module.exports = {
         gtm: "GTM-P2DTTFC", //GTM-XXXXXX
       },
     ],
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          {
+            to: "/api/cloud/cspm", // string
+            from: "/api/cloud/cspm/cspm-api",
+          },
+        ],
+      },
+    ],
   ],
   themes: [require.resolve("./docusaurus-plugin-webpack/src/index.cjs")],
   customFields: {
@@ -201,8 +212,8 @@ module.exports = {
       },
     ],
   },
-  onBrokenLinks: "warn",
-  onDuplicateRoutes: "warn",
+  onBrokenLinks: "error",
+  onDuplicateRoutes: "error",
   stylesheets: [
     {
       href: "https://use.fontawesome.com/releases/v5.11.0/css/all.css",
