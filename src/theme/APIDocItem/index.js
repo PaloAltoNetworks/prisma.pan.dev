@@ -11,6 +11,7 @@ import useWindowSize from "@theme/hooks/useWindowSize";
 import DocPaginator from "@theme/DocPaginator";
 import DocVersionBanner from "@theme/DocVersionBanner";
 import Seo from "@theme/Seo";
+import Link from "@docusaurus/Link";
 import LastUpdated from "@theme/LastUpdated";
 import TOC from "@theme/TOC";
 import TOCCollapsible from "@theme/TOCCollapsible";
@@ -39,6 +40,10 @@ function DocItem(props) {
   const { pluginId } = useActivePlugin({
     failfast: true,
   });
+
+  const issueTitle = `Issue with "${title}"`;
+  const issueUrl = `https://github.com/PaloAltoNetworks/prisma.pan.dev/issues/new?labels=documentation&template=developer-documentation-issue.md&title=${issueTitle}`;
+
   const versions = useVersions(pluginId); // If site is not versioned or only one version is included
   // we don't show the version badge
   // See https://github.com/facebook/docusaurus/issues/3362
@@ -84,7 +89,15 @@ function DocItem(props) {
                 <DocContent />
               </div>
             </article>
-
+            <div className="col text--right">
+              <Link
+                className="button button--outline button--primary button--md"
+                href={issueUrl}
+                target="_blank"
+              >
+                Report an Issue
+              </Link>
+            </div>
             <DocPaginator metadata={metadata} />
           </div>
         </div>
