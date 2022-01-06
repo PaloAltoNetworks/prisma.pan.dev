@@ -4,6 +4,12 @@ const fs = require("fs");
 // Use the following to frontload docs
 var docs = [
   {
+    type: "link",
+    label: "21-04",
+    href: "/api/cloud/cwpp/21-04/",
+    customProps: "versioned",
+  },
+  {
     type: "doc",
     id: "cloud/cwpp/21-04/cwpp-home",
   },

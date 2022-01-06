@@ -105,4 +105,4 @@ The Prisma Cloud REST API method for url is /login which is appended to the end 
 
 ## What's next?
 
-Now that you know how to generate a JWT token, explore the various REST API methods in the [Prisma Cloud API Reference](https://prisma.pan.dev/api/cloud/cspm/cspm-api). 
+Now that you know how to generate a JWT token, explore the various REST API methods in the [Prisma Cloud API Reference](https://prisma.pan.dev/api/cloud/cspm). 

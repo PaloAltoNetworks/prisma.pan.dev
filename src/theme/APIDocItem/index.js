@@ -11,6 +11,7 @@ import useWindowSize from "@theme/hooks/useWindowSize";
 import DocPaginator from "@theme/DocPaginator";
 import DocVersionBanner from "@theme/DocVersionBanner";
 import Seo from "@theme/Seo";
+import Link from "@docusaurus/Link";
 import LastUpdated from "@theme/LastUpdated";
 import TOC from "@theme/TOC";
 import TOCCollapsible from "@theme/TOCCollapsible";
@@ -26,6 +27,7 @@ function DocItem(props) {
     keywords,
     hide_title: hideTitle,
     hide_table_of_contents: hideTableOfContents,
+    versioned,
   } = frontMatter;
   const {
     description,
@@ -38,6 +40,10 @@ function DocItem(props) {
   const { pluginId } = useActivePlugin({
     failfast: true,
   });
+
+  const issueTitle = `Issue with "${title}"`;
+  const issueUrl = `https://github.com/PaloAltoNetworks/prisma.pan.dev/issues/new?labels=documentation&template=developer-documentation-issue.md&title=${issueTitle}`;
+
   const versions = useVersions(pluginId); // If site is not versioned or only one version is included
   // we don't show the version badge
   // See https://github.com/facebook/docusaurus/issues/3362
@@ -73,19 +79,6 @@ function DocItem(props) {
           <DocVersionBanner versionMetadata={versionMetadata} />
           <div className={styles.docItemContainer}>
             <article>
-              {showVersionBadge && (
-                <span className="badge badge--secondary">
-                  Version: {versionMetadata.label}
-                </span>
-              )}
-
-              {canRenderTOC && (
-                <TOCCollapsible
-                  toc={DocContent.toc}
-                  className={styles.tocMobile}
-                />
-              )}
-
               <div className="markdown">
                 {/*
                 Title can be declared inside md content or declared through frontmatter and added manually
@@ -93,11 +86,18 @@ function DocItem(props) {
                 See https://github.com/facebook/docusaurus/pull/4882#issuecomment-853021120
                 */}
                 {shouldAddTitle && <MainHeading>{title}</MainHeading>}
-
                 <DocContent />
               </div>
             </article>
-
+            <div className="col text--right">
+              <Link
+                className="button button--outline button--primary button--md"
+                href={issueUrl}
+                target="_blank"
+              >
+                Report an Issue
+              </Link>
+            </div>
             <DocPaginator metadata={metadata} />
           </div>
         </div>

@@ -16,6 +16,9 @@ import Link from "@docusaurus/Link";
 import isInternalUrl from "@docusaurus/isInternalUrl";
 import IconExternalLink from "@theme/IconExternalLink";
 import styles from "./styles.module.css";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import useWindowSize from "@theme/hooks/useWindowSize";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
 const isActiveSidebarItem = (item, activePath) => {
   if (item.type === "link") {
@@ -55,15 +58,70 @@ export default function DocSidebarItem({ item, ...props }) {
       if (item.items.length === 0) {
         return null;
       }
-
       return <DocSidebarItemCategory item={item} {...props} />;
 
     case "link":
+      if (item.customProps === "versioned") {
+        return <DocSidebarVersionDropdown item={item} {...props} />;
+      }
     default:
       return <DocSidebarItemLink item={item} {...props} />;
   }
-} // If we navigate to a category and it becomes active, it should automatically expand itself
+}
 
+function DocSidebarVersionDropdown({
+  item,
+  onItemClick,
+  activePath,
+  ...props
+}) {
+  const { siteConfig } = useDocusaurusContext();
+
+  // Mobile sidebar not visible on hydration: can avoid SSR rendering
+
+  return (
+    <div
+      className="menu__list-item dropdown dropdown--hoverable button button--block button--secondary"
+      style={{
+        marginTop: "-.5rem",
+        padding: "-.5rem 0 0 0",
+        height: "40px",
+        position: "sticky",
+        top: "-.5rem",
+        zIndex: "200",
+        marginBottom: "0",
+        backgroundColor: "var(--ifm-font-color-base)",
+      }}
+    >
+      <a
+        className="menu__link"
+        style={{
+          color: "var(--ifm-version-background)",
+        }}
+      >
+        Select API Version: &ensp;
+        <b>{item.label} ▼</b>
+      </a>
+      <ul className="dropdown__menu">
+        {siteConfig.customFields.api_versions.map((Ver, i) => (
+          <li key={i}>
+            <Link
+              className={
+                "dropdown__link " +
+                (item.label === Ver.version ? "dropdown__link--active" : "")
+              }
+              to={Ver.to}
+            >
+              {Ver.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// If we navigate to a category and it becomes active, it should automatically expand itself
 function useAutoExpandActiveCategory({ isActive, collapsed, setCollapsed }) {
   const wasActive = usePrevious(isActive);
   useEffect(() => {
