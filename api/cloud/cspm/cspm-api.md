@@ -3,6 +3,7 @@ id: cspm-api
 title: CSPM API
 sidebar_label: CSPM API
 hide_table_of_contents: false
+slug: /cloud/cspm
 ---
 
 The Prisma Cloud REST API enables you to engage with Prisma Cloud services programmatically. This API reference includes all public Prisma Cloud API endpoints for:
