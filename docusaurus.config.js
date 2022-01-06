@@ -212,8 +212,8 @@ module.exports = {
       },
     ],
   },
-  onBrokenLinks: "warn",
-  onDuplicateRoutes: "warn",
+  onBrokenLinks: "error",
+  onDuplicateRoutes: "error",
   stylesheets: [
     {
       href: "https://use.fontawesome.com/releases/v5.11.0/css/all.css",
