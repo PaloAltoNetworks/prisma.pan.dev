@@ -16770,7 +16770,7 @@
     "title": "Serverless Overview",
     "version": "21.08.525",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/serverless/serverless.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/serverless/serverless.md"
     }
   },
   "openapi": "3.0.3",
@@ -16783,7 +16783,7 @@
     "/api/v21.08/serverless": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/serverless/get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/serverless/get.md"
         },
         "parameters": [
           {
@@ -17006,7 +17006,7 @@
     "/api/v21.08/serverless/download": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/serverless/download_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/serverless/download_get.md"
         },
         "parameters": [
           {
@@ -17262,7 +17262,7 @@
     "/api/v21.08/serverless/names": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/serverless/names_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/serverless/names_get.md"
         },
         "parameters": [
           {
@@ -17485,7 +17485,7 @@
     "/api/v21.08/serverless/progress": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/serverless/progress_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/serverless/progress_get.md"
         },
         "responses": {
           "200": {
@@ -17518,7 +17518,7 @@
     "/api/v21.08/serverless/scan": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/serverless/scan_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/serverless/scan_post.md"
         },
         "responses": {
           "200": {
@@ -17544,7 +17544,7 @@
     "/api/v21.08/serverless/stop": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/serverless/stop_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/serverless/stop_post.md"
         },
         "responses": {
           "200": {

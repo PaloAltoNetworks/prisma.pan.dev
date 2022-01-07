@@ -16770,7 +16770,7 @@
     "title": "Hosts Overview",
     "version": "21.08.525",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/hosts/hosts.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/hosts/hosts.md"
     }
   },
   "openapi": "3.0.3",
@@ -16783,7 +16783,7 @@
     "/api/v21.08/hosts": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/hosts/get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/hosts/get.md"
         },
         "parameters": [
           {
@@ -16970,7 +16970,7 @@
     "/api/v21.08/hosts/download": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/hosts/download_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/hosts/download_get.md"
         },
         "parameters": [
           {
@@ -17190,7 +17190,7 @@
     "/api/v21.08/hosts/info": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/hosts/info_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/hosts/info_get.md"
         },
         "parameters": [
           {
@@ -17377,7 +17377,7 @@
     "/api/v21.08/hosts/scan": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/hosts/scan_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/hosts/scan_post.md"
         },
         "responses": {
           "200": {

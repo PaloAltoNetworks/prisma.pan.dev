@@ -16770,7 +16770,7 @@
     "title": "Settings Overview",
     "version": "21.08.525",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/settings.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/settings/settings.md"
     }
   },
   "openapi": "3.0.3",
@@ -16783,7 +16783,7 @@
     "/api/v1/settings/custom-labels": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/custom-labels_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/settings/custom-labels_post.md"
         },
         "requestBody": {
           "content": {
@@ -16817,7 +16817,7 @@
     "/api/v1/settings/defender": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/defender_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/settings/defender_post.md"
         },
         "requestBody": {
           "content": {
@@ -16851,7 +16851,7 @@
     "/api/v1/settings/license": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/license_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/settings/license_post.md"
         },
         "requestBody": {
           "content": {
@@ -16885,7 +16885,7 @@
     "/api/v21.08/settings/coderepos": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/coderepos_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/settings/coderepos_get.md"
         },
         "responses": {
           "200": {
@@ -16916,7 +16916,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/coderepos_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/settings/coderepos_put.md"
         },
         "requestBody": {
           "content": {
@@ -16951,7 +16951,7 @@
     "/api/v21.08/settings/custom-labels": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/custom-labels_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/settings/custom-labels_get.md"
         },
         "responses": {
           "200": {
@@ -16984,7 +16984,7 @@
     "/api/v21.08/settings/defender": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/defender_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/settings/defender_get.md"
         },
         "responses": {
           "200": {
@@ -17017,7 +17017,7 @@
     "/api/v21.08/settings/registry": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/registry_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/settings/registry_get.md"
         },
         "responses": {
           "200": {
@@ -17048,7 +17048,7 @@
       },
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/registry_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/settings/registry_post.md"
         },
         "requestBody": {
           "content": {
@@ -17081,7 +17081,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/registry_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/settings/registry_put.md"
         },
         "requestBody": {
           "content": {
@@ -17116,7 +17116,7 @@
     "/api/v21.08/settings/serverless-scan": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/serverless-scan_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/settings/serverless-scan_get.md"
         },
         "responses": {
           "200": {
@@ -17147,7 +17147,7 @@
       },
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/serverless-scan_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/settings/serverless-scan_post.md"
         },
         "requestBody": {
           "content": {

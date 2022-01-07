@@ -16770,7 +16770,7 @@
     "title": "Registry Overview",
     "version": "21.08.525",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/registry.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/registry/registry.md"
     }
   },
   "openapi": "3.0.3",
@@ -16783,7 +16783,7 @@
     "/api/v1/registry/webhook/webhook": {
       "delete": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/webhook_webhook_delete.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/registry/webhook_webhook_delete.md"
         },
         "responses": {
           "200": {
@@ -16806,7 +16806,7 @@
       },
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/webhook_webhook_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/registry/webhook_webhook_post.md"
         },
         "requestBody": {
           "content": {
@@ -16840,7 +16840,7 @@
     "/api/v21.08/registry": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/registry/get.md"
         },
         "parameters": [
           {
@@ -17043,7 +17043,7 @@
     "/api/v21.08/registry/download": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/download_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/registry/download_get.md"
         },
         "parameters": [
           {
@@ -17239,7 +17239,7 @@
     "/api/v21.08/registry/names": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/names_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/registry/names_get.md"
         },
         "parameters": [
           {
@@ -17442,7 +17442,7 @@
     "/api/v21.08/registry/scan": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/scan_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/registry/scan_post.md"
         },
         "requestBody": {
           "content": {
@@ -17477,7 +17477,7 @@
     "/api/v21.08/registry/stop": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/stop_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/registry/stop_post.md"
         },
         "responses": {
           "200": {

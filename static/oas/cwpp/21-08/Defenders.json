@@ -16770,7 +16770,7 @@
     "title": "Defenders Overview",
     "version": "21.08.525",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/defenders.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/defenders/defenders.md"
     }
   },
   "openapi": "3.0.3",
@@ -16783,7 +16783,7 @@
     "/api/v21.08/defenders": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/defenders/get.md"
         },
         "parameters": [
           {
@@ -17014,7 +17014,7 @@
     "/api/v21.08/defenders/download": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/download_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/defenders/download_get.md"
         },
         "parameters": [
           {
@@ -17198,7 +17198,7 @@
     "/api/v21.08/defenders/fargate.json": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/fargate_json_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/defenders/fargate_json_post.md"
         },
         "parameters": [
           {
@@ -17317,7 +17317,7 @@
     "/api/v21.08/defenders/image-name": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/image-name_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/defenders/image-name_get.md"
         },
         "responses": {
           "200": {
@@ -17350,7 +17350,7 @@
     "/api/v21.08/defenders/install-bundle": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/install-bundle_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/defenders/install-bundle_get.md"
         },
         "parameters": [
           {
@@ -17427,7 +17427,7 @@
     "/api/v21.08/defenders/names": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/names_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/defenders/names_get.md"
         },
         "parameters": [
           {
@@ -17651,7 +17651,7 @@
     "/api/v21.08/defenders/summary": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/summary_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/defenders/summary_get.md"
         },
         "responses": {
           "200": {
@@ -17684,7 +17684,7 @@
     "/api/v21.08/defenders/upgrade": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/upgrade_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/defenders/upgrade_post.md"
         },
         "responses": {
           "200": {
@@ -17710,7 +17710,7 @@
     "/api/v21.08/defenders/{id}/upgrade": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/id_upgrade_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/defenders/id_upgrade_post.md"
         },
         "parameters": [
           {

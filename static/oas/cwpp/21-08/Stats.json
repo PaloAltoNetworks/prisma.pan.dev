@@ -16770,7 +16770,7 @@
     "title": "Stats Overview",
     "version": "21.08.525",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/stats.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/stats/stats.md"
     }
   },
   "openapi": "3.0.3",
@@ -16814,7 +16814,7 @@
     "/api/v21.08/stats/compliance": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/compliance_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/stats/compliance_get.md"
         },
         "parameters": [
           {
@@ -17079,7 +17079,7 @@
     "/api/v21.08/stats/compliance/refresh": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/compliance_refresh_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/stats/compliance_refresh_post.md"
         },
         "parameters": [
           {
@@ -17216,7 +17216,7 @@
     "/api/v21.08/stats/daily": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/daily_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/stats/daily_get.md"
         },
         "responses": {
           "200": {
@@ -17249,7 +17249,7 @@
     "/api/v21.08/stats/dashboard": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/dashboard_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/stats/dashboard_get.md"
         },
         "responses": {
           "200": {
@@ -17282,7 +17282,7 @@
     "/api/v21.08/stats/events": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/events_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/stats/events_get.md"
         },
         "parameters": [
           {
@@ -17402,7 +17402,7 @@
     "/api/v21.08/stats/vulnerabilities": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/vulnerabilities_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/stats/vulnerabilities_get.md"
         },
         "parameters": [
           {
@@ -17521,7 +17521,7 @@
     "/api/v21.08/stats/vulnerabilities/impacted-resources": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/vulnerabilities_impacted_resources_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/stats/vulnerabilities_impacted_resources_get.md"
         },
         "parameters": [
           {
@@ -17648,7 +17648,7 @@
     "/api/v21.08/stats/vulnerabilities/refresh": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/vulnerabilities_refresh_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/release-compute-21-08-iverson/api/descriptions/stats/vulnerabilities_refresh_post.md"
         },
         "parameters": [
           {
