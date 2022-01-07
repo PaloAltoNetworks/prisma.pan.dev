@@ -205,8 +205,13 @@ module.exports = {
     ],
     api_versions: [
       {
-        label: "21.08 (Latest)",
+        label: "22.01 (Latest)",
         to: "/api/cloud/cwpp/",
+        version: "22-01",
+      },
+      {
+        label: "21.08",
+        to: "/api/cloud/cwpp/21-08/",
         version: "21-08",
       },
       {

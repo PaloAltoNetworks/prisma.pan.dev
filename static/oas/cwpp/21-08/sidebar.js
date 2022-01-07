@@ -5,36 +5,35 @@ const fs = require("fs");
 var docs = [
   {
     type: "link",
-    label: "22-01",
-    href: "/api/cloud/cwpp/",
+    label: "21-08",
+    href: "/api/cloud/cwpp/21-08/",
     customProps: "versioned",
   },
   {
     type: "doc",
-    id: "cloud/cwpp/cwpp-home",
+    id: "cloud/cwpp/21-08/cwpp-home",
   },
   {
     type: "doc",
-    id: "cloud/cwpp/curl-examples",
+    id: "cloud/cwpp/21-08/curl-examples",
   },
   {
     type: "doc",
-    id: "cloud/cwpp/how-to-eval-console",
+    id: "cloud/cwpp/21-08/how-to-eval-console",
   },
   {
     type: "doc",
-    id: "cloud/cwpp/api-limits",
+    id: "cloud/cwpp/21-08/api-limits",
   },
 ];
 
 // Change these variables to match your doc path
-const relativePath = "cloud/cwpp";
-const absolutePath = "/api/cloud/cwpp";
+const relativePath = "cloud/cwpp/21-08";
+const absolutePath = "/api/cloud/cwpp/21-08";
 function genEndpoints() {
   const endpoints = [];
-  const css_overrides = [];
   // Absolute path from project root
-  specs = globby.sync(["./static/oas/cwpp/*.json"], {
+  specs = globby.sync(["./static/oas/cwpp/21-08/*.json"], {
     absolute: false,
     objectMode: true,
     deep: 1,
