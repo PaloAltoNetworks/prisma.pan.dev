@@ -1,5 +1,4 @@
 components:
-  requestBodies: {}
   securitySchemes:
     x-redlock-auth:
       description: The x-redlock-auth value is a JSON Web Token (JWT).
@@ -7,8 +6,128 @@ components:
       name: x-redlock-auth
       type: apiKey
   schemas:
-    FieldConfigOption:
-      description: Model for Field Config Option
+    EventsApiError:
+      properties:
+        debugMessage:
+          type: string
+        message:
+          type: string
+        status:
+          enum:
+          - 100 CONTINUE
+          - 101 SWITCHING_PROTOCOLS
+          - 102 PROCESSING
+          - 103 CHECKPOINT
+          - 200 OK
+          - 201 CREATED
+          - 202 ACCEPTED
+          - 203 NON_AUTHORITATIVE_INFORMATION
+          - 204 NO_CONTENT
+          - 205 RESET_CONTENT
+          - 206 PARTIAL_CONTENT
+          - 207 MULTI_STATUS
+          - 208 ALREADY_REPORTED
+          - 226 IM_USED
+          - 300 MULTIPLE_CHOICES
+          - 301 MOVED_PERMANENTLY
+          - 302 FOUND
+          - 302 MOVED_TEMPORARILY
+          - 303 SEE_OTHER
+          - 304 NOT_MODIFIED
+          - 305 USE_PROXY
+          - 307 TEMPORARY_REDIRECT
+          - 308 PERMANENT_REDIRECT
+          - 400 BAD_REQUEST
+          - 401 UNAUTHORIZED
+          - 402 PAYMENT_REQUIRED
+          - 403 FORBIDDEN
+          - 404 NOT_FOUND
+          - 405 METHOD_NOT_ALLOWED
+          - 406 NOT_ACCEPTABLE
+          - 407 PROXY_AUTHENTICATION_REQUIRED
+          - 408 REQUEST_TIMEOUT
+          - 409 CONFLICT
+          - 410 GONE
+          - 411 LENGTH_REQUIRED
+          - 412 PRECONDITION_FAILED
+          - 413 PAYLOAD_TOO_LARGE
+          - 413 REQUEST_ENTITY_TOO_LARGE
+          - 414 URI_TOO_LONG
+          - 414 REQUEST_URI_TOO_LONG
+          - 415 UNSUPPORTED_MEDIA_TYPE
+          - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+          - 417 EXPECTATION_FAILED
+          - 418 I_AM_A_TEAPOT
+          - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+          - 420 METHOD_FAILURE
+          - 421 DESTINATION_LOCKED
+          - 422 UNPROCESSABLE_ENTITY
+          - 423 LOCKED
+          - 424 FAILED_DEPENDENCY
+          - 425 TOO_EARLY
+          - 426 UPGRADE_REQUIRED
+          - 428 PRECONDITION_REQUIRED
+          - 429 TOO_MANY_REQUESTS
+          - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+          - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+          - 500 INTERNAL_SERVER_ERROR
+          - 501 NOT_IMPLEMENTED
+          - 502 BAD_GATEWAY
+          - 503 SERVICE_UNAVAILABLE
+          - 504 GATEWAY_TIMEOUT
+          - 505 HTTP_VERSION_NOT_SUPPORTED
+          - 506 VARIANT_ALSO_NEGOTIATES
+          - 507 INSUFFICIENT_STORAGE
+          - 508 LOOP_DETECTED
+          - 509 BANDWIDTH_LIMIT_EXCEEDED
+          - 510 NOT_EXTENDED
+          - 511 NETWORK_AUTHENTICATION_REQUIRED
+          type: string
+        subErrors:
+          items:
+            $ref: '#/components/schemas/EventsApiSubError'
+          type: array
+        timestamp:
+          format: int64
+          type: integer
+      type: object
+    EventsApiSubError:
+      type: object
+    EventsCreateTemplateRequest:
+      properties:
+        integrationId:
+          description: Integration Id
+          example: 123e4567-e89b-42d3-a456-55664244
+          type: string
+        integrationType:
+          description: Integration type
+          enum:
+          - email
+          - jira
+          - service_now
+          example: email
+          type: string
+        name:
+          description: Template name
+          example: sample-template
+          maxLength: 100
+          minLength: 5
+          pattern: ^[A-Za-z0-9](.){0,99}$
+          type: string
+        templateConfig:
+          additionalProperties:
+            description: Template configuration
+            items:
+              $ref: '#/components/schemas/EventsNotificationFieldsConfig'
+            type: array
+          description: Template config
+          type: object
+      required:
+      - integrationType
+      - name
+      - templateConfig
+      type: object
+    EventsFieldConfigOption:
       properties:
         id:
           description: Field option ID
@@ -20,16 +139,11 @@ components:
           description: Field option name
           type: string
       type: object
-    IntegrationStatusDetails:
-      description: Model for Integration Status Details
+    EventsIntegrationStatusDetails:
       properties:
         details:
-          allOf:
-          - $ref: '#/components/schemas/MessageDetails'
-          - description: Details
-            readOnly: true
+          $ref: '#/components/schemas/EventsMessageDetails'
         errorType:
-          description: Error type
           enum:
           - INVALID_CONFIG
           - TRANSLATION_EXCEPTION
@@ -37,37 +151,28 @@ components:
           - HTTP_EXCEPTION
           - OTHERS
           - TEST
-          readOnly: true
           type: string
         lastUpdated:
-          description: Last updated
           format: int64
-          readOnly: true
           type: integer
         message:
-          description: Message
-          readOnly: true
           type: string
       type: object
-    MessageDetails:
-      description: Model for Message Details
+    EventsMessageDetails:
+      description: Message details
       properties:
         i18nKey:
           description: Internationalization key
-          readOnly: true
           type: string
         statusCode:
           description: Status code
           format: int32
-          readOnly: true
           type: integer
         subject:
           description: Subject
-          readOnly: true
           type: string
       type: object
-    NotificationFieldsConfig:
-      description: Model for Notification Fields Config
+    EventsNotificationFieldsConfig:
       properties:
         aliasField:
           description: Alias field
@@ -79,16 +184,15 @@ components:
           description: Field name
           type: string
         maxLength:
-          description: Maximum field length
+          description: Maximum length
           format: int32
           type: integer
         options:
-          description: List of field configuration options
           items:
-            $ref: '#/components/schemas/FieldConfigOption'
+            $ref: '#/components/schemas/EventsFieldConfigOption'
           type: array
         redlockMapping:
-          description: true = Prisma Cloud will provide field value for notification
+          description: true = Prisma Cloud will provide the field value for notification
           type: boolean
         required:
           description: true = Required
@@ -109,24 +213,20 @@ components:
           description: Field value
           type: string
       type: object
-    NotificationTemplate:
-      description: Model for Notification Template
+    EventsNotificationTemplate:
       properties:
         createdBy:
-          description: Created by
-          readOnly: true
+          description: User who created the notification template
           type: string
         createdTs:
-          description: Creation timestamp
+          description: Creation Unix timestamp in milliseconds
           format: int64
-          readOnly: true
           type: integer
         enabled:
           description: true = Enabled
           type: boolean
         id:
           description: Notification template ID
-          readOnly: true
           type: string
         integrationId:
           description: Integration ID
@@ -137,43 +237,36 @@ components:
         integrationType:
           description: Integration type
           enum:
-          - SERVICE_NOW
-          - JIRA
-          - EMAIL
+          - email
+          - jira
+          - service_now
           type: string
         lastModifiedBy:
-          description: Last modified by
-          readOnly: true
+          description: User who modified template last
           type: string
         lastModifiedTs:
-          description: Timestamp of last modification
+          description: Modification Unix timestamp in milliseconds
           format: int64
-          readOnly: true
           type: integer
         name:
-          description: Name. Cannot include special characters ('<', '>', '!', '=',
-            '\\n', '\\r'). Maximum length is 99.
+          description: |
+            Name. Cannot include special characters ('<', '>', '!', '=', '\n', '\r'). Maximum length is 99.
           type: string
         reason:
-          allOf:
-          - $ref: '#/components/schemas/IntegrationStatusDetails'
-          - description: Integration status details
-            readOnly: true
+          $ref: '#/components/schemas/EventsIntegrationStatusDetails'
         status:
-          description: Integration status (color)
+          description: Integration status color
           enum:
           - GREEN
           - RED
           - YELLOW
           - NA
-          readOnly: true
           type: string
         templateConfig:
           additionalProperties:
             items:
-              $ref: '#/components/schemas/NotificationFieldsConfig'
+              $ref: '#/components/schemas/EventsNotificationFieldsConfig'
             type: array
-          description: Template configuration
           type: object
         templateType:
           description: Template type
@@ -181,198 +274,201 @@ components:
           - ticketing
           type: string
         valid:
-          description: Is valid
-          readOnly: true
+          description: true = Valid
           type: boolean
       required:
-      - enabled
+      - customerId
+      - integrationType
+      - name
+      type: object
+    EventsTestTemplateRequest:
+      properties:
+        integrationId:
+          description: Integration ID
+          type: string
+        integrationType:
+          description: Integration type
+          enum:
+          - email
+          - jira
+          - service_now
+          type: string
+        name:
+          description: Template name
+          type: string
+        templateConfig:
+          additionalProperties:
+            description: Template Config
+            items:
+              $ref: '#/components/schemas/EventsNotificationFieldsConfig'
+            type: array
+          description: Template Config
+          type: object
+      required:
       - integrationId
       - integrationType
       - name
       - templateConfig
-      - templateType
       type: object
 info:
   contact: {}
-  description: "Notification templates allow you to map the Prisma Cloud alert payload\
-    \ to the ServiceNow or Jira incident fields.                             \n"
-  title: Prisma Cloud User Notification Templates API Overview
+  description: |
+    Notification templates allow you to configure notifications about the Prisma Cloud alerts to:
+    
+    * Email 
+    * ServiceNow 
+    * Jira 
+
+  title: Prisma Cloud Notification Template V1 API
   version: Latest
-openapi: 3.0.0
+openapi: 3.0.3
 paths:
-  /notification/template:
+  /api/v1/tenant/{prismaId}/template:
     get:
-      deprecated: true
-      description: Returns a list of notification templates.
-      operationId: get-notification-templates
+      description: |
+        Returns a list of notification templates. 
+        
+        The caller must have one of the following Prisma Cloud roles:
+
+        * System Admin
+        * Account Group Admin
+        * Account and Cloud Provisioning Admin
+        * Account Group Read Only
+
+      operationId: get-all-templates-v1
       parameters:
-      - description: Notification type
+      - description: |
+          Prisma ID. Your Prisma ID is available either from the response object of your 
+          [API request to log in](/api/cloud/cspm/login#operation/app-login) or 
+          from the licensing information in the Prisma Cloud console.
+        in: path
+        name: prismaId
+        required: true
+        schema:
+          type: string
+      - description: Comma-separated list of Template IDs
+        in: query
+        name: id
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+      - description: |
+          Comma-separated list of integration types that support notification templates. 
+          Valid values: 
+
+          * email
+          * jira
+          * service_now
+
         in: query
         name: type
         required: false
         schema:
-          enum:
-          - jira
-          - service_now
-          - email
-          type: string
+          items:
+            type: string
+      - in: query
+        description: true = Enabled
+        name: enabled
+        required: false
+        schema:
+          type: boolean
       responses:
         '200':
           content:
-            application/json; charset=UTF-8:
+            application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/NotificationTemplate'
+                  $ref: '#/components/schemas/EventsNotificationTemplate'
                 type: array
-          description: successful operation
+          description: OK
+        '429':
+          description: Too Many Requests
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsApiError'
+          description: default response
         '500':
-          description: internal_error
+          description: Internal Server Error
       security:
       - x-redlock-auth: []
-      summary: List Notification Templates
+      summary: List Templates
       tags:
       - Notification Templates
     post:
-      deprecated: true
-      description: "Adds a new notification template.  \r\n\r\nThe following is an\
-        \ example of the request body parameters to add an email notification template.\n\
-        \n```json\n{\n    \"enabled\": true,\n    \"templateConfig\": {\n        \"\
-        basic_config\": [\n            {\n                \"displayName\": \"Custom\
-        \ Note\",\n                \"fieldName\": \"custom_note\",\n             \
-        \   \"options\": [],\n                \"type\": \"text\",\n              \
-        \ \"value\": \"<p>This is a test</p>\\n\"\n            }\n        ],\n   \
-        \     \"dismissed\": [],\n        \"open\": [],\n        \"resolved\": []\n\
-        \    },\n    \"integrationType\": \"email\",\n    \"templateType\": \"ticketing\"\
-        ,\n    \"name\": \"test_email_1\"\n}\n```\n\nThe following is an example of\
-        \ the request body parameters to add a ServiceNow notification template.\n\
-        \n```json\n{\n    \"integrationId\": \"d7bcc9b1-4f9b-4ac2-819e-d83c204f3ba2\"\
-        ,\n    \"integrationType\": \"service_now\",\n    \"integrationName\": \"\
-        DND-EI-SNOW-ORLANDO-copy2\",\n    \"customerId\": 6,\n    \"name\": \"SNOW-ORALNDO-INC-copy2\"\
-        ,\n    \"templateConfig\": {\n        \"open\": [\n            {\n       \
-        \         \"fieldName\": \"description\",\n                \"displayName\"\
-        : \"Description (open_description)\",\n                \"type\": \"text\"\
-        ,\n                \"options\": [],\n                \"redlockMapping\": true,\n\
-        \                \"required\": false,\n                \"value\": \"NS1.0\\\
-        nAccountId <$AccountId>\\nAccountName <$AccountName>\\nAlertDismissalNote\
-        \ <$AlertDismissalNote>\\nSeverity <$Severity>\\nStatus <$Status>\",\n   \
-        \             \"maxLength\": 4000\n            },\n            {\n       \
-        \         \"fieldName\": \"state\",\n                \"displayName\": \"State\
-        \ (open_state)\",\n                \"type\": \"list\",\n                \"\
-        options\": [\n                    {\n                        \"name\": \"\
-        New\",\n                        \"key\": \"1\"\n                    }\n  \
-        \              ],\n                \"redlockMapping\": false,\n          \
-        \      \"required\": true,\n                \"value\": \"New\",\n        \
-        \        \"maxLength\": 40\n            }\n        ],\n        \"resolved\"\
-        : [\n            {\n                \"fieldName\": \"state\",\n          \
-        \      \"displayName\": \"State (resolved_state)\",\n                \"type\"\
-        : \"list\",\n                \"options\": [\n                    {\n     \
-        \                   \"name\": \"Closed\",\n                        \"key\"\
-        : \"7\"\n                    }\n                ],\n                \"redlockMapping\"\
-        : false,\n                \"required\": true,\n                \"value\":\
-        \ \"Closed\",\n                \"maxLength\": 40\n            },\n       \
-        \     {\n                \"fieldName\": \"description\",\n               \
-        \ \"displayName\": \"Description (resolved_description)\",\n             \
-        \   \"type\": \"text\",\n                \"options\": [],\n              \
-        \  \"redlockMapping\": true,\n                \"required\": false,\n     \
-        \           \"value\": \"NS1.0\\nAccountId <$AccountId>\\nAccountName <$AccountName>\\\
-        nAlertDismissalNote <$AlertDismissalNote>\\nSeverity <$Severity>\\nStatus\
-        \ <$Status>\",\n                \"maxLength\": 4000\n            }\n     \
-        \   ],\n        \"dismissed\": [\n            {\n                \"fieldName\"\
-        : \"description\",\n                \"displayName\": \"Description (dismissed_description)\"\
-        ,\n                \"type\": \"text\",\n                \"options\": [],\n\
-        \                \"redlockMapping\": true,\n                \"required\":\
-        \ false,\n                \"value\": \"NS1.0\\nAccountId <$AccountId>\\nAccountName\
-        \ <$AccountName>\\nAlertDismissalNote <$AlertDismissalNote>\\nAlertId <$AlertId>\\\
-        nSeverity <$Severity>\\nStatus <$Status>\",\n                \"maxLength\"\
-        : 4000\n            },\n            {\n                \"fieldName\": \"state\"\
-        ,\n                \"displayName\": \"State (dismissed_state)\",\n       \
-        \         \"type\": \"list\",\n                \"options\": [\n          \
-        \          {\n                        \"name\": \"Closed\",\n            \
-        \            \"key\": \"7\"\n                    }\n                ],\n \
-        \               \"redlockMapping\": false,\n                \"required\":\
-        \ true,\n                \"value\": \"Closed\",\n                \"maxLength\"\
-        : 40\n            }\n        ],\n        \"basic_config\": [\n           \
-        \ {\n                \"fieldName\": \"incidentType\",\n                \"\
-        displayName\": \"Incident Type\",\n                \"type\": \"list\",\n \
-        \               \"options\": [\n                    {\n                  \
-        \      \"name\": \"Incident\",\n                        \"key\": \"incident\"\
-        \n                    }\n                ],\n                \"redlockMapping\"\
-        : false,\n                \"required\": true,\n                \"value\":\
-        \ \"Incident\"\n            }\n        ]\n    },\n    \"enabled\": true,\n\
-        \    \"status\": \"GREEN\",\n    \"valid\": true,\n    \"templateType\": \"\
-        ticketing\"\n}\n```\n\nThe following is an example of the request body parameters\
-        \ to add a Jira notification template.\n\n```json\n{\n    \"integrationType\"\
-        : \"jira\",\n    \"templateType\": \"ticketing\",\n    \"name\": \"jira-template-example\"\
-        ,\n    \"integrationName\":\"qa-jira-D\",\n    \"status\": \"RED\",\n    \"\
-        valid\": false,\n    \"customerId\": 32,\n    \"integrationId\": \"017018f9-3d8b-4f9b-8534-a7043bea26ce\"\
-        ,\n    \"enabled\": true,\n    \"templateConfig\": {\n        \"basic_config\"\
-        : [\n            {\n                \"fieldName\": \"issueType\",\n      \
-        \          \"displayName\": \"Issue Type\",\n                \"type\": \"\
-        list\",\n                \"options\": [\n                    {\n         \
-        \               \"id\": \"10002\",\n                        \"name\": \"Task\"\
-        \n                    }\n                ],\n                \"redlockMapping\"\
-        : false,\n                \"required\": true,\n                \"value\":\
-        \ \"Task\"\n            },\n            {\n                \"fieldName\":\
-        \ \"project\",\n                \"displayName\": \"Project\",\n          \
-        \      \"type\": \"list\",\n                \"options\": [\n             \
-        \       {\n                        \"id\": \"JI\",\n                     \
-        \   \"name\": \"Jira-Integration\",\n                        \"key\": \"JI\"\
-        \n                    }\n                ],\n                \"redlockMapping\"\
-        : false,\n                \"required\": false,\n                \"value\"\
-        : \"RedLock-Jira-Integration\"\n            }\n        ],\n        \"dismissed\"\
-        : [],\n        \"open\": [\n            {\n                \"fieldName\":\
-        \ \"summary\",\n                \"displayName\": \"Summary\",\n          \
-        \      \"type\": \"text\",\n                \"options\": [],\n           \
-        \     \"redlockMapping\": true,\n                \"required\": true,\n   \
-        \             \"disabled\": true,\n                \"value\": \"AccountId\
-        \ <$AccountId>\\nAccountName <$AccountName>\\nAlertDismissalNote <$Severity>\\\
-        nStatus <$Status>\\nUserAttributionData <$UserAttributionData>\"\n       \
-        \     },\n            {\n                \"fieldName\": \"description\",\n\
-        \                \"displayName\": \"Description\",\n                \"type\"\
-        : \"text\",\n                \"options\": [],\n                \"redlockMapping\"\
-        : true,\n                \"required\": false,\n                \"disabled\"\
-        : false,\n                \"value\": \"AccountId <$AccountId>\\nAccountName\
-        \ <$AccountName>\\nAlertDismissalNote <$AlertDismissalNote>\"\n          \
-        \  },\n            {\n                \"fieldName\": \"priority\",\n     \
-        \           \"displayName\": \"Priority\",\n                \"type\": \"list\"\
-        ,\n                \"options\": [\n                    {\n               \
-        \         \"id\": \"5\",\n                        \"name\": \"Low\"\n    \
-        \                }\n                ],\n                \"redlockMapping\"\
-        : false,\n                \"required\": false,\n                \"disabled\"\
-        : false,\n                \"value\": \"Low\"\n            }\n        ]\n \
-        \   }\n}\n````      \n"
-      operationId: add-notification-template
+      description: |
+        Creates a notification template. 
+        The caller must have one of the following Prisma Cloud roles:
+
+        * System Admin
+        * Account and Cloud Provisioning Admin
+        
+      operationId: create-template-v1
+      parameters:
+      - description: |
+          Prisma ID. Your Prisma ID is available either from the response object of your 
+          [API request to log in](/api/cloud/cspm/login#operation/app-login) or 
+          from the licensing information in the Prisma Cloud console.
+        in: path
+        name: prismaId
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
-          application/json; charset=UTF-8:
+          application/json:
             schema:
-              $ref: '#/components/schemas/NotificationTemplate'
-        description: Model for Notification Template
+              $ref: '#/components/schemas/EventsCreateTemplateRequest'
         required: true
       responses:
         '200':
           content:
-            application/json; charset=UTF-8:
+            application/json:
               schema:
-                $ref: '#/components/schemas/NotificationTemplate'
-          description: successful operation
-        '400':
-          description: missing_required_parameter / invalid_parameter_value / invalid_template_name
-            / missing_template_type / missing_integration_typebad_request
+                $ref: '#/components/schemas/EventsNotificationTemplate'
+          description: OK
+        '429':
+          description: Too Many Requests
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsApiError'
+          description: default response
         '500':
-          description: internal_error
+          description: Internal Server Error
       security:
       - x-redlock-auth: []
-      summary: Add Notification Template
+      summary: Add Template
       tags:
       - Notification Templates
-  /notification/template/{id}:
+  /api/v1/tenant/{prismaId}/template/{id}:
     get:
-      deprecated: true
-      description: Returns the notification template with the specified ID.
-      operationId: get-notification-template
+      description: |
+        Returns the notification template with the specified ID. 
+        
+        The caller must have one of the following Prisma Cloud roles:
+        
+        * System Admin
+        * Account Group Admin
+        * Account and Cloud Provisioning Admin
+        * Account Group Read  Only
+
+      operationId: get-template-v1
       parameters:
-      - description: Notification template ID
+      - description: |
+          Prisma ID. Your Prisma ID is available either from the response object of your 
+          [API request to log in](/api/cloud/cspm/login#operation/app-login) or 
+          from the licensing information in the Prisma Cloud console.
+        in: path
+        name: prismaId
+        required: true
+        schema:
+          type: string
+      - description: Template Id
         in: path
         name: id
         required: true
@@ -381,25 +477,45 @@ paths:
       responses:
         '200':
           content:
-            application/json; charset=UTF-8:
+            application/json:
               schema:
-                $ref: '#/components/schemas/NotificationTemplate'
-          description: successful operation
-        '400':
-          description: no_results
+                $ref: '#/components/schemas/EventsNotificationTemplate'
+          description: OK
+        '429':
+          description: Too many requests
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsApiError'
+          description: default response
         '500':
-          description: internal_error
+          description: Internal server error
       security:
       - x-redlock-auth: []
-      summary: Get Notification Template
+      summary: Get Template by ID
       tags:
       - Notification Templates
-    put:
-      deprecated: true
-      description: Updates the notification template with the specified ID.
-      operationId: update-notification-template
+    patch:
+      description: |
+        Updates the template with the specified ID. 
+        The caller must have one of the following Prisma Cloud roles:
+
+        * System Admin
+        * Account and Cloud Provisioning Admin
+
+      operationId: update-template-v1
       parameters:
-      - description: Notification template ID
+      - description: |
+          Prisma ID. Your Prisma ID is available either from the response object of your 
+          [API request to log in](/api/cloud/cspm/login#operation/app-login) or 
+          from the licensing information in the Prisma Cloud console.
+        in: path
+        name: prismaId
+        required: true
+        schema:
+          type: string
+      - description: Template ID
         in: path
         name: id
         required: true
@@ -407,422 +523,121 @@ paths:
           type: string
       requestBody:
         content:
-          application/json; charset=UTF-8:
+          application/json:
             schema:
-              $ref: '#/components/schemas/NotificationTemplate'
+              $ref: '#/components/schemas/EventsNotificationTemplate'
+        required: true
       responses:
         '200':
+          description: OK
+        '429':
+          description: Too Many Requests
+        4XX:
           content:
-            application/json; charset=UTF-8:
+            application/json:
               schema:
-                $ref: '#/components/schemas/NotificationTemplate'
-          description: successful operation
-        '400':
-          description: missing_required_parameter / invalid_parameter_value / invalid_template_name
-            / missing_template_type / missing_integration_type
+                $ref: '#/components/schemas/EventsApiError'
+          description: default response
         '500':
-          description: internal_error
+          description: Internal Server Error
       security:
       - x-redlock-auth: []
-      summary: Update Notification Template
+      summary: Update Template
       tags:
       - Notification Templates
     delete:
-      deprecated: true
-      description: Deletes the notification template with the specified ID.
-      operationId: delete-notification-template
+      description: |
+        Deletes a template with the specified ID.
+
+        The caller must have one of the following Prisma Cloud roles:
+
+        * System Admin
+        * Account and Cloud Provisioning Admin
+
+      operationId: delete-template-v1
       parameters:
-      - description: Notification template ID
+      - description: |
+          Prisma ID. Your Prisma ID is available either from the response object of your 
+          [API request to log in](/api/cloud/cspm/login#operation/app-login) or 
+          from the licensing information in the Prisma Cloud console.
+        in: path
+        name: prismaId
+        required: true
+        schema:
+          type: string
+      - description: Template Id
         in: path
         name: id
         required: true
         schema:
           type: string
       responses:
-        '204':
-          description: success
-        '400':
-          description: missing_required_parameter / invalid_parameter_value
+        '200':
+          description: OK
+        '429':
+          description: Too Many Requests
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsApiError'
+          description: default response
         '500':
-          description: internal_error
+          description: Internal Server Error
       security:
       - x-redlock-auth: []
-      summary: Delete Notification Template
+      summary: Delete Template
       tags:
       - Notification Templates
-  /notification/template/clone/{id}:
+  /api/v1/tenant/{prismaId}/template/test:
     post:
-      deprecated: true
-      description: "Clones an existing notification template to create a new template.\
-        \  \r\n\r\nThere is currently only one body parameter, as shown below.\n\n\
-        Parameter | Type | Value | Required \n-------------| ---- | ----------- |\
-        \ ---\nname | string | The name of the new notification template | Required\n"
-      operationId: clone-notification-template
+      description: |
+        Runs a test of the notification template for the specified data. 
+        
+        The caller must have one of the following Prisma Cloud roles:
+        
+        * System Admin
+        * Account and Cloud Provisioning Admin
+
+      operationId: test-template-v1
       parameters:
-      - description: Notification template ID
+      - description: |
+          Prisma ID. Your Prisma ID is available either from the response object of your 
+          [API request to log in](/api/cloud/cspm/login#operation/app-login) or 
+          from the licensing information in the Prisma Cloud console.
         in: path
-        name: id
+        name: prismaId
         required: true
+        schema:
+          type: string
+      - description: Template ID
+        in: query
+        name: id
+        required: false
         schema:
           type: string
       requestBody:
         content:
-          application/json; charset=UTF-8:
+          application/json:
             schema:
-              additionalProperties:
-                type: object
-              type: object
+              $ref: '#/components/schemas/EventsTestTemplateRequest'
+        required: true
       responses:
         '200':
+          description: OK
+        '429':
+          description: Too Many Requests
+        4XX:
           content:
-            application/json; charset=UTF-8:
+            application/json:
               schema:
-                type: boolean
-          description: successful operation
-        '400':
-          description: missing_required_parameter / invalid_parameter_value / bad_request
+                $ref: '#/components/schemas/EventsApiError'
+          description: default response
         '500':
-          description: internal_error
+          description: Internal Server Error
       security:
       - x-redlock-auth: []
-      summary: Clone Notification Template
-      tags:
-      - Notification Templates
-  /template/servicenow/{integrationId}/{incidentType}/fields:
-    get:
-      deprecated: true
-      description: "Lists the fields available to include in a ServiceNow notification\
-        \ template.  \r\n\r\nYou can find the **integrationId** and **incidentType**\
-        \ in the [List Notification Template](/api/cloud/cspm/notification-templates#operation/get-notification-templates)\
-        \ \nresponse object. If you already know your **integrationId**, you can find\
-        \ the **incidentType** in the\n[Get Notifcation Template](/api/cloud/cspm/notification-templates#operation/get-notification-template)\
-        \ response object.\nIn each response object, the **incidentType** is the value\
-        \ of **templateConfig>basicConfig>options>key**.\n"
-      operationId: get-snow-configurable-fields
-      parameters:
-      - description: Integration ID
-        in: path
-        name: integrationId
-        required: true
-        schema:
-          type: string
-      - description: Service type
-        in: path
-        name: incidentType
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          content:
-            '*/*':
-              schema:
-                items:
-                  $ref: '#/components/schemas/NotificationFieldsConfig'
-                type: array
-          description: successful operation
-        '400':
-          description: error_fetching_fields_from_service_now
-      security:
-      - x-redlock-auth: []
-      summary: List ServiceNow Fields
-      tags:
-      - Notification Templates
-  /template/servicenow/{integrationId}/{incidentType}/fields/{objectName}/{referenceField}/suggestions:
-    get:
-      deprecated: true
-      description: "Lists suggestions for the specified integration, service type,\
-        \ and field name. Accepts a query to narrow the list.  \r\n\r\nYou can find\n\
-        \nAn example curl request is:\n```\ncurl --request \\\n--url 'https://api.prismacloud.io/template/servicenow/11111110-2222-3333-4444444/INCIDENT/fields/core_company/country/suggestions?query=japan'\n\
-        --header 'x-redlock-auth: <JWT>' \n```\n\nThe URL in tne example above includes\
-        \ the following:\n\n* **11111110-2222-3333-4444444**: Integration ID\n* **coreCompany**:\
-        \ ServiceNow table\n* **country**: Table column in **coreCompany**\n* **japan**:\
-        \ Query search field\n"
-      operationId: get-snow-field-suggestions
-      parameters:
-      - description: Integration ID
-        in: path
-        name: integrationId
-        required: true
-        schema:
-          type: string
-      - description: Service type
-        in: path
-        name: incidentType
-        required: true
-        schema:
-          type: string
-      - description: Referred table name
-        in: path
-        name: objectName
-        required: true
-        schema:
-          type: string
-      - description: Reference column
-        in: path
-        name: referenceField
-        required: true
-        schema:
-          type: string
-      - description: Case-insensitive search filter. Response includes only items
-          that contain the query as a substring.
-        in: query
-        name: query
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          content:
-            '*/*':
-              schema:
-                items:
-                  $ref: '#/components/schemas/FieldConfigOption'
-                type: array
-          description: successful operation
-        '400':
-          description: error_fetching_suggestions_for_
-      security:
-      - x-redlock-auth: []
-      summary: List ServiceNow Field Suggestions
-      tags:
-      - Notification Templates
-  /template/servicenow/{integrationId}/types:
-    get:
-      deprecated: true
-      description: Lists available ServiceNow service types.
-      operationId: get-snow-service-types
-      parameters:
-      - description: Integration ID
-        in: path
-        name: integrationId
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/NotificationFieldsConfig'
-          description: successful operation
-      security:
-      - x-redlock-auth: []
-      summary: List ServiceNow Service Types
-      tags:
-      - Notification Templates
-  /template/fields/jira/projects/{integrationId}:
-    get:
-      deprecated: true
-      description: Lists Jira projects for the specified integration ID.
-      operationId: get-jira-projects
-      parameters:
-      - description: Integration ID
-        in: path
-        name: integrationId
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/NotificationFieldsConfig'
-          description: successful operation
-        '400':
-          description: error_fetching_projects
-      security:
-      - x-redlock-auth: []
-      summary: List Jira Projects
-      tags:
-      - Notification Templates
-  /template/fields/jira/{integrationId}/{project}/{issueType}:
-    get:
-      deprecated: true
-      description: Lists configurable fields for Jira notification template.
-      operationId: get-jira-fields
-      parameters:
-      - description: Integration ID
-        in: path
-        name: integrationId
-        required: true
-        schema:
-          type: string
-      - description: Project
-        in: path
-        name: project
-        required: true
-        schema:
-          type: string
-      - description: Issue type
-        in: path
-        name: issueType
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          content:
-            '*/*':
-              schema:
-                items:
-                  $ref: '#/components/schemas/NotificationFieldsConfig'
-                type: array
-          description: successful operation
-        '400':
-          description: error_fetching_jira_fields
-      security:
-      - x-redlock-auth: []
-      summary: List Jira Fields
-      tags:
-      - Notification Templates
-  /template/fields/jira/issues/{integrationId}/{projectKey}:
-    get:
-      deprecated: true
-      description: Lists Jira issue types for the specified integration ID and project
-        key.
-      operationId: get-jira-issue-types
-      parameters:
-      - description: Integration ID
-        in: path
-        name: integrationId
-        required: true
-        schema:
-          type: string
-      - description: Project key
-        in: path
-        name: projectKey
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/NotificationFieldsConfig'
-          description: successful operation
-        '400':
-          description: not_authorized_for_project
-      security:
-      - x-redlock-auth: []
-      summary: List Jira Issue Types
-      tags:
-      - Notification Templates
-  /template/fields/jira/{integrationId}/{project}/{issueType}/users/{searchKey}:
-    get:
-      deprecated: true
-      description: Lists Jira users that you can include in a notification template.
-      operationId: get-jira-users
-      parameters:
-      - description: Integration ID
-        in: path
-        name: integrationId
-        required: true
-        schema:
-          type: string
-      - description: Project
-        in: path
-        name: project
-        required: true
-        schema:
-          type: string
-      - description: Issue type
-        in: path
-        name: issueType
-        required: true
-        schema:
-          type: string
-      - description: A search string to match against Jira user attributes. The string
-          can match the prefix of the attribute's value.
-        in: path
-        name: searchKey
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          content:
-            '*/*':
-              schema:
-                items:
-                  $ref: '#/components/schemas/FieldConfigOption'
-                type: array
-          description: successful operation
-        '400':
-          description: error_fetching_users
-      security:
-      - x-redlock-auth: []
-      summary: List Jira Users
-      tags:
-      - Notification Templates
-  /template/fields/jira/{integrationId}/{project}/{issueType}/{jiraEndpoint}/{fieldType}/{field}:
-    get:
-      deprecated: true
-      description: Lists Jira issue types for the specified integration ID and project
-        key.
-      operationId: get-jira-auto-complete-fields
-      parameters:
-      - description: Integration ID
-        in: path
-        name: integrationId
-        required: true
-        schema:
-          type: string
-      - description: Project
-        in: path
-        name: project
-        required: true
-        schema:
-          type: string
-      - description: Issue type
-        in: path
-        name: issueType
-        required: true
-        schema:
-          type: string
-      - description: Jira endpoint URI
-        in: path
-        name: jiraEndpoint
-        required: true
-        schema:
-          type: string
-      - description: Field type
-        in: path
-        name: fieldType
-        required: true
-        schema:
-          type: string
-      - description: Field
-        in: path
-        name: field
-        required: true
-        schema:
-          type: string
-      - description: Case-insensitive search filter. Response includes only items
-          that contain the query as a substring.
-        in: query
-        name: query
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          content:
-            '*/*':
-              schema:
-                items:
-                  $ref: '#/components/schemas/FieldConfigOption'
-                type: array
-          description: successful operation
-        '400':
-          description: duplicate_name
-        '500':
-          description: internal_error
-      security:
-      - x-redlock-auth: []
-      summary: List Jira Field Suggestions
+      summary: Test Template
       tags:
       - Notification Templates
 servers:

@@ -547,6 +547,11 @@
             "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
             "type": "string"
           },
+          "createdTs": {
+            "description": "Creation timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
           "data": {
             "description": "Raw JSON data for the resource",
             "type": "object"
@@ -556,10 +561,6 @@
             "additionalProperties": { "type": "object" },
             "description": "Dynamic data",
             "type": "object"
-          },
-          "hasAlert": {
-            "description": "Has alert (Deprecated)",
-            "type": "boolean"
           },
           "hasExtFindingRiskFactors": {
             "description": "Has risk factors",
