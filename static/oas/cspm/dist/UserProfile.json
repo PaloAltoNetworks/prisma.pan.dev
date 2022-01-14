@@ -56,7 +56,10 @@
             "readOnly": true,
             "type": "boolean"
           },
-          "firstName": { "description": "First name", "type": "string" },
+          "firstName": {
+            "description": "First name. Maximum length is 300 characters.",
+            "type": "string"
+          },
           "lastLoginTs": {
             "description": "Last login time",
             "format": "int64",
@@ -74,7 +77,10 @@
             "readOnly": true,
             "type": "integer"
           },
-          "lastName": { "description": "Last name", "type": "string" },
+          "lastName": {
+            "description": "Last name.  Maximum length is 300 characters.",
+            "type": "string"
+          },
           "roleIds": {
             "description": "Role IDs",
             "items": { "type": "string" },
@@ -150,7 +156,10 @@
             "readOnly": true,
             "type": "boolean"
           },
-          "firstName": { "description": "First name", "type": "string" },
+          "firstName": {
+            "description": "First name. Maximum length is 300 characters.",
+            "type": "string"
+          },
           "lastLoginTs": {
             "description": "Last login time",
             "format": "int64",
@@ -168,7 +177,10 @@
             "readOnly": true,
             "type": "integer"
           },
-          "lastName": { "description": "Last name", "type": "string" },
+          "lastName": {
+            "description": "Last name.  Maximum length is 300 characters.",
+            "type": "string"
+          },
           "roleIds": {
             "description": "Role IDs",
             "items": { "type": "string" },
@@ -192,7 +204,7 @@
             "type": "string"
           },
           "username": {
-            "description": "User or service account name",
+            "description": "User or service account name. Maximum length is 300 characters.",
             "type": "string"
           }
         },
@@ -216,7 +228,10 @@
             "readOnly": true,
             "type": "boolean"
           },
-          "firstName": { "description": "First name", "type": "string" },
+          "firstName": {
+            "description": "First name. Maximum length is 300 characters.",
+            "type": "string"
+          },
           "lastLoginTs": {
             "description": "Last login time",
             "format": "int64",
@@ -234,7 +249,10 @@
             "readOnly": true,
             "type": "integer"
           },
-          "lastName": { "description": "Last name", "type": "string" },
+          "lastName": {
+            "description": "Last name.  Maximum length is 300 characters.",
+            "type": "string"
+          },
           "role": {
             "additionalProperties": { "type": "string" },
             "description": "Role",
