@@ -2,9 +2,7 @@ const globby = require("globby");
 const yaml = require("js-yaml");
 const fs = require("fs");
 // Use the following to frontload docs
-var docs = [
-  "sase/config/config-api",
-];
+var docs = ["sase/config/config-api"];
 // Change these variables to match your doc path
 const relativePath = "sase/config";
 const absolutePath = "/api/sase/config";
