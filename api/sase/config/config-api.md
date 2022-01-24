@@ -35,10 +35,17 @@ the beta program. When you make an API call, provide this access token on the re
 For customers participating in this beta, you can test these APIs against your Prisma Access
 instance once you have an access token. Send all API requests to the following base URL:
 
-    https://api.sase.paloaltonetworks.com
+    https://<region>.api.sase.paloaltonetworks.com
+
+where &lt;region&gt; is the geographical region in which your data is stored. For this beta, the following
+regions are supported:
+
+| Region | URL |
+---------|-----|
+| Germany | https://de.api.sase.paloaltonetworks.com |
 
 For example, using curl:
 
-    curl -o --location "https://api.sase.paloaltonetworks.com/config/v1/snapshots" \
+    curl -o --location "https://de.api.sase.paloaltonetworks.com/config/v1/snapshots" \
     -H "Authorization: Bearer <ACCESS_TOKEN>" \
     -H "Content-Type: application/json"

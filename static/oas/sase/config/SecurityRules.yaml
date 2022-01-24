@@ -1,432 +1,7 @@
 components:
-  examples:
-    json_400_panui_mgmt_bad_xpath:
-      summary: Bad XPath
-      value:
-        _errors:
-        - code: E013
-          details: {}
-          message: Bad XPath
-        _request_id: abcd-1234
-    json_400_panui_mgmt_invalid_command:
-      summary: Invalid Command
-      value:
-        _errors:
-        - code: E003
-          details: {}
-          message: Invalid Command
-        _request_id: abcd-1234
-    json_400_panui_mgmt_invalid_object:
-      summary: Invalid Object
-      value:
-        _errors:
-        - code: E003
-          details: {}
-          message: Invalid Object
-        _request_id: abcd-1234
-    json_400_panui_mgmt_malformed_command:
-      summary: Malformed Command
-      value:
-        _errors:
-        - code: E003
-          details: {}
-          message: Malformed Command
-        _request_id: abcd-1234
-    json_400_panui_restapi_input_format_mismatch:
-      summary: Input Format Mismatch
-      value:
-        _errors:
-        - code: E003
-          details: {}
-          message: 'Input Format Mismatch: input-format=json'
-        _request_id: abcd-1234
-    json_400_panui_restapi_invalid_query_parameter:
-      summary: Invalid Query Parameter
-      value:
-        _errors:
-        - code: E003
-          details: {}
-          message: 'Invalid Query Parameter: location=invalid'
-        _request_id: abcd-1234
-    json_400_panui_restapi_missing_body:
-      summary: Missing Body
-      value:
-        _errors:
-        - code: E003
-          details: {}
-          message: Missing Body
-        _request_id: abcd-1234
-    json_400_panui_restapi_missing_query_parameter:
-      summary: Missing Query Parameter
-      value:
-        _errors:
-        - code: E003
-          details: {}
-          message: 'Missing Query Parameter: name'
-        _request_id: abcd-1234
-    json_400_panui_restapi_output_format_mismatch:
-      summary: Output Format Mismatch
-      value:
-        _errors:
-        - code: E003
-          details: {}
-          message: 'Output Format Mismatch: output-format=json Accept=xml'
-        _request_id: abcd-1234
-    json_401_panui_auth_invalid_credential:
-      summary: Invalid Credential
-      value:
-        _errors:
-        - code: E016
-          details: {}
-          message: Invalid Credential
-        _request_id: abcd-1234
-    json_401_panui_auth_key_expired:
-      summary: Key Expired
-      value:
-        _errors:
-        - code: E016
-          details: {}
-          message: Key Expired
-        _request_id: abcd-1234
-    json_401_panui_auth_key_too_long:
-      summary: Key Too Long
-      value:
-        _errors:
-        - code: E016
-          details: {}
-          message: Key Too Long
-        _request_id: abcd-1234
-    json_401_panui_auth_need_password_change:
-      summary: Need Password Change
-      value:
-        _errors:
-        - code: E016
-          details: {}
-          message: The password needs to be changed.
-        _request_id: abcd-1234
-    json_401_panui_auth_not_authenticated:
-      summary: Not Authenticated
-      value:
-        _errors:
-        - code: E016
-          details: {}
-          message: Not Authenticated
-        _request_id: abcd-1234
-    json_403_panui_auth_unauthorized:
-      summary: Unauthorized
-      value:
-        _errors:
-        - code: E007
-          details: {}
-          message: Unauthorized
-        _request_id: abcd-1234
-    json_404_panui_mgmt_object_not_present:
-      summary: Object Not Present
-      value:
-        _errors:
-        - code: E005
-          details: {}
-          message: Object Not Present
-        _request_id: abcd-1234
-    json_405_panui_restapi_action_not_supported:
-      summary: Action Not Supported
-      value:
-        _errors:
-        - code: E012
-          details: {}
-          message: 'Action Not Supported: move'
-        _request_id: abcd-1234
-    json_409_panui_mgmt_name_not_unique:
-      summary: Name Not Unique
-      value:
-        _errors:
-        - code: E006
-          details: {}
-          message: Name Not Unique
-        _request_id: abcd-1234
-    json_409_panui_mgmt_object_not_unique:
-      summary: Object Not Unique
-      value:
-        _errors:
-        - code: E016
-          details: {}
-          message: Object Not Unique
-        _request_id: abcd-1234
-    json_409_panui_mgmt_reference_not_zero:
-      summary: Reference Not Zero
-      value:
-        _errors:
-        - code: E009
-          details: {}
-          message: Reference Not Zero
-        _request_id: abcd-1234
-    json_501_panui_restapi_method_not_supported:
-      summary: Method Not Supported
-      value:
-        _errors:
-        - code: E012
-          details: {}
-          message: Method Not Supported
-        _request_id: abcd-1234
-    json_501_panui_restapi_version_not_supported:
-      summary: Version Not Supported
-      value:
-        _errors:
-        - code: E012
-          details: {}
-          message: Version Not Supported
-        _request_id: abcd-1234
-    json_504_panui_mgmt_session_timeout:
-      summary: Session Timeout
-      value:
-        _errors:
-        - code: 4
-          details: {}
-          message: Session Timeout
-        _request_id: abcd-1234
-  parameters:
-    name:
-      description: The name of the entry
-      in: query
-      name: name
-      required: true
-      schema:
-        type: string
-    position:
-      description: 'The position of a security rule
-
-        '
-      in: query
-      name: position
-      required: false
-      schema:
-        enum:
-        - pre
-        - post
-        type: string
-    scope:
-      description: "Specifies the scope of the operation. If creating\nan object,\
-        \ the object is created only within the\nspecified scope. If retrieving objects,\
-        \ the \nobjects are retrieved only from within the specified scope.\n\n`shared`\
-        \ indicates that the scope is your entire Prisma Access instance. \n"
-      in: query
-      name: scope
-      required: true
-      schema:
-        enum:
-        - Shared
-        - Mobile Users
-        - Remote Networks
-        - Service Connections
-        - Mobile Users Container
-        - Mobile Users Explicit Proxy
-        type: string
-    uuid-required:
-      description: The uuid of the resource
-      in: path
-      name: uuid
-      required: true
-      schema:
-        type: string
-  responses:
-    access_errors:
-      content:
-        application/json:
-          examples:
-            auth_unauthorized:
-              $ref: '#/components/examples/json_403_panui_auth_unauthorized'
-          schema:
-            $ref: '#/components/schemas/generic_error'
-      description: Forbidden
-    auth_errors:
-      content:
-        application/json:
-          examples:
-            auth_not_authenticated:
-              $ref: '#/components/examples/json_401_panui_auth_not_authenticated'
-            invalid_credential:
-              $ref: '#/components/examples/json_401_panui_auth_invalid_credential'
-            key_expired:
-              $ref: '#/components/examples/json_401_panui_auth_key_expired'
-            key_too_long:
-              $ref: '#/components/examples/json_401_panui_auth_key_too_long'
-            need_password_change:
-              $ref: '#/components/examples/json_401_panui_auth_need_password_change'
-          schema:
-            $ref: '#/components/schemas/generic_error'
-      description: Unauthorized
-    bad_request_errors_basic:
-      content:
-        application/json:
-          examples:
-            input_format_mismatch:
-              $ref: '#/components/examples/json_400_panui_restapi_input_format_mismatch'
-            invalid_query_parameter:
-              $ref: '#/components/examples/json_400_panui_restapi_invalid_query_parameter'
-            missing_query_parameter:
-              $ref: '#/components/examples/json_400_panui_restapi_missing_query_parameter'
-            output_format_mismatch:
-              $ref: '#/components/examples/json_400_panui_restapi_output_format_mismatch'
-          schema:
-            $ref: '#/components/schemas/generic_error'
-      description: Bad Request
-    bad_request_errors_basic_with_body:
-      content:
-        application/json:
-          examples:
-            input_format_mismatch:
-              $ref: '#/components/examples/json_400_panui_restapi_input_format_mismatch'
-            invalid_object:
-              $ref: '#/components/examples/json_400_panui_mgmt_invalid_object'
-            invalid_query_parameter:
-              $ref: '#/components/examples/json_400_panui_restapi_invalid_query_parameter'
-            missing_body:
-              $ref: '#/components/examples/json_400_panui_restapi_missing_body'
-            missing_query_parameter:
-              $ref: '#/components/examples/json_400_panui_restapi_missing_query_parameter'
-            output_format_mismatch:
-              $ref: '#/components/examples/json_400_panui_restapi_output_format_mismatch'
-          schema:
-            $ref: '#/components/schemas/generic_error'
-      description: Bad Request
-    conflict_errors:
-      content:
-        application/json:
-          examples:
-            name_not_unique:
-              $ref: '#/components/examples/json_409_panui_mgmt_name_not_unique'
-            object_not_unique:
-              $ref: '#/components/examples/json_409_panui_mgmt_object_not_unique'
-            reference_not_zero:
-              $ref: '#/components/examples/json_409_panui_mgmt_reference_not_zero'
-          schema:
-            $ref: '#/components/schemas/generic_error'
-      description: Conflict
-    default_errors:
-      content:
-        application/json:
-          examples:
-            action_not_supported:
-              $ref: '#/components/examples/json_405_panui_restapi_action_not_supported'
-            bad_xpath:
-              $ref: '#/components/examples/json_400_panui_mgmt_bad_xpath'
-            invalid_command:
-              $ref: '#/components/examples/json_400_panui_mgmt_invalid_command'
-            malformed_command:
-              $ref: '#/components/examples/json_400_panui_mgmt_malformed_command'
-            method_not_allowed:
-              $ref: '#/components/examples/json_501_panui_restapi_method_not_supported'
-            session_timeout:
-              $ref: '#/components/examples/json_504_panui_mgmt_session_timeout'
-            version_not_supported:
-              $ref: '#/components/examples/json_501_panui_restapi_version_not_supported'
-          schema:
-            $ref: '#/components/schemas/generic_error'
-      description: General Errors
-    http_created:
-      description: Created
-    http_ok:
-      description: Ok
-    not_found:
-      content:
-        application/json:
-          examples:
-            object_not_present:
-              $ref: '#/components/examples/json_404_panui_mgmt_object_not_present'
-          schema:
-            $ref: '#/components/schemas/generic_error'
-      description: Not Found
   schemas:
-    error_detail_cause_info:
-      properties:
-        code:
-          type: string
-        details:
-          type: object
-        help:
-          type: string
-        message:
-          type: string
-      title: Cause Info
-      type: object
-    error_detail_cause_infos:
-      items:
-        $ref: '#/components/schemas/error_detail_cause_info'
-      type: array
-    generic_error:
-      properties:
-        _errors:
-          $ref: '#/components/schemas/error_detail_cause_infos'
-        _request_id:
-          type: string
-      type: object
     security-rules:
-      properties:
-        action:
-          type: string
-        application:
-          items:
-            type: string
-          type: array
-        category:
-          items:
-            type: string
-          type: array
-        description:
-          type: string
-        destination:
-          items:
-            type: string
-          type: array
-        destination_hip:
-          items:
-            type: string
-          type: array
-        disabled:
-          type: boolean
-        from:
-          items:
-            type: string
-          type: array
-        log_setting:
-          type: string
-        name:
-          type: string
-        negate_destination:
-          type: boolean
-        negate_source:
-          type: boolean
-        profile_setting:
-          properties:
-            group:
-              items:
-                type: string
-              type: array
-          type: object
-        service:
-          items:
-            type: string
-          type: array
-        source:
-          items:
-            type: string
-          type: array
-        source_hip:
-          items:
-            type: string
-          type: array
-        source_user:
-          items:
-            type: string
-          type: array
-        tag:
-          items:
-            type: string
-          type: array
-        to:
-          items:
-            type: string
-          type: array
+      type: object
       required:
       - name
       - from
@@ -438,81 +13,440 @@ components:
       - service
       - category
       - action
+      properties:
+        name:
+          type: string
+        action:
+          type: string
+        description:
+          type: string
+        log_setting:
+          type: string
+        application:
+          type: array
+          items:
+            type: string
+        category:
+          type: array
+          items:
+            type: string
+        destination:
+          type: array
+          items:
+            type: string
+        destination_hip:
+          type: array
+          items:
+            type: string
+        profile_setting:
+          type: object
+          properties:
+            group:
+              type: array
+              items:
+                type: string
+        service:
+          type: array
+          items:
+            type: string
+        source:
+          type: array
+          items:
+            type: string
+        source_hip:
+          type: array
+          items:
+            type: string
+        source_user:
+          type: array
+          items:
+            type: string
+        tag:
+          type: array
+          items:
+            type: string
+        from:
+          type: array
+          items:
+            type: string
+        to:
+          type: array
+          items:
+            type: string
+        disabled:
+          type: boolean
+        negate_source:
+          type: boolean
+        negate_destination:
+          type: boolean
+    error_detail_cause_info:
+      title: Cause Info
       type: object
-info:
-  contact: {}
-  description: 'Manages security rules
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        help:
+          type: string
+    error_detail_cause_infos:
+      type: array
+      items:
+        $ref: '#/components/schemas/error_detail_cause_info'
+    generic_error:
+      type: object
+      properties:
+        _errors:
+          $ref: '#/components/schemas/error_detail_cause_infos'
+        _request_id:
+          type: string
+  parameters:
+    scope:
+      name: scope
+      in: query
+      required: true
+      schema:
+        type: string
+        enum:
+        - Shared
+        - Mobile Users
+        - Remote Networks
+        - Service Connections
+        - Mobile Users Container
+        - Mobile Users Explicit Proxy
+      description: "Specifies the scope of the operation. If creating\nan object,\
+        \ the object is created only within the\nspecified scope. If retrieving objects,\
+        \ the \nobjects are retrieved only from within the specified scope.\n\n`shared`\
+        \ indicates that the scope is your entire Prisma Access instance. \n"
+    uuid-required:
+      name: uuid
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The uuid of the resource
+    position:
+      name: position
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+        - pre
+        - post
+      description: 'The position of a security rule
 
-    '
-  title: Security Rule Management
-  version: beta
-  x-logo:
-    url: pan-logo.png
+        '
+    name:
+      name: name
+      in: query
+      required: true
+      schema:
+        type: string
+      description: The name of the entry
+  responses:
+    conflict_errors:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/generic_error'
+          examples:
+            object_not_unique:
+              $ref: '#/components/examples/json_409_panui_mgmt_object_not_unique'
+            name_not_unique:
+              $ref: '#/components/examples/json_409_panui_mgmt_name_not_unique'
+            reference_not_zero:
+              $ref: '#/components/examples/json_409_panui_mgmt_reference_not_zero'
+    auth_errors:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/generic_error'
+          examples:
+            auth_not_authenticated:
+              $ref: '#/components/examples/json_401_panui_auth_not_authenticated'
+            invalid_credential:
+              $ref: '#/components/examples/json_401_panui_auth_invalid_credential'
+            key_too_long:
+              $ref: '#/components/examples/json_401_panui_auth_key_too_long'
+            key_expired:
+              $ref: '#/components/examples/json_401_panui_auth_key_expired'
+            need_password_change:
+              $ref: '#/components/examples/json_401_panui_auth_need_password_change'
+    bad_request_errors_basic_with_body:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/generic_error'
+          examples:
+            input_format_mismatch:
+              $ref: '#/components/examples/json_400_panui_restapi_input_format_mismatch'
+            output_format_mismatch:
+              $ref: '#/components/examples/json_400_panui_restapi_output_format_mismatch'
+            missing_query_parameter:
+              $ref: '#/components/examples/json_400_panui_restapi_missing_query_parameter'
+            invalid_query_parameter:
+              $ref: '#/components/examples/json_400_panui_restapi_invalid_query_parameter'
+            missing_body:
+              $ref: '#/components/examples/json_400_panui_restapi_missing_body'
+            invalid_object:
+              $ref: '#/components/examples/json_400_panui_mgmt_invalid_object'
+    not_found:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/generic_error'
+          examples:
+            object_not_present:
+              $ref: '#/components/examples/json_404_panui_mgmt_object_not_present'
+    default_errors:
+      description: General Errors
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/generic_error'
+          examples:
+            version_not_supported:
+              $ref: '#/components/examples/json_501_panui_restapi_version_not_supported'
+            method_not_allowed:
+              $ref: '#/components/examples/json_501_panui_restapi_method_not_supported'
+            action_not_supported:
+              $ref: '#/components/examples/json_405_panui_restapi_action_not_supported'
+            bad_xpath:
+              $ref: '#/components/examples/json_400_panui_mgmt_bad_xpath'
+            invalid_command:
+              $ref: '#/components/examples/json_400_panui_mgmt_invalid_command'
+            malformed_command:
+              $ref: '#/components/examples/json_400_panui_mgmt_malformed_command'
+            session_timeout:
+              $ref: '#/components/examples/json_504_panui_mgmt_session_timeout'
+    http_created:
+      description: Created
+    http_ok:
+      description: Ok
+    access_errors:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/generic_error'
+          examples:
+            auth_unauthorized:
+              $ref: '#/components/examples/json_403_panui_auth_unauthorized'
+    bad_request_errors_basic:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/generic_error'
+          examples:
+            input_format_mismatch:
+              $ref: '#/components/examples/json_400_panui_restapi_input_format_mismatch'
+            output_format_mismatch:
+              $ref: '#/components/examples/json_400_panui_restapi_output_format_mismatch'
+            missing_query_parameter:
+              $ref: '#/components/examples/json_400_panui_restapi_missing_query_parameter'
+            invalid_query_parameter:
+              $ref: '#/components/examples/json_400_panui_restapi_invalid_query_parameter'
+  examples:
+    json_401_panui_auth_invalid_credential:
+      summary: Invalid Credential
+      value:
+        _errors:
+        - code: E016
+          message: Invalid Credential
+          details: {}
+        _request_id: abcd-1234
+    json_401_panui_auth_need_password_change:
+      summary: Need Password Change
+      value:
+        _errors:
+        - code: E016
+          message: The password needs to be changed.
+          details: {}
+        _request_id: abcd-1234
+    json_409_panui_mgmt_reference_not_zero:
+      summary: Reference Not Zero
+      value:
+        _errors:
+        - code: E009
+          message: Reference Not Zero
+          details: {}
+        _request_id: abcd-1234
+    json_400_panui_restapi_invalid_query_parameter:
+      summary: Invalid Query Parameter
+      value:
+        _errors:
+        - code: E003
+          message: 'Invalid Query Parameter: location=invalid'
+          details: {}
+        _request_id: abcd-1234
+    json_409_panui_mgmt_object_not_unique:
+      summary: Object Not Unique
+      value:
+        _errors:
+        - code: E016
+          message: Object Not Unique
+          details: {}
+        _request_id: abcd-1234
+    json_400_panui_restapi_output_format_mismatch:
+      summary: Output Format Mismatch
+      value:
+        _errors:
+        - code: E003
+          message: 'Output Format Mismatch: output-format=json Accept=xml'
+          details: {}
+        _request_id: abcd-1234
+    json_401_panui_auth_key_too_long:
+      summary: Key Too Long
+      value:
+        _errors:
+        - code: E016
+          message: Key Too Long
+          details: {}
+        _request_id: abcd-1234
+    json_404_panui_mgmt_object_not_present:
+      summary: Object Not Present
+      value:
+        _errors:
+        - code: E005
+          message: Object Not Present
+          details: {}
+        _request_id: abcd-1234
+    json_400_panui_restapi_missing_body:
+      summary: Missing Body
+      value:
+        _errors:
+        - code: E003
+          message: Missing Body
+          details: {}
+        _request_id: abcd-1234
+    json_400_panui_mgmt_bad_xpath:
+      summary: Bad XPath
+      value:
+        _errors:
+        - code: E013
+          message: Bad XPath
+          details: {}
+        _request_id: abcd-1234
+    json_400_panui_restapi_input_format_mismatch:
+      summary: Input Format Mismatch
+      value:
+        _errors:
+        - code: E003
+          message: 'Input Format Mismatch: input-format=json'
+          details: {}
+        _request_id: abcd-1234
+    json_501_panui_restapi_version_not_supported:
+      summary: Version Not Supported
+      value:
+        _errors:
+        - code: E012
+          message: Version Not Supported
+          details: {}
+        _request_id: abcd-1234
+    json_405_panui_restapi_action_not_supported:
+      summary: Action Not Supported
+      value:
+        _errors:
+        - code: E012
+          message: 'Action Not Supported: move'
+          details: {}
+        _request_id: abcd-1234
+    json_401_panui_auth_key_expired:
+      summary: Key Expired
+      value:
+        _errors:
+        - code: E016
+          message: Key Expired
+          details: {}
+        _request_id: abcd-1234
+    json_401_panui_auth_not_authenticated:
+      summary: Not Authenticated
+      value:
+        _errors:
+        - code: E016
+          message: Not Authenticated
+          details: {}
+        _request_id: abcd-1234
+    json_501_panui_restapi_method_not_supported:
+      summary: Method Not Supported
+      value:
+        _errors:
+        - code: E012
+          message: Method Not Supported
+          details: {}
+        _request_id: abcd-1234
+    json_400_panui_mgmt_invalid_command:
+      summary: Invalid Command
+      value:
+        _errors:
+        - code: E003
+          message: Invalid Command
+          details: {}
+        _request_id: abcd-1234
+    json_403_panui_auth_unauthorized:
+      summary: Unauthorized
+      value:
+        _errors:
+        - code: E007
+          message: Unauthorized
+          details: {}
+        _request_id: abcd-1234
+    json_400_panui_restapi_missing_query_parameter:
+      summary: Missing Query Parameter
+      value:
+        _errors:
+        - code: E003
+          message: 'Missing Query Parameter: name'
+          details: {}
+        _request_id: abcd-1234
+    json_400_panui_mgmt_malformed_command:
+      summary: Malformed Command
+      value:
+        _errors:
+        - code: E003
+          message: Malformed Command
+          details: {}
+        _request_id: abcd-1234
+    json_409_panui_mgmt_name_not_unique:
+      summary: Name Not Unique
+      value:
+        _errors:
+        - code: E006
+          message: Name Not Unique
+          details: {}
+        _request_id: abcd-1234
+    json_400_panui_mgmt_invalid_object:
+      summary: Invalid Object
+      value:
+        _errors:
+        - code: E003
+          message: Invalid Object
+          details: {}
+        _request_id: abcd-1234
+    json_504_panui_mgmt_session_timeout:
+      summary: Session Timeout
+      value:
+        _errors:
+        - code: 4
+          message: Session Timeout
+          details: {}
+        _request_id: abcd-1234
 openapi: 3.0.0
 paths:
   /config/v1/security-rules:
-    delete:
-      description: 'Delete a security rule.
-
-        '
-      operationId: delete-config-v1-security-rules
-      parameters:
-      - $ref: '#/components/parameters/uuid-required'
-      responses:
-        '200':
-          $ref: '#/components/responses/http_ok'
-        '400':
-          $ref: '#/components/responses/bad_request_errors_basic'
-        '401':
-          $ref: '#/components/responses/auth_errors'
-        '403':
-          $ref: '#/components/responses/access_errors'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '409':
-          $ref: '#/components/responses/conflict_errors'
-        default:
-          $ref: '#/components/responses/default_errors'
-      summary: Delete a security rule
-      tags:
-      - SecurityRules
-    get:
-      description: 'List security rules.
-
-        '
-      operationId: get-config-v1-security-rules
-      parameters:
-      - $ref: '#/components/parameters/position'
-      - $ref: '#/components/parameters/scope'
-      - $ref: '#/components/parameters/name'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                allOf:
-                - items:
-                    $ref: '#/components/schemas/security-rules'
-                  type: array
-          description: List of security rules
-        '400':
-          $ref: '#/components/responses/bad_request_errors_basic'
-        '401':
-          $ref: '#/components/responses/auth_errors'
-        '403':
-          $ref: '#/components/responses/access_errors'
-        '404':
-          $ref: '#/components/responses/not_found'
-        default:
-          $ref: '#/components/responses/default_errors'
-      summary: List security rules
-      tags:
-      - SecurityRules
     post:
+      summary: Create a security rule
       description: 'Create a security rule.
 
         '
-      operationId: post-config-v1-security-rules
       parameters:
       - $ref: '#/components/parameters/position'
       - $ref: '#/components/parameters/scope'
@@ -535,14 +469,46 @@ paths:
           $ref: '#/components/responses/conflict_errors'
         default:
           $ref: '#/components/responses/default_errors'
-      summary: Create a security rule
       tags:
       - SecurityRules
+      operationId: post-config-v1-security-rules
+    get:
+      parameters:
+      - $ref: '#/components/parameters/position'
+      - $ref: '#/components/parameters/scope'
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/security-rules'
+          description: List of security rules
+        '400':
+          $ref: '#/components/responses/bad_request_errors_basic'
+        '401':
+          $ref: '#/components/responses/auth_errors'
+        '403':
+          $ref: '#/components/responses/access_errors'
+        '404':
+          $ref: '#/components/responses/not_found'
+        default:
+          $ref: '#/components/responses/default_errors'
+      summary: List security rules
+      description: 'List security rules.
+
+        '
+      tags:
+      - SecurityRules
+      operationId: get-config-v1-security-rules
     put:
+      summary: Edit a security rule
       description: 'Modify a security rule.
 
         '
-      operationId: put-config-v1-security-rules
       parameters:
       - $ref: '#/components/parameters/uuid-required'
       - $ref: '#/components/parameters/scope'
@@ -567,8 +533,42 @@ paths:
           $ref: '#/components/responses/conflict_errors'
         default:
           $ref: '#/components/responses/default_errors'
-      summary: Edit a security rule
       tags:
       - SecurityRules
+      operationId: put-config-v1-security-rules
+    delete:
+      summary: Delete a security rule
+      description: 'Delete a security rule.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/uuid-required'
+      responses:
+        '200':
+          $ref: '#/components/responses/http_ok'
+        '400':
+          $ref: '#/components/responses/bad_request_errors_basic'
+        '401':
+          $ref: '#/components/responses/auth_errors'
+        '403':
+          $ref: '#/components/responses/access_errors'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '409':
+          $ref: '#/components/responses/conflict_errors'
+        default:
+          $ref: '#/components/responses/default_errors'
+      tags:
+      - SecurityRules
+      operationId: delete-config-v1-security-rules
+info:
+  version: beta
+  x-logo:
+    url: pan-logo.png
+  title: Security Rule Management
+  description: 'Manages security rules
+
+    '
+  contact: {}
 tags:
 - name: SecurityRules

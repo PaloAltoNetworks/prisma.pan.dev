@@ -1,29 +1,4 @@
 components:
-  parameters:
-    scope:
-      name: scope
-      in: query
-      required: true
-      schema:
-        type: string
-        enum:
-        - Shared
-        - Mobile Users
-        - Remote Networks
-        - Service Connections
-        - Mobile Users Container
-        - Mobile Users Explicit Proxy
-      description: "Specifies the scope of the operation. If creating\nan object,\
-        \ the object is created only within the\nspecified scope. If retrieving objects,\
-        \ the \nobjects are retrieved only from within the specified scope.\n\n`shared`\
-        \ indicates that the scope is your entire Prisma Access instance. \n"
-    name:
-      name: name
-      in: query
-      required: true
-      schema:
-        type: string
-      description: The name of the entry
   examples:
     json_401_panui_auth_invalid_credential:
       summary: Invalid Credential
@@ -253,13 +228,6 @@ components:
           $ref: '#/components/schemas/error_detail_cause_infos'
         _request_id:
           type: string
-    url-categories:
-      type: object
-      properties:
-        type:
-          type: string
-        value:
-          type: string
     error_detail_cause_info:
       title: Cause Info
       type: object
@@ -272,13 +240,25 @@ components:
           type: object
         help:
           type: string
+    locations:
+      type: array
+      items:
+        type: object
+        properties:
+          value:
+            type: string
+          display:
+            type: string
+          continent:
+            type: string
+          region:
+            type: string
+          aggregate_region:
+            type: string
 openapi: 3.0.0
 paths:
-  /config/v1/url-categories:
+  /config/v1/locations:
     get:
-      parameters:
-      - $ref: '#/components/parameters/scope'
-      - $ref: '#/components/parameters/name'
       responses:
         '200':
           content:
@@ -287,8 +267,8 @@ paths:
                 allOf:
                 - type: array
                   items:
-                    $ref: '#/components/schemas/url-categories'
-          description: List of custom url categories
+                    $ref: '#/components/schemas/locations'
+          description: List of locations
         '400':
           $ref: '#/components/responses/bad_request_errors_basic'
         '401':
@@ -299,21 +279,21 @@ paths:
           $ref: '#/components/responses/not_found'
         default:
           $ref: '#/components/responses/default_errors'
-      summary: List URL categories
-      description: 'List custom URL categories.
+      summary: List locations
+      description: 'Retrieve Prisma Access locations.
 
         '
       tags:
-      - URLCategories
-      operationId: get-config-v1-url-categories
+      - Locations
+      operationId: get-config-v1-locations
 info:
   version: beta
   x-logo:
     url: pan-logo.png
-  title: URL Category Management
-  description: 'Manages URL Categories
+  title: Retrieve Prisma Access Locations
+  description: 'Retrieve all Prisma Access locations.
 
     '
   contact: {}
 tags:
-- name: URLCategories
+- name: Locations
