@@ -35,9 +35,14 @@ module.exports = {
       },
       items: [
         {
-          to: "/docs/cloud/",
           label: "Docs",
           position: "left",
+          items: [
+               {
+                    label: "Prisma Cloud",
+                    to: "/docs/cloud/",
+               },
+            ]
         },
         {
           label: "API Reference",
@@ -49,6 +54,10 @@ module.exports = {
             {
               to: "/api/cloud/cwpp",
               label: "Cloud Workload Protection",
+            },
+            {
+              to: "/api/sase/config",
+              label: "SASE Config APIs (beta)",
             },
           ],
           position: "left",
