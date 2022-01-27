@@ -59,6 +59,12 @@
             "description": "Authentication status",
             "type": "string"
           },
+          "roles": {
+            "description": "List of user permissions based on user role type. This attribute is populated only for the refresh token response.",
+            "items": { "type": "string" },
+            "type": "array",
+            "uniqueItems": true
+          },
           "token": { "description": "JSON Web Token (JWT)", "type": "string" }
         },
         "type": "object"
@@ -75,7 +81,7 @@
   "paths": {
     "/login": {
       "post": {
-        "description": "Returns a JWT auth token for accessing the Prisma Cloud APIs.  To generate a token, you must have an access key and include the following values in the request body parameter — access key ID as the username and your secret key as the password. Prisma Cloud requires this JWT in the request header to authorize API access. Note that access keys maintain the same level of permissions as the permission group of the account that created them.   \r\n\r\nIf you are a multi-tenant user and the body parameters of your login call include a user name and password instead of an access key ID and secret key, then you will also need to provide the **prismaId** or the **customerName**.\nSpecifying just the **prismaId** is preferred, but specifying **customerName** is an acceptable alternative. Your **prismaId** is available from the \nlicense information in the Prisma Cloud console. It's unnecessary to specify both **prismaId** and **customerName**, but if you do specify both, the parameters must indicate the same tenant. \n\nNote that you should specify not only the URL and required headers, but also the request body or payload in any **POST /login** request.\nSee [Use Curl to Generate JWT Tokens in Prisma Cloud](https://prisma.pan.dev/docs/cloud/cspm/cspm-gs#use-curl-to-generate-jwt-tokens-in-prisma-cloud) for a detailed example.\n",
+        "description": "Returns a JWT auth token for accessing the Prisma Cloud APIs.  To generate a token, you must have an access key and include the following values in the request body parameter — access key ID as the username and your secret key as the password. Prisma Cloud requires this JWT in the request header to authorize API access. Note that access keys maintain the same level of permissions as the permission group of the account that created them.   \r\n\r\nIf you are a multi-tenant user and the body parameters of your login request include a user name and password instead of an access key ID and secret key. You will also need to provide the **prismaId** or the **customerName**.\nSpecifying just the **prismaId** is preferred, but specifying **customerName** is an acceptable alternative. Your **prismaId** is available from the \nlicense information in the Prisma Cloud console. It's unnecessary to specify both **prismaId** and **customerName**, but if you do specify both, the parameters must indicate the same tenant. \n\nNote that you should specify not only the URL and required headers, but also the request body or payload in any **POST /login** request.\nSee [Use Curl to Generate JWT Tokens in Prisma Cloud](https://prisma.pan.dev/docs/cloud/cspm/cspm-gs#use-curl-to-generate-jwt-tokens-in-prisma-cloud) for a detailed example.\n",
         "operationId": "app-login",
         "requestBody": {
           "content": {

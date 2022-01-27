@@ -791,7 +791,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/ParsedTableFilter'
           description: successful operation
@@ -894,7 +894,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 items:
                   $ref: '#/components/schemas/LegacyPolicyViewModel'
@@ -963,7 +963,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PolicyModel'
           description: successful operation
@@ -1101,7 +1101,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 items:
                   $ref: '#/components/schemas/PolicyViewModel'
@@ -1128,7 +1128,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PolicyModel'
           description: successful operation
@@ -1166,7 +1166,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PolicyModel'
           description: successful operation
@@ -1253,7 +1253,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 additionalProperties:
                   items:

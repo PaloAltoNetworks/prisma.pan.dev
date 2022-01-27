@@ -881,7 +881,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": { "$ref": "#/components/schemas/ParsedTableFilter" }
               }
             },
@@ -995,7 +995,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": {
                   "items": {
                     "$ref": "#/components/schemas/LegacyPolicyViewModel"
@@ -1037,7 +1037,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": { "$ref": "#/components/schemas/PolicyModel" }
               }
             },
@@ -1183,7 +1183,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": {
                   "items": { "$ref": "#/components/schemas/PolicyViewModel" },
                   "type": "array"
@@ -1225,7 +1225,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": { "$ref": "#/components/schemas/PolicyModel" }
               }
             },
@@ -1274,7 +1274,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": { "$ref": "#/components/schemas/PolicyModel" }
               }
             },
@@ -1394,7 +1394,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": {
                   "additionalProperties": {
                     "items": {

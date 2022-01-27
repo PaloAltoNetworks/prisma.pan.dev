@@ -419,7 +419,7 @@
         ]
       },
       "post": {
-        "description": "Adds either a user profile or a service account profile.  \r\n\r\nThe required request body parameters differ, depending on whether you are adding a user account or a service account. Specify whether \nyou're adding a user account or service account through the request parameter **type**.\n\nThe required parameters to add a user account are:\n\n* **email**\n* **firstName**\n* **lastName**\n* **roleIds**\n* **defaultRoleId**\n* **timeZone**\n\nThe required parameters to add a service account are:\n\n- **username**\n- **accessKeyName**\n- **accessKeyExpiration** (Required only if **enableKeyExpiration** is **true**)\n- **defaultRoleId**\n- **timeZone**\n",
+        "description": "Adds either a user profile or a service account profile.  \r\n\r\nThe required request body parameters differ, depending on whether you are adding a user account or a service account. Specify whether \nyou're adding a user account or service account through the request parameter **type**.\n\nThe required parameters to add a user account are:\n\n* **email**\n* **firstName**\n* **lastName**\n* **roleIds**\n* **defaultRoleId**\n* **timeZone**\n\nThe required parameters to add a service account are:\n\n* **username**\n* **accessKeyName**\n* **accessKeyExpiration** (Required only if **enableKeyExpiration** is **true**)\n* **defaultRoleId**\n* **timeZone**\n",
         "operationId": "add-user-v3",
         "requestBody": {
           "content": {

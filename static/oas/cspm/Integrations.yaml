@@ -355,8 +355,14 @@ components:
 info:
   contact: {}
   description: |
-    With multiple out-of-the-box integration options, you  Prisma Cloud into security 
+    With multiple out-of-the-box integration options, you can integrate Prisma Cloud into security 
     workflows and technologies that already exist in your organization.
+
+    **Note**: For Prisma Cloud integrations with the following, see [Integrations Pull](/api/cloud/cspm/integrations-pull):
+
+    * Okta
+    * Qualys
+    * Tenable
 
     ### Integration Configuration
 
@@ -374,6 +380,16 @@ paths:
     get:
       description: |
         Returns a list of the supported integration types.
+
+        **Note**: This request does not support Prisma Cloud integrations with the following:
+
+        * Okta
+        * Qualys
+        * Tenable
+
+        For requests that support integration with the systems above, see [Integrations Pull](/api/cloud/cspm/integrations-pull).
+
+
       operationId: get-supported-integration-channels-v1
       parameters:
       - description: |
@@ -439,6 +455,14 @@ paths:
         * Account and Cloud Provisioning Admin
         * Account Group Read Only
 
+        **Note**: This request does not support Prisma Cloud integrations with the following:
+
+        * Okta
+        * Qualys
+        * Tenable
+
+        For requests that support integration with the systems above, see [Integrations Pull](/api/cloud/cspm/integrations-pull).        
+
       operationId: get-all-integrations-v1
       parameters:
       - description: |
@@ -500,15 +524,13 @@ paths:
 
         The caller must have a Prisma Cloud role of System Admin.
 
-        This request does not support integrations with the following:
+        **Note**: This request does not support Prisma Cloud integrations with the following:
 
         * Okta
-        * Tenable
         * Qualys
+        * Tenable
 
-        For the integrations above, see this 
-        [request to add your integration](/api/cloud/cspm/integrations#operation/save-integration).
-
+        For requests that support integration with the systems above, see [Integrations Pull](/api/cloud/cspm/integrations-pull).
 
       operationId: create-integration-v1
       parameters:
@@ -555,6 +577,14 @@ paths:
         Returns the integration with the specified ID.
 
         The caller must have a Prisma Cloud role of System Admin.
+
+        **Note**: This request does not support Prisma Cloud integrations with the following:
+
+        * Okta
+        * Qualys
+        * Tenable
+
+        For requests that support integration with the systems above, see [Integrations Pull](/api/cloud/cspm/integrations-pull).
       operationId: get-integration-v1
       parameters:
       - description: |
@@ -600,6 +630,14 @@ paths:
         an integration.
 
         The caller must have a Prisma Cloud role of System Admin.
+
+        **Note**: This request does not support Prisma Cloud integrations with the following:
+
+        * Okta
+        * Qualys
+        * Tenable
+
+        For requests that support integration with the systems above, see [Integrations Pull](/api/cloud/cspm/integrations-pull).
       operationId: update-integration-state-v1
       parameters:
       - description: |
@@ -646,6 +684,15 @@ paths:
         Updates an integration.
 
         The caller must have a Prisma Cloud role of System Admin.
+
+        **Note**: This request does not support Prisma Cloud integrations with the following:
+
+        * Okta
+        * Qualys
+        * Tenable
+
+        For requests that support integration with the systems above, see [Integrations Pull](/api/cloud/cspm/integrations-pull).
+
       operationId: update-integration-v1
       parameters:
       - description: |
@@ -695,6 +742,14 @@ paths:
         Deletes an integration.
 
         The caller must have a Prisma Cloud role of System Admin.
+
+        **Note**: This request does not support Prisma Cloud integrations with the following:
+
+        * Okta
+        * Qualys
+        * Tenable
+
+        For requests that support integration with the systems above, see [Integrations Pull](/api/cloud/cspm/integrations-pull).
       operationId: delete-integration-v1
       parameters:
       - description: |
@@ -736,6 +791,15 @@ paths:
         Runs a test of the integration for the specified data.
 
         The caller must have a Prisma Cloud role of System Admin.
+
+        **Note**: This request does not support Prisma Cloud integrations with the following:
+
+        * Okta
+        * Qualys
+        * Tenable
+
+        For requests that support integration with the systems above, see [Integrations Pull](/api/cloud/cspm/integrations-pull).
+
       operationId: test-integration-v1
       parameters:
       - description: |
@@ -783,6 +847,14 @@ paths:
         Returns a list of security-hub-enabled AWS regions for the specified AWS account.
 
         The caller must have a Prisma Cloud role of System Admin.
+
+        **Note**: This request does not support Prisma Cloud integrations with the following:
+
+        * Okta
+        * Qualys
+        * Tenable
+
+        For requests that support integration with the systems above, see [Integrations Pull](/api/cloud/cspm/integrations-pull).
       operationId: get-security-hub-region-by-account-id-v1
       parameters:
       - description: |
@@ -828,6 +900,14 @@ paths:
         Returns the security-hub-enabled AWS account name and ID for the specified Prisma ID.
 
         The caller must have a Prisma Cloud role of System Admin.
+
+        **Note**: This request does not support Prisma Cloud integrations with the following:
+
+        * Okta
+        * Qualys
+        * Tenable
+
+        For requests that support integration with the systems above, see [Integrations Pull](/api/cloud/cspm/integrations-pull).
       operationId: get-security-hub-accounts-v1
       parameters:
       - description: |

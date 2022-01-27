@@ -346,9 +346,9 @@ paths:
         \ adding a user account or service account through the request parameter **type**.\n\
         \nThe required parameters to add a user account are:\n\n* **email**\n* **firstName**\n\
         * **lastName**\n* **roleIds**\n* **defaultRoleId**\n* **timeZone**\n\nThe\
-        \ required parameters to add a service account are:\n\n- **username**\n- **accessKeyName**\n\
-        - **accessKeyExpiration** (Required only if **enableKeyExpiration** is **true**)\n\
-        - **defaultRoleId**\n- **timeZone**\n"
+        \ required parameters to add a service account are:\n\n* **username**\n* **accessKeyName**\n\
+        * **accessKeyExpiration** (Required only if **enableKeyExpiration** is **true**)\n\
+        * **defaultRoleId**\n* **timeZone**\n"
       operationId: add-user-v3
       requestBody:
         content:

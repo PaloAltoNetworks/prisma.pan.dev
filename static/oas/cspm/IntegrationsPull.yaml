@@ -494,10 +494,14 @@ info:
   contact: {}
   description: "With Prisma Cloud service’s multiple out-of-the-box integration options,\
     \ you can integrate Prisma Cloud into existing \nsecurity workflows and technologies\
-    \ of your organization.\n\n## Integration Configuration\nThe model for an integration\
-    \ between Prisma Cloud and an external system includes an **integrationConfig**\
-    \ parameter which \nis a map of key/value pairs. The type of integration defines\
-    \ the content of these key/value pairs.\nSee [Integration Configurations](/api/cloud/api-integration-config)\
+    \ of your organization.\n\nYou can use [Integrations V1](/api/cloud/cspm/integrations)\
+    \ for most external integrations. Use the following API endpoints, though, for\
+    \ \nintegrations with:\n\n* Okta\n* Qualys\n* Tenable\n\nIn addition to pushing\
+    \ data to these external systems, Prisma Cloud also pulls data.\n         \n##\
+    \ Integration Configuration\nThe model for an integration between Prisma Cloud\
+    \ and an external system includes an **integrationConfig** parameter which \n\
+    is a map of key/value pairs. The type of integration defines the content of these\
+    \ key/value pairs.\nSee [Integration Configurations](/api/cloud/api-integration-config)\
     \ for more information about integration API \nrequest body details, including\
     \ the **integrationConfig** request parameter key/value pairs that apply to your\
     \ \nspecific integration API.\n"
@@ -508,9 +512,8 @@ paths:
   /integration/name:
     get:
       description: "Returns the metadata for your integrations filtered by type. \
-        \ \r\n\r\n**Deprecation Notice:** This endpoint is deprecated for integrations\
-        \ with all external systems except the following:\n\n * Okta\n * Qualys\n\
-        \ * Tenable \n"
+        \ \r\n\r\nThis request supports integrations with only the following:\n\n\
+        \ * Okta\n * Qualys\n * Tenable \n"
       operationId: get-all-integrations-metadata
       parameters:
       - description: Integration type
@@ -543,27 +546,20 @@ paths:
       - x-redlock-auth: []
       summary: List Metadata for All Integrations
       tags:
-      - Integrations
+      - Integrations Pull
   /integration:
     get:
       description: "Returns all your integrations, optionally filtered by type.  \r\
-        \n\r\n**Deprecation Notice:** This endpoint is deprecated for integrations\
-        \ with all external systems except the following:\n\n * Okta\n * Qualys\n\
-        \ * Tenable \n"
+        \n\r\nThis request supports integrations with only the following:\n\n * Okta\n\
+        \ * Qualys\n * Tenable \n"
       operationId: get-all-integrations
       parameters:
-      - description: Integration type
+      - description: Include only Okta, Tenable, and Qualys integrations
         in: query
         name: type
         required: false
         schema:
           type: string
-      - description: Include only Okta, Tenable, and Qualys integrations
-        in: query
-        name: internalOnly
-        required: false
-        schema:
-          type: boolean
       responses:
         '200':
           content:
@@ -577,17 +573,16 @@ paths:
       - x-redlock-auth: []
       summary: List All Integrations
       tags:
-      - Integrations
+      - Integrations Pull
     post:
       description: "Adds an integration with the specified external system.  \r\n\r\
-        \n**Deprecation Notice:** This endpoint is deprecated for integrations with\
-        \ all external systems except the following:\n\n* Okta\n* Qualys\n* Tenable\n\
-        \nThe following request body parameters are required:\n\n* **name**\n* **integrationType**\n\
-        * **integrationConfig**\n* **enabled**\n\nThe **integrationConfig** field\
-        \ that is a map of key/value pairs. The type of integration \ndefines the\
-        \ content of these key/value pairs. See [Integration Configuration](/api/cloud/api-integration-config)\
-        \ for valid \nkey/value pairs for the **integrationConfig** for your specific\
-        \ external integration.\n"
+        \nThis request supports integrations with only the following:\n\n* Okta\n\
+        * Qualys\n* Tenable\n\nThe following request body parameters are required:\n\
+        \n* **name**\n* **integrationType**\n* **integrationConfig**\n* **enabled**\n\
+        \nThe **integrationConfig** field that is a map of key/value pairs. The type\
+        \ of integration \ndefines the content of these key/value pairs. See [Integration\
+        \ Configuration](/api/cloud/api-integration-config) for valid \nkey/value\
+        \ pairs for the **integrationConfig** for your specific external integration.\n"
       operationId: save-integration
       requestBody:
         $ref: '#/components/requestBodies/IntegrationModel'
@@ -601,20 +596,19 @@ paths:
       - x-redlock-auth: []
       summary: Add Integration
       tags:
-      - Integrations
+      - Integrations Pull
   /integration/test:
     post:
       description: "Runs a test of the integration for the specified data.   \r\n\r\
-        \n**Deprecation Notice:** This endpoint is deprecated for integrations with\
-        \ all external systems except the following:\n\n* Okta\n* Qualys\n* Tenable\n\
-        \nAn integration test requires the following request body parameters:\n\n\
-        The following request body parameters are required:\n\n* **name**\n* **integrationType**\n\
-        * **integrationConfig**\n\nThe request body to test an integration between\
-        \ Prisma Cloud and an external system \nincludes an **integrationConfig**\
-        \ field that is a map of key/value pairs. The type of \nintegration defines\
-        \ the content of these key/value pairs. See [Integration Configuration](/api/cloud/api-integration-config)\
-        \ \n for request body details, including the **integrationConfig** for your\
-        \ specific integration test.\n"
+        \nThis request supports integrations with only the following:\n\n* Okta\n\
+        * Qualys\n* Tenable \n\nThe following request body parameters are required:\n\
+        \n* **name**\n* **integrationType**\n* **integrationConfig**\n\nThe request\
+        \ body to test an integration between Prisma Cloud and an external system\
+        \ \nincludes an **integrationConfig** field that is a map of key/value pairs.\
+        \ The type of \nintegration defines the content of these key/value pairs.\
+        \ See [Integration Configuration](/api/cloud/api-integration-config) \nfor\
+        \ request body details, including the **integrationConfig** for your specific\
+        \ integration test.\n"
       operationId: test-integration
       parameters:
       - description: Integration ID
@@ -639,13 +633,12 @@ paths:
       - x-redlock-auth: []
       summary: Test Integration
       tags:
-      - Integrations
+      - Integrations Pull
   /integration/{id}:
     get:
-      description: "Returns integration details for the specified ID.  \r\n\r\n**Deprecation\
-        \ Notice:** This endpoint is deprecated for integrations with all external\
-        \ systems except the following:\n\n* Okta\n* Qualys\n* Tenable\n\nTo get the\
-        \ integration ID, [list the metadata for all integrations](/api/cloud/cspm/integrations#operation/get-all-integrations-metadata).\
+      description: "Returns integration details for the specified ID.  \r\n\r\nThis\
+        \ request supports integrations with only the following:\n\n* Okta\n* Qualys\n\
+        * Tenable\n\nTo get the integration ID, [list the metadata for all integrations](/api/cloud/cspm/integrations-pull#operation/get-all-integrations-metadata).\
         \    \n"
       operationId: get-integration-by-id
       parameters:
@@ -668,12 +661,11 @@ paths:
       - x-redlock-auth: []
       summary: Get Integration By ID
       tags:
-      - Integrations
+      - Integrations Pull
     put:
-      description: "Updates the specified integration.  \r\n\r\n**Deprecation Notice:**\
-        \ This endpoint is deprecated for integrations with all external systems except\
-        \ the following:\n\n* Okta\n* Qualys\n* Tenable \n\nTo get the integration\
-        \ ID, [list the metadata for all integrations](/api/cloud/cspm/integrations#operation/get-all-integrations-metadata).\n\
+      description: "Updates the specified integration.  \r\n\r\nThis request supports\
+        \ integrations with only the following:\n\n* Okta\n* Qualys\n* Tenable \n\n\
+        To get the integration ID, [list the metadata for all integrations](/api/cloud/cspm/integrations-pull#operation/get-all-integrations-metadata).\n\
         \nThe request body for an integration between Prisma Cloud and an external\
         \ system includes \nan **integrationConfig** field that is a map of key/value\
         \ pairs. The type of integration \ndefines the content of these key/value\
@@ -702,11 +694,10 @@ paths:
       - x-redlock-auth: []
       summary: Update Integration
       tags:
-      - Integrations
+      - Integrations Pull
     delete:
-      description: "Deletes the integration for the specified ID.  \r\n\r\n**Deprecation\
-        \ Notice:** This endpoint is deprecated for integrations with all external\
-        \ systems except the following:\n\n* Okta\n* Qualys\n* Tenable\n"
+      description: "Deletes the integration for the specified ID.  \r\n\r\nThis request\
+        \ supports integrations with only the following:\n\n* Okta\n* Qualys\n* Tenable\n"
       operationId: delete-integration
       parameters:
       - in: path
@@ -724,9 +715,9 @@ paths:
       - x-redlock-auth: []
       summary: Delete Integration
       tags:
-      - Integrations
+      - Integrations Pull
 servers:
 - url: https://api.prismacloud.io
 tags:
 - description: THe Integration endpoints are listed below.
-  name: Integrations
+  name: Integrations Pull
