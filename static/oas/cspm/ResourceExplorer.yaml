@@ -203,6 +203,7 @@ components:
           - TENABLE
           - QUALYS
           - PRISMA_CLOUD
+          - AZURE_SECURITY_CENTER
           type: string
         sourceData:
           additionalProperties:
@@ -232,6 +233,7 @@ components:
           - AWS_GUARD_DUTY_HOST_FINDING
           - AWS_GUARD_DUTY_IAM_FINDING
           - SERVERLESS_VULNERABILITY
+          - AZURE_SECURITY_CENTER_ALERTS
           type: string
         updatedOn:
           format: int64
@@ -263,6 +265,7 @@ components:
           - TENABLE
           - QUALYS
           - PRISMA_CLOUD
+          - AZURE_SECURITY_CENTER
           type: string
         tags:
           items:
@@ -488,6 +491,7 @@ components:
             - TENABLE
             - QUALYS
             - PRISMA_CLOUD
+            - AZURE_SECURITY_CENTER
             type: string
           readOnly: true
           type: array

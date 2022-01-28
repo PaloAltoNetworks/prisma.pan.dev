@@ -231,7 +231,7 @@ components:
           description: include snoozed alerts in notification
           type: boolean
         openAlertsCount:
-          description: Open alerts count
+          description: Open alerts count (Deprecated - will be removed soon)
           format: int32
           type: integer
         owner:
@@ -333,16 +333,15 @@ info:
   version: Latest
 openapi: 3.0.0
 paths:
-  /alert/rule:
+  /v2/alert/rule:
     get:
-      deprecated: true
       description: "Returns all alert rules you have permission to see based on your\
-        \ role. The data returned includes an open alerts count.  \r\n\r\nThis request\
-        \ does not return a populated **alertRuleNotificationConfig** property \n\
-        in the response object. Use \n[Get Alert Rule by ID](/api/cloud/cspm/alert-rules#operation/get-alert-rule)\
-        \ to retrieve a response that \nincludes a populated **alertRuleNotificationConfig**\
+        \ role. The data returned does not include an open alerts count.  \r\n\r\n\
+        This request does not return a populated **alertRuleNotificationConfig** property\
+        \ \nin the response object. [Use [Get Alert Rule by ID](/api/cloud/cspm/alert-rules#operation/get-alert-rule)\
+        \  \nto retrieve a response that includes a populated **alertRuleNotificationConfig**\
         \ property.\n"
-      operationId: get-alert-rules
+      operationId: get-alert-rules-v2
       parameters:
       - description: Process only enabled alert rules
         in: query
@@ -363,9 +362,10 @@ paths:
           description: internal_error
       security:
       - x-redlock-auth: []
-      summary: List Alert Rules
+      summary: List Alert Rules V2
       tags:
       - Alert Rules
+  /alert/rule:
     post:
       description: "Adds a new alert rule.  \r\n\r\nBy default, all alerts that this\
         \ alert rule triggers will display on the Alerts page. \nYou can also send\
@@ -411,38 +411,6 @@ paths:
       security:
       - x-redlock-auth: []
       summary: Add an Alert Rule
-      tags:
-      - Alert Rules
-  /v2/alert/rule:
-    get:
-      description: "Returns all alert rules you have permission to see based on your\
-        \ role. The data returned does not include an open alerts count.  \r\n\r\n\
-        This request does not return a populated **alertRuleNotificationConfig** property\
-        \ \nin the response object. [Use [Get Alert Rule by ID](/api/cloud/cspm/alert-rules#operation/get-alert-rule)\
-        \  \nto retrieve a response that includes a populated **alertRuleNotificationConfig**\
-        \ property.\n"
-      operationId: get-alert-rules-v2
-      parameters:
-      - description: Process only enabled alert rules
-        in: query
-        name: enabled
-        required: false
-        schema:
-          type: boolean
-      responses:
-        '200':
-          content:
-            application/json; charset=UTF-8:
-              schema:
-                items:
-                  $ref: '#/components/schemas/PolicyScanConfigViewModel'
-                type: array
-          description: successful operation
-        '500':
-          description: internal_error
-      security:
-      - x-redlock-auth: []
-      summary: List Alert Rules V2
       tags:
       - Alert Rules
   /alert/rule/{id}:
