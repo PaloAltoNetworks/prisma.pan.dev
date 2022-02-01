@@ -338,7 +338,7 @@ paths:
       description: "Returns all alert rules you have permission to see based on your\
         \ role. The data returned does not include an open alerts count.  \r\n\r\n\
         This request does not return a populated **alertRuleNotificationConfig** property\
-        \ \nin the response object. [Use [Get Alert Rule by ID](/api/cloud/cspm/alert-rules#operation/get-alert-rule)\
+        \ \nin the response object. Use [Get Alert Rule by ID](/api/cloud/cspm/alert-rules#operation/get-alert-rule)\
         \  \nto retrieve a response that includes a populated **alertRuleNotificationConfig**\
         \ property.\n"
       operationId: get-alert-rules-v2

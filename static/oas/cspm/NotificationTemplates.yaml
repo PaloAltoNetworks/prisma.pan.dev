@@ -368,6 +368,7 @@ paths:
         schema:
           items:
             type: string
+          type: array
       - in: query
         description: true = Enabled
         name: enabled

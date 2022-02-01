@@ -241,6 +241,10 @@
             "format": "int64",
             "type": "integer"
           },
+          "name": {
+            "description": "Name. Cannot include special characters ('<', '>', '!', '=', '\\n', '\\r'). Maximum length is 99.\n",
+            "type": "string"
+          },
           "reason": {
             "$ref": "#/components/schemas/EventsIntegrationStatusDetails"
           },
@@ -334,7 +338,7 @@
             "in": "query",
             "name": "type",
             "required": false,
-            "schema": { "type": "string" }
+            "schema": { "items": { "type": "string" }, "type": "array" }
           },
           {
             "in": "query",
@@ -375,11 +379,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/api/v1/tenant/{prismaId}/template\"\n\nquerystring = {\"id\":\"SOME_ARRAY_VALUE\",\"type\":\"SOME_STRING_VALUE\",\"enabled\":\"SOME_BOOLEAN_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/api/v1/tenant/{prismaId}/template\"\n\nquerystring = {\"id\":\"SOME_ARRAY_VALUE\",\"type\":\"SOME_ARRAY_VALUE\",\"enabled\":\"SOME_BOOLEAN_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/api/v1/tenant/{prismaId}/template?id=SOME_ARRAY_VALUE&type=SOME_STRING_VALUE&enabled=SOME_BOOLEAN_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/api/v1/tenant/{prismaId}/template?id=SOME_ARRAY_VALUE&type=SOME_ARRAY_VALUE&enabled=SOME_BOOLEAN_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -499,7 +503,7 @@
         ]
       },
       "patch": {
-        "description": "Updates the notification template with the specified ID. \nThe caller must have one of the following Prisma Cloud roles:\n\n* System Admin\n* Account and Cloud Provisioning Admin\n",
+        "description": "Updates the template with the specified ID. \nThe caller must have one of the following Prisma Cloud roles:\n\n* System Admin\n* Account and Cloud Provisioning Admin\n",
         "operationId": "update-template-v1",
         "parameters": [
           {
@@ -603,7 +607,7 @@
     },
     "/api/v1/tenant/{prismaId}/template/test": {
       "post": {
-        "description": "Runs a test of the template for the specified data. \n\nThe caller must have one of the following Prisma Cloud roles:\n\n* System Admin\n* Account and Cloud Provisioning Admin\n",
+        "description": "Runs a test of the notification template for the specified data. \n\nThe caller must have one of the following Prisma Cloud roles:\n\n* System Admin\n* Account and Cloud Provisioning Admin\n",
         "operationId": "test-template-v1",
         "parameters": [
           {
