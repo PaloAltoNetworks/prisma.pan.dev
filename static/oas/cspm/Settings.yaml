@@ -10,6 +10,10 @@ components:
     EnterpriseSettingsRequestModel:
       description: Model used for EnterpriseSettings
       properties:
+        accessKeyMaxValidity:
+          description: Access Keys maximum validity in days
+          format: int32
+          type: integer
         alarmEnabled:
           description: Alarms enabled
           enum:
