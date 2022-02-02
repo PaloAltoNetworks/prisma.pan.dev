@@ -14,7 +14,7 @@ Note that most external systems require some configuration before you can use th
 
 ### Azure Service Bus Queue
 
-Prisma Cloud can send alerts to an Azure Service Bus messaging service. To authorize access, you can either (1) use a Shared Access Signature for limiting access permissions to the Service Bus namespace or queue or (2) use the service principal credentials associated with the Azure Cloud account you've onboarded to Prisma Cloud. If you plan to use the service principal that uses Azure Active Directory to authorize requests, you must include the additional role Azure Service Bus Data Sender and enable send access to the Service Bus namespace and queues.
+Prisma Cloud can send alerts to an Azure Service Bus messaging service. To authorize access, you can either (1) use a shared access signature to limit access permissions to the Service Bus namespace or queue or (2) use the service principal credentials associated with the Azure Cloud account you've on-boarded to Prisma Cloud. If you plan to use the service principal that uses Azure Active Directory to authorize requests, you must include the additional role _Azure Service Bus Data Sender_ and enable _send_ access to the Service Bus namespace and queues. See [Integrate Prisma Cloud with Azure Service Bus](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/configure-external-integrations-on-prisma-cloud/integrate-prisma-cloud-with-azure-service-bus-queue.html) for details about these prerequisites.
 
 #### Add, Update, or Test an Azure Service Bus Queue Integration
 
@@ -34,7 +34,7 @@ Key  |  Value Description | Value Type | Default Value or Required
 connectionString | Azure Shared Access String connection string | string | _required_
 queueUrl | The URL configured in the Azure Service Bus queue where Prisma sends alerts | string | _required_
 
-To update an Azure Service Bus queue integration, make your request as described in [Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig.queueUrl` is mutable.
+To update an Azure Service Bus queue integration, make your request as described in [Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Only parameter `integrationConfig.queueUrl` is mutable.
 
 To test an Azure Service Bus queue integration, make your request as described in [Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
 
@@ -72,11 +72,11 @@ To test an Azure Service Bus queue integration, make your request as described i
 
 ### Amazon SQS
 
-Prisma Cloud supports Amazon Simple Queue Service (SQS) to send alerts to customers who can then consume these alerts through a Splunk add-on or through the AWS CloudFormation service to enable custom workflows. Once you configure Amazon SQS to receive Prisma Cloud alerts, including enabling required permissions, you can use the REST API to set up the Amazon SQS integration in Prisma Cloud.
+Prisma Cloud can send alerts to Amazon Simple Queue Service (SQS). Customers can consume these alerts through a Splunk add-on or through the AWS CloudFormation service.  Once you [configure Amazon SQS to receive Prisma Cloud alerts](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/configure-external-integrations-on-prisma-cloud/integrate-prisma-cloud-with-amazon-sqs.html), you can use an API request to add the Amazon SQS integration to Prisma Cloud.
 
 #### Add, Update, or Test an Amazon SQS Integration
 
-To add an Amazon SQS integration, make the request with the corresponding request body described  in [Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter for an SQS integration is `amazon_sqs`.
+To add an Amazon SQS integration, make the request as described in [Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter for an SQS integration is `amazon_sqs`.
 
 The `integrationConfig` parameter contains the following key/value pairs when you are using IAM access keys:
 
