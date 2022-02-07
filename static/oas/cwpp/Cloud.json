@@ -17782,6 +17782,147 @@
         "operationId": "post-cloud-discovery-stop",
         "summary": " Stop Cloud Discovery Scan"
       }
+    },
+    "/api/v22.01/cloud/discovery/vms": {
+      "get": {
+        "description": "DiscoveredVMs returns discovered cloud VM instances\n",
+        "parameters": [
+          {
+            "description": "Offset from the start of the list from which to retrieve documents.\n",
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of documents to return.\n",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Search term.\n",
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Key on which to sort.\n",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Sort order.\n",
+            "in": "query",
+            "name": "reverse",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Scopes the query by collection.\n",
+            "in": "query",
+            "name": "collections",
+            "schema": {
+              "description": "Scopes the query by collection.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by account ID.\n",
+            "in": "query",
+            "name": "accountIDs",
+            "schema": {
+              "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "List of fields to retrieve.\n",
+            "in": "query",
+            "name": "fields",
+            "schema": {
+              "description": "List of fields to retrieve.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Provider is the provider filter.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Provider is the provider filter.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Region is the region filter.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Region is the region filter.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "HasDefender indicates only VMs with or without a defender should return.\n",
+            "in": "query",
+            "name": "hasDefender",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/-_types.DiscoveredVM"
+                }
+              }
+            },
+            "description": ""
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Cloud",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "monitorCloud",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "get-cloud-discovery-vms",
+        "summary": " Discovered VMs"
+      }
     }
   }
 }
