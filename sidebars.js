@@ -199,7 +199,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Tutorials",
+      label: "Tutorials (coming soon)",
       items: ["cloud/tutorials/comingsoon"],
     },
   ],
