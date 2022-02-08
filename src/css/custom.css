@@ -708,3 +708,11 @@ html[data-theme="dark"] .featuredContainer {
 .xsoarItem::after {
   display: none !important;
 }
+
+.section__docs{
+  font-weight: bolder;
+  cursor:inherit;
+  background-color: transparent !important;
+  border-radius: 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-400);
+}

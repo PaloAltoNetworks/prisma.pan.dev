@@ -10,25 +10,6 @@ keywords:
 # Contributing Guidelines
 
 Thank you for your interest in **Palo Alto Networks** developer documentation!
-
-- [Contributing Guidelines](#contributing-guidelines)
-  - [Types of contributions](#types-of-contributions)
-  - [Using Git and GitHub](#using-git-and-github)
-    - [Setting up your fork of the repository](#setting-up-your-fork-of-the-repository)
-    - [Contribute content](#contribute-content)
-      - [Sync forked repo with root](#sync-forked-repo-with-root)
-  - [Markdown and MDX](#markdown-and-mdx)
-    - [MDX](#mdx)
-    - [Standard Markdown](#standard-markdown)
-    - [Markdown basics](#markdown-basics)
-    - [Link and image references](#link-and-image-references)
-  - [CLI and code snippets](#cli-and-code-snippets)
-  - [Adding a document](#adding-a-document)
-    - [Frontmatter](#frontmatter)
-    - [Sidebar](#sidebar)
-    - [Contributing a doc](#contributing-a-doc)
-  - [More resources](#more-resources)
-
 ## Types of contributions
 
 The following are ways you can contribute to Palo Alto Networks developer docs:
@@ -64,7 +45,9 @@ git fetch upstream
 
 Congratulations! You've now set up your repository.
 
-### Contribute content
+
+### Ready to push my changes
+<details><summary> Pushing Changes </summary>
 
 To make the contribution process as seamless as possible for you, follow this procedure.
 
@@ -101,7 +84,11 @@ The following are examples of contributions appropriate for a new branch:
 - Grammar and typo corrections
 - Formatting changes
 
-#### Sync forked repo with root
+</details>
+
+### My repository is out of date
+<details>
+<summary> Sync forked repo with root</summary>
 
 After some time has passed, it might be necessary to sync your local repo with the remote, upstream repo.
 
@@ -119,6 +106,69 @@ git merge upstream/master master
 
 # Pushes local master branch to origin/master
 git push origin master
+```
+
+</details>
+
+## Adding a doc
+
+This section describes the general steps required for adding a document using `git`.
+
+### 1. Create a new MD/MDX file under the appropriate subdirectory of the `docs` directory
+:::note
+If you're not sure where to begin, feel free to use an existing doc as boilerplate. Just remember that each document requires a unique ID.
+:::
+### 2. Add the appropriate frontmatter (including the unique ID)
+
+Each doc requires a frontmatter header, which Docusaurus uses to determine the following:
+
+- What description, title and tags to inject into the HTML `<meta />` tag
+- What sidebar and sidebar category to organize the document under
+- A unique document ID
+
+Example:
+
+```markdown
+---
+id: my_awesome_tutorial
+title: My Awesome Tutorial
+sidebar_label: My Awesome Tutorial
+hide_title: false
+description: A really cool tutorial about something awesome!
+keywords:
+  - awesome
+  - tutorial
+---
+```
+
+Now you can also add the content below the frontmatter. Content is authored in markdown, see the guide below for more details on how to author in markdown. 
+
+
+### 3. Add the document ID to an existing or new sidebar/sidebar category
+
+Each developer site will implement one or more documentation sidebars, depending on the number of vertical content areas covered by that site. The relationship between docs, categories and sidebars can be summarized as follows (listed in hierarchical order from left to right):
+
+```text
+Sidebar --> Category --> [array of document IDs]
+```
+
+The sidebar is generated from the `sidebars.js` file located in the root folder.
+
+:::note
+The following snippet calls out each specific sidebar component (note that the actual `sidebars.js` file should not contain comments).
+:::
+
+```js {6,7}
+module.exports = {
+  panos: [
+    // Add your new doc inside an existing sidebar
+    {
+      type: "category",
+      label: "Tutorials", // Category label
+      items: ["apis/welcome", "apis/my_awesome_tutorial"] // Document ID (includes the relative path from the /docs folder, this file is stored at docs/api/*.md)
+    }
+  ]
+};
 ```
 
 ## Markdown and MDX
@@ -208,72 +258,6 @@ Sample output:
   "url": "https://httpbin.org/get"
 }
 ```
-
-## Adding a document
-
-This section describes the general steps required for adding a document using `git`.
-
-### Frontmatter
-
-Each doc requires a frontmatter header, which Docusaurus uses to determine the following:
-
-- What description, title and tags to inject into the HTML `<meta />` tag
-- What sidebar and sidebar category to organize the document under
-- A unique document ID
-
-Example:
-
-```text
----
-id: my_awesome_tutorial
-title: My Awesome Tutorial
-sidebar_label: My Awesome Tutorial
-hide_title: false
-description: A really cool tutorial about something awesome!
-keywords:
-  - awesome
-  - tutorial
----
-```
-
-:::note
-If you're not sure where to begin, feel free to use an existing doc as boilerplate. Just remember that each document requires a unique ID.
-:::
-
-### Sidebar
-
-Each developer site will implement one or more documentation sidebars, depending on the number of vertical content areas covered by that site. The relationship between docs, categories and sidebars can be summarized as follows (listed in hierarchical order from left to right):
-
-```text
-Sidebar --> Category --> [array of document IDs]
-```
-
-The sidebar is generated from the `sidebars.js` file located in the root folder.
-
-:::note
-The following snippet calls out each specific sidebar component (note that the actual `sidebars.js` file should not contain comments).
-:::
-
-```js {6,7}
-module.exports = {
-  panos: [
-    // Add your new doc inside an existing sidebar
-    {
-      type: "category",
-      label: "Tutorials", // Category label
-      items: ["apis/my_awesome_tutorial"] // Document ID (including relative path)
-    }
-  ]
-};
-```
-
-### Contributing a doc
-
-Contributing a new document can be achieved with the following, high-level flow:
-
-1. Create a new MD/MDX file under the `docs` folder
-2. Add the appropriate frontmatter (including the unique ID)
-3. Add the document ID to an existing or new sidebar/sidebar category
 
 ## More resources
 
