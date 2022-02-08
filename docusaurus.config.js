@@ -37,12 +37,7 @@ module.exports = {
         {
           label: "Docs",
           position: "left",
-          items: [
-               {
-                    label: "Prisma Cloud",
-                    to: "/docs/cloud/",
-               },
-            ]
+          to: "/docs/cloud/",
         },
         {
           label: "API Reference",
