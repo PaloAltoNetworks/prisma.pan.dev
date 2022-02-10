@@ -1,6 +1,6 @@
 ---
-id: comingsoon 
-title: Coming Soon
+id: rest-api-basics
+title: Rest API Basics
 sidebar_label: Rest API Basics
 ---
 
@@ -151,6 +151,7 @@ If you prefer a progress "bar" instead of the regular meter, *-#, --progress-bar
 ### Additional output options
 
 You may also want to test out some of these other output options.  These can be especially handy for troubleshooting and for when building scripts and automating API interactions.
+
 | **Option** | **Description** |
 | ---------------- | -------------- | 
 | `-s` or `--silent` | Silent or quiet mode. Don't show progress meter or error messages. |
