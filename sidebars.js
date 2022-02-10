@@ -199,8 +199,12 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Tutorials (coming soon)",
-      items: ["cloud/tutorials/comingsoon"],
+      label: "Tutorials",
+      items: [{
+        type: "category",
+        label: "APIs",
+        items: ["cloud/tutorials/comingsoon"],
+      }],
     },
   ],
 };
