@@ -200,11 +200,13 @@ module.exports = {
     {
       type: "category",
       label: "Tutorials",
-      items: [{
-        type: "category",
-        label: "APIs",
-        items: ["cloud/tutorials/comingsoon"],
-      }],
+      items: [
+        {
+          type: "category",
+          label: "APIs",
+          items: ["cloud/tutorials/rest-api-basics"],
+        },
+      ],
     },
   ],
 };
