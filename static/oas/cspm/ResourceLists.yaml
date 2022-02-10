@@ -37,9 +37,11 @@ components:
           minLength: 0
           type: string
         resourceListType:
-          description: Resource list type
+          description: 'Resource list type. Note: COMPUTE_ACCESS_GROUP is available
+            only if you have a Compute license'
           enum:
           - TAG
+          - COMPUTE_ACCESS_GROUP
           type: string
       required:
       - members
@@ -120,7 +122,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 items:
                   type: string

@@ -184,7 +184,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "items": { "$ref": "#/components/schemas/UserRoleViewModel" },
                   "type": "array"
@@ -252,7 +252,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "items": {
                     "additionalProperties": { "type": "string" },
@@ -298,7 +298,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": { "$ref": "#/components/schemas/UserRoleViewModel" }
               }
             },
