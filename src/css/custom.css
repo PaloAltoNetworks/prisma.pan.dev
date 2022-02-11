@@ -164,17 +164,6 @@ blockquote {
   border-top: 1px solid var(--ifm-color-primary) !important;
 }
 
-.button {
-  background-color: var(--ifm-color-gray-900);
-  z-index: 1;
-  color: white !important;
-  margin-bottom: 1.75rem;
-}
-
-.button:hover {
-  background-color: var(--ifm-color-primary-dark);
-  border-color: #000000;
-}
 /* Dropdown menu overrides */
 .dropdown .dropdown__menu {
   min-width: 14rem !important;

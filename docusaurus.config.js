@@ -4,7 +4,6 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 module.exports = {
   title: "Prisma Developer Docs | Palo Alto Networks",
   url: process.env.CI_PAGES_URL
@@ -17,6 +16,9 @@ module.exports = {
   organizationName: "PaloAltoNetworks", // Usually your GitHub org/user name.
   projectName: "prisma.pan.dev", // Usually your repo name.
   themeConfig: {
+    prism: {
+      additionalLanguages: ["markdown"],
+    },
     algolia: {
       apiKey: "6869800b232f5f8362e83901d79110ee",
       appId: "XC7919KOX3",
