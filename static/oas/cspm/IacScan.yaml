@@ -2,6 +2,9 @@ openapi: 3.0.0
 info:
   title: IaC Scan API V2 Overview
   description: |
+
+    **Note: This API is deprecated.**
+
     The Infrastructure-As-Code (IaC) scan service receives and assesses customer IaC resources.
     With IaC Scan API V2, you can initiate IaC scans asynchronously to evaluate your templates against
     Prisma Cloud policies and integrate your IaC scan results with Prisma Cloud. The basic steps to run an IaC scan
@@ -47,6 +50,7 @@ tags:
 paths:
   /iac/v2/scans:
     get:
+      deprecated: true
       tags:
       - Asset Inventory
       summary: List IaC Scans
@@ -167,6 +171,7 @@ paths:
         '500':
           $ref: '#/components/responses/ErrorResponse'
     post:
+      deprecated: true
       tags:
       - Async Scan
       summary: Add Scan Asset
@@ -191,6 +196,7 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
   /iac/v2/scans/{scanId}:
     post:
+      deprecated: true
       tags:
       - Async Scan
       summary: Initiate Scan Job
@@ -231,6 +237,7 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
   /iac/v2/scans/{scanId}/status:
     get:
+      deprecated: true
       tags:
       - Async Scan
       summary: Get Scan Job Status
@@ -258,6 +265,7 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
   /iac/v2/scans/{scanId}/results:
     get:
+      deprecated: true
       tags:
       - Asset Inventory
       summary: Get Scan Result Details
@@ -303,6 +311,7 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
   /iac/v2/scans/{scanId}/results/sarif:
     get:
+      deprecated: true
       tags:
       - Asset Inventory
       summary: Get Scan Result Details in OASIS SARIF Format
@@ -367,6 +376,7 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
   /iac/v2/scans/export:
     get:
+      deprecated: true
       tags:
       - Asset Inventory
       summary: Export Assets Scans Report

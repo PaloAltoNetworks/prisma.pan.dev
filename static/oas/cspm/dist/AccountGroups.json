@@ -196,7 +196,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": {
                   "items": {
                     "$ref": "#/components/schemas/AccountGroupViewModel"
@@ -238,7 +238,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": { "$ref": "#/components/schemas/AccountGroupModel" }
               }
             },
@@ -281,7 +281,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": {
                   "items": {
                     "$ref": "#/components/schemas/AccountGroupMetadataViewModel"
@@ -328,7 +328,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": {
                   "items": {
                     "additionalProperties": { "type": "object" },
@@ -380,7 +380,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": { "$ref": "#/components/schemas/AccountGroupModel" }
               }
             },
