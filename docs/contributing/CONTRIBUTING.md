@@ -23,6 +23,12 @@ Select how you like to contribute:
 />
 
 <CardLayout
+      href={'contributing/create-doc-tldr'}
+      title="Create Doc, (Commands only)"
+      description="Create a new doc for people that know bash, git, and markdown already"
+/>
+
+<CardLayout
       href={'#edit'}
       title="Edit"
       description="Edit an existing doc"
