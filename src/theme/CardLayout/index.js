@@ -28,13 +28,10 @@ function CardContainer({ href, children }) {
 export default function CardLayout({ href, title, description }) {
   return (
     <CardContainer href={href}>
-      <h2 className={clsx("text--truncate", styles.cardTitle)} title={title}>
+      <h2 className={clsx(styles.cardTitle)} title={title}>
         {title}
       </h2>
-      <div
-        className={clsx("text--truncate", styles.cardDescription)}
-        title={description}
-      >
+      <div className={clsx(styles.cardDescription)} title={description}>
         {description}
       </div>
     </CardContainer>

@@ -15,42 +15,48 @@ import CardLayout from "@theme/CardLayout";
 Thank you for your interest in **Palo Alto Networks** developer documentation!
 
 Select how you like to contribute:
-
+<div className="row">
+<article className="col col--6 padding--sm">
 <CardLayout
       href={'contributing/create-doc-reqs'}
       title="Create"
       description="Create a new doc and add it to the site"
 />
-
+</article>
+<article className="col col--6 padding--sm">
 <CardLayout
       href={'contributing/create-doc-tldr'}
-      title="Create Doc, (Commands only)"
-      description="Create a new doc for people that know bash, git, and markdown already"
+      title="Create Doc (Commands only)"
+      description="Create a new doc, commands only (assuming you know git, yarn, bash)"
 />
-
+</article>
+<article className="col col--6 padding--sm">
 <CardLayout
       href={'#edit'}
       title="Edit"
       description="Edit an existing doc"
 />
-
+</article>
+<article className="col col--6 padding--sm">
 <CardLayout
       href={'https://github.com/PaloAltoNetworks/prisma.pan.dev/issues/new?labels=documentation&amp;template=developer-documentation-issue.md&amp;title=Issue with Docs'}
       target="_blank"
       title="Report"
       description="Report an issue with the docs"
 />
-
+</article>
+<article className="col col--6 padding--sm">
 <CardLayout
       href={'https://github.com/PaloAltoNetworks/prisma.pan.dev/issues/new?labels=documentation&amp;template=feature_request.md&amp;title=Request'}
       title="Request"
       target="_blank"
       description="Request a new feature or docs"
 />
-
+</article>
+</div>
 
 ### Edit
-1. Select `Edit This Page` at the bottom of the doc you want to edit. If the page doesn't have the option, report an issue below instead.
+1. Select `Edit This Page` at the bottom of the doc you want to edit. If the page doesn't have the option, report an issue above instead.
 2. In the top right select the pencil icon "Fork this repo and edit this file"
 3. Make edits in github.com UI
 4. Add a title and comment to the commit at the bottom of the page
