@@ -17785,7 +17785,9 @@
     },
     "/api/v22.01/cloud/discovery/vms": {
       "get": {
-        "description": "DiscoveredVMs returns discovered cloud VM instances\n",
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/cloud/discovery_vms_get.md"
+        },
         "parameters": [
           {
             "description": "Offset from the start of the list from which to retrieve documents.\n",

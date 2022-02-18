@@ -17422,162 +17422,104 @@
     }
   },
   "info": {
-    "title": "Settings Overview",
+    "title": "Custom-Rules Overview",
     "version": "22.01.839",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/settings.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/custom-rules/custom-rules.md"
     }
   },
   "openapi": "3.0.3",
   "tags": [
     {
-      "name": "Settings"
+      "name": "Custom-Rules"
     }
   ],
   "paths": {
-    "/api/v1/settings/custom-labels": {
-      "post": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/custom-labels_post.md"
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/shared.CustomLabelsSettings"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "user",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "post-settings-custom-labels",
-        "summary": " Set Custom Labels"
-      }
-    },
-    "/api/v1/settings/defender": {
-      "post": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/defender_post.md"
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/defender.Settings"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "manageDefenders",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "post-settings-defender",
-        "summary": " Set Defender Settings"
-      }
-    },
-    "/api/v1/settings/license": {
-      "post": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/license_post.md"
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/api.LicenseRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "accessUI",
-          "saas": false,
-          "self-hosted": true
-        },
-        "operationId": "post-settings-license",
-        "summary": " Set License"
-      }
-    },
-    "/api/v22.01/settings/coderepos": {
+    "/api/v22.01/custom-rules": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/coderepos_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/custom-rules/get.md"
         },
         "responses": {
           "200": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/shared.CodeRepoSettings"
+                  "$ref": "#/components/schemas/-_customrules.Rule"
                 }
               }
             },
-            "description": "CodeRepoSettings is the settings for scanning remote code repositories"
+            "description": ""
           },
           "default": {
             "description": ""
           }
         },
         "tags": [
-          "Settings",
+          "Custom-Rules",
           "Supported API"
         ],
         "x-prisma-cloud-target-env": {
-          "permission": "policyCodeRepos",
+          "permission": "policyCustomRules",
           "saas": true,
           "self-hosted": true
         },
-        "operationId": "get-settings-coderepos",
-        "summary": " Code Repo Settings"
+        "operationId": "get-custom-rules",
+        "summary": " Custom Rules"
+      }
+    },
+    "/api/v22.01/custom-rules/{id}": {
+      "delete": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/custom-rules/id_delete.md"
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Custom-Rules",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "policyCustomRules",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "delete-custom-rules-id",
+        "summary": " Delete Custom Rule"
       },
       "put": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/coderepos_put.md"
-        },
+        "description": "UpdateCustomRule creates/edits a custom rule\n",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/-_shared.CodeRepoSpecification"
+                "$ref": "#/components/schemas/customrules.Rule"
               }
             }
           }
@@ -17591,443 +17533,16 @@
           }
         },
         "tags": [
-          "Settings",
+          "Custom-Rules",
           "Supported API"
         ],
         "x-prisma-cloud-target-env": {
-          "permission": "policyCodeRepos",
+          "permission": "policyCustomRules",
           "saas": true,
           "self-hosted": true
         },
-        "operationId": "put-settings-coderepos",
-        "summary": " Set Code Repo Settings"
-      }
-    },
-    "/api/v22.01/settings/custom-labels": {
-      "get": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/custom-labels_get.md"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/shared.CustomLabelsSettings"
-                }
-              }
-            },
-            "description": "CustomLabelsSettings are customized label names that are used to augment audit events\nThey can either be docker labels (which appears in the container label specification)\nor k8s/openshift labels (which appears in the pause container that monitors the target container)"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "user",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "get-settings-custom-labels",
-        "summary": " Settings Custom Labels"
-      }
-    },
-    "/api/v22.01/settings/defender": {
-      "get": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/defender_get.md"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/defender.Settings"
-                }
-              }
-            },
-            "description": "Settings is an update request of the defender proxy settings."
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "manageDefenders",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "get-settings-defender",
-        "summary": " Defender Settings"
-      }
-    },
-    "/api/v22.01/settings/registry": {
-      "get": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/registry_get.md"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/shared.RegistrySettings"
-                }
-              }
-            },
-            "description": "RegistrySettings contains each registry's unique settings"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "policyContainers",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "get-settings-registry",
-        "summary": " Registry Settings"
-      },
-      "post": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/registry_post.md"
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/shared.RegistrySpecification"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "policyContainers",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "post-settings-registry",
-        "summary": " Add Registry Spec"
-      },
-      "put": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/registry_put.md"
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/shared.RegistrySettings"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "policyContainers",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "put-settings-registry",
-        "summary": " Set Registry Settings"
-      }
-    },
-    "/api/v22.01/settings/serverless-scan": {
-      "get": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/serverless-scan_get.md"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/-_shared.ServerlessScanSpecification"
-                }
-              }
-            },
-            "description": ""
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "policyServerless",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "get-settings-serverless-scan",
-        "summary": "Get Serverless Scan Settings"
-      },
-      "post": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/serverless-scan_post.md"
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/shared.ServerlessScanSpecification"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "policyServerless",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "post-settings-serverless-scan",
-        "summary": "Add Serverless Scan Settings"
-      },
-      "put": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/serverless_scan_put.md"
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/-_shared.ServerlessScanSpecification"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "policyServerless",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "put-settings-serverless-scan",
-        "summary": "Update Serverless Scan Settings"
-      }
-    },
-    "/api/v22.01/settings/tas": {
-      "get": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/tas_get.md"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/-_shared.TASDropletSpecification"
-                }
-              }
-            },
-            "description": ""
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "policyContainers",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "get-settings-tas",
-        "summary": "Get TAS Settings"
-      },
-      "post": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/tas_post.md"
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/-_shared.TASDropletSpecification"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "policyContainers",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "post-settings-tas",
-        "summary": "Add TAS Settings"
-      }
-    },
-    "/api/v22.01/settings/vm": {
-      "get": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/vm_get.md"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/-_shared.VMSpecification"
-                }
-              }
-            },
-            "description": ""
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "policyHosts",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "get-settings-vm",
-        "summary": " VM Settings"
-      },
-      "put": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/vm_put.md"
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/-_shared.VMSpecification"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "policyHosts",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "put-settings-vm",
-        "summary": " Set VM Settings"
-      }
-    },
-    "/api/v22.01/settings/wildfire": {
-      "get": {
-        "description": "WildFireSettings returns the wildfire settings\n",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/shared.WildFireSettings"
-                }
-              }
-            },
-            "description": "WildFireSettings are the settings for WildFire API requests"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Settings",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "monitorCI",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "get-settings-wildfire",
-        "summary": " WildFire Settings"
+        "operationId": "put-custom-rules-id",
+        "summary": " Update Custom Rule"
       }
     }
   }

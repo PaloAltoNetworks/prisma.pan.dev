@@ -17613,7 +17613,7 @@
           "self-hosted": true
         },
         "operationId": "delete-tags-id-vuln",
-        "summary": " Delete Tag Vuln Metadata"
+        "summary": "Delete Tag Vulnerability Metadata"
       },
       "post": {
         "description": {
@@ -17656,7 +17656,7 @@
           "self-hosted": true
         },
         "operationId": "post-tags-id-vuln",
-        "summary": " Update Tag Vuln Metadata"
+        "summary": "Set Tag Vulnerability Metadata"
       }
     }
   }
