@@ -641,3 +641,67 @@ To test an Amazon S3 integration, make your request as described in
   }
 }
 ```
+
+### Snowflake
+
+Prisma Cloud integrates with Snowflake.
+
+#### Add, Update, or Test an Snowflake Integration
+
+To add a Snowflake integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter is `snowflake`, and the `integrationConfig` parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+hostUrl | Snowflake user name | string | _required_
+pipename | Snowpipe name | string | _required_
+stagingIntegrationId | Integration ID of staging S3 integration | string | _required_
+privateKey | Snowflake user private key | string | _required_
+passphrase | Private key passphrase. For encryption. | string | _optional_
+rollUpInterval | Defined time in minutes on which batching of alerts would roll up. Valid values: 15, 30, 60, 180 | integer | Default is 60
+
+To update a Snowflake integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
+
+To test a Snowflake integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+
+##### Example Request Body to Add a Snowflake Integration
+
+```json
+{
+  "integrationType": "snowflake",
+  "name": "",
+  "description": "",
+  "enabled": true,
+  "integrationConfig":
+  {
+    "stagingIntegrationId": "",
+    "hostUrl": "",
+    "username": "",
+    "pipename": "",
+    "privateKey": "",
+    "passphrase": "",
+    "rollUpInterval": 60
+  }
+}
+```
+
+##### Example Request Body to Test a Snowflake Integration
+
+```json
+{
+  "integrationType": "snowflake",
+  "name": "",
+  "integrationConfig":
+  {
+    "stagingIntegrationId": "",
+    "hostUrl": "",
+    "username": "",
+    "pipename": "",
+    "privateKey": "",
+    "passphrase": "",
+    "rollUpInterval": 60
+  }
+}
+```
