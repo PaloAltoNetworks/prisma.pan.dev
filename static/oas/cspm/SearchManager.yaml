@@ -94,6 +94,7 @@ components:
           readOnly: true
           type: string
         async:
+          description: true = Is Async
           readOnly: true
           type: boolean
         asyncResultUrl:
@@ -170,6 +171,8 @@ components:
           readOnly: true
           type: string
         async:
+          description: true = Is Async
+          readOnly: true
           type: boolean
         asyncResultUrl:
           description: Async Result Url
