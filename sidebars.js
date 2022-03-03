@@ -209,4 +209,21 @@ module.exports = {
       ],
     },
   ],
+  contrib: [
+    "contributing/contributing",
+    {
+      type: "category",
+      label: "Create a Doc",
+      collapsed: false,
+      items: [
+        "contributing/create-doc-reqs",
+        "contributing/create-doc-git",
+        "contributing/create-doc-add",
+        "contributing/create-doc-md",
+        "contributing/create-doc-publish",
+      ],
+    },
+    "contributing/create-doc-tldr",
+    "contributing/git-basics",
+  ],
 };

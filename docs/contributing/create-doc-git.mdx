@@ -1,0 +1,40 @@
+---
+id: create-doc-git
+title: GitHub & Development Setup
+sidebar_label: 2. GitHub & Development Setup
+---
+If you don't already have a Github account sign up [here](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2Fsearch&source=header)
+
+1. <a className="button button--secondary button--outline" href="https://github.com/PaloAltoNetworks/prisma.pan.dev/fork" target="_blank"> Fork the Repository </a>
+  
+  Forking creates a copy of the repository in your Github account
+
+2. **Download the repo (clone)**
+  ```bash
+  git clone https://github.com/YOUR_USERNAME/prisma.pan.dev.git
+  cd prisma.pan.dev
+  ```
+  **If you are using VSCode, open this folder in VSCode now.**
+
+3. **Download the node modules**
+  ```bash
+  yarn
+  ```
+  <details className="alert--danger"><summary>Getting an error?</summary>
+  <ul>
+  <li>"self signed certificate in certificate chain" - can be solved by running<pre><code>yarn config set strict-ssl false</code></pre></li>
+  <li>GlobalProtect can block some packages from being installed, if you can temporarily disable this</li>
+  </ul>
+  </details>
+
+4. **Create a branch** (name this after your doc e.g. "prisma-cloud-automation-tutorial")
+  ```bash
+  git checkout -b "branch-name"
+  ```
+5. **Start a local server**
+  ```bash
+  yarn start
+  ```
+  ** This command will start a local version of the site availabe via [localhost](http://localhost:3000/). It will update on most saved changes, if it doesn't update hit <kbd>CTRL</kbd>+<kbd>c</kbd> and run again.**
+
+#### Now that you have the local website up and running, we'll start to author the doc
