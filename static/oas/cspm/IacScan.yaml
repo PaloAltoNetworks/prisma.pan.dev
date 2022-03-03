@@ -3,7 +3,7 @@ info:
   title: IaC Scan API V2 Overview
   description: |
 
-    **Note: This API is deprecated.**
+    **Note: This API is deprecated. See the [Prisma Cloud Code Security API](/api/cloud/code) for the latest programmatic code security solution.**
 
     The Infrastructure-As-Code (IaC) scan service receives and assesses customer IaC resources.
     With IaC Scan API V2, you can initiate IaC scans asynchronously to evaluate your templates against

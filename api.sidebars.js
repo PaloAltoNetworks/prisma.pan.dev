@@ -11,4 +11,5 @@ module.exports = {
   cwpp2: require("./static/oas/cwpp/21-08/sidebar").sidebar,
   cwpp3: require("./static/oas/cwpp/21-04/sidebar").sidebar,
   sase: require("./static/oas/sase/config/sidebar").sidebar,
+  code: require("./static/oas/code/sidebar").sidebar,
 };
