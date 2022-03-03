@@ -290,7 +290,7 @@ html[data-theme="dark"] .header-github-link:before {
 
 /* Corrects colors in redoc JSON samples */
 .redocusaurus code {
-  color: white;
+  color: white !important;
   background-color: rgb(41, 45, 62) !important;
 }
 

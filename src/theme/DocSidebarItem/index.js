@@ -45,10 +45,8 @@ export default function DocSidebarItem({ item, ...props }) {
       return <DocSidebarItemCategory item={item} {...props} />;
 
     case "link":
-      console.log(item);
       if (item.customProps) {
         if (item.customProps["versioned"]) {
-          console.log("versioned");
           return <DocSidebarVersionDropdown item={item} {...props} />;
         }
       }
