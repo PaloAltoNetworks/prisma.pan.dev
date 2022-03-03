@@ -20,6 +20,7 @@ import { translate } from "@docusaurus/Translate";
 import IconExternalLink from "@theme/IconExternalLink";
 import styles from "./styles.module.css";
 import useIsBrowser from "@docusaurus/useIsBrowser"; // Optimize sidebar at each "level"
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 // TODO this item should probably not receive the "activePath" props
 // TODO this triggers whole sidebar re-renders on navigation
 
@@ -44,8 +45,10 @@ export default function DocSidebarItem({ item, ...props }) {
       return <DocSidebarItemCategory item={item} {...props} />;
 
     case "link":
+      console.log(item);
       if (item.customProps) {
-        if (item.customProps.verionsed == "versioned") {
+        if (item.customProps["versioned"]) {
+          console.log("versioned");
           return <DocSidebarVersionDropdown item={item} {...props} />;
         }
       }
