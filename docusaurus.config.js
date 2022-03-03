@@ -35,13 +35,18 @@ module.exports = {
       },
       items: [
         {
-          to: "/docs/cloud/",
           label: "Docs",
           position: "left",
+          to: "/docs/cloud/",
         },
         {
           label: "API Reference",
           items: [
+            {
+              to: "#",
+              label: "Prisma Cloud",
+              className: "section__docs",
+            },
             {
               to: "/api/cloud/cspm",
               label: "Cloud Security Posture Management",
@@ -49,6 +54,15 @@ module.exports = {
             {
               to: "/api/cloud/cwpp",
               label: "Cloud Workload Protection",
+            },
+            {
+              to: "#",
+              label: "SASE",
+              className: "section__docs",
+            },
+            {
+              to: "/api/sase/config",
+              label: "Config API (beta)",
             },
           ],
           position: "left",

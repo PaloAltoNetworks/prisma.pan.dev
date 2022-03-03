@@ -17798,7 +17798,7 @@
           "self-hosted": true
         },
         "operationId": "get-settings-serverless-scan",
-        "summary": " Serverless Scan Settings"
+        "summary": "Get Serverless Scan Settings"
       },
       "post": {
         "description": {
@@ -17831,10 +17831,12 @@
           "self-hosted": true
         },
         "operationId": "post-settings-serverless-scan",
-        "summary": " Add Serverless Scan Settings"
+        "summary": "Add Serverless Scan Settings"
       },
       "put": {
-        "description": "SetServerlessScanSettings sets the serverless settings\n",
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/serverless_scan_put.md"
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -17862,7 +17864,139 @@
           "self-hosted": true
         },
         "operationId": "put-settings-serverless-scan",
-        "summary": " Set Serverless Scan Settings"
+        "summary": "Update Serverless Scan Settings"
+      }
+    },
+    "/api/v22.01/settings/tas": {
+      "get": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/tas_get.md"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/-_shared.TASDropletSpecification"
+                }
+              }
+            },
+            "description": ""
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Settings",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "policyContainers",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "get-settings-tas",
+        "summary": "Get TAS Settings"
+      },
+      "post": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/tas_post.md"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/-_shared.TASDropletSpecification"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Settings",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "policyContainers",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "post-settings-tas",
+        "summary": "Add TAS Settings"
+      }
+    },
+    "/api/v22.01/settings/vm": {
+      "get": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/vm_get.md"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/-_shared.VMSpecification"
+                }
+              }
+            },
+            "description": ""
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Settings",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "policyHosts",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "get-settings-vm",
+        "summary": " VM Settings"
+      },
+      "put": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/vm_put.md"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/-_shared.VMSpecification"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Settings",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "policyHosts",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "put-settings-vm",
+        "summary": " Set VM Settings"
       }
     },
     "/api/v22.01/settings/wildfire": {

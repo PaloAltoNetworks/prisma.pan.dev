@@ -791,7 +791,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/ParsedTableFilter'
           description: successful operation
@@ -894,7 +894,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 items:
                   $ref: '#/components/schemas/LegacyPolicyViewModel'
@@ -956,14 +956,28 @@ paths:
         \  \"rule\": {\n        \"criteria\": \"b1234567-84fc-4443-8cbc-f08f13fba586\"\
         ,\n        \"name\": \"demo\",\n        \"parameters\": {\n            \"\
         savedSearch\": \"true\"\n        },\n        \"type\": \"Config\"\n    },\n\
-        \    \"severity\": \"medium\"\n}        \n```\n"
+        \    \"severity\": \"medium\"\n}        \n```\n\nThe JSON below is an example\
+        \ of the request body parameters you need to add a custom build policy:\n\
+        ```json\n{\n    \"cloudType\": \"aws\",\n    \"complianceMetadata\": [],\n\
+        \    \"description\": \"\",\n    \"labels\": [],\n    \"name\": \"demo\",\n\
+        \    \"policySubTypes\": [\n        \"build\"\n    ],\n    \"policyType\"\
+        : \"config\",\n    \"recommendation\": \"\",\n    \"rule\": {\n        \"\
+        children\": [\n            \"criteria\": \"{\\\"category\\\":\\\"Storage\\\
+        \",\\\"resourceTypes\\\":[\\\"aws_s3_bucket\\\"],\\\"conditionQuery\\\":{\\\
+        \"attribute\\\":\\\"acl\\\",\\\"operator\\\":\\\"not_equals\\\",\\\"value\\\
+        \":\\\"log-delivery-write\\\",\\\"cond_type\\\":\\\"attribute\\\"}}\",\n \
+        \           \"type\": \"build\",\n            \"recommendation\": \"\"\n \
+        \       }\n        ],\n        \"name\": \"demo\",\n        \"parameters\"\
+        : {\n            \"savedSearch\": \"false\",\n            \"withIac\": \"\
+        true\"\n        },\n        \"type\": \"Config\"\n    },\n    \"severity\"\
+        : \"low\"\n}\n```\n"
       operationId: add-policy
       requestBody:
         $ref: '#/components/requestBodies/PolicyModel'
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PolicyModel'
           description: successful operation
@@ -1101,7 +1115,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 items:
                   $ref: '#/components/schemas/PolicyViewModel'
@@ -1128,7 +1142,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PolicyModel'
           description: successful operation
@@ -1150,9 +1164,7 @@ paths:
         \  \r\n\r\nAlthough multiple body parameters are marked as required, to update\
         \ a policy, you need to provide only the \nbody parameters that you want to\
         \ update. All body parameters that you don't update will\ndefault to the values\
-        \ of the existing policy.\n\nYou can get the policy ID with [List Policies\
-        \ V2](/api/cloud/cspm/policy#operation/get-policies-v2) when you narrow the\
-        \ response with query parameters that describe the policy you seek. \n"
+        \ of the existing policy.\n"
       operationId: update-policy
       parameters:
       - description: Policy ID
@@ -1166,7 +1178,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PolicyModel'
           description: successful operation
@@ -1253,7 +1265,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 additionalProperties:
                   items:
@@ -1265,6 +1277,42 @@ paths:
       security:
       - x-redlock-auth: []
       summary: List Policy Compliance Standards
+      tags:
+      - Policy
+  /policy/rule/validate:
+    post:
+      description: "Pre-validates a policy rule without creating an actual policy.\
+        \  \r\n\r\nThe only request body parameters for this request are:\n\n* **policyType**\
+        \ - Only the following are valid values for **policyType**:\n    * \"config\"\
+        \ \n    * \"network\"\n    * \"audit_event\" \n    * \"iam\" \n\n* **rule**\
+        \ - The **rule.criteria** value is the RQL search query for the rule you want\
+        \ to validate. Validation of this rule implies validation of a policy you\
+        \ might create with this rule.\n\nOnly the parameters above apply to this\
+        \ request, and both of these parameters are required.\n\nThe JSON below is\
+        \ an example of valid request body parameters:\n\n```json\n{\n    \"policyType\"\
+        : \"config\",\n    \"rule\": {\n        \"criteria\": \"config from cloud.resource\
+        \ where cloud.type = '\\''azure'\\'' AND api.name = '\\''azure-security-center-settings'\\\
+        '' AND json.rule = '\\''autoProvisioningSettings[*].name equals default and\
+        \ (autoProvisioningSettings[*].properties.autoProvision equals Off or autoProvisioningSettings[*]\
+        \ does not exist)'\\''\"\n    }\n}\n``` \n"
+      operationId: policy-rule-validate
+      requestBody:
+        $ref: '#/components/requestBodies/PolicyModel'
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: missing_required_parameter / saved_search_validation_not_supported
+            / preprocessor_not_allowed_for_policy / invalid_search_type_for_policy
+            / invalid_search_type_for_policy / insufficient_query_for_policy_creation  /invalid_hostfinding_type_redlock_in_search_query
+            / invalid_search_cloud_type_for_policy / invalid_azure_resource_group_in_search_query
+            / json_not_supported_in_event_query / anomaly_search_not_supported_in_event_query
+            / rql_validation_service_unavailable / invalid_json_rule
+        '500':
+          description: internal_error
+      security:
+      - x-redlock-auth: []
+      summary: Pre-validate Policy Rule
       tags:
       - Policy
 servers:

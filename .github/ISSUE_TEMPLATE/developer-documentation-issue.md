@@ -2,8 +2,9 @@
 name: Developer Documentation Issue
 about: Report an issue with developer documentation
 title: "[DOCUMENTATION]"
-labels: ""
-assignees: ""
+labels: ''
+assignees: ''
+
 ---
 
 ---

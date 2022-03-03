@@ -17884,6 +17884,125 @@
         "summary": " Set Policy"
       }
     },
+    "/api/v22.01/policies/compliance/vms/impacted": {
+      "get": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_vms_impacted_get.md"
+        },
+        "parameters": [
+          {
+            "description": "Offset from the start of the list from which to retrieve documents.\n",
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of documents to return.\n",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Search term.\n",
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Key on which to sort.\n",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Sort order.\n",
+            "in": "query",
+            "name": "reverse",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Scopes the query by collection.\n",
+            "in": "query",
+            "name": "collections",
+            "schema": {
+              "description": "Scopes the query by collection.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by account ID.\n",
+            "in": "query",
+            "name": "accountIDs",
+            "schema": {
+              "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "List of fields to retrieve.\n",
+            "in": "query",
+            "name": "fields",
+            "schema": {
+              "description": "List of fields to retrieve.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "RuleName is the rule name to apply.\n",
+            "in": "query",
+            "name": "ruleName",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/-_shared.ImageScanResult"
+                }
+              }
+            },
+            "description": ""
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Policies",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "policyHosts",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "get-policies-compliance-vms-impacted",
+        "summary": " VM Compliance Policy Impacted"
+      }
+    },
     "/api/v22.01/policies/firewall/app/apispec": {
       "post": {
         "description": {

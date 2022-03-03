@@ -56,7 +56,10 @@
             "readOnly": true,
             "type": "boolean"
           },
-          "firstName": { "description": "First name", "type": "string" },
+          "firstName": {
+            "description": "First name. Maximum length is 300 characters.",
+            "type": "string"
+          },
           "lastLoginTs": {
             "description": "Last login time",
             "format": "int64",
@@ -74,7 +77,10 @@
             "readOnly": true,
             "type": "integer"
           },
-          "lastName": { "description": "Last name", "type": "string" },
+          "lastName": {
+            "description": "Last name.  Maximum length is 300 characters.",
+            "type": "string"
+          },
           "roleIds": {
             "description": "Role IDs",
             "items": { "type": "string" },
@@ -150,7 +156,10 @@
             "readOnly": true,
             "type": "boolean"
           },
-          "firstName": { "description": "First name", "type": "string" },
+          "firstName": {
+            "description": "First name. Maximum length is 300 characters.",
+            "type": "string"
+          },
           "lastLoginTs": {
             "description": "Last login time",
             "format": "int64",
@@ -168,7 +177,10 @@
             "readOnly": true,
             "type": "integer"
           },
-          "lastName": { "description": "Last name", "type": "string" },
+          "lastName": {
+            "description": "Last name.  Maximum length is 300 characters.",
+            "type": "string"
+          },
           "roleIds": {
             "description": "Role IDs",
             "items": { "type": "string" },
@@ -192,7 +204,7 @@
             "type": "string"
           },
           "username": {
-            "description": "User or service account name",
+            "description": "User or service account name. Maximum length is 300 characters.",
             "type": "string"
           }
         },
@@ -216,7 +228,10 @@
             "readOnly": true,
             "type": "boolean"
           },
-          "firstName": { "description": "First name", "type": "string" },
+          "firstName": {
+            "description": "First name. Maximum length is 300 characters.",
+            "type": "string"
+          },
           "lastLoginTs": {
             "description": "Last login time",
             "format": "int64",
@@ -234,7 +249,10 @@
             "readOnly": true,
             "type": "integer"
           },
-          "lastName": { "description": "Last name", "type": "string" },
+          "lastName": {
+            "description": "Last name.  Maximum length is 300 characters.",
+            "type": "string"
+          },
           "role": {
             "additionalProperties": { "type": "string" },
             "description": "Role",
@@ -308,7 +326,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": { "$ref": "#/components/schemas/UserProfileModel" }
               }
             },
@@ -375,7 +393,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "items": { "$ref": "#/components/schemas/UserAccountModel" },
                   "type": "array"
@@ -401,7 +419,7 @@
         ]
       },
       "post": {
-        "description": "Adds either a user profile or a service account profile.  \r\n\r\nThe required request body parameters differ, depending on whether you are adding a user account or a service account. Specify whether \nyou're adding a user account or service account through the request parameter **type**.\n\nThe required parameters to add a user account are:\n\n* **email**\n* **firstName**\n* **lastName**\n* **roleIds**\n* **defaultRoleId**\n* **timeZone**\n\nThe required parameters to add a service account are:\n\n- **username**\n- **accessKeyName**\n- **accessKeyExpiration** (Required only if **enableKeyExpiration** is **true**)\n- **defaultRoleId**\n- **timeZone**\n",
+        "description": "Adds either a user profile or a service account profile.  \r\n\r\nThe required request body parameters differ, depending on whether you are adding a user account or a service account. Specify whether \nyou're adding a user account or service account through the request parameter **type**.\n\nThe required parameters to add a user account are:\n\n* **email**\n* **firstName**\n* **lastName**\n* **roleIds**\n* **defaultRoleId**\n* **timeZone**\n\nThe required parameters to add a service account are:\n\n* **username**\n* **accessKeyName**\n* **accessKeyExpiration** (Required only if **enableKeyExpiration** is **true**)\n* **defaultRoleId**\n* **timeZone**\n",
         "operationId": "add-user-v3",
         "requestBody": {
           "content": {
@@ -415,7 +433,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CreateUserAccessKeyResponseModel"
                 }
@@ -451,7 +469,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "items": { "$ref": "#/components/schemas/UserProfileModel" },
                   "type": "array"
@@ -527,7 +545,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": { "$ref": "#/components/schemas/UserProfileModel" }
               }
             },
@@ -669,7 +687,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "items": {
                     "additionalProperties": { "type": "string" },
@@ -705,7 +723,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": { "items": { "type": "string" }, "type": "array" }
               }
             },
@@ -736,7 +754,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "items": { "type": "string" },
                   "type": "array",

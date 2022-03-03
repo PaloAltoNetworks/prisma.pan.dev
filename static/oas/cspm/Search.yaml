@@ -2,7 +2,7 @@ components:
   requestBodies:
     AuditEventSearchParamsModel:
       content:
-        application/json:
+        application/json; charset=UTF-8:
           schema:
             $ref: '#/components/schemas/AuditEventSearchParamsModel'
       description: Audit event search parameters model
@@ -16,7 +16,7 @@ components:
       required: true
     SearchModel:
       content:
-        application/json:
+        application/json; charset=UTF-8:
           schema:
             $ref: '#/components/schemas/SearchModel'
       description: Search model
@@ -569,6 +569,10 @@ components:
           - ALIBABA_CLOUD
           - OCI
           type: string
+        createdTs:
+          description: Creation timestamp
+          format: int64
+          type: integer
         data:
           description: Raw JSON data for the resource
           type: object
@@ -580,9 +584,6 @@ components:
             type: object
           description: Dynamic data
           type: object
-        hasAlert:
-          description: Has alert (Deprecated)
-          type: boolean
         hasExtFindingRiskFactors:
           description: Has risk factors
           type: boolean
@@ -649,6 +650,7 @@ components:
           readOnly: true
           type: string
         async:
+          description: true = Is Async
           readOnly: true
           type: boolean
         asyncResultUrl:
@@ -725,10 +727,13 @@ components:
           readOnly: true
           type: string
         async:
+          description: true = Is Async
+          readOnly: true
           type: boolean
         asyncResultUrl:
           description: Async Result Url
           example: /search/config/jobs/2df49d4f72e842b582b123bc2b7826b3/download
+          readOnly: true
           type: string
         cloudType:
           description: Cloud Type
@@ -801,10 +806,13 @@ components:
           readOnly: true
           type: string
         async:
+          description: true = Is Async
+          readOnly: true
           type: boolean
         asyncResultUrl:
           description: Async Result Url
           example: /search/config/jobs/2df49d4f72e842b582b123bc2b7826b3/download
+          readOnly: true
           type: string
         cloudType:
           description: Cloud Type
@@ -879,10 +887,13 @@ components:
           readOnly: true
           type: string
         async:
+          description: true = Is Async
+          readOnly: true
           type: boolean
         asyncResultUrl:
           description: Async Result Url
           example: /search/config/jobs/2df49d4f72e842b582b123bc2b7826b3/download
+          readOnly: true
           type: string
         cloudType:
           description: Cloud Type
@@ -957,10 +968,13 @@ components:
           readOnly: true
           type: string
         async:
+          description: true = Is Async
+          readOnly: true
           type: boolean
         asyncResultUrl:
           description: Async Result Url
           example: /search/config/jobs/2df49d4f72e842b582b123bc2b7826b3/download
+          readOnly: true
           type: string
         cloudType:
           description: Cloud Type
@@ -1033,10 +1047,13 @@ components:
           readOnly: true
           type: string
         async:
+          description: true = Is Async
+          readOnly: true
           type: boolean
         asyncResultUrl:
           description: Async Result Url
           example: /search/config/jobs/2df49d4f72e842b582b123bc2b7826b3/download
+          readOnly: true
           type: string
         cloudType:
           description: Cloud Type
@@ -1292,7 +1309,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/SearchResponseModel'
           description: success
@@ -1319,7 +1336,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/SearchResponseModelPagedResultsAuditEvent'
           description: success
@@ -1345,7 +1362,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/SearchResponseModelListAggregateAuditEvent'
           description: success
@@ -1366,7 +1383,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/SearchResponseModelPagedResultsAuditEvent'
           description: success
@@ -1386,7 +1403,7 @@ paths:
       operationId: search-events-page
       requestBody:
         content:
-          application/json:
+          application/json; charset=UTF-8:
             schema:
               $ref: '#/components/schemas/AuditEventPageParams'
         description: Audit event page parameters model
@@ -1394,7 +1411,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PagedResultsAuditEvent'
           description: success
@@ -1420,7 +1437,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/AuditEvent'
           description: success
@@ -1440,18 +1457,12 @@ paths:
         \ a partial RQL query in the query parameter will result in a list of suggested\
         \ \noptions to append to your partial query. No other parameters are required.\n"
       operationId: search-suggest
-      parameters:
-      - in: header
-        name: x-redlock-auth
-        required: true
-        schema:
-          type: string
       requestBody:
         $ref: '#/components/requestBodies/SearchModel'
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/AutocompleteInfo'
           description: success
@@ -1476,7 +1487,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/SearchResponseModelListObject'
           description: success
@@ -1497,7 +1508,7 @@ paths:
       operationId: search-config-page
       requestBody:
         content:
-          application/json:
+          application/json; charset=UTF-8:
             schema:
               $ref: '#/components/schemas/ConfigRulePageParams'
         description: Config rule page parameters model
@@ -1505,7 +1516,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PagedResultsResourceMetaModel'
           description: success
@@ -1522,12 +1533,7 @@ paths:
         result as a CSV file.
       operationId: search-events-csv
       requestBody:
-        content:
-          application/json; charset=UTF-8:
-            schema:
-              $ref: '#/components/schemas/AuditEventSearchParamsModel'
-        description: Audit event search parameters model
-        required: true
+        $ref: '#/components/requestBodies/AuditEventSearchParamsModel'
       responses:
         '200':
           description: successful operation

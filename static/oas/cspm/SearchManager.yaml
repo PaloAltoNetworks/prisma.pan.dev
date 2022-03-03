@@ -94,6 +94,7 @@ components:
           readOnly: true
           type: string
         async:
+          description: true = Is Async
           readOnly: true
           type: boolean
         asyncResultUrl:
@@ -170,10 +171,13 @@ components:
           readOnly: true
           type: string
         async:
+          description: true = Is Async
+          readOnly: true
           type: boolean
         asyncResultUrl:
           description: Async Result Url
           example: /search/config/jobs/2df49d4f72e842b582b123bc2b7826b3/download
+          readOnly: true
           type: string
         cloudType:
           description: Cloud Type

@@ -1850,8 +1850,8 @@
             "schema": { "type": "string" }
           },
           {
-            "description": "Response object property by which to sort response list. Format is property:asc for ascending and property:desc for descending sort (Example: sortBy=id:desc&sortBy=firstSeen:asc,lastSeen:desc)",
-            "example": "sortBy=id:desc&sortBy=firstSeen:asc,lastSeen:desc",
+            "description": "Response object property by which to sort response list. The valid values are in the response object attribute **sortAllowedColumns**. The format is **property:asc** for ascending and **property:desc** for descending sort ",
+            "example": "sortBy=id:desc&sortBy=firstseen:asc,lastseen:desc",
             "in": "query",
             "name": "sortBy",
             "required": false,
@@ -2065,7 +2065,7 @@
         ]
       },
       "post": {
-        "description": "Returns a paginated list of alerts that matches the constraints specified in the body parameters.  \r\n\r\nThe **fields** body parameter allows you to request specific fields from the alert payload. \nThese fields are separate from the filters you specify. The following are valid **fields** items.\n\n* alert.id\n* alert.status\n* alert.time\n* cloud.account\n* cloud.accountId\n* cloud.region\n* resource.id\n* resource.name\n* policy.name\n* policy.type\n* policy.severity\n\nThe **filters** body parameter enables you to narrow your request for alerts. See \n[List Alert Filters](/api/cloud/cspm/alerts#operation/get-alert-filter-and-options) \nfor an API request to list all the valid filters.\n\nData in the response object does not include alert rules.\n\nAlso, in the response object:\n\n* Property **riskDetail** is deprecated.\n* Property **items[].resource.cloudServiceName** is populated only for alerts whose resources belong to a cloud service.\n",
+        "description": "Returns a paginated list of alerts that matches the constraints specified in the body parameters.  \r\n\r\nThe **fields** request body parameter allows you to request specific fields from the alert payload. \nThese fields are separate from the filters you specify. The following are valid **fields** items.\n\n* alert.id\n* alert.status\n* alert.time\n* cloud.account\n* cloud.accountId\n* cloud.region\n* resource.id\n* resource.name\n* policy.name\n* policy.type\n* policy.severity\n\nThe **filters** request body parameter enables you to narrow your request for alerts. See \n[List Alert Filters](/api/cloud/cspm/alerts#operation/get-alert-filter-and-options) \nfor an API request to list all the valid filters.\n\nYou can find the valid values for the **sortBy** request body parameter in the response \nobject attribute **sortAllowedColumns**.\n\nData in the response object does not include alert rules.\n\nAlso, in the response object:\n\n* Property **riskDetail** is deprecated.\n* Property **items[].resource.cloudServiceName** is populated only for alerts whose resources belong to a cloud service.\n",
         "operationId": "post-alerts-v2",
         "parameters": [
           {
@@ -2635,7 +2635,7 @@
             },
             "description": "successful operation"
           },
-          "404": { "description": "Job Id <id> not found." }
+          "404": { "description": "Job Id `<id>` not found" }
         },
         "security": [{ "x-redlock-auth": [] }],
         "summary": "Get Alerts List Job Status",
@@ -2771,7 +2771,7 @@
     },
     "/alert/csv/{id}/download": {
       "get": {
-        "description": "Downloads the alert list in CSV format that Prisma Cloud generated for the specified job ID.",
+        "description": "Downloads the alert list that Prisma Cloud generated for the specified job ID, in CSV format.",
         "operationId": "download-alert-csv",
         "parameters": [
           {
@@ -2785,7 +2785,7 @@
         "responses": {
           "200": { "description": "successful operation" },
           "400": { "description": "internal_error" },
-          "404": { "description": "Job Id <id> not found." }
+          "404": { "description": "Job Id `<id>` not found" }
         },
         "security": [{ "x-redlock-auth": [] }],
         "summary": "Download Alert CSV",

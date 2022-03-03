@@ -181,7 +181,8 @@
               "AWS_GUARD_DUTY",
               "TENABLE",
               "QUALYS",
-              "PRISMA_CLOUD"
+              "PRISMA_CLOUD",
+              "AZURE_SECURITY_CENTER"
             ],
             "type": "string"
           },
@@ -213,7 +214,8 @@
               "AWS_INSPECTOR_RUNTIME_BEHAVIOR_ANALYSIS",
               "AWS_GUARD_DUTY_HOST_FINDING",
               "AWS_GUARD_DUTY_IAM_FINDING",
-              "SERVERLESS_VULNERABILITY"
+              "SERVERLESS_VULNERABILITY",
+              "AZURE_SECURITY_CENTER_ALERTS"
             ],
             "type": "string"
           },
@@ -236,7 +238,8 @@
               "AWS_GUARD_DUTY",
               "TENABLE",
               "QUALYS",
-              "PRISMA_CLOUD"
+              "PRISMA_CLOUD",
+              "AZURE_SECURITY_CENTER"
             ],
             "type": "string"
           },
@@ -469,7 +472,8 @@
                 "AWS_GUARD_DUTY",
                 "TENABLE",
                 "QUALYS",
-                "PRISMA_CLOUD"
+                "PRISMA_CLOUD",
+                "AZURE_SECURITY_CENTER"
               ],
               "type": "string"
             },
@@ -547,6 +551,11 @@
             "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
             "type": "string"
           },
+          "createdTs": {
+            "description": "Creation timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
           "data": {
             "description": "Raw JSON data for the resource",
             "type": "object"
@@ -556,10 +565,6 @@
             "additionalProperties": { "type": "object" },
             "description": "Dynamic data",
             "type": "object"
-          },
-          "hasAlert": {
-            "description": "Has alert (Deprecated)",
-            "type": "boolean"
           },
           "hasExtFindingRiskFactors": {
             "description": "Has risk factors",

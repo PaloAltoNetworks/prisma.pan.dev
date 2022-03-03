@@ -3,7 +3,7 @@
     "requestBodies": {
       "AuditEventSearchParamsModel": {
         "content": {
-          "application/json": {
+          "application/json; charset=UTF-8": {
             "schema": {
               "$ref": "#/components/schemas/AuditEventSearchParamsModel"
             }
@@ -23,7 +23,7 @@
       },
       "SearchModel": {
         "content": {
-          "application/json": {
+          "application/json; charset=UTF-8": {
             "schema": { "$ref": "#/components/schemas/SearchModel" }
           }
         },
@@ -514,6 +514,11 @@
             "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
             "type": "string"
           },
+          "createdTs": {
+            "description": "Creation timestamp",
+            "format": "int64",
+            "type": "integer"
+          },
           "data": {
             "description": "Raw JSON data for the resource",
             "type": "object"
@@ -523,10 +528,6 @@
             "additionalProperties": { "type": "object" },
             "description": "Dynamic data",
             "type": "object"
-          },
-          "hasAlert": {
-            "description": "Has alert (Deprecated)",
-            "type": "boolean"
           },
           "hasExtFindingRiskFactors": {
             "description": "Has risk factors",
@@ -584,7 +585,11 @@
             "readOnly": true,
             "type": "string"
           },
-          "async": { "readOnly": true, "type": "boolean" },
+          "async": {
+            "description": "true = Is Async",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "asyncResultUrl": {
             "description": "Async Result Url",
             "example": "/search/config/jobs/2df49d4f72e842b582b123bc2b7826b3/download",
@@ -650,10 +655,15 @@
             "readOnly": true,
             "type": "string"
           },
-          "async": { "type": "boolean" },
+          "async": {
+            "description": "true = Is Async",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "asyncResultUrl": {
             "description": "Async Result Url",
             "example": "/search/config/jobs/2df49d4f72e842b582b123bc2b7826b3/download",
+            "readOnly": true,
             "type": "string"
           },
           "cloudType": {
@@ -716,10 +726,15 @@
             "readOnly": true,
             "type": "string"
           },
-          "async": { "type": "boolean" },
+          "async": {
+            "description": "true = Is Async",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "asyncResultUrl": {
             "description": "Async Result Url",
             "example": "/search/config/jobs/2df49d4f72e842b582b123bc2b7826b3/download",
+            "readOnly": true,
             "type": "string"
           },
           "cloudType": {
@@ -785,10 +800,15 @@
             "readOnly": true,
             "type": "string"
           },
-          "async": { "type": "boolean" },
+          "async": {
+            "description": "true = Is Async",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "asyncResultUrl": {
             "description": "Async Result Url",
             "example": "/search/config/jobs/2df49d4f72e842b582b123bc2b7826b3/download",
+            "readOnly": true,
             "type": "string"
           },
           "cloudType": {
@@ -851,10 +871,15 @@
             "readOnly": true,
             "type": "string"
           },
-          "async": { "type": "boolean" },
+          "async": {
+            "description": "true = Is Async",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "asyncResultUrl": {
             "description": "Async Result Url",
             "example": "/search/config/jobs/2df49d4f72e842b582b123bc2b7826b3/download",
+            "readOnly": true,
             "type": "string"
           },
           "cloudType": {
@@ -917,10 +942,15 @@
             "readOnly": true,
             "type": "string"
           },
-          "async": { "type": "boolean" },
+          "async": {
+            "description": "true = Is Async",
+            "readOnly": true,
+            "type": "boolean"
+          },
           "asyncResultUrl": {
             "description": "Async Result Url",
             "example": "/search/config/jobs/2df49d4f72e842b582b123bc2b7826b3/download",
+            "readOnly": true,
             "type": "string"
           },
           "cloudType": {
@@ -1170,7 +1200,7 @@
         "operationId": "search-network",
         "requestBody": {
           "content": {
-            "application/json": {
+            "application/json; charset=UTF-8": {
               "schema": { "$ref": "#/components/schemas/SearchModel" }
             }
           },
@@ -1180,7 +1210,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": { "$ref": "#/components/schemas/SearchResponseModel" }
               }
             },
@@ -1196,11 +1226,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search\"\n\npayload = {\n    \"cloudType\": \"aws\",\n    \"cursor\": 0,\n    \"default\": True,\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"query\": \"string\",\n    \"saved\": True,\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search\"\n\npayload = {\n    \"cloudType\": \"aws\",\n    \"cursor\": 0,\n    \"default\": True,\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"query\": \"string\",\n    \"saved\": True,\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json; charset=UTF-8\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"cloudType\":\"aws\",\"cursor\":0,\"default\":true,\"description\":\"string\",\"id\":\"string\",\"name\":\"string\",\"query\":\"string\",\"saved\":true,\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"cloudType\":\"aws\",\"cursor\":0,\"default\":true,\"description\":\"string\",\"id\":\"string\",\"name\":\"string\",\"query\":\"string\",\"saved\":true,\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }
@@ -1211,7 +1241,7 @@
         "operationId": "search-events",
         "requestBody": {
           "content": {
-            "application/json": {
+            "application/json; charset=UTF-8": {
               "schema": {
                 "$ref": "#/components/schemas/AuditEventSearchParamsModel"
               }
@@ -1223,7 +1253,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": {
                   "$ref": "#/components/schemas/SearchResponseModelPagedResultsAuditEvent"
                 }
@@ -1241,11 +1271,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/event\"\n\npayload = {\n    \"alertId\": \"string\",\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"id\": \"string\",\n    \"limit\": 0,\n    \"query\": \"string\",\n    \"sort\": [\n        {\n            \"direction\": \"ASC\",\n            \"field\": \"ID\"\n        }\n    ],\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/event\"\n\npayload = {\n    \"alertId\": \"string\",\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"id\": \"string\",\n    \"limit\": 0,\n    \"query\": \"string\",\n    \"sort\": [\n        {\n            \"direction\": \"ASC\",\n            \"field\": \"ID\"\n        }\n    ],\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json; charset=UTF-8\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/event \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"alertId\":\"string\",\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"id\":\"string\",\"limit\":0,\"query\":\"string\",\"sort\":[{\"direction\":\"ASC\",\"field\":\"ID\"}],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/event \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"alertId\":\"string\",\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"id\":\"string\",\"limit\":0,\"query\":\"string\",\"sort\":[{\"direction\":\"ASC\",\"field\":\"ID\"}],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }
@@ -1256,7 +1286,7 @@
         "operationId": "search-events-aggregated",
         "requestBody": {
           "content": {
-            "application/json": {
+            "application/json; charset=UTF-8": {
               "schema": {
                 "$ref": "#/components/schemas/AuditEventSearchParamsModel"
               }
@@ -1268,7 +1298,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": {
                   "$ref": "#/components/schemas/SearchResponseModelListAggregateAuditEvent"
                 }
@@ -1284,11 +1314,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/event/aggregate\"\n\npayload = {\n    \"alertId\": \"string\",\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"id\": \"string\",\n    \"limit\": 0,\n    \"query\": \"string\",\n    \"sort\": [\n        {\n            \"direction\": \"ASC\",\n            \"field\": \"ID\"\n        }\n    ],\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/event/aggregate\"\n\npayload = {\n    \"alertId\": \"string\",\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"id\": \"string\",\n    \"limit\": 0,\n    \"query\": \"string\",\n    \"sort\": [\n        {\n            \"direction\": \"ASC\",\n            \"field\": \"ID\"\n        }\n    ],\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json; charset=UTF-8\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/event/aggregate \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"alertId\":\"string\",\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"id\":\"string\",\"limit\":0,\"query\":\"string\",\"sort\":[{\"direction\":\"ASC\",\"field\":\"ID\"}],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/event/aggregate \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"alertId\":\"string\",\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"id\":\"string\",\"limit\":0,\"query\":\"string\",\"sort\":[{\"direction\":\"ASC\",\"field\":\"ID\"}],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }
@@ -1299,7 +1329,7 @@
         "operationId": "search-events-filtered",
         "requestBody": {
           "content": {
-            "application/json": {
+            "application/json; charset=UTF-8": {
               "schema": {
                 "$ref": "#/components/schemas/AuditEventSearchParamsModel"
               }
@@ -1311,7 +1341,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": {
                   "$ref": "#/components/schemas/SearchResponseModelPagedResultsAuditEvent"
                 }
@@ -1327,11 +1357,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/event/filtered\"\n\npayload = {\n    \"alertId\": \"string\",\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"id\": \"string\",\n    \"limit\": 0,\n    \"query\": \"string\",\n    \"sort\": [\n        {\n            \"direction\": \"ASC\",\n            \"field\": \"ID\"\n        }\n    ],\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/event/filtered\"\n\npayload = {\n    \"alertId\": \"string\",\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"id\": \"string\",\n    \"limit\": 0,\n    \"query\": \"string\",\n    \"sort\": [\n        {\n            \"direction\": \"ASC\",\n            \"field\": \"ID\"\n        }\n    ],\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json; charset=UTF-8\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/event/filtered \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"alertId\":\"string\",\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"id\":\"string\",\"limit\":0,\"query\":\"string\",\"sort\":[{\"direction\":\"ASC\",\"field\":\"ID\"}],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/event/filtered \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"alertId\":\"string\",\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"id\":\"string\",\"limit\":0,\"query\":\"string\",\"sort\":[{\"direction\":\"ASC\",\"field\":\"ID\"}],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }
@@ -1342,7 +1372,7 @@
         "operationId": "search-events-page",
         "requestBody": {
           "content": {
-            "application/json": {
+            "application/json; charset=UTF-8": {
               "schema": { "$ref": "#/components/schemas/AuditEventPageParams" }
             }
           },
@@ -1352,7 +1382,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": {
                   "$ref": "#/components/schemas/PagedResultsAuditEvent"
                 }
@@ -1368,11 +1398,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/event/page\"\n\npayload = {\n    \"limit\": 0,\n    \"pageToken\": \"string\"\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/event/page\"\n\npayload = {\n    \"limit\": 0,\n    \"pageToken\": \"string\"\n}\nheaders = {\n    \"content-type\": \"application/json; charset=UTF-8\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/event/page \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"limit\":0,\"pageToken\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/event/page \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"limit\":0,\"pageToken\":\"string\"}'"
           }
         ]
       }
@@ -1393,7 +1423,9 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": { "schema": { "$ref": "#/components/schemas/AuditEvent" } }
+              "application/json; charset=UTF-8": {
+                "schema": { "$ref": "#/components/schemas/AuditEvent" }
+              }
             },
             "description": "success"
           },
@@ -1419,17 +1451,9 @@
       "post": {
         "description": "Returns the possible options&mdash;including expressions, values, and operators&mdash;to append to a partial RQL query.  \r\n\r\nSpecifying a partial RQL query in the query parameter will result in a list of suggested \noptions to append to your partial query. No other parameters are required.\n",
         "operationId": "search-suggest",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-redlock-auth",
-            "required": true,
-            "schema": { "type": "string" }
-          }
-        ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "application/json; charset=UTF-8": {
               "schema": { "$ref": "#/components/schemas/SearchModel" }
             }
           },
@@ -1439,7 +1463,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": { "$ref": "#/components/schemas/AutocompleteInfo" }
               }
             },
@@ -1452,11 +1476,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/suggest\"\n\npayload = {\n    \"cloudType\": \"aws\",\n    \"cursor\": 0,\n    \"default\": True,\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"query\": \"string\",\n    \"saved\": True,\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/suggest\"\n\npayload = {\n    \"cloudType\": \"aws\",\n    \"cursor\": 0,\n    \"default\": True,\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"query\": \"string\",\n    \"saved\": True,\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json; charset=UTF-8\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/suggest \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"cloudType\":\"aws\",\"cursor\":0,\"default\":true,\"description\":\"string\",\"id\":\"string\",\"name\":\"string\",\"query\":\"string\",\"saved\":true,\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/suggest \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"cloudType\":\"aws\",\"cursor\":0,\"default\":true,\"description\":\"string\",\"id\":\"string\",\"name\":\"string\",\"query\":\"string\",\"saved\":true,\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }
@@ -1477,7 +1501,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": {
                   "$ref": "#/components/schemas/SearchResponseModelListObject"
                 }
@@ -1509,7 +1533,7 @@
         "operationId": "search-config-page",
         "requestBody": {
           "content": {
-            "application/json": {
+            "application/json; charset=UTF-8": {
               "schema": { "$ref": "#/components/schemas/ConfigRulePageParams" }
             }
           },
@@ -1519,7 +1543,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json; charset=UTF-8": {
                 "schema": {
                   "$ref": "#/components/schemas/PagedResultsResourceMetaModel"
                 }
@@ -1535,11 +1559,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/config/page\"\n\npayload = {\n    \"limit\": 0,\n    \"pageToken\": \"string\",\n    \"withResourceJson\": True\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/search/config/page\"\n\npayload = {\n    \"limit\": 0,\n    \"pageToken\": \"string\",\n    \"withResourceJson\": True\n}\nheaders = {\n    \"content-type\": \"application/json; charset=UTF-8\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/config/page \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"limit\":0,\"pageToken\":\"string\",\"withResourceJson\":true}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/search/config/page \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"limit\":0,\"pageToken\":\"string\",\"withResourceJson\":true}'"
           }
         ]
       }

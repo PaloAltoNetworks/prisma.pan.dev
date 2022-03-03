@@ -50,7 +50,7 @@ components:
           readOnly: true
           type: boolean
         firstName:
-          description: First name
+          description: First name. Maximum length is 300 characters.
           type: string
         lastLoginTs:
           description: Last login time
@@ -67,7 +67,7 @@ components:
           readOnly: true
           type: integer
         lastName:
-          description: Last name
+          description: Last name.  Maximum length is 300 characters.
           type: string
         roleIds:
           description: Role IDs
@@ -132,7 +132,7 @@ components:
           readOnly: true
           type: boolean
         firstName:
-          description: First name
+          description: First name. Maximum length is 300 characters.
           type: string
         lastLoginTs:
           description: Last login time
@@ -149,7 +149,7 @@ components:
           readOnly: true
           type: integer
         lastName:
-          description: Last name
+          description: Last name.  Maximum length is 300 characters.
           type: string
         roleIds:
           description: Role IDs
@@ -172,7 +172,7 @@ components:
           - SERVICE_ACCOUNT
           type: string
         username:
-          description: User or service account name
+          description: User or service account name. Maximum length is 300 characters.
           type: string
       type: object
     UserProfileModel:
@@ -193,7 +193,7 @@ components:
           readOnly: true
           type: boolean
         firstName:
-          description: First name
+          description: First name. Maximum length is 300 characters.
           type: string
         lastLoginTs:
           description: Last login time
@@ -210,7 +210,7 @@ components:
           readOnly: true
           type: integer
         lastName:
-          description: Last name
+          description: Last name.  Maximum length is 300 characters.
           type: string
         role:
           additionalProperties:
@@ -279,7 +279,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/UserProfileModel'
           description: successful operation
@@ -326,7 +326,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json:
               schema:
                 items:
                   $ref: '#/components/schemas/UserAccountModel'
@@ -346,9 +346,9 @@ paths:
         \ adding a user account or service account through the request parameter **type**.\n\
         \nThe required parameters to add a user account are:\n\n* **email**\n* **firstName**\n\
         * **lastName**\n* **roleIds**\n* **defaultRoleId**\n* **timeZone**\n\nThe\
-        \ required parameters to add a service account are:\n\n- **username**\n- **accessKeyName**\n\
-        - **accessKeyExpiration** (Required only if **enableKeyExpiration** is **true**)\n\
-        - **defaultRoleId**\n- **timeZone**\n"
+        \ required parameters to add a service account are:\n\n* **username**\n* **accessKeyName**\n\
+        * **accessKeyExpiration** (Required only if **enableKeyExpiration** is **true**)\n\
+        * **defaultRoleId**\n* **timeZone**\n"
       operationId: add-user-v3
       requestBody:
         content:
@@ -360,7 +360,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/CreateUserAccessKeyResponseModel'
           description: successful operation
@@ -386,7 +386,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json:
               schema:
                 items:
                   $ref: '#/components/schemas/UserProfileModel'
@@ -438,7 +438,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/UserProfileModel'
           description: successful operation
@@ -546,7 +546,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json:
               schema:
                 items:
                   additionalProperties:
@@ -568,7 +568,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json:
               schema:
                 items:
                   type: string
@@ -593,7 +593,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json:
               schema:
                 items:
                   type: string
