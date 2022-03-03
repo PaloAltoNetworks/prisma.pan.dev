@@ -11,6 +11,6 @@ The Prisma Cloud REST API enables you to engage with Prisma Cloud services progr
 * Cloud security posture management (CSPM)
 * Infrastructure-As-Code (IaC) Scan
 * Data Security
-* Identity and access managment (IAM) Security
+* Identity and access management (IAM) Security
 
 Check the status notifications at <https://status.paloaltonetworks.com/> for the Prisma Cloud release schedule to know when new functionality is available.

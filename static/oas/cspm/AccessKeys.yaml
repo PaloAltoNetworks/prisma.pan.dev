@@ -113,7 +113,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json:
               schema:
                 items:
                   $ref: '#/components/schemas/UserAccessKeyDetailResponseModel'
@@ -142,7 +142,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/CreateUserAccessKeyResponseModel'
           description: successful operation
@@ -173,7 +173,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/UserAccessKeyResponseModel'
           description: successful operation

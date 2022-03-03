@@ -326,7 +326,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": { "$ref": "#/components/schemas/UserProfileModel" }
               }
             },
@@ -393,7 +393,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "items": { "$ref": "#/components/schemas/UserAccountModel" },
                   "type": "array"
@@ -433,7 +433,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CreateUserAccessKeyResponseModel"
                 }
@@ -469,7 +469,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "items": { "$ref": "#/components/schemas/UserProfileModel" },
                   "type": "array"
@@ -545,7 +545,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": { "$ref": "#/components/schemas/UserProfileModel" }
               }
             },
@@ -687,7 +687,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "items": {
                     "additionalProperties": { "type": "string" },
@@ -723,7 +723,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": { "items": { "type": "string" }, "type": "array" }
               }
             },
@@ -754,7 +754,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "items": { "type": "string" },
                   "type": "array",

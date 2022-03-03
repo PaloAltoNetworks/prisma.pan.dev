@@ -161,6 +161,7 @@
               "SNOWFLAKE",
               "TENABLE",
               "QUALYS",
+              "AZURE_SECURITY_CENTER",
               "GOOGLE_CSCC",
               "AWS_SECURITY_HUB",
               "OKTA_IDP"
@@ -291,6 +292,7 @@
               "SNOWFLAKE",
               "TENABLE",
               "QUALYS",
+              "AZURE_SECURITY_CENTER",
               "GOOGLE_CSCC",
               "AWS_SECURITY_HUB",
               "OKTA_IDP"

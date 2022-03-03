@@ -650,6 +650,7 @@ components:
           readOnly: true
           type: string
         async:
+          readOnly: true
           type: boolean
         asyncResultUrl:
           description: Async Result Url

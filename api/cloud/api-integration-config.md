@@ -143,7 +143,7 @@ Prisma Cloud integrates with the Qualys platform to ingest and visualize vulnera
 #### Add, Update, or Test a Qualys Integration
 
 To add a Qualys integration, make your request as described in
-[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter for an SQS integration is `qualys`, and the `integrationConfig` parameter contains the following key/value pairs.
+[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter for a Qualys integration is `qualys`, and the `integrationConfig` parameter contains the following key/value pairs.
 
 Key  |  Value Description | Value Type | Default Value or Required
 -----| ------------------ | ---------- | -------------
@@ -181,17 +181,18 @@ Integrate Prisma Cloud with ServiceNow and get automatically notified about Pris
 #### Add, Update, or Test a ServiceNow Integration
 
 To add a ServiceNow integration, make your request as described in
-[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter for an SQS integration is `service_now`, and the `integrationConfig` parameter contains the following key/value pairs.
+[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter for a ServiceNow integration is `service_now`, and the `integrationConfig` parameter contains the following key/value pairs.
 
 Key  |  Value Description | Value Type | Default Value or Required
 -----| ------------------ | ---------- | -------------
-hostUrl | ServiceNow URL | string | _required_
+hostUrl | ServiceNow URL | string | _required_. For [Update](/api/cloud/cspm/integrations#operation/update-integration-v1), not mutable.
 login | ServiceNow login | string | _required_
 password | ServiceNow password for login | string |  _required_
 tables | Array of key/value pairs that identify the ServiceNow module tables with which to integrate. The possible keys are: `incident`, `sn_si_incident`, `em_event`.<br/>The possible values for each key are: `true`, `false` | array of objects |  _required_
 
 To update a ServicNow integration, make your request as described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable except for
+`integrationConfig.hostUrl`.
 
 To test a ServiceNow integration, make your request as described in
 [Test Integration](/api/cloud/cspm/integrations#operation/test-integration).

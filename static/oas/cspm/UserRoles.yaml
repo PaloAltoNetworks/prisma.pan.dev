@@ -168,7 +168,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json:
               schema:
                 items:
                   $ref: '#/components/schemas/UserRoleViewModel'
@@ -213,7 +213,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json:
               schema:
                 items:
                   additionalProperties:
@@ -244,7 +244,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/UserRoleViewModel'
           description: successful operation
