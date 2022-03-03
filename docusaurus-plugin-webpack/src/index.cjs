@@ -1,5 +1,4 @@
 const path = require("path");
-const { LoadContext, Plugin } = require("@docusaurus/types");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 
 // eslint-disable-next-line import/no-extraneous-dependencies, import/order
