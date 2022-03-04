@@ -3,30 +3,19 @@ const yaml = require("js-yaml");
 const fs = require("fs");
 // Use the following to frontload docs
 var docs = [
-  "cloud/cspm/cspm-api",
-  "cloud/basic-request",
-  "cloud/api-urls",
-  "cloud/api-headers",
-  "cloud/api-time-range-model",
-  "cloud/api-integration-config",
-  "cloud/api-errors",
+  "cloud/code/code",
+  "cloud/code/basic-request",
+  "cloud/code/api-headers",
 ];
 // Change these variables to match your doc path
-const relativePath = "cloud/cspm";
-const absolutePath = "/api/cloud/cspm";
+const relativePath = "cloud/code";
+const absolutePath = "/api/cloud/code";
 function genEndpoints() {
   const endpoints = [];
   var endEndpoints = [];
-  var pushToEnd = [
-    "IacScan",
-    "IAM",
-    "IAMIdp",
-    "DataSecurityDashboard",
-    "DataSecurityInventory",
-    "DataSecuritySettings",
-  ];
+  var pushToEnd = [];
   // Absolute path from project root
-  specs = globby.sync(["./static/oas/cspm/*.yaml"], {
+  specs = globby.sync(["./static/oas/code/*.yaml"], {
     absolute: false,
     objectMode: true,
     deep: 1,
@@ -45,6 +34,7 @@ function genEndpoints() {
     var category = {
       type: "category",
       label: categoryLabel,
+      collapsed: "false",
     };
     var items = [`${relativePath}/${docId}`];
     for ([path, methods] of Object.entries(paths)) {
