@@ -14,13 +14,16 @@ import {
   useThemeConfig,
   useMobileSecondaryMenuRenderer,
   usePrevious,
+  useHistoryPopHandler,
 } from "@docusaurus/theme-common";
 import useHideableNavbar from "@theme/hooks/useHideableNavbar";
 import useLockBodyScroll from "@theme/hooks/useLockBodyScroll";
 import useWindowSize from "@theme/hooks/useWindowSize";
+import { useActivePlugin } from "@theme/hooks/useDocs";
 import NavbarItem from "@theme/NavbarItem";
 import Logo from "@theme/Logo";
 import IconMenu from "@theme/IconMenu";
+import IconClose from "@theme/IconClose";
 import styles from "./styles.module.css"; // retrocompatible with v1
 
 const DefaultNavItemPosition = "right";
@@ -158,7 +161,19 @@ function useMobileSidebar() {
 
   const shouldRender = windowSize === "mobile"; // || windowSize === 'ssr';
 
-  const [shown, setShown] = useState(false);
+  const [shown, setShown] = useState(false); // Close mobile sidebar on navigation pop
+  // Most likely firing when using the Android back button (but not only)
+
+  useHistoryPopHandler(() => {
+    if (shown) {
+      setShown(false); // Should we prevent the navigation here?
+      // See https://github.com/facebook/docusaurus/pull/5462#issuecomment-911699846
+
+      return false; // prevent pop navigation
+    }
+
+    return undefined;
+  });
   const toggle = useCallback(() => {
     setShown((s) => !s);
   }, []);
@@ -195,12 +210,13 @@ function useSecondaryMenu({ sidebarShown, toggleSidebar }) {
     toggleSidebar,
   });
   const previousContent = usePrevious(content);
-  const [shown, setShown] = useState(() => {
-    // /!\ content is set with useEffect,
-    // so it's not available on mount anyway
-    // "return !!content" => always returns false
-    return false;
-  }); // When content is become available for the first time (set in useEffect)
+  const [shown, setShown] = useState(
+    () =>
+      // /!\ content is set with useEffect,
+      // so it's not available on mount anyway
+      // "return !!content" => always returns false
+      false
+  ); // When content is become available for the first time (set in useEffect)
   // we set this content to be shown!
 
   useEffect(() => {
@@ -249,12 +265,23 @@ function NavbarMobileSidebar({ sidebarShown, toggleSidebar }) {
           imageClassName="navbar__logo"
           titleClassName="navbar__title"
         />
-        {!colorModeToggle.disabled && sidebarShown && (
+        {!colorModeToggle.disabled && (
           <Toggle
+            className={styles.navbarSidebarToggle}
             checked={colorModeToggle.isDarkTheme}
             onChange={colorModeToggle.toggle}
           />
         )}
+        <button
+          type="button"
+          className="clean-btn navbar-sidebar__close"
+          onClick={toggleSidebar}
+        >
+          <IconClose
+            color="var(--ifm-color-emphasis-600)"
+            className={styles.navbarSidebarCloseSvg}
+          />
+        </button>
       </div>
 
       <div
@@ -270,19 +297,21 @@ function NavbarMobileSidebar({ sidebarShown, toggleSidebar }) {
           </ul>
         </div>
 
-        <div className="navbar-sidebar__item navbar-sidebar__item--secondary menu">
-          <button
-            type="button"
-            className="clean-btn navbar-sidebar__back"
-            onClick={secondaryMenu.hide}
-          >
-            <Translate
-              id="theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel"
-              description="The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
+        <div className="navbar-sidebar__item menu">
+          {items.length > 0 && (
+            <button
+              type="button"
+              className="clean-btn navbar-sidebar__back"
+              onClick={secondaryMenu.hide}
             >
-              ← Back to main menu
-            </Translate>
-          </button>
+              <Translate
+                id="theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel"
+                description="The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
+              >
+                ← Back to main menu
+              </Translate>
+            </button>
+          )}
           {secondaryMenu.content}
         </div>
       </div>
@@ -296,6 +325,7 @@ function Navbar() {
   } = useThemeConfig();
   const mobileSidebar = useMobileSidebar();
   const colorModeToggle = useColorModeToggle();
+  const activeDocPlugin = useActivePlugin();
   const { navbarRef, isNavbarVisible } = useHideableNavbar(hideOnScroll);
   const items = useNavbarItems();
   const hasSearchNavbarItem = items.some((item) => item.type === "search");
@@ -314,7 +344,7 @@ function Navbar() {
     >
       <div className="navbar__inner">
         <div className="navbar__items">
-          {items?.length > 0 && (
+          {(items?.length > 0 || activeDocPlugin) && (
             <button
               aria-label="Navigation bar toggle"
               className="navbar__toggle clean-btn"

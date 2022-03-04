@@ -7,7 +7,9 @@ var docs = [
     type: "link",
     label: "21-08",
     href: "/api/cloud/cwpp/21-08/",
-    customProps: "versioned",
+    customProps: {
+      versioned: "versioned",
+    },
   },
   {
     type: "doc",

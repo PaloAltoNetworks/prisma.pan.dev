@@ -279,7 +279,7 @@ html[data-theme="dark"] .header-github-link:before {
 
 /* Corrects colors in redoc JSON samples */
 .redocusaurus code {
-  color: white;
+  color: white !important;
   background-color: rgb(41, 45, 62) !important;
 }
 
@@ -303,8 +303,12 @@ html[data-theme="dark"] .redocusaurus .react-tabs__tab--selected {
 
 .redocusaurus .react-tabs__tab-panel {
   background: rgb(41, 45, 62);
+}
+
+.redocusaurus .react-tabs__tab-panel--selected{
   padding-top: 16px;
 }
+
 
 /* Override button font size */
 .redocusaurus .react-tabs__tab-panel button {
@@ -403,10 +407,6 @@ h4 {
   background-color: transparent;
 }
 
-.redocusaurus p code {
-  color: var(--ifm-color-emphasis-100);
-}
-
 html[data-theme="dark"] .redocusaurus code {
   color: var(--ifm-color-emphasis-900);
 }
@@ -489,6 +489,10 @@ table td {
 
 .redocusaurus .react-tabs__tab {
   color: var(--ifm-font-color-base);
+}
+
+.menu > .menu__list > .menu__list-item > .menu__list-item-collapsible > .menu__link {
+  font-weight: bolder;
 }
 
 .menu > .menu__list > .menu__list-item > .menu__link {

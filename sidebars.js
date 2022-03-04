@@ -221,9 +221,9 @@ module.exports = {
         "contributing/create-doc-add",
         "contributing/create-doc-md",
         "contributing/create-doc-publish",
-        "contributing/create-doc-tldr",
       ],
     },
+    "contributing/create-doc-tldr",
     "contributing/git-basics",
   ],
 };

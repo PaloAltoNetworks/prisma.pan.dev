@@ -17628,7 +17628,9 @@
     },
     "/api/v22.01/defenders/daemonset.yaml": {
       "post": {
-        "description": "GenerateDaemonSet generates the defender daemonset k8s yaml\n",
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/daemonset_yaml_post.md"
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -17939,7 +17941,9 @@
     },
     "/api/v22.01/defenders/helm/twistlock-defender-helm.tar.gz": {
       "post": {
-        "description": "DefenderHelmChart generates a defender helm chart\n",
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/helm_post.md"
+        },
         "requestBody": {
           "content": {
             "application/json": {
