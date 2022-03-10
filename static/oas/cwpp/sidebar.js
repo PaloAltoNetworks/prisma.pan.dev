@@ -27,6 +27,10 @@ var docs = [
     type: "doc",
     id: "cloud/cwpp/api-limits",
   },
+  {
+    type: "doc",
+    id: "cloud/cwpp/stable-endpoints",
+  },
 ];
 
 // Change these variables to match your doc path
