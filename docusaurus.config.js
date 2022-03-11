@@ -58,6 +58,10 @@ module.exports = {
               label: "Cloud Workload Protection",
             },
             {
+              to: "/api/cloud/code",
+              label: "Cloud Code Security",
+            },
+            {
               to: "#",
               label: "SASE",
               className: "section__docs",
