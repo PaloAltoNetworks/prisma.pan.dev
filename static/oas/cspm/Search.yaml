@@ -670,6 +670,7 @@ components:
         cursor:
           description: Cursor
           format: int32
+          readOnly: true
           type: integer
         default:
           type: boolean
@@ -747,6 +748,7 @@ components:
         cursor:
           description: Cursor
           format: int32
+          readOnly: true
           type: integer
         data:
           type: object
@@ -826,6 +828,7 @@ components:
         cursor:
           description: Cursor
           format: int32
+          readOnly: true
           type: integer
         data:
           items:
@@ -907,6 +910,7 @@ components:
         cursor:
           description: Cursor
           format: int32
+          readOnly: true
           type: integer
         data:
           items:
@@ -988,6 +992,7 @@ components:
         cursor:
           description: Cursor
           format: int32
+          readOnly: true
           type: integer
         data:
           $ref: '#/components/schemas/PagedResultsAuditEvent'
@@ -1067,6 +1072,7 @@ components:
         cursor:
           description: Cursor
           format: int32
+          readOnly: true
           type: integer
         data:
           $ref: '#/components/schemas/PagedResultsResourceMetaModel'

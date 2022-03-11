@@ -731,6 +731,7 @@ components:
           - AuditEvent
           - DLP
           - IAM
+          - NetworkConfig
           type: string
       required:
       - criteria
@@ -970,7 +971,19 @@ paths:
         \       }\n        ],\n        \"name\": \"demo\",\n        \"parameters\"\
         : {\n            \"savedSearch\": \"false\",\n            \"withIac\": \"\
         true\"\n        },\n        \"type\": \"Config\"\n    },\n    \"severity\"\
-        : \"low\"\n}\n```\n"
+        : \"low\"\n}\n```\n\n  The JSON below is an example of the minimal request\
+        \ body parameters you need to add a Code Security build config policy:\n```json\n\
+        {\n    \"cloudType\": \"aws\",\n    \"name\": \"demo\",\n    \"policySubTypes\"\
+        : [\n        \"build\"\n    ],\n    \"policyType\": \"config\",\n    \"rule\"\
+        : {\n        \"children\": [\n            {\n                \"criteria\"\
+        : \"{\\\"category\\\":\\\"General\\\",\\\"resourceTypes\\\":[\\\"aws_s3_bucket\\\
+        \"],\\\"conditionQuery\\\":{\\\"attribute\\\":\\\"acl\\\",\\\"operator\\\"\
+        :\\\"not_equals\\\",\\\"value\\\":\\\"log-delivery-write\\\",\\\"cond_type\\\
+        \":\\\"attribute\\\"}}\",\n                \"type\": \"build\",\n        \
+        \        \"recommendation\": \"\"\n            }\n        ],\n        \"name\"\
+        : \"demo rule\",\n        \"parameters\": {\n            \"savedSearch\":\
+        \ \"false\",\n            \"withIac\": \"true\"\n        },\n        \"type\"\
+        : \"Config\"\n    },\n    \"severity\": \"medium\"\n} \n``` \n"
       operationId: add-policy
       requestBody:
         $ref: '#/components/requestBodies/PolicyModel'

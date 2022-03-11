@@ -1235,6 +1235,7 @@ components:
           - AuditEvent
           - DLP
           - IAM
+          - NetworkConfig
           type: string
       required:
       - criteria
