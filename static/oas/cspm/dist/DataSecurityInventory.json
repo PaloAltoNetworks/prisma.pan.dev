@@ -183,6 +183,10 @@
             "description": "Cloud account ID",
             "type": "string"
           },
+          "containerName": {
+            "description": "Container Name",
+            "type": "string"
+          },
           "contentType": {
             "description": "Object content type",
             "type": "string"
@@ -365,6 +369,10 @@
             "type": "integer"
           },
           "cloudType": { "description": "Cloud Type", "type": "string" },
+          "containerName": {
+            "description": "Container Name",
+            "type": "string"
+          },
           "contentType": {
             "description": "Object Content Type",
             "type": "string"

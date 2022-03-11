@@ -114,6 +114,7 @@ components:
         cursor:
           description: Cursor
           format: int32
+          readOnly: true
           type: integer
         default:
           type: boolean
@@ -191,6 +192,7 @@ components:
         cursor:
           description: Cursor
           format: int32
+          readOnly: true
           type: integer
         data:
           $ref: '#/components/schemas/SearchModel'

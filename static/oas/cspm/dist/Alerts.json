@@ -1308,7 +1308,7 @@
           },
           "type": {
             "description": "Type of rule or RQL query",
-            "enum": ["Config", "Network", "AuditEvent", "DLP", "IAM"],
+            "enum": ["Config", "Network", "AuditEvent", "DLP", "IAM", "NetworkConfig"],
             "type": "string"
           }
         },
