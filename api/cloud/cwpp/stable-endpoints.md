@@ -1,7 +1,7 @@
 ---
 id: stable-endpoints
-title: Stable Endpoints
-sidebar_label: Stable Endpoints
+title: Supported Endpoints
+sidebar_label: README - Supported Endpoints
 ---
 
 Starting with 21.08, with every release the Compute APIs will be versioned to indicate the release number to which they correspond. 
