@@ -109,7 +109,6 @@ module.exports = {
         "cloud/cwpp/cwpp-gs",
         "cloud/cwpp/access-api-self-hosted",
         "cloud/cwpp/access-api-saas",
-        "cloud/cwpp/stable-endpoints",
         "cloud/cwpp/policy_samples",
         "cloud/cwpp/twistcli_gs",
         "cloud/cwpp/custom_compliance_samples",
