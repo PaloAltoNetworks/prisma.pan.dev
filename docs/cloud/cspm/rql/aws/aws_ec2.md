@@ -44,7 +44,7 @@ config from cloud.resource where api.name = 'aws-ec2-describe-security-groups' A
 ### Detect EC2 instances that have been existing longer than 30 dates(via the block device attachTime), where the volume isn't encrypted.
 
 ```bash
-config from cloud.resource where api.name = 'aws-ec2-describe-instances' AND json.rule = "blockDeviceMappings[?(@.deviceName=='/dev/xvda'||@.deviceName=='/dev/sda1')].ebs.attachTime exists and (( _DateTime.ageInDays(blockDeviceMappings[?(@.deviceName=='/dev/xvda')].ebs.attachTime) < 30) or ( _DateTime.ageInDays(blockDeviceMappings[?(@.deviceName=='/dev/sda1')].ebs.attachTime) < 30))" as X; config from cloud.resource where api.name = 'aws-ec2-describe-volumes' AND json.rule = encrypted is false as Y; filter ' $.X.instanceId equals $.Y.attachments[*].instanceId '; show X; 
+config from cloud.resource where api.name = 'aws-ec2-describe-instances' AND json.rule = "blockDeviceMappings[?(@.deviceName=='/dev/xvda'||@.deviceName=='/dev/sda1')].ebs.attachTime exists and (( _DateTime.ageInDays(blockDeviceMappings[?(@.deviceName=='/dev/xvda')].ebs.attachTime) > 30) or ( _DateTime.ageInDays(blockDeviceMappings[?(@.deviceName=='/dev/sda1')].ebs.attachTime) > 30))" as X; config from cloud.resource where api.name = 'aws-ec2-describe-volumes' AND json.rule = encrypted is false as Y; filter ' $.X.instanceId equals $.Y.attachments[*].instanceId '; show X; 
 ```
 
 ###  Detect AMI images older than 90 days
