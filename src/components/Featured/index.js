@@ -60,6 +60,15 @@ const features = [
         >
           Cloud Workload Protection
         </a>
+        <br />
+        <a
+          target="_self"
+          href="/api/cloud/code"
+          rel="noopener noreferrer"
+          className={styles.toLink}
+        >
+          Cloud Code Security
+        </a>
       </>
     ),
   },
