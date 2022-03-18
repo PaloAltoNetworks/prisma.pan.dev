@@ -281,7 +281,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserProfileModel'
+                $ref: '#/components/schemas/MultiRoleUserProfile'
           description: successful operation
         '400':
           description: user_inactive_or_not_exist

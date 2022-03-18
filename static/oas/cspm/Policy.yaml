@@ -1119,6 +1119,15 @@ paths:
           - 'true'
           - 'false'
           type: string
+      - description: 'Include deleted policies '
+        in: query
+        name: policy.allowDeleted
+        required: false
+        schema:
+          enum:
+          - 'true'
+          - 'false'
+          type: string
       - description: Cloud type
         in: query
         name: cloud.type

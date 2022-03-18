@@ -6,10 +6,9 @@ hide_table_of_contents: false
 slug: /cloud/cspm
 ---
 
-The Prisma Cloud REST API enables you to engage with Prisma Cloud services programmatically. This API reference includes all public Prisma Cloud API endpoints for:
+The Prisma™ Cloud REST API enables you to engage with Prisma Cloud services programmatically. This API reference includes all public Prisma Cloud API endpoints for:
 
 * Cloud security posture management (CSPM)
-* Infrastructure-As-Code (IaC) Scan
 * Data Security
 * Identity and access management (IAM) Security
 

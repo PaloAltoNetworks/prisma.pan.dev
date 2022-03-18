@@ -139,39 +139,6 @@ components:
           description: Field option name
           type: string
       type: object
-    EventsIntegrationStatusDetails:
-      properties:
-        details:
-          $ref: '#/components/schemas/EventsMessageDetails'
-        errorType:
-          enum:
-          - INVALID_CONFIG
-          - TRANSLATION_EXCEPTION
-          - INVALID_TEMPLATE_CONFIG
-          - HTTP_EXCEPTION
-          - OTHERS
-          - TEST
-          type: string
-        lastUpdated:
-          format: int64
-          type: integer
-        message:
-          type: string
-      type: object
-    EventsMessageDetails:
-      description: Message details
-      properties:
-        i18nKey:
-          description: Internationalization key
-          type: string
-        statusCode:
-          description: Status code
-          format: int32
-          type: integer
-        subject:
-          description: Subject
-          type: string
-      type: object
     EventsNotificationFieldsConfig:
       properties:
         aliasField:
@@ -231,9 +198,6 @@ components:
         integrationId:
           description: Integration ID
           type: string
-        integrationName:
-          description: Integration name
-          type: string
         integrationType:
           description: Integration type
           enum:
@@ -252,30 +216,12 @@ components:
           description: |
             Name. Cannot include special characters ('<', '>', '!', '=', '\n', '\r'). Maximum length is 99.
           type: string
-        reason:
-          $ref: '#/components/schemas/EventsIntegrationStatusDetails'
-        status:
-          description: Integration status color
-          enum:
-          - GREEN
-          - RED
-          - YELLOW
-          - NA
-          type: string
         templateConfig:
           additionalProperties:
             items:
               $ref: '#/components/schemas/EventsNotificationFieldsConfig'
             type: array
           type: object
-        templateType:
-          description: Template type
-          enum:
-          - ticketing
-          type: string
-        valid:
-          description: true = Valid
-          type: boolean
       required:
       - customerId
       - integrationType

@@ -200,54 +200,9 @@ components:
         name:
           description: Integration name
           type: string
-        reason:
-          $ref: '#/components/schemas/EventsIntegrationStatusDetails'
-        status:
-          description: Integration state
-          enum:
-          - GREEN
-          - RED
-          - YELLOW
-          - NA
-          type: string
-        valid:
-          description: true = Valid integration
-          type: boolean
       required:
       - customerId
       - name
-      type: object
-    EventsIntegrationStatusDetails:
-      properties:
-        details:
-          $ref: '#/components/schemas/EventsMessageDetails'
-        errorType:
-          description: Error type
-          enum:
-          - INVALID_CONFIG
-          - TRANSLATION_EXCEPTION
-          - INVALID_TEMPLATE_CONFIG
-          - HTTP_EXCEPTION
-          - OTHERS
-          - TEST
-          type: string
-        lastUpdated:
-          description: Unix timestamp of last update, in milliseconds
-          format: int64
-          type: integer
-        message:
-          description: Message
-          type: string
-      type: object
-    EventsMessageDetails:
-      properties:
-        i18nKey:
-          type: string
-        statusCode:
-          format: int32
-          type: integer
-        subject:
-          type: string
       type: object
     EventsPatchIntegrationRequest:
       properties:

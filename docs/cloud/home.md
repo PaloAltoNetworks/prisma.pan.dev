@@ -24,7 +24,7 @@ This site describes the APIs you can use to automate your usage of the following
   includes the APIs that enable you to add cloud accounts, monitor cloud security posture, enable
   data classification and malware scanning on public cloud storage, detect and respond to threats,
   and maintain compliance. It includes the Visibility, Compliance, and Governance APIs, Data
-  Security, and IaC Scan APIs.
+  Security API, and Identity and Access Management (IAM) API.
 
 * **Cloud Workload Protection (CWPP)**
   Helps secure cloud native applications across the application lifecycle, defined by the
