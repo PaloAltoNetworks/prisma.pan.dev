@@ -1180,6 +1180,13 @@
             "schema": { "enum": ["true", "false"], "type": "string" }
           },
           {
+            "description": "Include deleted policies ",
+            "in": "query",
+            "name": "policy.allowDeleted",
+            "required": false,
+            "schema": { "enum": ["true", "false"], "type": "string" }
+          },
+          {
             "description": "Cloud type",
             "in": "query",
             "name": "cloud.type",
@@ -1207,11 +1214,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/policy\"\n\nquerystring = {\"policy.name\":\"SOME_STRING_VALUE\",\"policy.severity\":\"SOME_STRING_VALUE\",\"policy.label\":\"SOME_STRING_VALUE\",\"policy.rule.type\":\"SOME_STRING_VALUE\",\"policy.subtype\":\"SOME_STRING_VALUE\",\"policy.type\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\",\"policy.enabled\":\"SOME_STRING_VALUE\",\"policy.policyMode\":\"SOME_STRING_VALUE\",\"policy.remediable\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/policy\"\n\nquerystring = {\"policy.name\":\"SOME_STRING_VALUE\",\"policy.severity\":\"SOME_STRING_VALUE\",\"policy.label\":\"SOME_STRING_VALUE\",\"policy.rule.type\":\"SOME_STRING_VALUE\",\"policy.subtype\":\"SOME_STRING_VALUE\",\"policy.type\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\",\"policy.enabled\":\"SOME_STRING_VALUE\",\"policy.policyMode\":\"SOME_STRING_VALUE\",\"policy.remediable\":\"SOME_STRING_VALUE\",\"policy.allowDeleted\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/v2/policy?policy.name=SOME_STRING_VALUE&policy.severity=SOME_STRING_VALUE&policy.label=SOME_STRING_VALUE&policy.rule.type=SOME_STRING_VALUE&policy.subtype=SOME_STRING_VALUE&policy.type=SOME_STRING_VALUE&policy.complianceStandard=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE&policy.enabled=SOME_STRING_VALUE&policy.policyMode=SOME_STRING_VALUE&policy.remediable=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/v2/policy?policy.name=SOME_STRING_VALUE&policy.severity=SOME_STRING_VALUE&policy.label=SOME_STRING_VALUE&policy.rule.type=SOME_STRING_VALUE&policy.subtype=SOME_STRING_VALUE&policy.type=SOME_STRING_VALUE&policy.complianceStandard=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE&policy.enabled=SOME_STRING_VALUE&policy.policyMode=SOME_STRING_VALUE&policy.remediable=SOME_STRING_VALUE&policy.allowDeleted=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       }

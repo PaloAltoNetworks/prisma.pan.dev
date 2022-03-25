@@ -1443,7 +1443,9 @@ paths:
       description: "Returns a list of alerts that match the constraints specified\
         \ in the query parameters.  \r\n\r\nIn the response object:\n\n* Property\
         \ **riskDetail** is deprecated.\n* Property **resource.cloudServiceName**\
-        \ is populated only for alerts whose resources belong to a cloud service.\n"
+        \ is populated only for alerts whose resources belong to a cloud service.\n\
+        \n#### Rate Limits ####\n\nThe following rate limits apply:\n* Request rate\
+        \ limit: 2/sec \n* Burst limit: 10/sec        \n"
       operationId: get-alerts
       parameters:
       - description: Time Type
@@ -1641,6 +1643,8 @@ paths:
           description: successful operation
         '400':
           description: internal_error
+        '429':
+          description: Too Many Requests
       security:
       - x-redlock-auth: []
       summary: List Alerts - GET
@@ -1658,7 +1662,9 @@ paths:
         \ \nfor an API request to list all the valid filters.\n\nData in the response\
         \ object does not include alert rules.\n\nAlso, in the response object:\n\n\
         * Property **riskDetail** is deprecated.\n* Property **resource.cloudServiceName**\
-        \ is populated only for alerts whose resources belong to a cloud service.\n"
+        \ is populated only for alerts whose resources belong to a cloud service.\n\
+        \n#### Rate Limits ####\n\nThe following rate limits apply:\n* Request rate\
+        \ limit: 2/sec \n* Burst limit: 10/sec        \n"
       operationId: post-alerts
       parameters:
       - description: true = Return detailed alert data. Default is false. Overrides
@@ -1681,6 +1687,8 @@ paths:
           description: successful operation
         '400':
           description: internal_error
+        '429':
+          description: Too Many Requests
       security:
       - x-redlock-auth: []
       summary: List Alerts - POST
@@ -1692,7 +1700,9 @@ paths:
         \  \r\n\r\nData in the response object does not include alert rules.\n\nAlso,\
         \ in the response object:\n\n* Property **riskDetail** is deprecated.\n* Property\
         \ **items[].resource.cloudServiceName** is populated only for alerts whose\
-        \ resources belong to a cloud service.\n"
+        \ resources belong to a cloud service.\n\n#### Rate Limits ####\n\nThe following\
+        \ rate limits apply:\n* Request rate limit: 2/sec \n* Burst limit: 10/sec\
+        \      \n"
       operationId: get-alerts-v2
       parameters:
       - description: Time Type
@@ -1941,7 +1951,9 @@ paths:
         object attribute **sortAllowedColumns**.\n\nData in the response object does\
         \ not include alert rules.\n\nAlso, in the response object:\n\n* Property\
         \ **riskDetail** is deprecated.\n* Property **items[].resource.cloudServiceName**\
-        \ is populated only for alerts whose resources belong to a cloud service.\n"
+        \ is populated only for alerts whose resources belong to a cloud service.\n\
+        \n#### Rate Limits ####\n\nThe following rate limits apply:\n* Request rate\
+        \ limit: 2/sec \n* Burst limit: 10/sec \n"
       operationId: post-alerts-v2
       parameters:
       - description: true = Return detailed alert data. Default is false. Overrides
@@ -1974,7 +1986,9 @@ paths:
       description: "Returns alert counts grouped by policy. You can use query parameters\
         \ to narrow the response.  \r\n\r\nIn the response object:\n\n* Property **alertRules**\
         \ is not populated.         \n* Property **riskDetail** is deprecated.\n*\
-        \ Property **resource.cloudServiceName** is not populated.\n"
+        \ Property **resource.cloudServiceName** is not populated.\n\n#### Rate Limits\
+        \ ####\n\nThe following rate limits apply:\n* Request rate limit: 1/sec \n\
+        * Burst limit: 5/sec        \n"
       operationId: get-alerts-grouped
       parameters:
       - description: Alert ID
@@ -2129,6 +2143,8 @@ paths:
                   $ref: '#/components/schemas/AlertModel'
                 type: array
           description: successful operation
+        '429':
+          description: Too Many Requests
       security:
       - x-redlock-auth: []
       summary: List Alert Counts By Policy - GET
@@ -2138,7 +2154,9 @@ paths:
       description: "Returns alert counts grouped by policy. You can use body parameters\
         \ to narrow the response.  \r\n\r\nIn the response object:\n\n* Property **alertRules**\
         \ is not populated.       \n* Property **riskDetail** is deprecated.\n* Property\
-        \ **resource.cloudServiceName** is not populated.\n"
+        \ **resource.cloudServiceName** is not populated.\n\n#### Rate Limits ####\n\
+        \nThe following rate limits apply:\n* Request rate limit: 1/sec \n* Burst\
+        \ limit: 5/sec        \n"
       operationId: post-alerts-grouped
       parameters:
       - description: true = Return detailed alert data. Default is false. Overrides
@@ -2159,6 +2177,8 @@ paths:
                   $ref: '#/components/schemas/AlertModel'
                 type: array
           description: successful operation
+        '429':
+          description: Too Many Requests
       security:
       - x-redlock-auth: []
       summary: List Alert Counts By Policy - POST
@@ -2167,7 +2187,9 @@ paths:
   /alert/{id}:
     get:
       description: "Returns information about an alert for the specified ID.  \r\n\
-        \r\nIn the response object, field **riskDetail** is deprecated.\n"
+        \r\nIn the response object, field **riskDetail** is deprecated.\n\n#### Rate\
+        \ Limits ####\n\nThe following rate limits apply:\n* Request rate limit: 5/sec\
+        \ \n* Burst limit: 10/sec        \n"
       operationId: get-alert
       parameters:
       - description: Alert ID
@@ -2193,6 +2215,8 @@ paths:
           description: internal_error/invalid_alert_id
         '404':
           description: not_found
+        '429':
+          description: Too Many Requests
       security:
       - x-redlock-auth: []
       summary: Alert Info
@@ -2292,7 +2316,9 @@ paths:
       - Alerts
   /alert/count/{status}:
     get:
-      description: Returns an alert count for the specified status.
+      description: "Returns an alert count for the specified status.  \r\n\r\n####\
+        \ Rate Limits ####\n\nThe following rate limits apply:\n* Request rate limit:\
+        \ 2/sec \n* Burst limit: 10/sec\n"
       operationId: get-alert-count
       parameters:
       - description: Alert Status
@@ -2315,6 +2341,8 @@ paths:
           description: successful operation
         '400':
           description: invalid_parameter_value
+        '429':
+          description: Too Many Requests
         '500':
           description: internal_error
       security:
@@ -2335,7 +2363,9 @@ paths:
         * cloud.region\n* resource.id\n* resource.name\n* policy.name\n* policy.type\n\
         * policy.severity\n\n The **filters** body parameter enables you to narrow\
         \ your request for alerts. See \n [List Alert Filters](/api/cloud/cspm/alerts#operation/get-alert-filter-and-options)\
-        \ \n for an API request to list all the valid filters.\n"
+        \ \n for an API request to list all the valid filters.\n\n  #### Rate Limits\
+        \ ####\n\nThe following rate limits apply:\n* Request rate limit: 2/sec \n\
+        * Burst limit: 10/sec        \n"
       operationId: submit-job-for-listing-alerts
       requestBody:
         $ref: '#/components/requestBodies/FilterModel2'
@@ -2348,6 +2378,8 @@ paths:
           description: successful operation
         '400':
           description: internal_error
+        '429':
+          description: Too Many Requests
       security:
       - x-redlock-auth: []
       summary: Submit Job to List Alerts
@@ -2504,7 +2536,9 @@ paths:
         * resource.name\n* policy.name\n* policy.type\n* policy.severity\n\nThe **filters*8\
         \ body parameter enables you to narrow your request for alerts. \nSee [List\
         \ Alert Filters](/api/cloud/cspm/alerts#operation/get-alert-filter-and-options)\n\
-        for an API request to list all the valid filters.\n"
+        for an API request to list all the valid filters.\n\n#### Rate Limits ####\n\
+        \nThe following rate limits apply:\n* Request rate limit: 1/sec \n* Burst\
+        \ limit: 5/sec        \n"
       operationId: submit-a-job-for-listing-alerts-grouped-by-policy
       requestBody:
         $ref: '#/components/requestBodies/FilterModel'
@@ -2517,6 +2551,8 @@ paths:
           description: successful operation
         '400':
           description: internal_error
+        '429':
+          description: Too Many Requests
       security:
       - x-redlock-auth: []
       summary: Submit Job to List Alerts By Policy
