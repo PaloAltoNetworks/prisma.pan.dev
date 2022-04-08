@@ -31,15 +31,15 @@ For example, the following endpoint points to the 22.01 version:
 As a best practice, update your scripts to use the version-specific API endpoints to ensure that your implementation is fully supported.
 For the version-specific APIs, you will have access to the API Reference and Release Notes documentation for changes or updates that may impact you. 
 
-When using the version-specific endpoints, you will need to update your automation scripts approximately once-a- year to stay in sync with the product [support lifecycle]( https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/upgrade/support_lifecycle.html).
+When using the version-specific endpoints, you will need to update your automation scripts approximately once-a- year to stay in sync with the product [support lifecycle](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/upgrade/support_lifecycle.html).
 
-**Note**: If you have a mixed environment  of 22.01, 21.08, 21.12, and 22.04 Defenders then use the version of the API that matches the earliest version, which in this example is API v/22.01.
+**Note**: If you have a mixed environment of 22.01, 21.08, 21.12, and 22.04 Defenders then use the version of the API that matches the earliest version, which in this example is API v/22.01.
 
 If you use the /v1 APIs, Palo Alto Networks recommends that you consider revising your scripts to target the versioned API endpoints. 
 If you opt to continue using the v1 API endpoints, please adhere the to following guidelines:
 * Review the list of v1 endpoints you are using and make sure the corresponding versioned endpoints are available.
-* If you are using an API that is only in the /v1 category and does not have a corresponding versioned API, you must review your implementation and update your scripts to adapt them to ensure that you do not  experience a disruption.
-* If you are using  /v1 endpoints that are unsupported and not versioned, you can submit a feature request. 
+* If you are using an API that is only in the /v1 category and does not have a corresponding versioned API, you must review your implementation and update your scripts to adapt them to ensure that you do not experience a disruption.
+* If you are using /v1 endpoints that are unsupported and not versioned, you can submit a feature request. 
 Your request for supporting the endpoint will be considered when planning the product roadmap for future releases.
 
 
