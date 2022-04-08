@@ -17,6 +17,10 @@ var docs = [
   },
   {
     type: "doc",
+    id: "cloud/cwpp/stable-endpoints",
+  },
+  {
+    type: "doc",
     id: "cloud/cwpp/curl-examples",
   },
   {
@@ -26,10 +30,6 @@ var docs = [
   {
     type: "doc",
     id: "cloud/cwpp/api-limits",
-  },
-  {
-    type: "doc",
-    id: "cloud/cwpp/stable-endpoints",
   },
 ];
 
