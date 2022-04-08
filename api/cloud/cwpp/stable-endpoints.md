@@ -21,7 +21,7 @@ The Compute API is versioned as follows:
 
 Where:
 
-* `v1` - Always points to the latest API. This represents a larger set of APIs. Only a few v1 endpoints are fully supported and documented.
+* `v1` - Always points to the latest API. This represents a larger set of APIs. Only four v1 endpoints are supported and documented.
 * `vVersion` - Points to a version-specific API, where `Version` specifies the major and minor parts of a release's version string. The version exists as a soft link to /v1 but only /vVersion is a supported way to access the endpoint.
 
 For example, the following endpoint points to the 22.01 version:
@@ -38,8 +38,6 @@ When using the version-specific endpoints, you will need to update your automati
 If you use the /v1 APIs, Palo Alto Networks recommends that you consider revising your scripts to target the versioned API endpoints. 
 If you opt to continue using the v1 API endpoints, please adhere the to following guidelines:
 * Review the list of v1 endpoints you are using and make sure the corresponding versioned endpoints are available.
-v1 API are a larger subset and not all endpoints are supported. 
-The technical support and documentation is available only for the supported endpoints.
 * If you are using an API that is only in the /v1 category and does not have a corresponding versioned API, you must review your implementation and update your scripts to adapt them to ensure that you do not  experience a disruption.
 * If you are using  /v1 endpoints that are unsupported and not versioned, you can submit a feature request. 
 Your request for supporting the endpoint will be considered when planning the product roadmap for future releases.
