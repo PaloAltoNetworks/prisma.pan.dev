@@ -67,8 +67,9 @@ module.exports = {
               className: "section__docs",
             },
             {
-              to: "/api/sase/config",
-              label: "Config API (beta)",
+              href: "https://pan.dev/sase/api/prisma-access-config",
+              label: "Prisma Access Configuration",
+              target: "_self",
             },
           ],
           position: "left",
