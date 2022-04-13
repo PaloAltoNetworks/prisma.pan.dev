@@ -702,6 +702,27 @@ html[data-theme="dark"] .featuredContainer {
   display: none !important;
 }
 
+.prismaItem {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.prismaItem::before {
+  content: "";
+  background-image: url("/img/prismafavicon.png");
+  background-size: 100% 100%;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  position: relative;
+  margin-right: 10px;
+}
+
+.prismaItem::after {
+  display: none !important;
+}
+
 .section__docs{
   font-weight: bolder;
   cursor:inherit;
