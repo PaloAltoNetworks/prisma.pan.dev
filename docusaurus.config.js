@@ -61,21 +61,18 @@ module.exports = {
               to: "/api/cloud/code",
               label: "Cloud Code Security",
             },
-            {
-              to: "#",
-              label: "SASE",
-              className: "section__docs",
-            },
-            {
-              to: "/api/sase/config",
-              label: "Config API (beta)",
-            },
           ],
           position: "left",
         },
         {
           label: "Products",
           items: [
+            {
+              href: "https://pan.dev",
+              label: "Prisma SASE",
+              className: "prismaItem",
+              target: "_self",
+            },
             {
               href: "https://cortex.pan.dev",
               label: "Cortex Data Lake",
