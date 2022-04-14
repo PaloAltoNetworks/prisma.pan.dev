@@ -61,16 +61,6 @@ module.exports = {
               to: "/api/cloud/code",
               label: "Cloud Code Security",
             },
-            {
-              to: "#",
-              label: "SASE",
-              className: "section__docs",
-            },
-            {
-              href: "https://pan.dev/sase/api/prisma-access-config",
-              label: "Prisma Access Configuration",
-              target: "_self",
-            },
           ],
           position: "left",
         },
@@ -93,6 +83,12 @@ module.exports = {
               href: "https://panos.pan.dev",
               label: "Strata",
               className: "strataItem",
+              target: "_self",
+            },
+            {
+              href: "https://pan.dev",
+              label: "Prisma SASE",
+              className: "prismaItem",
               target: "_self",
             },
           ],
@@ -196,34 +192,6 @@ module.exports = {
   ],
   themes: [require.resolve("./docusaurus-plugin-webpack/src/index.cjs")],
   customFields: {
-    sites: [
-      {
-        label: "Products",
-        items: [
-          {
-            href: "https://cortex.pan.dev",
-            label: "Cortex",
-            logo: "/img/cortexfavicon.png",
-          },
-          {
-            href: "https://xsoar.pan.dev",
-            label: "Cortex XSOAR",
-            logo: "/img/Cortex-XSOAR-product-green.svg",
-          },
-          {
-            href: "https://panos.pan.dev",
-            label: "PAN-OS",
-            logo: "/img/strata_favicon.png",
-          },
-          {
-            href: "https://prisma.pan.dev",
-            label: "Prisma",
-            logo: "/img/prismafavicon.png",
-          },
-        ],
-        position: "products",
-      },
-    ],
     api_versions: [
       {
         label: "22.01 (Latest)",
