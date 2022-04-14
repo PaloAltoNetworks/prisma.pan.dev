@@ -43,8 +43,11 @@ function Home() {
                       {" "}
                       developer docs{" "}
                     </span>{" "}
-                    for{" "}
-                    <span className={styles.heroProjectKeywords}>Prisma.</span>
+                    for
+                    <br />
+                    <span className={styles.heroProjectKeywords}>
+                      Prisma Cloud.
+                    </span>
                   </h1>
                 </div>
               </div>
