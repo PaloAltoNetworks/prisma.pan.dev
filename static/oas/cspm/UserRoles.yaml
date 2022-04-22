@@ -230,6 +230,41 @@ paths:
       summary: List User Role Names
       tags:
       - User Roles
+  /user/role/type:
+    get:
+      description: Returns a list of permission groups to which users belong.
+      operationId: get-user-role-types
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  enum:
+                  - SYSTEM_ADMIN
+                  - ACCOUNT_ADMIN
+                  - ACCOUNT_READ_ONLY
+                  - SSO_ADMIN
+                  - CLOUD_PROVISIONING_ADMIN
+                  - TENANT_PROVISIONING_ADMIN
+                  - PRISMA_SERVICE_USER
+                  - ACCOUNT_AND_CLOUD_PROVISIONING_ADMIN
+                  - BUILD_AND_DEPLOY_SECURITY
+                  - BUILD_AND_DEPLOY_SECURITY_CI
+                  - COMPUTE_ADMIN
+                  - NETWORK_SECURITY_OPERATOR
+                  - NETWORK_SECURITY_OPERATOR_READ_ONLY
+                  - COMPUTE_ACCOUNT_ADMIN
+                  - DEVELOPER
+                  - COMPUTE_ACCOUNT_READ_ONLY
+                  type: string
+                type: array
+          description: successful operation
+      security:
+      - x-redlock-auth: []
+      summary: List User Role Types
+      tags:
+      - User Roles
   /user/role/{id}:
     get:
       description: Returns user role information for a specified ID.
