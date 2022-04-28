@@ -101,7 +101,7 @@ config from cloud.resource where cloud.type = 'aws' AND api.name = 'aws-ec2-desc
 config from cloud.resource where api.name = 'aws-ec2-describe-security-groups' and json.rule = "groupName does not equal default" as X; config from cloud.resource where api.name = 'aws-ec2-describe-network-interfaces' as Y; filter 'not ($.Y.groups[*].groupId contains $.X.groupId) '; show X;
 ```
 
-### Find EC2 instance with a specific public IP address)
+### Find EC2 instance with a specific public IP address
 ```bash
 config from cloud.resource where cloud.type = 'aws' AND json.rule = (publicIp exists or publicIpAddress exists) and ( publicIp equals x.x.x.x or publicIpAddress equals x.x.x.x) addcolumn publicIp publicIpAddress
 ```
