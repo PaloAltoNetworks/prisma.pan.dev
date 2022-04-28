@@ -18,14 +18,14 @@ Select how you like to contribute:
 <div className="row">
 <article className="col col--6 padding--sm">
 <CardLayout
-      href={'contributing/create-doc-reqs'}
+      href={'/docs/contributing/create-doc-reqs'}
       title="Create"
       description="Create a new doc and add it to the site"
 />
 </article>
 <article className="col col--6 padding--sm">
 <CardLayout
-      href={'contributing/create-doc-tldr'}
+      href={'/docs/contributing/create-doc-tldr'}
       title="Create Doc (Commands only)"
       description="Create a new doc, commands only (assuming you know git, yarn, bash)"
 />
