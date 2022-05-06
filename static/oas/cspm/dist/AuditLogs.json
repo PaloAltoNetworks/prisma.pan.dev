@@ -14,6 +14,7 @@
         "description": "Model for RedLockAuditLogBean",
         "properties": {
           "action": { "type": "string" },
+          "actionType": { "description": "Action Type", "type": "string" },
           "ipAddress": { "description": "IP Address", "type": "string" },
           "resourceName": { "type": "string" },
           "resourceType": { "type": "string" },
