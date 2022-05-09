@@ -51,6 +51,7 @@ module.exports = {
                 "cloud/cspm/rql/gcp/gcp_compute",
                 "cloud/cspm/rql/gcp/gcp_cloudstorage",
                 "cloud/cspm/rql/gcp/gcp_gke",
+                "cloud/cspm/rql/gcp/gcp_project",
               ],
             },
             {
