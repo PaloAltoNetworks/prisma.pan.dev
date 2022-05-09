@@ -12,6 +12,9 @@ components:
       properties:
         action:
           type: string
+        actionType:
+          description: Action Type
+          type: string
         ipAddress:
           description: IP Address
           type: string

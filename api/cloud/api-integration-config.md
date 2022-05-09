@@ -12,61 +12,64 @@ The request body for some of the endpoints includes an `integrationConfig` param
 
 Note that most external systems require some configuration before you can use the Prisma Cloud API endpoints to add an integration to that system. See [Prisma Cloud Integrations](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/configure-external-integrations-on-prisma-cloud/prisma-cloud-integrations.html) for details.
 
-### Azure Service Bus Queue
+### Amazon S3
 
-Prisma Cloud can send alerts to an Azure Service Bus messaging service. To authorize access, you can either (1) use a shared access signature to limit access permissions to the Service Bus namespace or queue or (2) use the service principal credentials associated with the Azure Cloud account you've on-boarded to Prisma Cloud. If you plan to use the service principal that uses Azure Active Directory to authorize requests, you must include the additional role _Azure Service Bus Data Sender_ and enable _send_ access to the Service Bus namespace and queues. See [Integrate Prisma Cloud with Azure Service Bus](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/configure-external-integrations-on-prisma-cloud/integrate-prisma-cloud-with-azure-service-bus-queue.html) for details about these prerequisites.
+Prisma Cloud integrates with Amazon S3 to stream Prisma Cloud alerts to an Amazon S3 bucket or folder.
 
-#### Add, Update, or Test an Azure Service Bus Queue Integration
+Note that Prisma Cloud supports this integration for only alerts 2.0-enabled tenants.
 
-To add an Azure Service Bus queue integration, make your request as described in [Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter for an Azure Service Bus queue integration is `azure_service_bus_queue`.
+#### Add, Update, or Test an Amazon S3 Integration
 
-If you want to use the service principal-based access provided when the Azure cloud account was onboarded to Prisma Cloud, then the `integrationConfig` parameter contains the following key/value pairs.
-
-Key | Value Description | Value Type | Default Value or Required
------| ------------------ | ---------- | -------------
-accountId | Azure account ID with service principal to which the Azure Service Bus queue belongs | string | _required_
-queueUrl | The URL configured in the Azure Service Bus queue where Prisma sends alerts | string | _required_
-
-If you want to use a role with limited permissions, then the `integrationConfig` parameter contains the following key/value pairs.
+To add an Amazon S3 integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter is `aws_s3`, and the `integrationConfig` parameter contains the following key/value pairs.
 
 Key  |  Value Description | Value Type | Default Value or Required
 -----| ------------------ | ---------- | -------------
-connectionString | Azure Shared Access String connection string | string | _required_
-queueUrl | The URL configured in the Azure Service Bus queue where Prisma sends alerts | string | _required_
+s3Uri | Amazon S3 bucket URI | string | _required_
+region | AWS region where the S3 bucket resides | string | _required_
+roleArn | Role ARN associated with the IAM role on Prisma Cloud | string | _required_
+externalId | External ID associated with the IAM role on Prisma Cloud. Any new or updated value must be a unique 128-bit UUID. | string | _required_
+rollUpInterval | Time at which batching of Prisma Cloud alerts would roll up. Valid values are in minutes: 15, 30, 60, 180. | string | Default is 60
 
-To update an Azure Service Bus queue integration, make your request as described in [Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Only parameter `integrationConfig.queueUrl` is mutable.
+To update an Amazon S3 integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
 
-To test an Azure Service Bus queue integration, make your request as described in [Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+To test an Amazon S3 integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
 
-##### Example Request Body to Add or Test an Azure Service Bus Queue with Azure Account ID
+##### Example Request Body to Add an Amazon S3 Integration
 
 ```json
 {
-    "description": "",
-    "enabled": true,
-    "integrationConfig":
-    {
-        "accountId": "",
-        "queueUrl": ""
-    },
-    "integrationType": "azure_service_bus_queue",
-    "name": ""
+ "integrationType": "aws_s3",
+ "name": "",
+ "description": "",
+ "enabled": true,
+ "integrationConfig":
+ {
+     "s3Uri": "",
+     "region": "",
+     "roleArn": "",
+     "externalId": "",
+     "rollUpInterval": 60
+  }
 }
 ```
 
-##### Example Request Body to Add or Test an Azure Service Bus Queue with a Shared Access String
+##### Example Request Body to Test an Amazon S3 Integration
 
 ```json
 {
-    "description": "",
-    "enabled": true,
-     "integrationConfig":
-    {
-        "accountId": "",
-        "queueUrl": ""
-    },
-    "integrationType": "azure_service_bus_queue",
-    "name": ""
+ "integrationType": "aws_s3",
+ "name": "",
+ "integrationConfig":
+ {
+     "s3Uri": "",
+     "region": "",
+     "roleArn": "",
+     "externalId": "",
+     "rollUpInterval": 60
+  }
 }
 ```
 
@@ -133,6 +136,249 @@ To test an Amazon SQS integration, make the request with the corresponding reque
     },
     "integrationType": "amazon_sqs",
     "name": ""
+}
+```
+
+### Azure Service Bus Queue
+
+Prisma Cloud can send alerts to an Azure Service Bus messaging service. To authorize access, you can either (1) use a shared access signature to limit access permissions to the Service Bus namespace or queue or (2) use the service principal credentials associated with the Azure Cloud account you've on-boarded to Prisma Cloud. If you plan to use the service principal that uses Azure Active Directory to authorize requests, you must include the additional role _Azure Service Bus Data Sender_ and enable _send_ access to the Service Bus namespace and queues. See [Integrate Prisma Cloud with Azure Service Bus](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/configure-external-integrations-on-prisma-cloud/integrate-prisma-cloud-with-azure-service-bus-queue.html) for details about these prerequisites.
+
+#### Add, Update, or Test an Azure Service Bus Queue Integration
+
+To add an Azure Service Bus queue integration, make your request as described in [Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter for an Azure Service Bus queue integration is `azure_service_bus_queue`.
+
+If you want to use the service principal-based access provided when the Azure cloud account was onboarded to Prisma Cloud, then the `integrationConfig` parameter contains the following key/value pairs.
+
+Key | Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+accountId | Azure account ID with service principal to which the Azure Service Bus queue belongs | string | _required_
+queueUrl | The URL configured in the Azure Service Bus queue where Prisma sends alerts | string | _required_
+
+If you want to use a role with limited permissions, then the `integrationConfig` parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+connectionString | Azure Shared Access String connection string | string | _required_
+queueUrl | The URL configured in the Azure Service Bus queue where Prisma sends alerts | string | _required_
+
+To update an Azure Service Bus queue integration, make your request as described in [Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Only parameter `integrationConfig.queueUrl` is mutable.
+
+To test an Azure Service Bus queue integration, make your request as described in [Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+
+##### Example Request Body to Add or Test an Azure Service Bus Queue with Azure Account ID
+
+```json
+{
+    "description": "",
+    "enabled": true,
+    "integrationConfig":
+    {
+        "accountId": "",
+        "queueUrl": ""
+    },
+    "integrationType": "azure_service_bus_queue",
+    "name": ""
+}
+```
+
+##### Example Request Body to Add or Test an Azure Service Bus Queue with a Shared Access String
+
+```json
+{
+    "description": "",
+    "enabled": true,
+     "integrationConfig":
+    {
+        "accountId": "",
+        "queueUrl": ""
+    },
+    "integrationType": "azure_service_bus_queue",
+    "name": ""
+}
+```
+
+### Cortex XSOAR
+
+Prisma Cloud integrates with Cortex XSOAR to send alerts to Cortex XSOAR for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
+
+#### Add or Update a Cortex XSOAR Integration
+
+To add a Cortex XSOAR integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter is `demisto`, and the `integrationConfig` parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+hostUrl | The Cortex XSOAR instance FQDN/IP&mdash;either the name or the IP address of the instance | string | _required_
+apiKey | The consumer key you configured when you created the Prisma Cloud application access in your Cortex XSOAR environment. | string | _required_
+
+To update a Cortex XSOAR integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
+
+##### Example Request Body to Add a Cortex XSOAR Integration
+
+```json
+{
+  "description": "",
+  "enabled": true,
+  "integrationConfig":
+  {
+    "apiKey": "",
+    "hostUrl": ""
+  },
+  "integrationType": "demisto",
+  "name": ""
+}
+```
+
+### Google Cloud SCC
+
+Prisma Cloud integrates with Google Cloud Security Command Center (SCC) to send alerts to Google Cloud SCC for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
+
+#### Add, Update, or Test a Google Cloud SCC Integration
+
+To add a Google Cloud SCC integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter is `google_cscc`, and the `integrationConfig` parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+orgId | GCP organization ID | string | _required_
+sourceId | GCP source ID for the service account you used to onboard your GCP organization to Prisma Cloud | string | _required_
+
+To update a Google Cloud SCC integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
+
+To test a Google Cloud SCC integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+
+##### Example Request Body to Add or Test a Google Cloud SCC Integration
+
+```json
+{
+  "description": "",
+  "enabled": true,
+  "integrationConfig":
+  {
+    "orgId": "",
+    "sourceId": ""
+  },
+  "integrationType": "google_cscc",
+  "name": ""
+}
+```
+
+### Microsoft Teams
+
+Prisma Cloud integrates with Microsoft Teams to send Microsoft Teams alerts for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
+
+#### Add, Update, or Test a Microsoft Teams Integration
+
+To add a Microsoft Teams integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter is `microsoft_teams`, and the `integrationConfig` parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+url | Webhook URL | string | _required_
+
+To update a Microsoft Teams integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
+
+To test a Microsoft Teams integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+
+##### Example Request Body to Add or Test a Microsoft Teams Integration
+
+```json
+{
+  "description": "",
+  "enabled": true,
+  "integrationConfig":
+  {
+    "url": ""
+  },
+  "integrationType": "microsoft_teams",
+  "name": ""
+}
+```
+
+### Okta
+
+Prisma Cloud integrates with Okta to send alerts to Okta for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
+
+#### Add, Update, or Test a Okta Integration
+
+To add an Okta integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter is `okta`, and the `integrationConfig` parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+domain | Okta domain name | string | _required_
+apiToken | The authentication API token for Okta. The token must be of type Read-Only Admin.| string | _required_
+
+To update an Okta integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
+
+To test an Okta integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+
+##### Example Request Body to Add or Test an Okta Integration
+
+```json
+{
+  "description": "",
+  "enabled": true,
+  "integrationConfig":
+  {
+    "domain": "",
+    "apiToken": ""
+  },
+  "integrationType": "okta",
+  "name": ""
+}
+```
+
+### PagerDuty
+
+Integration with PagerDuty aids alerting, on-call scheduling, escalation policies and incident tracking to increase uptime of your apps, servers, websites and databases. The Prisma Cloud alerts are sent to the PagerDuty service. Your incident response teams are notified to investigate and remediate the security incidents.
+
+#### Add, Update, or Test a PagerDuty Integration
+
+To add a PagerDuty integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter for a PagerDuty integration is `pager_duty`, and the `integrationConfig` parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+integrationKey | PagerDuty integration key | string | _required_
+
+To update a PagerDuty integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
+
+To test a PagerDuty integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+
+##### Example Request Body to Add a PagerDuty Integration
+
+```json
+{
+  "description": "",
+  "enabled": true,
+  "integrationConfig": 
+  {
+    "integrationKey": ""
+  },
+  "integrationType": "pager_duty",
+  "name": ""
+}
+```
+
+##### Example Request Body to Test a PagerDuty Integration
+
+```json
+{
+    "name": "",
+    "integrationType": "pager_duty",
+    "integrationConfig": {
+        "integrationKey": ""
+    }
 }
 ```
 
@@ -241,100 +487,6 @@ To test a ServiceNow integration, make your request as described in
 }
 ```
 
-### Webhook
-
-The webhook integration enables you to pass information in a JSON format to any third-party integrations that are not natively supported on the Prisma Cloud service. With a webhook integration, you can configure the Prisma Cloud service to send alerts to the webhook URL as an HTTP POST request, so that any services or applications that subscribe to the webhook URL can receive alert notifications in real time.
-
-#### Add, Update, or Test a Webhook Integration
-
-To add a webhook integration, make your request as described in
-[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter for a webhook integration is `webhook`, and the `integrationConfig` parameter contains the following key/value pairs.
-
-Key  |  Value Description | Value Type | Default Value or Required
------| ------------------ | ---------- | -------------
-url | Webhook URL | string | _required_
-authToken | The authentication token for the event collector | string | _required_
-
-To update a webhook integration, make your request as described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
-
-To test a webhook integration, make your request as described in
-[Test Integration](/api/cloud/cspm/integrations#operation/test-integration). You must also include the `integrationConfig.url` parameter in your request body.
-
-##### Example Request Body to Add a Webhook Integration
-
-```json
-{
-  "description": "",
-  "enabled": true,
-  "integrationConfig": 
-  {
-    "authToken": "", 
-    "url": ""
-  },
-  "integrationType": "webhook",
-  "name": ""
-}
-```
-
-##### Example Request Body to Test a Webhook Integration
-
-```json
-{
-    "name": "",
-    "integrationType": "webhook",
-    "integrationConfig": {
-        "url": ""
-    }
-}
-```
-
-### PagerDuty
-
-Integration with PagerDuty aids alerting, on-call scheduling, escalation policies and incident tracking to increase uptime of your apps, servers, websites and databases. The Prisma Cloud alerts are sent to the PagerDuty service. Your incident response teams are notified to investigate and remediate the security incidents.
-
-#### Add, Update, or Test a PagerDuty Integration
-
-To add a PagerDuty integration, make your request as described in
-[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter for a PagerDuty integration is `pager_duty`, and the `integrationConfig` parameter contains the following key/value pairs.
-
-Key  |  Value Description | Value Type | Default Value or Required
------| ------------------ | ---------- | -------------
-integrationKey | PagerDuty integration key | string | _required_
-
-To update a PagerDuty integration, make your request as described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
-
-To test a PagerDuty integration, make your request as described in
-[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
-
-##### Example Request Body to Add a PagerDuty Integration
-
-```json
-{
-  "description": "",
-  "enabled": true,
-  "integrationConfig": 
-  {
-    "integrationKey": ""
-  },
-  "integrationType": "pager_duty",
-  "name": ""
-}
-```
-
-##### Example Request Body to Test a PagerDuty Integration
-
-```json
-{
-    "name": "",
-    "integrationType": "pager_duty",
-    "integrationConfig": {
-        "integrationKey": ""
-    }
-}
-```
-
 ### Slack
 
 Prisma Cloud integrates with Slack to post instant messages to your Slack channels.
@@ -366,279 +518,6 @@ To test a Slack integration, make your request as described in
   },
   "integrationType": "slack",
   "name": ""
-}
-```
-
-### Splunk
-
-Prisma Cloud integrates with Splunk to send Splunk alerts for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
-
-#### Add, Update, or Test a Splunk Integration
-
-To add a Splunk integration, make your request as described in
-[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter is `splunk`, and the `integrationConfig` parameter contains the following key/value pairs.
-
-Key  |  Value Description | Value Type | Default Value or Required
------| ------------------ | ---------- | -------------
-authToken | Splunk HTTP event collector | string | _required_
-url | Splunk HTTP event collector URL | string | _required_
-sourceType | Splunk source type  | string | Default is **_json**
-
-To update a Splunk integration, make your request as described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
-
-To test a Splunk integration, make your request as described in
-[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
-
-##### Example Request Body to Add or Test a Splunk Integration
-
-```json
-{
-  "description": "",
-  "enabled": true,
-  "integrationConfig":
-  {
-    "authToken": "",
-    "url": ""
-  },
-  "integrationType": "splunk",
-  "name": ""
-}
-```
-
-### Microsoft Teams
-
-Prisma Cloud integrates with Microsoft Teams to send Microsoft Teams alerts for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
-
-#### Add, Update, or Test a Microsoft Teams Integration
-
-To add a Microsoft Teams integration, make your request as described in
-[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter is `microsoft_teams`, and the `integrationConfig` parameter contains the following key/value pairs.
-
-Key  |  Value Description | Value Type | Default Value or Required
------| ------------------ | ---------- | -------------
-url | Webhook URL | string | _required_
-
-To update a Microsoft Teams integration, make your request as described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
-
-To test a Microsoft Teams integration, make your request as described in
-[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
-
-##### Example Request Body to Add or Test a Microsoft Teams Integration
-
-```json
-{
-  "description": "",
-  "enabled": true,
-  "integrationConfig":
-  {
-    "url": ""
-  },
-  "integrationType": "microsoft_teams",
-  "name": ""
-}
-```
-
-### Cortex XSOAR
-
-Prisma Cloud integrates with Cortex XSOAR to send alerts to Cortex XSOAR for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
-
-#### Add or Update a Cortex XSOAR Integration
-
-To add a Cortex XSOAR integration, make your request as described in
-[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter is `demisto`, and the `integrationConfig` parameter contains the following key/value pairs.
-
-Key  |  Value Description | Value Type | Default Value or Required
------| ------------------ | ---------- | -------------
-hostUrl | The Cortex XSOAR instance FQDN/IP&mdash;either the name or the IP address of the instance | string | _required_
-apiKey | The consumer key you configured when you created the Prisma Cloud application access in your Cortex XSOAR environment. | string | _required_
-
-To update a Cortex XSOAR integration, make your request as described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
-
-##### Example Request Body to Add a Cortex XSOAR Integration
-
-```json
-{
-  "description": "",
-  "enabled": true,
-  "integrationConfig":
-  {
-    "apiKey": "",
-    "hostUrl": ""
-  },
-  "integrationType": "demisto",
-  "name": ""
-}
-```
-
-### Tenable
-
-Prisma Cloud integrates with Tenable to send alerts to Tenable for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
-
-#### Add, Update, or Test a Tenable Integration
-
-To add a Tenable integration, make your request as described in
-[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter is `tenable`, and the `integrationConfig` parameter contains the following key/value pairs.
-
-Key  |  Value Description | Value Type | Default Value or Required
------| ------------------ | ---------- | -------------
-accessKey | Access key from Tenable.io | string | _required_
-secretKey | Secret key from Tenable.io | string | _required_
-
-To update a Tenable integration, make your request as described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
-
-To test a Tenable integration, make your request as described in
-[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
-
-##### Example Request Body to Add or Test a Tenable Integration
-
-```json
-{
-  "description": "",
-  "enabled": true,
-  "integrationConfig":
-  {
-    "accessKey": "",
-    "secretKey": ""
-  },
-  "integrationType": "tenable",
-  "name": ""
-}
-```
-
-### Google Cloud SCC
-
-Prisma Cloud integrates with Google Cloud Security Command Center (SCC) to send alerts to Google Cloud SCC for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
-
-#### Add, Update, or Test a Google Cloud SCC Integration
-
-To add a Google Cloud SCC integration, make your request as described in
-[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter is `google_cscc`, and the `integrationConfig` parameter contains the following key/value pairs.
-
-Key  |  Value Description | Value Type | Default Value or Required
------| ------------------ | ---------- | -------------
-orgId | GCP organization ID | string | _required_
-sourceId | GCP source ID for the service account you used to onboard your GCP organization to Prisma Cloud | string | _required_
-
-To update a Google Cloud SCC integration, make your request as described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
-
-To test a Google Cloud SCC integration, make your request as described in
-[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
-
-##### Example Request Body to Add or Test a Google Cloud SCC Integration
-
-```json
-{
-  "description": "",
-  "enabled": true,
-  "integrationConfig":
-  {
-    "orgId": "",
-    "sourceId": ""
-  },
-  "integrationType": "google_cscc",
-  "name": ""
-}
-```
-
-### Okta
-
-Prisma Cloud integrates with Okta to send alerts to Okta for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
-
-#### Add, Update, or Test a Okta Integration
-
-To add an Okta integration, make your request as described in
-[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter is `okta`, and the `integrationConfig` parameter contains the following key/value pairs.
-
-Key  |  Value Description | Value Type | Default Value or Required
------| ------------------ | ---------- | -------------
-domain | Okta domain name | string | _required_
-apiToken | The authentication API token for Okta. The token must be of type Read-Only Admin.| string | _required_
-
-To update an Okta integration, make your request as described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
-
-To test an Okta integration, make your request as described in
-[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
-
-##### Example Request Body to Add or Test an Okta Integration
-
-```json
-{
-  "description": "",
-  "enabled": true,
-  "integrationConfig":
-  {
-    "domain": "",
-    "apiToken": ""
-  },
-  "integrationType": "okta",
-  "name": ""
-}
-```
-
-### Amazon S3
-
-Prisma Cloud integrates with Amazon S3 to stream Prisma Cloud alerts to an Amazon S3 bucket or folder.
-
-Note that Prisma Cloud supports this integration for only alerts 2.0-enabled tenants.
-
-#### Add, Update, or Test an Amazon S3 Integration
-
-To add an Amazon S3 integration, make your request as described in
-[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter is `aws_s3`, and the `integrationConfig` parameter contains the following key/value pairs.
-
-Key  |  Value Description | Value Type | Default Value or Required
------| ------------------ | ---------- | -------------
-s3Uri | Amazon S3 bucket URI | string | _required_
-region | AWS region where the S3 bucket resides | string | _required_
-roleArn | Role ARN associated with the IAM role on Prisma Cloud | string | _required_
-externalId | External ID associated with the IAM role on Prisma Cloud. Any new or updated value must be a unique 128-bit UUID. | string | _required_
-rollUpInterval | Time at which batching of Prisma Cloud alerts would roll up. Valid values are in minutes: 15, 30, 60, 180. | string | Default is 60
-
-To update an Amazon S3 integration, make your request as described in
-[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
-
-To test an Amazon S3 integration, make your request as described in
-[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
-
-##### Example Request Body to Add an Amazon S3 Integration
-
-```json
-{
- "integrationType": "aws_s3",
- "name": "",
- "description": "",
- "enabled": true,
- "integrationConfig":
- {
-     "s3Uri": "",
-     "region": "",
-     "roleArn": "",
-     "externalId": "",
-     "rollUpInterval": 60
-  }
-}
-```
-
-##### Example Request Body to Test an Amazon S3 Integration
-
-```json
-{
- "integrationType": "aws_s3",
- "name": "",
- "integrationConfig":
- {
-     "s3Uri": "",
-     "region": "",
-     "roleArn": "",
-     "externalId": "",
-     "rollUpInterval": 60
-  }
 }
 ```
 
@@ -703,5 +582,126 @@ To test a Snowflake integration, make your request as described in
     "passphrase": "",
     "rollUpInterval": 60
   }
+}
+```
+
+### Splunk
+
+Prisma Cloud integrates with Splunk to send Splunk alerts for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
+
+#### Add, Update, or Test a Splunk Integration
+
+To add a Splunk integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter is `splunk`, and the `integrationConfig` parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+authToken | Splunk HTTP event collector | string | _required_
+url | Splunk HTTP event collector URL | string | _required_
+sourceType | Splunk source type  | string | Default is **_json**
+
+To update a Splunk integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
+
+To test a Splunk integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+
+##### Example Request Body to Add or Test a Splunk Integration
+
+```json
+{
+  "description": "",
+  "enabled": true,
+  "integrationConfig":
+  {
+    "authToken": "",
+    "url": ""
+  },
+  "integrationType": "splunk",
+  "name": ""
+}
+```
+
+### Tenable
+
+Prisma Cloud integrates with Tenable to send alerts to Tenable for resource misconfigurations, compliance violations, network security risks, and anomalous user activities.
+
+#### Add, Update, or Test a Tenable Integration
+
+To add a Tenable integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter is `tenable`, and the `integrationConfig` parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+accessKey | Access key from Tenable.io | string | _required_
+secretKey | Secret key from Tenable.io | string | _required_
+
+To update a Tenable integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
+
+To test a Tenable integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration).
+
+##### Example Request Body to Add or Test a Tenable Integration
+
+```json
+{
+  "description": "",
+  "enabled": true,
+  "integrationConfig":
+  {
+    "accessKey": "",
+    "secretKey": ""
+  },
+  "integrationType": "tenable",
+  "name": ""
+}
+```
+
+### Webhook
+
+The webhook integration enables you to pass information in a JSON format to any third-party integrations that are not natively supported on the Prisma Cloud service. With a webhook integration, you can configure the Prisma Cloud service to send alerts to the webhook URL as an HTTP POST request, so that any services or applications that subscribe to the webhook URL can receive alert notifications in real time.
+
+#### Add, Update, or Test a Webhook Integration
+
+To add a webhook integration, make your request as described in
+[Add Integration](/api/cloud/cspm/integrations#operation/create-integration-v1). As part of the request body, the `integrationType` parameter for a webhook integration is `webhook`, and the `integrationConfig` parameter contains the following key/value pairs.
+
+Key  |  Value Description | Value Type | Default Value or Required
+-----| ------------------ | ---------- | -------------
+url | Webhook URL | string | _required_
+authToken | The authentication token for the event collector | string | _required_
+
+To update a webhook integration, make your request as described in
+[Update Integration](/api/cloud/cspm/integrations#operation/update-integration-v1). Parameter `integrationConfig` is mutable.
+
+To test a webhook integration, make your request as described in
+[Test Integration](/api/cloud/cspm/integrations#operation/test-integration). You must also include the `integrationConfig.url` parameter in your request body.
+
+##### Example Request Body to Add a Webhook Integration
+
+```json
+{
+  "description": "",
+  "enabled": true,
+  "integrationConfig": 
+  {
+    "authToken": "", 
+    "url": ""
+  },
+  "integrationType": "webhook",
+  "name": ""
+}
+```
+
+##### Example Request Body to Test a Webhook Integration
+
+```json
+{
+    "name": "",
+    "integrationType": "webhook",
+    "integrationConfig": {
+        "url": ""
+    }
 }
 ```
