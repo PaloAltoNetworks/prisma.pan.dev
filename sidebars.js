@@ -119,7 +119,6 @@ module.exports = {
           label: "API workflows",
           items: [
             "cloud/cwpp/api-workflows/set-up-console",
-            "cloud/cwpp/api-workflows/manage-compliance-policy",
           ],
         },
         {
