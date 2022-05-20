@@ -127,6 +127,8 @@ components:
           - readOnly: true
         timeRange.type:
           $ref: '#/components/schemas/FilterSuggestion'
+        vulnerability.severity:
+          $ref: '#/components/schemas/FilterSuggestion'
       type: object
     AlertModel:
       description: Model for Alert
@@ -145,9 +147,8 @@ components:
             $ref: '#/components/schemas/PolicyScanConfigModel'
           type: array
         alertTime:
-          description: For anomaly alerts, the last anomaly event time. For other
-            alerts, either the timestamp when the alert was last reopened for resource
-            update or the same as **firstSeen** if there are no status changes.
+          description: Timestamp when alert was last reopened for resource update,
+            or the same as **firstSeen** if there are no status changes.
           format: int64
           type: integer
         dismissalDuration:
@@ -181,9 +182,13 @@ components:
           description: Alert ID
           type: string
         lastSeen:
+          description: Timestamp when alert status was last updated.
+          format: int64
+          type: integer
+        lastUpdated:
           description: Timestamp when alert was last updated. Updates include but
-            are not limited to resource state changes, policy updates, alert rule
-            updates, and alert status changes.
+            are not limited to resource updates, policy updates, alert rule updates,
+            and alert status changes.
           format: int64
           type: integer
         metadata:
@@ -440,10 +445,9 @@ components:
           description: Account ID
           type: string
         additionalInfo:
-          additionalProperties:
-            type: string
-          description: Additional info
-          type: object
+          allOf:
+          - $ref: '#/components/schemas/JsonNode'
+          - description: Additional info
         cloudAccountAncestors:
           description: Cloud account ancestors. For GCP.
           items:
@@ -543,6 +547,8 @@ components:
           type: string
         standardDescription:
           description: Compliance standard description
+          type: string
+        standardId:
           type: string
         standardName:
           description: Compliance standard name
@@ -651,6 +657,61 @@ components:
           - RESOLVED
           readOnly: true
           type: string
+      type: object
+    JsonNode:
+      properties:
+        array:
+          type: boolean
+        bigDecimal:
+          type: boolean
+        bigInteger:
+          type: boolean
+        binary:
+          type: boolean
+        boolean:
+          type: boolean
+        containerNode:
+          type: boolean
+        double:
+          type: boolean
+        float:
+          type: boolean
+        floatingPointNumber:
+          type: boolean
+        int:
+          type: boolean
+        integralNumber:
+          type: boolean
+        long:
+          type: boolean
+        missingNode:
+          type: boolean
+        nodeType:
+          enum:
+          - ARRAY
+          - BINARY
+          - BOOLEAN
+          - MISSING
+          - 'NULL'
+          - NUMBER
+          - OBJECT
+          - POJO
+          - STRING
+          type: string
+        'null':
+          type: boolean
+        number:
+          type: boolean
+        object:
+          type: boolean
+        pojo:
+          type: boolean
+        short:
+          type: boolean
+        textual:
+          type: boolean
+        valueNode:
+          type: boolean
       type: object
     NameValueIntegerString:
       properties:
@@ -788,6 +849,7 @@ components:
             - run_and_build
             - audit
             - data_classification
+            - dns
             - malware
             - network_event
             - network
@@ -807,6 +869,9 @@ components:
           - anomaly
           - data
           - iam
+          - workload_vulnerability
+          - workload_incident
+          - waas_event
           type: string
         policyUpi:
           description: Policy UPI
@@ -930,6 +995,7 @@ components:
             - run_and_build
             - audit
             - data_classification
+            - dns
             - malware
             - network_event
             - network
@@ -949,6 +1015,9 @@ components:
           - anomaly
           - data
           - iam
+          - workload_vulnerability
+          - workload_incident
+          - waas_event
           type: string
         policyUpi:
           description: Policy UPI
@@ -1153,6 +1222,15 @@ components:
           description: Require Dismissal Note
           type: boolean
       type: object
+    ResourceListIdsCollection:
+      description: Model for holding the lists resource list ids by resource list
+        type
+      properties:
+        computeAccessGroupIds:
+          items:
+            type: string
+          type: array
+      type: object
     RiskDetailModel:
       description: Model for Risk Detail
       properties:
@@ -1268,6 +1346,11 @@ components:
           items:
             type: string
           type: array
+        includedResourceLists:
+          allOf:
+          - $ref: '#/components/schemas/ResourceListIdsCollection'
+          - description: List of resource lists included which the resource has to
+              match on.
         regions:
           description: List of regions for which alerts will be triggered for account
             groups. Alerts not associated with specific regions will be triggered
@@ -2143,6 +2226,8 @@ paths:
                   $ref: '#/components/schemas/AlertModel'
                 type: array
           description: successful operation
+        '400':
+          description: internal_error
         '429':
           description: Too Many Requests
       security:
@@ -2177,6 +2262,8 @@ paths:
                   $ref: '#/components/schemas/AlertModel'
                 type: array
           description: successful operation
+        '400':
+          description: internal_error
         '429':
           description: Too Many Requests
       security:
