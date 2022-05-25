@@ -5,7 +5,7 @@ const fs = require("fs");
 var docs = [
   {
     type: "link",
-    label: "22-01",
+    label: "22-06",
     href: "/api/cloud/cwpp/",
     customProps: {
       versioned: "versioned",

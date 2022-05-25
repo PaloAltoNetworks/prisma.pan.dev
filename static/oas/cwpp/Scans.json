@@ -343,21 +343,27 @@
         },
         "type": "array"
       },
+      "-_types.DefendersVersionCount": {
+        "items": {
+          "$ref": "#/components/schemas/types.DefendersVersionCount"
+        },
+        "type": "array"
+      },
       "-_types.DiscoveredVM": {
         "items": {
           "$ref": "#/components/schemas/types.DiscoveredVM"
         },
         "type": "array"
       },
-      "-_types.Project": {
+      "-_types.ImpactedOutOfBandEntity": {
         "items": {
-          "$ref": "#/components/schemas/types.Project"
+          "$ref": "#/components/schemas/types.ImpactedOutOfBandEntity"
         },
         "type": "array"
       },
-      "-_types.RiskTreeResource": {
+      "-_types.Project": {
         "items": {
-          "$ref": "#/components/schemas/types.RiskTreeResource"
+          "$ref": "#/components/schemas/types.Project"
         },
         "type": "array"
       },
@@ -400,6 +406,12 @@
       "-_waas.NetworkList": {
         "items": {
           "$ref": "#/components/schemas/waas.NetworkList"
+        },
+        "type": "array"
+      },
+      "-_waas.OpenAPIScan": {
+        "items": {
+          "$ref": "#/components/schemas/waas.OpenAPIScan"
         },
         "type": "array"
       },
@@ -1055,6 +1067,7 @@
             "hostAppFirewall",
             "appEmbeddedAppFirewall",
             "serverlessAppFirewall",
+            "outOfBandAppFirewall",
             "networkFirewall",
             "containerVulnerability",
             "containerCompliance",
@@ -1070,7 +1083,9 @@
             "admission",
             "containerComplianceScan",
             "hostComplianceScan",
-            "waasHealth"
+            "waasHealth",
+            "vmVulnerability",
+            "vmCompliance"
           ]
         ],
         "type": "string"
@@ -1101,6 +1116,16 @@
           },
           "username": {
             "description": "Username is the username used for authentication.\n",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "api.AuthenticationResponse": {
+        "description": "AuthenticationResponse returns the result of calling the authentication endpoint",
+        "properties": {
+          "token": {
+            "description": "Token is the new JWT token.\n",
             "type": "string"
           }
         },
@@ -1338,12 +1363,96 @@
         },
         "type": "array"
       },
+      "appembedded.FargateTask": {
+        "additionalProperties": {
+          "$ref": "#/components/schemas/string"
+        },
+        "description": "FargateTask represents the generic fargate task AWS template",
+        "type": "object"
+      },
       "bool": {
         "type": "boolean"
       },
       "byte": {
         "format": "byte",
         "type": "string"
+      },
+      "clustereddb.AddMemberRequest": {
+        "description": "AddMemberRequest represents a request for adding a member to the clustered DB pool",
+        "properties": {
+          "address": {
+            "description": "Address is the member address to add.\n",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "clustereddb.ReplicaSetMemberStateStr": {
+        "description": "ReplicaSetMemberStateStr is a string representation of a member's state\nRef. https://docs.mongodb.com/v4.4/reference/replica-states/",
+        "enum": [
+          [
+            "STARTUP",
+            "PRIMARY",
+            "SECONDARY",
+            "RECOVERING",
+            "STARTUP2",
+            "UNKNOWN",
+            "ARBITER",
+            "DOWN",
+            "ROLLBACK",
+            "REMOVED"
+          ]
+        ],
+        "type": "string"
+      },
+      "clustereddb.ReplicaSetMemberStatus": {
+        "description": "ReplicaSetMemberStatus represents replica set member's status\nRef. https://docs.mongodb.com/v4.4/reference/command/replSetGetStatus/#mongodb-data-replSetGetStatus.members",
+        "properties": {
+          "name": {
+            "description": "Name is the member's name (hostname address).\n",
+            "type": "string"
+          },
+          "stateStr": {
+            "$ref": "#/components/schemas/clustereddb.ReplicaSetMemberStateStr"
+          }
+        },
+        "type": "object"
+      },
+      "clustereddb.Settings": {
+        "description": "Settings represents the clustered DB settings",
+        "properties": {
+          "loadBalancerAddress": {
+            "description": "LoadBalancerAddress is the address of the customer's load balancer in clustered DB mode. All clients (including Defenders) are reaching the Console through the load balancer.\n",
+            "type": "string"
+          },
+          "seedConsoleAddress": {
+            "description": "SeedConsoleAddress allows editing the address of the seed Console (optional).\n",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "clustereddb.StatusResponse": {
+        "description": "StatusResponse represents the response to a clustered DB status request",
+        "properties": {
+          "date": {
+            "description": "Date indicates the current time according to the queried Mongo server.\n",
+            "format": "date-time",
+            "type": "string"
+          },
+          "loadBalancerAddress": {
+            "description": "LoadBalancerAddress represents the address of the load balancer.\n",
+            "type": "string"
+          },
+          "members": {
+            "description": "Members are the replica set members.\n",
+            "items": {
+              "$ref": "#/components/schemas/clustereddb.ReplicaSetMemberStatus"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
       },
       "cnnf.AllowAllConnections": {
         "description": "AllowAllConnections indicates if connections are allowed to/from any entity of the specified types\ne.g. if inbound contains the type subnet, the entity is allowed to receive connections from any subnet",
@@ -2090,6 +2199,10 @@
           "type": {
             "description": "Instance type.\n",
             "type": "string"
+          },
+          "vmID": {
+            "description": "Azure unique vm ID.\n",
+            "type": "string"
           }
         },
         "type": "object"
@@ -2138,6 +2251,10 @@
             "description": "DockerSocketPath is the path of the docker socket file.\n",
             "type": "string"
           },
+          "gkeAutopilot": {
+            "description": "GKEAutopilot indicates the deployment is requested for GKE Autopilot.\n",
+            "type": "boolean"
+          },
           "image": {
             "description": "Image is the full daemonset image name.\n",
             "type": "string"
@@ -2174,7 +2291,7 @@
             "type": "string"
           },
           "secretsname": {
-            "description": "SecretName is the secret.\n",
+            "description": "SecretsName is the name of the secret to pull.\n",
             "type": "string"
           },
           "selinux": {
@@ -2330,6 +2447,46 @@
             "deny",
             "block",
             "alert"
+          ]
+        ],
+        "type": "string"
+      },
+      "common.PolicyType": {
+        "description": "PolicyType represents the type of the policy",
+        "enum": [
+          [
+            "docker",
+            "containerVulnerability",
+            "containerCompliance",
+            "ciImagesVulnerability",
+            "ciImagesCompliance",
+            "hostVulnerability",
+            "hostCompliance",
+            "vmVulnerability",
+            "vmCompliance",
+            "serverlessCompliance",
+            "ciServerlessCompliance",
+            "serverlessVulnerability",
+            "ciServerlessVulnerability",
+            "containerRuntime",
+            "appEmbeddedRuntime",
+            "containerAppFirewall",
+            "hostAppFirewall",
+            "outOfBandAppFirewall",
+            "appEmbeddedAppFirewall",
+            "serverlessAppFirewall",
+            "networkFirewall",
+            "secrets",
+            "hostRuntime",
+            "serverlessRuntime",
+            "kubernetesAudit",
+            "trust",
+            "cloud",
+            "admission",
+            "codeRepoVulnerability",
+            "ciCodeRepoVulnerability",
+            "codeRepoCompliance",
+            "ciCodeRepoCompliance"
           ]
         ],
         "type": "string"
@@ -2521,6 +2678,24 @@
         },
         "type": "object"
       },
+      "cred.AzureSPInfo": {
+        "description": "AzureSPInfo contains the Azure credentials needed for certificate based authentications",
+        "properties": {
+          "clientId": {
+            "description": "ClientID is the client identifier.\n",
+            "type": "string"
+          },
+          "subscriptionId": {
+            "description": "SubscriptionID is a GUID that uniquely identifies the subscription to use Azure services.\n",
+            "type": "string"
+          },
+          "tenantId": {
+            "description": "TenantID is the ID of the AAD directory in which the application was created.\n",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "cred.Credential": {
         "description": "Credential contains external provider authentication data",
         "properties": {
@@ -2538,6 +2713,9 @@
           },
           "apiToken": {
             "$ref": "#/components/schemas/common.Secret"
+          },
+          "azureSPInfo": {
+            "$ref": "#/components/schemas/cred.AzureSPInfo"
           },
           "caCert": {
             "description": "CA certificate for certificate-based authentication.\n",
@@ -2726,6 +2904,10 @@
             "description": "Macro that is printed as part of the audit/incident message.\n",
             "type": "string"
           },
+          "minVersion": {
+            "description": "Minimum version required to support the rule.\n",
+            "type": "string"
+          },
           "modified": {
             "description": "Datetime when the rule was created or last modified.\n",
             "format": "int64",
@@ -2770,7 +2952,8 @@
             "container",
             "host",
             "serverless",
-            "appEmbedded"
+            "appEmbedded",
+            "hostAgentless"
           ]
         ],
         "type": "string"
@@ -2825,6 +3008,10 @@
           "hostname": {
             "description": "Name of host where Defender is deployed.\n",
             "type": "string"
+          },
+          "isARM64": {
+            "description": "IsARM64 indicates whether the defender runs on aarch64 architecture.\n",
+            "type": "boolean"
           },
           "lastModified": {
             "description": "Datetime when the Defender's connectivity status last changed.\n",
@@ -2947,7 +3134,7 @@
         "type": "object"
       },
       "defender.Settings": {
-        "description": "Settings is an update request of the defender proxy settings.",
+        "description": "Settings is the Defender settings",
         "properties": {
           "admissionControlEnabled": {
             "description": "Indicates if the admission controller is enabled (true) or not (false).\n",
@@ -2956,6 +3143,10 @@
           "admissionControlWebhookSuffix": {
             "description": "Relative path to the admission control webhook HTTP endpoint.\n",
             "type": "string"
+          },
+          "appEmbeddedFileSystemTracingEnabled": {
+            "description": "AppEmbeddedFileSystemTracingEnabled is the default deployment state for app embedded Defenders file system tracing.\n",
+            "type": "boolean"
           },
           "automaticUpgrade": {
             "description": "Deprecated: indicates if defenders should be automatically upgraded to the latest version.\n",
@@ -3129,7 +3320,7 @@
             "type": "string"
           },
           "state": {
-            "description": "State is the error state in case GCP patch job failed on instance.\n",
+            "description": "State is the error state in which the deployment failed (e.g. timed out/failed due to some other reason).\n",
             "type": "string"
           },
           "vmImage": {
@@ -3510,7 +3701,7 @@
             "type": "boolean"
           },
           "groupClaim": {
-            "description": "GroupClaim is the name of the group claim property in user info response.\n",
+            "description": "GroupClaim is the name of the group claim property.\n",
             "type": "string"
           },
           "groupScope": {
@@ -3534,6 +3725,10 @@
           },
           "tokenURL": {
             "description": "TokenURL specifies token URL.\n",
+            "type": "string"
+          },
+          "userClaim": {
+            "description": "UserClaim is the name of the user claim property.\n",
             "type": "string"
           }
         },
@@ -4476,6 +4671,47 @@
         ],
         "type": "string"
       },
+      "prisma.AdoptionAdvisorData": {
+        "description": "AdoptionAdvisorData holds the data for Adoption Advisor project",
+        "properties": {
+          "alert_providers": {
+            "description": "AlertProfiles is the number of alert profiles.\n",
+            "type": "integer"
+          },
+          "collections": {
+            "description": "Collections is the number of custom created collections.\n",
+            "type": "integer"
+          },
+          "compliance_issues": {
+            "$ref": "#/components/schemas/prisma.Distribution"
+          },
+          "container_rules_stats": {
+            "$ref": "#/components/schemas/prisma.ContainerRulesStats"
+          },
+          "defenders": {
+            "$ref": "#/components/schemas/prisma.DefenderStats"
+          },
+          "discovered_cloud_resources": {
+            "$ref": "#/components/schemas/prisma.DiscoveredCloudResources"
+          },
+          "feature_stats": {
+            "$ref": "#/components/schemas/prisma.FeatureStats"
+          },
+          "rules_stats": {
+            "$ref": "#/components/schemas/prisma.RulesStats"
+          },
+          "runtime_audit_stats": {
+            "$ref": "#/components/schemas/prisma.RuntimeAuditStats"
+          },
+          "scan_stats": {
+            "$ref": "#/components/schemas/prisma.ScanStats"
+          },
+          "vulnerability_stats": {
+            "$ref": "#/components/schemas/prisma.VulnerabilityStats"
+          }
+        },
+        "type": "object"
+      },
       "prisma.AlertIntegration": {
         "description": "AlertIntegration has the relevant fields for Prisma Cloud defined integrations\nhttps://prisma.pan.dev/api/cloud/cspm/integrations#operation/get-all-integrations",
         "properties": {
@@ -4493,6 +4729,100 @@
           "name": {
             "description": "Name of the integration in Prisma Cloud.\n",
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.ContainerRulesStats": {
+        "description": "ContainerRulesStats holds the number of container vulnerability rules per rule type",
+        "properties": {
+          "compliance": {
+            "description": "Compliance the number of custom container compliance rules.\n",
+            "type": "integer"
+          },
+          "runtime": {
+            "description": "Runtime is the number of runtime container images rules.\n",
+            "type": "integer"
+          },
+          "vulnerability": {
+            "description": "Vulnerability is the number of custom container vulnerability rules.\n",
+            "type": "integer"
+          },
+          "waas": {
+            "description": "Waas is the number of container WAAS rules.\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.DefenderStats": {
+        "description": "DefenderStats holds the number total defenders per resource",
+        "properties": {
+          "app_embedded": {
+            "description": "AppEmbedded is the number of total app embedded defenders.\n",
+            "type": "integer"
+          },
+          "container": {
+            "description": "Container is the number of container total defenders.\n",
+            "type": "integer"
+          },
+          "host": {
+            "description": "Host is the number of total host defenders.\n",
+            "type": "integer"
+          },
+          "serverless": {
+            "description": "Serverless is the number of total serverless defenders.\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.DiscoveredCloudResources": {
+        "description": "DiscoveredCloudResources holds the stats of cloud discovery resources",
+        "properties": {
+          "protected": {
+            "description": "Protected is the total number of protected discovered resources (cloud discovery).\n",
+            "type": "integer"
+          },
+          "total": {
+            "description": "Total is the total number of discovered resources (cloud discovery).\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.Distribution": {
+        "description": "Distribution counts the number of vulnerabilities/compliance issues per severity",
+        "properties": {
+          "critical": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "high": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "low": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "medium": {
+            "description": ".\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.FeatureStats": {
+        "description": "FeatureStats holds the Admission Control and Kubernetes audit stats",
+        "properties": {
+          "access_polices_enabled": {
+            "description": "AccessPolicesEnabled represent if Admission Control enabled.\n",
+            "type": "boolean"
+          },
+          "kubernetes_audit_enabled": {
+            "description": "KubernetesAuditEnabled represent if Kubernetes audit enabled.\n",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -4521,6 +4851,99 @@
         },
         "type": "object"
       },
+      "prisma.RulesStats": {
+        "description": "RulesStats holds the rules stats per resource type",
+        "properties": {
+          "agentless": {
+            "description": "Agentless is the number of cloud accounts configured for agentless.\n",
+            "type": "integer"
+          },
+          "cloud_discovery": {
+            "description": "CloudDiscovery is the number of cloud accounts configured for Cloud Discovery.\n",
+            "type": "integer"
+          },
+          "host_auto_defend": {
+            "description": "HostAutoDefend is the number of host auto-defend rules.\n",
+            "type": "integer"
+          },
+          "serverless_radar": {
+            "description": "ServerlessRadar is the number of cloud accounts configured for Serverless radar.\n",
+            "type": "integer"
+          },
+          "trusted_images": {
+            "description": "TrustedImages is the number of custom trusted images rules.\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.RuntimeAuditStats": {
+        "description": "RuntimeAuditStats holds the number of runtime audits per resource",
+        "properties": {
+          "container": {
+            "$ref": "#/components/schemas/prisma.RuntimeStats"
+          },
+          "function": {
+            "$ref": "#/components/schemas/prisma.RuntimeStats"
+          },
+          "host": {
+            "$ref": "#/components/schemas/prisma.RuntimeStats"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.RuntimeStats": {
+        "description": "RuntimeStats are stats for runtime flows (sum of audits per flow)",
+        "properties": {
+          "filesystem": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "kubernetes": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "network": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "processes": {
+            "description": ".\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.ScanStats": {
+        "description": "ScanStats holds the scan stats per resource type",
+        "properties": {
+          "agentless": {
+            "description": "Agentless is the total number of agentless host scan results.\n",
+            "type": "integer"
+          },
+          "ci_scans": {
+            "description": "CIScans is the number of image CI scans.\n",
+            "type": "integer"
+          },
+          "functions": {
+            "description": "Functions is the number of functions scan results.\n",
+            "type": "integer"
+          },
+          "image_analysis_sandbox": {
+            "description": "ImageAnalysisSandbox is the number of sandbox scans.\n",
+            "type": "integer"
+          },
+          "registry": {
+            "description": "Registry is the number of registry scan results.\n",
+            "type": "integer"
+          },
+          "vms": {
+            "description": "VMs is the number of VM images scan results.\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "prisma.SecurityHubIntegrationRegions": {
         "description": "SecurityHubIntegrationRegions holds AWS Security Hub regions info",
         "properties": {
@@ -4531,6 +4954,24 @@
           "name": {
             "description": "Name is the region name.\n",
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.VulnerabilityStats": {
+        "description": "VulnerabilityStats holds the number of vulnerabilities per resource",
+        "properties": {
+          "container": {
+            "$ref": "#/components/schemas/prisma.Distribution"
+          },
+          "function": {
+            "$ref": "#/components/schemas/prisma.Distribution"
+          },
+          "host": {
+            "$ref": "#/components/schemas/prisma.Distribution"
+          },
+          "image": {
+            "$ref": "#/components/schemas/prisma.Distribution"
           }
         },
         "type": "object"
@@ -4772,6 +5213,10 @@
             "description": "Proxy indicates the container can listen on any port and perform multiple outbound connection.\n",
             "type": "boolean"
           },
+          "pullImage": {
+            "description": "PullImage indicates that the container is allowed pull images (might include files with high entropy).\n",
+            "type": "boolean"
+          },
           "sshd": {
             "description": "Sshd indicates whether the container can run sshd process.\n",
             "type": "boolean"
@@ -4932,6 +5377,10 @@
           },
           "processes": {
             "$ref": "#/components/schemas/runtime.ProcessesRule"
+          },
+          "skipExecSessions": {
+            "description": "Indicates whether to skip runtime validation for events triggered by docker/kubectl exec.\n",
+            "type": "boolean"
           },
           "wildFireAnalysis": {
             "$ref": "#/components/schemas/runtime.RuleEffect"
@@ -5562,6 +6011,10 @@
             "description": "Command is the executed command.\n",
             "type": "string"
           },
+          "interactive": {
+            "description": "Interactive indicates whether the process belongs to an interactive session.\n",
+            "type": "boolean"
+          },
           "md5": {
             "description": "MD5 is the process binary MD5 sum.\n",
             "type": "string"
@@ -5632,6 +6085,10 @@
           "country": {
             "description": "Country represents the SSH client's origin country.\n",
             "type": "string"
+          },
+          "interactive": {
+            "description": "Interactive indicates whether the process belongs to an interactive session.\n",
+            "type": "boolean"
           },
           "ip": {
             "description": "IP address represents the connection client IP address.\n",
@@ -6147,6 +6604,10 @@
             },
             "type": "array"
           },
+          "architecture": {
+            "description": "Architecture that the function supports.\n",
+            "type": "string"
+          },
           "baseImage": {
             "description": "Image\u2019s base image name. Used when filtering the vulnerabilities by base images.\n",
             "type": "string"
@@ -6308,6 +6769,10 @@
             "format": "double",
             "type": "number"
           },
+          "isARM64": {
+            "description": "IsARM64 indicates if the architecture of the image is aarch64.\n",
+            "type": "boolean"
+          },
           "k8sClusterAddr": {
             "description": "Endpoint of the Kubernetes API server.\n",
             "type": "string"
@@ -6373,6 +6838,10 @@
               "$ref": "#/components/schemas/shared.Packages"
             },
             "type": "array"
+          },
+          "platform": {
+            "description": "Platform is the function OS.\n",
+            "type": "string"
           },
           "provider": {
             "$ref": "#/components/schemas/common.CloudProvider"
@@ -6788,9 +7257,27 @@
         ],
         "type": "string"
       },
+      "shared.AgentlessAccountState": {
+        "description": "AgentlessAccountState holds the information about the agentless account state",
+        "properties": {
+          "err": {
+            "description": "Err is the description of last error that occurred within the account.\n",
+            "type": "string"
+          },
+          "modified": {
+            "description": "Modified holds the timestamp of the last permissions check.\n",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "shared.AgentlessScanSpecification": {
         "description": "AgentlessScanSpecification contains information for setting up an agentless scan for a group of accounts",
         "properties": {
+          "accountState": {
+            "$ref": "#/components/schemas/shared.AgentlessAccountState"
+          },
           "autoScale": {
             "description": "AutoScale indicates that the number of concurrent scanners should be selected automatically.\n",
             "type": "boolean"
@@ -6814,6 +7301,10 @@
             "description": "HubCredentialID is the ID of the credentials in the credentials store to use for authenticating with the cloud provider on behalf of the scan hub account. Optional.\n",
             "type": "string"
           },
+          "proxyAddress": {
+            "description": "ProxyAddress is the optional HTTP proxy address for a setup that includes a proxy server.\n",
+            "type": "string"
+          },
           "regions": {
             "description": "Regions are the cloud provider regions applicable for the scan. Default is all.\n",
             "items": {
@@ -6831,6 +7322,10 @@
           },
           "securityGroup": {
             "description": "SecurityGroup is the security group that scanners should use (for isolation and internet access). Default is empty value to use the cloud account default security group.\n",
+            "type": "string"
+          },
+          "subnet": {
+            "description": "Subnet is the network subnet to use for the instance launched for scanning. Default value is empty string, which represents the default subnet in the default VPC.\n",
             "type": "string"
           }
         },
@@ -6888,6 +7383,10 @@
           "dockerfile": {
             "description": "Dockerfile is the Dockerfile to embed AppEmbedded defender into.\n",
             "type": "string"
+          },
+          "filesystemMonitoring": {
+            "description": "FilesystemMonitoring is the flag of filesystem monitoring for this Defender.\n",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -6903,6 +7402,13 @@
             "description": "App is the app embedded's defender name.\n",
             "type": "string"
           },
+          "cloudMetadata": {
+            "$ref": "#/components/schemas/common.CloudMetadata"
+          },
+          "cluster": {
+            "description": "Cluster is the ECS Fargate cluster name.\n",
+            "type": "string"
+          },
           "collections": {
             "description": "Collections are collections to which this profile applies.\n",
             "items": {
@@ -6916,6 +7422,15 @@
           },
           "image": {
             "description": "Image is the image name.\n",
+            "type": "string"
+          },
+          "imageID": {
+            "description": "ImageID is the image ID.\n",
+            "type": "string"
+          },
+          "startTime": {
+            "description": "StartTime is the time when the defender starts.\n",
+            "format": "date-time",
             "type": "string"
           }
         },
@@ -7000,7 +7515,7 @@
             "type": "string"
           },
           "host": {
-            "description": "Host indicates this audit if for a host firewall.\n",
+            "description": "Host indicates this audit if for a host firewall or an out of band firewall for a host.\n",
             "type": "boolean"
           },
           "hostname": {
@@ -7043,6 +7558,9 @@
           },
           "protection": {
             "$ref": "#/components/schemas/waas.Protection"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/common.CloudProvider"
           },
           "rawEvent": {
             "description": "RawEvent contains unparsed function handler event input.\n",
@@ -7355,6 +7873,17 @@
           }
         },
         "type": "object"
+      },
+      "shared.CPUArch": {
+        "description": "CPUArch represents the CPU architecture",
+        "type": "integer"
+      },
+      "shared.CPUArchs": {
+        "description": "CPUArchs represents list of cpu architectures",
+        "items": {
+          "$ref": "#/components/schemas/shared.CPUArch"
+        },
+        "type": "array"
       },
       "shared.CVEAllowList": {
         "description": "CVEAllowList is a collection of allowed CVE's",
@@ -8349,6 +8878,10 @@
       "shared.EncodeServerlessRuleOpts": {
         "description": "EncodeServerlessRuleOpts represents the arguments to serverless rule encoding request",
         "properties": {
+          "accountID": {
+            "description": "AccountID is the cloud account ID.\n",
+            "type": "string"
+          },
           "consoleAddr": {
             "description": "ConsoleAddr is the remote console address.\n",
             "type": "string"
@@ -8356,6 +8889,9 @@
           "function": {
             "description": "Function is the name of the function.\n",
             "type": "string"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/common.CloudProvider"
           },
           "proxy": {
             "$ref": "#/components/schemas/common.ProxySettings"
@@ -8848,6 +9384,10 @@
             },
             "type": "array"
           },
+          "isARM64": {
+            "description": "IsARM64 indicates if the architecture of the image is aarch64.\n",
+            "type": "boolean"
+          },
           "k8sClusterAddr": {
             "description": "Endpoint of the Kubernetes API server.\n",
             "type": "string"
@@ -8900,6 +9440,11 @@
             },
             "type": "array"
           },
+          "pullDuration": {
+            "description": "PullDuration is the time it took to pull the image.\n",
+            "format": "int64",
+            "type": "integer"
+          },
           "registryNamespace": {
             "description": "IBM cloud namespace to which the image belongs.\n",
             "type": "string"
@@ -8924,6 +9469,11 @@
           "riskFactors": {
             "$ref": "#/components/schemas/vuln.RiskFactors"
           },
+          "scanDuration": {
+            "description": "ScanDuration is the total time it took to scan the image.\n",
+            "format": "int64",
+            "type": "integer"
+          },
           "scanID": {
             "description": "ScanID is the ID of the scan.\n",
             "type": "integer"
@@ -8943,6 +9493,10 @@
               "$ref": "#/components/schemas/shared.Binary"
             },
             "type": "array"
+          },
+          "stopped": {
+            "description": "Stopped indicates whether the host was running during the agentless scan.\n",
+            "type": "boolean"
           },
           "tags": {
             "description": "Tags associated with the given image.\n",
@@ -9379,6 +9933,10 @@
           "installedProducts": {
             "$ref": "#/components/schemas/shared.InstalledProducts"
           },
+          "isARM64": {
+            "description": "IsARM64 indicates if the architecture of the image is aarch64.\n",
+            "type": "boolean"
+          },
           "k8sClusterAddr": {
             "description": "Endpoint of the Kubernetes API server.\n",
             "type": "string"
@@ -9690,6 +10248,10 @@
             },
             "type": "array"
           },
+          "isARM64": {
+            "description": "IsARM64 indicates if the architecture of the image is aarch64.\n",
+            "type": "boolean"
+          },
           "k8sClusterAddr": {
             "description": "Endpoint of the Kubernetes API server.\n",
             "type": "string"
@@ -9742,6 +10304,11 @@
             },
             "type": "array"
           },
+          "pullDuration": {
+            "description": "PullDuration is the time it took to pull the image.\n",
+            "format": "int64",
+            "type": "integer"
+          },
           "registryNamespace": {
             "description": "IBM cloud namespace to which the image belongs.\n",
             "type": "string"
@@ -9766,6 +10333,11 @@
           "riskFactors": {
             "$ref": "#/components/schemas/vuln.RiskFactors"
           },
+          "scanDuration": {
+            "description": "ScanDuration is the total time it took to scan the image.\n",
+            "format": "int64",
+            "type": "integer"
+          },
           "scanID": {
             "description": "ScanID is the ID of the scan.\n",
             "type": "integer"
@@ -9785,6 +10357,10 @@
               "$ref": "#/components/schemas/shared.Binary"
             },
             "type": "array"
+          },
+          "stopped": {
+            "description": "Stopped indicates whether the host was running during the agentless scan.\n",
+            "type": "boolean"
           },
           "tags": {
             "description": "Tags associated with the given image.\n",
@@ -9952,8 +10528,15 @@
             "description": "Runtime profile ID.\n",
             "type": "string"
           },
+          "provider": {
+            "$ref": "#/components/schemas/common.CloudProvider"
+          },
           "region": {
-            "description": "Region of the serverless function.\n",
+            "description": "Region of the resource on which the incident was found.\n",
+            "type": "string"
+          },
+          "resourceID": {
+            "description": "Unique ID of the resource on which the incident was found.\n",
             "type": "string"
           },
           "runtime": {
@@ -9975,6 +10558,14 @@
           },
           "type": {
             "$ref": "#/components/schemas/shared.IncidentType"
+          },
+          "vmID": {
+            "description": "Azure unique vm ID on which the incident was found.\n",
+            "type": "string"
+          },
+          "windows": {
+            "description": "Windows indicates if defender OS type is Windows.\n",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -10016,8 +10607,12 @@
         "type": "string"
       },
       "shared.InstalledProducts": {
-        "description": "InstalledProducts contains data regarding products running in environment",
+        "description": "InstalledProducts contains data regarding products running in environment\nTODO #34713: Swarm support was deprecated in Joule, remove swarm node/manager boolean (and related compliance) in Lagrange",
         "properties": {
+          "agentless": {
+            "description": "Agentless indicates whether the scan was performed with agentless approach.\n",
+            "type": "boolean"
+          },
           "apache": {
             "description": "Apache indicates the apache server version, empty in case apache not running.\n",
             "type": "string"
@@ -10092,6 +10687,14 @@
           },
           "serverless": {
             "description": "Serverless indicates whether evaluated on a serverless environment.\n",
+            "type": "boolean"
+          },
+          "swarmManager": {
+            "description": "SwarmManager indicates whether a swarm manager is running.\n",
+            "type": "boolean"
+          },
+          "swarmNode": {
+            "description": "SwarmNode indicates whether the node is part of an active swarm.\n",
             "type": "boolean"
           }
         },
@@ -10276,10 +10879,14 @@
             "python3.6",
             "python3.7",
             "python3.8",
+            "python3.9",
             "nodejs12.x",
             "nodejs14.x",
             "dotnetcore2.1",
+            "dotnetcore3.1",
+            "dotnet6",
             "java8",
+            "java11",
             "ruby2.7"
           ]
         ],
@@ -10682,7 +11289,7 @@
             "type": "string"
           },
           "policyType": {
-            "$ref": "#/components/schemas/shared.PolicyType"
+            "$ref": "#/components/schemas/common.PolicyType"
           },
           "rules": {
             "description": "Rules holds all policy rules.\n",
@@ -10812,45 +11419,6 @@
         },
         "type": "object"
       },
-      "shared.PolicyType": {
-        "description": "PolicyType represents the type of the policy",
-        "enum": [
-          [
-            "docker",
-            "containerVulnerability",
-            "containerCompliance",
-            "ciImagesVulnerability",
-            "ciImagesCompliance",
-            "hostVulnerability",
-            "hostCompliance",
-            "vmVulnerability",
-            "vmCompliance",
-            "serverlessCompliance",
-            "ciServerlessCompliance",
-            "serverlessVulnerability",
-            "ciServerlessVulnerability",
-            "containerRuntime",
-            "appEmbeddedRuntime",
-            "containerAppFirewall",
-            "hostAppFirewall",
-            "appEmbeddedAppFirewall",
-            "serverlessAppFirewall",
-            "networkFirewall",
-            "secrets",
-            "hostRuntime",
-            "serverlessRuntime",
-            "kubernetesAudit",
-            "trust",
-            "cloud",
-            "admission",
-            "codeRepoVulnerability",
-            "ciCodeRepoVulnerability",
-            "codeRepoCompliance",
-            "ciCodeRepoCompliance"
-          ]
-        ],
-        "type": "string"
-      },
       "shared.Port": {
         "description": "Port is a container port",
         "properties": {
@@ -10974,6 +11542,7 @@
         "enum": [
           [
             "linux",
+            "linuxARM64",
             "windows"
           ]
         ],
@@ -11316,16 +11885,23 @@
             "description": "Profile of the audit.\n",
             "type": "string"
           },
+          "provider": {
+            "$ref": "#/components/schemas/common.CloudProvider"
+          },
           "rawEvent": {
             "description": "Unparsed function handler event input.\n",
             "type": "string"
           },
           "region": {
-            "description": "Name of the region in which the serverless function is located.\n",
+            "description": "Region of the resource where the audit was generated.\n",
             "type": "string"
           },
           "requestID": {
             "description": "ID of the lambda function invocation request.\n",
+            "type": "string"
+          },
+          "resourceID": {
+            "description": "Unique ID of the resource where the audit was generated.\n",
             "type": "string"
           },
           "ruleName": {
@@ -11352,6 +11928,14 @@
           },
           "version": {
             "description": "Defender version.\n",
+            "type": "string"
+          },
+          "vmID": {
+            "description": "Azure unique vm ID where the audit was generated.\n",
+            "type": "string"
+          },
+          "wildFireReportURL": {
+            "description": "WildFireReportURL is a URL link of the report generated by wildFire.\n",
             "type": "string"
           }
         },
@@ -11438,7 +12022,8 @@
             "gcp-gcr",
             "gcp-gcf",
             "gcp-gke",
-            "gcp-vm"
+            "gcp-vm",
+            "gcp-artifact"
           ]
         ],
         "type": "string"
@@ -11750,6 +12335,9 @@
       "shared.ServerlessBundleRequest": {
         "description": "ServerlessBundleRequest represents the arguments to serverless bundle request",
         "properties": {
+          "provider": {
+            "$ref": "#/components/schemas/common.CloudProvider"
+          },
           "proxyCA": {
             "description": "ProxyCA is the proxy\u2019s CA certificate for Defender to trust.\n",
             "type": "string"
@@ -12166,6 +12754,10 @@
             "description": "ID of the credentials in the credentials store to use for authenticating with the cloud provider.\n",
             "type": "string"
           },
+          "enableSecureBoot": {
+            "description": "EnableSecureBoot indicates secure boot should be enabled for the instance launched for scanning (currently only supported with GCP).\n",
+            "type": "boolean"
+          },
           "excludedImages": {
             "description": "Images to exclude from scanning.\n",
             "items": {
@@ -12539,6 +13131,12 @@
       "types.AgentlessResourceTemplatesRequest": {
         "description": "AgentlessResourceTemplatesRequest is the agentless resource templates request for populating\ntemplates that are needed to be applied prior to an agentless scan with the credential",
         "properties": {
+          "awsRegionType": {
+            "$ref": "#/components/schemas/shared.AwsRegionType"
+          },
+          "credential": {
+            "$ref": "#/components/schemas/cred.Credential"
+          },
           "credentialID": {
             "description": "CredentialID is the credential ID to populate the templates for.\n",
             "type": "string"
@@ -12578,7 +13176,7 @@
         "type": "object"
       },
       "types.AllDefendersUsage": {
-        "description": "AllDefendersUsage holds stats about the usage of different defenders and the sample time",
+        "description": "AllDefendersUsage holds stats about the usage of different modules and the sample time",
         "properties": {
           "appEmbedded": {
             "$ref": "#/components/schemas/types.DefenderUsage"
@@ -12587,6 +13185,9 @@
             "$ref": "#/components/schemas/types.DefenderUsage"
           },
           "host": {
+            "$ref": "#/components/schemas/types.DefenderUsage"
+          },
+          "hostAgentless": {
             "$ref": "#/components/schemas/types.DefenderUsage"
           },
           "period": {
@@ -12602,6 +13203,9 @@
             "$ref": "#/components/schemas/types.ServerlessUsage"
           },
           "waas": {
+            "$ref": "#/components/schemas/types.DefenderUsage"
+          },
+          "waasOutOfBand": {
             "$ref": "#/components/schemas/types.DefenderUsage"
           }
         },
@@ -12653,16 +13257,6 @@
           "start": {
             "description": "Start is the start time of the bucket.\n",
             "format": "date-time",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "types.AuthenticationResponse": {
-        "description": "AuthenticationResponse returns the result of calling the authentication endpoint",
-        "properties": {
-          "token": {
-            "description": "Token is the new JWT token.\n",
             "type": "string"
           }
         },
@@ -12764,6 +13358,9 @@
           "app_vuln_id": {
             "description": "AppVulnID is the unique ID of the application vulnerability (app+cve+internal custom ID).\n",
             "type": "string"
+          },
+          "archs": {
+            "$ref": "#/components/schemas/shared.CPUArchs"
           },
           "conditions": {
             "$ref": "#/components/schemas/vuln.Conditions"
@@ -13321,6 +13918,20 @@
         },
         "type": "object"
       },
+      "types.DefendersVersionCount": {
+        "description": "DefendersVersionCount holds the defenders count per each version",
+        "properties": {
+          "count": {
+            "description": "Defenders count per version.\n",
+            "type": "integer"
+          },
+          "version": {
+            "description": "Release version.\n",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "types.DiscoveredVM": {
         "description": "DiscoveredVM represents the information about the instance, fetched from the cloud compute interface",
         "properties": {
@@ -13429,6 +14040,10 @@
             "description": "DockerSocketPath is the path of the docker socket file.\n",
             "type": "string"
           },
+          "gkeAutopilot": {
+            "description": "GKEAutopilot indicates the deployment is requested for GKE Autopilot.\n",
+            "type": "boolean"
+          },
           "hostCustomComplianceEnabled": {
             "description": "HostCustomComplianceEnabled indicates whether host custom compliance checks are enabled.\n",
             "type": "boolean"
@@ -13469,7 +14084,7 @@
             "type": "string"
           },
           "secretsname": {
-            "description": "SecretName is the secret.\n",
+            "description": "SecretsName is the name of the secret to pull.\n",
             "type": "string"
           },
           "selinux": {
@@ -13550,6 +14165,10 @@
             "description": ".\n",
             "type": "integer"
           },
+          "outOfBandAppFirewall": {
+            "description": ".\n",
+            "type": "integer"
+          },
           "serverlessAppFirewall": {
             "description": ".\n",
             "type": "integer"
@@ -13563,13 +14182,6 @@
             "type": "integer"
           }
         },
-        "type": "object"
-      },
-      "types.FargateTask": {
-        "additionalProperties": {
-          "$ref": "#/components/schemas/string"
-        },
-        "description": "FargateTask represents the generic fargate task AWS template",
         "type": "object"
       },
       "types.Group": {
@@ -13690,6 +14302,10 @@
           "name": {
             "description": "Name is the spec name.\n",
             "type": "string"
+          },
+          "skipped": {
+            "description": "Skipped is the number of instances that the deployment was skipped for due to having a running Docker engine or being a worker node in a k8s cluster.\n",
+            "type": "integer"
           },
           "unmatched": {
             "description": "Unmatched is the number of discovered instances for which the scope does not apply.\n",
@@ -13868,6 +14484,96 @@
           },
           "imageTag": {
             "$ref": "#/components/schemas/shared.ImageTag"
+          }
+        },
+        "type": "object"
+      },
+      "types.ImpactedContainer": {
+        "description": "ImpactedContainer contains details of a running container with an impacted image",
+        "properties": {
+          "container": {
+            "description": ".\n",
+            "type": "string"
+          },
+          "factors": {
+            "$ref": "#/components/schemas/types.RiskScoreFactors"
+          },
+          "host": {
+            "description": ".\n",
+            "type": "string"
+          },
+          "image": {
+            "description": ".\n",
+            "type": "string"
+          },
+          "namespace": {
+            "description": ".\n",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "types.ImpactedOutOfBandEntity": {
+        "description": "ImpactedOutOfBandEntity holds the info of an impacted out of band entity",
+        "properties": {
+          "containerName": {
+            "description": "ContainerName is the name of the container or empty for host.\n",
+            "type": "string"
+          },
+          "hostname": {
+            "description": "Hostname is the name of the host that was scanned or host on which the container is deployed.\n",
+            "type": "string"
+          },
+          "image": {
+            "description": "Image is the image name of the container or empty for host.\n",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "types.ImpactedPackage": {
+        "description": "ImpactedPackage holds the vulnerability details for a package",
+        "properties": {
+          "cvss": {
+            "description": "Cvss is the vulnerability cvss score for this package.\n",
+            "format": "float",
+            "type": "number"
+          },
+          "package": {
+            "description": "Package is the impacted package name and version.\n",
+            "type": "string"
+          },
+          "severity": {
+            "description": "Severity is the vulnerability severity for this package.\n",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "types.ImpactedResourceDetails": {
+        "description": "ImpactedResourceDetails holds the vulnerability details for a specific impacted resource",
+        "properties": {
+          "containers": {
+            "description": "Containers are the running containers of this image found in the environment.\n",
+            "items": {
+              "$ref": "#/components/schemas/types.ImpactedContainer"
+            },
+            "type": "array"
+          },
+          "functionDetails": {
+            "description": "FunctionDetails is a formatted string holding function details.\n",
+            "type": "string"
+          },
+          "packages": {
+            "description": "Packages holds vulnerability details per impacted package found in this resource.\n",
+            "items": {
+              "$ref": "#/components/schemas/types.ImpactedPackage"
+            },
+            "type": "array"
+          },
+          "resourceID": {
+            "description": "ResourceID is a resource identifier (e.g. image ID, hostname).\n",
+            "type": "string"
           }
         },
         "type": "object"
@@ -14236,31 +14942,6 @@
         },
         "type": "object"
       },
-      "types.RiskTreeResource": {
-        "description": "RiskTreeResource contains details about single impacted resource (container/image)\nthe other fields are used only for describing the resource (e.g., resource is container -> image and host refer to it)",
-        "properties": {
-          "container": {
-            "description": ".\n",
-            "type": "string"
-          },
-          "factors": {
-            "$ref": "#/components/schemas/types.RiskScoreFactors"
-          },
-          "host": {
-            "description": ".\n",
-            "type": "string"
-          },
-          "image": {
-            "description": ".\n",
-            "type": "string"
-          },
-          "namespace": {
-            "description": ".\n",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
       "types.RuleComplianceStats": {
         "description": "RuleComplianceStats holds data regarding applied compliance rule",
         "properties": {
@@ -14273,7 +14954,7 @@
             "type": "string"
           },
           "policyType": {
-            "$ref": "#/components/schemas/shared.PolicyType"
+            "$ref": "#/components/schemas/common.PolicyType"
           },
           "total": {
             "description": "Total is the count of evaluations done by rule.\n",
@@ -14473,6 +15154,9 @@
           "checkRevocation": {
             "description": "CheckRevocation indicates whether cert revocation status is required.\n",
             "type": "boolean"
+          },
+          "clusteredDB": {
+            "$ref": "#/components/schemas/clustereddb.Settings"
           },
           "codeRepoSettings": {
             "$ref": "#/components/schemas/shared.CodeRepoSettings"
@@ -14682,6 +15366,9 @@
           "incidentsCount": {
             "description": "IncidentsCount is the incidents count.\n",
             "type": "integer"
+          },
+          "outOfBandAppFirewall": {
+            "$ref": "#/components/schemas/types.AppFirewallStats"
           },
           "serverless": {
             "$ref": "#/components/schemas/types.RuntimeStats"
@@ -14904,30 +15591,57 @@
           "codeRepos": {
             "description": "CodeRepos is a list of impacted code repositories.\n",
             "items": {
-              "$ref": "#/components/schemas/string"
+              "$ref": "#/components/schemas/types.ImpactedResourceDetails"
             },
             "type": "array"
           },
+          "codeReposCount": {
+            "description": "CodeReposCount is the total impacted code repositories count.\n",
+            "type": "integer"
+          },
           "functions": {
-            "additionalProperties": {
-              "$ref": "#/components/schemas/string"
-            },
             "description": "Functions is a map between function id to its details.\n",
-            "type": "object"
+            "items": {
+              "$ref": "#/components/schemas/types.ImpactedResourceDetails"
+            },
+            "type": "array"
+          },
+          "functionsCount": {
+            "description": "FunctionsCount is the total impacted functions count.\n",
+            "type": "integer"
           },
           "hosts": {
             "description": "Hosts is the list of impacted hosts.\n",
             "items": {
-              "$ref": "#/components/schemas/string"
+              "$ref": "#/components/schemas/types.ImpactedResourceDetails"
             },
             "type": "array"
           },
-          "riskTree": {
-            "additionalProperties": {
-              "$ref": "#/components/schemas/-_types.RiskTreeResource"
+          "hostsCount": {
+            "description": "HostsCount is the total impacted hosts count.\n",
+            "type": "integer"
+          },
+          "images": {
+            "description": "Images is the list of impacted hosts.\n",
+            "items": {
+              "$ref": "#/components/schemas/types.ImpactedResourceDetails"
             },
-            "description": "RiskTree is the risk tree associated with the CVE ID. DB collection normalization: the field is stored in a separate risk trees collection and is unmarshalled by collections join.\n",
-            "type": "object"
+            "type": "array"
+          },
+          "imagesCount": {
+            "description": "ImagesCount is the total impacted images count.\n",
+            "type": "integer"
+          },
+          "registryImages": {
+            "description": "RegistryImages is a list of impacted registry images.\n",
+            "items": {
+              "$ref": "#/components/schemas/types.ImpactedResourceDetails"
+            },
+            "type": "array"
+          },
+          "registryImagesCount": {
+            "description": "RegistryImagesCount is the total impacted registry images count.\n",
+            "type": "integer"
           }
         },
         "type": "object"
@@ -14961,8 +15675,17 @@
             "description": "Vulnerability description.\n",
             "type": "string"
           },
+          "highestCVSS": {
+            "description": "HighestCVSS is the highest CVSS score of the vulnerability.\n",
+            "format": "float",
+            "type": "number"
+          },
           "highestRiskFactors": {
             "$ref": "#/components/schemas/types.RiskScoreFactors"
+          },
+          "highestSeverity": {
+            "description": "HighestSeverity is the highest severity of the vulnerability.\n",
+            "type": "string"
           },
           "impactedPkgs": {
             "description": "Packages impacted by the vulnerability.\n",
@@ -14970,6 +15693,9 @@
               "$ref": "#/components/schemas/string"
             },
             "type": "array"
+          },
+          "impactedResourceType": {
+            "$ref": "#/components/schemas/vuln.ResourceType"
           },
           "impactedResourcesCnt": {
             "description": "Number of resources impacted by this vulnerability.\n",
@@ -15020,6 +15746,9 @@
             "description": "Date/time when the entity was modified.\n",
             "format": "date-time",
             "type": "string"
+          },
+          "registryImages": {
+            "$ref": "#/components/schemas/types.ResourceVulnerabilityStats"
           }
         },
         "type": "object"
@@ -15037,6 +15766,9 @@
             "$ref": "#/components/schemas/vuln.Distribution"
           },
           "images": {
+            "$ref": "#/components/schemas/vuln.Distribution"
+          },
+          "registryImages": {
             "$ref": "#/components/schemas/vuln.Distribution"
           }
         },
@@ -15294,6 +16026,22 @@
         },
         "type": "array"
       },
+      "vuln.ResourceType": {
+        "description": "ResourceType represents the resource type",
+        "enum": [
+          [
+            "container",
+            "image",
+            "host",
+            "istio",
+            "vm",
+            "function",
+            "codeRepo",
+            "registryImage"
+          ]
+        ],
+        "type": "string"
+      },
       "vuln.RiskFactors": {
         "additionalProperties": {
           "$ref": "#/components/schemas/string"
@@ -15547,6 +16295,10 @@
             "format": "date-time",
             "type": "string"
           },
+          "outOfBand": {
+            "description": "OutOfBand indicates out of band API observation.\n",
+            "type": "boolean"
+          },
           "paths": {
             "description": "Paths are the API paths.\n",
             "items": {
@@ -15597,10 +16349,6 @@
       "waas.APIRequest": {
         "description": "APIRequest represents a single API request and its data",
         "properties": {
-          "appID": {
-            "description": "AppID is the application ID to which this request belongs.\n",
-            "type": "string"
-          },
           "bodySchema": {
             "$ref": "#/components/schemas/waas.BodySchema"
           },
@@ -15675,10 +16423,6 @@
           },
           "queryParamFallbackEffect": {
             "$ref": "#/components/schemas/waas.Effect"
-          },
-          "skipLearning": {
-            "description": "Indicates if API discovery is to be skipped (true) or not (false).\n",
-            "type": "boolean"
           }
         },
         "type": "object"
@@ -15692,6 +16436,10 @@
           "attackTypeStats": {
             "$ref": "#/components/schemas/waas.AttackTypeStats"
           },
+          "blockedRequests": {
+            "description": "BlockedRequests is the number of blocked requests since last dump.\n",
+            "type": "integer"
+          },
           "forwardedRequests": {
             "description": "ForwardedRequests is the number of forwarded requests since last dump.\n",
             "type": "integer"
@@ -15701,6 +16449,10 @@
           },
           "inspectedBodyBytes": {
             "description": "InspectedBodyBytes are the total request and response inspected body bytes.\n",
+            "type": "integer"
+          },
+          "inspectionLimitExceeded": {
+            "description": "InspectionLimitExceeded is the total number of requests in which the body size exceeds inspection limit.\n",
             "type": "integer"
           },
           "interstitialPages": {
@@ -15721,6 +16473,10 @@
           },
           "maxResponseSizeBytes": {
             "description": "MaxResponseSizeBytes contains the max response size.\n",
+            "type": "integer"
+          },
+          "parsingErrs": {
+            "description": "ParsingErrs is a counter of the parsing errors that occurred.\n",
             "type": "integer"
           },
           "reCAPTCHAs": {
@@ -15941,6 +16697,13 @@
           "remoteHostForwarding": {
             "$ref": "#/components/schemas/waas.RemoteHostForwardingConfig"
           },
+          "responseHeaderSpecs": {
+            "description": "Configuration for modifying HTTP response headers.\n",
+            "items": {
+              "$ref": "#/components/schemas/waas.ResponseHeaderSpec"
+            },
+            "type": "array"
+          },
           "sessionCookieBan": {
             "description": "Indicates if bans in this app are made by session cookie ID (true) or false (not).\n",
             "type": "boolean"
@@ -15988,6 +16751,7 @@
             "shellshock",
             "disallowedFile",
             "malformedRequest",
+            "inspectionLimitExceeded",
             "informationLeak",
             "unexpectedAPI",
             "dos",
@@ -16076,6 +16840,9 @@
       "waas.BodyConfig": {
         "description": "BodyConfig represents app configuration related to HTTP Body",
         "properties": {
+          "inspectionLimitExceededEffect": {
+            "$ref": "#/components/schemas/waas.Effect"
+          },
           "inspectionSizeBytes": {
             "description": "InspectionSizeBytes represents the max amount of data to inspect in request body.\n",
             "type": "integer"
@@ -16801,6 +17568,232 @@
         },
         "type": "object"
       },
+      "waas.OpenAPIScan": {
+        "description": "OpenAPIScan represents the OpenAPI file scan",
+        "properties": {
+          "_id": {
+            "description": "ID is the scan identifier.\n",
+            "type": "string"
+          },
+          "issueResults": {
+            "description": "IssueResults are the scanned issues results.\n",
+            "items": {
+              "$ref": "#/components/schemas/waas.OpenAPIScanIssueResult"
+            },
+            "type": "array"
+          },
+          "scanInfo": {
+            "$ref": "#/components/schemas/waas.OpenAPIScanInfo"
+          },
+          "scanStartTime": {
+            "description": "ScanStartTime is the scan started.\n",
+            "format": "date-time",
+            "type": "string"
+          },
+          "severityDistribution": {
+            "$ref": "#/components/schemas/waas.OpenAPIScanIssuesSeverityDistribution"
+          },
+          "specInfo": {
+            "$ref": "#/components/schemas/waas.OpenAPISpecInfo"
+          }
+        },
+        "type": "object"
+      },
+      "waas.OpenAPIScanInfo": {
+        "description": "OpenAPIScanInfo is the OpenAPI scan info",
+        "properties": {
+          "appID": {
+            "description": "AppID is the WAAS app id the file was imported from.\n",
+            "type": "string"
+          },
+          "policyType": {
+            "$ref": "#/components/schemas/common.PolicyType"
+          },
+          "ruleID": {
+            "description": "RuleID is the WAAS rule id the file was imported from.\n",
+            "type": "string"
+          },
+          "source": {
+            "$ref": "#/components/schemas/waas.OpenAPIScanSource"
+          }
+        },
+        "type": "object"
+      },
+      "waas.OpenAPIScanIssueMetadata": {
+        "description": "OpenAPIScanIssueMetadata represents the static metadata of an API definition issue\nFields reflect the KICS metadata,\nExample: https://github.com/Checkmarx/kics/blob/master/assets/queries/openAPI/general/items_undefined/metadata.json",
+        "properties": {
+          "category": {
+            "description": "Category is the issue category.\n",
+            "type": "string"
+          },
+          "descriptionText": {
+            "description": "DescriptionText is the issue description.\n",
+            "type": "string"
+          },
+          "descriptionUrl": {
+            "description": "DescriptionURL is the issue information url.\n",
+            "type": "string"
+          },
+          "id": {
+            "description": "ID is the unique identifier of the issue metadata.\n",
+            "type": "string"
+          },
+          "override": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/waas.OpenAPIScanIssueMetadata"
+            },
+            "description": "Override is the list of possible override fields by OpenAPI version.\n",
+            "type": "object"
+          },
+          "queryName": {
+            "description": "Name is the issue name.\n",
+            "type": "string"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/waas.OpenAPIScanIssueSeverity"
+          }
+        },
+        "type": "object"
+      },
+      "waas.OpenAPIScanIssueResult": {
+        "description": "OpenAPIScanIssueResult represents a specific issue result in the OpenAPI spec file\nFields reflect the KICS rego queries result,\nExample: https://github.com/Checkmarx/kics/blob/master/assets/queries/openAPI/general/items_undefined/query.rego",
+        "properties": {
+          "_id": {
+            "description": "ID is the issue result ID.\n",
+            "type": "integer"
+          },
+          "category": {
+            "description": "Category is the issue category.\n",
+            "type": "string"
+          },
+          "descriptionText": {
+            "description": "DescriptionText is the issue description.\n",
+            "type": "string"
+          },
+          "descriptionUrl": {
+            "description": "DescriptionURL is the issue information url.\n",
+            "type": "string"
+          },
+          "id": {
+            "description": "ID is the unique identifier of the issue metadata.\n",
+            "type": "string"
+          },
+          "override": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/waas.OpenAPIScanIssueMetadata"
+            },
+            "description": "Override is the list of possible override fields by OpenAPI version.\n",
+            "type": "object"
+          },
+          "queryName": {
+            "description": "Name is the issue name.\n",
+            "type": "string"
+          },
+          "searchKey": {
+            "description": "SearchKey is the issue location in the spec file.\n",
+            "type": "string"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/waas.OpenAPIScanIssueSeverity"
+          },
+          "status": {
+            "description": "Status is the issue status.\n",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "waas.OpenAPIScanIssueSeverity": {
+        "description": "OpenAPIScanIssueSeverity is the OpenAPI spec file issue severity",
+        "enum": [
+          [
+            "INFO",
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ]
+        ],
+        "type": "string"
+      },
+      "waas.OpenAPIScanIssueStatus": {
+        "description": "OpenAPIScanIssueStatus represents an OpenAPI file issue status",
+        "properties": {
+          "id": {
+            "description": "ID is the issue result ID.\n",
+            "type": "integer"
+          },
+          "status": {
+            "description": "Status is the issue status.\n",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "waas.OpenAPIScanIssuesSeverityDistribution": {
+        "description": "OpenAPIScanIssuesSeverityDistribution counts the number of issues per severity type",
+        "properties": {
+          "high": {
+            "description": "High is the high severity issues count.\n",
+            "type": "integer"
+          },
+          "info": {
+            "description": "Info is the info severity issues count.\n",
+            "type": "integer"
+          },
+          "low": {
+            "description": "Low is the low severity issues count.\n",
+            "type": "integer"
+          },
+          "medium": {
+            "description": "Medium is the medium severity issues count.\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "waas.OpenAPIScanSource": {
+        "description": "OpenAPIScanSource is the scan trigger source",
+        "enum": [
+          [
+            "app",
+            "cli",
+            "manual"
+          ]
+        ],
+        "type": "string"
+      },
+      "waas.OpenAPISpecInfo": {
+        "description": "OpenAPISpecInfo is the OpenAPI spec info",
+        "properties": {
+          "content": {
+            "description": "Content is the OpenAPI spec content.\n",
+            "items": {
+              "$ref": "#/components/schemas/byte"
+            },
+            "type": "array"
+          },
+          "contentType": {
+            "description": "ContentType is the OpenAPI spec file content type.\n",
+            "type": "string"
+          },
+          "fileName": {
+            "description": "FileName is the OpenAPI spec file name.\n",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "waas.OutOfBoundMode": {
+        "description": "OutOfBoundMode holds the app firewall out-of-band mode",
+        "enum": [
+          [
+            "",
+            "Observation",
+            "Protection"
+          ]
+        ],
+        "type": "string"
+      },
       "waas.Param": {
         "description": "Param contains a parameter information",
         "properties": {
@@ -16965,7 +17958,7 @@
         "type": "string"
       },
       "waas.ProtectionConfig": {
-        "description": "ProtectionConfig represents the waas protection config against the attack",
+        "description": "ProtectionConfig represents a WAAS protection config",
         "properties": {
           "effect": {
             "$ref": "#/components/schemas/waas.Effect"
@@ -16984,11 +17977,14 @@
         "description": "ProtectionStatus describes the status of the WAAS protection",
         "properties": {
           "enabled": {
-            "description": "Enabled indicates if WAAS protection is enabled (true) or not (false).\n",
+            "description": "Enabled indicates if WAAS proxy protection is enabled (true) or not (false).\n",
             "type": "boolean"
           },
+          "outOfBandMode": {
+            "$ref": "#/components/schemas/waas.OutOfBoundMode"
+          },
           "ports": {
-            "description": "Ports indicates http/https open ports associated with the container.\n",
+            "description": "Ports indicates http open ports associated with the container.\n",
             "items": {
               "$ref": "#/components/schemas/int"
             },
@@ -16997,6 +17993,13 @@
           "supported": {
             "description": "Supported indicates if WAAS protection is supported (true) or not (false).\n",
             "type": "boolean"
+          },
+          "tlsPorts": {
+            "description": "TLSPorts indicates https open ports associated with the container.\n",
+            "items": {
+              "$ref": "#/components/schemas/int"
+            },
+            "type": "array"
           },
           "unprotectedProcesses": {
             "description": "UnprotectedProcesses holds the processes that support HTTP/HTTPS without WAAS protection.\n",
@@ -17142,15 +18145,44 @@
         },
         "type": "object"
       },
+      "waas.ResponseHeaderSpec": {
+        "description": "ResponseHeaderSpec is specification for a single response header to modify",
+        "properties": {
+          "name": {
+            "description": "Header name (will be canonicalized when possible).\n",
+            "type": "string"
+          },
+          "override": {
+            "description": "Indicates whether to override existing values (true) or add to them (false).\n",
+            "type": "boolean"
+          },
+          "values": {
+            "description": "New header values.\n",
+            "items": {
+              "$ref": "#/components/schemas/string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
       "waas.Rule": {
         "description": "Rule represents a single rule that is associated with a container firewall",
         "properties": {
+          "allowMalformedHttpHeaderNames": {
+            "description": "AllowMalformedHttpHeaderNames indicates if validation of http request header names should allow non-compliant characters.\n",
+            "type": "boolean"
+          },
           "applicationsSpec": {
             "description": "List of API specifications in the rule.\n",
             "items": {
               "$ref": "#/components/schemas/waas.ApplicationSpec"
             },
             "type": "array"
+          },
+          "autoProtectPorts": {
+            "description": "AutoProtectPorts indicates if http ports should be automatically detected and protected.\n",
+            "type": "boolean"
           },
           "collections": {
             "description": "List of collections. Used to scope the rule.\n",
@@ -17187,6 +18219,13 @@
           "readTimeoutSeconds": {
             "description": "ReadTimeout is the timeout of request reads in seconds, when no value is specified (0) the timeout is 5 seconds.\n",
             "type": "integer"
+          },
+          "skipAPILearning": {
+            "description": "SkipAPILearning indicates if API discovery is to be skipped (true) or not (false).\n",
+            "type": "boolean"
+          },
+          "trafficMirroring": {
+            "$ref": "#/components/schemas/waas.TrafficMirroringConfig"
           },
           "windows": {
             "description": "Indicates whether the operating system of the app is windows, default is Linux.\n",
@@ -17231,6 +18270,16 @@
           },
           "minTLSVersion": {
             "$ref": "#/components/schemas/waas.MinTLSVersion"
+          }
+        },
+        "type": "object"
+      },
+      "waas.TrafficMirroringConfig": {
+        "description": "TrafficMirroringConfig is the traffic mirroring configuration",
+        "properties": {
+          "enabled": {
+            "description": "Enabled indicates if traffic mirroring is enabled.\n",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -17317,7 +18366,14 @@
             "type": "integer"
           },
           "ports": {
-            "description": "Ports is the open http/https ports on containers using this image.\n",
+            "description": "Ports is the open http ports on containers using this image.\n",
+            "items": {
+              "$ref": "#/components/schemas/int"
+            },
+            "type": "array"
+          },
+          "tlsPorts": {
+            "description": "TLSPorts is the open https ports on containers using this image.\n",
             "items": {
               "$ref": "#/components/schemas/int"
             },
@@ -17353,6 +18409,10 @@
           "process": {
             "description": "Process is the process name.\n",
             "type": "string"
+          },
+          "tls": {
+            "description": "TLS is the port TLS indication.\n",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -17423,7 +18483,7 @@
   },
   "info": {
     "title": "Scans Overview",
-    "version": "22.01.839",
+    "version": "22.06.175",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/scans/scans.md"
     }
@@ -17435,7 +18495,7 @@
     }
   ],
   "paths": {
-    "/api/v22.01/scans": {
+    "/api/v22.06/scans": {
       "get": {
         "description": {
           "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/scans/get.md"
@@ -17667,7 +18727,7 @@
         "summary": " Add CLI Scan Result"
       }
     },
-    "/api/v22.01/scans/download": {
+    "/api/v22.06/scans/download": {
       "get": {
         "description": {
           "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/scans/download_get.md"
