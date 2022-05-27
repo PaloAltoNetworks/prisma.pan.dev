@@ -18495,6 +18495,365 @@
     }
   ],
   "paths": {
+    "/api/v22.06/profiles/app-embedded": {
+      "get": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/app-embedded_get.md"
+        },
+        "parameters": [
+          {
+            "description": "Offset from the start of the list from which to retrieve documents.\n",
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of documents to return.\n",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Search term.\n",
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Key on which to sort.\n",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Sort order.\n",
+            "in": "query",
+            "name": "reverse",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Scopes the query by collection.\n",
+            "in": "query",
+            "name": "collections",
+            "schema": {
+              "description": "Scopes the query by collection.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by account ID.\n",
+            "in": "query",
+            "name": "accountIDs",
+            "schema": {
+              "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "List of fields to retrieve.\n",
+            "in": "query",
+            "name": "fields",
+            "schema": {
+              "description": "List of fields to retrieve.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "AppIDs is the app embedded profile id filter.\n",
+            "in": "query",
+            "name": "appID",
+            "schema": {
+              "description": "AppIDs is the app embedded profile id filter.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Containers is the app embedded container filter.\n",
+            "in": "query",
+            "name": "container",
+            "schema": {
+              "description": "Containers is the app embedded container filter.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Images is the app embedded images filter.\n",
+            "in": "query",
+            "name": "image",
+            "schema": {
+              "description": "Images is the app embedded images filter.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Clusters is the app embedded clusters filter.\n",
+            "in": "query",
+            "name": "cluster",
+            "schema": {
+              "description": "Clusters is the app embedded clusters filter.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "AccountIDs is the app embedded account IDs filter.\n",
+            "in": "query",
+            "name": "accountID",
+            "schema": {
+              "description": "AccountIDs is the app embedded account IDs filter.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "ImageIDs is the app embedded image IDs filter.\n",
+            "in": "query",
+            "name": "imageID",
+            "schema": {
+              "description": "ImageIDs is the app embedded image IDs filter.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/-_shared.AppEmbeddedRuntimeProfile"
+                }
+              }
+            },
+            "description": ""
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Profiles",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "monitorRuntimeServerless",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "get-profiles-app-embedded",
+        "summary": "Retrieve app-embedded profiles"
+      }
+    },
+    "/api/v22.06/profiles/app-embedded/download": {
+      "get": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/app-embedded_download_get.md"
+        },
+        "parameters": [
+          {
+            "description": "Offset from the start of the list from which to retrieve documents.\n",
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of documents to return.\n",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Search term.\n",
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Key on which to sort.\n",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Sort order.\n",
+            "in": "query",
+            "name": "reverse",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Scopes the query by collection.\n",
+            "in": "query",
+            "name": "collections",
+            "schema": {
+              "description": "Scopes the query by collection.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by account ID.\n",
+            "in": "query",
+            "name": "accountIDs",
+            "schema": {
+              "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "List of fields to retrieve.\n",
+            "in": "query",
+            "name": "fields",
+            "schema": {
+              "description": "List of fields to retrieve.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "AppIDs is the app embedded profile id filter.\n",
+            "in": "query",
+            "name": "appID",
+            "schema": {
+              "description": "AppIDs is the app embedded profile id filter.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Containers is the app embedded container filter.\n",
+            "in": "query",
+            "name": "container",
+            "schema": {
+              "description": "Containers is the app embedded container filter.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Images is the app embedded images filter.\n",
+            "in": "query",
+            "name": "image",
+            "schema": {
+              "description": "Images is the app embedded images filter.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Clusters is the app embedded clusters filter.\n",
+            "in": "query",
+            "name": "cluster",
+            "schema": {
+              "description": "Clusters is the app embedded clusters filter.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "AccountIDs is the app embedded account IDs filter.\n",
+            "in": "query",
+            "name": "accountID",
+            "schema": {
+              "description": "AccountIDs is the app embedded account IDs filter.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "ImageIDs is the app embedded image IDs filter.\n",
+            "in": "query",
+            "name": "imageID",
+            "schema": {
+              "description": "ImageIDs is the app embedded image IDs filter.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Profiles",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "monitorRuntimeServerless",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "get-profiles-app-embedded-download",
+        "summary": "Download app-embedded profiles"
+      }
+    },
     "/api/v22.06/profiles/container": {
       "get": {
         "description": {
