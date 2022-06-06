@@ -7,7 +7,7 @@ components:
             $ref: '#/components/schemas/CreateDataPatternRequest'
     DataProfile:
       content:
-        application/json:
+        application/json; charset=UTF-8:
           schema:
             $ref: '#/components/schemas/DataProfile'
   securitySchemes:
@@ -753,19 +753,19 @@ paths:
       operationId: update-resource-config
       requestBody:
         content:
-          application/json:
+          application/json; charset=UTF-8:
             schema:
               $ref: '#/components/schemas/UpdateResourceConfig'
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: success
         '400':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: bad_request
@@ -782,19 +782,19 @@ paths:
       operationId: get-all-data-patterns
       requestBody:
         content:
-          application/json:
+          application/json; charset=UTF-8:
             schema:
               $ref: '#/components/schemas/GetDataPatternFilterRequest'
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DataPatternList'
           description: success
         '400':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: bad_request
@@ -813,7 +813,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: success
@@ -836,13 +836,13 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: success
         '400':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: bad_request
@@ -867,7 +867,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DataPatternDetails'
           description: success
@@ -886,7 +886,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 items:
                   $ref: '#/components/schemas/DataPatternConfidenceLevel'
@@ -894,7 +894,7 @@ paths:
           description: success
         '400':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: bad_request
@@ -921,13 +921,13 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: success
         '400':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: bad_request
@@ -951,13 +951,13 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: success
         '400':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: bad_request
@@ -975,7 +975,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DSSDataProfiles'
           description: success
@@ -994,13 +994,13 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: success
         '400':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: bad_request
@@ -1016,7 +1016,7 @@ paths:
       operationId: enable-disable-data-profiles
       requestBody:
         content:
-          application/json:
+          application/json; charset=UTF-8:
             schema:
               items:
                 $ref: '#/components/schemas/DSSProfile'
@@ -1024,7 +1024,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: success
@@ -1049,7 +1049,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DataProfileDetails'
           description: success
@@ -1075,13 +1075,13 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: success
         '400':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: bad_request
@@ -1105,13 +1105,13 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: success
         '400':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: bad_request
@@ -1137,7 +1137,7 @@ paths:
           description: success
         '400':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: bad_request
@@ -1155,7 +1155,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DssSnippetConfig'
           description: success
@@ -1173,19 +1173,19 @@ paths:
       operationId: update-snippets
       requestBody:
         content:
-          application/json:
+          application/json; charset=UTF-8:
             schema:
               $ref: '#/components/schemas/DssSnippetConfig'
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: success
         '400':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: bad_request
