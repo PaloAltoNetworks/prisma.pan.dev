@@ -18999,39 +18999,6 @@
         "summary": " Image Names"
       }
     },
-    "/api/v22.06/images/progress": {
-      "get": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/images/progress_get.md"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/-_shared.Progress"
-                }
-              }
-            },
-            "description": ""
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Images",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "monitorImages",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "get-images-progress",
-        "summary": " Image Scan Progress"
-      }
-    },
     "/api/v22.06/images/scan": {
       "post": {
         "description": {

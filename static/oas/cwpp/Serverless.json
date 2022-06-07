@@ -18963,39 +18963,6 @@
         "summary": " Serverless Function Names"
       }
     },
-    "/api/v22.06/serverless/progress": {
-      "get": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/serverless/progress_get.md"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/-_shared.Progress"
-                }
-              }
-            },
-            "description": ""
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Serverless",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "monitorServerless",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "get-serverless-progress",
-        "summary": " Serverless Progress"
-      }
-    },
     "/api/v22.06/serverless/scan": {
       "post": {
         "description": {
