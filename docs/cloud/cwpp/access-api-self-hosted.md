@@ -142,3 +142,10 @@ For example, to get all policies:
     https://<CONSOLE>:8083/api/v1/policies/runtime/container
   ```
 
+## Accessing the API in a Multi-Tenant Environment
+
+Requests to the Prisma Cloud Compute API with Projects enabled will be made against all available tenants. To query for a specific tenant, include the `project=name` query parameter to restrict requests to the given tenant. (This does not apply to authentication endpoints.)
+
+:::note
+This parameter is required if the authenticated user does not have access to all tenants.
+:::
