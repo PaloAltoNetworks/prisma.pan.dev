@@ -8,7 +8,7 @@
 module.exports = {
   cspm: require("./static/oas/cspm/sidebar").sidebar,
   cwpp1: require("./static/oas/cwpp/sidebar").sidebar,
-  cwpp2: require("./static/oas/cwpp/21-08/sidebar").sidebar,
-  cwpp3: require("./static/oas/cwpp/21-04/sidebar").sidebar,
+  cwpp2: require("./static/oas/cwpp/22-01/sidebar").sidebar,
+  cwpp3: require("./static/oas/cwpp/21-08/sidebar").sidebar,
   code: require("./static/oas/code/sidebar").sidebar,
 };
