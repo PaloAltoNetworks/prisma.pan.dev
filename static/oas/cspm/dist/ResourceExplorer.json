@@ -61,11 +61,25 @@
         },
         "type": "object"
       },
+      "AlertStatus": {
+        "properties": {
+          "high": { "format": "int64", "type": "integer" },
+          "low": { "format": "int64", "type": "integer" },
+          "medium": { "format": "int64", "type": "integer" }
+        },
+        "type": "object"
+      },
       "DecoratedResourceInfo": {
         "description": "Model for resource info and status list",
         "properties": {
           "accountId": { "description": "Account ID", "type": "string" },
           "accountName": { "description": "Account name", "type": "string" },
+          "alertStatus": { "$ref": "#/components/schemas/AlertStatus" },
+          "appNames": {
+            "items": { "type": "string" },
+            "type": "array",
+            "uniqueItems": true
+          },
           "cloudType": {
             "description": "Cloud type",
             "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
@@ -79,16 +93,17 @@
           },
           "regionId": { "description": "Region ID", "type": "string" },
           "regionName": { "description": "Region Name", "type": "string" },
-          "rrn": {
-            "allOf": [
-              { "$ref": "#/components/schemas/RRNModel" },
-              { "description": "RRN" }
-            ]
-          },
+          "resourceConfigJsonAvailable": { "type": "boolean" },
+          "resourceDetailsAvailable": { "type": "boolean" },
+          "rrn": { "description": "RRN", "type": "string" },
           "scannedPolicies": {
             "description": "Scanned policies",
             "items": { "$ref": "#/components/schemas/ScannedPolicyInfo" },
             "type": "array"
+          },
+          "unifiedAssetId": { "type": "string" },
+          "vulnerabilityStatus": {
+            "$ref": "#/components/schemas/VulnerabilityStatus"
           }
         },
         "type": "object"
@@ -201,7 +216,10 @@
               "DISMISSED",
               "RESOLVED",
               "DESCOPED",
-              "RISK_SCORING_ERROR"
+              "RISK_SCORING_ERROR",
+              "ACTIVE",
+              "CLOSED",
+              "SUPPRESSED"
             ],
             "type": "string"
           },
@@ -215,7 +233,9 @@
               "AWS_GUARD_DUTY_HOST_FINDING",
               "AWS_GUARD_DUTY_IAM_FINDING",
               "SERVERLESS_VULNERABILITY",
-              "AZURE_SECURITY_CENTER_ALERTS"
+              "AZURE_SECURITY_CENTER_ALERTS",
+              "PACKAGE_VULNERABILITY",
+              "NETWORK_REACHABILITY"
             ],
             "type": "string"
           },
@@ -749,6 +769,15 @@
             "type": "string"
           },
           "value": { "description": "Value", "type": "string" }
+        },
+        "type": "object"
+      },
+      "VulnerabilityStatus": {
+        "properties": {
+          "critical": { "format": "int64", "type": "integer" },
+          "high": { "format": "int64", "type": "integer" },
+          "low": { "format": "int64", "type": "integer" },
+          "medium": { "format": "int64", "type": "integer" }
         },
         "type": "object"
       }
