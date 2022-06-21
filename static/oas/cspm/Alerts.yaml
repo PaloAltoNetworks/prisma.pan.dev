@@ -104,9 +104,7 @@ components:
           - $ref: '#/components/schemas/FilterSuggestion'
           - readOnly: true
         policy.severity:
-          allOf:
-          - $ref: '#/components/schemas/FilterSuggestion'
-          - readOnly: true
+          $ref: '#/components/schemas/FilterSuggestion'
         policy.subtype:
           allOf:
           - $ref: '#/components/schemas/FilterSuggestion'
@@ -500,6 +498,10 @@ components:
           description: Resource API name
           readOnly: true
           type: string
+        resourceConfigJsonAvailable:
+          type: boolean
+        resourceDetailsAvailable:
+          type: boolean
         resourceTags:
           additionalProperties:
             type: string
@@ -511,6 +513,8 @@ components:
           type: string
         rrn:
           description: RRN
+          type: string
+        unifiedAssetId:
           type: string
         url:
           description: URL
@@ -1638,9 +1642,11 @@ paths:
         required: false
         schema:
           enum:
-          - low
-          - medium
+          - critical
           - high
+          - medium
+          - low
+          - informational
           type: string
       - description: Policy label
         in: query
@@ -1927,9 +1933,11 @@ paths:
         required: false
         schema:
           enum:
-          - low
-          - medium
+          - critical
           - high
+          - medium
+          - low
+          - informational
           type: string
       - description: Policy label
         in: query
@@ -2140,9 +2148,11 @@ paths:
         required: false
         schema:
           enum:
-          - low
-          - medium
+          - critical
           - high
+          - medium
+          - low
+          - informational
           type: string
       - description: Policy label
         in: query
@@ -2742,6 +2752,112 @@ paths:
       security:
       - x-redlock-auth: []
       summary: Remediate Alert
+      tags:
+      - Alerts
+  /filter/alert:
+    get:
+      description: Get a list of all the saved filters for alerts belonging to the
+        same tenant.
+      operationId: get-all-saved-alert-filters
+      parameters:
+      - in: query
+        name: target
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                items:
+                  $ref: '#/components/schemas/FilterModel'
+                type: array
+          description: successful operation
+        '500':
+          description: failed_fetch_alert_saved_filters
+      security:
+      - x-redlock-auth: []
+      summary: List Saved Alert Filters
+      tags:
+      - Alerts
+    post:
+      description: Save the alert filter
+      operationId: save-alert-filter
+      requestBody:
+        $ref: '#/components/requestBodies/FilterModel'
+      responses:
+        '400':
+          description: failed_add_alert_saved_filter
+        '500':
+          description: failed_add_alert_saved_filter
+      security:
+      - x-redlock-auth: []
+      summary: Save Alert Filter
+      tags:
+      - Alerts
+  /filter/alert/{id}:
+    get:
+      description: Fetch the saved alert filter by id belonging to the tenant.
+      operationId: get-saved-alert-filter
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/FilterModel'
+          description: successful operation
+        '500':
+          description: failed_fetch_alert_saved_filter
+      security:
+      - x-redlock-auth: []
+      summary: Fetch Saved Alert Filter
+      tags:
+      - Alerts
+    put:
+      description: Update the saved alert filter
+      operationId: update-saved-alert-filter
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/FilterModel'
+      responses:
+        '400':
+          description: failed_update_alert_saved_filter
+        '500':
+          description: failed_update_alert_saved_filter
+      security:
+      - x-redlock-auth: []
+      summary: Update Saved Alert Filter
+      tags:
+      - Alerts
+    delete:
+      description: Deletes the saved alert filter using its id
+      operationId: delete-saved-alert-filter
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: failed_delete_alert_saved_filter
+        '500':
+          description: failed_delete_alert_saved_filter
+      security:
+      - x-redlock-auth: []
+      summary: Delete Saved Alert Filter
       tags:
       - Alerts
 servers:
