@@ -1,0 +1,154 @@
+components:
+  examples: {}
+  headers: {}
+  parameters: {}
+  requestBodies: {}
+  responses: {}
+  securitySchemes:
+    CustomAuthorizer:
+      in: header
+      name: authorization
+      type: apiKey
+      x-amazon-apigateway-authorizer:
+        authorizerResultTtlInSeconds: 0
+        authorizerUri: arn:aws:apigateway:{Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:{Region}:{AccountId}:function:bc-authorization-authorizer-{UniqueTag}{Alias}/invocations
+        identitySource: method.request.header.authorization
+        type: request
+      x-amazon-apigateway-authtype: custom
+  schemas:
+    CheckovFileErrors:
+      additionalProperties: false
+      properties:
+        errors:
+          description: Data regarding the resource on which the fix will be applied
+          items:
+            properties:
+              endLine:
+                description: Resource's end line in the file
+                format: double
+                type: number
+              policyId:
+                description: Check ID which is being fixed
+                type: string
+              resourceId:
+                description: Representation of the resource ID which is a combination
+                  of "resource type"."resource name"
+                type: string
+              startLine:
+                description: Resource's start line in the file
+                format: double
+                type: number
+            required:
+            - endLine
+            - startLine
+            - policyId
+            - resourceId
+            type: object
+          type: array
+        fileContent:
+          description: Content of the file on which the fix will be appiled
+          type: string
+        filePath:
+          type: string
+        framework:
+          description: Framework on which the fix will be applied, e.g. terraform
+            or cloudformation
+          type: string
+      required:
+      - filePath
+      - fileContent
+      - framework
+      - errors
+      type: object
+    FileFixes:
+      additionalProperties: false
+      properties:
+        filePath:
+          type: string
+        fixes:
+          items:
+            properties:
+              fixedDefinition:
+                type: string
+              originalEndLine:
+                format: double
+                type: number
+              originalStartLine:
+                format: double
+                type: number
+              policyId:
+                type: string
+              resourceId:
+                type: string
+            required:
+            - fixedDefinition
+            - originalEndLine
+            - originalStartLine
+            - policyId
+            - resourceId
+            type: object
+          type: array
+      required:
+      - filePath
+      - fixes
+      type: object
+info:
+  contact: {}
+  description: "Manage your Prisma Cloud user roles.            \n"
+  title: Prisma Cloud Code Fixes API Overview
+  version: Latest
+openapi: 3.0.0
+paths:
+  /api/v1/fixes/checkov:
+    post:
+      description: Suggest a fix for infrastructure as code configuration errors that
+        are found in the request files.
+      operationId: fixCheckovErrors
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CheckovFileErrors'
+              type: array
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Example 1:
+                  value:
+                  - filePath: /aws/ec2.tf
+                    fixes:
+                    - fixedDefinition: "resource \"aws_ebs_volume\" \"web_host_storage\"\
+                        \ {\n  # unencrypted volume\n  availability_zone = \"${var.availability_zone}\"\
+                        \n  #encrypted         = false  # Setting this causes the\
+                        \ volume to be recreated on apply \n  size = 1\n  tags = {\n\
+                        \    Name = \"${local.resource_prefix.value}-ebs\"\n  }\n\
+                        \  encrypted = true\n}\n"
+                      originalEndLine: 33
+                      originalStartLine: 25
+                      policyId: BC_AWS_GENERAL_3
+                      resourceId: aws_ebs_volume.web_host_storage
+              schema:
+                items:
+                  $ref: '#/components/schemas/FileFixes'
+                type: array
+          description: Fixes for checkov errors
+        '422':
+          description: Request arguments validation error
+      security:
+      - CustomAuthorizer: []
+      summary: Fix infrastructure as code configuration errors
+      tags:
+      - CodeFixes
+      x-bc-docs-scope: standalone,prisma
+      x-bc-lambda-name: bc-remediations-fixes-api
+      x-bc-permitted-roles: owner,admin,member,developer,auditor
+servers:
+- url: https://api.prismacloud.io/code
+tags:
+- description: The CodeFixes endpoints are listed below.
+  name: CodeFixes
