@@ -234,12 +234,12 @@ components:
       type: string
 info:
   contact: {}
-  description: "Manage your Prisma Cloud user roles.            \n"
+  description: "The Packages endpoints are listed below.           \n"
   title: Prisma Cloud Packages API Overview
   version: Latest
 openapi: 3.0.0
 paths:
-  /api/v1/vulnerabilities/packages/files/{fileMetadataId}:
+  /code/api/v1/vulnerabilities/packages/files/{fileMetadataId}:
     get:
       description: 'Gets all the Packages related to a specific file based on pagination
 
@@ -308,7 +308,7 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-vulnerabilities-packages-api
       x-bc-permitted-roles: owner,admin,member,developer,auditor
-  /api/v1/vulnerabilities/packages/{packageUuid}/direct-sub-dependencies:
+  /code/api/v1/vulnerabilities/packages/{packageUuid}/direct-sub-dependencies:
     get:
       description: 'Gets all the direct sub-dependencies packages of a specific package.
 
@@ -367,7 +367,7 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-vulnerabilities-packages-api
       x-bc-permitted-roles: owner,admin,member,developer,auditor
-  /api/v1/vulnerabilities/packages/{packageUuid}:
+  /code/api/v1/vulnerabilities/packages/{packageUuid}:
     get:
       description: 'Gets Package by its uuid.
 
@@ -412,7 +412,7 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-vulnerabilities-packages-api
       x-bc-permitted-roles: owner,admin,member,developer,auditor
-  /api/v1/vulnerabilities/packages/search:
+  /code/api/v1/vulnerabilities/packages/search:
     post:
       description: Searching for packages by a given reauestBody.
       operationId: searchPackages
@@ -457,7 +457,7 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-vulnerabilities-packages-api
       x-bc-permitted-roles: owner,admin,member,developer,auditor
-  /api/v1/vulnerabilities/packages/{packageUuid}/cves:
+  /code/api/v1/vulnerabilities/packages/{packageUuid}/cves:
     get:
       description: Get cves by package uuid.
       operationId: getCvesByPackageUuid
@@ -533,7 +533,7 @@ paths:
       x-bc-lambda-name: bc-vulnerabilities-packages-api
       x-bc-permitted-roles: owner,admin,member,developer,auditor
 servers:
-- url: https://api.prismacloud.io/code
+- url: https://api.prismacloud.io
 tags:
 - description: The Packages endpoints are listed below.
   name: Packages

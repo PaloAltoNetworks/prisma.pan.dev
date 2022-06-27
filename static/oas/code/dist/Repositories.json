@@ -161,13 +161,13 @@
   },
   "info": {
     "contact": {},
-    "description": "A policy is a set of one or more constraints or conditions that must be adhered to. Prisma Cloud provides \npredefined policies for configurations and access controls that adhere to established security best \npractices such as PCI, GDPR, ISO 27001:2013, and NIST. These Prisma Cloud default polices cannot be modified. \nIn addition to these, you can create custom policies to monitor for violations and to enforce your own organizational standards.\n",
+    "description": "The Repositories endpoints are listed below.\n",
     "title": "Prisma Cloud Repositories API Overview",
     "version": "Latest"
   },
   "openapi": "3.0.0",
   "paths": {
-    "/api/v1/repositories": {
+    "/code/api/v1/repositories": {
       "get": {
         "description": "Retrieve a list of integrated repositories.\neach repository item includes: id, repoName, source, owner, isPublic, creationDate",
         "operationId": "getRepositories",
@@ -286,7 +286,7 @@
         ]
       }
     },
-    "/api/v1/repositories/query": {
+    "/code/api/v1/repositories/query": {
       "post": {
         "description": "Get a mapping between repository ids provided to the corresponding repositories names",
         "operationId": "getQueryRepositories",
@@ -357,7 +357,7 @@
         ]
       }
     },
-    "/api/v1/repositories/branches": {
+    "/code/api/v1/repositories/branches": {
       "get": {
         "description": "Get a list with all the repositories branches for the requesting customer\nThe returned branches are branches that has at list one CICD runs\neach branches item includes: name, creationDate, CICD status",
         "operationId": "getBranches",
@@ -427,7 +427,7 @@
         ]
       }
     },
-    "/api/v1/repositories/search": {
+    "/code/api/v1/repositories/search": {
       "get": {
         "description": "Get a list with all the repositories of customer\nUse filter params to search among the various repositories",
         "operationId": "searchRepositories",
@@ -534,7 +534,7 @@
       }
     }
   },
-  "servers": [{ "url": "https://api.prismacloud.io/code" }],
+  "servers": [{ "url": "https://api.prismacloud.io" }],
   "tags": [
     {
       "description": "The Repositories endpoints are listed below.",

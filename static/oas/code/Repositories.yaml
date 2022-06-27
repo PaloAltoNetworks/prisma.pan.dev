@@ -198,17 +198,14 @@ components:
       type: object
 info:
   contact: {}
-  description: "A policy is a set of one or more constraints or conditions that must\
-    \ be adhered to. Prisma Cloud provides \npredefined policies for configurations\
-    \ and access controls that adhere to established security best \npractices such\
-    \ as PCI, GDPR, ISO 27001:2013, and NIST. These Prisma Cloud default polices cannot\
-    \ be modified. \nIn addition to these, you can create custom policies to monitor\
-    \ for violations and to enforce your own organizational standards.\n"
+  description: 'The Repositories endpoints are listed below.
+
+    '
   title: Prisma Cloud Repositories API Overview
   version: Latest
 openapi: 3.0.0
 paths:
-  /api/v1/repositories:
+  /code/api/v1/repositories:
     get:
       description: 'Retrieve a list of integrated repositories.
 
@@ -317,7 +314,7 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-vcs-repositories-api
       x-bc-permitted-roles: owner,admin,service
-  /api/v1/repositories/query:
+  /code/api/v1/repositories/query:
     post:
       description: Get a mapping between repository ids provided to the corresponding
         repositories names
@@ -359,7 +356,7 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-vcs-repositories-api
       x-bc-permitted-roles: owner,admin,member,developer,auditor,service
-  /api/v1/repositories/branches:
+  /code/api/v1/repositories/branches:
     get:
       description: 'Get a list with all the repositories branches for the requesting
         customer
@@ -411,7 +408,7 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-vcs-repositories-api
       x-bc-permitted-roles: owner,admin,member,developer,auditor
-  /api/v1/repositories/search:
+  /code/api/v1/repositories/search:
     get:
       description: 'Get a list with all the repositories of customer
 
@@ -492,7 +489,7 @@ paths:
       x-bc-lambda-name: bc-vcs-repositories-api
       x-bc-permitted-roles: owner,admin,member,developer,auditor,service
 servers:
-- url: https://api.prismacloud.io/code
+- url: https://api.prismacloud.io
 tags:
 - description: The Repositories endpoints are listed below.
   name: Repositories

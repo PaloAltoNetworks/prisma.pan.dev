@@ -362,17 +362,12 @@ components:
       type: object
 info:
   contact: {}
-  description: "For secure access to the Prisma Cloud REST API, you need a Prisma\
-    \ Cloud API access key. An access key includes \nan Access Key ID and a Secret\
-    \ Key. After you use Prisma Cloud to generate an access key, you can use the key\
-    \ \nto obtain a JSON Web Token (JWT), which is required to authenticate Prisma\
-    \ Cloud REST API requests. The \nfollowing steps summarize the API requests necessary\
-    \ to authenticate all other Prisma Cloud API requests.  \n"
+  description: "The Suppressions endpoints are listed below. \n"
   title: Prisma Cloud Suppressions API Overview
   version: Latest
 openapi: 3.0.0
 paths:
-  /api/v1/suppressions:
+  /code/api/v1/suppressions:
     get:
       description: 'Every suppression rule has a type indicating scope (aka suppression
         type) and details on the scope. Resources answering the scope of the suppression
@@ -409,8 +404,7 @@ paths:
                     tags:
                     - key: team
                       value: knights
-                  - accountIds:
-                    - bridgecrewio/terragoat
+                  - accountIds: null
                     comment: No justification comment provided.
                     creationDate: '2020-12-24T13:22:20.086Z'
                     id: 13a5befb-ccaf-4bf8-83af-b1d8fd5c89f6
@@ -421,13 +415,6 @@ paths:
                     id: b48476c4-062a-4091-a48d-040c14d7e809
                     policyId: acme_AWS_1600118884127
                     resources:
-                    - accountId: bridgecrewio/terragoat
-                      resourceId: /terraform/aws/db-app.tf:aws_instance.db_app
-                    - accountId: bridgecrewio/terragoat
-                      resourceId: /terraform/aws/ec2.tf:aws_instance.web_host
-                    - accountId: bridgecrew/gitlab_terragoat
-                      resourceId: /terraform/aws/db-app.tf:aws_instance.db_app
-                    - accountId: bridgecrew/gitlab_terragoat
                       resourceId: /terraform/aws/ec2.tf:aws_instance.web_host
                     suppressionType: Resources
               schema:
@@ -443,10 +430,11 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-compliances-suppressions-api
       x-bc-permitted-roles: owner,admin,member,developer,auditor
-  /api/v1/suppressions/{policyId}:
+  /code/api/v1/suppressions/{policyId}:
     post:
-      description: 'Bridgecrew supports advanced Suppression rule settings in order
-        to make policy management easier by dismissing or snoozing errors
+      description: 'Prisma Cloud Code Security supports advanced Suppression rule
+        settings in order to make policy management easier by dismissing or snoozing
+        errors
 
         (using time-bounded suppression rules) that are irrelevant in your cloud and
         code environments.
@@ -454,14 +442,12 @@ paths:
         Suppression can be applied at various levels: for all cases (Disable Policy),
         for a specific Source,
 
-        for a Specific Resource or by tag.Visit Bridgecrew documentation for more
-        information here (https://docs.bridgecrew.io/docs/suppress).
 
 
         To use the API request, add your token to the header.
 
-        Use this API function to create a new Bridgecrew Suppression rule that will
-        be associated with the policyId included in the request.
+        Use this API function to create a new Prisma Cloud Code Security Suppression
+        rule that will be associated with the policyId included in the request.
 
         The input includes comment (Justification), SuppressionType (Resources (by
         default), Accounts, Policy, or Tags) and expirationTime (in Unix epoch time).
@@ -507,8 +493,7 @@ paths:
                     value: knights
               Example 3:
                 value:
-                  accountIds:
-                  - bridgecrewio/terragoat
+                  accountIds: null
                   comment: No justification comment provided.
                   expirationTime: 1834303033687
                   origin: Platform
@@ -519,13 +504,6 @@ paths:
                   expirationTime: 1834303033687
                   origin: Platform
                   resources:
-                  - accountId: bridgecrewio/terragoat
-                    id: /terraform/aws/db-app.tf:aws_instance.db_app
-                  - accountId: bridgecrewio/terragoat
-                    id: /terraform/aws/ec2.tf:aws_instance.web_host
-                  - accountId: bridgecrew/gitlab_terragoat
-                    id: /terraform/aws/db-app.tf:aws_instance.db_app
-                  - accountId: bridgecrew/gitlab_terragoat
                     id: /terraform/aws/ec2.tf:aws_instance.web_host
                   suppressionType: Resources
             schema:
@@ -548,10 +526,11 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-compliances-suppressions-api
       x-bc-permitted-roles: owner,admin,member,developer
-  /api/v1/suppressions/{policyId}/justifications/{suppressionId}:
+  /code/api/v1/suppressions/{policyId}/justifications/{suppressionId}:
     put:
-      description: 'Bridgecrew supports advanced Suppression rule settings in order
-        to make policy management easier by dismissing or snoozing errors
+      description: 'Prisma Cloud Code Security supports advanced Suppression rule
+        settings in order to make policy management easier by dismissing or snoozing
+        errors
 
         (using time-bounded suppression rules) that are irrelevant in your cloud and
         code environments.
@@ -559,15 +538,13 @@ paths:
         Suppression can be applied at various levels: for all cases (Disable Policy),
         for a specific Source, for a Specific Resource or by tag.
 
-        Visit Bridgecrew documentation for more information here (https://docs.bridgecrew.io/docs/suppress
-        ).
 
 
         To use the API request, add your token to the header.
 
 
-        Use this API function to update an existing Bridgecrew Suppression rule for
-        the given policyId and suppressionId mentioned in the path.
+        Use this API function to update an existing Prisma Cloud Code Security Suppression
+        rule for the given policyId and suppressionId mentioned in the path.
 
         The input includes comment (Justification for such rule), SuppressionType
         (Resources (by default), Accounts, Policy OR Tags)
@@ -624,8 +601,7 @@ paths:
                     value: knights
               Example 3:
                 value:
-                  accountIds:
-                  - bridgecrewio/terragoat
+                  accountIds: null
                   comment: No justification comment provided.
                   expirationTime: 1834303033687
                   origin: Platform
@@ -636,13 +612,6 @@ paths:
                   expirationTime: 1834303033687
                   origin: Platform
                   resources:
-                  - accountId: bridgecrewio/terragoat
-                    id: /terraform/aws/db-app.tf:aws_instance.db_app
-                  - accountId: bridgecrewio/terragoat
-                    id: /terraform/aws/ec2.tf:aws_instance.web_host
-                  - accountId: bridgecrew/gitlab_terragoat
-                    id: /terraform/aws/db-app.tf:aws_instance.db_app
-                  - accountId: bridgecrew/gitlab_terragoat
                     id: /terraform/aws/ec2.tf:aws_instance.web_host
                   suppressionType: Resources
             schema:
@@ -672,8 +641,9 @@ paths:
       x-bc-lambda-name: bc-compliances-suppressions-api
       x-bc-permitted-roles: owner,admin,member,developer
     delete:
-      description: 'Bridgecrew supports advanced Suppression rule settings in order
-        to make policy management easier by dismissing or snoozing errors
+      description: 'Prisma Cloud Code Security supports advanced Suppression rule
+        settings in order to make policy management easier by dismissing or snoozing
+        errors
 
         (using time-bounded suppression rules) that are irrelevant in your cloud and
         code environments.
@@ -681,15 +651,13 @@ paths:
         Suppression can be applied at various levels: for all cases (Disable Policy),
         for a specific Source, for a Specific Resource or by tag.
 
-        Visit Bridgecrew documentation for more information here (https://docs.bridgecrew.io/docs/suppress
-        ).
 
 
         To use the API request, add your token to the header.
 
 
-        Use this API function to delete an existing Bridgecrew Suppression rule for
-        a specific given policyId and suppressionId mentioned in the path.
+        Use this API function to delete an existing Prisma Cloud Code Security Suppression
+        rule for a specific given policyId and suppressionId mentioned in the path.
 
 
         The output will be -
@@ -722,10 +690,11 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-compliances-suppressions-api
       x-bc-permitted-roles: owner,admin,member,developer
-  /api/v1/suppressions/{policyId}/justifications:
+  /code/api/v1/suppressions/{policyId}/justifications:
     get:
-      description: 'Bridgecrew supports advanced Suppression rule settings in order
-        to make policy management easier by dismissing or snoozing errors
+      description: 'Prisma Cloud Code Security supports advanced Suppression rule
+        settings in order to make policy management easier by dismissing or snoozing
+        errors
 
         (using time-bounded suppression rules) that are irrelevant in your cloud and
         code environments.
@@ -733,14 +702,12 @@ paths:
         Suppression can be applied at various levels: for all cases (Disable Policy),
         for a specific Source, for a Specific Resource or by tag.
 
-        Visit Bridgecrew documentation for more information here (https://docs.bridgecrew.io/docs/suppress
-        ).
 
 
         To use the API request, add your token to the header.
 
-        Use this API function to fetch details of Bridgecrew Suppressions that have
-        been set for the given policyId and accounts
+        Use this API function to fetch details of Prisma Cloud Code Security Suppressions
+        that have been set for the given policyId and accounts
 
         (array of strings) mentioned in the path.
 
@@ -780,7 +747,6 @@ paths:
                     customer: acme
                     date: 1611276779986
                     id: 7caab873-7400-47f9-8b3f-82b33d0463ed
-                    owner: try@bridgecrew.io
                     suppressionType: Policy
                     type: suppression
                     violationId: BC_AWS_GENERAL_31
@@ -789,7 +755,6 @@ paths:
                     customer: acme
                     date: 1611276779986
                     id: 5ed2f9c2-044f-4484-99d1-262b563872ec
-                    owner: try@bridgecrew.io
                     resources:
                     - /terraform/aws/lambda.tf:d70eab08607a4d05faa2d0d6647206599e9abc65
                     suppressionType: Resources
@@ -802,7 +767,6 @@ paths:
                     customer: acme
                     date: 1611276779986
                     id: 5ed2f9c2-044f-4484-99d1-262b563872ec
-                    owner: try@bridgecrew.io
                     suppressionType: Accounts
                     type: suppression
                     violationId: BC_AWS_GENERAL_14
@@ -824,7 +788,7 @@ paths:
       x-bc-lambda-name: bc-compliances-suppressions-api
       x-bc-permitted-roles: owner,admin,member,developer,auditor
 servers:
-- url: https://api.prismacloud.io/code
+- url: https://api.prismacloud.io
 tags:
 - description: The Suppressions endpoints are listed below.
   name: Suppressions

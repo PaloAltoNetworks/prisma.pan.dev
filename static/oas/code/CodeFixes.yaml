@@ -94,12 +94,12 @@ components:
       type: object
 info:
   contact: {}
-  description: "Manage your Prisma Cloud user roles.            \n"
+  description: "The CodeFixes endpoints are listed below.           \n"
   title: Prisma Cloud Code Fixes API Overview
   version: Latest
 openapi: 3.0.0
 paths:
-  /api/v1/fixes/checkov:
+  /code/api/v1/fixes/checkov:
     post:
       description: Suggest a fix for infrastructure as code configuration errors that
         are found in the request files.
@@ -148,7 +148,7 @@ paths:
       x-bc-lambda-name: bc-remediations-fixes-api
       x-bc-permitted-roles: owner,admin,member,developer,auditor
 servers:
-- url: https://api.prismacloud.io/code
+- url: https://api.prismacloud.io
 tags:
 - description: The CodeFixes endpoints are listed below.
   name: CodeFixes

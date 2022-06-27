@@ -23,15 +23,15 @@
   },
   "info": {
     "contact": {},
-    "description": "Manage your Prisma Cloud user profiles.\n",
+    "description": "The Scans endpoints are listed below.\n",
     "title": "Prisma Cloud Scans API Overview",
     "version": "Latest"
   },
   "openapi": "3.0.0",
   "paths": {
-    "/api/v1/scans/integrations": {
+    "/code/api/v1/scans/integrations": {
       "post": {
-        "description": "Trigger asynchronous scan of all resources to refresh the current state at Bridgecrew.\nThe scan will update resources configured in cloud providers (AWS/Azure/GCP)\nand IaC resources in the main branch at each version control system (Github/Gitlab/Bitbucket).\nPlease note: A new scan will not  be triggered only if there is another running execution.",
+        "description": "Trigger asynchronous scan of all resources to refresh the current state at Prisma Cloud Code Security.\nThe scan will update resources configured in cloud providers (AWS/Azure/GCP)\nand IaC resources in the main branch at each version control system (Github/Gitlab/Bitbucket).\nPlease note: A new scan will not  be triggered only if there is another running execution.",
         "operationId": "scanIntegrations",
         "parameters": [],
         "responses": {
@@ -70,7 +70,7 @@
       }
     }
   },
-  "servers": [{ "url": "https://api.prismacloud.io/code" }],
+  "servers": [{ "url": "https://api.prismacloud.io" }],
   "tags": [
     { "description": "The Scans endpoints are listed below.", "name": "Scans" }
   ]

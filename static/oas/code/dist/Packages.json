@@ -185,13 +185,13 @@
   },
   "info": {
     "contact": {},
-    "description": "Manage your Prisma Cloud user roles.            \n",
+    "description": "The Packages endpoints are listed below.           \n",
     "title": "Prisma Cloud Packages API Overview",
     "version": "Latest"
   },
   "openapi": "3.0.0",
   "paths": {
-    "/api/v1/vulnerabilities/packages/files/{fileMetadataId}": {
+    "/code/api/v1/vulnerabilities/packages/files/{fileMetadataId}": {
       "get": {
         "description": "Gets all the Packages related to a specific file based on pagination\nPagination is required - this endpoint must use the pagination.validate\nThe API accepts a file metadata UUID.\nThere is an option to get the packages sorted by their error count.\nroot-only query parameter is optional - if true, returns only root level packages, in a sense of the file's dependency tree",
         "operationId": "getPackagesByFile",
@@ -279,7 +279,7 @@
         ]
       }
     },
-    "/api/v1/vulnerabilities/packages/{packageUuid}/direct-sub-dependencies": {
+    "/code/api/v1/vulnerabilities/packages/{packageUuid}/direct-sub-dependencies": {
       "get": {
         "description": "Gets all the direct sub-dependencies packages of a specific package.\nThe API accepts a package UUID.\nThere is an option to get the packages sorted by their error count.",
         "operationId": "getDirectSubDependenciesByUuid",
@@ -361,7 +361,7 @@
         ]
       }
     },
-    "/api/v1/vulnerabilities/packages/{packageUuid}": {
+    "/code/api/v1/vulnerabilities/packages/{packageUuid}": {
       "get": {
         "description": "Gets Package by its uuid.\nThe API accepts a package UUID.",
         "operationId": "getPackageByUuid",
@@ -421,7 +421,7 @@
         ]
       }
     },
-    "/api/v1/vulnerabilities/packages/search": {
+    "/code/api/v1/vulnerabilities/packages/search": {
       "post": {
         "description": "Searching for packages by a given reauestBody.",
         "operationId": "searchPackages",
@@ -489,7 +489,7 @@
         ]
       }
     },
-    "/api/v1/vulnerabilities/packages/{packageUuid}/cves": {
+    "/code/api/v1/vulnerabilities/packages/{packageUuid}/cves": {
       "get": {
         "description": "Get cves by package uuid.",
         "operationId": "getCvesByPackageUuid",
@@ -588,7 +588,7 @@
       }
     }
   },
-  "servers": [{ "url": "https://api.prismacloud.io/code" }],
+  "servers": [{ "url": "https://api.prismacloud.io" }],
   "tags": [
     {
       "description": "The Packages endpoints are listed below.",

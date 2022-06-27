@@ -96,13 +96,13 @@
   },
   "info": {
     "contact": {},
-    "description": "Manage your Prisma Cloud user roles.            \n",
+    "description": "The CodeFixes endpoints are listed below.           \n",
     "title": "Prisma Cloud Code Fixes API Overview",
     "version": "Latest"
   },
   "openapi": "3.0.0",
   "paths": {
-    "/api/v1/fixes/checkov": {
+    "/code/api/v1/fixes/checkov": {
       "post": {
         "description": "Suggest a fix for infrastructure as code configuration errors that are found in the request files.",
         "operationId": "fixCheckovErrors",
@@ -169,7 +169,7 @@
       }
     }
   },
-  "servers": [{ "url": "https://api.prismacloud.io/code" }],
+  "servers": [{ "url": "https://api.prismacloud.io" }],
   "tags": [
     {
       "description": "The CodeFixes endpoints are listed below.",

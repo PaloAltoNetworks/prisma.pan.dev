@@ -84,14 +84,14 @@ components:
       type: object
 info:
   contact: {}
-  description: 'Manage your Prisma Cloud user profiles.
+  description: 'The Remediations endpoints are listed below.
 
     '
   title: Prisma Cloud Remediations API Overview
   version: Latest
 openapi: 3.0.0
 paths:
-  /api/v1/remediations/buildtime:
+  /code/api/v1/remediations/buildtime:
     post:
       description: Create a new PR or commit and push to existing PR
       operationId: postRemediationsBuildTime
@@ -129,7 +129,7 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-remediation-controller
       x-bc-permitted-roles: owner,admin,member,developer
-  /api/v1/remediations/buildtime/{fixId}:
+  /code/api/v1/remediations/buildtime/{fixId}:
     get:
       description: Get the remediation fix code for fix ID
       operationId: getRemediationFixCode
@@ -166,7 +166,7 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-remediation-controller
       x-bc-permitted-roles: owner,admin,member,developer,auditor
-  /api/v1/remediations/buildtime/baseFile/{filename}:
+  /code/api/v1/remediations/buildtime/baseFile/{filename}:
     get:
       description: Get the base file code for the remediation
       operationId: getRemediationBaseFile
@@ -202,7 +202,7 @@ paths:
       x-bc-lambda-name: bc-remediation-controller
       x-bc-permitted-roles: owner,admin,member,developer,auditor
 servers:
-- url: https://api.prismacloud.io/code
+- url: https://api.prismacloud.io
 tags:
 - description: The Remediations endpoints are listed below.
   name: Remediations

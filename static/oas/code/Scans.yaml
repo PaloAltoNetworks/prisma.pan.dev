@@ -18,17 +18,17 @@ components:
   schemas: {}
 info:
   contact: {}
-  description: 'Manage your Prisma Cloud user profiles.
+  description: 'The Scans endpoints are listed below.
 
     '
   title: Prisma Cloud Scans API Overview
   version: Latest
 openapi: 3.0.0
 paths:
-  /api/v1/scans/integrations:
+  /code/api/v1/scans/integrations:
     post:
       description: 'Trigger asynchronous scan of all resources to refresh the current
-        state at Bridgecrew.
+        state at Prisma Cloud Code Security.
 
         The scan will update resources configured in cloud providers (AWS/Azure/GCP)
 
@@ -62,7 +62,7 @@ paths:
       x-bc-lambda-name: bc-scannersv2-api
       x-bc-permitted-roles: owner
 servers:
-- url: https://api.prismacloud.io/code
+- url: https://api.prismacloud.io
 tags:
 - description: The Scans endpoints are listed below.
   name: Scans

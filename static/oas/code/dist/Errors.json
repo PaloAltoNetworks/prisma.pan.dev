@@ -829,13 +829,13 @@
   },
   "info": {
     "contact": {},
-    "description": "Access Keys are a secure way to enable programmatic access to the Prisma Cloud API. By default, only \nthe System Admin has API access and can enable API access for other administrators. If you have API access, \nyou can create up to two access keys. Create an access key for a limited time period and regenerate your API \nkeys periodically to minimize exposure and follow security best practices.\n",
+    "description": "The Errors endpoints are listed below.\n",
     "title": "Prisma Cloud Code Errors API Overview",
     "version": "Latest"
   },
   "openapi": "3.0.0",
   "paths": {
-    "/api/v1/errors/files": {
+    "/code/api/v1/errors/files": {
       "post": {
         "description": "List files with errors",
         "operationId": "getErrorsFiles",
@@ -896,7 +896,7 @@
         ]
       }
     },
-    "/api/v1/errors/file": {
+    "/code/api/v1/errors/file": {
       "post": {
         "description": "List errors in files",
         "operationId": "getErrorsInFile",
@@ -994,7 +994,7 @@
         ]
       }
     },
-    "/api/v1/errors/files/{uuid}": {
+    "/code/api/v1/errors/files/{uuid}": {
       "get": {
         "description": "Get the file metadata by UUID based on the customer's repository",
         "operationId": "getErrorsInFiles",
@@ -1061,7 +1061,7 @@
         ]
       }
     },
-    "/api/v1/errors/gitBlameAuthors": {
+    "/code/api/v1/errors/gitBlameAuthors": {
       "get": {
         "description": "Get all git blame author names per full repo name (owner and name)",
         "operationId": "getGitBlameAuthors",
@@ -1113,7 +1113,7 @@
         ]
       }
     },
-    "/api/v1/errors/submitActions": {
+    "/code/api/v1/errors/submitActions": {
       "post": {
         "description": "This api receive type of submit (PR\\DEFAULT), array of violationsToSuppress and array of violationsToFix, and\ninvoke the suppress\\fix function in the correct service (cicd\\remediations)",
         "operationId": "submitActions",
@@ -1240,7 +1240,7 @@
         ]
       }
     },
-    "/api/v1/errors/getFixedCode": {
+    "/code/api/v1/errors/getFixedCode": {
       "post": {
         "description": "Returns a remediated resource code",
         "operationId": "getFixedCode",
@@ -1294,7 +1294,7 @@
         ]
       }
     },
-    "/api/v1/errors/supply-chain-fix": {
+    "/code/api/v1/errors/supply-chain-fix": {
       "post": {
         "description": "The API is responsible for handling remediations from the supply chain screen. It receives a repository's UUID,\na list of IaC resources UUIDs and a list of packages UUIDs to be remediated, and returns the remediation response when available",
         "operationId": "supply-chain-fix",
@@ -1351,7 +1351,7 @@
       }
     }
   },
-  "servers": [{ "url": "https://api.prismacloud.io/code" }],
+  "servers": [{ "url": "https://api.prismacloud.io" }],
   "tags": [
     {
       "description": "The Errors endpoints are listed below.",

@@ -2659,7 +2659,7 @@ components:
       - OpenStack
       - Packages
       - Git
-      - Bridgecrew
+      - Prisma Cloud Code Security
       - Linode
       - DigitalOcean
       - PANOS
@@ -2674,7 +2674,6 @@ components:
       - openstack
       - packages
       - git
-      - bridgecrew
       - linode
       - digitalocean
       - panos
@@ -2798,30 +2797,26 @@ components:
       type: object
 info:
   contact: {}
-  description: "The Adoption Advisor API provides visibility into which Prisma Cloud\
-    \ capabilities you have adopted and \nhelps you uncover security capabilities\
-    \ that you not have yet explored.  \n"
+  description: "The Policies endpoints are listed below.  \n"
   title: Prisma Cloud Policies API Overview
   version: Latest
 openapi: 3.0.0
 paths:
-  /api/v1/policies/definition/{queryId}:
+  /code/api/v1/policies/definition/{queryId}:
     post:
-      description: 'Bridgecrew supports policy-as-code capabilities using YAML-based
-        policy definition files to enable attribute and connection checks (composite
-        checks).
+      description: 'Prisma Cloud Code Security supports policy-as-code capabilities
+        using YAML-based policy definition files to enable attribute and connection
+        checks (composite checks).
 
-        Visit bridgecrew’s documentation to define YAML based policies - https://docs.bridgecrew.io/docs/yaml-format-for-custom-policies
-        based on our sample files - https://docs.bridgecrew.io/docs/examples-yaml-based-custom-policies.
 
         To use the API request, add your token to the header. API supports both YAML
-        and JSON configuration of Bridgecrew custom policy schema)
+        and JSON configuration of Prisma Cloud Code Security custom policy schema)
 
 
-        This API is used to validate a user defined Bridgecrew YAML-based custom policy
-        schema. It returns an array of errors for not supported keys, values, and
-        more. This call is used to verify that a custom policy which is about to be
-        saved is properly configured.
+        This API is used to validate a user defined Prisma Cloud Code Security YAML-based
+        custom policy schema. It returns an array of errors for not supported keys,
+        values, and more. This call is used to verify that a custom policy which is
+        about to be saved is properly configured.
 
 
         Policy definitions include the following types:
@@ -2897,20 +2892,18 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-policies-api
       x-bc-permitted-roles: owner,admin
-  /api/v1/policies:
+  /code/api/v1/policies:
     post:
-      description: 'Bridgecrew supports policy-as-code capabilities using YAML-based
-        policy definition files to enable attribute and connection checks (composite
-        checks).
+      description: 'Prisma Cloud Code Security supports policy-as-code capabilities
+        using YAML-based policy definition files to enable attribute and connection
+        checks (composite checks).
 
-        Visit bridgecrew’s documentation to define YAML based policies - https://docs.bridgecrew.io/docs/yaml-format-for-custom-policies
-        based on our sample files - https://docs.bridgecrew.io/docs/examples-yaml-based-custom-policies.
 
         To use the API request, add your token to the header. API supports both YAML
-        and JSON configuration of Bridgecrew custom policy schema)
+        and JSON configuration of Prisma Cloud Code Security custom policy schema)
 
 
-        This API creates a new Bridgecrew custom policy.
+        This API creates a new Prisma Cloud Code Security custom policy.
 
         The input will be a code-based policy definition file. The output will be
         a new policy id. In case of invalid code - output will include definition
@@ -2983,22 +2976,20 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-policies-api
       x-bc-permitted-roles: owner,admin
-  /api/v1/policies/table/data:
+  /code/api/v1/policies/table/data:
     get:
-      description: 'Bridgecrew supports policy-as-code capabilities using YAML-based
-        policy definition files to enable attribute and connection checks (composite
-        checks).
+      description: 'Prisma Cloud Code Security supports policy-as-code capabilities
+        using YAML-based policy definition files to enable attribute and connection
+        checks (composite checks).
 
-        Visit bridgecrew’s documentation to define YAML based policies - https://docs.bridgecrew.io/docs/yaml-format-for-custom-policies
-        based on our sample files - https://docs.bridgecrew.io/docs/examples-yaml-based-custom-policies.
 
         To use the API request, add your token to the header. API supports both YAML
-        and JSON configuration of Bridgecrew custom policy schema)
+        and JSON configuration of Prisma Cloud Code Security custom policy schema)
 
 
-        This API gets all Bridgecrew custom policies with count of passed, failed,
-        suppressed resources, scan status (compliant/non-compliant), and attached
-        benchmarks of specific policies.
+        This API gets all Prisma Cloud Code Security custom policies with count of
+        passed, failed, suppressed resources, scan status (compliant/non-compliant),
+        and attached benchmarks of specific policies.
 
         Use the example below as a reference for the expected output of this API request.'
       operationId: getCustomPoliciesTable
@@ -3123,7 +3114,7 @@ paths:
                       - Elasticsearch
                       - Secrets
                       createdBy:
-                      - Bridgecrew
+                      - Prisma Cloud Code Security
                       - user@email.com
                       provider:
                       - Kubernetes
@@ -3158,22 +3149,20 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-policies-api
       x-bc-permitted-roles: owner,admin,member,developer,auditor
-  /api/v1/policies/{policyId}:
+  /code/api/v1/policies/{policyId}:
     put:
-      description: 'Bridgecrew supports policy-as-code capabilities using YAML-based
-        policy definition files to enable attribute and connection checks (composite
-        checks).
+      description: 'Prisma Cloud Code Security supports policy-as-code capabilities
+        using YAML-based policy definition files to enable attribute and connection
+        checks (composite checks).
 
-        Visit bridgecrew’s documentation to define YAML based policies - https://docs.bridgecrew.io/docs/yaml-format-for-custom-policies
-        based on our sample files - https://docs.bridgecrew.io/docs/examples-yaml-based-custom-policies.
 
         To use the API request, add your token to the header. API supports both YAML
-        and JSON configuration of Bridgecrew custom policy schema)
+        and JSON configuration of Prisma Cloud Code Security custom policy schema)
 
 
-        This API request updates an existing Bridgecrew custom policy. The API contains
-        the fields to be edited. Any field not included in the request will remain
-        unchanged.
+        This API request updates an existing Prisma Cloud Code Security custom policy.
+        The API contains the fields to be edited. Any field not included in the request
+        will remain unchanged.
 
         You can use this API request to add fields that were previously not configured.
         The output will be the id of updated policy.
@@ -3251,19 +3240,17 @@ paths:
       x-bc-lambda-name: bc-policies-api
       x-bc-permitted-roles: owner,admin
     delete:
-      description: 'Bridgecrew supports policy-as-code capabilities using YAML-based
-        policy definition files to enable attribute and connection checks (composite
-        checks).
+      description: 'Prisma Cloud Code Security supports policy-as-code capabilities
+        using YAML-based policy definition files to enable attribute and connection
+        checks (composite checks).
 
-        Visit bridgecrew’s documentation to define YAML based policies - https://docs.bridgecrew.io/docs/yaml-format-for-custom-policies
-        based on our sample files - https://docs.bridgecrew.io/docs/examples-yaml-based-custom-policies.
 
         To use the API request, add your token to the header. API supports both YAML
-        and JSON configuration of Bridgecrew custom policy schema)
+        and JSON configuration of Prisma Cloud Code Security custom policy schema)
 
 
-        This API deletes an existing Bridgecrew custom policy. The output will be
-        the id of deleted policy.'
+        This API deletes an existing Prisma Cloud Code Security custom policy. The
+        output will be the id of deleted policy.'
       operationId: removePolicy
       parameters:
       - description: '- the policy Id to delete'
@@ -3299,17 +3286,15 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-policies-api
       x-bc-permitted-roles: owner,admin
-  /api/v1/policies/preview:
+  /code/api/v1/policies/preview:
     post:
-      description: 'Bridgecrew supports policy-as-code capabilities using YAML-based
-        policy definition files to enable attribute and connection checks (composite
-        checks).
+      description: 'Prisma Cloud Code Security supports policy-as-code capabilities
+        using YAML-based policy definition files to enable attribute and connection
+        checks (composite checks).
 
-        Visit bridgecrew’s documentation to define YAML based policies - https://docs.bridgecrew.io/docs/yaml-format-for-custom-policies
-        based on our sample files - https://docs.bridgecrew.io/docs/examples-yaml-based-custom-policies.
 
         To use the API request, add your token to the header. API supports both YAML
-        and JSON configuration of Bridgecrew custom policy schema)
+        and JSON configuration of Prisma Cloud Code Security custom policy schema)
 
 
         This API gets up to 30 results (by default) of non-compliant resources for
@@ -3402,17 +3387,15 @@ paths:
       x-bc-docs-scope: standalone,prisma
       x-bc-lambda-name: bc-policies-api
       x-bc-permitted-roles: owner,admin
-  /api/v1/policies/clone/{policyId}:
+  /code/api/v1/policies/clone/{policyId}:
     post:
-      description: 'Bridgecrew supports policy-as-code capabilities using YAML-based
-        policy definition files to enable attribute and connection checks (composite
-        checks).
+      description: 'Prisma Cloud Code Security supports policy-as-code capabilities
+        using YAML-based policy definition files to enable attribute and connection
+        checks (composite checks).
 
-        Visit bridgecrew’s documentation to define YAML based policies - https://docs.bridgecrew.io/docs/yaml-format-for-custom-policies
-        based on our sample files - https://docs.bridgecrew.io/docs/examples-yaml-based-custom-policies.
 
         To use the API request, add your token to the header. API supports both YAML
-        and JSON configuration of Bridgecrew custom policy schema)
+        and JSON configuration of Prisma Cloud Code Security custom policy schema)
 
 
         This API clones an existing Policy.
@@ -3475,7 +3458,7 @@ paths:
       x-bc-lambda-name: bc-policies-api
       x-bc-permitted-roles: owner,admin
 servers:
-- url: https://api.prismacloud.io/code
+- url: https://api.prismacloud.io
 tags:
 - description: The Policies endpoints are listed below.
   name: Policies
