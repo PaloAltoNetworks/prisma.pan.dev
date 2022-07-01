@@ -28,6 +28,19 @@ components:
           description: User can only access the Prisma Cloud Compute Console
           type: boolean
       type: object
+    PermissionGroup:
+      properties:
+        custom:
+          type: boolean
+        id:
+          type: string
+        name:
+          type: string
+        systemAdmin:
+          type: boolean
+        systemAdminOrComputeAdmin:
+          type: boolean
+      type: object
     UserRoleModel:
       description: Model for User Role
       properties:
@@ -46,6 +59,11 @@ components:
           items:
             type: string
           readOnly: true
+          type: array
+        codeRepositoryIds:
+          description: Accessible Code Repository IDs
+          items:
+            type: string
           type: array
         description:
           description: Description
@@ -66,6 +84,8 @@ components:
         name:
           description: Name
           type: string
+        permissionGroup:
+          $ref: '#/components/schemas/PermissionGroup'
         resourceListIds:
           description: Accessible Resource List IDs
           items:
@@ -114,6 +134,11 @@ components:
             type: string
           readOnly: true
           type: array
+        codeRepositoryIds:
+          description: Accessible Code Repository IDs
+          items:
+            type: string
+          type: array
         description:
           description: Description
           type: string
@@ -133,6 +158,8 @@ components:
         name:
           description: Name
           type: string
+        permissionGroup:
+          $ref: '#/components/schemas/PermissionGroup'
         resourceListIds:
           description: Accessible Resource List IDs
           items:
@@ -232,7 +259,7 @@ paths:
       - User Roles
   /user/role/type:
     get:
-      description: Returns a list of permission groups to which users belong.
+      description: Returns a list of permission groups to which users can belong.
       operationId: get-user-role-types
       responses:
         '200':

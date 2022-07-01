@@ -38,6 +38,16 @@
         },
         "type": "object"
       },
+      "PermissionGroup": {
+        "properties": {
+          "custom": { "type": "boolean" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "systemAdmin": { "type": "boolean" },
+          "systemAdminOrComputeAdmin": { "type": "boolean" }
+        },
+        "type": "object"
+      },
       "UserRoleModel": {
         "description": "Model for User Role",
         "properties": {
@@ -58,6 +68,11 @@
             "readOnly": true,
             "type": "array"
           },
+          "codeRepositoryIds": {
+            "description": "Accessible Code Repository IDs",
+            "items": { "type": "string" },
+            "type": "array"
+          },
           "description": { "description": "Description", "type": "string" },
           "id": {
             "description": "User Role ID",
@@ -76,6 +91,7 @@
             "type": "integer"
           },
           "name": { "description": "Name", "type": "string" },
+          "permissionGroup": { "$ref": "#/components/schemas/PermissionGroup" },
           "resourceListIds": {
             "description": "Accessible Resource List IDs",
             "items": { "type": "string" },
@@ -127,6 +143,11 @@
             "readOnly": true,
             "type": "array"
           },
+          "codeRepositoryIds": {
+            "description": "Accessible Code Repository IDs",
+            "items": { "type": "string" },
+            "type": "array"
+          },
           "description": { "description": "Description", "type": "string" },
           "id": {
             "description": "User Role ID",
@@ -145,6 +166,7 @@
             "type": "integer"
           },
           "name": { "description": "Name", "type": "string" },
+          "permissionGroup": { "$ref": "#/components/schemas/PermissionGroup" },
           "resourceListIds": {
             "description": "Accessible Resource List IDs",
             "items": { "type": "string" },
@@ -236,11 +258,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role\"\n\npayload = {\n    \"accountGroupIds\": [\"string\"],\n    \"additionalAttributes\": {\n        \"hasDefenderPermissions\": True,\n        \"onlyAllowCIAccess\": True,\n        \"onlyAllowComputeAccess\": True\n    },\n    \"description\": \"string\",\n    \"name\": \"string\",\n    \"resourceListIds\": [\"string\"],\n    \"restrictDismissalAccess\": True,\n    \"roleType\": \"System Admin\"\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role\"\n\npayload = {\n    \"accountGroupIds\": [\"string\"],\n    \"additionalAttributes\": {\n        \"hasDefenderPermissions\": True,\n        \"onlyAllowCIAccess\": True,\n        \"onlyAllowComputeAccess\": True\n    },\n    \"codeRepositoryIds\": [\"string\"],\n    \"description\": \"string\",\n    \"name\": \"string\",\n    \"permissionGroup\": {\n        \"custom\": True,\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"systemAdmin\": True,\n        \"systemAdminOrComputeAdmin\": True\n    },\n    \"resourceListIds\": [\"string\"],\n    \"restrictDismissalAccess\": True,\n    \"roleType\": \"System Admin\"\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/user/role \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountGroupIds\":[\"string\"],\"additionalAttributes\":{\"hasDefenderPermissions\":true,\"onlyAllowCIAccess\":true,\"onlyAllowComputeAccess\":true},\"description\":\"string\",\"name\":\"string\",\"resourceListIds\":[\"string\"],\"restrictDismissalAccess\":true,\"roleType\":\"System Admin\"}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/user/role \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountGroupIds\":[\"string\"],\"additionalAttributes\":{\"hasDefenderPermissions\":true,\"onlyAllowCIAccess\":true,\"onlyAllowComputeAccess\":true},\"codeRepositoryIds\":[\"string\"],\"description\":\"string\",\"name\":\"string\",\"permissionGroup\":{\"custom\":true,\"id\":\"string\",\"name\":\"string\",\"systemAdmin\":true,\"systemAdminOrComputeAdmin\":true},\"resourceListIds\":[\"string\"],\"restrictDismissalAccess\":true,\"roleType\":\"System Admin\"}'"
           }
         ]
       }
@@ -284,7 +306,7 @@
     },
     "/user/role/type": {
       "get": {
-        "description": "Returns a list of permission groups to which users belong.",
+        "description": "Returns a list of permission groups to which users can belong.",
         "operationId": "get-user-role-types",
         "responses": {
           "200": {
@@ -409,11 +431,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/{id}\"\n\npayload = {\n    \"accountGroupIds\": [\"string\"],\n    \"additionalAttributes\": {\n        \"hasDefenderPermissions\": True,\n        \"onlyAllowCIAccess\": True,\n        \"onlyAllowComputeAccess\": True\n    },\n    \"description\": \"string\",\n    \"name\": \"string\",\n    \"resourceListIds\": [\"string\"],\n    \"restrictDismissalAccess\": True,\n    \"roleType\": \"System Admin\"\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/user/role/{id}\"\n\npayload = {\n    \"accountGroupIds\": [\"string\"],\n    \"additionalAttributes\": {\n        \"hasDefenderPermissions\": True,\n        \"onlyAllowCIAccess\": True,\n        \"onlyAllowComputeAccess\": True\n    },\n    \"codeRepositoryIds\": [\"string\"],\n    \"description\": \"string\",\n    \"name\": \"string\",\n    \"permissionGroup\": {\n        \"custom\": True,\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"systemAdmin\": True,\n        \"systemAdminOrComputeAdmin\": True\n    },\n    \"resourceListIds\": [\"string\"],\n    \"restrictDismissalAccess\": True,\n    \"roleType\": \"System Admin\"\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/user/role/{id} \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountGroupIds\":[\"string\"],\"additionalAttributes\":{\"hasDefenderPermissions\":true,\"onlyAllowCIAccess\":true,\"onlyAllowComputeAccess\":true},\"description\":\"string\",\"name\":\"string\",\"resourceListIds\":[\"string\"],\"restrictDismissalAccess\":true,\"roleType\":\"System Admin\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/user/role/{id} \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountGroupIds\":[\"string\"],\"additionalAttributes\":{\"hasDefenderPermissions\":true,\"onlyAllowCIAccess\":true,\"onlyAllowComputeAccess\":true},\"codeRepositoryIds\":[\"string\"],\"description\":\"string\",\"name\":\"string\",\"permissionGroup\":{\"custom\":true,\"id\":\"string\",\"name\":\"string\",\"systemAdmin\":true,\"systemAdminOrComputeAdmin\":true},\"resourceListIds\":[\"string\"],\"restrictDismissalAccess\":true,\"roleType\":\"System Admin\"}'"
           }
         ]
       },
