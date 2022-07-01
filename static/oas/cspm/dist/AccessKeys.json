@@ -1,18 +1,6 @@
 {
   "components": {
-    "requestBodies": {
-      "UserAccessKeyRequestModel": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/UserAccessKeyRequestModel"
-            }
-          }
-        },
-        "description": "Model for user access key",
-        "required": true
-      }
-    },
+    "requestBodies": {},
     "securitySchemes": {
       "x-redlock-auth": {
         "description": "The x-redlock-auth value is a JSON Web Token (JWT).",
@@ -229,51 +217,6 @@
           {
             "lang": "Shell + Curl",
             "source": "curl --request GET \\\n  --url https://api.prismacloud.io/access_keys/{id} \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
-          }
-        ]
-      },
-      "put": {
-        "description": "Updates data for the access key that has the specified ID.  \r\n\r\nThe following request body parameters are unused and should be ignored:\n* **serviceAccountName** \n* **expiredOn** \n",
-        "operationId": "update-access-keys",
-        "parameters": [
-          {
-            "description": "Access key ID",
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": { "format": "uuid", "type": "string" }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserAccessKeyRequestModel"
-              }
-            }
-          },
-          "description": "Model for user access key",
-          "required": true
-        },
-        "responses": {
-          "200": { "description": "successful operation" },
-          "400": {
-            "description": "user_inactive_or_not_exist / invalid_access_key_name_length / invalid_access_key_name / non_existing_access_key / invalid_expiry_access_key / expired_access_key"
-          },
-          "403": { "description": "unauthorized_to_use_access_keys" },
-          "500": { "description": "failed_fetch_user_profile" }
-        },
-        "security": [{ "x-redlock-auth": [] }],
-        "summary": "Update Access Key",
-        "tags": ["Access Keys"],
-        "x-codeSamples": [
-          {
-            "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/access_keys/{id}\"\n\npayload = {\n    \"expiresOn\": 0,\n    \"name\": \"string\",\n    \"serviceAccountName\": \"string\"\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
-          },
-          {
-            "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/access_keys/{id} \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"expiresOn\":0,\"name\":\"string\",\"serviceAccountName\":\"string\"}'"
           }
         ]
       },

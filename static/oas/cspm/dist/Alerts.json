@@ -129,10 +129,7 @@
             ]
           },
           "policy.severity": {
-            "allOf": [
-              { "$ref": "#/components/schemas/FilterSuggestion" },
-              { "readOnly": true }
-            ]
+            "$ref": "#/components/schemas/FilterSuggestion"
           },
           "policy.subtype": {
             "allOf": [
@@ -520,6 +517,8 @@
             "readOnly": true,
             "type": "string"
           },
+          "resourceConfigJsonAvailable": { "type": "boolean" },
+          "resourceDetailsAvailable": { "type": "boolean" },
           "resourceTags": {
             "additionalProperties": { "type": "string" },
             "description": "Resource tags",
@@ -531,6 +530,7 @@
             "type": "string"
           },
           "rrn": { "description": "RRN", "type": "string" },
+          "unifiedAssetId": { "type": "string" },
           "url": { "description": "URL", "type": "string" }
         },
         "type": "object"
@@ -1729,7 +1729,10 @@
             "in": "query",
             "name": "policy.severity",
             "required": false,
-            "schema": { "enum": ["low", "medium", "high"], "type": "string" }
+            "schema": {
+              "enum": ["critical", "high", "medium", "low", "informational"],
+              "type": "string"
+            }
           },
           {
             "description": "Policy label",
@@ -2037,7 +2040,10 @@
             "in": "query",
             "name": "policy.severity",
             "required": false,
-            "schema": { "enum": ["low", "medium", "high"], "type": "string" }
+            "schema": {
+              "enum": ["critical", "high", "medium", "low", "informational"],
+              "type": "string"
+            }
           },
           {
             "description": "Policy label",
@@ -2276,7 +2282,10 @@
             "in": "query",
             "name": "policy.severity",
             "required": false,
-            "schema": { "enum": ["low", "medium", "high"], "type": "string" }
+            "schema": {
+              "enum": ["critical", "high", "medium", "low", "informational"],
+              "type": "string"
+            }
           },
           {
             "description": "Policy label",
