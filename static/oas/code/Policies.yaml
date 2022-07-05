@@ -87,7 +87,9 @@ components:
       - ending_with
       - not_ending_with
       - jsonpath_equals
+      - jsonpath_not_equals
       - jsonpath_exists
+      - jsonpath_not_exists
       - subset
       - not_subset
       type: string
@@ -2889,9 +2891,6 @@ paths:
       summary: Validate policies - code-based
       tags:
       - Policies
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-policies-api
-      x-bc-permitted-roles: owner,admin
   /code/api/v1/policies:
     post:
       description: 'Prisma Cloud Code Security supports policy-as-code capabilities
@@ -2973,9 +2972,6 @@ paths:
       summary: Save new policy
       tags:
       - Policies
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-policies-api
-      x-bc-permitted-roles: owner,admin
   /code/api/v1/policies/table/data:
     get:
       description: 'Prisma Cloud Code Security supports policy-as-code capabilities
@@ -3146,9 +3142,6 @@ paths:
       summary: Get custom policies table data
       tags:
       - Policies
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-policies-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
   /code/api/v1/policies/{policyId}:
     put:
       description: 'Prisma Cloud Code Security supports policy-as-code capabilities
@@ -3236,9 +3229,6 @@ paths:
       summary: Update policy
       tags:
       - Policies
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-policies-api
-      x-bc-permitted-roles: owner,admin
     delete:
       description: 'Prisma Cloud Code Security supports policy-as-code capabilities
         using YAML-based policy definition files to enable attribute and connection
@@ -3283,9 +3273,6 @@ paths:
       summary: Delete policy
       tags:
       - Policies
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-policies-api
-      x-bc-permitted-roles: owner,admin
   /code/api/v1/policies/preview:
     post:
       description: 'Prisma Cloud Code Security supports policy-as-code capabilities
@@ -3384,9 +3371,6 @@ paths:
       summary: Policy Preview
       tags:
       - Policies
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-policies-api
-      x-bc-permitted-roles: owner,admin
   /code/api/v1/policies/clone/{policyId}:
     post:
       description: 'Prisma Cloud Code Security supports policy-as-code capabilities
@@ -3454,9 +3438,6 @@ paths:
       summary: Policy Clone
       tags:
       - Policies
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-policies-api
-      x-bc-permitted-roles: owner,admin
 servers:
 - url: https://api.prismacloud.io
 tags:

@@ -144,9 +144,6 @@ paths:
       summary: Fix infrastructure as code configuration errors
       tags:
       - CodeFixes
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-remediations-fixes-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
 servers:
 - url: https://api.prismacloud.io
 tags:

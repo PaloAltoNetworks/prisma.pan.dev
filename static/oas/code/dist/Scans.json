@@ -54,9 +54,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Trigger a Scan",
         "tags": ["Scans"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-scannersv2-api",
-        "x-bc-permitted-roles": "owner",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",

@@ -389,9 +389,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "List suppression rules",
         "tags": ["Suppressions"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-compliances-suppressions-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer,auditor",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -475,9 +472,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Create new suppression by policy id",
         "tags": ["Suppressions"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-compliances-suppressions-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -574,9 +568,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Update suppression by policy id and suppression id",
         "tags": ["Suppressions"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-compliances-suppressions-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -612,9 +603,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Delete one suppression by suppression id and violation id",
         "tags": ["Suppressions"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-compliances-suppressions-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -707,9 +695,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Get suppressions justifications by policy id and query accounts",
         "tags": ["Suppressions"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-compliances-suppressions-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer,auditor",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",

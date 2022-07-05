@@ -58,9 +58,6 @@ paths:
       summary: Trigger a Scan
       tags:
       - Scans
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-scannersv2-api
-      x-bc-permitted-roles: owner
 servers:
 - url: https://api.prismacloud.io
 tags:

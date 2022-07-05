@@ -157,9 +157,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Perform Twistlock scanning",
         "tags": ["Twistlock"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-vulnerabilities-twistlock-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer,auditor",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -199,9 +196,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Return the scan results for the input scan-id if exist. otherwise, return NotFound Error",
         "tags": ["Twistlock"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-vulnerabilities-twistlock-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer,auditor",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -235,9 +229,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "save exsiting the scan results in the cache",
         "tags": ["Twistlock"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-vulnerabilities-twistlock-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer,auditor",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -272,9 +263,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Download twistcli",
         "tags": ["Twistlock"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-vulnerabilities-twistlock-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer,auditor",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -319,9 +307,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "evaluate cves from packages",
         "tags": ["Twistlock"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-vulnerabilities-twistlock-api",
-        "x-bc-permitted-roles": "owner,admin,member",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",

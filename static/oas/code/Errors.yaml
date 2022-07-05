@@ -1100,9 +1100,6 @@ paths:
       summary: Lists scanned files that contain errors.
       tags:
       - Errors
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-projects-errors-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
   /code/api/v1/errors/file:
     post:
       description: List errors in files
@@ -1183,9 +1180,6 @@ paths:
       summary: Lists all errors found in a given file path.
       tags:
       - Errors
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-projects-errors-api
-      x-bc-permitted-roles: owner,admin,member,auditor,developer
   /code/api/v1/errors/files/{uuid}:
     get:
       description: Get the file metadata by UUID based on the customer's repository
@@ -1230,9 +1224,6 @@ paths:
       summary: Get the file metadata by UUID
       tags:
       - Errors
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-projects-errors-api
-      x-bc-permitted-roles: owner,admin,member,auditor,developer
   /code/api/v1/errors/gitBlameAuthors:
     get:
       description: Get all git blame author names per full repo name (owner and name)
@@ -1275,9 +1266,6 @@ paths:
       summary: List all the git authors of a repository
       tags:
       - Errors
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-projects-errors-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
   /code/api/v1/errors/submitActions:
     post:
       description: 'This api receive type of submit (PR\DEFAULT), array of violationsToSuppress
@@ -1375,9 +1363,6 @@ paths:
       summary: Submit remediation and suppression actions
       tags:
       - Errors
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-projects-errors-api
-      x-bc-permitted-roles: owner,admin,member,developer
   /code/api/v1/errors/getFixedCode:
     post:
       description: Returns a remediated resource code
@@ -1413,9 +1398,6 @@ paths:
       summary: Get a fixed resource code using the selectedFix
       tags:
       - Errors
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-projects-errors-api
-      x-bc-permitted-roles: owner,admin,member,developer
   /code/api/v1/errors/supply-chain-fix:
     post:
       description: 'The API is responsible for handling remediations from the supply
@@ -1455,9 +1437,6 @@ paths:
       summary: Submit remediation operations from the supply chain screen
       tags:
       - Errors
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-projects-errors-api
-      x-bc-permitted-roles: owner,admin,member,developer
 servers:
 - url: https://api.prismacloud.io
 tags:

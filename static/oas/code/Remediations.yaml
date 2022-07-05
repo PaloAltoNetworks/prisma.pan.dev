@@ -19,6 +19,8 @@ components:
     CreateFixRequestResources:
       additionalProperties: false
       properties:
+        fixPath:
+          type: string
         frameworkType:
           type: string
         fullId:
@@ -34,6 +36,8 @@ components:
         resourceId:
           type: string
         s3FilePath:
+          type: string
+        s3FixFilePath:
           type: string
         violationId:
           type: string
@@ -126,9 +130,6 @@ paths:
       summary: Remediation for build time
       tags:
       - Remediations
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-remediation-controller
-      x-bc-permitted-roles: owner,admin,member,developer
   /code/api/v1/remediations/buildtime/{fixId}:
     get:
       description: Get the remediation fix code for fix ID
@@ -163,9 +164,6 @@ paths:
       summary: Get Remediation fix code
       tags:
       - Remediations
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-remediation-controller
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
   /code/api/v1/remediations/buildtime/baseFile/{filename}:
     get:
       description: Get the base file code for the remediation
@@ -198,9 +196,6 @@ paths:
       summary: Get file for remediation
       tags:
       - Remediations
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-remediation-controller
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
 servers:
 - url: https://api.prismacloud.io
 tags:

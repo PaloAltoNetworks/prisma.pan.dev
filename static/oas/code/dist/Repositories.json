@@ -229,9 +229,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "List repository list",
         "tags": ["Repositories"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-vcs-repositories-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer,auditor,service",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -271,9 +268,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Integrate multiple repositories",
         "tags": ["Repositories"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-vcs-repositories-api",
-        "x-bc-permitted-roles": "owner,admin,service",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -342,9 +336,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Get a repository name to UUID mapping of the requested UUIDs",
         "tags": ["Repositories"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-vcs-repositories-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer,auditor,service",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -412,9 +403,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Get the repository branches (that has CICD runs)",
         "tags": ["Repositories"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-vcs-repositories-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer,auditor",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -518,9 +506,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "search repositories",
         "tags": ["Repositories"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-vcs-repositories-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer,auditor,service",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",

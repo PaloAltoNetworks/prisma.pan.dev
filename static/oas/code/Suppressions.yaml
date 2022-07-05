@@ -427,9 +427,6 @@ paths:
       summary: List suppression rules
       tags:
       - Suppressions
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-compliances-suppressions-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
   /code/api/v1/suppressions/{policyId}:
     post:
       description: 'Prisma Cloud Code Security supports advanced Suppression rule
@@ -523,9 +520,6 @@ paths:
       summary: Create new suppression by policy id
       tags:
       - Suppressions
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-compliances-suppressions-api
-      x-bc-permitted-roles: owner,admin,member,developer
   /code/api/v1/suppressions/{policyId}/justifications/{suppressionId}:
     put:
       description: 'Prisma Cloud Code Security supports advanced Suppression rule
@@ -637,9 +631,6 @@ paths:
       summary: Update suppression by policy id and suppression id
       tags:
       - Suppressions
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-compliances-suppressions-api
-      x-bc-permitted-roles: owner,admin,member,developer
     delete:
       description: 'Prisma Cloud Code Security supports advanced Suppression rule
         settings in order to make policy management easier by dismissing or snoozing
@@ -687,9 +678,6 @@ paths:
       summary: Delete one suppression by suppression id and violation id
       tags:
       - Suppressions
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-compliances-suppressions-api
-      x-bc-permitted-roles: owner,admin,member,developer
   /code/api/v1/suppressions/{policyId}/justifications:
     get:
       description: 'Prisma Cloud Code Security supports advanced Suppression rule
@@ -784,9 +772,6 @@ paths:
       summary: Get suppressions justifications by policy id and query accounts
       tags:
       - Suppressions
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-compliances-suppressions-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
 servers:
 - url: https://api.prismacloud.io
 tags:

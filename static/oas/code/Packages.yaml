@@ -141,7 +141,9 @@ components:
         packageId:
           type: string
         packageLicenses:
-          type: string
+          items:
+            type: string
+          type: array
         packageName:
           type: string
         packageVersion:
@@ -292,7 +294,7 @@ paths:
                     packages:
                     - fileMetadataId: 8d79e5a6-399b-42c3-8678-1fc165ca72c5
                       packageId: b3f4f652-b71a-4b8b-8b7f-jd2k359k5d36
-                      packageLicenses: ''
+                      packageLicenses: []
                       packageName: express
                       packageVersion: 4.17.1
               schema:
@@ -305,9 +307,6 @@ paths:
       summary: Get the packages related to a file
       tags:
       - Packages
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-vulnerabilities-packages-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
   /code/api/v1/vulnerabilities/packages/{packageUuid}/direct-sub-dependencies:
     get:
       description: 'Gets all the direct sub-dependencies packages of a specific package.
@@ -349,7 +348,7 @@ paths:
                     directSubDependenciesPackages:
                     - fileMetadataId: 8d79e5a6-399b-42c3-8678-1fc165ca72c5
                       packageId: b3f4f652-b71a-4b8b-8b7f-jd2k359k5d36
-                      packageLicenses: ''
+                      packageLicenses: []
                       packageName: express
                       packageVersion: 4.17.1
                     hasNext: false
@@ -364,9 +363,6 @@ paths:
       summary: Get the direct sub-dependencies packages by source package.
       tags:
       - Packages
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-vulnerabilities-packages-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
   /code/api/v1/vulnerabilities/packages/{packageUuid}:
     get:
       description: 'Gets Package by its uuid.
@@ -396,7 +392,7 @@ paths:
                     errorCount: 3
                     fileMetadataId: 8d79e5a6-399b-42c3-8678-1fc165ca72c5
                     packageId: b3f4f652-b71a-4b8b-8b7f-jd2k359k5d36
-                    packageLicenses: ''
+                    packageLicenses: []
                     packageName: express
                     packageVersion: 4.17.1
               schema:
@@ -409,9 +405,6 @@ paths:
       summary: Get a package.
       tags:
       - Packages
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-vulnerabilities-packages-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
   /code/api/v1/vulnerabilities/packages/search:
     post:
       description: Searching for packages by a given reauestBody.
@@ -434,14 +427,14 @@ paths:
                     fileMetadataId: 8d79e5a6-399b-42c3-8678-1fc165ca72c5
                     fixableErrorCount: 1
                     packageId: a11294e7-e2e8-44c4-b48e-20305eb0000d
-                    packageLicenses: ''
+                    packageLicenses: []
                     packageName: validator
                     packageVersion: 8.2.0
                   - errorCount: 2
                     fileMetadataId: 8d79e5a6-399b-42c3-8678-1fc165ca72c5
                     fixableErrorCount: 2
                     packageId: d1b67af0-f168-4370-9d65-084fb6b1fa17
-                    packageLicenses: ''
+                    packageLicenses: []
                     packageName: validator
                     packageVersion: 8.2.0
               schema:
@@ -454,9 +447,6 @@ paths:
       summary: Searching for packages.
       tags:
       - Packages
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-vulnerabilities-packages-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
   /code/api/v1/vulnerabilities/packages/{packageUuid}/cves:
     get:
       description: Get cves by package uuid.
@@ -529,9 +519,6 @@ paths:
       summary: Get cves by package uuid.
       tags:
       - Packages
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-vulnerabilities-packages-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
 servers:
 - url: https://api.prismacloud.io
 tags:

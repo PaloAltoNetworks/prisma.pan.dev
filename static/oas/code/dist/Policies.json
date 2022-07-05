@@ -81,7 +81,9 @@
           "ending_with",
           "not_ending_with",
           "jsonpath_equals",
+          "jsonpath_not_equals",
           "jsonpath_exists",
+          "jsonpath_not_exists",
           "subset",
           "not_subset"
         ],
@@ -2840,9 +2842,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Validate policies - code-based",
         "tags": ["Policies"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-policies-api",
-        "x-bc-permitted-roles": "owner,admin",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -2927,9 +2926,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Save new policy",
         "tags": ["Policies"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-policies-api",
-        "x-bc-permitted-roles": "owner,admin",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -3111,9 +3107,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Get custom policies table data",
         "tags": ["Policies"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-policies-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer,auditor",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -3205,9 +3198,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Update policy",
         "tags": ["Policies"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-policies-api",
-        "x-bc-permitted-roles": "owner,admin",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -3255,9 +3245,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Delete policy",
         "tags": ["Policies"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-policies-api",
-        "x-bc-permitted-roles": "owner,admin",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -3353,9 +3340,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Policy Preview",
         "tags": ["Policies"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-policies-api",
-        "x-bc-permitted-roles": "owner,admin",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -3428,9 +3412,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Policy Clone",
         "tags": ["Policies"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-policies-api",
-        "x-bc-permitted-roles": "owner,admin",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",

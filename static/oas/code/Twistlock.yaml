@@ -188,9 +188,6 @@ paths:
       summary: Perform Twistlock scanning
       tags:
       - Twistlock
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-vulnerabilities-twistlock-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
   /code/api/v1/vulnerabilities/scan-results/{inputId}:
     get:
       operationId: returnScanResult
@@ -215,9 +212,6 @@ paths:
         return NotFound Error
       tags:
       - Twistlock
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-vulnerabilities-twistlock-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
   /code/api/v1/vulnerabilities/scan-results:
     post:
       operationId: saveScanResult
@@ -238,9 +232,6 @@ paths:
       summary: save exsiting the scan results in the cache
       tags:
       - Twistlock
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-vulnerabilities-twistlock-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
   /code/api/v1/vulnerabilities/twistcli:
     get:
       description: Download twistcli binary by OS
@@ -261,9 +252,6 @@ paths:
       summary: Download twistcli
       tags:
       - Twistlock
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-vulnerabilities-twistlock-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
   /code/api/v1/vulnerabilities/evaluate-cves:
     post:
       description: evaluate cves from packages (if has)
@@ -291,9 +279,6 @@ paths:
       summary: evaluate cves from packages
       tags:
       - Twistlock
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-vulnerabilities-twistlock-api
-      x-bc-permitted-roles: owner,admin,member
 servers:
 - url: https://api.prismacloud.io
 tags:

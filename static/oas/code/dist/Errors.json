@@ -881,9 +881,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Lists scanned files that contain errors.",
         "tags": ["Errors"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-projects-errors-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer,auditor",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -979,9 +976,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Lists all errors found in a given file path.",
         "tags": ["Errors"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-projects-errors-api",
-        "x-bc-permitted-roles": "owner,admin,member,auditor,developer",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -1046,9 +1040,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Get the file metadata by UUID",
         "tags": ["Errors"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-projects-errors-api",
-        "x-bc-permitted-roles": "owner,admin,member,auditor,developer",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -1098,9 +1089,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "List all the git authors of a repository",
         "tags": ["Errors"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-projects-errors-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer,auditor",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -1225,9 +1213,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Submit remediation and suppression actions",
         "tags": ["Errors"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-projects-errors-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -1279,9 +1264,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Get a fixed resource code using the selectedFix",
         "tags": ["Errors"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-projects-errors-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -1335,9 +1317,6 @@
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Submit remediation operations from the supply chain screen",
         "tags": ["Errors"],
-        "x-bc-docs-scope": "standalone,prisma",
-        "x-bc-lambda-name": "bc-projects-errors-api",
-        "x-bc-permitted-roles": "owner,admin,member,developer",
         "x-codeSamples": [
           {
             "lang": "Python + Requests",

@@ -258,9 +258,6 @@ paths:
       summary: List repository list
       tags:
       - Repositories
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-vcs-repositories-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor,service
     post:
       description: "Onboard a list of repositories for a given integration\nParameters:\n\
         \n| Name | Required                | Type          | In   | Description  \
@@ -311,9 +308,6 @@ paths:
       summary: Integrate multiple repositories
       tags:
       - Repositories
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-vcs-repositories-api
-      x-bc-permitted-roles: owner,admin,service
   /code/api/v1/repositories/query:
     post:
       description: Get a mapping between repository ids provided to the corresponding
@@ -353,9 +347,6 @@ paths:
       summary: Get a repository name to UUID mapping of the requested UUIDs
       tags:
       - Repositories
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-vcs-repositories-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor,service
   /code/api/v1/repositories/branches:
     get:
       description: 'Get a list with all the repositories branches for the requesting
@@ -405,9 +396,6 @@ paths:
       summary: Get the repository branches (that has CICD runs)
       tags:
       - Repositories
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-vcs-repositories-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor
   /code/api/v1/repositories/search:
     get:
       description: 'Get a list with all the repositories of customer
@@ -485,9 +473,6 @@ paths:
       summary: search repositories
       tags:
       - Repositories
-      x-bc-docs-scope: standalone,prisma
-      x-bc-lambda-name: bc-vcs-repositories-api
-      x-bc-permitted-roles: owner,admin,member,developer,auditor,service
 servers:
 - url: https://api.prismacloud.io
 tags:
