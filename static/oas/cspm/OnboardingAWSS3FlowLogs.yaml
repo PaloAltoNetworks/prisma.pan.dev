@@ -65,7 +65,7 @@ info:
   contact: {}
   description: "You can use the AWS S3 Flow Logs API for AWS S3 onboarding for organization\
     \ \nand standalone accounts on all supported stacks.\n"
-  title: AWS S3 Flow Logs Overview
+  title: Prisma Cloud AWS S3 Flow Logs Overview
   version: Latest
 openapi: 3.0.0
 paths:
@@ -98,6 +98,40 @@ paths:
       security:
       - x-redlock-auth: []
       summary: Fetches AWS S3 Flow Log details
+      tags:
+      - Onboarding AWS S3 Flow Logs
+    patch:
+      description: Saves  AWS S3 Flow Log feature details of monitored account.
+      operationId: save-aws-s3-flowlog
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AwsS3FlowLogsModel'
+        description: AWS S3 Flow Logs feature
+        required: true
+      responses:
+        '201':
+          description: success
+        '400':
+          description: invalid_parameter_value / bad_request / missing_required_parameter
+            / Logging account and monitored account are in different partition / logging_account_bucket_not_found
+            / AWS Flow Logs S3 feature not supported for account
+        '401':
+          description: unauthorized_access
+        '404':
+          description: account_not_exist_or_disabled / logging_account_not_exists
+        '500':
+          description: internal_error
+      security:
+      - x-redlock-auth: []
+      summary: Saves AWS S3 Flow Log details
       tags:
       - Onboarding AWS S3 Flow Logs
   /cloud-accounts-manager/v1/cloud-accounts/aws/{accountId}/features/aws-flow-logs/s3/status:
