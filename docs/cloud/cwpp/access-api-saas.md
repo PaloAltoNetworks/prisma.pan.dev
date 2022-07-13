@@ -15,28 +15,6 @@ By default, the Prisma Cloud System Admin role is mapped to the Prisma Cloud Com
 
 For automated workflows, you'll want to provision a service account with the minimum required permissions.
 
-
-## Accessing the API using Basic authentication
-
-Get your Compute Console's address and then use basic auth to access the API.
-
-1. Get the path to your Console.
-
-   1. Go to **Compute > Manage > System > Utilities**.
-
-   1. Under **Path to Console**, click **Copy**.
-
-1. Access an API endpoint.
-
-   In this example, retrieve the rules in your compliance policy.
-   The Auditor role has permission to see this data.
-
-   ```
-   $ curl \
-   -u <PRISMA_CLOUD_USER> \
-   https://<CONSOLE>/api/v1/policies/compliance/container
-   ```
-
 ## Accessing the API using token authentication
 
 Get your Compute Console's address, retrieve an token, then use the token to access the API.
