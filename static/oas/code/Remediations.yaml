@@ -199,5 +199,4 @@ paths:
 servers:
 - url: https://api.prismacloud.io
 tags:
-- description: The Remediations endpoints are listed below.
-  name: Remediations
+- name: Remediations

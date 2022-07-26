@@ -61,5 +61,4 @@ paths:
 servers:
 - url: https://api.prismacloud.io
 tags:
-- description: The Scans endpoints are listed below.
-  name: Scans
+- name: Scans

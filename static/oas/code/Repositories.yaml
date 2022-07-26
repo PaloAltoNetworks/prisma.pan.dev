@@ -476,5 +476,4 @@ paths:
 servers:
 - url: https://api.prismacloud.io
 tags:
-- description: The Repositories endpoints are listed below.
-  name: Repositories
+- name: Repositories

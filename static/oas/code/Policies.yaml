@@ -1226,6 +1226,7 @@ components:
       - compute
       - vcs
       - pipelinesandvcs
+      - licenses
       type: string
     CategoryTypeBig:
       enum:
@@ -1244,6 +1245,7 @@ components:
       - Compute
       - VCS
       - PipelinesAndVCS
+      - Licenses
       type: string
     ClonePolicy:
       additionalProperties: false
@@ -2060,6 +2062,20 @@ components:
             - $ref: '#/components/schemas/FilterQuery'
             - $ref: '#/components/schemas/ComplexQuery'
           type: array
+        not:
+          anyOf:
+          - items:
+              anyOf:
+              - $ref: '#/components/schemas/AttributeQuery'
+              - $ref: '#/components/schemas/ConnectionQuery'
+              - $ref: '#/components/schemas/FilterQuery'
+              - $ref: '#/components/schemas/ComplexQuery'
+            type: array
+          - anyOf:
+            - $ref: '#/components/schemas/AttributeQuery'
+            - $ref: '#/components/schemas/ConnectionQuery'
+            - $ref: '#/components/schemas/FilterQuery'
+            - $ref: '#/components/schemas/ComplexQuery'
         or:
           items:
             anyOf:
@@ -2665,6 +2681,7 @@ components:
       - Linode
       - DigitalOcean
       - PANOS
+      - Licenses
       type: string
     ProviderType:
       enum:
@@ -2679,6 +2696,7 @@ components:
       - linode
       - digitalocean
       - panos
+      - licenses
       type: string
     QueryPreview:
       additionalProperties: false
@@ -3441,5 +3459,4 @@ paths:
 servers:
 - url: https://api.prismacloud.io
 tags:
-- description: The Policies endpoints are listed below.
-  name: Policies
+- name: Policies

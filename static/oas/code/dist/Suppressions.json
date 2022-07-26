@@ -709,10 +709,5 @@
     }
   },
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The Suppressions endpoints are listed below.",
-      "name": "Suppressions"
-    }
-  ]
+  "tags": [{ "name": "Suppressions" }]
 }

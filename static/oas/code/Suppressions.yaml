@@ -775,5 +775,4 @@ paths:
 servers:
 - url: https://api.prismacloud.io
 tags:
-- description: The Suppressions endpoints are listed below.
-  name: Suppressions
+- name: Suppressions

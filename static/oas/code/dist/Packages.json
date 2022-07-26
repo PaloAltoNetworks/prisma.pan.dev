@@ -102,6 +102,7 @@
         "enum": ["errorCount", "fixableErrorCount", "file", "repository"],
         "type": "string"
       },
+      "LicenseStatuses": { "enum": ["OPEN", "COMPLIANT"], "type": "string" },
       "PackageData": {
         "additionalProperties": false,
         "properties": {
@@ -109,7 +110,7 @@
           "fileMetadataId": { "type": "string" },
           "fileMetadataPath": { "type": "string" },
           "fixableErrorCount": { "format": "double", "type": "number" },
-          "isRoot": { "type": "string" },
+          "isRoot": { "type": "boolean" },
           "packageId": { "type": "string" },
           "packageLicenses": { "items": { "type": "string" }, "type": "array" },
           "packageName": { "type": "string" },
@@ -137,6 +138,42 @@
           "packageVersion",
           "packageLicenses"
         ],
+        "type": "object"
+      },
+      "PackageLang": {
+        "enum": ["nodejs", "ruby", "python", "jar", "dotNet", "go", "os"],
+        "type": "string"
+      },
+      "PackageNameVersionLicenseViolationData": {
+        "additionalProperties": false,
+        "properties": {
+          "license": { "type": "string" },
+          "packageLang": { "$ref": "#/components/schemas/PackageLang" },
+          "packageName": { "type": "string" },
+          "packageVersion": { "type": "string" },
+          "policy": { "type": "string" },
+          "status": { "$ref": "#/components/schemas/LicenseStatuses" }
+        },
+        "required": [
+          "packageName",
+          "packageVersion",
+          "license",
+          "status",
+          "policy"
+        ],
+        "type": "object"
+      },
+      "PackagesLicenseAlertsResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "packages": {
+            "items": {
+              "$ref": "#/components/schemas/PackageNameVersionLicenseViolationData"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["packages"],
         "type": "object"
       },
       "PackagesSearchBody": {
@@ -180,7 +217,13 @@
         "type": "object"
       },
       "Sort": { "enum": ["errors"], "nullable": false, "type": "string" },
-      "Status": { "enum": ["OPEN", "SUPPRESS", "PASS"], "type": "string" }
+      "Status": { "enum": ["OPEN", "SUPPRESS", "PASS"], "type": "string" },
+      "createScaVulnerabilitiesRequest": {
+        "additionalProperties": false,
+        "properties": { "s3ObjectKey": { "type": "string" } },
+        "required": ["s3ObjectKey"],
+        "type": "object"
+      }
     }
   },
   "info": {
@@ -574,10 +617,5 @@
     }
   },
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The Packages endpoints are listed below.",
-      "name": "Packages"
-    }
-  ]
+  "tags": [{ "name": "Packages" }]
 }

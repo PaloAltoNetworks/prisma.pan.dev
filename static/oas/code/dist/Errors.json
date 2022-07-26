@@ -344,7 +344,26 @@
           "yarn.lock",
           "Gemfile",
           "Gemfile.lock",
-          "gemspec"
+          "gemspec",
+          "env",
+          "settings.py",
+          "main.py",
+          "application.py",
+          "config.py",
+          "app.js",
+          "config.js",
+          "dev.js",
+          "db.properties",
+          "application.properties",
+          "private.pem",
+          "privatekey.pem",
+          "index.php",
+          "config.php",
+          "config.xml",
+          "strings.xml",
+          "app.module.ts",
+          "environment.ts",
+          "tpl"
         ],
         "type": "string"
       },
@@ -1331,10 +1350,5 @@
     }
   },
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The Errors endpoints are listed below.",
-      "name": "Errors"
-    }
-  ]
+  "tags": [{ "name": "Errors" }]
 }

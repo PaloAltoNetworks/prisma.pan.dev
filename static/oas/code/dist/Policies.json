@@ -1221,7 +1221,8 @@
           "vulnerabilities",
           "compute",
           "vcs",
-          "pipelinesandvcs"
+          "pipelinesandvcs",
+          "licenses"
         ],
         "type": "string"
       },
@@ -1241,7 +1242,8 @@
           "Vulnerabilities",
           "Compute",
           "VCS",
-          "PipelinesAndVCS"
+          "PipelinesAndVCS",
+          "Licenses"
         ],
         "type": "string"
       },
@@ -2063,6 +2065,29 @@
             },
             "type": "array"
           },
+          "not": {
+            "anyOf": [
+              {
+                "items": {
+                  "anyOf": [
+                    { "$ref": "#/components/schemas/AttributeQuery" },
+                    { "$ref": "#/components/schemas/ConnectionQuery" },
+                    { "$ref": "#/components/schemas/FilterQuery" },
+                    { "$ref": "#/components/schemas/ComplexQuery" }
+                  ]
+                },
+                "type": "array"
+              },
+              {
+                "anyOf": [
+                  { "$ref": "#/components/schemas/AttributeQuery" },
+                  { "$ref": "#/components/schemas/ConnectionQuery" },
+                  { "$ref": "#/components/schemas/FilterQuery" },
+                  { "$ref": "#/components/schemas/ComplexQuery" }
+                ]
+              }
+            ]
+          },
           "or": {
             "items": {
               "anyOf": [
@@ -2641,7 +2666,8 @@
           "Prisma Cloud Code Security",
           "Linode",
           "DigitalOcean",
-          "PANOS"
+          "PANOS",
+          "Licenses"
         ],
         "type": "string"
       },
@@ -2657,7 +2683,8 @@
           "git",
           "linode",
           "digitalocean",
-          "panos"
+          "panos",
+          "licenses"
         ],
         "type": "string"
       },
@@ -3426,10 +3453,5 @@
     }
   },
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [
-    {
-      "description": "The Policies endpoints are listed below.",
-      "name": "Policies"
-    }
-  ]
+  "tags": [{ "name": "Policies" }]
 }

@@ -147,5 +147,4 @@ paths:
 servers:
 - url: https://api.prismacloud.io
 tags:
-- description: The CodeFixes endpoints are listed below.
-  name: CodeFixes
+- name: CodeFixes

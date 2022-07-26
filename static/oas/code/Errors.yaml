@@ -447,6 +447,25 @@ components:
       - Gemfile
       - Gemfile.lock
       - gemspec
+      - env
+      - settings.py
+      - main.py
+      - application.py
+      - config.py
+      - app.js
+      - config.js
+      - dev.js
+      - db.properties
+      - application.properties
+      - private.pem
+      - privatekey.pem
+      - index.php
+      - config.php
+      - config.xml
+      - strings.xml
+      - app.module.ts
+      - environment.ts
+      - tpl
       type: string
     GetErrorsFilesResponseBody:
       additionalProperties: false
@@ -1440,5 +1459,4 @@ paths:
 servers:
 - url: https://api.prismacloud.io
 tags:
-- description: The Errors endpoints are listed below.
-  name: Errors
+- name: Errors
