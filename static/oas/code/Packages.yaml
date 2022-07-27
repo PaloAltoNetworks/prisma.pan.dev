@@ -460,6 +460,47 @@ paths:
       summary: Get a package.
       tags:
       - Packages
+  /code/api/v1/vulnerabilities/packages/license-violations:
+    post:
+      description: 'Get license alerts for packages we get from S3 path
+
+        The API accepts an S3 Path.'
+      operationId: getPackagesLicenseViolations
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createScaVulnerabilitiesRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Example 1:
+                  value:
+                    packages:
+                    - license: BAD_LICENSE
+                      packageName: name_1
+                      packageVersion: version_1
+                      policy: BC_LIC_1
+                      status: OPEN
+                    - license: BAD_LICENSE
+                      packageName: name_2
+                      packageVersion: version_2
+                      policy: BC_LIC_1
+                      status: OPEN
+              schema:
+                $ref: '#/components/schemas/PackagesLicenseAlertsResponse'
+          description: get license alerts for packages
+        '422':
+          description: Request arguments validation error
+      security:
+      - CustomAuthorizer: []
+      summary: Get all package license violations based on package list in S3 path.
+      tags:
+      - Packages
   /code/api/v1/vulnerabilities/packages/search:
     post:
       description: Searching for packages by a given reauestBody.
