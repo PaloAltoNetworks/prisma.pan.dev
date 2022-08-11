@@ -963,7 +963,7 @@ paths:
         \    \"description\": \"\",\n    \"labels\": [],\n    \"name\": \"demo\",\n\
         \    \"policySubTypes\": [\n        \"build\"\n    ],\n    \"policyType\"\
         : \"config\",\n    \"recommendation\": \"\",\n    \"rule\": {\n        \"\
-        children\": [\n            \"criteria\": \"{\\\"category\\\":\\\"Storage\\\
+        children\": [\n            {\n                \"criteria\": \"{\\\"category\\\":\\\"Storage\\\
         \",\\\"resourceTypes\\\":[\\\"aws_s3_bucket\\\"],\\\"conditionQuery\\\":{\\\
         \"attribute\\\":\\\"acl\\\",\\\"operator\\\":\\\"not_equals\\\",\\\"value\\\
         \":\\\"log-delivery-write\\\",\\\"cond_type\\\":\\\"attribute\\\"}}\",\n \
