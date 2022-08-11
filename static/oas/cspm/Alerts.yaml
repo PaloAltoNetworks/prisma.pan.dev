@@ -104,9 +104,7 @@ components:
           - $ref: '#/components/schemas/FilterSuggestion'
           - readOnly: true
         policy.severity:
-          allOf:
-          - $ref: '#/components/schemas/FilterSuggestion'
-          - readOnly: true
+          $ref: '#/components/schemas/FilterSuggestion'
         policy.subtype:
           allOf:
           - $ref: '#/components/schemas/FilterSuggestion'
@@ -500,6 +498,10 @@ components:
           description: Resource API name
           readOnly: true
           type: string
+        resourceConfigJsonAvailable:
+          type: boolean
+        resourceDetailsAvailable:
+          type: boolean
         resourceTags:
           additionalProperties:
             type: string
@@ -511,6 +513,8 @@ components:
           type: string
         rrn:
           description: RRN
+          type: string
+        unifiedAssetId:
           type: string
         url:
           description: URL
@@ -1638,9 +1642,11 @@ paths:
         required: false
         schema:
           enum:
-          - low
-          - medium
+          - critical
           - high
+          - medium
+          - low
+          - informational
           type: string
       - description: Policy label
         in: query
@@ -1927,9 +1933,11 @@ paths:
         required: false
         schema:
           enum:
-          - low
-          - medium
+          - critical
           - high
+          - medium
+          - low
+          - informational
           type: string
       - description: Policy label
         in: query
@@ -2140,9 +2148,11 @@ paths:
         required: false
         schema:
           enum:
-          - low
-          - medium
+          - critical
           - high
+          - medium
+          - low
+          - informational
           type: string
       - description: Policy label
         in: query

@@ -51,6 +51,8 @@ components:
         standardDescription:
           description: Compliance standard description
           type: string
+        standardId:
+          type: string
         standardName:
           description: Compliance standard name
           type: string
@@ -169,6 +171,7 @@ components:
           - network_protection
           - exposure
           - vulnerabilities
+          - runtime_incident
           type: string
         policyId:
           description: Policy ID
@@ -188,6 +191,7 @@ components:
             - run_and_build
             - audit
             - data_classification
+            - dns
             - malware
             - network_event
             - network
@@ -207,6 +211,9 @@ components:
           - anomaly
           - data
           - iam
+          - workload_vulnerability
+          - workload_incident
+          - waas_event
           type: string
         policyUpi:
           description: Policy UPI
@@ -331,9 +338,7 @@ components:
         policy.rule.type:
           $ref: '#/components/schemas/FilterSuggestion'
         policy.severity:
-          allOf:
-          - $ref: '#/components/schemas/FilterSuggestion'
-          - readOnly: true
+          $ref: '#/components/schemas/FilterSuggestion'
         policy.subtype:
           allOf:
           - $ref: '#/components/schemas/FilterSuggestion'
@@ -415,6 +420,7 @@ components:
             - run_and_build
             - audit
             - data_classification
+            - dns
             - malware
             - network_event
             - network
@@ -434,6 +440,9 @@ components:
           - anomaly
           - data
           - iam
+          - workload_vulnerability
+          - workload_incident
+          - waas_event
           type: string
         policyUpi:
           description: Policy UPI
@@ -558,6 +567,7 @@ components:
           - network_protection
           - exposure
           - vulnerabilities
+          - runtime_incident
           type: string
         policyId:
           description: Policy ID
@@ -577,6 +587,7 @@ components:
             - run_and_build
             - audit
             - data_classification
+            - dns
             - malware
             - network_event
             - network
@@ -596,6 +607,9 @@ components:
           - anomaly
           - data
           - iam
+          - workload_vulnerability
+          - workload_incident
+          - waas_event
           type: string
         policyUpi:
           description: Policy UPI
@@ -821,9 +835,11 @@ paths:
         required: false
         schema:
           enum:
+          - critical
           - high
           - medium
           - low
+          - informational
           type: string
       - description: Policy label
         in: query
@@ -973,17 +989,29 @@ paths:
         true\"\n        },\n        \"type\": \"Config\"\n    },\n    \"severity\"\
         : \"low\"\n}\n```\n\n  The JSON below is an example of the minimal request\
         \ body parameters you need to add a Code Security build config policy:\n```json\n\
-        {\n    \"cloudType\": \"aws\",\n    \"name\": \"demo\",\n    \"policySubTypes\"\
-        : [\n        \"build\"\n    ],\n    \"policyType\": \"config\",\n    \"rule\"\
-        : {\n        \"children\": [\n            {\n                \"criteria\"\
-        : \"{\\\"category\\\":\\\"General\\\",\\\"resourceTypes\\\":[\\\"aws_s3_bucket\\\
-        \"],\\\"conditionQuery\\\":{\\\"attribute\\\":\\\"acl\\\",\\\"operator\\\"\
-        :\\\"not_equals\\\",\\\"value\\\":\\\"log-delivery-write\\\",\\\"cond_type\\\
-        \":\\\"attribute\\\"}}\",\n                \"type\": \"build\",\n        \
-        \        \"recommendation\": \"\"\n            }\n        ],\n        \"name\"\
-        : \"demo rule\",\n        \"parameters\": {\n            \"savedSearch\":\
-        \ \"false\",\n            \"withIac\": \"true\"\n        },\n        \"type\"\
-        : \"Config\"\n    },\n    \"severity\": \"medium\"\n} \n``` \n"
+        {\n    \"cloudType\": \"aws/gcp/azure\",\n    \"complianceMetadata\": [],\n\
+        \    \"description\": \"Code Security build policy\",\n    \"labels\": [],\n\
+        \    \"name\": \"demo\",\n    \"policySubTypes\": [\"build\"],\n    \"policyType\"\
+        : \"config\",\n    \"recommendation\": \"\",\n    \"rule\": {\n        \"\
+        children\": [\n            {\n                \"metadata\": {\n          \
+        \          \"code\": \"yaml string\"\n                },\n               \
+        \ \"type\": \"build\",\n                \"recommendation\": \"\"\n       \
+        \     }\n        ],\n        \"name\": \"demo\",\n        \"parameters\":\
+        \ {\n            \"savedSearch\": \"false\",\n            \"withIac\": \"\
+        true\"\n        },\n        \"type\": \"Config\"\n    },\n    \"severity\"\
+        : \"low\",\n    \"enabled\": bool\n}\n```\n\n  The JSON below is an example\
+        \ of the minimal request body parameters you need to add a Code Security run\
+        \ config policy:\n```json\n{\n    \"cloudType\": \"azure\",\n    \"complianceMetadata\"\
+        : [],\n    \"description\": \"Code Security run policy\",\n    \"labels\"\
+        : [],\n    \"name\": \"demo\",\n    \"policySubTypes\": [\"run\"],\n    \"\
+        policyType\": \"config\",\n    \"recommendation\": \"\",\n    \"rule\": {\n\
+        \        \"children\": [\n            {\n                \"metadata\": {\n\
+        \                    \"code\": \"yaml string\"\n                },\n     \
+        \           \"type\": \"build\",\n                \"recommendation\": \"\"\
+        \n            }\n        ],\n        \"name\": \"demo\",\n        \"parameters\"\
+        : {\n            \"savedSearch\": \"true\",\n            \"withIac\": \"true\"\
+        \n        },\n        \"type\": \"Config\"\n    },\n    \"severity\": \"medium\"\
+        ,\n    \"enabled\": bool\n}\n```\n"
       operationId: add-policy
       requestBody:
         $ref: '#/components/requestBodies/PolicyModel'
@@ -1027,9 +1055,11 @@ paths:
         required: false
         schema:
           enum:
+          - critical
           - high
           - medium
           - low
+          - informational
           type: string
       - description: Policy label
         in: query
@@ -1058,6 +1088,7 @@ paths:
           - run_and_build
           - audit
           - data_classification
+          - dns
           - malware
           - network_event
           - network

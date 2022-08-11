@@ -2,7 +2,7 @@ components:
   requestBodies:
     AWSOrgRequestConfigModel:
       content:
-        application/json:
+        application/json; charset=UTF-8:
           schema:
             $ref: '#/components/schemas/AWSOrgRequestConfigModel'
     Resources:
@@ -462,6 +462,9 @@ components:
         enabled:
           description: Enabled
           type: boolean
+        eventbridgeRuleNamePrefix:
+          description: Amazon Event Bridge Rule Name
+          type: string
         externalId:
           description: External ID
           readOnly: true
@@ -583,6 +586,9 @@ components:
         enabled:
           description: Enabled
           type: boolean
+        eventbridgeRuleNamePrefix:
+          description: Amazon Event Bridge Rule Name
+          type: string
         externalId:
           description: External ID
           readOnly: true
@@ -735,8 +741,8 @@ components:
         type:
           description: Node type
           enum:
-          - MANAGEMENT_GROUP
           - TENANT
+          - MANAGEMENT_GROUP
           - ACCOUNT
           type: string
       type: object
@@ -761,6 +767,7 @@ components:
           - MANAGEMENT_GROUP
           - ORGANIZATION
           - TENANT
+          - WORKSPACE_DOMAIN
           readOnly: true
           type: string
         addedOn:
@@ -918,6 +925,7 @@ components:
           - MANAGEMENT_GROUP
           - ORGANIZATION
           - TENANT
+          - WORKSPACE_DOMAIN
           readOnly: true
           type: string
         addedOn:
@@ -1556,6 +1564,7 @@ components:
           - MANAGEMENT_GROUP
           - ORGANIZATION
           - TENANT
+          - WORKSPACE_DOMAIN
           readOnly: true
           type: string
         addedOn:
@@ -2187,6 +2196,13 @@ paths:
         required: false
         schema:
           type: string
+      - description: Returns none cloudAccount and none cloudAccountId in response
+          if includeOthers is true
+        in: query
+        name: includeOthers
+        required: false
+        schema:
+          type: boolean
       responses:
         '200':
           content:
@@ -2218,6 +2234,13 @@ paths:
         required: false
         schema:
           type: string
+      - description: Returns none cloudAccount and none cloudAccountId in response
+          if includeOthers is true
+        in: query
+        name: includeOthers
+        required: false
+        schema:
+          type: boolean
       requestBody:
         content:
           application/json:
@@ -2300,6 +2323,12 @@ paths:
         required: false
         schema:
           type: boolean
+      - description: returns other cloudType in response if includeOthers is true
+        in: query
+        name: includeOthers
+        required: false
+        schema:
+          type: boolean
       responses:
         '200':
           content:
@@ -2354,26 +2383,23 @@ paths:
         \  | Type | Description | Default Value or Required\n-----------| ---- | -----------\
         \ | -------------\naccountId | string | AWS account ID | Required\nenabled\
         \ | boolean | Whether or not the account is enabled | Default is **false**\n\
-        externalId | string  | AWS account external ID  | Required\ngroupIds | array\
-        \ of strings  | List of account group IDs for this account  | Required\nname\
-        \ | string  | Name to be used for the account on the Prisma Cloud platform\
-        \ (must be unique)  | Required\nroleArn | string | Unique identifier for an\
-        \ AWS resource (ARN) | Required\nprotectiveMode | string | Valid values: **MONITOR**,\
-        \ **MONITOR_AND_PROTECT** | Default is **MONITOR**\n\n#### Request Body Example\n\
-        ```json\n{\n  \"accountId\": \"\",\n  \"enabled\": true,\n  \"externalId\"\
-        : \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"\
-        protectionMode\": \"MONITOR\"\n}\n```\n### Request Body to Add an AWS Org\
-        \ Account\nThe table below lists the request body parameters to add an AWS\
-        \ org account.\n\nParameter  | Type | Description | Default Value or Required\n\
-        -----------| ---- | ----------- | -------------\naccountId | string | AWS\
-        \ account ID | Required\nenabled | boolean | Whether or not the account is\
-        \ enabled | Default is **false**\nexternalId | string  | AWS account external\
-        \ ID  | Required\ngroupIds | array  | List of account group IDs for account\
+        groupIds | array of strings  | List of account group IDs for this account\
         \  | Required\nname | string  | Name to be used for the account on the Prisma\
         \ Cloud platform (must be unique)  | Required\nroleArn | string | Unique identifier\
-        \ for an AWS resource (ARN) | Required\naccountType | string | **organization**\
-        \ | Required\nmemberRoleName | string | AWS Member account role name | Required\n\
-        memberExternalId | string | AWS Member account role's external ID | Required\n\
+        \ for an AWS resource (ARN) | Required\nprotectiveMode | string | Valid values:\
+        \ **MONITOR**, **MONITOR_AND_PROTECT** | Default is **MONITOR**\n\n#### Request\
+        \ Body Example\n```json\n{\n  \"accountId\": \"\",\n  \"enabled\": true,\n\
+        \  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"protectionMode\"\
+        : \"MONITOR\"\n}\n```\n### Request Body to Add an AWS Org Account\nThe table\
+        \ below lists the request body parameters to add an AWS org account.\n\nParameter\
+        \  | Type | Description | Default Value or Required\n-----------| ---- | -----------\
+        \ | -------------\naccountId | string | AWS account ID | Required\nenabled\
+        \ | boolean | Whether or not the account is enabled | Default is **false**\n\
+        groupIds | array  | List of account group IDs for account  | Required\nname\
+        \ | string  | Name to be used for the account on the Prisma Cloud platform\
+        \ (must be unique)  | Required\nroleArn | string | Unique identifier for an\
+        \ AWS resource (ARN) | Required\naccountType | string | **organization** |\
+        \ Required\nmemberRoleName | string | AWS Member account role name | Required\n\
         memberRoleStatus | boolean | **true**: The member role created using stack\
         \ set exists in all the member accounts. All the Org accounts will be added.<br/>**false**:\
         \ Only the master account will be added. | Default is **false**\nprotectiveMode\
@@ -2392,21 +2418,21 @@ paths:
         \ exclude the specified resource and onboard the rest, **ALL** to onboard\
         \ all resources in the organization. |  Required if **hierarchySelection**\
         \ is specified\n\n#### Request Body Example\n```json\n{\n  \"accountId\":\
-        \ \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n  \"groupIds\": [],\n\
-        \  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"accountType\": \"organization\"\
-        ,\n  \"memberRoleName\": \"\",\n  \"memberExternalId\": \"\",\n  \"memberRoleStatus\"\
-        : true,\n  \"protectionMode\": \"MONITOR\",\n  \"hierarchySelection\": \n\
-        \  [{\n    \"resourceId\": \"\",\n    \"displayName\": \"\",\n    \"nodeType\"\
-        : \"OU\",\n    \"selectionType\": \"EXCLUDE\"\n  }]  \n}\n```\n\n### Request\
-        \ Body to Add an Azure Subscription\nThe table below lists the request body\
-        \ parameters to add an Azure subscription.\n\nParameter  | Type | Description\
-        \ | Default Value or Required\n-----------| ---- | ----------- | -------------\n\
-        cloudAccount.accountId | string | Azure account ID | Required\ncloudAccount.enabled\
-        \ | boolean  | Whether or not to enable the account | Default is **false**\n\
-        cloudAccount.groupIds | array of strings | List of account group IDs for this\
-        \ account  | Required\ncloudAccount.name | string | Name to be used for the\
-        \ account on the Prisma Cloud platform (must be unique)  | Required\ncloudAccount.accountType\
-        \ | string | Valid value: **account** | Default is **account**\ncloudAccount.protectionMode\
+        \ \"\",\n  \"enabled\": true,\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"\
+        roleArn\": \"\",\n  \"accountType\": \"organization\",\n  \"memberRoleName\"\
+        : \"\",\n  \"memberRoleStatus\": true,\n  \"protectionMode\": \"MONITOR\"\
+        ,\n  \"hierarchySelection\": \n  [{\n    \"resourceId\": \"\",\n    \"displayName\"\
+        : \"\",\n    \"nodeType\": \"OU\",\n    \"selectionType\": \"EXCLUDE\"\n \
+        \ }]  \n}\n```\n\n### Request Body to Add an Azure Subscription\nThe table\
+        \ below lists the request body parameters to add an Azure subscription.\n\n\
+        Parameter  | Type | Description | Default Value or Required\n-----------|\
+        \ ---- | ----------- | -------------\ncloudAccount.accountId | string | Azure\
+        \ account ID | Required\ncloudAccount.enabled | boolean  | Whether or not\
+        \ to enable the account | Default is **false**\ncloudAccount.groupIds | array\
+        \ of strings | List of account group IDs for this account  | Required\ncloudAccount.name\
+        \ | string | Name to be used for the account on the Prisma Cloud platform\
+        \ (must be unique)  | Required\ncloudAccount.accountType | string | Valid\
+        \ value: **account** | Default is **account**\ncloudAccount.protectionMode\
         \ | string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required\n\
         clientId | string | Application ID registered with Active Directory | Required\n\
         tenantId | string | Active Directory ID associated with Azure | Required\n\
@@ -2726,32 +2752,29 @@ paths:
         \ the request body parameters.\n\nParameter  | Type | Description | Required?\n\
         -----------| ---- | ----------- | -------------\naccountId | string | AWS\
         \ account ID | Required\nenabled | boolean | Whether or not the account is\
-        \ enabled | Required\nexternalId | string | AWS account external ID  | Required\n\
-        groupIds | array of strings | List of account group IDs for this account \
-        \ | Required\nname | string  | Name to be used for the account on the Prisma\
-        \ Cloud platform (must be unique)  | Required\nroleArn | string | Unique identifier\
-        \ for an AWS resource (ARN) | Required\nprotectiveMode |string | Valid values:\
-        \ **MONITOR**, **MONITOR_AND_PROTECT** | Required\n\n#### Request Body Example\n\
-        ```json\n{\n  \"accountId\": \"\",\n  \"enabled\": true,\n  \"externalId\"\
-        : \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"\
+        \ enabled | Required\ngroupIds | array of strings | List of account group\
+        \ IDs for this account  | Required\nname | string  | Name to be used for the\
+        \ account on the Prisma Cloud platform (must be unique)  | Required\nroleArn\
+        \ | string | Unique identifier for an AWS resource (ARN) | Required\nprotectiveMode\
+        \ |string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required\n\
+        \n#### Request Body Example\n```json\n{\n  \"accountId\": \"\",\n  \"enabled\"\
+        : true,\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"\
         protectionMode\": \"MONITOR\"\n}\n```\n### Request Body to Update an AWS Org\
         \ Account\nThe table below lists the request body parameters.\n\nParameter\
         \  | Type | Description | Required?\n-----------| ---- | ----------- | -------------\n\
         accountId | string | AWS account ID | Required\nenabled | boolean | Whether\
-        \ or not the account is enabled | Required\nexternalId | string  | AWS account\
-        \ external ID | Required\ngroupIds | array of strings  | List of account group\
-        \ IDs for this account | Required\nname | string  | Name to be used for the\
-        \ account on the Prisma Cloud platform (must be unique) | Required\nroleArn\
-        \ | string | Unique identifier for an AWS resource (ARN) | Required\naccountType\
-        \ | string | **organization** | Required\nmemberRoleName | string | AWS Member\
-        \ account role name | Required\nmemberExternalId | string | AWS Member account\
-        \ role's external ID | Required\nmemberRoleStatus | boolean | **true**: The\
-        \ member role created using stack set exists in all the member accounts. All\
-        \ the Org accounts will be added.<br/>**false**: Only the master account will\
-        \ be added. | Required\nprotectiveMode | string | Valid values: **MONITOR**,\
-        \ **MONITOR_AND_PROTECT** | Required\nhierarchySelection | array of objects\
-        \ | List of AWS Organization Units (OU), AWS accounts, and AWS Organizations\
-        \ to onboard under this organization | Default is none\nhierarchySelection.resourceId\
+        \ or not the account is enabled | Required\ngroupIds | array of strings  |\
+        \ List of account group IDs for this account | Required\nname | string  |\
+        \ Name to be used for the account on the Prisma Cloud platform (must be unique)\
+        \ | Required\nroleArn | string | Unique identifier for an AWS resource (ARN)\
+        \ | Required\naccountType | string | **organization** | Required\nmemberRoleName\
+        \ | string | AWS Member account role name | Required\nmemberRoleStatus | boolean\
+        \ | **true**: The member role created using stack set exists in all the member\
+        \ accounts. All the Org accounts will be added.<br/>**false**: Only the master\
+        \ account will be added. | Required\nprotectiveMode | string | Valid values:\
+        \ **MONITOR**, **MONITOR_AND_PROTECT** | Required\nhierarchySelection | array\
+        \ of objects | List of AWS Organization Units (OU), AWS accounts, and AWS\
+        \ Organizations to onboard under this organization | Default is none\nhierarchySelection.resourceId\
         \ | string | Resource ID. Valid values are AWS OU ID, AWS account ID, or AWS\
         \ Organization ID.<br/>Note you must escape any double quotes in the resource\
         \ ID with a backslash. | Required if **hierarchySelection** is specified\n\
@@ -2763,31 +2786,30 @@ paths:
         \ onboard, **EXCLUDE** to exclude the specified resource and onboard the rest,\
         \ **ALL** to onboard all resources in the organization. |  Required if **hierarchySelection**\
         \ is specified\n\n\n#### Request Body Example\n```json\n{\n  \"accountId\"\
-        : \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n  \"groupIds\": [],\n\
-        \  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"accountType\": \"organization\"\
-        ,\n  \"memberRoleName\": \"\",\n  \"memberExternalId\": \"\",\n  \"memberRoleStatus\"\
-        : true,\n  \"protectionMode\": \"MONITOR\",\n  \"hierarchySelection\": \n\
-        \  [{\n    \"resourceId\": \"\",\n    \"displayName\": \"\",\n    \"nodeType\"\
-        : \"OU\",\n    \"selectionType\": \"EXCLUDE\"\n  }] \n}\n```\n\n### Request\
-        \ Body to Update an Azure Subscription\nThe table below lists the request\
-        \ body parameters to update an Azure subscription.\n\nParameter  | Type |\
-        \ Description | Default Value or Required\n-----------| ---- | -----------\
-        \ | -------------\ncloudAccount.accountId | string | Azure account ID | Required\n\
-        cloudAccount.enabled | boolean  | Whether or not to enable the account | Default\
-        \ is **false**\ncloudAccount.groupIds | array of strings | List of account\
-        \ group IDs for this account  | Required\ncloudAccount.name | string | Name\
-        \ to be used for the account on the Prisma Cloud platform (must be unique)\
-        \  | Required\ncloudAccount.accountType | string | Valid value: **account**\
-        \ | Default is **account**\ncloudAccount.protectionMode | string | Valid values:\
-        \ **MONITOR**, **MONITOR_AND_PROTECT** | Default is the existing value\nclientId\
-        \ | string | Application ID registered with Active Directory | Required\n\
-        tenantId | string | Active Directory ID associated with Azure | Required\n\
-        servicePrincipalId | string | Unique ID of the service principal object associated\
-        \ with the Prisma Cloud application | Required\nmonitorFlowLogs | boolean\
-        \ | Automatically ingest flow logs | Required\nkey | string | Application\
-        \ ID key | Required\nenvironmentType | string | Valid values:<br/>**azure**\
-        \ (Commercial),<br/>**azure_gov** (Government),<br/>**azure_china** (China)\
-        \ | Required\n\n#### Request Body Example\n```json\n{\n  \"cloudAccount\"\
+        : \"\",\n  \"enabled\": true,\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"\
+        roleArn\": \"\",\n  \"accountType\": \"organization\",\n  \"memberRoleName\"\
+        : \"\",\n  \"memberRoleStatus\": true,\n  \"protectionMode\": \"MONITOR\"\
+        ,\n  \"hierarchySelection\": \n  [{\n    \"resourceId\": \"\",\n    \"displayName\"\
+        : \"\",\n    \"nodeType\": \"OU\",\n    \"selectionType\": \"EXCLUDE\"\n \
+        \ }] \n}\n```\n\n### Request Body to Update an Azure Subscription\nThe table\
+        \ below lists the request body parameters to update an Azure subscription.\n\
+        \nParameter  | Type | Description | Default Value or Required\n-----------|\
+        \ ---- | ----------- | -------------\ncloudAccount.accountId | string | Azure\
+        \ account ID | Required\ncloudAccount.enabled | boolean  | Whether or not\
+        \ to enable the account | Default is **false**\ncloudAccount.groupIds | array\
+        \ of strings | List of account group IDs for this account  | Required\ncloudAccount.name\
+        \ | string | Name to be used for the account on the Prisma Cloud platform\
+        \ (must be unique)  | Required\ncloudAccount.accountType | string | Valid\
+        \ value: **account** | Default is **account**\ncloudAccount.protectionMode\
+        \ | string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Default\
+        \ is the existing value\nclientId | string | Application ID registered with\
+        \ Active Directory | Required\ntenantId | string | Active Directory ID associated\
+        \ with Azure | Required\nservicePrincipalId | string | Unique ID of the service\
+        \ principal object associated with the Prisma Cloud application | Required\n\
+        monitorFlowLogs | boolean | Automatically ingest flow logs | Required\nkey\
+        \ | string | Application ID key | Required\nenvironmentType | string | Valid\
+        \ values:<br/>**azure** (Commercial),<br/>**azure_gov** (Government),<br/>**azure_china**\
+        \ (China) | Required\n\n#### Request Body Example\n```json\n{\n  \"cloudAccount\"\
         : {\n    \"accountId\": \"\",\n    \"enabled\": true,\n    \"groupIds\": [],\n\
         \    \"name\": \"\",\n    \"accountType\": \"account\",\n    \"protectionMode\"\
         : \"MONITOR\"\n  },\n  \"clientId\": \"\",\n  \"key\": \"\",\n  \"monitorFlowLogs\"\
@@ -3604,19 +3626,19 @@ paths:
       operationId: get-status-for-org
       requestBody:
         content:
-          application/json:
+          application/json; charset=UTF-8:
             schema:
               $ref: '#/components/schemas/AWSOrgStatusConfigModel'
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/AWSOrgStatusResponseModel'
           description: success
         '400':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: bad_request
@@ -3636,7 +3658,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: success
@@ -3656,7 +3678,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/DLPAPIResponse'
           description: success
@@ -3682,7 +3704,7 @@ paths:
       responses:
         '200':
           content:
-            '*/*':
+            application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/AWSOrgConfig'
           description: success
@@ -3699,14 +3721,13 @@ paths:
         \ unit (OU).The listed children include both OU resources and account resources.\
         \  \r\n\r\n### Request Body\nThe table below lists the required request body\
         \ parameters.\n\nParameter  | Type | Description \n-----------| ---- | -----------\n\
-        accountId | string | AWS account ID \nexternalId | string  | AWS account external\
-        \ ID  \nname | string  |Account on  Prisma Cloud  \nroleArn | string | Amazon\
-        \ Resource Name (ARN) for the account \naccountType | string | Type of the\
-        \ given account, for example **organization** \nmemberRoleStatus | boolean\
-        \ | memberRoleStatus | boolean | **true**: The member role created using stack\
-        \ set exists in all the member accounts. All the Org accounts will be added.<br/>**false**:\
-        \ Only the master account will be added. | Default is existing value\n\n####\
-        \ Request Body Example\n```json\n{\n    \"accountId\": \"\",\n    \"externalId\"\
+        accountId | string | AWS account ID \nname | string | Account on  Prisma Cloud\
+        \  \nroleArn | string | Amazon Resource Name (ARN) for the account \naccountType\
+        \ | string | Type of the given account, for example **organization** \nmemberRoleStatus\
+        \ | boolean | memberRoleStatus | boolean | **true**: The member role created\
+        \ using stack set exists in all the member accounts. All the Org accounts\
+        \ will be added.<br/>**false**: Only the master account will be added. | Default\
+        \ is existing value\n\n#### Request Body Example\n```json\n{\n    \"accountId\"\
         : \"\",\n    \"name\": \"\",\n    \"roleArn\": \"\",\n    \"accountType\"\
         : \"\",\n    \"memberRoleStatus\": true\n}\n```\n"
       operationId: get-list-of-children-under-parent-aws
@@ -3777,19 +3798,17 @@ paths:
         \ to an array of ancestor resource IDs.  \r\n\r\n### Request Body\nThe table\
         \ below lists the required request body parameters.\n\nParameter  | Type |\
         \ Description\n-----------| ---- | -----------\naccountId | string | AWS account\
-        \ ID\nexternalId | string  | AWS account external ID\nname | string  | Account\
-        \ name on Prisma Cloud\nroleArn | string | Amazon Resource Name (ARN) for\
-        \ the account\naccountType | string | Type of the given account, for example\
-        \ **organization**\nmemberRoleStatus | boolean | memberRoleStatus | boolean\
-        \ | **true**: The member role created using stack set exists in all the member\
-        \ accounts. All the Org accounts will be added.<br/>**false**: Only the master\
-        \ account will be added. | Default is existing value\nresourceIds | array\
-        \ of strings | Array of resource IDs. A resource ID can be an AWS account\
-        \ ID, an AWS Organization ID or an AWS Organization Unit (OU) ID\n\n#### Request\
-        \ Body Example\n```json\n{\n    \"accountId\": \"\",\n    \"externalId\":\
-        \ \"\",\n    \"name\": \"\",\n    \"roleArn\": \"\",\n    \"accountType\"\
-        : \"\",\n    \"memberRoleStatus\": true\n    \"resourceIds\": [\"\", \"\"\
-        , \"\"]\n}\n```\n"
+        \ ID\nname | string  | Account name on Prisma Cloud\nroleArn | string | Amazon\
+        \ Resource Name (ARN) for the account\naccountType | string | Type of the\
+        \ given account, for example **organization**\nmemberRoleStatus | boolean\
+        \ | memberRoleStatus | boolean | **true**: The member role created using stack\
+        \ set exists in all the member accounts. All the Org accounts will be added.<br/>**false**:\
+        \ Only the master account will be added. | Default is existing value\nresourceIds\
+        \ | array of strings | Array of resource IDs. A resource ID can be an AWS\
+        \ account ID, an AWS Organization ID or an AWS Organization Unit (OU) ID\n\
+        \n#### Request Body Example\n```json\n{\n    \"accountId\": \"\",\n    \"\
+        name\": \"\",\n    \"roleArn\": \"\",\n    \"accountType\": \"\",\n    \"\
+        memberRoleStatus\": true\n    \"resourceIds\": [\"\", \"\", \"\"]\n}\n```\n"
       operationId: get-ancestors-for-given-members-ous
       parameters:
       - description: Account ID

@@ -1,12 +1,5 @@
 components:
-  requestBodies:
-    UserAccessKeyRequestModel:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UserAccessKeyRequestModel'
-      description: Model for user access key
-      required: true
+  requestBodies: {}
   securitySchemes:
     x-redlock-auth:
       description: The x-redlock-auth value is a JSON Web Token (JWT).
@@ -138,7 +131,12 @@ paths:
         \ the value for the request body parameter **serviceAccountName**.\n"
       operationId: add-access-keys
       requestBody:
-        $ref: '#/components/requestBodies/UserAccessKeyRequestModel'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAccessKeyRequestModel'
+        description: Model for user access key
+        required: true
       responses:
         '200':
           content:
@@ -186,37 +184,6 @@ paths:
       security:
       - x-redlock-auth: []
       summary: Get Access Key by ID
-      tags:
-      - Access Keys
-    put:
-      description: "Updates data for the access key that has the specified ID.  \r\
-        \n\r\nThe following request body parameters are unused and should be ignored:\n\
-        * **serviceAccountName** \n* **expiredOn** \n"
-      operationId: update-access-keys
-      parameters:
-      - description: Access key ID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-      requestBody:
-        $ref: '#/components/requestBodies/UserAccessKeyRequestModel'
-      responses:
-        '200':
-          description: successful operation
-        '400':
-          description: user_inactive_or_not_exist / invalid_access_key_name_length
-            / invalid_access_key_name / non_existing_access_key / invalid_expiry_access_key
-            / expired_access_key
-        '403':
-          description: unauthorized_to_use_access_keys
-        '500':
-          description: failed_fetch_user_profile
-      security:
-      - x-redlock-auth: []
-      summary: Update Access Key
       tags:
       - Access Keys
     delete:

@@ -437,10 +437,6 @@ $ ./twistcli images scan \
     Send the results of the scan to a file.
     Example: --output-file examplescan
 
-* **--include-package-files --**
-
-    List all packages in the image. For each package, twistlock-scanner provides the package name, package version, a list of files installed, and the number of known vulnerabilities for this package. The package list can be found under the packages attribute in analysis.json in the results tarball that you download from Console. This option only produces results when used in conjunction with the --output-file option.
-
 * **--hashALGORITHM --**
 
     Specifies the hashing algorithm. Supported values are md5, sha1, and sha256. The default value is md5.
