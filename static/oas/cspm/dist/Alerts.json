@@ -89,6 +89,9 @@
             ]
           },
           "alertRule.name": { "$ref": "#/components/schemas/FilterSuggestion" },
+          "buildtime.resourceName": {
+            "$ref": "#/components/schemas/FilterSuggestion"
+          },
           "cloud.account": { "$ref": "#/components/schemas/FilterSuggestion" },
           "cloud.accountId": {
             "$ref": "#/components/schemas/FilterSuggestion"
@@ -101,6 +104,9 @@
               { "readOnly": true }
             ]
           },
+          "git.filename": { "$ref": "#/components/schemas/FilterSuggestion" },
+          "git.provider": { "$ref": "#/components/schemas/FilterSuggestion" },
+          "git.repository": { "$ref": "#/components/schemas/FilterSuggestion" },
           "malware": { "$ref": "#/components/schemas/FilterSuggestion" },
           "object.classification": {
             "$ref": "#/components/schemas/FilterSuggestion"
@@ -605,7 +611,7 @@
             "type": "array"
           },
           "limit": {
-            "description": "Maximum number of items to return. When data is paginated, maximum number of items per page",
+            "description": "Maximum number of items to return. When data is paginated, maximum number of items per page.The maximum cannot exceed 10,000. The default is 10,000.",
             "type": "number"
           },
           "offset": {
@@ -1655,6 +1661,13 @@
             "schema": { "type": "string" }
           },
           {
+            "description": "The maximum number of items that will be returned in one response. The maximum cannot exceed 10,000. The default is 10,000.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": { "type": "number" }
+          },
+          {
             "description": "Alert ID",
             "in": "query",
             "name": "alert.id",
@@ -1806,13 +1819,6 @@
             "name": "resource.type",
             "required": false,
             "schema": { "type": "string" }
-          },
-          {
-            "description": "Risk grade (Deprecated)",
-            "in": "query",
-            "name": "risk.grade",
-            "required": false,
-            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -1836,11 +1842,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/alert\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"detailed\":\"SOME_BOOLEAN_VALUE\",\"fields\":\"SOME_STRING_VALUE\",\"alert.id\":\"SOME_STRING_VALUE\",\"alert.status\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.accountId\":\"SOME_STRING_VALUE\",\"account.group\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"cloud.service\":\"SOME_STRING_VALUE\",\"policy.id\":\"SOME_STRING_VALUE\",\"policy.name\":\"SOME_STRING_VALUE\",\"policy.severity\":\"SOME_STRING_VALUE\",\"policy.label\":\"SOME_STRING_VALUE\",\"policy.type\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\",\"policy.remediable\":\"SOME_STRING_VALUE\",\"alertRule.name\":\"SOME_STRING_VALUE\",\"resource.id\":\"SOME_STRING_VALUE\",\"resource.name\":\"SOME_STRING_VALUE\",\"resource.type\":\"SOME_STRING_VALUE\",\"risk.grade\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/alert\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"detailed\":\"SOME_BOOLEAN_VALUE\",\"fields\":\"SOME_STRING_VALUE\",\"limit\":\"SOME_NUMBER_VALUE\",\"alert.id\":\"SOME_STRING_VALUE\",\"alert.status\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.accountId\":\"SOME_STRING_VALUE\",\"account.group\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"cloud.service\":\"SOME_STRING_VALUE\",\"policy.id\":\"SOME_STRING_VALUE\",\"policy.name\":\"SOME_STRING_VALUE\",\"policy.severity\":\"SOME_STRING_VALUE\",\"policy.label\":\"SOME_STRING_VALUE\",\"policy.type\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\",\"policy.remediable\":\"SOME_STRING_VALUE\",\"alertRule.name\":\"SOME_STRING_VALUE\",\"resource.id\":\"SOME_STRING_VALUE\",\"resource.name\":\"SOME_STRING_VALUE\",\"resource.type\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/alert?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&detailed=SOME_BOOLEAN_VALUE&fields=SOME_STRING_VALUE&alert.id=SOME_STRING_VALUE&alert.status=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.accountId=SOME_STRING_VALUE&account.group=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&cloud.service=SOME_STRING_VALUE&policy.id=SOME_STRING_VALUE&policy.name=SOME_STRING_VALUE&policy.severity=SOME_STRING_VALUE&policy.label=SOME_STRING_VALUE&policy.type=SOME_STRING_VALUE&policy.complianceStandard=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE&policy.remediable=SOME_STRING_VALUE&alertRule.name=SOME_STRING_VALUE&resource.id=SOME_STRING_VALUE&resource.name=SOME_STRING_VALUE&resource.type=SOME_STRING_VALUE&risk.grade=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/alert?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&detailed=SOME_BOOLEAN_VALUE&fields=SOME_STRING_VALUE&limit=SOME_NUMBER_VALUE&alert.id=SOME_STRING_VALUE&alert.status=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.accountId=SOME_STRING_VALUE&account.group=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&cloud.service=SOME_STRING_VALUE&policy.id=SOME_STRING_VALUE&policy.name=SOME_STRING_VALUE&policy.severity=SOME_STRING_VALUE&policy.label=SOME_STRING_VALUE&policy.type=SOME_STRING_VALUE&policy.complianceStandard=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE&policy.remediable=SOME_STRING_VALUE&alertRule.name=SOME_STRING_VALUE&resource.id=SOME_STRING_VALUE&resource.name=SOME_STRING_VALUE&resource.type=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -1943,13 +1949,6 @@
             "name": "sortBy",
             "required": false,
             "schema": { "type": "string" }
-          },
-          {
-            "description": "Pagination offset. The number of items to skip before selecting items to return. The default is zero.",
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "schema": { "type": "number" }
           },
           {
             "description": "The maximum number of items that will be returned in one response. The maximum cannot exceed 10,000. The default is 10,000.",
@@ -2117,13 +2116,6 @@
             "name": "resource.type",
             "required": false,
             "schema": { "type": "string" }
-          },
-          {
-            "description": "Risk grade (Deprecated)",
-            "in": "query",
-            "name": "risk.grade",
-            "required": false,
-            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -2146,11 +2138,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/alert\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"detailed\":\"SOME_BOOLEAN_VALUE\",\"fields\":\"SOME_STRING_VALUE\",\"sortBy\":\"SOME_STRING_VALUE\",\"offset\":\"SOME_NUMBER_VALUE\",\"limit\":\"SOME_NUMBER_VALUE\",\"pageToken\":\"SOME_STRING_VALUE\",\"alert.id\":\"SOME_STRING_VALUE\",\"alert.status\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.accountId\":\"SOME_STRING_VALUE\",\"account.group\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"cloud.service\":\"SOME_STRING_VALUE\",\"policy.id\":\"SOME_STRING_VALUE\",\"policy.name\":\"SOME_STRING_VALUE\",\"policy.severity\":\"SOME_STRING_VALUE\",\"policy.label\":\"SOME_STRING_VALUE\",\"policy.type\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\",\"policy.remediable\":\"SOME_STRING_VALUE\",\"alertRule.name\":\"SOME_STRING_VALUE\",\"resource.id\":\"SOME_STRING_VALUE\",\"resource.name\":\"SOME_STRING_VALUE\",\"resource.type\":\"SOME_STRING_VALUE\",\"risk.grade\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/alert\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"detailed\":\"SOME_BOOLEAN_VALUE\",\"fields\":\"SOME_STRING_VALUE\",\"sortBy\":\"SOME_STRING_VALUE\",\"limit\":\"SOME_NUMBER_VALUE\",\"pageToken\":\"SOME_STRING_VALUE\",\"alert.id\":\"SOME_STRING_VALUE\",\"alert.status\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.accountId\":\"SOME_STRING_VALUE\",\"account.group\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"cloud.service\":\"SOME_STRING_VALUE\",\"policy.id\":\"SOME_STRING_VALUE\",\"policy.name\":\"SOME_STRING_VALUE\",\"policy.severity\":\"SOME_STRING_VALUE\",\"policy.label\":\"SOME_STRING_VALUE\",\"policy.type\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\",\"policy.remediable\":\"SOME_STRING_VALUE\",\"alertRule.name\":\"SOME_STRING_VALUE\",\"resource.id\":\"SOME_STRING_VALUE\",\"resource.name\":\"SOME_STRING_VALUE\",\"resource.type\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/v2/alert?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&detailed=SOME_BOOLEAN_VALUE&fields=SOME_STRING_VALUE&sortBy=SOME_STRING_VALUE&offset=SOME_NUMBER_VALUE&limit=SOME_NUMBER_VALUE&pageToken=SOME_STRING_VALUE&alert.id=SOME_STRING_VALUE&alert.status=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.accountId=SOME_STRING_VALUE&account.group=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&cloud.service=SOME_STRING_VALUE&policy.id=SOME_STRING_VALUE&policy.name=SOME_STRING_VALUE&policy.severity=SOME_STRING_VALUE&policy.label=SOME_STRING_VALUE&policy.type=SOME_STRING_VALUE&policy.complianceStandard=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE&policy.remediable=SOME_STRING_VALUE&alertRule.name=SOME_STRING_VALUE&resource.id=SOME_STRING_VALUE&resource.name=SOME_STRING_VALUE&resource.type=SOME_STRING_VALUE&risk.grade=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/v2/alert?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&detailed=SOME_BOOLEAN_VALUE&fields=SOME_STRING_VALUE&sortBy=SOME_STRING_VALUE&limit=SOME_NUMBER_VALUE&pageToken=SOME_STRING_VALUE&alert.id=SOME_STRING_VALUE&alert.status=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.accountId=SOME_STRING_VALUE&account.group=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&cloud.service=SOME_STRING_VALUE&policy.id=SOME_STRING_VALUE&policy.name=SOME_STRING_VALUE&policy.severity=SOME_STRING_VALUE&policy.label=SOME_STRING_VALUE&policy.type=SOME_STRING_VALUE&policy.complianceStandard=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE&policy.remediable=SOME_STRING_VALUE&alertRule.name=SOME_STRING_VALUE&resource.id=SOME_STRING_VALUE&resource.name=SOME_STRING_VALUE&resource.type=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -2359,13 +2351,6 @@
             "name": "resource.type",
             "required": false,
             "schema": { "type": "string" }
-          },
-          {
-            "description": "Risk grade (Deprecated)",
-            "in": "query",
-            "name": "risk.grade",
-            "required": false,
-            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -2389,11 +2374,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/alert/policy\"\n\nquerystring = {\"alert.id\":\"SOME_STRING_VALUE\",\"alert.status\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.accountId\":\"SOME_STRING_VALUE\",\"account.group\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"cloud.service\":\"SOME_STRING_VALUE\",\"policy.id\":\"SOME_STRING_VALUE\",\"policy.name\":\"SOME_STRING_VALUE\",\"policy.severity\":\"SOME_STRING_VALUE\",\"policy.label\":\"SOME_STRING_VALUE\",\"policy.type\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\",\"policy.remediable\":\"SOME_STRING_VALUE\",\"alertRule.name\":\"SOME_STRING_VALUE\",\"resource.id\":\"SOME_STRING_VALUE\",\"resource.name\":\"SOME_STRING_VALUE\",\"resource.type\":\"SOME_STRING_VALUE\",\"risk.grade\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/alert/policy\"\n\nquerystring = {\"alert.id\":\"SOME_STRING_VALUE\",\"alert.status\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.accountId\":\"SOME_STRING_VALUE\",\"account.group\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"cloud.service\":\"SOME_STRING_VALUE\",\"policy.id\":\"SOME_STRING_VALUE\",\"policy.name\":\"SOME_STRING_VALUE\",\"policy.severity\":\"SOME_STRING_VALUE\",\"policy.label\":\"SOME_STRING_VALUE\",\"policy.type\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\",\"policy.remediable\":\"SOME_STRING_VALUE\",\"alertRule.name\":\"SOME_STRING_VALUE\",\"resource.id\":\"SOME_STRING_VALUE\",\"resource.name\":\"SOME_STRING_VALUE\",\"resource.type\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/alert/policy?alert.id=SOME_STRING_VALUE&alert.status=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.accountId=SOME_STRING_VALUE&account.group=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&cloud.service=SOME_STRING_VALUE&policy.id=SOME_STRING_VALUE&policy.name=SOME_STRING_VALUE&policy.severity=SOME_STRING_VALUE&policy.label=SOME_STRING_VALUE&policy.type=SOME_STRING_VALUE&policy.complianceStandard=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE&policy.remediable=SOME_STRING_VALUE&alertRule.name=SOME_STRING_VALUE&resource.id=SOME_STRING_VALUE&resource.name=SOME_STRING_VALUE&resource.type=SOME_STRING_VALUE&risk.grade=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/alert/policy?alert.id=SOME_STRING_VALUE&alert.status=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.accountId=SOME_STRING_VALUE&account.group=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&cloud.service=SOME_STRING_VALUE&policy.id=SOME_STRING_VALUE&policy.name=SOME_STRING_VALUE&policy.severity=SOME_STRING_VALUE&policy.label=SOME_STRING_VALUE&policy.type=SOME_STRING_VALUE&policy.complianceStandard=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE&policy.remediable=SOME_STRING_VALUE&alertRule.name=SOME_STRING_VALUE&resource.id=SOME_STRING_VALUE&resource.name=SOME_STRING_VALUE&resource.type=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },

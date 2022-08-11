@@ -69,6 +69,8 @@ components:
           - readOnly: true
         alertRule.name:
           $ref: '#/components/schemas/FilterSuggestion'
+        buildtime.resourceName:
+          $ref: '#/components/schemas/FilterSuggestion'
         cloud.account:
           $ref: '#/components/schemas/FilterSuggestion'
         cloud.accountId:
@@ -81,6 +83,12 @@ components:
           allOf:
           - $ref: '#/components/schemas/FilterSuggestion'
           - readOnly: true
+        git.filename:
+          $ref: '#/components/schemas/FilterSuggestion'
+        git.provider:
+          $ref: '#/components/schemas/FilterSuggestion'
+        git.repository:
+          $ref: '#/components/schemas/FilterSuggestion'
         malware:
           $ref: '#/components/schemas/FilterSuggestion'
         object.classification:
@@ -590,7 +598,8 @@ components:
           type: array
         limit:
           description: Maximum number of items to return. When data is paginated,
-            maximum number of items per page
+            maximum number of items per page.The maximum cannot exceed 10,000. The
+            default is 10,000.
           type: number
         offset:
           description: The number of items to skip before selecting items to return.
@@ -1576,6 +1585,13 @@ paths:
         required: false
         schema:
           type: string
+      - description: The maximum number of items that will be returned in one response.
+          The maximum cannot exceed 10,000. The default is 10,000.
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
       - description: Alert ID
         in: query
         name: alert.id
@@ -1715,12 +1731,6 @@ paths:
         required: false
         schema:
           type: string
-      - description: Risk grade (Deprecated)
-        in: query
-        name: risk.grade
-        required: false
-        schema:
-          type: string
       responses:
         '200':
           content:
@@ -1845,13 +1855,6 @@ paths:
         required: false
         schema:
           type: string
-      - description: Pagination offset. The number of items to skip before selecting
-          items to return. The default is zero.
-        in: query
-        name: offset
-        required: false
-        schema:
-          type: number
       - description: The maximum number of items that will be returned in one response.
           The maximum cannot exceed 10,000. The default is 10,000.
         in: query
@@ -2003,12 +2006,6 @@ paths:
       - description: Resource TYPE
         in: query
         name: resource.type
-        required: false
-        schema:
-          type: string
-      - description: Risk grade (Deprecated)
-        in: query
-        name: risk.grade
         required: false
         schema:
           type: string
@@ -2218,12 +2215,6 @@ paths:
       - description: Resource TYPE
         in: query
         name: resource.type
-        required: false
-        schema:
-          type: string
-      - description: Risk grade (Deprecated)
-        in: query
-        name: risk.grade
         required: false
         schema:
           type: string
