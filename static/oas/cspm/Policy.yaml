@@ -979,12 +979,12 @@ paths:
         \    \"description\": \"\",\n    \"labels\": [],\n    \"name\": \"demo\",\n\
         \    \"policySubTypes\": [\n        \"build\"\n    ],\n    \"policyType\"\
         : \"config\",\n    \"recommendation\": \"\",\n    \"rule\": {\n        \"\
-        children\": [\n            \"criteria\": \"{\\\"category\\\":\\\"Storage\\\
+        children\": [\n            {\n                \"criteria\": \"{\\\"category\\\":\\\"Storage\\\
         \",\\\"resourceTypes\\\":[\\\"aws_s3_bucket\\\"],\\\"conditionQuery\\\":{\\\
         \"attribute\\\":\\\"acl\\\",\\\"operator\\\":\\\"not_equals\\\",\\\"value\\\
         \":\\\"log-delivery-write\\\",\\\"cond_type\\\":\\\"attribute\\\"}}\",\n \
-        \           \"type\": \"build\",\n            \"recommendation\": \"\"\n \
-        \       }\n        ],\n        \"name\": \"demo\",\n        \"parameters\"\
+        \               \"type\": \"build\",\n                \"recommendation\": \"\"\n \
+        \           }\n        ],\n        \"name\": \"demo\",\n        \"parameters\"\
         : {\n            \"savedSearch\": \"false\",\n            \"withIac\": \"\
         true\"\n        },\n        \"type\": \"Config\"\n    },\n    \"severity\"\
         : \"low\"\n}\n```\n\n  The JSON below is an example of the minimal request\
