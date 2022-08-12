@@ -32,18 +32,6 @@ components:
         required:
         - value
         type: object
-    AlertStatus:
-      properties:
-        high:
-          format: int64
-          type: integer
-        low:
-          format: int64
-          type: integer
-        medium:
-          format: int64
-          type: integer
-      type: object
     DecoratedResourceInfo:
       description: Model for resource info and status list
       properties:
@@ -53,13 +41,6 @@ components:
         accountName:
           description: Account name
           type: string
-        alertStatus:
-          $ref: '#/components/schemas/AlertStatus'
-        appNames:
-          items:
-            type: string
-          type: array
-          uniqueItems: true
         cloudType:
           description: Cloud type
           enum:
@@ -85,10 +66,6 @@ components:
         regionName:
           description: Region Name
           type: string
-        resourceConfigJsonAvailable:
-          type: boolean
-        resourceDetailsAvailable:
-          type: boolean
         rrn:
           description: RRN
           type: string
@@ -97,10 +74,6 @@ components:
           items:
             $ref: '#/components/schemas/ScannedPolicyInfo'
           type: array
-        unifiedAssetId:
-          type: string
-        vulnerabilityStatus:
-          $ref: '#/components/schemas/VulnerabilityStatus'
       type: object
     DecoratedResourceInfoResult:
       description: Model for resource info and status list
@@ -151,7 +124,8 @@ components:
           type: array
         limit:
           description: Maximum number of items to return. When data is paginated,
-            maximum number of items per page
+            maximum number of items per page.The maximum cannot exceed 10,000. The
+            default is 10,000.
           type: number
         offset:
           description: The number of items to skip before selecting items to return.
@@ -408,21 +382,6 @@ components:
         value:
           description: Value
           type: string
-      type: object
-    VulnerabilityStatus:
-      properties:
-        critical:
-          format: int64
-          type: integer
-        high:
-          format: int64
-          type: integer
-        low:
-          format: int64
-          type: integer
-        medium:
-          format: int64
-          type: integer
       type: object
 info:
   contact: {}
