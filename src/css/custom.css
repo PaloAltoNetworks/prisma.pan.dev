@@ -305,10 +305,9 @@ html[data-theme="dark"] .redocusaurus .react-tabs__tab--selected {
   background: rgb(41, 45, 62);
 }
 
-.redocusaurus .react-tabs__tab-panel--selected{
+.redocusaurus .react-tabs__tab-panel--selected {
   padding-top: 16px;
 }
-
 
 /* Override button font size */
 .redocusaurus .react-tabs__tab-panel button {
@@ -349,6 +348,15 @@ html[data-theme="dark"] .redocusaurus .redoc-wrap > div:nth-child(2) {
 }
 
 /* Force response text to wrap */
+.redocusaurus button > svg > polygon {
+  fill: var(--ifm-color-primary) !important;
+}
+
+.redocusaurus button > svg {
+  height: 1.5rem !important;
+  width: 1.5rem !important;
+}
+
 .redocusaurus button {
   overflow-wrap: anywhere !important;
 }
@@ -491,7 +499,11 @@ table td {
   color: var(--ifm-font-color-base);
 }
 
-.menu > .menu__list > .menu__list-item > .menu__list-item-collapsible > .menu__link {
+.menu
+  > .menu__list
+  > .menu__list-item
+  > .menu__list-item-collapsible
+  > .menu__link {
   font-weight: bolder;
 }
 
@@ -723,9 +735,9 @@ html[data-theme="dark"] .featuredContainer {
   display: none !important;
 }
 
-.section__docs{
+.section__docs {
   font-weight: bolder;
-  cursor:inherit;
+  cursor: inherit;
   background-color: transparent !important;
   border-radius: 0;
   border-bottom: 1px solid var(--ifm-color-emphasis-400);
