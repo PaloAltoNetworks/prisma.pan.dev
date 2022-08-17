@@ -18240,7 +18240,7 @@
     "title": "Cloud Overview",
     "version": "22.06.197",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/cloud/cloud.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/cloud/cloud.md"
     }
   },
   "openapi": "3.0.3",
@@ -18253,7 +18253,7 @@
     "/api/v22.06/cloud/discovery": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/cloud/discovery_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/cloud/discovery_get.md"
         },
         "parameters": [
           {
@@ -18388,7 +18388,7 @@
     "/api/v22.06/cloud/discovery/download": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/cloud/discovery_download_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/cloud/discovery_download_get.md"
         },
         "parameters": [
           {
@@ -18516,7 +18516,7 @@
     "/api/v22.06/cloud/discovery/scan": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/cloud/discovery_scan_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/cloud/discovery_scan_post.md"
         },
         "responses": {
           "200": {
@@ -18542,7 +18542,7 @@
     "/api/v22.06/cloud/discovery/stop": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/cloud/discovery_stop_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/cloud/discovery_stop_post.md"
         },
         "responses": {
           "200": {
@@ -18568,7 +18568,7 @@
     "/api/v22.06/cloud/discovery/vms": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/cloud/discovery_vms_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/cloud/discovery_vms_get.md"
         },
         "parameters": [
           {

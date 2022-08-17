@@ -18240,7 +18240,7 @@
     "title": "Stats Overview",
     "version": "22.06.197",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/stats.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/stats/stats.md"
     }
   },
   "openapi": "3.0.3",
@@ -18284,7 +18284,7 @@
     "/api/v22.06/stats/compliance": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/compliance_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/stats/compliance_get.md"
         },
         "parameters": [
           {
@@ -18579,7 +18579,7 @@
     "/api/v22.06/stats/compliance/refresh": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/compliance_refresh_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/stats/compliance_refresh_post.md"
         },
         "parameters": [
           {
@@ -18731,7 +18731,7 @@
     "/api/v22.06/stats/daily": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/daily_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/stats/daily_get.md"
         },
         "responses": {
           "200": {
@@ -18764,7 +18764,7 @@
     "/api/v22.06/stats/dashboard": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/dashboard_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/stats/dashboard_get.md"
         },
         "responses": {
           "200": {
@@ -18797,7 +18797,7 @@
     "/api/v22.06/stats/events": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/events_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/stats/events_get.md"
         },
         "parameters": [
           {
@@ -18917,7 +18917,7 @@
     "/api/v22.06/stats/vulnerabilities": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/vulnerabilities_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/stats/vulnerabilities_get.md"
         },
         "parameters": [
           {
@@ -19090,7 +19090,7 @@
     "/api/v22.06/stats/vulnerabilities/download": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/vulnerabilities_download_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/stats/vulnerabilities_download_get.md"
         },
         "parameters": [
           {
@@ -19256,7 +19256,7 @@
     "/api/v22.06/stats/vulnerabilities/impacted-resources": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/vulnerabilities_impacted_resources_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/stats/vulnerabilities_impacted_resources_get.md"
         },
         "parameters": [
           {
@@ -19429,7 +19429,7 @@
     "/api/v22.06/stats/vulnerabilities/impacted-resources/download": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/vulnerabilities_impacted_resources_download_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/stats/vulnerabilities_impacted_resources_download_get.md"
         },
         "parameters": [
           {
@@ -19595,7 +19595,7 @@
     "/api/v22.06/stats/vulnerabilities/refresh": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/vulnerabilities_refresh_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/stats/vulnerabilities_refresh_post.md"
         },
         "parameters": [
           {

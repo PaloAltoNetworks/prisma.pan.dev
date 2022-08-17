@@ -18240,7 +18240,7 @@
     "title": "Defenders Overview",
     "version": "22.06.197",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/defenders.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/defenders.md"
     }
   },
   "openapi": "3.0.3",
@@ -18253,7 +18253,7 @@
     "/api/v22.06/defenders": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/get.md"
         },
         "parameters": [
           {
@@ -18480,7 +18480,7 @@
     "/api/v22.06/defenders/app-embedded": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/app_embedded_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/app_embedded_post.md"
         },
         "requestBody": {
           "content": {
@@ -18515,7 +18515,7 @@
     "/api/v22.06/defenders/daemonset.yaml": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/daemonset_yaml_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/daemonset_yaml_post.md"
         },
         "requestBody": {
           "content": {
@@ -18557,7 +18557,7 @@
     "/api/v22.06/defenders/download": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/download_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/download_get.md"
         },
         "parameters": [
           {
@@ -18777,7 +18777,7 @@
     "/api/v22.06/defenders/fargate.json": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/fargate_json_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/fargate_json_post.md"
         },
         "parameters": [
           {
@@ -18904,7 +18904,7 @@
     "/api/v22.06/defenders/helm/twistlock-defender-helm.tar.gz": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/helm_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/helm_post.md"
         },
         "requestBody": {
           "content": {
@@ -18939,7 +18939,7 @@
     "/api/v22.06/defenders/image-name": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/image-name_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/image-name_get.md"
         },
         "responses": {
           "200": {
@@ -18972,7 +18972,7 @@
     "/api/v22.06/defenders/install-bundle": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/install-bundle_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/install-bundle_get.md"
         },
         "parameters": [
           {
@@ -19090,7 +19090,7 @@
     "/api/v22.06/defenders/names": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/names_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/names_get.md"
         },
         "parameters": [
           {
@@ -19317,7 +19317,7 @@
     "/api/v22.06/defenders/serverless/bundle": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/serverless-bundle_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/serverless-bundle_post.md"
         },
         "requestBody": {
           "content": {
@@ -19352,7 +19352,7 @@
     "/api/v22.06/defenders/summary": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/summary_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/summary_get.md"
         },
         "responses": {
           "200": {
@@ -19385,7 +19385,7 @@
     "/api/v22.06/defenders/upgrade": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/upgrade_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/upgrade_post.md"
         },
         "responses": {
           "200": {
@@ -19411,7 +19411,7 @@
     "/api/v22.06/defenders/{id}": {
       "delete": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/id_delete.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/id_delete.md"
         },
         "parameters": [
           {
@@ -19447,7 +19447,7 @@
     "/api/v22.06/defenders/{id}/features": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/id_features_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/id_features_post.md"
         },
         "parameters": [
           {
@@ -19499,7 +19499,7 @@
     "/api/v22.06/defenders/{id}/restart": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/id_restart_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/id_restart_post.md"
         },
         "parameters": [
           {
@@ -19535,7 +19535,7 @@
     "/api/v22.06/defenders/{id}/upgrade": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/id_upgrade_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/defenders/id_upgrade_post.md"
         },
         "parameters": [
           {
