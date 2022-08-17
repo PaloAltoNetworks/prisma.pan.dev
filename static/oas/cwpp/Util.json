@@ -18278,7 +18278,9 @@
     },
     "/api/v22.06/util/dbip-country-lite.mmdb": {
       "get": {
-        "description": "Download dbip-country-lite.mmdb",
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/util/dbip_countrylite_get.md"
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -18297,7 +18299,7 @@
           "self-hosted": true
         },
         "operationId": "get-util-dbip-country-lite.mmdb",
-        "summary": " Download"
+        "summary": "Download MMDB file from Country Lite database"
       }
     },
     "/api/v22.06/util/osx/twistcli": {
