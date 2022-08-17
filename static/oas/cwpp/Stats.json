@@ -695,7 +695,7 @@
             "type": "boolean"
           },
           "json": {
-            "description": "JSON is the custom JSON we send to the URL.\n",
+            "description": "Json is the custom json we send to the url.\n",
             "type": "string"
           },
           "url": {
@@ -980,7 +980,7 @@
             "type": "boolean"
           },
           "json": {
-            "description": "JSON is the custom json we send to Splunk.\n",
+            "description": "Json is the custom json we send to Splunk.\n",
             "type": "string"
           },
           "sourceType": {
@@ -1010,7 +1010,7 @@
             "type": "boolean"
           },
           "json": {
-            "description": "JSON is the custom JSON we send to the URL.\n",
+            "description": "Json is the custom json we send to the url.\n",
             "type": "string"
           },
           "url": {
@@ -3654,7 +3654,7 @@
             "type": "string"
           },
           "url": {
-            "description": "URL is the ldap server url.\n",
+            "description": "Url is the ldap server url.\n",
             "type": "string"
           },
           "userSearchBase": {
@@ -3798,7 +3798,7 @@
             "$ref": "#/components/schemas/identity.SamlType"
           },
           "url": {
-            "description": "URL is idp sso url.\n",
+            "description": "Url is idp sso url.\n",
             "type": "string"
           }
         },
@@ -4720,7 +4720,7 @@
         "description": "SecurityHubIntegrationRegions holds AWS Security Hub regions info",
         "properties": {
           "apiIdentifier": {
-            "description": "APIIdentifier represents the AWS region.\n",
+            "description": "ApiIdentifier represents the AWS region.\n",
             "type": "string"
           },
           "name": {
@@ -7234,7 +7234,7 @@
             "type": "array"
           },
           "containerId": {
-            "description": "ContainerID is the firewall container ID.\n",
+            "description": "ContainerId is the firewall container id.\n",
             "type": "string"
           },
           "containerName": {
@@ -8067,7 +8067,7 @@
             "type": "array"
           },
           "id": {
-            "description": "ID is the container id.\n",
+            "description": "Id is the container id.\n",
             "type": "string"
           },
           "image": {
@@ -8075,7 +8075,7 @@
             "type": "string"
           },
           "imageID": {
-            "description": "ImageID is the image id.\n",
+            "description": "ImageId is the image id.\n",
             "type": "string"
           },
           "imageName": {
@@ -8283,7 +8283,7 @@
         "description": "ContainerRuntimeProfile represents the image runtime profile",
         "properties": {
           "_id": {
-            "description": "ID is the profile ID.\n",
+            "description": "Id is the profile ID.\n",
             "type": "string"
           },
           "accountIDs": {
@@ -8406,7 +8406,7 @@
         "description": "ContainerScanResult contains the result of a scanning a container",
         "properties": {
           "_id": {
-            "description": "ID is the container ID.\n",
+            "description": "Id is the container id.\n",
             "type": "string"
           },
           "collections": {
@@ -8789,7 +8789,7 @@
         "description": "FileMetadata represents the metadata of a single file/directory",
         "properties": {
           "gid": {
-            "description": "GID is the ID of the group that owns the file/directory.\n",
+            "description": "Gid is the ID of the group that owns the file/directory.\n",
             "type": "integer"
           },
           "permissions": {
@@ -8797,7 +8797,7 @@
             "type": "integer"
           },
           "uid": {
-            "description": "UID is the ID of the user that owns the file/directory.\n",
+            "description": "Uid is the ID of the user that owns the file/directory.\n",
             "type": "integer"
           }
         },
@@ -10314,7 +10314,7 @@
             "$ref": "#/components/schemas/shared.IncidentType"
           },
           "vmID": {
-            "description": "Azure unique VM ID on which the incident was found.\n",
+            "description": "Azure unique vm ID on which the incident was found.\n",
             "type": "string"
           },
           "windows": {
@@ -10392,7 +10392,7 @@
             "type": "boolean"
           },
           "k8sApiServer": {
-            "description": "K8sAPIServer indicates whether a kubernetes API server is running.\n",
+            "description": "K8sApiServer indicates whether a kubernetes api server is running.\n",
             "type": "boolean"
           },
           "k8sControllerManager": {
@@ -10404,7 +10404,7 @@
             "type": "boolean"
           },
           "k8sFederationApiServer": {
-            "description": "K8sFederationAPIServer indicates whether a federation API server is running.\n",
+            "description": "K8sFederationApiServer indicates whether a federation api server is running.\n",
             "type": "boolean"
           },
           "k8sFederationControllerManager": {
@@ -10420,7 +10420,7 @@
             "type": "boolean"
           },
           "k8sScheduler": {
-            "description": "K8sScheduler indicates whether the kubernetes scheduler is running.\n",
+            "description": "K8sScheduler indicates whether the a kubernetes scheduler is running.\n",
             "type": "boolean"
           },
           "kubernetes": {
@@ -11636,7 +11636,7 @@
             "type": "string"
           },
           "profileId": {
-            "description": "Profile ID of the audit.\n",
+            "description": "Profile of the audit.\n",
             "type": "string"
           },
           "provider": {
@@ -11685,7 +11685,7 @@
             "type": "string"
           },
           "vmID": {
-            "description": "Azure unique VM ID where the audit was generated.\n",
+            "description": "Azure unique vm ID where the audit was generated.\n",
             "type": "string"
           },
           "wildFireReportURL": {
@@ -13157,7 +13157,7 @@
             "type": "string"
           },
           "link_id": {
-            "description": "LinkID is the ID required to construct the vendor link to the CVE.\n",
+            "description": "LinkId is the id required to construct the vendor link to the CVE.\n",
             "type": "string"
           },
           "modified": {
@@ -14916,7 +14916,7 @@
             "$ref": "#/components/schemas/shared.CodeRepoSettings"
           },
           "communicationPort": {
-            "description": "MgmtPortHTTP is the Console HTTP port.\n",
+            "description": "MgmtPortHttp is the console http port.\n",
             "type": "integer"
           },
           "consoleCaCert": {
@@ -15020,7 +15020,7 @@
             "$ref": "#/components/schemas/shared.SecretsStores"
           },
           "securedConsolePort": {
-            "description": "MgmtPortHTTPS is the Console HTTPS port.\n",
+            "description": "MgmtPortHttps is the console https port.\n",
             "type": "integer"
           },
           "serverlessAutoDeploy": {
@@ -15086,7 +15086,7 @@
         "description": "Stats represents the status model that is stored in the DB",
         "properties": {
           "_id": {
-            "description": "ID is the metric type.\n",
+            "description": "Id is the metric type.\n",
             "type": "string"
           },
           "access": {
@@ -15145,7 +15145,7 @@
         "description": "Status stores the status of a specific defender or for global features such as intelligence or LDAP",
         "properties": {
           "_id": {
-            "description": "ID is the defender identifier if the status is per defender or the type for global statuses.\n",
+            "description": "Id is the defender identifier if the status is per defender or the type for global statuses.\n",
             "type": "string"
           },
           "appFirewall": {
@@ -15339,7 +15339,7 @@
         "description": "VulnImpactedResources holds details about the resources impacted by vulnerability",
         "properties": {
           "_id": {
-            "description": "ID is the CVE ID (index for the impacted resources).\n",
+            "description": "Id is the CVE ID (index for the impacted resources).\n",
             "type": "string"
           },
           "codeRepos": {
@@ -17011,6 +17011,7 @@
             "rawBody",
             "protobufBody",
             "query",
+            "queryParamName",
             "cookie",
             "header",
             "url"
@@ -17924,7 +17925,7 @@
         "description": "Rule represents a single rule that is associated with a container firewall",
         "properties": {
           "allowMalformedHttpHeaderNames": {
-            "description": "AllowMalformedHTTPHeaderNames indicates if validation of http request header names should allow non-compliant characters.\n",
+            "description": "AllowMalformedHttpHeaderNames indicates if validation of http request header names should allow non-compliant characters.\n",
             "type": "boolean"
           },
           "applicationsSpec": {
@@ -18237,7 +18238,7 @@
   },
   "info": {
     "title": "Stats Overview",
-    "version": "22.06.272",
+    "version": "22.06.197",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/stats/stats.md"
     }
