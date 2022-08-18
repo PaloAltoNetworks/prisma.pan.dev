@@ -18250,7 +18250,7 @@
     "/api/v22.06/waas/openapi-scans": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/waas/openapi-scans_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/waas/openapi-scans_post.md"
         },
         "responses": {
           "200": {

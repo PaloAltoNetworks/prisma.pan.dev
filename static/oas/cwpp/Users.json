@@ -18240,7 +18240,7 @@
     "title": "Users Overview",
     "version": "22.06.197",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/users/users.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/users/users.md"
     }
   },
   "openapi": "3.0.3",
@@ -18253,7 +18253,7 @@
     "/api/v22.06/users": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/users/get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/users/get.md"
         },
         "responses": {
           "200": {
@@ -18284,7 +18284,7 @@
       },
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/users/post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/users/post.md"
         },
         "requestBody": {
           "content": {
@@ -18317,7 +18317,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/users/put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/users/put.md"
         },
         "requestBody": {
           "content": {
@@ -18352,7 +18352,7 @@
     "/api/v22.06/users/password": {
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/users/password_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/users/password_put.md"
         },
         "requestBody": {
           "content": {
@@ -18387,7 +18387,7 @@
     "/api/v22.06/users/{id}": {
       "delete": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/users/id_delete.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/users/id_delete.md"
         },
         "parameters": [
           {

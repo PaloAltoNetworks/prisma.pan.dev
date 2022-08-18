@@ -18240,7 +18240,7 @@
     "title": "Containers Overview",
     "version": "22.06.197",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/containers/containers.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/containers/containers.md"
     }
   },
   "openapi": "3.0.3",
@@ -18253,7 +18253,7 @@
     "/api/v22.06/containers": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/containers/get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/containers/get.md"
         },
         "parameters": [
           {
@@ -18468,7 +18468,7 @@
     "/api/v22.06/containers/count": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/containers/count_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/containers/count_get.md"
         },
         "parameters": [
           {
@@ -18683,7 +18683,7 @@
     "/api/v22.06/containers/download": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/containers/download_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/containers/download_get.md"
         },
         "parameters": [
           {
@@ -18891,7 +18891,7 @@
     "/api/v22.06/containers/names": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/containers/names_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/containers/names_get.md"
         },
         "parameters": [
           {
@@ -19106,7 +19106,7 @@
     "/api/v22.06/containers/scan": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/containers/scan_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/containers/scan_post.md"
         },
         "responses": {
           "200": {

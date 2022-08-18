@@ -18240,7 +18240,7 @@
     "title": "Custom-Compliance Overview",
     "version": "22.06.197",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/custom-compliance/custom-compliance.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/custom-compliance/custom-compliance.md"
     }
   },
   "openapi": "3.0.3",
@@ -18253,7 +18253,7 @@
     "/api/v22.06/custom-compliance": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/custom-compliance/get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/custom-compliance/get.md"
         },
         "responses": {
           "200": {
@@ -18284,7 +18284,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/custom-compliance/put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/custom-compliance/put.md"
         },
         "requestBody": {
           "content": {
@@ -18326,7 +18326,7 @@
     "/api/v22.06/custom-compliance/{id}": {
       "delete": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/custom-compliance/id_delete.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/custom-compliance/id_delete.md"
         },
         "parameters": [
           {

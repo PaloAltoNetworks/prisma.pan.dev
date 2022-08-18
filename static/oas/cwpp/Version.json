@@ -18240,7 +18240,7 @@
     "title": "Version Overview",
     "version": "22.06.197",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/version/version.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/version/version.md"
     }
   },
   "openapi": "3.0.3",
@@ -18253,7 +18253,7 @@
     "/api/v22.06/version": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/version/get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/version/get.md"
         },
         "responses": {
           "200": {

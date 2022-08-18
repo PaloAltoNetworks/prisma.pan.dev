@@ -18240,7 +18240,7 @@
     "title": "Statuses Overview",
     "version": "22.06.197",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/statuses/statuses.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/statuses/statuses.md"
     }
   },
   "openapi": "3.0.3",
@@ -18253,7 +18253,7 @@
     "/api/v22.06/statuses/registry": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/statuses/registry_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/statuses/registry_get.md"
         },
         "responses": {
           "200": {

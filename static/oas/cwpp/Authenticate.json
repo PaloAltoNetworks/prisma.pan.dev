@@ -18240,7 +18240,7 @@
     "title": "Authenticate Overview",
     "version": "22.06.197",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/authenticate/authenticate.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/authenticate/authenticate.md"
     }
   },
   "openapi": "3.0.3",
@@ -18250,10 +18250,36 @@
     }
   ],
   "paths": {
+    "/api/v1/authenticate/callback/oidc": {
+      "get": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/authenticate/callback_oidc_get.md"
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Authenticate",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "none",
+          "saas": false,
+          "self-hosted": true
+        },
+        "operationId": "get-authenticate-callback-oidc",
+        "summary": "Authenticate with OpenID connect (For Service Provider)"
+      }
+    },
     "/api/v22.06/authenticate": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/authenticate/post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/br-40680-callback-oidc-api/api/descriptions/authenticate/post.md"
         },
         "requestBody": {
           "content": {
