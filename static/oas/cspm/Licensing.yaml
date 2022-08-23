@@ -75,12 +75,12 @@
           '200':
             description: Successful operation
             content:
-              application/octet-stream:
-                schema:
-                  "$ref": "#/components/schemas/CsvMessage"
               application/json; charset=UTF-8:
                 schema:
                   "$ref": "#/components/schemas/LicenseResponseModel"
+              application/octet-stream:
+                schema:
+                  "$ref": "#/components/schemas/CsvMessage"
           '400':
             description: invalid_parameter_value
             content:
@@ -177,7 +177,7 @@
             content:
               application/json; charset=UTF-8:
                 schema:
-                  type: object
+                  "$ref": "#/components/schemas/ResourceUsageCountResponse"
           '400':
             description: invalid_parameter_value
             content:
@@ -215,7 +215,7 @@
             content:
               application/json; charset=UTF-8:
                 schema:
-                  type: object
+                  "$ref": "#/components/schemas/ResourceUsageGraphResponse"
           '400':
             description: invalid_parameter_value
             content:
@@ -236,6 +236,59 @@
                   "$ref": "#/components/schemas/SpringErrorResponse"
   components:
     schemas:
+      AccountDetails:
+        type: object
+        properties:
+          name:
+            type: string
+          id:
+            type: string
+      ResourceUsageCount:
+        type: object
+        properties:
+          account:
+            "$ref": "#/components/schemas/AccountDetails"
+          cloudType:
+            type: string
+          total:
+            type: integer
+            format: int32
+          resourceTypeCount:
+            type: object
+            additionalProperties:
+              type: integer
+              format: int32
+        description: List of items. Each item contains cloud account name and the workload
+          count of resource type
+      ResourceUsageCountResponse:
+        type: object
+        properties:
+          totalRows:
+            type: integer
+            description: Total number of rows for the query
+            format: int32
+          stats:
+            type: object
+            additionalProperties:
+              type: integer
+              description: Statistics to be shown. This contains the total workload
+                per resource type.
+              format: int32
+            description: Statistics to be shown. This contains the total workload per
+              resource type.
+          items:
+            type: array
+            description: List of items. Each item contains cloud account name and the
+              workload count of resource type
+            items:
+              "$ref": "#/components/schemas/ResourceUsageCount"
+          nextPageToken:
+            type: string
+            description: Token to be used for next page call
+          planType:
+            type: string
+            description: PlanType of the selected time range
+        description: Model containing Paginated License response
       SpringErrorResponse:
         required:
         - error
@@ -334,6 +387,80 @@
             enum:
             - BACKWARD
         description: Model for RelativeTimeRangeConfig
+      GraphDataPoint:
+        type: object
+        properties:
+          timeRange:
+            "$ref": "#/components/schemas/TimeRange"
+          counts:
+            type: object
+            additionalProperties:
+              type: object
+              additionalProperties:
+                type: integer
+                description: Graph resource usage by cloud type
+                format: int32
+              description: Graph resource usage by cloud type
+            description: Graph resource usage by cloud type
+        description: Graph resource usage data points
+      ResourceUsageGraphResponse:
+        type: object
+        properties:
+          dataPoints:
+            type: array
+            description: Graph GraphDataPoint points
+            items:
+              "$ref": "#/components/schemas/GraphDataPoint"
+          workloadsPurchased:
+            type: integer
+            description: Purchased workload count
+            format: int32
+          timeUnit:
+            type: string
+            description: Returned data in time unit
+            enum:
+            - minute
+            - hour
+            - day
+            - week
+            - month
+            - year
+            - epoch
+            - login
+          availableAsOf:
+            type: integer
+            description: Selected data end time in milli second
+            format: int64
+        description: Graph resource usage
+      TimeRange:
+        required:
+        - endTime
+        - startTime
+        type: object
+        properties:
+          startTime:
+            type: object
+            properties:
+              empty:
+                type: boolean
+              present:
+                type: boolean
+              asLong:
+                type: integer
+                format: int64
+            description: Start Time im Millis
+          endTime:
+            type: object
+            properties:
+              empty:
+                type: boolean
+              present:
+                type: boolean
+              asLong:
+                type: integer
+                format: int64
+            description: End Time im Millis
+        description: Time range
       CsvMessage:
         type: object
         properties:
@@ -450,15 +577,15 @@
         properties:
           totalRows:
             type: integer
-            description: total number of rows for the query
+            description: Total number of rows for the query.
             format: int64
           nextPageToken:
             type: string
-            description: token to be used for next page call
+            description: Token to be used for next page call.
           items:
             type: array
             description: List of items. Each item contains cloud account name and the
-              workload count of resource type
+              workload count of resource type.
             items:
               "$ref": "#/components/schemas/Item"
           stats:
@@ -472,82 +599,7 @@
             additionalProperties:
               type: integer
               format: int32
-        description: Statistics to be shown. This contains the total workload per resource
-          type
-      GraphDataPoint:
-        type: object
-        properties:
-          timeRange:
-            "$ref": "#/components/schemas/TimeRange"
-          counts:
-            type: object
-            additionalProperties:
-              type: object
-              additionalProperties:
-                type: integer
-                description: Graph resource usage by cloud type
-                format: int32
-              description: Graph resource usage by cloud type
-            description: Graph resource usage by cloud type
-        description: Graph resource usage data points
-      ResourceUsageGraphResponse:
-        type: object
-        properties:
-          dataPoints:
-            type: array
-            description: Graph GraphDataPoint points
-            items:
-              "$ref": "#/components/schemas/GraphDataPoint"
-          workloadsPurchased:
-            type: integer
-            description: Purchased workload count
-            format: int32
-          timeUnit:
-            type: string
-            description: Returned data in time unit
-            enum:
-            - minute
-            - hour
-            - day
-            - week
-            - month
-            - year
-            - epoch
-            - login
-          availableAsOf:
-            type: integer
-            description: Selected data end time in milli second
-            format: int64
-        description: Graph resource usage
-      TimeRange:
-        required:
-        - endTime
-        - startTime
-        type: object
-        properties:
-          startTime:
-            type: object
-            properties:
-              empty:
-                type: boolean
-              present:
-                type: boolean
-              asLong:
-                type: integer
-                format: int64
-            description: Start Time im Millis
-          endTime:
-            type: object
-            properties:
-              empty:
-                type: boolean
-              present:
-                type: boolean
-              asLong:
-                type: integer
-                format: int64
-            description: End Time im Millis
-        description: Time range
+        description: Statistics to be shown. This contains the total workload per resource type.
       OptimizeResourceCount:
         type: object
         properties:
