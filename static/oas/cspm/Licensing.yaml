@@ -14,20 +14,9 @@
       post:
         tags:
           - Licensing
-        summary: Usage Count By Cloud Type
+        summary: Download Usage Count By Cloud Type
         description: |
-          Returns a breakdown of resources used per account for a single cloud type. 
-
-
-          You can request usage data in one of the following formats;
-          * Receive paginated usage data in the response object 
-          * Download usage data in a CSV file
-
-
-          By default, you will receive your paginated usage data in the response object. You can control the number of items in the 
-          response object through the **limit** request body parameter. If data beyond what's in the response object is available,
-          the response object attribute **nextPageToken** will provide a token you can set in the request parameter **pageToken** of your
-          next request to get the next page of usage data.
+          Returns a breakdown of resources used per account for a single cloud type in a CSV file.
 
 
           To download the usage data in a CSV file, set the following:
@@ -75,9 +64,6 @@
           '200':
             description: Successful operation
             content:
-              application/json; charset=UTF-8:
-                schema:
-                  "$ref": "#/components/schemas/LicenseResponseModel"
               application/octet-stream:
                 schema:
                   "$ref": "#/components/schemas/CsvMessage"
@@ -87,84 +73,32 @@
               application/octet-stream:
                 schema:
                   "$ref": "#/components/schemas/SpringErrorResponse"
-              application/json; charset=UTF-8:
-                schema:
-                  oneOf:
-                  - "$ref": "#/components/schemas/LicenseResponseModel"
-                  - "$ref": "#/components/schemas/SpringErrorResponse"
           '403':
             description: Forbidden
             content:
               application/octet-stream:
                 schema:
                   "$ref": "#/components/schemas/SpringErrorResponse"
-              application/json; charset=UTF-8:
-                schema:
-                  oneOf:
-                  - "$ref": "#/components/schemas/LicenseResponseModel"
-                  - "$ref": "#/components/schemas/SpringErrorResponse"
           '500':
             description: internal_error
             content:
               application/octet-stream:
-                schema:
-                  "$ref": "#/components/schemas/SpringErrorResponse"
-              application/json; charset=UTF-8:
-                schema:
-                  oneOf:
-                  - "$ref": "#/components/schemas/LicenseResponseModel"
-                  - "$ref": "#/components/schemas/SpringErrorResponse"
-    "/license/api/v1/usage/time_series":
-      post:
-        tags:
-        - Licensing
-        summary: Resource Usage Over Time
-        description: Get a breakdown of resource usage over time.
-        operationId: license-usage-graph_1
-        requestBody:
-          content:
-            application/json; charset=UTF-8:
-              schema:
-                "$ref": "#/components/schemas/AccountListRequestModel"
-          required: true
-        responses:
-          '200':
-            description: Successful operation
-            content:
-              application/json; charset=UTF-8:
-                schema:
-                  "$ref": "#/components/schemas/ResourceUsageGraphResponse"
-          '400':
-            description: invalid_parameter_value
-            content:
-              application/json; charset=UTF-8:
-                schema:
-                  "$ref": "#/components/schemas/SpringErrorResponse"
-          '403':
-            description: Forbidden
-            content:
-              application/json; charset=UTF-8:
-                schema:
-                  "$ref": "#/components/schemas/SpringErrorResponse"
-          '500':
-            description: internal_error
-            content:
-              application/json; charset=UTF-8:
                 schema:
                   "$ref": "#/components/schemas/SpringErrorResponse"
     "/license/api/v2/usage":
       post:
         tags:
         - Licensing
-        summary: Usage Count By Cloud Type V2
-        description: Get a full breakdown of resources used per account under a single
-          cloud type in paginated way.
+        summary: List Usage Count for Selected Cloud Types
+        description: |
+          Get a full breakdown of resources used per account for selected cloud types in a paginated way.
+
+          By default, you will receive your paginated usage data in the response object. You can control the number of items in the 
+          response object through the **limit** request body parameter. If data beyond what's in the response object is available,
+          the response object attribute **nextPageToken** will provide a token you can set in the request parameter **pageToken** of your
+          next request to get the next page of usage data.
+
         operationId: license-usage-count-by-cloud-paginated
-        parameters:
-        - name: cloud_type
-          in: query
-          schema:
-            type: string
         requestBody:
           content:
             application/json; charset=UTF-8:
@@ -200,7 +134,7 @@
       post:
         tags:
         - Licensing
-        summary: Resource Usage Over Time V2
+        summary: Resource Usage Over Time
         description: Get a breakdown of resource usage over time.
         operationId: license-usage-graph
         requestBody:

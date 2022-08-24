@@ -12,8 +12,8 @@
     "/license/api/v1/usage": {
       "post": {
         "tags": ["Licensing"],
-        "summary": "Usage Count By Cloud Type",
-        "description": "Returns a breakdown of resources used per account for a single cloud type. \n\n\nYou can request usage data in one of the following formats;\n* Receive paginated usage data in the response object \n* Download usage data in a CSV file\n\n\nBy default, you will receive your paginated usage data in the response object. You can control the number of items in the \nresponse object through the **limit** request body parameter. If data beyond what's in the response object is available,\nthe response object attribute **nextPageToken** will provide a token you can set in the request parameter **pageToken** of your\nnext request to get the next page of usage data.\n\n\nTo download the usage data in a CSV file, set the following:\n* Request header: **Accept: application/octet-stream**\n* Request body parameter: **csvHeaderRequired** = **true**.\n\n\nThe following example curl command requests usage data in a CSV file:\n\n```bash\ncurl --location --request POST 'https://api.prismacloud.io/license/api/v1/usage' \\\n--header 'x-redlock-auth:<your JWT>' \\\n--header 'Content-Type: application/json' \\\n--header 'Accept: application/octet-stream' \\\n--data-raw '{\n    \"timeRange\": {\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 1,\n            \"unit\": \"month\"\n        }\n    },\n    \"accountIds\": [\n        \"123456789987\", \n        \"987654321123\"\n    ],\n    \"cloudType\": \"AWS\",\n    \"csvHeaderRequired\": true\n}'\n````\n",
+        "summary": "Download Usage Count By Cloud Type",
+        "description": "Returns a breakdown of resources used per account for a single cloud type in a CSV file.\n\n\nTo download the usage data in a CSV file, set the following:\n* Request header: **Accept: application/octet-stream**\n* Request body parameter: **csvHeaderRequired** = **true**.\n\n\nThe following example curl command requests usage data in a CSV file:\n\n```bash\ncurl --location --request POST 'https://api.prismacloud.io/license/api/v1/usage' \\\n--header 'x-redlock-auth:<your JWT>' \\\n--header 'Content-Type: application/json' \\\n--header 'Accept: application/octet-stream' \\\n--data-raw '{\n    \"timeRange\": {\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 1,\n            \"unit\": \"month\"\n        }\n    },\n    \"accountIds\": [\n        \"123456789987\", \n        \"987654321123\"\n    ],\n    \"cloudType\": \"AWS\",\n    \"csvHeaderRequired\": true\n}'\n````\n",
         "operationId": "license-usage-count-by-cloud-paginated_1_1",
         "parameters": [
           {
@@ -35,11 +35,6 @@
           "200": {
             "description": "Successful operation",
             "content": {
-              "application/json; charset=UTF-8": {
-                "schema": {
-                  "$ref": "#/components/schemas/LicenseResponseModel"
-                }
-              },
               "application/octet-stream": {
                 "schema": { "$ref": "#/components/schemas/CsvMessage" }
               }
@@ -50,14 +45,6 @@
             "content": {
               "application/octet-stream": {
                 "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
-              },
-              "application/json; charset=UTF-8": {
-                "schema": {
-                  "oneOf": [
-                    { "$ref": "#/components/schemas/LicenseResponseModel" },
-                    { "$ref": "#/components/schemas/SpringErrorResponse" }
-                  ]
-                }
               }
             }
           },
@@ -66,14 +53,6 @@
             "content": {
               "application/octet-stream": {
                 "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
-              },
-              "application/json; charset=UTF-8": {
-                "schema": {
-                  "oneOf": [
-                    { "$ref": "#/components/schemas/LicenseResponseModel" },
-                    { "$ref": "#/components/schemas/SpringErrorResponse" }
-                  ]
-                }
               }
             }
           },
@@ -82,14 +61,6 @@
             "content": {
               "application/octet-stream": {
                 "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
-              },
-              "application/json; charset=UTF-8": {
-                "schema": {
-                  "oneOf": [
-                    { "$ref": "#/components/schemas/LicenseResponseModel" },
-                    { "$ref": "#/components/schemas/SpringErrorResponse" }
-                  ]
-                }
               }
             }
           }
@@ -106,83 +77,12 @@
         ]
       }
     },
-    "/license/api/v1/usage/time_series": {
-      "post": {
-        "tags": ["Licensing"],
-        "summary": "Resource Usage Over Time",
-        "description": "Get a breakdown of resource usage over time.",
-        "operationId": "license-usage-graph_1",
-        "requestBody": {
-          "content": {
-            "application/json; charset=UTF-8": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountListRequestModel"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json; charset=UTF-8": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceUsageGraphResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "invalid_parameter_value",
-            "content": {
-              "application/json; charset=UTF-8": {
-                "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json; charset=UTF-8": {
-                "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
-              }
-            }
-          },
-          "500": {
-            "description": "internal_error",
-            "content": {
-              "application/json; charset=UTF-8": {
-                "schema": { "$ref": "#/components/schemas/SpringErrorResponse" }
-              }
-            }
-          }
-        },
-        "x-codeSamples": [
-          {
-            "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/license/api/v1/usage/time_series\"\n\npayload = {\n    \"accountIds\": [\"string\"],\n    \"limit\": 100,\n    \"timeRange\": {\n        \"type\": \"relative\",\n        \"value\": {\n            \"unit\": \"minute\",\n            \"amount\": 0\n        },\n        \"relativeTimeType\": \"BACKWARD\"\n    },\n    \"cloudType\": \"aws\",\n    \"csvHeaderRequired\": True\n}\nheaders = {\"content-type\": \"application/json; charset=UTF-8\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
-          },
-          {
-            "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/license/api/v1/usage/time_series \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --data '{\"accountIds\":[\"string\"],\"limit\":100,\"timeRange\":{\"type\":\"relative\",\"value\":{\"unit\":\"minute\",\"amount\":0},\"relativeTimeType\":\"BACKWARD\"},\"cloudType\":\"aws\",\"csvHeaderRequired\":true}'"
-          }
-        ]
-      }
-    },
     "/license/api/v2/usage": {
       "post": {
         "tags": ["Licensing"],
-        "summary": "Usage Count By Cloud Type V2",
-        "description": "Get a full breakdown of resources used per account under a single cloud type in paginated way.",
+        "summary": "List Usage Count for Selected Cloud Types",
+        "description": "Get a full breakdown of resources used per account for selected cloud types in a paginated way.\n\nBy default, you will receive your paginated usage data in the response object. You can control the number of items in the \nresponse object through the **limit** request body parameter. If data beyond what's in the response object is available,\nthe response object attribute **nextPageToken** will provide a token you can set in the request parameter **pageToken** of your\nnext request to get the next page of usage data.\n",
         "operationId": "license-usage-count-by-cloud-paginated",
-        "parameters": [
-          {
-            "name": "cloud_type",
-            "in": "query",
-            "schema": { "type": "string" }
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json; charset=UTF-8": {
@@ -232,11 +132,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/license/api/v2/usage\"\n\nquerystring = {\"cloud_type\":\"SOME_STRING_VALUE\"}\n\npayload = {\n    \"accountIds\": [\"string\"],\n    \"limit\": 100,\n    \"cloudTypes\": [\"string\"],\n    \"timeRange\": {\n        \"type\": \"relative\",\n        \"value\": {\n            \"unit\": \"minute\",\n            \"amount\": 0\n        },\n        \"relativeTimeType\": \"BACKWARD\"\n    },\n    \"pageToken\": \"null\",\n    \"offset\": 0\n}\nheaders = {\"content-type\": \"application/json; charset=UTF-8\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/license/api/v2/usage\"\n\npayload = {\n    \"accountIds\": [\"string\"],\n    \"limit\": 100,\n    \"cloudTypes\": [\"string\"],\n    \"timeRange\": {\n        \"type\": \"relative\",\n        \"value\": {\n            \"unit\": \"minute\",\n            \"amount\": 0\n        },\n        \"relativeTimeType\": \"BACKWARD\"\n    },\n    \"pageToken\": \"null\",\n    \"offset\": 0\n}\nheaders = {\"content-type\": \"application/json; charset=UTF-8\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/license/api/v2/usage?cloud_type=SOME_STRING_VALUE' \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --data '{\"accountIds\":[\"string\"],\"limit\":100,\"cloudTypes\":[\"string\"],\"timeRange\":{\"type\":\"relative\",\"value\":{\"unit\":\"minute\",\"amount\":0},\"relativeTimeType\":\"BACKWARD\"},\"pageToken\":\"null\",\"offset\":0}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/license/api/v2/usage \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --data '{\"accountIds\":[\"string\"],\"limit\":100,\"cloudTypes\":[\"string\"],\"timeRange\":{\"type\":\"relative\",\"value\":{\"unit\":\"minute\",\"amount\":0},\"relativeTimeType\":\"BACKWARD\"},\"pageToken\":\"null\",\"offset\":0}'"
           }
         ]
       }
@@ -244,7 +144,7 @@
     "/license/api/v2/time_series": {
       "post": {
         "tags": ["Licensing"],
-        "summary": "Resource Usage Over Time V2",
+        "summary": "Resource Usage Over Time",
         "description": "Get a breakdown of resource usage over time.",
         "operationId": "license-usage-graph",
         "requestBody": {
