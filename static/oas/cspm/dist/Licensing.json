@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Prisma Cloud License API Overview",
-    "description": "The Prisma Cloud License endpoints enable you to query your Prisma Cloud usage.",
+    "description": "The Prisma Cloud License endpoints enable you to query your Prisma Cloud usage.\n\nFor information about the different license types, see [Prisma Cloud License Types](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/get-started-with-prisma-cloud/prisma-cloud-licenses).\n",
     "contact": {},
     "version": "Latest"
   },
