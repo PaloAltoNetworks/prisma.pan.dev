@@ -18240,7 +18240,7 @@
     "title": "Policies Overview",
     "version": "22.06.197",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/policies.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/policies.md"
     }
   },
   "openapi": "3.0.3",
@@ -18284,7 +18284,7 @@
     "/api/v22.06/policies/compliance/ci/images": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/compliance_ci_images_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_ci_images_get.md"
         },
         "responses": {
           "200": {
@@ -18315,7 +18315,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/compliance_ci_images_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_ci_images_put.md"
         },
         "requestBody": {
           "content": {
@@ -18350,7 +18350,7 @@
     "/api/v22.06/policies/compliance/ci/serverless": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/compliance_ci_serverless_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_ci_serverless_get.md"
         },
         "responses": {
           "200": {
@@ -18381,7 +18381,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/compliance_ci_serverless_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_ci_serverless_put.md"
         },
         "requestBody": {
           "content": {
@@ -18416,7 +18416,7 @@
     "/api/v22.06/policies/compliance/container": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/compliance_container_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_container_get.md"
         },
         "responses": {
           "200": {
@@ -18447,7 +18447,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/compliance_container_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_container_put.md"
         },
         "requestBody": {
           "content": {
@@ -18482,7 +18482,7 @@
     "/api/v22.06/policies/compliance/container/impacted": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/compliance_container_impacted_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_container_impacted_get.md"
         },
         "parameters": [
           {
@@ -18601,7 +18601,7 @@
     "/api/v22.06/policies/compliance/host": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/compliance_host_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_host_get.md"
         },
         "responses": {
           "200": {
@@ -18632,7 +18632,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/compliance_host_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_host_put.md"
         },
         "requestBody": {
           "content": {
@@ -18667,7 +18667,7 @@
     "/api/v22.06/policies/compliance/serverless": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/compliance_serverless_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_serverless_get.md"
         },
         "responses": {
           "200": {
@@ -18698,7 +18698,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/compliance_serverless_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_serverless_put.md"
         },
         "requestBody": {
           "content": {
@@ -18733,7 +18733,7 @@
     "/api/v22.06/policies/compliance/vms/impacted": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/compliance_vms_impacted_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/compliance_vms_impacted_get.md"
         },
         "parameters": [
           {
@@ -18852,7 +18852,7 @@
     "/api/v22.06/policies/firewall/app/apispec": {
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app_apispec_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_apispec_post.md"
         },
         "responses": {
           "200": {
@@ -18885,7 +18885,7 @@
     "/api/v22.06/policies/firewall/app/app-embedded": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app-embedded_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app-embedded_get.md"
         },
         "responses": {
           "200": {
@@ -18916,7 +18916,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app-embedded_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app-embedded_put.md"
         },
         "requestBody": {
           "content": {
@@ -18951,7 +18951,7 @@
     "/api/v22.06/policies/firewall/app/container": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app_container_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_container_get.md"
         },
         "responses": {
           "200": {
@@ -18982,7 +18982,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app_container_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_container_put.md"
         },
         "requestBody": {
           "content": {
@@ -19134,7 +19134,7 @@
     "/api/v22.06/policies/firewall/app/host": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app_host_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_host_get.md"
         },
         "responses": {
           "200": {
@@ -19165,7 +19165,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app_host_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_host_put.md"
         },
         "requestBody": {
           "content": {
@@ -19317,7 +19317,7 @@
     "/api/v22.06/policies/firewall/app/network-list": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app_network_list_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_network_list_get.md"
         },
         "responses": {
           "200": {
@@ -19348,7 +19348,7 @@
       },
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app_network_list_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_network_list_post.md"
         },
         "requestBody": {
           "content": {
@@ -19381,7 +19381,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app_network_list_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_network_list_put.md"
         },
         "requestBody": {
           "content": {
@@ -19416,7 +19416,7 @@
     "/api/v22.06/policies/firewall/app/network-list/{id}": {
       "delete": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app_network_list_id_delete.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_network_list_id_delete.md"
         },
         "parameters": [
           {
@@ -19452,7 +19452,7 @@
     "/api/v22.06/policies/firewall/app/out-of-band": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app_out-of-band_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_out-of-band_get.md"
         },
         "responses": {
           "200": {
@@ -19483,7 +19483,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app_out-of-band_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_out-of-band_put.md"
         },
         "requestBody": {
           "content": {
@@ -19518,7 +19518,7 @@
     "/api/v22.06/policies/firewall/app/out-of-band/impacted": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app_out-of-band_impacted_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_out-of-band_impacted_get.md"
         },
         "parameters": [
           {
@@ -19637,7 +19637,7 @@
     "/api/v22.06/policies/firewall/app/serverless": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app_serverless_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_serverless_get.md"
         },
         "responses": {
           "200": {
@@ -19668,7 +19668,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/firewall_app_serverless_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_app_serverless_put.md"
         },
         "requestBody": {
           "content": {
@@ -19765,7 +19765,7 @@
     "/api/v22.06/policies/runtime/app-embedded": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/runtime_app-embedded_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_app-embedded_get.md"
         },
         "responses": {
           "200": {
@@ -19796,7 +19796,7 @@
       },
       "post": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/runtime_app-embedded_post.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_app-embedded_post.md"
         },
         "requestBody": {
           "content": {
@@ -19829,7 +19829,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/runtime_app-embedded_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_app-embedded_put.md"
         },
         "requestBody": {
           "content": {
@@ -19864,7 +19864,7 @@
     "/api/v22.06/policies/runtime/container": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/runtime_container_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_container_get.md"
         },
         "responses": {
           "200": {
@@ -19926,7 +19926,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/runtime_container_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_container_put.md"
         },
         "requestBody": {
           "content": {
@@ -19961,7 +19961,7 @@
     "/api/v22.06/policies/runtime/container/impacted": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/runtime_container_impacted_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_container_impacted_get.md"
         },
         "parameters": [
           {
@@ -20080,7 +20080,7 @@
     "/api/v22.06/policies/runtime/host": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/runtime_host_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_host_get.md"
         },
         "responses": {
           "200": {
@@ -20142,7 +20142,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/runtime_host_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_host_put.md"
         },
         "requestBody": {
           "content": {
@@ -20177,7 +20177,7 @@
     "/api/v22.06/policies/runtime/serverless": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/runtime_serverless_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_serverless_get.md"
         },
         "responses": {
           "200": {
@@ -20239,7 +20239,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/runtime_serverless_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_serverless_put.md"
         },
         "requestBody": {
           "content": {
@@ -20394,7 +20394,7 @@
     "/api/v22.06/policies/vulnerability/ci/images": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/vulnerability_ci_images_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_ci_images_get.md"
         },
         "responses": {
           "200": {
@@ -20425,7 +20425,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/vulnerability_ci_images_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_ci_images_put.md"
         },
         "requestBody": {
           "content": {
@@ -20460,7 +20460,7 @@
     "/api/v22.06/policies/vulnerability/ci/serverless": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/vulnerability_ci_serverless_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_ci_serverless_get.md"
         },
         "responses": {
           "200": {
@@ -20491,7 +20491,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/vulnerability_ci_serverless_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_ci_serverless_put.md"
         },
         "requestBody": {
           "content": {
@@ -20526,7 +20526,7 @@
     "/api/v22.06/policies/vulnerability/coderepos": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/vulnerability_coderepos_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_coderepos_get.md"
         },
         "responses": {
           "200": {
@@ -20557,7 +20557,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/vulnerability_coderepos_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_coderepos_put.md"
         },
         "requestBody": {
           "content": {
@@ -20592,7 +20592,7 @@
     "/api/v22.06/policies/vulnerability/coderepos/impacted": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/vulnerability_coderepos_impacted_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_coderepos_impacted_get.md"
         },
         "parameters": [
           {
@@ -20711,7 +20711,7 @@
     "/api/v22.06/policies/vulnerability/host": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/vulnerability_host_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_host_get.md"
         },
         "responses": {
           "200": {
@@ -20742,7 +20742,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/vulnerability_host_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_host_put.md"
         },
         "requestBody": {
           "content": {
@@ -20777,7 +20777,7 @@
     "/api/v22.06/policies/vulnerability/host/impacted": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/vulnerability_host_impacted_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_host_impacted_get.md"
         },
         "parameters": [
           {
@@ -20896,7 +20896,7 @@
     "/api/v22.06/policies/vulnerability/images": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/vulnerability_images_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_images_get.md"
         },
         "responses": {
           "200": {
@@ -20927,7 +20927,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/vulnerability_images_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_images_put.md"
         },
         "requestBody": {
           "content": {
@@ -20962,7 +20962,7 @@
     "/api/v22.06/policies/vulnerability/images/impacted": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/vulnerability_images_impacted_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_images_impacted_get.md"
         },
         "parameters": [
           {
@@ -21081,7 +21081,7 @@
     "/api/v22.06/policies/vulnerability/serverless": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/vulnerability_serverless_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_serverless_get.md"
         },
         "responses": {
           "200": {
@@ -21112,7 +21112,7 @@
       },
       "put": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/policies/vulnerability_serverless_put.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/vulnerability_serverless_put.md"
         },
         "requestBody": {
           "content": {

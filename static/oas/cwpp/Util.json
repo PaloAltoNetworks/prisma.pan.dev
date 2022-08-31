@@ -18240,7 +18240,7 @@
     "title": "Util Overview",
     "version": "22.06.197",
     "description": {
-      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/util/util.md"
+      "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/util/util.md"
     }
   },
   "openapi": "3.0.3",
@@ -18250,10 +18250,34 @@
     }
   ],
   "paths": {
+    "/api/v1/util/prisma-cloud-jenkins-plugin.hpi": {
+      "get": {
+        "description": "Download prisma-cloud-jenkins-plugin.hpi",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Util",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "downloads",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "get-util-prisma-cloud-jenkins-plugin.hpi",
+        "summary": " Download"
+      }
+    },
     "/api/v22.06/util/arm64/twistcli": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/util/twistcli_arm64_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/util/twistcli_arm64_get.md"
         },
         "responses": {
           "200": {
@@ -18276,62 +18300,10 @@
         "summary": "Download ARM64 twistcli"
       }
     },
-    "/api/v22.06/util/dbip-country-lite.mmdb": {
-      "get": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/util/dbip_countrylite_get.md"
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Util",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "sandbox",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "get-util-dbip-country-lite.mmdb",
-        "summary": "Download MMDB file from Country Lite database"
-      }
-    },
-    "/api/v22.06/util/osx/twistcli": {
-      "get": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/util/osx_twistcli_get.md"
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Util",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "downloads",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "get-util-osx-twistcli",
-        "summary": "Download twistcli for OSX"
-      }
-    },
     "/api/v22.06/util/twistcli": {
       "get": {
         "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/util/twistcli_get.md"
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/util/twistcli_get.md"
         },
         "responses": {
           "200": {
@@ -18352,32 +18324,6 @@
         },
         "operationId": "get-util-twistcli",
         "summary": "Download twistcli for GNU/Linux"
-      }
-    },
-    "/api/v22.06/util/windows/twistcli.exe": {
-      "get": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/rebuild-cwpp-site-v197/api/descriptions/util/windows_twistcli_get.md"
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Util",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "downloads",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "get-util-windows-twistcli.exe",
-        "summary": "Download twistcli for Windows"
       }
     }
   }
