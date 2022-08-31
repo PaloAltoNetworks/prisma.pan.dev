@@ -18271,7 +18271,7 @@
           "self-hosted": true
         },
         "operationId": "get-util-prisma-cloud-jenkins-plugin.hpi",
-        "summary": " Download"
+        "summary": " Download Jenkins plugin for Prisma Cloud Compute"
       }
     },
     "/api/v22.06/util/arm64/twistcli": {
