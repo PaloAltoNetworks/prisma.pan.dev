@@ -74,7 +74,7 @@ The curl command can handle basic auth for you with the `--user` option.
 
 To access the API using a token:
 
-1. Retrieve a token from the api/v<VERSION>/authenticate endpoint with your user credentials.
+1. Retrieve a token from the api/vVERSION/authenticate endpoint with your user credentials.
 
 By default, access tokens are valid for 30 minutes. You can set the validity period in Console under **Manage** > **Authentication** > **Logon**.
 
@@ -104,7 +104,7 @@ You can also retrieve tokens using client certificates.
   ```
 
 1. Call the Prisma Cloud API, submitting the token in the Authorization field in the HTTP header of your request.
-For example, test connection to the API using the _/api/v<VERSION>/policies_ endpoint:
+For example, test connection to the API using the _/api/vVERSION/policies_ endpoint:
 
   ```
   $ curl --insecure \
