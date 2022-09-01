@@ -125,8 +125,7 @@ module.exports = {
           type: "category",
           label: "Porting guides",
           items: [
-            "cloud/cwpp/porting-guides/porting-guide-21-08",
-            "cloud/cwpp/porting-guides/porting-guide-21-04",
+            "cloud/cwpp/porting-guides/porting-guide-21-08"
           ],
         },
         {
@@ -135,49 +134,49 @@ module.exports = {
           items: [
             {
               type: "category",
-              label: "Version Self-Hosted 20.09",
+              label: "Version Self-Hosted 22.06",
               items: [
                 {
                   type: "link",
                   label: "Administrator's Guide",
-                  href: "https://docs.paloaltonetworks.com/prisma/prisma-cloud/20-09/prisma-cloud-compute-edition-admin.html",
+                  href: "https://docs.paloaltonetworks.com/content/techdocs/en_US/prisma/prisma-cloud/22-06/prisma-cloud-compute-edition-admin.html",
                 },
                 {
                   type: "link",
                   label: "Release Notes",
-                  href: "https://docs.paloaltonetworks.com/prisma/prisma-cloud/20-09/prisma-cloud-compute-edition-release-notes/release-information.html",
+                  href: "https://docs.paloaltonetworks.com/prisma/prisma-cloud/22-06/prisma-cloud-compute-edition-release-notes/release-information",
                 },
               ],
             },
             {
               type: "category",
-              label: "Version Self-Hosted 20.04",
+              label: "Version Self-Hosted 22.01",
               items: [
                 {
                   type: "link",
                   label: "Administrator's Guide",
-                  href: "https://docs.paloaltonetworks.com/prisma/prisma-cloud/20-04/prisma-cloud-compute-edition-admin.html",
+                  href: "https://docs.paloaltonetworks.com/content/techdocs/en_US/prisma/prisma-cloud/22-01/prisma-cloud-compute-edition-admin.html",
                 },
                 {
                   type: "link",
                   label: "Release Notes",
-                  href: "https://docs.paloaltonetworks.com/prisma/prisma-cloud/20-04/prisma-cloud-compute-edition-release-notes/release-information.html",
+                  href: "https://docs.paloaltonetworks.com/prisma/prisma-cloud/22-01/prisma-cloud-compute-edition-release-notes/release-information",
                 },
               ],
             },
             {
               type: "category",
-              label: "Version Self-Hosted 19.11",
+              label: "Version Self-Hosted 21.08",
               items: [
                 {
                   type: "link",
                   label: "Administrator's Guide",
-                  href: "https://docs.paloaltonetworks.com/prisma/prisma-cloud/19-11/prisma-cloud-compute-edition-admin.html",
+                  href: "https://docs.paloaltonetworks.com/content/techdocs/en_US/prisma/prisma-cloud/21-08/prisma-cloud-compute-edition-admin.html",
                 },
                 {
                   type: "link",
                   label: "Release Notes",
-                  href: "https://docs.paloaltonetworks.com/prisma/prisma-cloud/19-11/prisma-cloud-compute-edition-release-notes/release-information.html",
+                  href: "https://docs.paloaltonetworks.com/prisma/prisma-cloud/21-08/prisma-cloud-compute-edition-release-notes/release-information",
                 },
               ],
             },
