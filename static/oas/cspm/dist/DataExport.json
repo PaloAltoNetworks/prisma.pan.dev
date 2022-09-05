@@ -1,9 +1,10 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Prisma Cloud Data Service API Overview",
-    "description": "The Data Service APIs enable you to get resource archives from AWS S3 for the required time range.",
-    "version": "Latest"
+    "title": "Prisma Cloud Data Export API Overview",
+    "description": "Assets that are deleted from your cloud accounts beyond 90 days will be archived and stored in a secondary database (AWS S3).\nYou can use the Data Export API to list or download the deleted assets data (in the compressed .zip format) \nfor a specific time range. This time range can vary from when the asset was deleted to your Prisma Cloud onboarding.\n",
+    "version": "Latest",
+    "contact": {}
   },
   "servers": [
     {
@@ -13,50 +14,50 @@
   ],
   "tags": [
     {
-      "name": "Data Service",
-      "description": "The Data Service API endpoints are listed below."
+      "name": "Data Export",
+      "description": "The Data Export API endpoint is listed below."
     }
   ],
   "paths": {
     "/config/api/v1/tenant/{prisma_id}/archiveList": {
       "get": {
-        "tags": ["Data Service"],
+        "tags": ["Data Export"],
         "summary": "Bulk export resource archives",
-        "description": "Lists resource archives from AWS S3 according to the specified time range.",
+        "description": "List or download the deleted assets data beyond 90 days from AWS S3 for a specific time range.",
         "operationId": "bulkExportResourceArchives",
         "parameters": [
           {
             "name": "prisma_id",
             "in": "path",
-            "description": "The Prisma ID of the user.",
+            "description": "The tenant ID of the user.",
             "required": true,
             "schema": { "type": "string" }
           },
           {
             "name": "start_date",
             "in": "query",
-            "description": "The start date range for the resource archives in the YYYY-MM-DD format.",
+            "description": "The start date range for the resource archives in the YYYY-MM-DD format.\nYou can choose a start date for cloud assets that have been deleted for more than 90 days and archived into AWS S3. \n",
             "required": true,
             "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "end_date",
             "in": "query",
-            "description": "The end date range for the resource archives in the YYYY-MM-DD format.",
+            "description": "The end date range for the resource archives in the YYYY-MM-DD format.\nYou can choose an end date all the way back to your Prisma Cloud onboarding.\n",
             "required": true,
             "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "include_url",
             "in": "query",
-            "description": "Whether or not the pre-assigned URL needs to be provided.",
+            "description": "This is an optional field.\nBy default, you will only receive a list of 10 resource archives in the response.\nIf set to **true**, you will also receive 10 presigned URLs that you can use to download the deleted assets data in the compressed .zip format.\nEach presigned URL can contain a maximum of 50,000 deleted assets for a cloud account.\n",
             "required": false,
             "schema": { "type": "boolean", "default": false }
           },
           {
             "name": "nextPageToken",
             "in": "query",
-            "description": "The token to fetch the next list of resource archives.",
+            "description": "The token to fetch the entire list of resource archives in 10s for each page for the specified time range.\n",
             "required": false,
             "schema": { "type": "string" }
           }
@@ -255,7 +256,7 @@
           "url": {
             "type": "string",
             "example": "“https://resource-config-archives.s3.amazonaws.com/resource_config_inactive_resource_archives/prismaId/filename.txt.gz”",
-            "description": "The URL of the deleted resource."
+            "description": "The presigned URL of the resource archive that you can use to download the deleted assets data in the compressed .zip format."
           }
         }
       },
@@ -269,7 +270,7 @@
           "nextPageUrl": {
             "type": "string",
             "example": "/config/api/v1/tenant/801905077827777536/archiveList?nextPageToken=MTY1OTY3NTc4NjQ5M18y&start_date=2022-04-15&end_date=2022-07-15&include_url=true",
-            "description": "The token to fetch the next list of resource archives."
+            "description": "The token to fetch the entire list of resource archives in 10s for each page for the specified time range."
           }
         }
       }
