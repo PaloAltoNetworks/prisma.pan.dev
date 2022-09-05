@@ -6,7 +6,8 @@
     contact: {}
     version: Latest
   tags:
-  - name: Licensing 
+  - name: Licensing
+    description: The Licensing API endpoints are listed below.
   servers:
   - url: 'https://api.prismacloud.io'
   paths:
@@ -14,11 +15,11 @@
       post:
         tags:
           - Licensing
-        summary: Usage Count By Cloud Type
+        summary: Usage Count By Cloud Type V1 (Deprecated)
         description: |
           Returns a breakdown of resources used per account for a single cloud type. 
 
-          **Note**: This API will be deprecated soon. We recommend using the Usage Count By Cloud Type V2 API.
+          **Note**: This API will be deprecated soon. To ensure that your automation and scripts continue to work without disruption, use the **Usage Count By Cloud Type V2** API.
 
           You can request usage data in one of the following formats;
           * Receive paginated usage data in the response object 
@@ -119,11 +120,11 @@
       post:
         tags:
         - Licensing
-        summary: Resource Usage Over Time
+        summary: Resource Usage Over Time V1 (Deprecated)
         description: |
           Get a breakdown of resource usage over time.
 
-          **Note**: This API will be deprecated soon. We recommend using the Resource Usage Over Time V2 API.
+          **Note**: This API will be deprecated soon. To ensure that your automation and scripts continue to work without disruption, use the **Resource Usage Over Time V2** API.
 
         operationId: license-usage-graph_1
         requestBody:
