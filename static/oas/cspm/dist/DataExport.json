@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Prisma Cloud Data Export API Overview",
-    "description": "Assets that are deleted from your cloud accounts beyond 90 days will be stored in a secondary database (AWS S3).\nYou can use the Data Export API to list or download the deleted assets data (in the compressed .zip format) \nfor a specific time range. This time range can vary from when the asset was deleted to your Prisma Cloud onboarding.\n",
+    "description": "Assets that are deleted from your cloud accounts beyond 90 days will be archived.\nYou can use the Data Export API to list or download the deleted assets data (in the compressed .zip format) \nfor a specific time range. This time range can vary from when the asset was deleted to your Prisma Cloud onboarding.\n",
     "version": "Latest",
     "contact": {}
   },
