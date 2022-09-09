@@ -3,9 +3,9 @@
   info:
     title: Prisma Cloud Data Export API Overview
     description: |
-      Assets that are deleted from your cloud accounts beyond 90 days will be archived.
-      You can use the Data Export API to list or download the deleted assets data (in the compressed .zip format) 
-      for a specific time range. This time range can vary from when the asset was deleted to your Prisma Cloud onboarding.
+      The configuration details of assets that have been deleted (or terminated) from your cloud accounts for more than 90 days will be archived.
+      You can use the Data Export API to list or download the configuration details of archived deleted assets in the .zip format for a specific time range.
+      You can set a time range from when the asset was deleted to when you onboarded to Prisma Cloud.
     version: Latest
     contact: {}
   servers:
@@ -20,12 +20,12 @@
         tags:
         - Data Export
         summary: Bulk export resource archives
-        description: List or download the deleted assets data beyond 90 days from AWS S3 for a specific time range.
+        description: List or download the configuration details of assets that have been deleted for more than 90 days.
         operationId: bulkExportResourceArchives
         parameters:
         - name: prisma_id
           in: path
-          description: The tenant ID of the user.
+          description: Enter your tenant ID.
           required: true
           schema:
             type: string
@@ -33,7 +33,7 @@
           in: query
           description: |
             The start date range for the resource archives in the YYYY-MM-DD format.
-            You can choose a start date for cloud assets that have been deleted for more than 90 days and stored in AWS S3. 
+            You can choose a start date for cloud assets that have been deleted for more than 90 days.
           required: true
           schema:
             type: string
@@ -42,7 +42,7 @@
           in: query
           description: |
             The end date range for the resource archives in the YYYY-MM-DD format.
-            You can choose an end date all the way back to your Prisma Cloud onboarding.
+            You can choose an end date between asset deletion date and when you onboarded to Prisma Cloud.
           required: true
           schema:
             type: string
@@ -52,7 +52,7 @@
           description: |
             This is an optional field.
             By default, you will only receive a list of 10 resource archives in the response.
-            If set to **true**, you will also receive 10 presigned URLs that you can use to download the deleted assets data in the compressed .zip format.
+            If set to **true**, you will also receive 10 presigned URLs that you can use to download the deleted assets data in the .zip format.
             Each presigned URL can contain a maximum of 50,000 deleted assets for a cloud account.
           required: false
           schema:
@@ -61,13 +61,13 @@
         - name: nextPageToken
           in: query
           description: |
-            The token to fetch the entire list of resource archives in 10s for each page for the specified time range.
+            The URL to fetch the next 10 resource archives for the specified time range.
           required: false
           schema:
             type: string
         responses:
           '200':
-            description: Successfully retrieved resource archives from AWS S3
+            description: Successfully retrieved resource archives
             content:
               application/json:
                 schema:
@@ -215,7 +215,7 @@
           cloudAccountId:
             type: string
             example: sample-accountid-1
-            description: The cloud account ID of the user.
+            description: Cloud account ID.
           date:
             type: string
             example: "2022-04-15"
@@ -223,7 +223,7 @@
           url:
             type: string
             example: “https://resource-config-archives.s3.amazonaws.com/resource_config_inactive_resource_archives/prismaId/filename.txt.gz”
-            description: The presigned URL of the resource archive that you can use to download the deleted assets data in the compressed .zip format.
+            description: The presigned URL of the resource archive that you can use to download the deleted assets data in the .zip format.
       BulkExporterPage:
         type: object
         properties:
@@ -234,5 +234,5 @@
           nextPageUrl:
             type: string
             example: "/config/api/v1/tenant/801905077827777536/archiveList?nextPageToken=MTY1OTY3NTc4NjQ5M18y&start_date=2022-04-15&end_date=2022-07-15&include_url=true"
-            description: The token to fetch the entire list of resource archives in 10s for each page for the specified time range.
+            description: The URL to fetch the next 10 resource archives for the specified time range.
             
