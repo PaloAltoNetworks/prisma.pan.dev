@@ -50,11 +50,12 @@ To specify an image to scan, use either the image ID, or repository name and tag
 # Return Value
 The exit code is 0 if `twistcli` finds no vulnerabilities or compliance issues. Otherwise, the exit code is 1.
 
-The criteria for passing or failing a scan can be refined with any of the following parameters: `--compliance-threshold`, `--vulnerability-threshold`, and `--only-fixed`.
+The criteria for passing or failing a scan can be refined with vulnerability and compliance rules configured via the console.
 
 >The twistcli utility returns exit code 1 for two reasons:
 > * It fails to run due to an error.
-> * The scan fails because the results exceed the thresholds specified with `--compliance-threshold`, `--vulnerability-threshold`, and `--only-fixed`.
+> * The scan fails because the results exceed the thresholds specified in the vulnerability or compliance rules.
+> 
 >Although the return value is ambiguous — you cannot determine the exact reason for the failure by just examining the return value — this setup supports automation. From an automation process perspective, you expect that the entire flow will work. If you scan an image, with or without a threshold, either it works or it does not work. If it fails, for whatever reason, you want to fail everything because there is a problem.
 
 ## Scan results
