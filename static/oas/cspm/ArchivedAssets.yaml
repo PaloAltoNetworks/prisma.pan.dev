@@ -1,0 +1,266 @@
+---
+  openapi: 3.0.1
+  info:
+    title: Prisma Cloud Archived Asssets API Overview
+    description: |
+      The configuration details of assets that have been deleted from your cloud accounts for more than 90 days are archived.
+      You can use the Archived Asssets API to retrieve the configuration details of such assets.
+    version: Latest
+    contact: {}
+  servers:
+  - url: https://api.prismacloud.io
+    description: Generated server url
+  tags:
+  - name: Archived Asssets
+    description: The Archived Asssets API endpoint is listed below.
+  paths:
+    "/config/api/v1/tenant/{prisma_id}/archiveList":
+      get:
+        tags:
+        - Archived Asssets
+        summary: Bulk export resource archives
+        description: |
+          Returns a list that contains details (and optionally links) about the resource archives that contain the configuration metadata for assets that were deleted in the specified time period. 
+
+          Each resource archive contains the configuration metadata for assets that belong to a cloud account ID and were deleted on the same day.
+
+          The returned list has a maximum of 10 resource archives. Each resource archive can optionally include a temporary AWS S3 presigned URL to download the resource archive in a .zip file. Each of the .zip files can contain the configuration metadata for a maximum of 50,000 deleted assets. If the number of resource archives exceeds 10, the response includes a token in the **nextPageUrl** parameter that you can use iteratively to create subsequent requests to get the resource archives in lists of 10 within the specified time range.
+
+          This endpoint checks the date on which the asset was deleted against the specified dates. If an asset was deleted on or after the specified **start_date** and on or before the specified **end_date**, and subsequently archived, it is included in a resource archive returned by the endpoint. 
+
+          The date of archiving the asset metadata that is 90 days after the date on which the asset was deleted from the cloud service provider platform, may not be within the specified time period. However, it is required that the asset metadata has been archived before calling the API.
+        operationId: bulkExportResourceArchives
+        parameters:
+        - name: prisma_id
+          in: path
+          description: Enter your tenant ID.
+          required: true
+          schema:
+            type: string
+        - name: start_date
+          in: query
+          description: Enter the start date (in the YYYY-MM-DD format) of the time period to retrieve the resource archives.
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: end_date
+          in: query
+          description: Enter the end date (in the YYYY-MM-DD format) of the time period to retrieve the resource archives.
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: include_url
+          in: query
+          description: |
+            This is an optional field.
+            By default, the API returns the resource archive ID, cloud account ID, and the asset deletion date for 10 archived assets.
+            If set to **true**, each archived asset also includes a presigned URL that is valid for 10 minutes. You can use this URL to download the deleted assets data in a .zip file.
+            Each .zip file can contain a maximum of 50,000 deleted assets for a cloud account.
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: nextPageToken
+          in: query
+          description: |
+            The token to fetch the next 10 resource archives for the specified time range.
+            You can use the **nextPageUrl** token iteratively to create subsequent requests to get the resource archives in lists of 10 within the specified time range.
+          required: false
+          schema:
+            type: string
+        responses:
+          '200':
+            description: Successfully retrieved resource archives from AWS S3
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    "$ref": "#/components/schemas/BulkExporterPage"
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  "$ref": "#/components/schemas/ApiError"
+          '401':
+            description: Unauthorized Access
+            content:
+              application/json:
+                schema:
+                  "$ref": "#/components/schemas/ApiError"
+          '403':
+            description: Tenant License Expired
+            content:
+              application/json:
+                schema:
+                  "$ref": "#/components/schemas/ApiError"
+          '405':
+            description: Wrong Http Method
+            content:
+              application/json:
+                schema:
+                  "$ref": "#/components/schemas/ApiError"
+          '425':
+            description: Too Early to access the resource
+            content:
+              application/json:
+                schema:
+                  "$ref": "#/components/schemas/ApiError"
+          '429':
+            description: Rate Limit Exceeded
+            content:
+              application/json:
+                schema:
+                  "$ref": "#/components/schemas/ApiError"
+          '500':
+            description: Failed with an Exception, Internal Error Occurred
+            content:
+              application/json:
+                schema:
+                  "$ref": "#/components/schemas/ApiError"
+  components:
+    securitySchemes:
+      x-redlock-auth:
+        description: The x-redlock-auth value is a JSON Web Token (JWT).
+        in: header
+        name: x-redlock-auth
+        type: apiKey
+    schemas:
+      ApiError:
+        type: object
+        properties:
+          status:
+            type: string
+            enum:
+            - 100 CONTINUE
+            - 101 SWITCHING_PROTOCOLS
+            - 102 PROCESSING
+            - 103 CHECKPOINT
+            - 200 OK
+            - 201 CREATED
+            - 202 ACCEPTED
+            - 203 NON_AUTHORITATIVE_INFORMATION
+            - 204 NO_CONTENT
+            - 205 RESET_CONTENT
+            - 206 PARTIAL_CONTENT
+            - 207 MULTI_STATUS
+            - 208 ALREADY_REPORTED
+            - 226 IM_USED
+            - 300 MULTIPLE_CHOICES
+            - 301 MOVED_PERMANENTLY
+            - 302 FOUND
+            - 302 MOVED_TEMPORARILY
+            - 303 SEE_OTHER
+            - 304 NOT_MODIFIED
+            - 305 USE_PROXY
+            - 307 TEMPORARY_REDIRECT
+            - 308 PERMANENT_REDIRECT
+            - 400 BAD_REQUEST
+            - 401 UNAUTHORIZED
+            - 402 PAYMENT_REQUIRED
+            - 403 FORBIDDEN
+            - 404 NOT_FOUND
+            - 405 METHOD_NOT_ALLOWED
+            - 406 NOT_ACCEPTABLE
+            - 407 PROXY_AUTHENTICATION_REQUIRED
+            - 408 REQUEST_TIMEOUT
+            - 409 CONFLICT
+            - 410 GONE
+            - 411 LENGTH_REQUIRED
+            - 412 PRECONDITION_FAILED
+            - 413 PAYLOAD_TOO_LARGE
+            - 413 REQUEST_ENTITY_TOO_LARGE
+            - 414 URI_TOO_LONG
+            - 414 REQUEST_URI_TOO_LONG
+            - 415 UNSUPPORTED_MEDIA_TYPE
+            - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+            - 417 EXPECTATION_FAILED
+            - 418 I_AM_A_TEAPOT
+            - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+            - 420 METHOD_FAILURE
+            - 421 DESTINATION_LOCKED
+            - 422 UNPROCESSABLE_ENTITY
+            - 423 LOCKED
+            - 424 FAILED_DEPENDENCY
+            - 425 TOO_EARLY
+            - 426 UPGRADE_REQUIRED
+            - 428 PRECONDITION_REQUIRED
+            - 429 TOO_MANY_REQUESTS
+            - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+            - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+            - 500 INTERNAL_SERVER_ERROR
+            - 501 NOT_IMPLEMENTED
+            - 502 BAD_GATEWAY
+            - 503 SERVICE_UNAVAILABLE
+            - 504 GATEWAY_TIMEOUT
+            - 505 HTTP_VERSION_NOT_SUPPORTED
+            - 506 VARIANT_ALSO_NEGOTIATES
+            - 507 INSUFFICIENT_STORAGE
+            - 508 LOOP_DETECTED
+            - 509 BANDWIDTH_LIMIT_EXCEEDED
+            - 510 NOT_EXTENDED
+            - 511 NETWORK_AUTHENTICATION_REQUIRED
+          timestamp:
+            type: string
+            format: date-time
+          message:
+            type: string
+          debugMessage:
+            type: string
+      # BulkExporterBean:
+      #   type: object
+      #   properties:
+      #     id:
+      #       type: string
+      #       example: cb8bad01-fa35-44d0-8d66-cd510d2d2fa2
+      #       description: The unique ID of the resource archive.
+      #     cloudAccountId:
+      #       type: string
+      #       example: sample-accountid-1
+      #       description: Cloud account ID of the assets included in the resource archive.
+      #     date:
+      #       type: string
+      #       example: "2022-04-15"
+      #       description: The date on which the assets that are included in the resource archive were deleted.
+      #     url:
+      #       type: string
+      #       example: “https://resource-config-archives.s3.amazonaws.com/resource_config_inactive_resource_archives/prismaId/filename.txt.gz”
+      #       description: The AWS S3 presigned URL for downloading the resource archive in a zip file. This URL is valid for 10 minutes.
+      #        After the URL is expired, you can call a new request to get another valid URL.
+      BulkExporterPage:
+        type: object
+        properties:
+          value:
+            type: array
+            description: Returns the resource archive ID, cloud account ID, asset deletion date, and optionally presigned URL for archived assets.
+            items:
+              # "$ref": "#/components/schemas/BulkExporterBean"
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: cb8bad01-fa35-44d0-8d66-cd510d2d2fa2
+                  description: The unique ID of the resource archive.
+                cloudAccountId:
+                  type: string
+                  example: sample-accountid-1
+                  description: Cloud account ID of the assets included in the resource archive.
+                date:
+                  type: string
+                  example: "2022-04-15"
+                  description: The date on which the assets that are included in the resource archive were deleted.
+                url:
+                  type: string
+                  example: “https://resource-config-archives.s3.amazonaws.com/resource_config_inactive_resource_archives/prismaId/filename.txt.gz”
+                  description: The AWS S3 presigned URL for downloading the resource archive in a zip file. This URL is valid for 10 minutes.
+                   After the URL is expired, you can call a new request to get another valid URL.
+          nextPageUrl:
+            type: string
+            example: "/config/api/v1/tenant/801905077827777536/archiveList?nextPageToken=MTY1OTY3NTc4NjQ5M18y&start_date=2022-04-15&end_date=2022-07-15&include_url=true"
+            description: The token to fetch the next 10 resource archives for the specified time range.
+             You can use the **nextPageUrl** token iteratively to create subsequent requests to get the resource archives in lists of 10 within the specified time range.
+
+            
