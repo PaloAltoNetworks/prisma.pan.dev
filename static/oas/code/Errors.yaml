@@ -139,6 +139,12 @@ components:
     CVE:
       additionalProperties: false
       properties:
+        causePacakgeId:
+          type: string
+        causePackageName:
+          type: string
+        causePackageVersion:
+          type: string
         cveId:
           type: string
         cvss:
@@ -175,6 +181,9 @@ components:
       - riskFactors
       - link
       - publishedDate
+      - causePacakgeId
+      - causePackageName
+      - causePackageVersion
       type: object
     Category:
       enum:
@@ -189,6 +198,8 @@ components:
       - Public
       - Vulnerabilities
       - Drift
+      - BuildIntegrity
+      - Licenses
       type: string
     CodeStatus:
       enum:
@@ -225,6 +236,10 @@ components:
     CvesViolationToSuppress:
       additionalProperties: false
       properties:
+        accountIds:
+          items:
+            type: string
+          type: array
         comment:
           type: string
         cves:
@@ -320,6 +335,90 @@ components:
       - repoName
       - fullId
       type: object
+    ErrorInFile:
+      additionalProperties: false
+      properties:
+        author:
+          type: string
+        commitHash:
+          type: string
+        date:
+          format: date-time
+          type: string
+        errorId:
+          type: string
+        errorLines:
+          items:
+            format: double
+            type: number
+          type: array
+        filePath:
+          type: string
+        fixPath:
+          type: string
+        frameworkType:
+          type: string
+        lines:
+          items:
+            format: double
+            type: number
+          type: array
+        metadataChecksMetadataPath:
+          type: string
+        module:
+          $ref: '#/components/schemas/module'
+        resourceCode:
+          type: string
+        resourceFixCode:
+          type: string
+        resourceId:
+          type: string
+        resourceType:
+          type: string
+        resourceUuid:
+          type: string
+        runtimeFrameworkType:
+          type: string
+        runtimeId:
+          type: string
+        runtimeSourceId:
+          type: string
+        s3FilePath:
+          type: string
+        scannerType:
+          type: string
+        sourceType:
+          $ref: '#/components/schemas/SourceType'
+        status:
+          type: string
+        variableCode:
+          type: string
+        variableFixCode:
+          type: string
+        variableRendering:
+          $ref: '#/components/schemas/VariableRendering'
+      required:
+      - filePath
+      - resourceId
+      - resourceCode
+      - resourceType
+      - fixPath
+      - errorId
+      - lines
+      - status
+      - scannerType
+      - sourceType
+      - metadataChecksMetadataPath
+      - frameworkType
+      - variableRendering
+      - module
+      - errorLines
+      - author
+      - commitHash
+      - date
+      - runtimeId
+      - runtimeSourceId
+      type: object
     ErrorType:
       enum:
       - violation
@@ -407,29 +506,6 @@ components:
       type: object
     FileType:
       enum:
-      - build.gradle
-      - gradle.properties
-      - build.gradle.kts
-      - pom.xml
-      - requirements.txt
-      - package-lock.json
-      - package.json
-      - bower.json
-      - go.sum
-      - go.mod
-      type: string
-    FileTypeEnum:
-      enum:
-      - build.gradle
-      - gradle.properties
-      - build.gradle.kts
-      - pom.xml
-      - requirements.txt
-      - package-lock.json
-      - package.json
-      - bower.json
-      - go.sum
-      - go.mod
       - tf
       - json
       - yml
@@ -438,7 +514,17 @@ components:
       - .checkov.baseline
       - hcl
       - Dockerfile
+      - package.json
+      - package-lock.json
+      - bower.json
+      - pom.xml
+      - build.gradle
+      - build.gradle.kts
+      - gradle.properties
       - gradle-wrapper.properties
+      - go.sum
+      - go.mod
+      - requirements.txt
       - METADATA
       - bicep
       - Pipfile.lock
@@ -466,6 +552,59 @@ components:
       - app.module.ts
       - environment.ts
       - tpl
+      - unknown
+      - tfvars
+      type: string
+    FileTypeEnum:
+      enum:
+      - tf
+      - json
+      - yml
+      - yaml
+      - template
+      - .checkov.baseline
+      - hcl
+      - Dockerfile
+      - package.json
+      - package-lock.json
+      - bower.json
+      - pom.xml
+      - build.gradle
+      - build.gradle.kts
+      - gradle.properties
+      - gradle-wrapper.properties
+      - go.sum
+      - go.mod
+      - requirements.txt
+      - METADATA
+      - bicep
+      - Pipfile.lock
+      - Pipfile
+      - yarn.lock
+      - Gemfile
+      - Gemfile.lock
+      - gemspec
+      - env
+      - settings.py
+      - main.py
+      - application.py
+      - config.py
+      - app.js
+      - config.js
+      - dev.js
+      - db.properties
+      - application.properties
+      - private.pem
+      - privatekey.pem
+      - index.php
+      - config.php
+      - config.xml
+      - strings.xml
+      - app.module.ts
+      - environment.ts
+      - tpl
+      - unknown
+      - tfvars
       type: string
     GetErrorsFilesResponseBody:
       additionalProperties: false
@@ -497,6 +636,10 @@ components:
         codeStatus:
           items:
             $ref: '#/components/schemas/CodeStatus'
+          type: array
+        excludeCategories:
+          items:
+            $ref: '#/components/schemas/Category'
           type: array
         fileTypes:
           items:
@@ -556,6 +699,10 @@ components:
         codeStatus:
           items:
             $ref: '#/components/schemas/CodeStatus'
+          type: array
+        excludeCategories:
+          items:
+            $ref: '#/components/schemas/Category'
           type: array
         filePath:
           type: string
@@ -620,6 +767,54 @@ components:
       - comment
       - createdBy
       type: object
+    License:
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        license:
+          type: string
+        packageId:
+          type: string
+        packageName:
+          type: string
+        packageVersion:
+          type: string
+        parentId:
+          type: string
+        status:
+          type: string
+      required:
+      - id
+      - status
+      - license
+      - parentId
+      - packageId
+      - packageName
+      - packageVersion
+      type: object
+    LicenseTypeSuppress:
+      additionalProperties: false
+      properties:
+        comment:
+          type: string
+        expirationTime:
+          format: double
+          type: number
+        licenseTypes:
+          items:
+            type: string
+          type: array
+        suppressionType:
+          type: string
+        violationId:
+          type: string
+      required:
+      - violationId
+      - suppressionType
+      - comment
+      - licenseTypes
+      type: object
     ModuleError:
       additionalProperties: false
       properties:
@@ -638,6 +833,31 @@ components:
       - moduleFile
       - fixedCode
       - code
+      type: object
+    PackageLicenseSuppress:
+      additionalProperties: false
+      properties:
+        comment:
+          type: string
+        expirationTime:
+          format: double
+          type: number
+        packages:
+          items:
+            type: string
+          type: array
+        suppressByRoot:
+          type: boolean
+        suppressionType:
+          type: string
+        violationId:
+          type: string
+      required:
+      - violationId
+      - suppressionType
+      - comment
+      - packages
+      - suppressByRoot
       type: object
     ResourceToSuppress:
       additionalProperties: false
@@ -700,6 +920,7 @@ components:
       - HIGH
       - MEDIUM
       - LOW
+      - INFO
       type: string
     SmartFix:
       additionalProperties: false
@@ -821,6 +1042,8 @@ components:
             - $ref: '#/components/schemas/SourcesViolationToSuppress'
             - $ref: '#/components/schemas/BaseViolationToSuppress'
             - $ref: '#/components/schemas/CvesViolationToSuppress'
+            - $ref: '#/components/schemas/LicenseTypeSuppress'
+            - $ref: '#/components/schemas/PackageLicenseSuppress'
           type: array
       required:
       - type
@@ -907,6 +1130,23 @@ components:
       - Passed
       - Fixed
       type: string
+    VariableRendering:
+      additionalProperties: false
+      properties:
+        code:
+          type: string
+        lines:
+          items:
+            format: double
+            type: number
+          type: array
+        path:
+          type: string
+      required:
+      - path
+      - lines
+      - code
+      type: object
     VariableRenderingError:
       additionalProperties: false
       properties:
@@ -964,6 +1204,10 @@ components:
           type: string
         isFixable:
           type: boolean
+        licenses:
+          items:
+            $ref: '#/components/schemas/License'
+          type: array
         lines:
           items:
             format: double
@@ -987,6 +1231,10 @@ components:
           type: string
         scannerType:
           type: string
+        secrets:
+          items:
+            $ref: '#/components/schemas/ErrorInFile'
+          type: array
         selectedFix:
           allOf:
           - $ref: '#/components/schemas/SmartFix'
@@ -1049,6 +1297,19 @@ components:
       - repoName
       - packageName
       - packageVersion
+      type: object
+    module:
+      additionalProperties: false
+      properties:
+        moduleFile:
+          type: string
+        moduleReferences:
+          items:
+            $ref: '#/components/schemas/moduleReferences'
+          type: array
+      required:
+      - moduleReferences
+      - moduleFile
       type: object
     moduleReferences:
       additionalProperties: false

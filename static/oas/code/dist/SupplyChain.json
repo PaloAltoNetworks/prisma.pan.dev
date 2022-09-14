@@ -83,14 +83,15 @@
         "enum": [
           "Kubernetes",
           "Licenses",
+          "Git",
           "AWS",
           "GCP",
           "Azure",
           "Docker",
+          "AlibabaCloud",
           "OCI",
           "OpenStack",
           "Packages",
-          "Git",
           "Prisma Cloud Code Security",
           "Linode",
           "DigitalOcean",
@@ -104,21 +105,80 @@
       },
       "FileType": {
         "enum": [
-          "build.gradle",
-          "gradle.properties",
-          "build.gradle.kts",
-          "pom.xml",
-          "requirements.txt",
-          "package-lock.json",
+          "tf",
+          "json",
+          "yml",
+          "yaml",
+          "template",
+          ".checkov.baseline",
+          "hcl",
+          "Dockerfile",
           "package.json",
+          "package-lock.json",
           "bower.json",
+          "pom.xml",
+          "build.gradle",
+          "build.gradle.kts",
+          "gradle.properties",
+          "gradle-wrapper.properties",
           "go.sum",
-          "go.mod"
+          "go.mod",
+          "requirements.txt",
+          "METADATA",
+          "bicep",
+          "Pipfile.lock",
+          "Pipfile",
+          "yarn.lock",
+          "Gemfile",
+          "Gemfile.lock",
+          "gemspec",
+          "env",
+          "settings.py",
+          "main.py",
+          "application.py",
+          "config.py",
+          "app.js",
+          "config.js",
+          "dev.js",
+          "db.properties",
+          "application.properties",
+          "private.pem",
+          "privatekey.pem",
+          "index.php",
+          "config.php",
+          "config.xml",
+          "strings.xml",
+          "app.module.ts",
+          "environment.ts",
+          "tpl",
+          "unknown",
+          "tfvars"
         ],
         "type": "string"
       },
       "FrameworkType": {
-        "enum": ["Terraform", "CloudFormation", "Kubernetes"],
+        "enum": [
+          "Terraform",
+          "CloudFormation",
+          "Kubernetes",
+          "TerraformPlan",
+          "Helm",
+          "Kustomize",
+          "Serverless",
+          "ARM",
+          "Bicep",
+          "Git",
+          "AWS",
+          "GCP",
+          "Azure",
+          "DockerImage",
+          "Docker",
+          "Vulnerabilities",
+          "VCS",
+          "OpenAPI",
+          "GithubAction",
+          "SCA"
+        ],
         "type": "string"
       },
       "GetNodesControllerRequest": {
@@ -199,7 +259,9 @@
           "package",
           "dockerFile",
           "buildtimeResource",
-          "runtimeResource"
+          "runtimeResource",
+          "buildtimeJob",
+          "image"
         ],
         "type": "string"
       },
@@ -464,11 +526,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/code/api/v1/supply-chain/nodes\"\n\npayload = {\n    \"edgeDirection\": \"parent\",\n    \"filters\": {\n        \"fileType\": [\"build.gradle\"],\n        \"repositoryId\": \"string\",\n        \"status\": [\"OPEN\"]\n    },\n    \"limit\": 0,\n    \"nodeId\": \"string\",\n    \"nodeType\": \"org\",\n    \"offset\": 0\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"authorization\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/code/api/v1/supply-chain/nodes\"\n\npayload = {\n    \"edgeDirection\": \"parent\",\n    \"filters\": {\n        \"fileType\": [\"tf\"],\n        \"repositoryId\": \"string\",\n        \"status\": [\"OPEN\"]\n    },\n    \"limit\": 0,\n    \"nodeId\": \"string\",\n    \"nodeType\": \"org\",\n    \"offset\": 0\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"authorization\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/code/api/v1/supply-chain/nodes \\\n  --header 'authorization: REPLACE_KEY_VALUE' \\\n  --header 'content-type: application/json' \\\n  --data '{\"edgeDirection\":\"parent\",\"filters\":{\"fileType\":[\"build.gradle\"],\"repositoryId\":\"string\",\"status\":[\"OPEN\"]},\"limit\":0,\"nodeId\":\"string\",\"nodeType\":\"org\",\"offset\":0}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/code/api/v1/supply-chain/nodes \\\n  --header 'authorization: REPLACE_KEY_VALUE' \\\n  --header 'content-type: application/json' \\\n  --data '{\"edgeDirection\":\"parent\",\"filters\":{\"fileType\":[\"tf\"],\"repositoryId\":\"string\",\"status\":[\"OPEN\"]},\"limit\":0,\"nodeId\":\"string\",\"nodeType\":\"org\",\"offset\":0}'"
           }
         ]
       }

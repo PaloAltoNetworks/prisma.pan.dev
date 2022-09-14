@@ -85,6 +85,8 @@ components:
           type: string
         defaultBranch:
           type: string
+        description:
+          type: string
         errors:
           format: double
           type: number
@@ -102,6 +104,8 @@ components:
           format: double
           type: number
         source:
+          type: string
+        url:
           type: string
       required:
       - id
@@ -226,6 +230,7 @@ paths:
                   value:
                   - creationDate: '2022-02-21T12:37:56.188Z'
                     defaultBranch: master
+                    description: description
                     errors: null
                     id: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
                     isPublic: false

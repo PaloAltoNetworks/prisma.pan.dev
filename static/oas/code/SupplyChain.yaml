@@ -97,14 +97,15 @@ components:
       enum:
       - Kubernetes
       - Licenses
+      - Git
       - AWS
       - GCP
       - Azure
       - Docker
+      - AlibabaCloud
       - OCI
       - OpenStack
       - Packages
-      - Git
       - Prisma Cloud Code Security
       - Linode
       - DigitalOcean
@@ -118,22 +119,77 @@ components:
       type: string
     FileType:
       enum:
-      - build.gradle
-      - gradle.properties
-      - build.gradle.kts
-      - pom.xml
-      - requirements.txt
-      - package-lock.json
+      - tf
+      - json
+      - yml
+      - yaml
+      - template
+      - .checkov.baseline
+      - hcl
+      - Dockerfile
       - package.json
+      - package-lock.json
       - bower.json
+      - pom.xml
+      - build.gradle
+      - build.gradle.kts
+      - gradle.properties
+      - gradle-wrapper.properties
       - go.sum
       - go.mod
+      - requirements.txt
+      - METADATA
+      - bicep
+      - Pipfile.lock
+      - Pipfile
+      - yarn.lock
+      - Gemfile
+      - Gemfile.lock
+      - gemspec
+      - env
+      - settings.py
+      - main.py
+      - application.py
+      - config.py
+      - app.js
+      - config.js
+      - dev.js
+      - db.properties
+      - application.properties
+      - private.pem
+      - privatekey.pem
+      - index.php
+      - config.php
+      - config.xml
+      - strings.xml
+      - app.module.ts
+      - environment.ts
+      - tpl
+      - unknown
+      - tfvars
       type: string
     FrameworkType:
       enum:
       - Terraform
       - CloudFormation
       - Kubernetes
+      - TerraformPlan
+      - Helm
+      - Kustomize
+      - Serverless
+      - ARM
+      - Bicep
+      - Git
+      - AWS
+      - GCP
+      - Azure
+      - DockerImage
+      - Docker
+      - Vulnerabilities
+      - VCS
+      - OpenAPI
+      - GithubAction
+      - SCA
       type: string
     GetNodesControllerRequest:
       additionalProperties: false
@@ -225,6 +281,8 @@ components:
       - dockerFile
       - buildtimeResource
       - runtimeResource
+      - buildtimeJob
+      - image
       type: string
     PackageNode:
       additionalProperties: false

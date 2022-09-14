@@ -122,12 +122,22 @@ components:
       - fixableErrorCount
       - file
       - repository
+      - images
       type: string
-    LicenseStatuses:
-      enum:
-      - OPEN
-      - COMPLIANT
-      type: string
+    LicenseMetadata:
+      additionalProperties: false
+      properties:
+        isOsi:
+          type: boolean
+        isSpdx:
+          type: boolean
+        license:
+          type: string
+      required:
+      - license
+      - isSpdx
+      - isOsi
+      type: object
     PackageData:
       additionalProperties: false
       properties:
@@ -141,9 +151,19 @@ components:
         fixableErrorCount:
           format: double
           type: number
+        images:
+          items:
+            type: string
+          type: array
         isRoot:
           type: boolean
+        licensesMetadata:
+          items:
+            $ref: '#/components/schemas/LicenseMetadata'
+          type: array
         packageId:
+          type: string
+        packageLanguage:
           type: string
         packageLicenses:
           items:
@@ -175,48 +195,6 @@ components:
       - packageName
       - packageVersion
       - packageLicenses
-      type: object
-    PackageLang:
-      enum:
-      - nodejs
-      - ruby
-      - python
-      - jar
-      - dotNet
-      - go
-      - os
-      type: string
-    PackageNameVersionLicenseViolationData:
-      additionalProperties: false
-      properties:
-        license:
-          type: string
-        packageLang:
-          $ref: '#/components/schemas/PackageLang'
-        packageName:
-          type: string
-        packageVersion:
-          type: string
-        policy:
-          type: string
-        status:
-          $ref: '#/components/schemas/LicenseStatuses'
-      required:
-      - packageName
-      - packageVersion
-      - license
-      - status
-      - policy
-      type: object
-    PackagesLicenseAlertsResponse:
-      additionalProperties: false
-      properties:
-        packages:
-          items:
-            $ref: '#/components/schemas/PackageNameVersionLicenseViolationData'
-          type: array
-      required:
-      - packages
       type: object
     PackagesSearchBody:
       additionalProperties: false
@@ -281,14 +259,6 @@ components:
       - SUPPRESS
       - PASS
       type: string
-    createScaVulnerabilitiesRequest:
-      additionalProperties: false
-      properties:
-        s3ObjectKey:
-          type: string
-      required:
-      - s3ObjectKey
-      type: object
 info:
   contact: {}
   description: "The Packages endpoints are listed below.           \n"
@@ -458,47 +428,6 @@ paths:
       security:
       - CustomAuthorizer: []
       summary: Get a package.
-      tags:
-      - Packages
-  /code/api/v1/vulnerabilities/packages/license-violations:
-    post:
-      description: 'Get license alerts for packages we get from S3 path
-
-        The API accepts an S3 Path.'
-      operationId: getPackagesLicenseViolations
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/createScaVulnerabilitiesRequest'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              examples:
-                Example 1:
-                  value:
-                    packages:
-                    - license: BAD_LICENSE
-                      packageName: name_1
-                      packageVersion: version_1
-                      policy: BC_LIC_1
-                      status: OPEN
-                    - license: BAD_LICENSE
-                      packageName: name_2
-                      packageVersion: version_2
-                      policy: BC_LIC_1
-                      status: OPEN
-              schema:
-                $ref: '#/components/schemas/PackagesLicenseAlertsResponse'
-          description: get license alerts for packages
-        '422':
-          description: Request arguments validation error
-      security:
-      - CustomAuthorizer: []
-      summary: Get all package license violations based on package list in S3 path.
       tags:
       - Packages
   /code/api/v1/vulnerabilities/packages/search:
