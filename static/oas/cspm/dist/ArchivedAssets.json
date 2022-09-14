@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Prisma Cloud Archived Asssets API Overview",
-    "description": "The configuration details of assets that have been deleted from your cloud accounts for more than 90 days are archived.\nYou can use the Archived Asssets API to retrieve the configuration details of such assets.\n",
+    "title": "Prisma Cloud Archived Assets API Overview",
+    "description": "Prisma Cloud archives the configuration details of assets that have been deleted from your cloud accounts for more than 90 days.\nYou can use the archiveList endpoint in this API to retrieve the configuration details of such assets as a compressed archive (.zip) file.\n",
     "version": "Latest",
     "contact": {}
   },
@@ -14,16 +14,16 @@
   ],
   "tags": [
     {
-      "name": "Archived Asssets",
-      "description": "The Archived Asssets API endpoint is listed below."
+      "name": "Archived Assets",
+      "description": "The Archived Assets API endpoint is listed below."
     }
   ],
   "paths": {
     "/config/api/v1/tenant/{prisma_id}/archiveList": {
       "get": {
-        "tags": ["Archived Asssets"],
+        "tags": ["Archived Assets"],
         "summary": "Bulk export resource archives",
-        "description": "Returns a list that contains details (and optionally links) about the resource archives that contain the configuration metadata for assets that were deleted in the specified time period. \n\nEach resource archive contains the configuration metadata for assets that belong to a cloud account ID and were deleted on the same day.\n\nThe returned list has a maximum of 10 resource archives. Each resource archive can optionally include a temporary AWS S3 presigned URL to download the resource archive in a .zip file. Each of the .zip files can contain the configuration metadata for a maximum of 50,000 deleted assets. If the number of resource archives exceeds 10, the response includes a token in the **nextPageUrl** parameter that you can use iteratively to create subsequent requests to get the resource archives in lists of 10 within the specified time range.\n\nThis endpoint checks the date on which the asset was deleted against the specified dates. If an asset was deleted on or after the specified **start_date** and on or before the specified **end_date**, and subsequently archived, it is included in a resource archive returned by the endpoint. \n\nThe date of archiving the asset metadata that is 90 days after the date on which the asset was deleted from the cloud service provider platform, may not be within the specified time period. However, it is required that the asset metadata has been archived before calling the API.\n",
+        "description": "Returns a list that has details about (and optionally links for) the archives (.zip) files that contain the configuration metadata for assets that were deleted in the specified time period. \n\nEach archive (.zip) file contains the configuration metadata for assets that belong to a cloud account ID and were deleted on a specific day.\n\nThe returned list has a maximum of 10 items. Each item can optionally include a temporary AWS S3 presigned URL to download the resource archive in a .zip file. If the number of archive files exceeds 10, the response includes a token in the **nextPageUrl** parameter that you can use iteratively to create subsequent requests to get the resource archives in lists of 10 within the specified time range.\n\nA single .zip file can contain the configuration metadata for a maximum of 50,000 deleted assets.\n\nThis endpoint checks the date on which the asset was deleted against the specified dates. If an asset was deleted on or after the specified **start_date** and on or before the specified **end_date**, and subsequently archived, it is included in a resource archive returned by the endpoint. \n\nThe date of archiving the asset metadata that is 90 days after the date on which the asset was deleted from the cloud service provider platform does not have to be within the specified time period.\n\n**Note**: If the asset metadata for a deleted asset is not included in the archive, check if 90 days have elapsed since the the asset was deleted.\n",
         "operationId": "bulkExportResourceArchives",
         "parameters": [
           {
@@ -36,28 +36,28 @@
           {
             "name": "start_date",
             "in": "query",
-            "description": "Enter the start date (in the YYYY-MM-DD format) of the time period to retrieve the resource archives.",
+            "description": "Enter the start date (in the YYYY-MM-DD format) of the time period for which the archives are returned.",
             "required": true,
             "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "end_date",
             "in": "query",
-            "description": "Enter the end date (in the YYYY-MM-DD format) of the time period to retrieve the resource archives.",
+            "description": "Enter the end date (in the YYYY-MM-DD format) of the time period for which the archives are returned.",
             "required": true,
             "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "include_url",
             "in": "query",
-            "description": "This is an optional field.\nBy default, the API returns the resource archive ID, cloud account ID, and the asset deletion date for 10 archived assets.\nIf set to **true**, each archived asset also includes a presigned URL that is valid for 10 minutes. You can use this URL to download the deleted assets data in a .zip file.\nEach .zip file can contain a maximum of 50,000 deleted assets for a cloud account.\n",
+            "description": "This is an optional field.\nBy default, the API returns the resource archive ID, cloud account ID, and the asset deletion date for 10 archived assets.\nIf set to **true**, each item in the returned list also includes a presigned URL that you can use to download the configuration metadata for the deleted assets.\nThe returned presigned links are valid for 10 minutes from the time they are generated. Each .zip file can contain a maximum of 50,000 deleted assets for a cloud account.\n",
             "required": false,
             "schema": { "type": "boolean", "default": false }
           },
           {
             "name": "nextPageToken",
             "in": "query",
-            "description": "The token to fetch the next 10 resource archives for the specified time range.\nYou can use the **nextPageUrl** token iteratively to create subsequent requests to get the resource archives in lists of 10 within the specified time range.\n",
+            "description": "The URL to retrieve details for the next 10 archives.\nYou can use this field to iteratively create requests to get the details and links for the next 10 archives.\n",
             "required": false,
             "schema": { "type": "string" }
           }
@@ -270,7 +270,7 @@
           "nextPageUrl": {
             "type": "string",
             "example": "/config/api/v1/tenant/801905077827777536/archiveList?nextPageToken=MTY1OTY3NTc4NjQ5M18y&start_date=2022-04-15&end_date=2022-07-15&include_url=true",
-            "description": "The token to fetch the next 10 resource archives for the specified time range. You can use the **nextPageUrl** token iteratively to create subsequent requests to get the resource archives in lists of 10 within the specified time range."
+            "description": "The URL to retrieve details for the next 10 archives.\nYou can use this field to iteratively create requests to get the details and links for the next 10 archives.\n"
           }
         }
       }
