@@ -7059,6 +7059,10 @@
             "description": "ProxyAddress is the optional HTTP proxy address for a setup that includes a proxy server.\n",
             "type": "string"
           },
+          "proxyCA": {
+            "description": "ProxyCA is the optional proxy CA certificate for a setup that includes a TLS proxy.\n",
+            "type": "string"
+          },
           "regions": {
             "description": "Regions are the cloud provider regions applicable for the scan. Default is all.\n",
             "items": {
@@ -18238,7 +18242,7 @@
   },
   "info": {
     "title": "Profiles Overview",
-    "version": "22.06.197",
+    "version": "22.06.211",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/profiles/profiles.md"
     }

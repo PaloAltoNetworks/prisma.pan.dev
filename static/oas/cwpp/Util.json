@@ -7059,6 +7059,10 @@
             "description": "ProxyAddress is the optional HTTP proxy address for a setup that includes a proxy server.\n",
             "type": "string"
           },
+          "proxyCA": {
+            "description": "ProxyCA is the optional proxy CA certificate for a setup that includes a TLS proxy.\n",
+            "type": "string"
+          },
           "regions": {
             "description": "Regions are the cloud provider regions applicable for the scan. Default is all.\n",
             "items": {
@@ -18238,7 +18242,7 @@
   },
   "info": {
     "title": "Util Overview",
-    "version": "22.06.197",
+    "version": "22.06.211",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/util/util.md"
     }
@@ -18252,9 +18256,7 @@
   "paths": {
     "/api/v1/util/prisma-cloud-jenkins-plugin.hpi": {
       "get": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/util/twistlock_jenkins_plugin_get.md"
-        },
+        "description": "Download prisma-cloud-jenkins-plugin.hpi",
         "responses": {
           "200": {
             "description": "OK"
@@ -18273,7 +18275,33 @@
           "self-hosted": true
         },
         "operationId": "get-util-prisma-cloud-jenkins-plugin.hpi",
-        "summary": " Download Jenkins plugin for Prisma Cloud Compute"
+        "summary": " Download"
+      }
+    },
+    "/api/v1/util/tas-tile": {
+      "get": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/util/twistlock_tas_tile_get.md"
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Util",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "manageDefenders",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "get-util-tas-tile",
+        "summary": "Download VMware TAS tile for Prisma Cloud Compute"
       }
     },
     "/api/v22.06/util/arm64/twistcli": {
@@ -18302,6 +18330,32 @@
         "summary": "Download ARM64 twistcli"
       }
     },
+    "/api/v22.06/util/osx/twistcli": {
+      "get": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/util/osx_twistcli_get.md"
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Util",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "downloads",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "get-util-osx-twistcli",
+        "summary": "Download twistcli for OS X"
+      }
+    },
     "/api/v22.06/util/twistcli": {
       "get": {
         "description": {
@@ -18326,6 +18380,32 @@
         },
         "operationId": "get-util-twistcli",
         "summary": "Download twistcli for GNU/Linux"
+      }
+    },
+    "/api/v22.06/util/windows/twistcli.exe": {
+      "get": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/util/windows_twistcli_get.md"
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Util",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "downloads",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "get-util-windows-twistcli.exe",
+        "summary": "Download twistcli for Microsoft Windows"
       }
     }
   }
