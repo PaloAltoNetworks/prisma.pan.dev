@@ -18907,7 +18907,9 @@
     },
     "/api/v22.06/defenders/fargate.yaml": {
       "post": {
-        "description": "FargateTaskYAML receives fargate task definition in YAML format, augments all required data and returns new task definition\n",
+        "description": {
+        "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/fargate_yaml_post.md"
+      },
         "parameters": [
           {
             "description": "ConsoleAddr is the remote console address.\n",
