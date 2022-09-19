@@ -64,7 +64,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully retrieved resource archives from AWS S3",
+            "description": "Successfully retrieved details for the compressed archive files for the specified time period",
             "content": {
               "application/json": {
                 "schema": {
