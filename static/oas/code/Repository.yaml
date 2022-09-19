@@ -44,7 +44,9 @@ components:
       type: object
 info:
   contact: {}
-  description: The Repository endpoints are listed below.
+  description: 'The Repository endpoints are listed below.
+
+    '
   title: Prisma Cloud Repository API Overview
   version: Latest
 openapi: 3.0.0

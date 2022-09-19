@@ -310,7 +310,24 @@ paths:
       description: This API is used in order to get all buildtime accounts, with their
         name, id and source
       operationId: getAccounts
-      parameters: []
+      parameters:
+      - in: query
+        name: pageSize
+        required: false
+        schema:
+          format: double
+          type: number
+      - in: query
+        name: page
+        required: false
+        schema:
+          format: double
+          type: number
+      - in: query
+        name: search
+        required: false
+        schema:
+          type: string
       responses:
         '200':
           content:
@@ -320,6 +337,8 @@ paths:
                   $ref: '#/components/schemas/RepoData'
                 type: array
           description: Get enforcement rules for account
+        '422':
+          description: Request arguments validation error
       security:
       - CustomAuthorizer: []
       summary: Get all repositories

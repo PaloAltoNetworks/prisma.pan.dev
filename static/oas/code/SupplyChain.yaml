@@ -117,57 +117,6 @@ components:
       - sibling
       - children
       type: string
-    FileType:
-      enum:
-      - tf
-      - json
-      - yml
-      - yaml
-      - template
-      - .checkov.baseline
-      - hcl
-      - Dockerfile
-      - package.json
-      - package-lock.json
-      - bower.json
-      - pom.xml
-      - build.gradle
-      - build.gradle.kts
-      - gradle.properties
-      - gradle-wrapper.properties
-      - go.sum
-      - go.mod
-      - requirements.txt
-      - METADATA
-      - bicep
-      - Pipfile.lock
-      - Pipfile
-      - yarn.lock
-      - Gemfile
-      - Gemfile.lock
-      - gemspec
-      - env
-      - settings.py
-      - main.py
-      - application.py
-      - config.py
-      - app.js
-      - config.js
-      - dev.js
-      - db.properties
-      - application.properties
-      - private.pem
-      - privatekey.pem
-      - index.php
-      - config.php
-      - config.xml
-      - strings.xml
-      - app.module.ts
-      - environment.ts
-      - tpl
-      - unknown
-      - tfvars
-      type: string
     FrameworkType:
       enum:
       - Terraform
@@ -198,9 +147,13 @@ components:
           $ref: '#/components/schemas/EdgeDirection'
         filters:
           properties:
+            extensions:
+              items:
+                type: string
+              type: array
             fileType:
               items:
-                $ref: '#/components/schemas/FileType'
+                type: string
               type: array
             repositoryId:
               type: string
@@ -245,7 +198,7 @@ components:
         filePath:
           type: string
         fileType:
-          $ref: '#/components/schemas/FileType'
+          type: string
         frameworkType:
           $ref: '#/components/schemas/FrameworkType'
         nodeId:
@@ -283,6 +236,7 @@ components:
       - runtimeResource
       - buildtimeJob
       - image
+      - file
       type: string
     PackageNode:
       additionalProperties: false
@@ -436,6 +390,33 @@ paths:
                 value:
                   edgeDirection: children
                   filters:
+                    extensions:
+                    - tf
+                    - yml
+                    - yaml
+                    - json
+                    - template
+                    - py
+                    - js
+                    - properties
+                    - pem
+                    - php
+                    - xml
+                    - ts
+                    - env
+                    - Dockerfile
+                    - java
+                    - rb
+                    - sum
+                    - mod
+                    - cs
+                    - txt
+                    - Gemfile
+                    - bicep
+                    - hcl
+                    - gradle
+                    - kts
+                    - lock
                     fileType:
                     - tf
                     - json
@@ -491,24 +472,33 @@ paths:
                     nodeId: b8712a2e-cc6f-43b1-b5t1-95a70087et44
                     nodes:
                     - errorCount: 5
+                      extensions:
+                      - yaml
                       filePath: cfn/s3.yaml
-                      fileType: yaml
+                      fileType:
+                      - yaml
                       frameworkType: CloudFormation
                       nodeId: 55dedfed-ab0b-4fbc-9e2f-9a73c99c00a4
                       nodeName: s3.yaml
                       nodeType: iacFile
                       parentId: b8712a2e-cc6f-43b1-b5t1-95a70087et44
                     - errorCount: 4
+                      extensions:
+                      - Dockerfile
                       filePath: dockerfile/failed_2/Dockerfile
-                      fileType: Dockerfile
+                      fileType:
+                      - Dockerfile
                       frameworkType: Docker
                       nodeId: c27f8aff-6ac6-4c3d-abb8-4b3544488bb6
                       nodeName: Dockerfile
                       nodeType: dockerFile
                       parentId: b8712a2e-cc6f-43b1-b5t1-95a70087et44
                     - errorCount: 3
+                      extensions:
+                      - tf
                       filePath: terraform/aws/db-app.tf
-                      fileType: tf
+                      fileType:
+                      - tf
                       frameworkType: Terraform
                       nodeId: b85c65a6-b505-4369-9393-c6fd230e7c21
                       nodeName: db-app.tf

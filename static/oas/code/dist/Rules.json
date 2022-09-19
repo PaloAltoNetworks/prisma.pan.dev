@@ -331,7 +331,26 @@
       "get": {
         "description": "This API is used in order to get all buildtime accounts, with their name, id and source",
         "operationId": "getAccounts",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": { "format": "double", "type": "number" }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": { "format": "double", "type": "number" }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
         "responses": {
           "200": {
             "content": {
@@ -343,7 +362,8 @@
               }
             },
             "description": "Get enforcement rules for account"
-          }
+          },
+          "422": { "description": "Request arguments validation error" }
         },
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Get all repositories",
@@ -351,11 +371,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/code/api/v1/enforcement-rules/accounts\"\n\nheaders = {\"authorization\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/code/api/v1/enforcement-rules/accounts\"\n\nquerystring = {\"pageSize\":\"SOME_NUMBER_VALUE\",\"page\":\"SOME_NUMBER_VALUE\",\"search\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"authorization\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/code/api/v1/enforcement-rules/accounts \\\n  --header 'authorization: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/code/api/v1/enforcement-rules/accounts?pageSize=SOME_NUMBER_VALUE&page=SOME_NUMBER_VALUE&search=SOME_STRING_VALUE' \\\n  --header 'authorization: REPLACE_KEY_VALUE'"
           }
         ]
       }

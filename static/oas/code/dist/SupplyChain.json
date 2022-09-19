@@ -103,59 +103,6 @@
         "enum": ["parent", "sibling", "children"],
         "type": "string"
       },
-      "FileType": {
-        "enum": [
-          "tf",
-          "json",
-          "yml",
-          "yaml",
-          "template",
-          ".checkov.baseline",
-          "hcl",
-          "Dockerfile",
-          "package.json",
-          "package-lock.json",
-          "bower.json",
-          "pom.xml",
-          "build.gradle",
-          "build.gradle.kts",
-          "gradle.properties",
-          "gradle-wrapper.properties",
-          "go.sum",
-          "go.mod",
-          "requirements.txt",
-          "METADATA",
-          "bicep",
-          "Pipfile.lock",
-          "Pipfile",
-          "yarn.lock",
-          "Gemfile",
-          "Gemfile.lock",
-          "gemspec",
-          "env",
-          "settings.py",
-          "main.py",
-          "application.py",
-          "config.py",
-          "app.js",
-          "config.js",
-          "dev.js",
-          "db.properties",
-          "application.properties",
-          "private.pem",
-          "privatekey.pem",
-          "index.php",
-          "config.php",
-          "config.xml",
-          "strings.xml",
-          "app.module.ts",
-          "environment.ts",
-          "tpl",
-          "unknown",
-          "tfvars"
-        ],
-        "type": "string"
-      },
       "FrameworkType": {
         "enum": [
           "Terraform",
@@ -187,10 +134,8 @@
           "edgeDirection": { "$ref": "#/components/schemas/EdgeDirection" },
           "filters": {
             "properties": {
-              "fileType": {
-                "items": { "$ref": "#/components/schemas/FileType" },
-                "type": "array"
-              },
+              "extensions": { "items": { "type": "string" }, "type": "array" },
+              "fileType": { "items": { "type": "string" }, "type": "array" },
               "repositoryId": { "type": "string" },
               "status": {
                 "items": { "$ref": "#/components/schemas/StatusFilter" },
@@ -224,7 +169,7 @@
         "properties": {
           "errorCount": { "format": "double", "type": "number" },
           "filePath": { "type": "string" },
-          "fileType": { "$ref": "#/components/schemas/FileType" },
+          "fileType": { "type": "string" },
           "frameworkType": { "$ref": "#/components/schemas/FrameworkType" },
           "nodeId": { "type": "string" },
           "nodeName": { "type": "string" },
@@ -261,7 +206,8 @@
           "buildtimeResource",
           "runtimeResource",
           "buildtimeJob",
-          "image"
+          "image",
+          "file"
         ],
         "type": "string"
       },
@@ -367,6 +313,34 @@
                   "value": {
                     "edgeDirection": "children",
                     "filters": {
+                      "extensions": [
+                        "tf",
+                        "yml",
+                        "yaml",
+                        "json",
+                        "template",
+                        "py",
+                        "js",
+                        "properties",
+                        "pem",
+                        "php",
+                        "xml",
+                        "ts",
+                        "env",
+                        "Dockerfile",
+                        "java",
+                        "rb",
+                        "sum",
+                        "mod",
+                        "cs",
+                        "txt",
+                        "Gemfile",
+                        "bicep",
+                        "hcl",
+                        "gradle",
+                        "kts",
+                        "lock"
+                      ],
                       "fileType": [
                         "tf",
                         "json",
@@ -435,8 +409,9 @@
                       "nodes": [
                         {
                           "errorCount": 5,
+                          "extensions": ["yaml"],
                           "filePath": "cfn/s3.yaml",
-                          "fileType": "yaml",
+                          "fileType": ["yaml"],
                           "frameworkType": "CloudFormation",
                           "nodeId": "55dedfed-ab0b-4fbc-9e2f-9a73c99c00a4",
                           "nodeName": "s3.yaml",
@@ -445,8 +420,9 @@
                         },
                         {
                           "errorCount": 4,
+                          "extensions": ["Dockerfile"],
                           "filePath": "dockerfile/failed_2/Dockerfile",
-                          "fileType": "Dockerfile",
+                          "fileType": ["Dockerfile"],
                           "frameworkType": "Docker",
                           "nodeId": "c27f8aff-6ac6-4c3d-abb8-4b3544488bb6",
                           "nodeName": "Dockerfile",
@@ -455,8 +431,9 @@
                         },
                         {
                           "errorCount": 3,
+                          "extensions": ["tf"],
                           "filePath": "terraform/aws/db-app.tf",
-                          "fileType": "tf",
+                          "fileType": ["tf"],
                           "frameworkType": "Terraform",
                           "nodeId": "b85c65a6-b505-4369-9393-c6fd230e7c21",
                           "nodeName": "db-app.tf",
@@ -526,11 +503,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/code/api/v1/supply-chain/nodes\"\n\npayload = {\n    \"edgeDirection\": \"parent\",\n    \"filters\": {\n        \"fileType\": [\"tf\"],\n        \"repositoryId\": \"string\",\n        \"status\": [\"OPEN\"]\n    },\n    \"limit\": 0,\n    \"nodeId\": \"string\",\n    \"nodeType\": \"org\",\n    \"offset\": 0\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"authorization\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/code/api/v1/supply-chain/nodes\"\n\npayload = {\n    \"edgeDirection\": \"parent\",\n    \"filters\": {\n        \"extensions\": [\"string\"],\n        \"fileType\": [\"string\"],\n        \"repositoryId\": \"string\",\n        \"status\": [\"OPEN\"]\n    },\n    \"limit\": 0,\n    \"nodeId\": \"string\",\n    \"nodeType\": \"org\",\n    \"offset\": 0\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"authorization\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/code/api/v1/supply-chain/nodes \\\n  --header 'authorization: REPLACE_KEY_VALUE' \\\n  --header 'content-type: application/json' \\\n  --data '{\"edgeDirection\":\"parent\",\"filters\":{\"fileType\":[\"tf\"],\"repositoryId\":\"string\",\"status\":[\"OPEN\"]},\"limit\":0,\"nodeId\":\"string\",\"nodeType\":\"org\",\"offset\":0}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/code/api/v1/supply-chain/nodes \\\n  --header 'authorization: REPLACE_KEY_VALUE' \\\n  --header 'content-type: application/json' \\\n  --data '{\"edgeDirection\":\"parent\",\"filters\":{\"extensions\":[\"string\"],\"fileType\":[\"string\"],\"repositoryId\":\"string\",\"status\":[\"OPEN\"]},\"limit\":0,\"nodeId\":\"string\",\"nodeType\":\"org\",\"offset\":0}'"
           }
         ]
       }

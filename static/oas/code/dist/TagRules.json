@@ -185,7 +185,7 @@
         },
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Get All Tags",
-        "tags": ["TagRules"],
+        "tags": ["Tag Rules"],
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -222,7 +222,7 @@
         },
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Create Custom Tag Rule",
-        "tags": ["TagRules"],
+        "tags": ["Tag Rules"],
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -261,7 +261,7 @@
         },
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Get Tag Rule by ID",
-        "tags": ["TagRules"],
+        "tags": ["Tag Rules"],
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -308,7 +308,7 @@
         },
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Update Tag Rule",
-        "tags": ["TagRules"],
+        "tags": ["Tag Rules"],
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -345,7 +345,7 @@
         },
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Delete Tag Rule",
-        "tags": ["TagRules"],
+        "tags": ["Tag Rules"],
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -395,7 +395,7 @@
         },
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Get List of Resources Affected by Tag Rule",
-        "tags": ["TagRules"],
+        "tags": ["Tag Rules"],
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -433,7 +433,7 @@
         },
         "security": [{ "CustomAuthorizer": [] }],
         "summary": "Returns The tag rule by OOTB ID",
-        "tags": ["TagRules"],
+        "tags": ["Tag Rules"],
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
@@ -448,5 +448,5 @@
     }
   },
   "servers": [{ "url": "https://api.prismacloud.io" }],
-  "tags": [{ "name": "TagRules" }]
+  "tags": [{ "name": "Tag Rules" }]
 }

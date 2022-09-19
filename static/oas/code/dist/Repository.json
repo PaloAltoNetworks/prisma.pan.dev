@@ -46,7 +46,7 @@
   },
   "info": {
     "contact": {},
-    "description": "The Repository endpoints are listed below.",
+    "description": "The Repository endpoints are listed below.\n",
     "title": "Prisma Cloud Repository API Overview",
     "version": "Latest"
   },

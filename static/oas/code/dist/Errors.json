@@ -256,6 +256,7 @@
             "items": { "format": "double", "type": "number" },
             "type": "array"
           },
+          "fileMetadataUuid": { "type": "string" },
           "filePath": { "type": "string" },
           "fixPath": { "type": "string" },
           "frameworkType": { "type": "string" },
@@ -303,7 +304,8 @@
           "commitHash",
           "date",
           "runtimeId",
-          "runtimeSourceId"
+          "runtimeSourceId",
+          "fileMetadataUuid"
         ],
         "type": "object"
       },
@@ -420,8 +422,8 @@
           "app.module.ts",
           "environment.ts",
           "tpl",
-          "unknown",
-          "tfvars"
+          "tfvars",
+          "unknown"
         ],
         "type": "string"
       },
@@ -473,8 +475,8 @@
           "app.module.ts",
           "environment.ts",
           "tpl",
-          "unknown",
-          "tfvars"
+          "tfvars",
+          "unknown"
         ],
         "type": "string"
       },
@@ -939,6 +941,7 @@
             "items": { "format": "double", "type": "number" },
             "type": "array"
           },
+          "fileMetadataUuid": { "type": "string" },
           "filePath": { "type": "string" },
           "fixPath": { "type": "string" },
           "fixedCode": { "type": "string" },
@@ -1001,7 +1004,8 @@
           "runtimeId",
           "runtimeSourceId",
           "fixes",
-          "sourceType"
+          "sourceType",
+          "fileMetadataUuid"
         ],
         "type": "object"
       },
@@ -1171,6 +1175,7 @@
                           "createdBy": "checkov_terraform",
                           "errorId": "BC_AWS_S3_14",
                           "errorLines": [],
+                          "fileMetadataUuid": "de707daa-2ef3-40e1-8bbf-5e39f86b927e",
                           "filePath": "/terraform/aws/s3.tf",
                           "fixPath": "checkov/yourname/yourGithubName/yourRepo/master/fixes/BC_AWS_S3_14/aws_s3_bucket.data/terraform/aws/s3.tf",
                           "fixedCode": "resource \"aws_s3_bucket\" \"data\" { \n  # bucket is public \n bucket        = \"$\n{local.resource_prefix.value}-data\" \n force_destroy = true \n tags = merge({ \n  Name        = \"${local.resource_prefix.value}-data\" \n Environment = local.resource_prefix.value \n }) \n server_side_encryption_configuration { \n rule { \n apply_server_side_encryption_by_default { \n sse_algorithm = \"AES256\" \n } \n } \n }",
@@ -1340,86 +1345,41 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "examples": {
-                "Example 1": {
-                  "value": {
-                    "metadata": {
-                      "owner": "orevron",
-                      "pr": "218",
-                      "repoName": "terragoat",
-                      "runNumber": 5,
-                      "sourceBranchName": "test15"
-                    },
-                    "type": "pr",
-                    "violationsToFix": [],
-                    "violationsToSuppress": [
-                      {
-                        "CICDRunId": 5,
-                        "bulkSuppression": true,
-                        "commentIds": ["665310693"],
-                        "creationDate": "2021-07-07T12:10:28.996Z",
-                        "errorLines": [],
-                        "frameworkType": "Terraform",
-                        "justification": {
-                          "comment": "this is comment",
-                          "createdBy": "or.evron@paloaltonetworks.com"
-                        },
-                        "justificationId": null,
-                        "metadataChecksMetadataPath": "checkov/orevron1/orevron/terragoat/pr/218/2b2800b8232debe12d33aad62478e822e884fbda/diff/checkov_results/terraform/checks_metadata.json",
-                        "metadataLines": [41, 57],
-                        "repository": "orevron/terragoat",
-                        "resourceId": "/terraform/s3.tf:aws_s3_bucket.operations",
-                        "runtimeId": null,
-                        "runtimeSourceId": null,
-                        "s3FilePath": "checkov/orevron1/orevron/terragoat/pr/218/2b2800b8232debe12d33aad62478e822e884fbda/diff/src/terraform/s3.tf",
-                        "s3FixFilePath": "checkov/orevron1/orevron/terragoat/pr/218/2b2800b8232debe12d33aad62478e822e884fbda/diff/fixes/BC_AWS_S3_14/aws_s3_bucket.operations/terraform/s3.tf",
-                        "severity": "HIGH",
-                        "status": "OPEN",
-                        "updatedDate": "2021-07-07T12:10:28.996Z",
-                        "vcsCommentLine": null,
-                        "violationId": "BC_AWS_S3_14"
-                      }
-                    ]
+              "example": {
+                "type": "default",
+                "violationsToFix": [
+                  {
+                    "fixedCode": "",
+                    "frameworkType": "Terraform",
+                    "fullId": "BC_AWS_S3_14::milkanas/terragoat::/terraform/aws/s3.tf:aws_s3_bucket.data",
+                    "metadataChecksMetadataPath": "checkov/milkanast/milkanas/terragoat/master/checkov_results/terraform/checks_metadata.json",
+                    "metadataLines": [1, 13],
+                    "owner": "milkanas",
+                    "repoName": "terragoat",
+                    "resourceId": "/terraform/aws/s3.tf:aws_s3_bucket.data",
+                    "runtimeId": null,
+                    "runtimeSourceId": null,
+                    "s3FilePath": "checkov/milkanast/milkanas/terragoat/master/src/terraform/aws/s3.tf",
+                    "violationId": "BC_AWS_S3_14"
                   }
-                },
-                "Example 2": {
-                  "value": {
-                    "type": "default",
-                    "violationsToFix": [
+                ],
+                "violationsToSuppress": [
+                  {
+                    "comment": "this is justification comment",
+                    "resources": [
                       {
-                        "fixedCode": "",
-                        "frameworkType": "Terraform",
-                        "fullId": "BC_AWS_S3_14::milkanas/terragoat::/terraform/aws/s3.tf:aws_s3_bucket.data",
-                        "metadataChecksMetadataPath": "checkov/milkanast/milkanas/terragoat/master/checkov_results/terraform/checks_metadata.json",
-                        "metadataLines": [1, 13],
-                        "owner": "milkanas",
-                        "repoName": "terragoat",
-                        "resourceId": "/terraform/aws/s3.tf:aws_s3_bucket.data",
-                        "runtimeId": null,
-                        "runtimeSourceId": null,
-                        "s3FilePath": "checkov/milkanast/milkanas/terragoat/master/src/terraform/aws/s3.tf",
-                        "violationId": "BC_AWS_S3_14"
+                        "accountId": "orevron/terragoat",
+                        "id": "BC_GIT_6::orevron/terragoat::/terraform/providers.tf:4ec71f2183bf24b28320d0c2839bdd08c255f0bb"
+                      },
+                      {
+                        "accountId": "orevron/terragoat",
+                        "id": "BC_GIT_6::orevron/terragoat::/terraform/lambda.tf:ca61f30c56f9b66c8802632d559a391acd02d01d"
                       }
                     ],
-                    "violationsToSuppress": [
-                      {
-                        "comment": "this is justification comment",
-                        "resources": [
-                          {
-                            "accountId": "orevron/terragoat",
-                            "id": "BC_GIT_6::orevron/terragoat::/terraform/providers.tf:4ec71f2183bf24b28320d0c2839bdd08c255f0bb"
-                          },
-                          {
-                            "accountId": "orevron/terragoat",
-                            "id": "BC_GIT_6::orevron/terragoat::/terraform/lambda.tf:ca61f30c56f9b66c8802632d559a391acd02d01d"
-                          }
-                        ],
-                        "suppressionType": "Resources",
-                        "violationId": "BC_AWS_S3_13"
-                      }
-                    ]
+                    "suppressionType": "Resources",
+                    "violationId": "BC_AWS_S3_13"
                   }
-                }
+                ]
               },
               "schema": { "$ref": "#/components/schemas/SubmitActionsRequest" }
             }

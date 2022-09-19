@@ -245,7 +245,7 @@ paths:
       - CustomAuthorizer: []
       summary: Get All Tags
       tags:
-      - TagRules
+      - Tag Rules
     post:
       description: 'Prisma Cloud Code Security supports tagging management for IaC
         templates, based on the company’s open-source tool Yor (https://yor.io/).
@@ -314,7 +314,7 @@ paths:
       - CustomAuthorizer: []
       summary: Create Custom Tag Rule
       tags:
-      - TagRules
+      - Tag Rules
   /code/api/v1/tag-rules/{tagRuleId}:
     get:
       description: 'Prisma Cloud Code Security supports tagging management for IaC
@@ -369,7 +369,7 @@ paths:
       - CustomAuthorizer: []
       summary: Get Tag Rule by ID
       tags:
-      - TagRules
+      - Tag Rules
     put:
       description: 'Prisma Cloud Code Security supports tagging management for IaC
         templates, based on the company’s open-source tool Yor (https://yor.io/).
@@ -445,7 +445,7 @@ paths:
       - CustomAuthorizer: []
       summary: Update Tag Rule
       tags:
-      - TagRules
+      - Tag Rules
     delete:
       description: 'Prisma Cloud Code Security supports tagging management for IaC
         templates, based on the company’s open-source tool Yor (https://yor.io/).
@@ -509,7 +509,7 @@ paths:
       - CustomAuthorizer: []
       summary: Delete Tag Rule
       tags:
-      - TagRules
+      - Tag Rules
   /code/api/v1/tag-rules/affected-resources:
     post:
       description: 'Prisma Cloud Code Security supports tagging management for IaC
@@ -573,7 +573,7 @@ paths:
       - CustomAuthorizer: []
       summary: Get List of Resources Affected by Tag Rule
       tags:
-      - TagRules
+      - Tag Rules
   /code/api/v1/tag-rules/ootb/{tagRuleOOTBId}:
     get:
       description: Gets tag rule by ootb id
@@ -597,8 +597,8 @@ paths:
       - CustomAuthorizer: []
       summary: Returns The tag rule by OOTB ID
       tags:
-      - TagRules
+      - Tag Rules
 servers:
 - url: https://api.prismacloud.io
 tags:
-- name: TagRules
+- name: Tag Rules
