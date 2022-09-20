@@ -18242,7 +18242,7 @@
   },
   "info": {
     "title": "Defenders Overview",
-    "version": "22.06.211",
+    "version": "22.06.213",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/defenders.md"
     }
@@ -18908,8 +18908,8 @@
     "/api/v22.06/defenders/fargate.yaml": {
       "post": {
         "description": {
-        "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/fargate_yaml_post.md"
-      },
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/fargate_yaml_post.md"
+        },
         "parameters": [
           {
             "description": "ConsoleAddr is the remote console address.\n",

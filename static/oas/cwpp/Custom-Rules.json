@@ -18242,7 +18242,7 @@
   },
   "info": {
     "title": "Custom-Rules Overview",
-    "version": "22.06.211",
+    "version": "22.06.213",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/custom-rules/custom-rules.md"
     }

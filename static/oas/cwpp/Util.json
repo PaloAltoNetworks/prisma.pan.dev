@@ -18242,7 +18242,7 @@
   },
   "info": {
     "title": "Util Overview",
-    "version": "22.06.211",
+    "version": "22.06.213",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/util/util.md"
     }
@@ -18277,7 +18277,7 @@
           "self-hosted": true
         },
         "operationId": "get-util-prisma-cloud-jenkins-plugin.hpi",
-        "summary": "Download Jenkins plugin for Prisma Cloud Compute"
+        "summary": "DownloadJenkins plugin for Prisma Cloud Compute"
       }
     },
     "/api/v1/util/tas-tile": {
