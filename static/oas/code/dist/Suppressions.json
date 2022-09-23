@@ -101,6 +101,53 @@
           { "$ref": "#/components/schemas/CommonSuppressionFields" }
         ]
       },
+      "LicenseSuppressionCreate": {
+        "additionalProperties": false,
+        "properties": {
+          "comment": { "type": "string" },
+          "expirationTime": { "format": "double", "type": "number" },
+          "licenseTypes": { "items": { "type": "string" }, "type": "array" },
+          "origin": { "type": "string" },
+          "suppressionType": {
+            "enum": ["LicenseType"],
+            "nullable": false,
+            "type": "string"
+          }
+        },
+        "required": ["comment", "origin", "suppressionType", "licenseTypes"],
+        "type": "object"
+      },
+      "PackageLang": {
+        "enum": ["nodejs", "ruby", "python", "jar", "dotNet", "go", "os"],
+        "type": "string"
+      },
+      "PackageSuppressionCreate": {
+        "additionalProperties": false,
+        "properties": {
+          "comment": { "type": "string" },
+          "expirationTime": { "format": "double", "type": "number" },
+          "origin": { "type": "string" },
+          "packages": {
+            "items": {
+              "properties": {
+                "language": { "$ref": "#/components/schemas/PackageLang" },
+                "packageName": { "type": "string" },
+                "version": { "type": "string" }
+              },
+              "required": ["language", "version", "packageName"],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "suppressionType": {
+            "enum": ["PackageLicense"],
+            "nullable": false,
+            "type": "string"
+          }
+        },
+        "required": ["comment", "origin", "suppressionType", "packages"],
+        "type": "object"
+      },
       "PolicySuppression": {
         "additionalProperties": false,
         "properties": {
@@ -221,7 +268,9 @@
           { "$ref": "#/components/schemas/ResourcesSuppressionCreate" },
           { "$ref": "#/components/schemas/PolicySuppressionCreate" },
           { "$ref": "#/components/schemas/AccountsSuppressionCreate" },
-          { "$ref": "#/components/schemas/TagsSuppressionCreate" }
+          { "$ref": "#/components/schemas/TagsSuppressionCreate" },
+          { "$ref": "#/components/schemas/LicenseSuppressionCreate" },
+          { "$ref": "#/components/schemas/PackageSuppressionCreate" }
         ]
       },
       "SuppressionsJustifications": {

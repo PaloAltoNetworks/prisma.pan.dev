@@ -574,6 +574,30 @@ paths:
       summary: Get List of Resources Affected by Tag Rule
       tags:
       - Tag Rules
+  /code/api/v1/tag-rules/ootb/{tagRuleOOTBId}:
+    get:
+      description: Gets tag rule by ootb id
+      operationId: getTagOOTBRules
+      parameters:
+      - in: path
+        name: tagRuleOOTBId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagRulesResponse'
+          description: Get tag OOTB Rules
+        '422':
+          description: Request arguments validation error
+      security:
+      - CustomAuthorizer: []
+      summary: Returns The tag rule by OOTB ID
+      tags:
+      - Tag Rules
 servers:
 - url: https://api.prismacloud.io
 tags:

@@ -106,6 +106,9 @@
       "CVE": {
         "additionalProperties": false,
         "properties": {
+          "causePacakgeId": { "type": "string" },
+          "causePackageName": { "type": "string" },
+          "causePackageVersion": { "type": "string" },
           "cveId": { "type": "string" },
           "cvss": { "format": "double", "type": "number" },
           "description": { "type": "string" },
@@ -129,7 +132,10 @@
           "packageVersion",
           "riskFactors",
           "link",
-          "publishedDate"
+          "publishedDate",
+          "causePacakgeId",
+          "causePackageName",
+          "causePackageVersion"
         ],
         "type": "object"
       },
@@ -145,7 +151,9 @@
           "Secrets",
           "Public",
           "Vulnerabilities",
-          "Drift"
+          "Drift",
+          "BuildIntegrity",
+          "Licenses"
         ],
         "type": "string"
       },
@@ -172,6 +180,7 @@
       "CvesViolationToSuppress": {
         "additionalProperties": false,
         "properties": {
+          "accountIds": { "items": { "type": "string" }, "type": "array" },
           "comment": { "type": "string" },
           "cves": {
             "items": {
@@ -233,6 +242,70 @@
           "owner",
           "repoName",
           "fullId"
+        ],
+        "type": "object"
+      },
+      "ErrorInFile": {
+        "additionalProperties": false,
+        "properties": {
+          "author": { "type": "string" },
+          "commitHash": { "type": "string" },
+          "date": { "format": "date-time", "type": "string" },
+          "errorId": { "type": "string" },
+          "errorLines": {
+            "items": { "format": "double", "type": "number" },
+            "type": "array"
+          },
+          "fileMetadataUuid": { "type": "string" },
+          "filePath": { "type": "string" },
+          "fixPath": { "type": "string" },
+          "frameworkType": { "type": "string" },
+          "lines": {
+            "items": { "format": "double", "type": "number" },
+            "type": "array"
+          },
+          "metadataChecksMetadataPath": { "type": "string" },
+          "module": { "$ref": "#/components/schemas/module" },
+          "resourceCode": { "type": "string" },
+          "resourceFixCode": { "type": "string" },
+          "resourceId": { "type": "string" },
+          "resourceType": { "type": "string" },
+          "resourceUuid": { "type": "string" },
+          "runtimeFrameworkType": { "type": "string" },
+          "runtimeId": { "type": "string" },
+          "runtimeSourceId": { "type": "string" },
+          "s3FilePath": { "type": "string" },
+          "scannerType": { "type": "string" },
+          "sourceType": { "$ref": "#/components/schemas/SourceType" },
+          "status": { "type": "string" },
+          "variableCode": { "type": "string" },
+          "variableFixCode": { "type": "string" },
+          "variableRendering": {
+            "$ref": "#/components/schemas/VariableRendering"
+          }
+        },
+        "required": [
+          "filePath",
+          "resourceId",
+          "resourceCode",
+          "resourceType",
+          "fixPath",
+          "errorId",
+          "lines",
+          "status",
+          "scannerType",
+          "sourceType",
+          "metadataChecksMetadataPath",
+          "frameworkType",
+          "variableRendering",
+          "module",
+          "errorLines",
+          "author",
+          "commitHash",
+          "date",
+          "runtimeId",
+          "runtimeSourceId",
+          "fileMetadataUuid"
         ],
         "type": "object"
       },
@@ -303,31 +376,6 @@
       },
       "FileType": {
         "enum": [
-          "build.gradle",
-          "gradle.properties",
-          "build.gradle.kts",
-          "pom.xml",
-          "requirements.txt",
-          "package-lock.json",
-          "package.json",
-          "bower.json",
-          "go.sum",
-          "go.mod"
-        ],
-        "type": "string"
-      },
-      "FileTypeEnum": {
-        "enum": [
-          "build.gradle",
-          "gradle.properties",
-          "build.gradle.kts",
-          "pom.xml",
-          "requirements.txt",
-          "package-lock.json",
-          "package.json",
-          "bower.json",
-          "go.sum",
-          "go.mod",
           "tf",
           "json",
           "yml",
@@ -336,7 +384,17 @@
           ".checkov.baseline",
           "hcl",
           "Dockerfile",
+          "package.json",
+          "package-lock.json",
+          "bower.json",
+          "pom.xml",
+          "build.gradle",
+          "build.gradle.kts",
+          "gradle.properties",
           "gradle-wrapper.properties",
+          "go.sum",
+          "go.mod",
+          "requirements.txt",
           "METADATA",
           "bicep",
           "Pipfile.lock",
@@ -363,7 +421,62 @@
           "strings.xml",
           "app.module.ts",
           "environment.ts",
-          "tpl"
+          "tpl",
+          "tfvars",
+          "unknown"
+        ],
+        "type": "string"
+      },
+      "FileTypeEnum": {
+        "enum": [
+          "tf",
+          "json",
+          "yml",
+          "yaml",
+          "template",
+          ".checkov.baseline",
+          "hcl",
+          "Dockerfile",
+          "package.json",
+          "package-lock.json",
+          "bower.json",
+          "pom.xml",
+          "build.gradle",
+          "build.gradle.kts",
+          "gradle.properties",
+          "gradle-wrapper.properties",
+          "go.sum",
+          "go.mod",
+          "requirements.txt",
+          "METADATA",
+          "bicep",
+          "Pipfile.lock",
+          "Pipfile",
+          "yarn.lock",
+          "Gemfile",
+          "Gemfile.lock",
+          "gemspec",
+          "env",
+          "settings.py",
+          "main.py",
+          "application.py",
+          "config.py",
+          "app.js",
+          "config.js",
+          "dev.js",
+          "db.properties",
+          "application.properties",
+          "private.pem",
+          "privatekey.pem",
+          "index.php",
+          "config.php",
+          "config.xml",
+          "strings.xml",
+          "app.module.ts",
+          "environment.ts",
+          "tpl",
+          "tfvars",
+          "unknown"
         ],
         "type": "string"
       },
@@ -390,6 +503,10 @@
           },
           "codeStatus": {
             "items": { "$ref": "#/components/schemas/CodeStatus" },
+            "type": "array"
+          },
+          "excludeCategories": {
+            "items": { "$ref": "#/components/schemas/Category" },
             "type": "array"
           },
           "fileTypes": {
@@ -438,6 +555,10 @@
           },
           "codeStatus": {
             "items": { "$ref": "#/components/schemas/CodeStatus" },
+            "type": "array"
+          },
+          "excludeCategories": {
+            "items": { "$ref": "#/components/schemas/Category" },
             "type": "array"
           },
           "filePath": { "type": "string" },
@@ -493,6 +614,45 @@
         "required": ["comment", "createdBy"],
         "type": "object"
       },
+      "License": {
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "license": { "type": "string" },
+          "packageId": { "type": "string" },
+          "packageName": { "type": "string" },
+          "packageVersion": { "type": "string" },
+          "parentId": { "type": "string" },
+          "status": { "type": "string" }
+        },
+        "required": [
+          "id",
+          "status",
+          "license",
+          "parentId",
+          "packageId",
+          "packageName",
+          "packageVersion"
+        ],
+        "type": "object"
+      },
+      "LicenseTypeSuppress": {
+        "additionalProperties": false,
+        "properties": {
+          "comment": { "type": "string" },
+          "expirationTime": { "format": "double", "type": "number" },
+          "licenseTypes": { "items": { "type": "string" }, "type": "array" },
+          "suppressionType": { "type": "string" },
+          "violationId": { "type": "string" }
+        },
+        "required": [
+          "violationId",
+          "suppressionType",
+          "comment",
+          "licenseTypes"
+        ],
+        "type": "object"
+      },
       "ModuleError": {
         "additionalProperties": false,
         "properties": {
@@ -505,6 +665,25 @@
           }
         },
         "required": ["moduleReferences", "moduleFile", "fixedCode", "code"],
+        "type": "object"
+      },
+      "PackageLicenseSuppress": {
+        "additionalProperties": false,
+        "properties": {
+          "comment": { "type": "string" },
+          "expirationTime": { "format": "double", "type": "number" },
+          "packages": { "items": { "type": "string" }, "type": "array" },
+          "suppressByRoot": { "type": "boolean" },
+          "suppressionType": { "type": "string" },
+          "violationId": { "type": "string" }
+        },
+        "required": [
+          "violationId",
+          "suppressionType",
+          "comment",
+          "packages",
+          "suppressByRoot"
+        ],
         "type": "object"
       },
       "ResourceToSuppress": {
@@ -548,7 +727,7 @@
         "type": "object"
       },
       "Severity": {
-        "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"],
+        "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO"],
         "type": "string"
       },
       "SmartFix": {
@@ -651,7 +830,9 @@
                 { "$ref": "#/components/schemas/TagsViolationToSuppress" },
                 { "$ref": "#/components/schemas/SourcesViolationToSuppress" },
                 { "$ref": "#/components/schemas/BaseViolationToSuppress" },
-                { "$ref": "#/components/schemas/CvesViolationToSuppress" }
+                { "$ref": "#/components/schemas/CvesViolationToSuppress" },
+                { "$ref": "#/components/schemas/LicenseTypeSuppress" },
+                { "$ref": "#/components/schemas/PackageLicenseSuppress" }
               ]
             },
             "type": "array"
@@ -717,6 +898,19 @@
         "enum": ["Errors", "Suppressed", "Passed", "Fixed"],
         "type": "string"
       },
+      "VariableRendering": {
+        "additionalProperties": false,
+        "properties": {
+          "code": { "type": "string" },
+          "lines": {
+            "items": { "format": "double", "type": "number" },
+            "type": "array"
+          },
+          "path": { "type": "string" }
+        },
+        "required": ["path", "lines", "code"],
+        "type": "object"
+      },
       "VariableRenderingError": {
         "additionalProperties": false,
         "properties": {
@@ -747,6 +941,7 @@
             "items": { "format": "double", "type": "number" },
             "type": "array"
           },
+          "fileMetadataUuid": { "type": "string" },
           "filePath": { "type": "string" },
           "fixPath": { "type": "string" },
           "fixedCode": { "type": "string" },
@@ -756,6 +951,10 @@
           },
           "frameworkType": { "type": "string" },
           "isFixable": { "type": "boolean" },
+          "licenses": {
+            "items": { "$ref": "#/components/schemas/License" },
+            "type": "array"
+          },
           "lines": {
             "items": { "format": "double", "type": "number" },
             "type": "array"
@@ -769,6 +968,10 @@
           "runtimeId": { "type": "string" },
           "runtimeSourceId": { "type": "string" },
           "scannerType": { "type": "string" },
+          "secrets": {
+            "items": { "$ref": "#/components/schemas/ErrorInFile" },
+            "type": "array"
+          },
           "selectedFix": {
             "allOf": [{ "$ref": "#/components/schemas/SmartFix" }],
             "nullable": true
@@ -801,7 +1004,8 @@
           "runtimeId",
           "runtimeSourceId",
           "fixes",
-          "sourceType"
+          "sourceType",
+          "fileMetadataUuid"
         ],
         "type": "object"
       },
@@ -827,6 +1031,18 @@
           "packageName",
           "packageVersion"
         ],
+        "type": "object"
+      },
+      "module": {
+        "additionalProperties": false,
+        "properties": {
+          "moduleFile": { "type": "string" },
+          "moduleReferences": {
+            "items": { "$ref": "#/components/schemas/moduleReferences" },
+            "type": "array"
+          }
+        },
+        "required": ["moduleReferences", "moduleFile"],
         "type": "object"
       },
       "moduleReferences": {
@@ -903,11 +1119,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/code/api/v1/errors/files\"\n\npayload = {\n    \"CICDRunId\": 0,\n    \"authors\": [\"string\"],\n    \"branch\": \"string\",\n    \"categories\": [\"IAM\"],\n    \"codeStatus\": [\"hasFix\"],\n    \"fileTypes\": [\"build.gradle\"],\n    \"repository\": \"string\",\n    \"repositoryId\": \"string\",\n    \"search\": {\n        \"options\": [\"path\"],\n        \"text\": \"string\",\n        \"title\": \"title\"\n    },\n    \"severities\": [\"CRITICAL\"],\n    \"sourceTypes\": [\"Github\"],\n    \"tags\": [\n        {\n            \"key\": \"string\",\n            \"value\": \"string\"\n        }\n    ],\n    \"types\": [\"Errors\"]\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"authorization\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/code/api/v1/errors/files\"\n\npayload = {\n    \"CICDRunId\": 0,\n    \"authors\": [\"string\"],\n    \"branch\": \"string\",\n    \"categories\": [\"IAM\"],\n    \"codeStatus\": [\"hasFix\"],\n    \"excludeCategories\": [\"IAM\"],\n    \"fileTypes\": [\"tf\"],\n    \"repository\": \"string\",\n    \"repositoryId\": \"string\",\n    \"search\": {\n        \"options\": [\"path\"],\n        \"text\": \"string\",\n        \"title\": \"title\"\n    },\n    \"severities\": [\"CRITICAL\"],\n    \"sourceTypes\": [\"Github\"],\n    \"tags\": [\n        {\n            \"key\": \"string\",\n            \"value\": \"string\"\n        }\n    ],\n    \"types\": [\"Errors\"]\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"authorization\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/code/api/v1/errors/files \\\n  --header 'authorization: REPLACE_KEY_VALUE' \\\n  --header 'content-type: application/json' \\\n  --data '{\"CICDRunId\":0,\"authors\":[\"string\"],\"branch\":\"string\",\"categories\":[\"IAM\"],\"codeStatus\":[\"hasFix\"],\"fileTypes\":[\"build.gradle\"],\"repository\":\"string\",\"repositoryId\":\"string\",\"search\":{\"options\":[\"path\"],\"text\":\"string\",\"title\":\"title\"},\"severities\":[\"CRITICAL\"],\"sourceTypes\":[\"Github\"],\"tags\":[{\"key\":\"string\",\"value\":\"string\"}],\"types\":[\"Errors\"]}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/code/api/v1/errors/files \\\n  --header 'authorization: REPLACE_KEY_VALUE' \\\n  --header 'content-type: application/json' \\\n  --data '{\"CICDRunId\":0,\"authors\":[\"string\"],\"branch\":\"string\",\"categories\":[\"IAM\"],\"codeStatus\":[\"hasFix\"],\"excludeCategories\":[\"IAM\"],\"fileTypes\":[\"tf\"],\"repository\":\"string\",\"repositoryId\":\"string\",\"search\":{\"options\":[\"path\"],\"text\":\"string\",\"title\":\"title\"},\"severities\":[\"CRITICAL\"],\"sourceTypes\":[\"Github\"],\"tags\":[{\"key\":\"string\",\"value\":\"string\"}],\"types\":[\"Errors\"]}'"
           }
         ]
       }
@@ -959,6 +1175,7 @@
                           "createdBy": "checkov_terraform",
                           "errorId": "BC_AWS_S3_14",
                           "errorLines": [],
+                          "fileMetadataUuid": "de707daa-2ef3-40e1-8bbf-5e39f86b927e",
                           "filePath": "/terraform/aws/s3.tf",
                           "fixPath": "checkov/yourname/yourGithubName/yourRepo/master/fixes/BC_AWS_S3_14/aws_s3_bucket.data/terraform/aws/s3.tf",
                           "fixedCode": "resource \"aws_s3_bucket\" \"data\" { \n  # bucket is public \n bucket        = \"$\n{local.resource_prefix.value}-data\" \n force_destroy = true \n tags = merge({ \n  Name        = \"${local.resource_prefix.value}-data\" \n Environment = local.resource_prefix.value \n }) \n server_side_encryption_configuration { \n rule { \n apply_server_side_encryption_by_default { \n sse_algorithm = \"AES256\" \n } \n } \n }",
@@ -998,11 +1215,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/code/api/v1/errors/file\"\n\nquerystring = {\"limit\":\"SOME_INTEGER_VALUE\",\"offset\":\"SOME_INTEGER_VALUE\"}\n\npayload = {\n    \"CICDRunId\": 0,\n    \"authors\": [\"string\"],\n    \"branch\": \"string\",\n    \"categories\": [\"IAM\"],\n    \"codeStatus\": [\"hasFix\"],\n    \"filePath\": \"string\",\n    \"fileTypes\": [\"build.gradle\"],\n    \"repository\": \"string\",\n    \"repositoryId\": \"string\",\n    \"search\": {\n        \"options\": [\"path\"],\n        \"text\": \"string\",\n        \"title\": \"title\"\n    },\n    \"severities\": [\"CRITICAL\"],\n    \"sourceTypes\": [\"Github\"],\n    \"tags\": [\n        {\n            \"key\": \"string\",\n            \"value\": \"string\"\n        }\n    ],\n    \"types\": [\"Errors\"]\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"authorization\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/code/api/v1/errors/file\"\n\nquerystring = {\"limit\":\"SOME_INTEGER_VALUE\",\"offset\":\"SOME_INTEGER_VALUE\"}\n\npayload = {\n    \"CICDRunId\": 0,\n    \"authors\": [\"string\"],\n    \"branch\": \"string\",\n    \"categories\": [\"IAM\"],\n    \"codeStatus\": [\"hasFix\"],\n    \"excludeCategories\": [\"IAM\"],\n    \"filePath\": \"string\",\n    \"fileTypes\": [\"tf\"],\n    \"repository\": \"string\",\n    \"repositoryId\": \"string\",\n    \"search\": {\n        \"options\": [\"path\"],\n        \"text\": \"string\",\n        \"title\": \"title\"\n    },\n    \"severities\": [\"CRITICAL\"],\n    \"sourceTypes\": [\"Github\"],\n    \"tags\": [\n        {\n            \"key\": \"string\",\n            \"value\": \"string\"\n        }\n    ],\n    \"types\": [\"Errors\"]\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"authorization\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/code/api/v1/errors/file?limit=SOME_INTEGER_VALUE&offset=SOME_INTEGER_VALUE' \\\n  --header 'authorization: REPLACE_KEY_VALUE' \\\n  --header 'content-type: application/json' \\\n  --data '{\"CICDRunId\":0,\"authors\":[\"string\"],\"branch\":\"string\",\"categories\":[\"IAM\"],\"codeStatus\":[\"hasFix\"],\"filePath\":\"string\",\"fileTypes\":[\"build.gradle\"],\"repository\":\"string\",\"repositoryId\":\"string\",\"search\":{\"options\":[\"path\"],\"text\":\"string\",\"title\":\"title\"},\"severities\":[\"CRITICAL\"],\"sourceTypes\":[\"Github\"],\"tags\":[{\"key\":\"string\",\"value\":\"string\"}],\"types\":[\"Errors\"]}'"
+            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/code/api/v1/errors/file?limit=SOME_INTEGER_VALUE&offset=SOME_INTEGER_VALUE' \\\n  --header 'authorization: REPLACE_KEY_VALUE' \\\n  --header 'content-type: application/json' \\\n  --data '{\"CICDRunId\":0,\"authors\":[\"string\"],\"branch\":\"string\",\"categories\":[\"IAM\"],\"codeStatus\":[\"hasFix\"],\"excludeCategories\":[\"IAM\"],\"filePath\":\"string\",\"fileTypes\":[\"tf\"],\"repository\":\"string\",\"repositoryId\":\"string\",\"search\":{\"options\":[\"path\"],\"text\":\"string\",\"title\":\"title\"},\"severities\":[\"CRITICAL\"],\"sourceTypes\":[\"Github\"],\"tags\":[{\"key\":\"string\",\"value\":\"string\"}],\"types\":[\"Errors\"]}'"
           }
         ]
       }
@@ -1128,86 +1345,41 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "examples": {
-                "Example 1": {
-                  "value": {
-                    "metadata": {
-                      "owner": "orevron",
-                      "pr": "218",
-                      "repoName": "terragoat",
-                      "runNumber": 5,
-                      "sourceBranchName": "test15"
-                    },
-                    "type": "pr",
-                    "violationsToFix": [],
-                    "violationsToSuppress": [
-                      {
-                        "CICDRunId": 5,
-                        "bulkSuppression": true,
-                        "commentIds": ["665310693"],
-                        "creationDate": "2021-07-07T12:10:28.996Z",
-                        "errorLines": [],
-                        "frameworkType": "Terraform",
-                        "justification": {
-                          "comment": "this is comment",
-                          "createdBy": "or.evron@paloaltonetworks.com"
-                        },
-                        "justificationId": null,
-                        "metadataChecksMetadataPath": "checkov/orevron1/orevron/terragoat/pr/218/2b2800b8232debe12d33aad62478e822e884fbda/diff/checkov_results/terraform/checks_metadata.json",
-                        "metadataLines": [41, 57],
-                        "repository": "orevron/terragoat",
-                        "resourceId": "/terraform/s3.tf:aws_s3_bucket.operations",
-                        "runtimeId": null,
-                        "runtimeSourceId": null,
-                        "s3FilePath": "checkov/orevron1/orevron/terragoat/pr/218/2b2800b8232debe12d33aad62478e822e884fbda/diff/src/terraform/s3.tf",
-                        "s3FixFilePath": "checkov/orevron1/orevron/terragoat/pr/218/2b2800b8232debe12d33aad62478e822e884fbda/diff/fixes/BC_AWS_S3_14/aws_s3_bucket.operations/terraform/s3.tf",
-                        "severity": "HIGH",
-                        "status": "OPEN",
-                        "updatedDate": "2021-07-07T12:10:28.996Z",
-                        "vcsCommentLine": null,
-                        "violationId": "BC_AWS_S3_14"
-                      }
-                    ]
+              "example": {
+                "type": "default",
+                "violationsToFix": [
+                  {
+                    "fixedCode": "",
+                    "frameworkType": "Terraform",
+                    "fullId": "BC_AWS_S3_14::milkanas/terragoat::/terraform/aws/s3.tf:aws_s3_bucket.data",
+                    "metadataChecksMetadataPath": "checkov/milkanast/milkanas/terragoat/master/checkov_results/terraform/checks_metadata.json",
+                    "metadataLines": [1, 13],
+                    "owner": "milkanas",
+                    "repoName": "terragoat",
+                    "resourceId": "/terraform/aws/s3.tf:aws_s3_bucket.data",
+                    "runtimeId": null,
+                    "runtimeSourceId": null,
+                    "s3FilePath": "checkov/milkanast/milkanas/terragoat/master/src/terraform/aws/s3.tf",
+                    "violationId": "BC_AWS_S3_14"
                   }
-                },
-                "Example 2": {
-                  "value": {
-                    "type": "default",
-                    "violationsToFix": [
+                ],
+                "violationsToSuppress": [
+                  {
+                    "comment": "this is justification comment",
+                    "resources": [
                       {
-                        "fixedCode": "",
-                        "frameworkType": "Terraform",
-                        "fullId": "BC_AWS_S3_14::milkanas/terragoat::/terraform/aws/s3.tf:aws_s3_bucket.data",
-                        "metadataChecksMetadataPath": "checkov/milkanast/milkanas/terragoat/master/checkov_results/terraform/checks_metadata.json",
-                        "metadataLines": [1, 13],
-                        "owner": "milkanas",
-                        "repoName": "terragoat",
-                        "resourceId": "/terraform/aws/s3.tf:aws_s3_bucket.data",
-                        "runtimeId": null,
-                        "runtimeSourceId": null,
-                        "s3FilePath": "checkov/milkanast/milkanas/terragoat/master/src/terraform/aws/s3.tf",
-                        "violationId": "BC_AWS_S3_14"
+                        "accountId": "orevron/terragoat",
+                        "id": "BC_GIT_6::orevron/terragoat::/terraform/providers.tf:4ec71f2183bf24b28320d0c2839bdd08c255f0bb"
+                      },
+                      {
+                        "accountId": "orevron/terragoat",
+                        "id": "BC_GIT_6::orevron/terragoat::/terraform/lambda.tf:ca61f30c56f9b66c8802632d559a391acd02d01d"
                       }
                     ],
-                    "violationsToSuppress": [
-                      {
-                        "comment": "this is justification comment",
-                        "resources": [
-                          {
-                            "accountId": "orevron/terragoat",
-                            "id": "BC_GIT_6::orevron/terragoat::/terraform/providers.tf:4ec71f2183bf24b28320d0c2839bdd08c255f0bb"
-                          },
-                          {
-                            "accountId": "orevron/terragoat",
-                            "id": "BC_GIT_6::orevron/terragoat::/terraform/lambda.tf:ca61f30c56f9b66c8802632d559a391acd02d01d"
-                          }
-                        ],
-                        "suppressionType": "Resources",
-                        "violationId": "BC_AWS_S3_13"
-                      }
-                    ]
+                    "suppressionType": "Resources",
+                    "violationId": "BC_AWS_S3_13"
                   }
-                }
+                ]
               },
               "schema": { "$ref": "#/components/schemas/SubmitActionsRequest" }
             }

@@ -407,6 +407,44 @@
           }
         ]
       }
+    },
+    "/code/api/v1/tag-rules/ootb/{tagRuleOOTBId}": {
+      "get": {
+        "description": "Gets tag rule by ootb id",
+        "operationId": "getTagOOTBRules",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tagRuleOOTBId",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TagRulesResponse" }
+              }
+            },
+            "description": "Get tag OOTB Rules"
+          },
+          "422": { "description": "Request arguments validation error" }
+        },
+        "security": [{ "CustomAuthorizer": [] }],
+        "summary": "Returns The tag rule by OOTB ID",
+        "tags": ["Tag Rules"],
+        "x-codeSamples": [
+          {
+            "lang": "Python + Requests",
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/code/api/v1/tag-rules/ootb/{tagRuleOOTBId}\"\n\nheaders = {\"authorization\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers)\n\nprint(response.text)"
+          },
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/code/api/v1/tag-rules/ootb/{tagRuleOOTBId} \\\n  --header 'authorization: REPLACE_KEY_VALUE'"
+          }
+        ]
+      }
     }
   },
   "servers": [{ "url": "https://api.prismacloud.io" }],
