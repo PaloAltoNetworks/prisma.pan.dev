@@ -1,9 +1,10 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Prisma Cloud Data Service API Overview",
-    "description": "The Data Service APIs enable you to get resource archives from AWS S3 for the required time range.",
-    "version": "Latest"
+    "title": "Prisma Cloud Archived Assets API Overview",
+    "description": "When you delete an asset in a cloud account that is onboarded on Prisma Cloud, the asset is marked as deleted. After 90 days, the configuration details of the deleted assets are archived. You can use the archiveList endpoint of this API to retrieve the configuration details of such assets as a compressed archive (.zip) file.\n\nThe compressed archive (.zip) files are available for 9 months, after which they are deleted.\n",
+    "version": "Latest",
+    "contact": {}
   },
   "servers": [
     {
@@ -13,57 +14,57 @@
   ],
   "tags": [
     {
-      "name": "Data Service",
-      "description": "The Data Service API endpoints are listed below."
+      "name": "Archived Assets",
+      "description": "The Archived Assets API endpoint is listed below."
     }
   ],
   "paths": {
     "/config/api/v1/tenant/{prisma_id}/archiveList": {
       "get": {
-        "tags": ["Data Service"],
+        "tags": ["Archived Assets"],
         "summary": "Bulk export resource archives",
-        "description": "Lists resource archives from AWS S3 according to the specified time range.",
+        "description": "Returns a list that has details about (and optionally, links for) the compressed archive files that contain the configuration details for assets that were deleted in the specified time period.\n\nEach archive file contains the configuration details for up to 50,000 assets that belong to a cloud account ID and were deleted on a specific day.\n\nThe returned list has a maximum of 10 items. Each item is itself an array that has details about the archive file and (optionally) a temporary presigned URL for downloading the file. If the number of archive files exceeds 10, the response includes a URL (**nextPageUrl**) that you can use to get the next 10 archive files.\n\nThis endpoint checks the date on which an asset was deleted against the specified dates. If the asset was deleted on or after the specified **start_date** and on or before the specified **end_date**, and subsequently archived, it is included in an archive file returned by this endpoint.\n\nUsers (**prisma_id**) must have the “System Admin” role in Prisma Cloud to invoke this endpoint.\n\n**Rate Limits**\n\nThe following rate limits apply:\n* Request Rate Limit: 80/minute\n",
         "operationId": "bulkExportResourceArchives",
         "parameters": [
           {
             "name": "prisma_id",
             "in": "path",
-            "description": "The Prisma ID of the user.",
+            "description": "Your Prisma Cloud tenant ID.",
             "required": true,
             "schema": { "type": "string" }
           },
           {
             "name": "start_date",
             "in": "query",
-            "description": "The start date range for the resource archives in the YYYY-MM-DD format.",
+            "description": "Start date (in the YYYY-MM-DD format) of the time period for which the archives are returned.",
             "required": true,
             "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "end_date",
             "in": "query",
-            "description": "The end date range for the resource archives in the YYYY-MM-DD format.",
+            "description": "End date (in the YYYY-MM-DD format) of the time period for which the archives are returned.",
             "required": true,
             "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "include_url",
             "in": "query",
-            "description": "Whether or not the pre-assigned URL needs to be provided.",
+            "description": "This is an optional field.\nBy default, the API returns the resource archive ID, cloud account ID, and the asset deletion date for 10 compressed archive files. If set to **true**, each item in the returned list also includes the presigned URL compressed archive file. The presigned URL is valid for 10 minutes from the time they are generated.\n",
             "required": false,
             "schema": { "type": "boolean", "default": false }
           },
           {
             "name": "nextPageToken",
             "in": "query",
-            "description": "The token to fetch the next list of resource archives.",
+            "description": "The token to retrieve details for the next 10 compressed archive files. This token and other query parameters are included in the **nextPageUrl** returned in the response.\n",
             "required": false,
             "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
-            "description": "Successfully retrieved resource archives from AWS S3",
+            "description": "Successfully retrieved details for the compressed archive files for the specified time period",
             "content": {
               "application/json": {
                 "schema": {
@@ -234,42 +235,42 @@
           "debugMessage": { "type": "string" }
         }
       },
-      "BulkExporterBean": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "example": "cb8bad01-fa35-44d0-8d66-cd510d2d2fa2",
-            "description": "The unique ID of the resource archive."
-          },
-          "cloudAccountId": {
-            "type": "string",
-            "example": "sample-accountid-1",
-            "description": "The cloud account ID of the user."
-          },
-          "date": {
-            "type": "string",
-            "example": "2022-04-15",
-            "description": "The resource deleted date."
-          },
-          "url": {
-            "type": "string",
-            "example": "“https://resource-config-archives.s3.amazonaws.com/resource_config_inactive_resource_archives/prismaId/filename.txt.gz”",
-            "description": "The URL of the deleted resource."
-          }
-        }
-      },
       "BulkExporterPage": {
         "type": "object",
         "properties": {
           "value": {
             "type": "array",
-            "items": { "$ref": "#/components/schemas/BulkExporterBean" }
+            "description": "An array that has a maximum of 10 items. Each item in the array is also an array that contains the resource archive ID, cloud account ID, asset deletion date, and optionally a presigned URL for the compressed archive file.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "cb8bad01-fa35-44d0-8d66-cd510d2d2fa2",
+                  "description": "Unique ID of the resource archive."
+                },
+                "cloudAccountId": {
+                  "type": "string",
+                  "example": "sample-accountid-1",
+                  "description": "Cloud account ID of the assets included in the resource archive."
+                },
+                "date": {
+                  "type": "string",
+                  "example": "2022-04-15",
+                  "description": "Date on which the assets that are included in the compressed archive file were deleted."
+                },
+                "url": {
+                  "type": "string",
+                  "example": "“https://resource-config-archives.s3.amazonaws.com/resource_config_inactive_resource_archives/prismaId/filename.txt.gz”",
+                  "description": "Presigned URL for downloading the compressed archive (.zip) file. This URL is valid for 10 minutes. If the URL expires before you can download the file, you can invoke this endpoint again to get another valid URL."
+                }
+              }
+            }
           },
           "nextPageUrl": {
             "type": "string",
             "example": "/config/api/v1/tenant/801905077827777536/archiveList?nextPageToken=MTY1OTY3NTc4NjQ5M18y&start_date=2022-04-15&end_date=2022-07-15&include_url=true",
-            "description": "The token to fetch the next list of resource archives."
+            "description": "The URL to retrieve details for the next 10 compressed archive files. You can use this field to get the details for the next 10 compressed archive files.\n"
           }
         }
       }
