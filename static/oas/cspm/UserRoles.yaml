@@ -28,19 +28,6 @@ components:
           description: User can only access the Prisma Cloud Compute Console
           type: boolean
       type: object
-    PermissionGroup:
-      properties:
-        custom:
-          type: boolean
-        id:
-          type: string
-        name:
-          type: string
-        systemAdmin:
-          type: boolean
-        systemAdminOrComputeAdmin:
-          type: boolean
-      type: object
     UserRoleModel:
       description: Model for User Role
       properties:
@@ -84,8 +71,6 @@ components:
         name:
           description: Name
           type: string
-        permissionGroup:
-          $ref: '#/components/schemas/PermissionGroup'
         resourceListIds:
           description: Accessible Resource List IDs
           items:
@@ -94,14 +79,7 @@ components:
         restrictDismissalAccess:
           type: boolean
         roleType:
-          description: User Role Type
-          enum:
-          - System Admin
-          - Account Group Admin
-          - Account Group Read Only
-          - Cloud Provisioning Admin
-          - Account and Cloud Provisioning Admin
-          - Build and Deploy Security
+          description: User Role Type (Default or Custom Permission Group Name).
           type: string
       required:
       - name
@@ -134,6 +112,14 @@ components:
             type: string
           readOnly: true
           type: array
+        codeRepositories:
+          description: Associated Code Repositories
+          items:
+            additionalProperties:
+              type: string
+            type: object
+          readOnly: true
+          type: array
         codeRepositoryIds:
           description: Accessible Code Repository IDs
           items:
@@ -158,24 +144,23 @@ components:
         name:
           description: Name
           type: string
-        permissionGroup:
-          $ref: '#/components/schemas/PermissionGroup'
         resourceListIds:
           description: Accessible Resource List IDs
           items:
             type: string
           type: array
+        resourceLists:
+          description: Associated Resource Lists
+          items:
+            additionalProperties:
+              type: string
+            type: object
+          readOnly: true
+          type: array
         restrictDismissalAccess:
           type: boolean
         roleType:
-          description: User Role Type
-          enum:
-          - System Admin
-          - Account Group Admin
-          - Account Group Read Only
-          - Cloud Provisioning Admin
-          - Account and Cloud Provisioning Admin
-          - Build and Deploy Security
+          description: User Role Type (Default or Custom Permission Group Name).
           type: string
       required:
       - name
