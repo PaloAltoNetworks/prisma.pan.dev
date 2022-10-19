@@ -15,16 +15,50 @@ externalDocs:
   description: Platform Wiki Documentation
   url: https://redlock.atlassian.net/wiki/spaces/RED/pages/2744877602/Platform+AuthN+Integration+Template
 servers:
-  - url: http://localhost:8008
+  - url: https://api.prismacloud.io
     description: Generated server url
 paths:
+  /authz/v1/feature:
+    get:
+      tags:
+        - permission-group-controller
+      summary: Get list of active features
+      description: Returns the list of Prisma Cloud features that can be added to Custom Permission Groups
+      operationId: getFeatures
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        4XX:
+          description: Client error
+          headers:
+            x-redlock-status:
+              description: error description
+              style: simple
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      security:
+        - UserJwt:
+            - PermissionGroup_UPDATE
+
   /authz/v1/permission_group/{id}:
     get:
       tags:
         - permission-group-controller
       summary: Get an existing Permission Group by ID
       description: Get an existing Permission Group by ID
-      operationId: get
+      operationId: get_1
       parameters:
         - name: id
           in: path
@@ -65,7 +99,7 @@ paths:
         - permission-group-controller
       summary: Update existing Custom Permission Group
       description: Replaces existing Custom Permission Group.
-      operationId: update
+      operationId: update_1
       parameters:
         - name: id
           in: path
@@ -126,7 +160,7 @@ paths:
         - permission-group-controller
       summary: Get all existing Permission Groups
       description: Get all existing Permission Groups
-      operationId: getAll_1
+      operationId: getAll
       parameters:
         - name: includeAssociatedRoles
           in: query
@@ -198,6 +232,162 @@ paths:
             - PermissionGroup_CREATE
 components:
   schemas:
+    ErrorDetails:
+      required:
+        - message
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+        message:
+          type: string
+    SpringErrorResponse:
+      required:
+        - error
+        - message
+        - path
+        - status
+        - timestamp
+      type: object
+      properties:
+        timestamp:
+          type: string
+        status:
+          type: integer
+          format: int32
+        error:
+          type: string
+        errorDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetails'
+        message:
+          type: string
+        path:
+          type: string
+    UserAccount:
+      required:
+        - email
+        - firstName
+        - lastName
+        - timeZone
+      type: object
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        timeZone:
+          type: string
+          description: Time zone (e.g. America/Los_Angeles)
+        enabled:
+          type: boolean
+          readOnly: true
+        lastModifiedBy:
+          type: string
+          readOnly: true
+        lastModifiedTs:
+          type: integer
+          format: int64
+          readOnly: true
+        lastLoginTs:
+          type: integer
+          format: int64
+          readOnly: true
+        displayName:
+          type: string
+          readOnly: true
+        ssoBypassAllowed:
+          type: boolean
+        accessKeysAllowed:
+          type: boolean
+        defaultRoleId:
+          type: string
+        roleIds:
+          type: array
+          items:
+            type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserProfileRoleDetail'
+        activeRole:
+          $ref: '#/components/schemas/UserProfileRoleDetail'
+        username:
+          type: string
+          description: User or service account name
+        type:
+          type: string
+          description: User type. Default is USER_ACCOUNT.
+          enum:
+            - USER_ACCOUNT
+            - SERVICE_ACCOUNT
+        accessKeyName:
+          type: string
+        accessKeyExpiration:
+          type: integer
+          description: Access key expiration timestamp in milliseconds
+          format: int64
+        enableKeyExpiration:
+          type: boolean
+          description: true = Enable access key expiration. Default is false.
+        accessKeysCount:
+          type: integer
+          description: Access key count
+          format: int32
+          readOnly: true
+        userRoleName:
+          type: string
+          writeOnly: true
+    UserProfileRoleDetail:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        onlyAllowCIAccess:
+          type: boolean
+        onlyAllowComputeAccess:
+          type: boolean
+        onlyAllowReadAccess:
+          type: boolean
+    CreateUserAccessKeyResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        secretKey:
+          type: string
+    ChangePasswordRequest:
+      type: object
+      properties:
+        userName:
+          type: string
+        password:
+          type: string
+        newPassword:
+          type: string
+    SupportUserProfile:
+      type: object
+      properties:
+        email:
+          type: string
+        supportAccessLevel:
+          type: string
+          enum:
+            - NONE
+            - LIGHT_AGENT
+            - AGENT
+            - ADMIN
+        failedLoginCount:
+          type: integer
+          format: int32
     UserProfile:
       required:
         - email
@@ -251,40 +441,45 @@ components:
         userRoleName:
           type: string
           writeOnly: true
-    ErrorDetails:
-      required:
-        - message
-        - name
+    OpenIdConfigurationResponse:
       type: object
       properties:
-        name:
+        issuer:
           type: string
-        message:
+        authorization_endpoint:
           type: string
-    SpringErrorResponse:
-      required:
-        - error
-        - message
-        - path
-        - status
-        - timestamp
-      type: object
-      properties:
-        timestamp:
+        jwks_uri:
           type: string
-        status:
-          type: integer
-          format: int32
-        error:
+        token_endpoint:
           type: string
-        errorDetails:
+        token_endpoint_auth_methods_supported:
           type: array
           items:
-            $ref: '#/components/schemas/ErrorDetails'
-        message:
+            type: string
+        introspection_endpoint:
           type: string
-        path:
+        introspection_endpoint_auth_methods_supported:
+          type: array
+          items:
+            type: string
+        revocation_endpoint:
           type: string
+        response_types_supported:
+          type: array
+          items:
+            type: string
+        subject_types_supported:
+          type: array
+          items:
+            type: string
+        id_token_signing_alg_values_supported:
+          type: array
+          items:
+            type: string
+        grant_types_supported:
+          type: array
+          items:
+            type: string
     Feature:
       required:
         - featureName
@@ -300,25 +495,386 @@ components:
             type: object
             description: A mapping of operations and a boolean value representing whether the privilege to perform the operation needs to be granted.
           description: A mapping of operations and a boolean value representing whether the privilege to perform the operation needs to be granted.
-      description: List of Prisma Cloud Features
-    PermissionGroupRequest:
-      title: Model used for permission group
+      description: |-
+        Collection of permitted features associated with the role. 
+         Refer to PermissionGroup API docs to get the entire list of PC features.
+    RoleInternalPermissionGroup:
       required:
+        - custom
         - features
         - name
       type: object
       properties:
         name:
           type: string
-          description: Permission Group Name
-        description:
-          type: string
-          description: Permission Group Description
+          description: PermissionGroup Name
+        custom:
+          type: boolean
+          description: Indicates whether the permissionGroup associated with the role is 'Default' or 'Custom' type.
         features:
           type: array
-          description: List of Prisma Cloud Features
+          description: |-
+            Collection of permitted features associated with the role. 
+             Refer to PermissionGroup API docs to get the entire list of PC features.
           items:
             $ref: '#/components/schemas/Feature'
+      description: Permission Group is only populated for the active role, i.e. active=true
+    UserInternalRole:
+      required:
+        - active
+        - default
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique id of the Role
+        name:
+          type: string
+          description: Name of the Role
+        active:
+          type: boolean
+          description: Indicates whether the role is active role or not
+        permissionGroup:
+          $ref: '#/components/schemas/RoleInternalPermissionGroup'
+        default:
+          type: boolean
+          description: Indicates whether the role is default or not
+    UserProfileV2:
+      required:
+        - email
+        - firstName
+        - lastName
+        - timeZone
+      type: object
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        displayName:
+          type: string
+        timeZone:
+          type: string
+          description: Time zone (e.g. America/Los_Angeles)
+        lastLoginTs:
+          type: integer
+          format: int64
+          readOnly: true
+        accessKeysAllowed:
+          type: boolean
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserInternalRole'
+    AllowListParams:
+      title: IpAllowListParams
+      required:
+        - cidr
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        cidr:
+          type: array
+          items:
+            type: string
+        trimmedName:
+          type: string
+        trimmedDescription:
+          type: string
+        trimmedCidrs:
+          type: array
+          items:
+            type: string
+      description: Model for login IP allow list parameters
+    IpAllowListData:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Login IP allow list ID
+          readOnly: true
+        name:
+          type: string
+          description: Name
+        description:
+          type: string
+          description: Description
+        cidr:
+          type: array
+          description: List of CIDR blocks (IP addresses) from which access is allowed when Login IP Allow List flag is enabled.
+          items:
+            type: string
+            description: List of CIDR blocks (IP addresses) from which access is allowed when Login IP Allow List flag is enabled.
+        lastModifiedTs:
+          type: integer
+          description: Timestamp for last modification of CIDR block list
+          format: int64
+          readOnly: true
+      description: Model for login IP allow list data
+    CustomerSupportFilter:
+      type: object
+      properties:
+        customerName:
+          type: string
+        customerId:
+          type: integer
+          format: int32
+        entitlementSerialNumber:
+          type: string
+    UserAccessKeyDetailResponse:
+      type: object
+      properties:
+        Access key id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+        createdBy:
+          type: string
+        createdTs:
+          type: integer
+          format: int64
+        lastUsedTime:
+          type: integer
+          format: int64
+        status:
+          type: string
+        expiresOn:
+          type: integer
+          format: int64
+        role:
+          type: object
+          additionalProperties:
+            type: string
+            description: Role of User
+          description: Role of User
+        roleType:
+          type: string
+        username:
+          type: string
+    Attributes:
+      type: object
+      properties:
+        onlyAllowCIAccess:
+          type: boolean
+        onlyAllowComputeAccess:
+          type: boolean
+        hasDefenderPermissions:
+          type: boolean
+        onlyAllowReadAccess:
+          type: boolean
+    UserRole:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        lastModifiedBy:
+          type: string
+        lastModifiedTs:
+          type: integer
+          format: int64
+        accountGroupIds:
+          type: array
+          items:
+            type: string
+        resourceListIds:
+          type: array
+          items:
+            type: string
+        codeRepositoryIds:
+          type: array
+          items:
+            type: string
+        associatedUsers:
+          type: array
+          items:
+            type: string
+        restrictDismissalAccess:
+          type: boolean
+        additionalAttributes:
+          $ref: '#/components/schemas/Attributes'
+        roleType:
+          type: string
+    CustomerNameResponse:
+      type: object
+      properties:
+        customerName:
+          type: string
+        prismaId:
+          type: string
+        tosAccepted:
+          type: boolean
+    LoginResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        token:
+          type: string
+        customerNames:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerNameResponse'
+        roles:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+    GetServicesResponse:
+      required:
+        - services
+      type: object
+      properties:
+        services:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceResponse'
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+    JwkResponse:
+      required:
+        - alg
+        - key_ops
+        - kid
+        - kty
+        - used_for_grant
+      type: object
+      properties:
+        kid:
+          type: string
+        kty:
+          type: string
+        alg:
+          type: string
+          enum:
+            - HS256
+            - HS384
+            - HS512
+            - RS256
+            - RS384
+            - RS512
+        key_ops:
+          type: array
+          items:
+            type: string
+        used_for_grant:
+          type: boolean
+        expires_at:
+          type: integer
+          format: int64
+        token_duration_seconds:
+          type: integer
+          format: int64
+        k:
+          type: string
+        e:
+          type: string
+        'n':
+          type: string
+        d:
+          type: string
+        p:
+          type: string
+        q:
+          type: string
+        dp:
+          type: string
+        dq:
+          type: string
+        qi:
+          type: string
+    JwksResponse:
+      required:
+        - keys
+      type: object
+      properties:
+        keys:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/JwkResponse'
+    ServiceResponse:
+      required:
+        - id
+        - is_enabled
+        - jwks
+        - password
+        - roles
+        - username
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        password:
+          type: string
+        roles:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        jwks:
+          $ref: '#/components/schemas/JwksResponse'
+        customer_name:
+          type: string
+          deprecated: true
+        prisma_id:
+          type: string
+        is_enabled:
+          type: boolean
+    LoginRequest:
+      title: Model used for authentication
+      type: object
+      properties:
+        username:
+          type: string
+        customerName:
+          type: string
+        prismaId:
+          type: string
+        password:
+          type: string
+        tosAccepted:
+          type: boolean
+        ssoSession:
+          type: boolean
+      description: Model used for authentication
+    EntitlementToRoleSearchRequest:
+      type: object
+      properties:
+        resourceListIds:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        accountGroupIds:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        codeRepositoryIds:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
     UserProfileInternal:
       required:
         - email
@@ -397,32 +953,288 @@ components:
         userRoleName:
           type: string
           writeOnly: true
-    UserProfileRoleDetail:
+    PermissionGroupRequest:
+      title: Model used for permission group
+      required:
+        - features
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Permission Group Name
+        description:
+          type: string
+          description: Permission Group Description
+        features:
+          type: array
+          description: List of Prisma Cloud Features
+          items:
+            $ref: '#/components/schemas/Feature'
+    ForgotPasswordRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        resetToken:
+          type: string
+        recaptchaResponse:
+          type: string
+    PermissionGroupDetail:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Permission Group Name
+        description:
+          type: string
+          description: Permission Group Description
+        type:
+          type: string
+          description: Permission Group Type
+          enum:
+            - Default
+            - Custom
+            - Internal
+            - Default
+            - Custom
+        lastModifiedBy:
+          type: string
+        lastModifiedTs:
+          type: integer
+          format: int64
+        associatedRoles:
+          type: object
+          additionalProperties:
+            type: object
+            description: Map of associated role Ids and Names
+          description: Map of associated role Ids and Names
+        features:
+          $ref: '#/components/schemas/Feature'
+        acceptAccountGroups:
+          type: boolean
+          description: acceptAccountGroups
+        acceptResourceLists:
+          type: boolean
+          description: acceptResourceLists
+        acceptCodeRepositories:
+          type: boolean
+          description: acceptCodeRepositories
+        custom:
+          type: boolean
+          description: Boolean value signifying whether this is a custom (i.e. user-defined) permission group. Is set to true if the attribute value of permissionGroupType is set to CUSTOM
+        id:
+          type: string
+          description: Permission Group ID
+    PermissionGroup:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Permission Group Name
+        custom:
+          type: boolean
+          description: Boolean value signifying whether this is a custom (i.e. user-defined) permission group. Is set to true if the attribute value of permissionGroupType is set to CUSTOM
+        id:
+          type: string
+          description: Permission Group ID
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        timezone:
+          type: string
+        resetToken:
+          type: string
+        resetTokenTs:
+          type: integer
+          format: int64
+        customerId:
+          type: integer
+          format: int32
+        deleted:
+          type: boolean
+        defaultUserRoleId:
+          type: string
+        userRoleDetails:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/UserInternalRoleDetail'
+        customerName:
+          type: string
+        lastLoginTime:
+          type: integer
+          format: int64
+        tosBypassAllowed:
+          type: boolean
+        lastModifiedBy:
+          type: string
+        lastModifiedTs:
+          type: integer
+          format: int64
+        tosAccepted:
+          type: boolean
+        ssoBypassAllowed:
+          type: boolean
+        sessionTimeout:
+          type: integer
+          format: int32
+        provisional:
+          type: boolean
+        canAssumeRole:
+          type: boolean
+        supportAccessLevel:
+          type: string
+          enum:
+            - NONE
+            - LIGHT_AGENT
+            - AGENT
+            - ADMIN
+        accessKeysAllowed:
+          type: boolean
+        sfSyncStatus:
+          type: boolean
+        type:
+          type: string
+          enum:
+            - USER_ACCOUNT
+            - SERVICE_ACCOUNT
+        fullName:
+          type: string
+        active:
+          type: boolean
+      description: User object
+    UserInternalRoleDetail:
       type: object
       properties:
         id:
           type: string
         name:
           type: string
-        type:
-          type: string
-        onlyAllowCIAccess:
+        permissionGroup:
+          $ref: '#/components/schemas/PermissionGroup'
+        restrictedDismissalAccess:
           type: boolean
-        onlyAllowComputeAccess:
+        hasDefenderPermissions:
           type: boolean
         onlyAllowReadAccess:
           type: boolean
-    CustomerSupportFilter:
+        onlyAllowComputeAccess:
+          type: boolean
+        onlyAllowCIAccess:
+          type: boolean
+    MultiRoleUserProfile:
+      required:
+        - email
+        - firstName
+        - lastName
+        - timeZone
       type: object
       properties:
-        customerName:
+        email:
           type: string
-        customerId:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        timeZone:
+          type: string
+          description: Time zone (e.g. America/Los_Angeles)
+        enabled:
+          type: boolean
+          readOnly: true
+        lastModifiedBy:
+          type: string
+          readOnly: true
+        lastModifiedTs:
           type: integer
-          format: int32
-        entitlementSerialNumber:
+          format: int64
+          readOnly: true
+        lastLoginTs:
+          type: integer
+          format: int64
+          readOnly: true
+        displayName:
           type: string
-    UserAccessKeyDetailResponse:
+          readOnly: true
+        ssoBypassAllowed:
+          type: boolean
+        accessKeysAllowed:
+          type: boolean
+        defaultRoleId:
+          type: string
+        roleIds:
+          type: array
+          items:
+            type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserProfileRoleDetail'
+        activeRole:
+          $ref: '#/components/schemas/UserProfileRoleDetail'
+        userRoleName:
+          type: string
+          writeOnly: true
+    SsoConfig:
+      type: object
+      properties:
+        identityProvider:
+          title: IdP Issuer URI
+          type: string
+        certificate:
+          title: IdP Certificate
+          type: string
+        enabled:
+          title: SSO Enabled
+          type: boolean
+        logoutRedirectUrl:
+          title: IdP Sign-Off URL
+          type: string
+        relayStateParamName:
+          title: IdP Relay State Param
+          type: string
+        lastLoginErrors:
+          title: Last Login Errors
+          type: array
+          items:
+            title: Last Login Errors
+            type: string
+        audienceUri:
+          title: AudienceUri or Prisma Cloud SP-Entity-Id
+          type: string
+        autoProvisionEnabled:
+          title: AutoProvision Enabled
+          type: boolean
+        requireAccessSamlUrlPublic:
+          title: Skip Public address check for Access SAML URL
+          type: boolean
+        autoProvisionSamlEmail:
+          title: AutoProvision SAML Attribute - Email (Mandatory)
+          type: string
+        autoProvisionSamlFirstName:
+          title: AutoProvision SAML Attribute - First name (Mandatory)
+          type: string
+        autoProvisionSamlLastName:
+          title: AutoProvision SAML Attribute - Last name (Mandatory)
+          type: string
+        autoProvisionSamlRole:
+          title: AutoProvision SAML Attribute - Role (Mandatory)
+          type: string
+        autoProvisionSamlTimezone:
+          title: AutoProvision SAML Attribute - TZ
+          type: string
+        redLockAccessSamlUrl:
+          title: IdP Configured Prisma Cloud Access URL
+          type: string
+    UserAccessKeyResponse:
       type: object
       properties:
         Access key id:
@@ -431,38 +1243,10 @@ components:
           readOnly: true
         name:
           type: string
-        createdBy:
-          type: string
-        createdTs:
-          type: integer
-          format: int64
-        lastUsedTime:
-          type: integer
-          format: int64
-        status:
-          type: string
         expiresOn:
           type: integer
+          description: Timestamp in milliseconds when access key expires
           format: int64
-        role:
-          type: object
-          additionalProperties:
-            type: string
-            description: Role of User
-          description: Role of User
-        roleType:
-          type: string
-        username:
-          type: string
-    ChangePasswordRequest:
-      type: object
-      properties:
-        userName:
-          type: string
-        password:
-          type: string
-        newPassword:
-          type: string
     AccountFilterVO:
       type: object
       properties:
@@ -647,618 +1431,36 @@ components:
             - LIGHT_AGENT
             - AGENT
             - ADMIN
-    PermissionGroupDetail:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Permission Group Name
-        description:
-          type: string
-          description: Permission Group Description
-        type:
-          type: string
-          description: Permission Group Type
-          enum:
-            - Default
-            - Custom
-            - Internal
-            - Default
-            - Custom
-        lastModifiedBy:
-          type: string
-        lastModifiedTs:
-          type: integer
-          format: int64
-        associatedRoles:
-          type: object
-          additionalProperties:
-            type: object
-            description: Map of associated role Ids and Names
-          description: Map of associated role Ids and Names
-        features:
-          $ref: '#/components/schemas/Feature'
-        acceptAccountGroups:
-          type: boolean
-          description: acceptAccountGroups
-        acceptResourceLists:
-          type: boolean
-          description: acceptResourceLists
-        acceptCodeRepositories:
-          type: boolean
-          description: acceptCodeRepositories
-        custom:
-          type: boolean
-          description: Boolean value signifying whether this is a custom (i.e. user-defined) permission group. Is set to true if the attribute value of permissionGroupType is set to CUSTOM
-        id:
-          type: string
-          description: Permission Group ID
-    AllowListParams:
-      title: IpAllowListParams
-      required:
-        - cidr
-        - name
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        cidr:
-          type: array
-          items:
-            type: string
-        trimmedName:
-          type: string
-        trimmedDescription:
-          type: string
-        trimmedCidrs:
-          type: array
-          items:
-            type: string
-      description: Model for login IP allow list parameters
-    IpAllowListData:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Login IP allow list ID
-          readOnly: true
-        name:
-          type: string
-          description: Name
-        description:
-          type: string
-          description: Description
-        cidr:
-          type: array
-          description: List of CIDR blocks (IP addresses) from which access is allowed when Login IP Allow List flag is enabled.
-          items:
-            type: string
-            description: List of CIDR blocks (IP addresses) from which access is allowed when Login IP Allow List flag is enabled.
-        lastModifiedTs:
-          type: integer
-          description: Timestamp for last modification of CIDR block list
-          format: int64
-          readOnly: true
-      description: Model for login IP allow list data
-    PermissionGroup:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Permission Group Name
-        custom:
-          type: boolean
-          description: Boolean value signifying whether this is a custom (i.e. user-defined) permission group. Is set to true if the attribute value of permissionGroupType is set to CUSTOM
-        id:
-          type: string
-          description: Permission Group ID
-    User:
-      type: object
-      properties:
-        username:
-          type: string
-        password:
-          type: string
-        firstname:
-          type: string
-        lastname:
-          type: string
-        timezone:
-          type: string
-        resetToken:
-          type: string
-        resetTokenTs:
-          type: integer
-          format: int64
-        customerId:
-          type: integer
-          format: int32
-        deleted:
-          type: boolean
-        defaultUserRoleId:
-          type: string
-        userRoleDetails:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/UserInternalRoleDetail'
-        customerName:
-          type: string
-        lastLoginTime:
-          type: integer
-          format: int64
-        tosBypassAllowed:
-          type: boolean
-        lastModifiedBy:
-          type: string
-        lastModifiedTs:
-          type: integer
-          format: int64
-        tosAccepted:
-          type: boolean
-        ssoBypassAllowed:
-          type: boolean
-        sessionTimeout:
-          type: integer
-          format: int32
-        provisional:
-          type: boolean
-        canAssumeRole:
-          type: boolean
-        supportAccessLevel:
-          type: string
-          enum:
-            - NONE
-            - LIGHT_AGENT
-            - AGENT
-            - ADMIN
-        accessKeysAllowed:
-          type: boolean
-        sfSyncStatus:
-          type: boolean
-        type:
-          type: string
-          enum:
-            - USER_ACCOUNT
-            - SERVICE_ACCOUNT
-        fullName:
-          type: string
-        active:
-          type: boolean
-      description: User object
-    UserInternalRoleDetail:
+    UsernameVsDisplayName:
       type: object
       properties:
         id:
           type: string
         name:
           type: string
-        permissionGroup:
-          $ref: '#/components/schemas/PermissionGroup'
-        restrictedDismissalAccess:
-          type: boolean
-        hasDefenderPermissions:
-          type: boolean
-        onlyAllowReadAccess:
-          type: boolean
-        onlyAllowComputeAccess:
-          type: boolean
-        onlyAllowCIAccess:
-          type: boolean
-    UsernamePasswordRequest:
-      title: Model used to validate user/password
+    TokenResponse:
       type: object
       properties:
-        username:
-          type: string
-        password:
-          type: string
-    CustomerNameResponse:
-      type: object
-      properties:
-        customerName:
-          type: string
-        prismaId:
-          type: string
-        tosAccepted:
+        empty:
           type: boolean
-    LoginResponse:
+      additionalProperties:
+        type: string
+    UserEntitlementsMeta:
       type: object
       properties:
-        message:
-          type: string
-        token:
-          type: string
-        customerNames:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomerNameResponse'
-        roles:
-          uniqueItems: true
+        codeRepositoryIds:
           type: array
           items:
             type: string
-    EntitlementToRoleSearchRequest:
-      type: object
-      properties:
         resourceListIds:
-          uniqueItems: true
           type: array
           items:
             type: string
         accountGroupIds:
-          uniqueItems: true
           type: array
           items:
             type: string
-        codeRepositoryIds:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-    SsoConfig:
-      type: object
-      properties:
-        identityProvider:
-          title: IdP Issuer URI
-          type: string
-        certificate:
-          title: IdP Certificate
-          type: string
-        enabled:
-          title: SSO Enabled
-          type: boolean
-        logoutRedirectUrl:
-          title: IdP Sign-Off URL
-          type: string
-        relayStateParamName:
-          title: IdP Relay State Param
-          type: string
-        lastLoginErrors:
-          title: Last Login Errors
-          type: array
-          items:
-            title: Last Login Errors
-            type: string
-        audienceUri:
-          title: AudienceUri or Prisma Cloud SP-Entity-Id
-          type: string
-        autoProvisionEnabled:
-          title: AutoProvision Enabled
-          type: boolean
-        requireAccessSamlUrlPublic:
-          title: Skip Public address check for Access SAML URL
-          type: boolean
-        autoProvisionSamlEmail:
-          title: AutoProvision SAML Attribute - Email (Mandatory)
-          type: string
-        autoProvisionSamlFirstName:
-          title: AutoProvision SAML Attribute - First name (Mandatory)
-          type: string
-        autoProvisionSamlLastName:
-          title: AutoProvision SAML Attribute - Last name (Mandatory)
-          type: string
-        autoProvisionSamlRole:
-          title: AutoProvision SAML Attribute - Role (Mandatory)
-          type: string
-        autoProvisionSamlTimezone:
-          title: AutoProvision SAML Attribute - TZ
-          type: string
-        redLockAccessSamlUrl:
-          title: IdP Configured Prisma Cloud Access URL
-          type: string
-    Jwk:
-      required:
-        - alg
-        - token_duration_seconds
-      type: object
-      properties:
-        alg:
-          type: string
-          enum:
-            - HS256
-            - HS384
-            - HS512
-            - RS256
-            - RS384
-            - RS512
-        kid:
-          type: string
-        token_duration_seconds:
-          maximum: 3600
-          minimum: 1
-          type: integer
-          format: int64
-        overlap_seconds:
-          maximum: 300
-          minimum: 0
-          type: integer
-          format: int64
-    UpdateServiceRequest:
-      type: object
-      properties:
-        password:
-          type: string
-        roles:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-        jwk:
-          $ref: '#/components/schemas/Jwk'
-        customer_name:
-          type: string
-          deprecated: true
-        prisma_id:
-          type: string
-        add_roles:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-        remove_roles:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-        is_enabled:
-          type: boolean
-    JwkResponse:
-      required:
-        - alg
-        - key_ops
-        - kid
-        - kty
-        - used_for_grant
-      type: object
-      properties:
-        kid:
-          type: string
-        kty:
-          type: string
-        alg:
-          type: string
-          enum:
-            - HS256
-            - HS384
-            - HS512
-            - RS256
-            - RS384
-            - RS512
-        key_ops:
-          type: array
-          items:
-            type: string
-        used_for_grant:
-          type: boolean
-        expires_at:
-          type: integer
-          format: int64
-        token_duration_seconds:
-          type: integer
-          format: int64
-        k:
-          type: string
-        e:
-          type: string
-        'n':
-          type: string
-        d:
-          type: string
-        p:
-          type: string
-        q:
-          type: string
-        dp:
-          type: string
-        dq:
-          type: string
-        qi:
-          type: string
-    JwksResponse:
-      required:
-        - keys
-      type: object
-      properties:
-        keys:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/JwkResponse'
-    ServiceResponse:
-      required:
-        - id
-        - is_enabled
-        - jwks
-        - password
-        - roles
-        - username
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        username:
-          type: string
-        password:
-          type: string
-        roles:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-        jwks:
-          $ref: '#/components/schemas/JwksResponse'
-        customer_name:
-          type: string
-          deprecated: true
-        prisma_id:
-          type: string
-        is_enabled:
-          type: boolean
-    UserAccount:
-      required:
-        - email
-        - firstName
-        - lastName
-        - timeZone
-      type: object
-      properties:
-        email:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        timeZone:
-          type: string
-          description: Time zone (e.g. America/Los_Angeles)
-        enabled:
-          type: boolean
-          readOnly: true
-        lastModifiedBy:
-          type: string
-          readOnly: true
-        lastModifiedTs:
-          type: integer
-          format: int64
-          readOnly: true
-        lastLoginTs:
-          type: integer
-          format: int64
-          readOnly: true
-        displayName:
-          type: string
-          readOnly: true
-        ssoBypassAllowed:
-          type: boolean
-        accessKeysAllowed:
-          type: boolean
-        defaultRoleId:
-          type: string
-        roleIds:
-          type: array
-          items:
-            type: string
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserProfileRoleDetail'
-        activeRole:
-          $ref: '#/components/schemas/UserProfileRoleDetail'
-        username:
-          type: string
-          description: User or service account name
-        type:
-          type: string
-          description: User type. Default is USER_ACCOUNT.
-          enum:
-            - USER_ACCOUNT
-            - SERVICE_ACCOUNT
-        accessKeyName:
-          type: string
-        accessKeyExpiration:
-          type: integer
-          description: Access key expiration timestamp in milliseconds
-          format: int64
-        enableKeyExpiration:
-          type: boolean
-          description: true = Enable access key expiration. Default is false.
-        accessKeysCount:
-          type: integer
-          description: Access key count
-          format: int32
-          readOnly: true
-        userRoleName:
-          type: string
-          writeOnly: true
-    CreateUserAccessKeyResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        secretKey:
-          type: string
-    SupportUserProfile:
-      type: object
-      properties:
-        email:
-          type: string
-        supportAccessLevel:
-          type: string
-          enum:
-            - NONE
-            - LIGHT_AGENT
-            - AGENT
-            - ADMIN
-        failedLoginCount:
-          type: integer
-          format: int32
-    MultiRoleUserProfile:
-      required:
-        - email
-        - firstName
-        - lastName
-        - timeZone
-      type: object
-      properties:
-        email:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        timeZone:
-          type: string
-          description: Time zone (e.g. America/Los_Angeles)
-        enabled:
-          type: boolean
-          readOnly: true
-        lastModifiedBy:
-          type: string
-          readOnly: true
-        lastModifiedTs:
-          type: integer
-          format: int64
-          readOnly: true
-        lastLoginTs:
-          type: integer
-          format: int64
-          readOnly: true
-        displayName:
-          type: string
-          readOnly: true
-        ssoBypassAllowed:
-          type: boolean
-        accessKeysAllowed:
-          type: boolean
-        defaultRoleId:
-          type: string
-        roleIds:
-          type: array
-          items:
-            type: string
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserProfileRoleDetail'
-        activeRole:
-          $ref: '#/components/schemas/UserProfileRoleDetail'
-        userRoleName:
-          type: string
-          writeOnly: true
-    Attributes:
-      type: object
-      properties:
-        onlyAllowCIAccess:
-          type: boolean
-        onlyAllowComputeAccess:
-          type: boolean
-        hasDefenderPermissions:
-          type: boolean
-        onlyAllowReadAccess:
-          type: boolean
+      description: User entitlements
     UserRoleView:
       type: object
       properties:
@@ -1318,6 +1520,57 @@ components:
             type: string
         roleType:
           type: string
+    UsernameValidationResponse:
+      type: object
+      properties:
+        regex:
+          type: string
+    CreateServiceRequest:
+      required:
+        - jwk
+        - roles
+        - username
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+          deprecated: true
+        roles:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        jwk:
+          $ref: '#/components/schemas/Jwk'
+        customer_name:
+          type: string
+          deprecated: true
+        prisma_id:
+          type: string
+    Jwk:
+      required:
+        - alg
+        - token_duration_seconds
+      type: object
+      properties:
+        alg:
+          type: string
+          enum:
+            - HS256
+            - HS384
+            - HS512
+            - RS256
+            - RS384
+            - RS512
+        kid:
+          type: string
+        token_duration_seconds:
+          maximum: 3600
+          minimum: 60
+          type: integer
+          format: int64
     SamlLoginResponse:
       type: object
       properties:
@@ -1365,11 +1618,6 @@ components:
           type: object
           additionalProperties:
             type: object
-        customerId:
-          type: integer
-          format: int32
-        prismaId:
-          type: string
         errorInfoMultiple:
           type: string
           writeOnly: true
@@ -1464,283 +1712,18 @@ components:
             - SAML_USER
         fullErrorMessage:
           type: string
-    LoginRequest:
-      title: Model used for authentication
-      type: object
-      properties:
-        username:
-          type: string
-        customerName:
-          type: string
+        customerId:
+          type: integer
+          format: int32
         prismaId:
           type: string
-        password:
-          type: string
-        tosAccepted:
-          type: boolean
-        ssoSession:
-          type: boolean
-      description: Model used for authentication
-    SupportUserProfileRequest:
+    ExternalJwtIntegration:
+      title: Model used for JWT integrations with external vendors
       type: object
       properties:
-        email:
+        integration:
           type: string
-        supportAccessLevel:
-          type: string
-    GetServicesResponse:
-      required:
-        - services
-      type: object
-      properties:
-        services:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceResponse'
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-    ForgotPasswordRequest:
-      type: object
-      properties:
-        username:
-          type: string
-        resetToken:
-          type: string
-        recaptchaResponse:
-          type: string
-    CreateServiceRequest:
-      required:
-        - jwk
-        - roles
-        - username
-      type: object
-      properties:
-        username:
-          type: string
-        password:
-          type: string
-          deprecated: true
-        roles:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-        jwk:
-          $ref: '#/components/schemas/Jwk'
-        customer_name:
-          type: string
-          deprecated: true
-        prisma_id:
-          type: string
-    UsernameVsDisplayName:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-    UsernameValidationResponse:
-      type: object
-      properties:
-        regex:
-          type: string
-    RoleSwitchResponse:
-      type: object
-      properties:
-        token:
-          type: string
-    OpenIdConfigurationResponse:
-      type: object
-      properties:
-        issuer:
-          type: string
-        authorization_endpoint:
-          type: string
-        jwks_uri:
-          type: string
-        token_endpoint:
-          type: string
-        token_endpoint_auth_methods_supported:
-          type: array
-          items:
-            type: string
-        introspection_endpoint:
-          type: string
-        introspection_endpoint_auth_methods_supported:
-          type: array
-          items:
-            type: string
-        revocation_endpoint:
-          type: string
-        response_types_supported:
-          type: array
-          items:
-            type: string
-        subject_types_supported:
-          type: array
-          items:
-            type: string
-        id_token_signing_alg_values_supported:
-          type: array
-          items:
-            type: string
-        grant_types_supported:
-          type: array
-          items:
-            type: string
-    RoleInternalPermissionGroup:
-      required:
-        - custom
-        - features
-        - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: PermissionGroup Name
-        custom:
-          type: boolean
-          description: Indicates whether the permissionGroup associated with the role is 'Default' or 'Custom' type.
-        features:
-          type: array
-          description: |-
-            Collection of permitted features associated with the role. 
-             Refer to PermissionGroup API docs to get the entire list of PC features.
-          items:
-            $ref: '#/components/schemas/Feature'
-      description: Permission Group is only populated for the active role, i.e. active=true
-    UserInternalRole:
-      required:
-        - active
-        - default
-        - id
-        - name
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique id of the Role
-        name:
-          type: string
-          description: Name of the Role
-        active:
-          type: boolean
-          description: Indicates whether the role is active role or not
-        permissionGroup:
-          $ref: '#/components/schemas/RoleInternalPermissionGroup'
-        default:
-          type: boolean
-          description: Indicates whether the role is default or not
-    UserProfileV2:
-      required:
-        - email
-        - firstName
-        - lastName
-        - timeZone
-      type: object
-      properties:
-        email:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        displayName:
-          type: string
-        timeZone:
-          type: string
-          description: Time zone (e.g. America/Los_Angeles)
-        lastLoginTs:
-          type: integer
-          format: int64
-          readOnly: true
-        accessKeysAllowed:
-          type: boolean
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserInternalRole'
-    UserAccessKeyResponse:
-      type: object
-      properties:
-        Access key id:
-          type: string
-          format: uuid
-          readOnly: true
-        name:
-          type: string
-        expiresOn:
-          type: integer
-          description: Timestamp in milliseconds when access key expires
-          format: int64
-    TokenResponse:
-      required:
-        - access_token
-        - token_type
-      type: object
-      properties:
-        access_token:
-          type: string
-        token_type:
-          type: string
-        expires_in:
-          type: integer
-          format: int64
-    UserRole:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        lastModifiedBy:
-          type: string
-        lastModifiedTs:
-          type: integer
-          format: int64
-        accountGroupIds:
-          type: array
-          items:
-            type: string
-        resourceListIds:
-          type: array
-          items:
-            type: string
-        codeRepositoryIds:
-          type: array
-          items:
-            type: string
-        associatedUsers:
-          type: array
-          items:
-            type: string
-        restrictDismissalAccess:
-          type: boolean
-        additionalAttributes:
-          $ref: '#/components/schemas/Attributes'
-        roleType:
-          type: string
-    UserEntitlementsMeta:
-      type: object
-      properties:
-        codeRepositoryIds:
-          type: array
-          items:
-            type: string
-        resourceListIds:
-          type: array
-          items:
-            type: string
-        accountGroupIds:
-          type: array
-          items:
-            type: string
-      description: User entitlements
+      description: Model used for JWT integrations with external vendors
     UserSearchCriteria:
       title: User Search Request Filter
       type: object
@@ -1800,6 +1783,35 @@ components:
           format: int64
         serviceAccountName:
           type: string
+    UpdateServiceRequest:
+      type: object
+      properties:
+        password:
+          type: string
+        roles:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        jwk:
+          $ref: '#/components/schemas/Jwk'
+        customer_name:
+          type: string
+          deprecated: true
+        prisma_id:
+          type: string
+        add_roles:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        remove_roles:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        is_enabled:
+          type: boolean
     TokenInfoResponse:
       required:
         - active
@@ -1840,6 +1852,26 @@ components:
           enum:
             - USER
             - SERVICE
+    UsernamePasswordRequest:
+      title: Model used to validate user/password
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    RoleSwitchResponse:
+      type: object
+      properties:
+        token:
+          type: string
+    SupportUserProfileRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        supportAccessLevel:
+          type: string
     SamlLoginRequest:
       title: Model used for saml authentication
       required:
@@ -1853,13 +1885,6 @@ components:
           type: string
         relayState:
           type: string
-    ExternalJwtIntegration:
-      title: Model used for JWT integrations with external vendors
-      type: object
-      properties:
-        integration:
-          type: string
-      description: Model used for JWT integrations with external vendors
   headers:
     prismaId:
       description: x-prisma-tenant-id
@@ -1867,27 +1892,9 @@ components:
       schema:
         type: string
   securitySchemes:
-    BasicAuth:
-      type: http
-      description: basic authentication
-      in: header
-      scheme: basic
-      required: true
-    CertAuth:
-      type: http
-      description: certificate based authentication
-      in: header
-      scheme: bearer
-    ServiceJwt:
-      type: http
-      description: Service jwt
-      in: header
-      scheme: bearer
-      bearerFormat: JWT
     UserJwt:
       type: http
       description: user jwt
       in: header
       scheme: bearer
       bearerFormat: JWT
-
