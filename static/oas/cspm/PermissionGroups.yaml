@@ -49,8 +49,7 @@ paths:
                 items:
                   type: string
       security:
-        - UserJwt:
-            - PermissionGroup_UPDATE
+      - x-redlock-auth: []
 
   /authz/v1/permission_group/{id}:
     get:
@@ -92,8 +91,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PermissionGroupDetail'
       security:
-        - UserJwt:
-            - PermissionGroup_READ
+      - x-redlock-auth: []
     put:
       tags:
         - permission-group-controller
@@ -125,8 +123,7 @@ paths:
               schema:
                 type: string
       security:
-        - UserJwt:
-            - PermissionGroup_UPDATE
+      - x-redlock-auth: []
     delete:
       tags:
         - permission-group-controller
@@ -152,8 +149,7 @@ paths:
               schema:
                 type: string
       security:
-        - UserJwt:
-            - PermissionGroup_DELETE
+      - x-redlock-auth: []
   /authz/v1/permission_group:
     get:
       tags:
@@ -198,12 +194,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/PermissionGroupDetail'
       security:
-        - UserJwt:
-            - PermissionGroup_READ
-        - UserJwt:
-            - UserRole_CREATE
-        - UserJwt:
-            - UserRole_UPDATE
+      - x-redlock-auth: []
     post:
       tags:
         - permission-group-controller
@@ -228,8 +219,7 @@ paths:
               schema:
                 type: string
       security:
-        - UserJwt:
-            - PermissionGroup_CREATE
+      - x-redlock-auth: []
 components:
   schemas:
     ErrorDetails:
@@ -1892,9 +1882,8 @@ components:
       schema:
         type: string
   securitySchemes:
-    UserJwt:
-      type: http
-      description: user jwt
+    x-redlock-auth:
+      description: The x-redlock-auth value is a JSON Web Token (JWT).
       in: header
-      scheme: bearer
-      bearerFormat: JWT
+      name: x-redlock-auth
+      type: apiKey
