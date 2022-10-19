@@ -1,30 +1,24 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Authentication and RBAC API's",
-    "description": "Platform: S2S and user authN and authZ.\n\n# Authentication\n\n<!-- ReDoc-Inject: <security-definitions> -->",
-    "contact": {
-      "name": "Platform",
-      "url": "https://panw-rnd.slack.com/archives/C01DQJBJ7LJ"
-    },
-    "version": "1.0"
+    "title": "Prisma Cloud Permission Groups API",
+    "description": "Permission groups enable you to restrict access to one or more features available on the Prisma Cloud administrative console. Permission group APIs allow you to retrieve, update or delete one or more existing permissions groups. You can also use these APIs to create a custom permission group and then you must attach it to a role and assign the role to a user.",
+    "contact": {},
+    "version": "Latest"
   },
-  "externalDocs": {
-    "description": "Platform Wiki Documentation",
-    "url": "https://redlock.atlassian.net/wiki/spaces/RED/pages/2744877602/Platform+AuthN+Integration+Template"
-  },
-  "servers": [
+  "servers": [{ "url": "https://api.prismacloud.io" }],
+  "tags": [
     {
-      "url": "https://api.prismacloud.io",
-      "description": "Generated server url"
+      "description": "The Permission Groups endpoints are listed below.",
+      "name": "Permission Groups"
     }
   ],
   "paths": {
     "/authz/v1/feature": {
       "get": {
-        "tags": ["permission-group-controller"],
-        "summary": "Get list of active features",
-        "description": "Returns the list of Prisma Cloud features that can be added to Custom Permission Groups",
+        "tags": ["Permission Groups"],
+        "summary": "Get all active features",
+        "description": "Returns a list of Prisma Cloud features that can be added to Custom Permission Groups",
         "operationId": "getFeatures",
         "responses": {
           "200": {
@@ -66,9 +60,9 @@
     },
     "/authz/v1/permission_group/{id}": {
       "get": {
-        "tags": ["permission-group-controller"],
+        "tags": ["Permission Groups"],
         "summary": "Get an existing Permission Group by ID",
-        "description": "Get an existing Permission Group by ID",
+        "description": "Queries a list of existing permission groups by ID and returns a specific permission group that matches the Permission Group ID.",
         "operationId": "get_1",
         "parameters": [
           {
@@ -128,9 +122,9 @@
         ]
       },
       "put": {
-        "tags": ["permission-group-controller"],
-        "summary": "Update existing Custom Permission Group",
-        "description": "Replaces existing Custom Permission Group.",
+        "tags": ["Permission Groups"],
+        "summary": "Update an existing Permission Group",
+        "description": "Updates the parameters of an existing permission group.",
         "operationId": "update_1",
         "parameters": [
           {
@@ -177,9 +171,9 @@
         ]
       },
       "delete": {
-        "tags": ["permission-group-controller"],
+        "tags": ["Permission Groups"],
         "summary": "Delete an existing Permission Group by ID",
-        "description": "Delete an existing Permission Group by ID",
+        "description": "Deletes the default or custom permission group with the specified ID.",
         "operationId": "delete",
         "parameters": [
           {
@@ -218,9 +212,9 @@
     },
     "/authz/v1/permission_group": {
       "get": {
-        "tags": ["permission-group-controller"],
+        "tags": ["Permission Groups"],
         "summary": "Get all existing Permission Groups",
-        "description": "Get all existing Permission Groups",
+        "description": "Returns a list of all existing Permission Groups.",
         "operationId": "getAll",
         "parameters": [
           {
@@ -286,9 +280,9 @@
         ]
       },
       "post": {
-        "tags": ["permission-group-controller"],
+        "tags": ["Permission Groups"],
         "summary": "Add new Custom Permission Group",
-        "description": "Creates a new Custom Permission Group.",
+        "description": "Creates a new custom permission group with granular permissions that restrict access to the Prisma Cloud administrative console. Values include name, optional description and selection of enabled features and functions.",
         "operationId": "save",
         "requestBody": {
           "content": {
