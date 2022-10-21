@@ -302,7 +302,7 @@
             "type": "boolean"
           },
           "type": {
-            "description": "User Role Type",
+            "description": "User Role Type (Default or Custom Permission Group Name).",
             "readOnly": true,
             "type": "string"
           }
