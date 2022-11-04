@@ -19,7 +19,7 @@
       get:
         tags:
         - Archived Assets
-        summary: Bulk export resource archives
+        summary: Bulk Export Resource Archives
         description: |
          Returns a list that has details about (and optionally, links for) the compressed archive files that contain the configuration details for assets that were deleted in the specified time period.
          
