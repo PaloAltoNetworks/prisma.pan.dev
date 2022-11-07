@@ -22,7 +22,7 @@
     "/config/api/v1/tenant/{prisma_id}/archiveList": {
       "get": {
         "tags": ["Archived Assets"],
-        "summary": "Bulk export resource archives",
+        "summary": "Bulk Export Resource Archives",
         "description": "Returns a list that has details about (and optionally, links for) the compressed archive files that contain the configuration details for assets that were deleted in the specified time period.\n\nEach archive file contains the configuration details for up to 50,000 assets that belong to a cloud account ID and were deleted on a specific day.\n\nThe returned list has a maximum of 10 items. Each item is itself an array that has details about the archive file and (optionally) a temporary presigned URL for downloading the file. If the number of archive files exceeds 10, the response includes a URL (**nextPageUrl**) that you can use to get the next 10 archive files.\n\nThis endpoint checks the date on which an asset was deleted against the specified dates. If the asset was deleted on or after the specified **start_date** and on or before the specified **end_date**, and subsequently archived, it is included in an archive file returned by this endpoint.\n\nUsers (**prisma_id**) must have the “System Admin” role in Prisma Cloud to invoke this endpoint.\n\n**Rate Limits**\n\nThe following rate limits apply:\n* Request Rate Limit: 80/minute\n",
         "operationId": "bulkExportResourceArchives",
         "parameters": [
@@ -78,7 +78,12 @@
             "description": "Bad Request",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/ApiError" }
+                "schema": { "$ref": "#/components/schemas/ApiError" },
+                "example": {
+                  "status": "400 BAD_REQUEST",
+                  "timestamp": "string",
+                  "message": "string"
+                }
               }
             }
           },
@@ -86,7 +91,12 @@
             "description": "Unauthorized Access",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/ApiError" }
+                "schema": { "$ref": "#/components/schemas/ApiError" },
+                "example": {
+                  "status": "401 UNAUTHORIZED",
+                  "timestamp": "string",
+                  "message": "string"
+                }
               }
             }
           },
@@ -94,7 +104,12 @@
             "description": "Tenant License Expired",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/ApiError" }
+                "schema": { "$ref": "#/components/schemas/ApiError" },
+                "example": {
+                  "status": "403 FORBIDDEN",
+                  "timestamp": "string",
+                  "message": "string"
+                }
               }
             }
           },
@@ -102,7 +117,12 @@
             "description": "Wrong Http Method",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/ApiError" }
+                "schema": { "$ref": "#/components/schemas/ApiError" },
+                "example": {
+                  "status": "405 METHOD_NOT_ALLOWED",
+                  "timestamp": "string",
+                  "message": "string"
+                }
               }
             }
           },
@@ -110,7 +130,12 @@
             "description": "Too Early to access the resource",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/ApiError" }
+                "schema": { "$ref": "#/components/schemas/ApiError" },
+                "example": {
+                  "status": "425 TOO_EARLY",
+                  "timestamp": "string",
+                  "message": "string"
+                }
               }
             }
           },
@@ -118,7 +143,12 @@
             "description": "Rate Limit Exceeded",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/ApiError" }
+                "schema": { "$ref": "#/components/schemas/ApiError" },
+                "example": {
+                  "status": "429 TOO_MANY_REQUESTS",
+                  "timestamp": "string",
+                  "message": "string"
+                }
               }
             }
           },
@@ -126,7 +156,12 @@
             "description": "Failed with an Exception, Internal Error Occurred",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/ApiError" }
+                "schema": { "$ref": "#/components/schemas/ApiError" },
+                "example": {
+                  "status": "500 INTERNAL_SERVER_ERROR",
+                  "timestamp": "string",
+                  "message": "string"
+                }
               }
             }
           }

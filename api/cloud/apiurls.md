@@ -28,3 +28,4 @@ The URL for the Prisma Cloud service varies depending on the cluster on which yo
 | <https://app.uk.prismacloud.io>   | <https://api.uk.prismacloud.io> |
 | <https://app.ind.prismacloud.io>   | <https://api.ind.prismacloud.io> |
 | <https://app.jp.prismacloud.io>   | <https://api.jp.prismacloud.io> |
+| <https://app.fr.prismacloud.io>   | <https://api.fr.prismacloud.io> |
