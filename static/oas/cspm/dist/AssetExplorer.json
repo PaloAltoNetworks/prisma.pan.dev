@@ -383,6 +383,925 @@
           "value": { "description": "Value", "type": "string" }
         },
         "type": "object"
+      },
+      "Problem": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/StatusType"
+          },
+          "instance": {
+            "type": "string",
+            "format": "uri"
+          },
+          "type": {
+            "type": "string",
+            "format": "uri"
+          },
+          "parameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "StatusType": {
+        "type": "object",
+        "properties": {
+          "reasonPhrase": {
+            "type": "string"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ChunkedAssetRequest": {
+        "required": [
+          "assetId",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "assetId": {
+            "type": "string",
+            "description": "Unified Asset Id or Rrn (Restricted Resource Name)",
+            "example": "[rrn:xxx:xx:xx-xx-x:xxx:xxx:x-xxxx or unified-asset-id]"
+          },
+          "type": {
+            "type": "string",
+            "description": "Asset Domain Service query type.",
+            "enum": [
+              "EXTERNAL_FINDING",
+              "RESOURCE",
+              "ALERTS",
+              "RAW_CONFIG",
+              "NETWORK",
+              "TIMELINE",
+              "EXTERNAL_INTEGRATION",
+              "ASSET_DATA_INDICATORS",
+              "RELATIONSHIPS",
+              "external_finding",
+              "resource",
+              "alerts",
+              "raw_config",
+              "network",
+              "timeline",
+              "external_integration",
+              "asset_data_indicators",
+              "relationships"
+            ]
+          },
+          "findingType": {
+            "type": "array",
+            "description": "External Finding Types",
+            "items": {
+              "type": "string",
+              "description": "External Finding Types",
+              "enum": [
+                "HOST_VULNERABILITY_CVE",
+                "CONTAINER_IMAGE_VULNERABILITY_CVE",
+                "COMPLIANCE_CIS",
+                "GUARD_DUTY_HOST",
+                "GUARD_DUTY_IAM",
+                "INSPECTOR_RBA",
+                "INSPECTOR_SBP",
+                "SERVERLESS_VULNERABILITY",
+                "NETWORK_REACHABILITY",
+                "PACKAGE_VULNERABILITY",
+                "AZURE_SECURITY_CENTER_ALERTS",
+                "host_vulnerability_cve",
+                "container_image_vulnerability_cve",
+                "compliance_cis",
+                "guard_duty_host",
+                "guard_duty_iam",
+                "inspector_rba",
+                "inspector_sbp",
+                "serverless_vulnerability",
+                "network_reachability",
+                "package_vulnerability",
+                "azure_security_center_alerts"
+              ]
+            }
+          },
+          "riskFactors": {
+            "type": "array",
+            "description": "External finding risk factors",
+            "items": {
+              "type": "string",
+              "description": "External finding risk factors",
+              "enum": [
+                "CRITICAL_SEVERITY",
+                "HIGH_SEVERITY",
+                "MEDIUM_SEVERITY",
+                "HAS_FIX",
+                "REMOTE_EXECUTION",
+                "DOS",
+                "RECENT_VULNERABILITY",
+                "EXPLOIT_EXISTS",
+                "ATTACK_COMPLEXITY_LOW",
+                "ATTACK_VECTOR_NETWORK",
+                "REACHABLE_FROM_THE_INTERNET",
+                "LISTENING_PORTS",
+                "CONTAINER_IS_RUNNING_AS_ROOT",
+                "NO_MANDATORY_SECURITY_PROFILE_APPLIED",
+                "RUNNING_AS_PRIVILEGED_CONTAINER",
+                "PACKAGE_IN_USE",
+                "critical_severity",
+                "high_severity",
+                "medium_severity",
+                "has_fix",
+                "remote_execution",
+                "dos",
+                "recent_vulnerability",
+                "exploit_exists",
+                "attack_complexity_low",
+                "attack_vector_network",
+                "reachable_from_the_internet",
+                "listening_ports",
+                "container_is_running_as_root",
+                "no_mandatory_security_profile_applied",
+                "running_as_privileged_container",
+                "package_in_use"
+              ]
+            }
+          },
+          "timelineItemId": {
+            "type": "string",
+            "description": "Timeline Item ID"
+          }
+        }
+      },
+      "AlertAttribute": {
+        "type": "object",
+        "properties": {
+          "problem": {
+            "$ref": "#/components/schemas/Problem"
+          },
+          "id": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string"
+          }
+        }
+      },
+      "AlertCountTuple": {
+        "required": [
+          "count",
+          "severity"
+        ],
+        "type": "object",
+        "properties": {
+          "severity": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "problem": {
+            "$ref": "#/components/schemas/Problem"
+          }
+        }
+      },
+      "AssetResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/UnifiedAsset"
+          },
+          "errors": {
+            "required": [
+              "locations",
+              "message",
+              "path",
+              "pathAsString"
+            ],
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              },
+              "path": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "locations": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "extensions": {
+                "$ref": "#/components/schemas/GraphQLErrorExtensions"
+              },
+              "pathAsString": {
+                "type": "string"
+              }
+            },
+            "description": "Error Object."
+          }
+        }
+      },
+      "ExternalFinding": {
+        "type": "object",
+        "properties": {
+          "problem": {
+            "$ref": "#/components/schemas/Problem"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "count": {
+            "type": "string"
+          },
+          "createdOn": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "cveId": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "externalFindingId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "findingId": {
+            "type": "string"
+          },
+          "normalizedName": {
+            "type": "string"
+          },
+          "normalizedNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "nvdUrl": {
+            "type": "string"
+          },
+          "link": {
+            "type": "string"
+          },
+          "rawData": {
+            "type": "string"
+          },
+          "regionId": {
+            "type": "string"
+          },
+          "resourceCloudId": {
+            "type": "string"
+          },
+          "resourceId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resourceUrl": {
+            "type": "string"
+          },
+          "riskFactors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "CRITICAL_SEVERITY",
+                "HIGH_SEVERITY",
+                "MEDIUM_SEVERITY",
+                "HAS_FIX",
+                "REMOTE_EXECUTION",
+                "DOS",
+                "RECENT_VULNERABILITY",
+                "EXPLOIT_EXISTS",
+                "ATTACK_COMPLEXITY_LOW",
+                "ATTACK_VECTOR_NETWORK",
+                "REACHABLE_FROM_THE_INTERNET",
+                "LISTENING_PORTS",
+                "CONTAINER_IS_RUNNING_AS_ROOT",
+                "NO_MANDATORY_SECURITY_PROFILE_APPLIED",
+                "RUNNING_AS_PRIVILEGED_CONTAINER",
+                "PACKAGE_IN_USE",
+                "critical_severity",
+                "high_severity",
+                "medium_severity",
+                "has_fix",
+                "remote_execution",
+                "dos",
+                "recent_vulnerability",
+                "exploit_exists",
+                "attack_complexity_low",
+                "attack_vector_network",
+                "reachable_from_the_internet",
+                "listening_ports",
+                "container_is_running_as_root",
+                "no_mandatory_security_profile_applied",
+                "running_as_privileged_container",
+                "package_in_use"
+              ]
+            }
+          },
+          "rlUpdatedOn": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "scanId": {
+            "type": "string"
+          },
+          "score": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "INFORMATIONAL",
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "CRITICAL",
+              "ERROR",
+              "WARNING",
+              "INFO",
+              "informational",
+              "low",
+              "medium",
+              "high",
+              "critical",
+              "error",
+              "warning",
+              "info"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "AWS_INSPECTOR",
+              "AWS_GUARD_DUTY",
+              "TENABLE",
+              "QUALYS",
+              "PRISMA_CLOUD",
+              "AZURE_SECURITY_CENTER",
+              "PRISMACLOUD",
+              "INSPECTOR",
+              "GUARDDUTY",
+              "AZURESECURITYCENTER",
+              "aws_inspector",
+              "aws_guard_duty",
+              "tenable",
+              "qualys",
+              "prisma_cloud",
+              "azure_security_center",
+              "prismacloud",
+              "inspector",
+              "guardduty",
+              "azuresecuritycenter"
+            ]
+          },
+          "sourceData": {
+            "type": "object"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "NO_ERROR",
+              "ERROR",
+              "ENABLED",
+              "DISABLED",
+              "OPEN",
+              "DISMISSED",
+              "RESOLVED",
+              "DESCOPED",
+              "RISK_SCORING_ERROR",
+              "ACTIVE",
+              "CLOSED",
+              "SUPPRESSED",
+              "pending",
+              "no_error",
+              "error",
+              "enabled",
+              "disabled",
+              "open",
+              "dismissed",
+              "resolved",
+              "descoped",
+              "risk_scoring_error",
+              "active",
+              "closed",
+              "suppressed"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "HOST_VULNERABILITY_CVE",
+              "CONTAINER_IMAGE_VULNERABILITY_CVE",
+              "COMPLIANCE_CIS",
+              "GUARD_DUTY_HOST",
+              "GUARD_DUTY_IAM",
+              "INSPECTOR_RBA",
+              "INSPECTOR_SBP",
+              "SERVERLESS_VULNERABILITY",
+              "NETWORK_REACHABILITY",
+              "PACKAGE_VULNERABILITY",
+              "AZURE_SECURITY_CENTER_ALERTS",
+              "host_vulnerability_cve",
+              "container_image_vulnerability_cve",
+              "compliance_cis",
+              "guard_duty_host",
+              "guard_duty_iam",
+              "inspector_rba",
+              "inspector_sbp",
+              "serverless_vulnerability",
+              "network_reachability",
+              "package_vulnerability",
+              "azure_security_center_alerts"
+            ]
+          },
+          "updatedOn": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ExternalIntegrationAttribute": {
+        "type": "object",
+        "properties": {
+          "problem": {
+            "$ref": "#/components/schemas/Problem"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "firstSeen": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lastSeen": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "rlUpdatedOn": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "source": {
+            "type": "string"
+          },
+          "hasAgent": {
+            "type": "boolean"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "assetJson": {
+            "type": "object"
+          }
+        }
+      },
+      "GraphQLErrorDebugInfo": {
+        "required": [
+          "subquery",
+          "variables"
+        ],
+        "type": "object",
+        "properties": {
+          "subquery": {
+            "type": "string"
+          },
+          "variables": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "GraphQLErrorExtensions": {
+        "required": [
+          "classification",
+          "debugInfo",
+          "origin"
+        ],
+        "type": "object",
+        "properties": {
+          "errorType": {
+            "type": "string",
+            "enum": [
+              "UNKNOWN",
+              "INTERNAL",
+              "NOT_FOUND",
+              "UNAUTHENTICATED",
+              "PERMISSION_DENIED",
+              "BAD_REQUEST",
+              "UNAVAILABLE",
+              "FAILED_PRECONDITION"
+            ]
+          },
+          "errorDetail": {
+            "type": "string"
+          },
+          "origin": {
+            "type": "string"
+          },
+          "debugInfo": {
+            "$ref": "#/components/schemas/GraphQLErrorDebugInfo"
+          },
+          "classification": {
+            "type": "string"
+          }
+        }
+      },
+      "NetworkAttribute": {
+        "type": "object",
+        "properties": {
+          "problem": {
+            "$ref": "#/components/schemas/Problem"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "access": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "ips": {
+            "type": "string"
+          },
+          "ports": {
+            "type": "string"
+          },
+          "protocol": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "Relationships": {
+        "required": [
+          "assetTypeId",
+          "problem",
+          "pseudoAsset"
+        ],
+        "type": "object",
+        "properties": {
+          "assetId": {
+            "type": "string"
+          },
+          "relationshipType": {
+            "type": "string"
+          },
+          "assetTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "assetType": {
+            "type": "string"
+          },
+          "assetName": {
+            "type": "string"
+          },
+          "externalAssetId": {
+            "type": "string"
+          },
+          "cloudId": {
+            "type": "string"
+          },
+          "cloudName": {
+            "type": "string"
+          },
+          "pseudoAsset": {
+            "type": "boolean"
+          },
+          "region": {
+            "type": "string"
+          },
+          "cloudAccountId": {
+            "type": "string"
+          },
+          "problem": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Problem"
+            }
+          }
+        }
+      },
+      "RenderAttribute": {
+        "required": [
+          "allowDrillDown",
+          "hasExtFindingRiskFactors",
+          "hasExternalFinding",
+          "hasExternalIntegration",
+          "hasNetwork"
+        ],
+        "type": "object",
+        "properties": {
+          "assetId": {
+            "type": "string"
+          },
+          "allowDrillDown": {
+            "type": "boolean"
+          },
+          "hasNetwork": {
+            "type": "boolean"
+          },
+          "hasExternalFinding": {
+            "type": "boolean"
+          },
+          "hasExternalIntegration": {
+            "type": "boolean"
+          },
+          "hasExtFindingRiskFactors": {
+            "type": "boolean"
+          },
+          "problem": {
+            "$ref": "#/components/schemas/Problem"
+          }
+        }
+      },
+      "ResourceTimelineVulnerability": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "TimelineAttribute": {
+        "type": "object",
+        "properties": {
+          "problem": {
+            "$ref": "#/components/schemas/Problem"
+          },
+          "id": {
+            "type": "string"
+          },
+          "eventName": {
+            "type": "string"
+          },
+          "eventType": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "STATE_CHANGE",
+              "EVENT",
+              "VULNERABILITY",
+              "state_change",
+              "event",
+              "vulnerability"
+            ]
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "alertIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "firstState": {
+            "type": "boolean"
+          },
+          "similarSince": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "similarStateCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "user": {
+            "type": "string"
+          },
+          "vulnerabilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceTimelineVulnerability"
+            }
+          },
+          "previousStateId": {
+            "type": "string"
+          },
+          "discoveredTs": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "UnifiedAsset": {
+        "required": [
+          "deleted"
+        ],
+        "type": "object",
+        "properties": {
+          "problem": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Problem"
+            }
+          },
+          "id": {
+            "type": "string"
+          },
+          "prismaId": {
+            "type": "string"
+          },
+          "appName": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "externalAssetId": {
+            "type": "string"
+          },
+          "assetTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cloudType": {
+            "type": "string",
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER",
+              "IBM",
+              "all",
+              "aws",
+              "azure",
+              "gcp",
+              "alibaba_cloud",
+              "oci",
+              "other",
+              "ibm"
+            ]
+          },
+          "createdTs": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "insertTs": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "data": {
+            "type": "object"
+          },
+          "dynamicData": {
+            "type": "object"
+          },
+          "name": {
+            "type": "string"
+          },
+          "regionId": {
+            "type": "string"
+          },
+          "regionName": {
+            "type": "string"
+          },
+          "riskGrade": {
+            "type": "string"
+          },
+          "altAssetId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "stateId": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "vpcId": {
+            "type": "string"
+          },
+          "vpcExternalAssetId": {
+            "type": "string"
+          },
+          "vpcName": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "object"
+          },
+          "relationshipCounts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vulnerabilityCounts": {
+            "type": "object"
+          },
+          "accountGroup": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string"
+          },
+          "assetType": {
+            "type": "string"
+          },
+          "serviceName": {
+            "type": "string"
+          },
+          "resourceType": {
+            "type": "string"
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "alertsCount": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AlertCountTuple"
+            }
+          },
+          "alerts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AlertAttribute"
+            }
+          },
+          "relationships": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Relationships"
+            }
+          },
+          "finding": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalFinding"
+            }
+          },
+          "externalIntegration": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalIntegrationAttribute"
+            }
+          },
+          "network": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NetworkAttribute"
+            }
+          },
+          "renderAttribute": {
+            "$ref": "#/components/schemas/RenderAttribute"
+          },
+          "timeline": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimelineAttribute"
+            }
+          }
+        },
+        "description": "Asset Domain Service Object type."
       }
     }
   },
@@ -631,7 +1550,50 @@
           }
         ]
       }
-    }
+    },
+      "/uai/v1/asset": {
+        "post": {
+          "tags": [
+            "Asset Explorer"
+          ],
+          "summary": "Get Asset",
+          "description": "Returns detailed information for the asset with the given id.\n\nThe data field in the response object contains the raw JSON blob as is received from the source cloud service provider API for the given asset.\n\nOnly the rrn parameter in the request body is used for this API. Ignore the timelineItemId and findingType fields for this API.",
+          "operationId": "asset_2",
+          "security": [{ "x-redlock-auth": [] }],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChunkedAssetRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AssetResponse"
+                  }
+                }
+              }
+            }
+          },
+          "x-codeSamples": [
+            {
+              "lang": "Python + Requests",
+              "source": "import requests\n\nurl = \"https://app.prismacloud.io/uai/v1/asset\"\n\npayload = {\n    \"assetId\": \"[rrn:xxx:xx:xx-xx-x:xxx:xxx:x-xxxx or unified-asset-id]\",\n    \"type\": \"EXTERNAL_FINDING\",\n    \"findingType\": [\"HOST_VULNERABILITY_CVE\"],\n    \"riskFactors\": [\"CRITICAL_SEVERITY\"],\n    \"timelineItemId\": \"string\"\n}\nheaders = {\"content-type\": \"application/json\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            },
+            {
+              "lang": "Shell + Curl",
+              "source": "curl --request POST \\\n  --url https://app.prismacloud.io/uai/v1/asset \\\n  --header 'content-type: application/json' \\\n  --data '{\"assetId\":\"[rrn:xxx:xx:xx-xx-x:xxx:xxx:x-xxxx or unified-asset-id]\",\"type\":\"EXTERNAL_FINDING\",\"findingType\":[\"HOST_VULNERABILITY_CVE\"],\"riskFactors\":[\"CRITICAL_SEVERITY\"],\"timelineItemId\":\"string\"}'"
+            }
+          ]
+        }
+      }    
   },
   "servers": [{ "url": "https://api.prismacloud.io" }],
   "tags": [
