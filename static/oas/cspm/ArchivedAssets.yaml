@@ -29,7 +29,7 @@
          
          This endpoint checks the date on which an asset was deleted against the specified dates. If the asset was deleted on or after the specified **start_date** and on or before the specified **end_date**, and subsequently archived, it is included in an archive file returned by this endpoint.
          
-         Users (**prisma_id**) must have the “System Admin” role in Prisma Cloud to invoke this endpoint.
+         Users must have the “System Admin” role in Prisma Cloud to invoke this endpoint.
 
          **Rate Limits**
 
@@ -46,14 +46,14 @@
             type: string
         - name: start_date
           in: query
-          description: Start date (in the YYYY-MM-DD format) of the time period for which the archives are returned.
+          description: Start date (in the YYYY-MM-DD format) of the asset deletion period. If an asset was deleted on or after this date and on or before the **end_date**, and subsequently archived, it is included in one of the returned archives.
           required: true
           schema:
             type: string
             format: date-time
         - name: end_date
           in: query
-          description: End date (in the YYYY-MM-DD format) of the time period for which the archives are returned.
+          description: End date (in the YYYY-MM-DD format) of the asset deletion period. If an asset was deleted on or before this date and on or after the **start_date**, and subsequently archived, it is included in one of the returned archives.
           required: true
           schema:
             type: string
@@ -132,9 +132,9 @@
                 schema:
                   "$ref": "#/components/schemas/ApiError"
                 example:
-                  status: 400 BAD_REQUEST
+                  status: 400
                   timestamp: string
-                  message: string
+                  message: BAD_REQUEST
           '401':
             description: Unauthorized Access
             content:
@@ -142,9 +142,9 @@
                 schema:
                   "$ref": "#/components/schemas/ApiError"
                 example:
-                  status: 401 UNAUTHORIZED
+                  status: 401
                   timestamp: string
-                  message: string
+                  message: UNAUTHORIZED
           '403':
             description: Tenant License Expired
             content:
@@ -152,9 +152,9 @@
                 schema:
                   "$ref": "#/components/schemas/ApiError"
                 example:
-                  status: 403 FORBIDDEN
+                  status: 403 
                   timestamp: string
-                  message: string
+                  message: FORBIDDEN
           '405':
             description: Wrong Http Method
             content:
@@ -162,9 +162,9 @@
                 schema:
                   "$ref": "#/components/schemas/ApiError"
                 example:
-                  status: 405 METHOD_NOT_ALLOWED
+                  status: 405 
                   timestamp: string
-                  message: string
+                  message: METHOD_NOT_ALLOWED
           '425':
             description: Too Early to access the resource
             content:
@@ -172,9 +172,9 @@
                 schema:
                   "$ref": "#/components/schemas/ApiError"
                 example:
-                  status: 425 TOO_EARLY
+                  status: 425 
                   timestamp: string
-                  message: string
+                  message: TOO_EARLY
           '429':
             description: Rate Limit Exceeded
             content:
@@ -182,9 +182,9 @@
                 schema:
                   "$ref": "#/components/schemas/ApiError"
                 example:
-                  status: 429 TOO_MANY_REQUESTS
+                  status: 429 
                   timestamp: string
-                  message: string
+                  message: TOO_MANY_REQUESTS
           '500':
             description: Failed with an Exception, Internal Error Occurred
             content:
@@ -192,9 +192,9 @@
                 schema:
                   "$ref": "#/components/schemas/ApiError"
                 example:
-                  status: 500 INTERNAL_SERVER_ERROR
+                  status: 500
                   timestamp: string
-                  message: string
+                  message: INTERNAL_SERVER_ERROR
   components:
     securitySchemes:
       x-redlock-auth:
