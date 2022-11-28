@@ -1,13 +1,15 @@
 ---
 openapi: 3.0.3
 info:
-  title: config-service API
-  version: 0.0.1-SNAPSHOT
+  title: Data Security Azure Onboarding API Overview
+  version: Latest
+servers:
+  - url: https://api.prismacloud.io
 paths:
   /config/v3/account/storageUUID/{id}:
     get:
       summary: Fetch Account Config By Storage UUID
-      description: Returns the account config details for the specified storage UUID.
+      description: Returns the account config details for the specified storage UUID
       operationId: getAccountConfigByStorageUUID
       parameters:
       - name: id

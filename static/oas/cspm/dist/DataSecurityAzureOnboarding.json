@@ -1,11 +1,15 @@
 {
   "openapi": "3.0.3",
-  "info": { "title": "config-service API", "version": "0.0.1-SNAPSHOT" },
+  "info": {
+    "title": "Data Security Azure Onboarding API Overview",
+    "version": "Latest"
+  },
+  "servers": [{ "url": "https://api.prismacloud.io" }],
   "paths": {
     "/config/v3/account/storageUUID/{id}": {
       "get": {
         "summary": "Fetch Account Config By Storage UUID",
-        "description": "Returns the account config details for the specified storage UUID.",
+        "description": "Returns the account config details for the specified storage UUID",
         "operationId": "getAccountConfigByStorageUUID",
         "parameters": [
           {
@@ -26,11 +30,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"http://undefinedundefined/config/v3/account/storageUUID/{id}\"\n\nresponse = requests.request(\"GET\", url)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/config/v3/account/storageUUID/{id}\"\n\nresponse = requests.request(\"GET\", url)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url http://undefinedundefined/config/v3/account/storageUUID/{id}"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/config/v3/account/storageUUID/{id}"
           }
         ]
       }
@@ -64,11 +68,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"http://undefinedundefined/config/v3/account/{id}\"\n\nquerystring = {\"initialize\":\"SOME_BOOLEAN_VALUE\"}\n\nresponse = requests.request(\"GET\", url, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/config/v3/account/{id}\"\n\nquerystring = {\"initialize\":\"SOME_BOOLEAN_VALUE\"}\n\nresponse = requests.request(\"GET\", url, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'http://undefinedundefined/config/v3/account/{id}?initialize=SOME_BOOLEAN_VALUE'"
+            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/config/v3/account/{id}?initialize=SOME_BOOLEAN_VALUE'"
           }
         ]
       },
@@ -104,11 +108,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"http://undefinedundefined/config/v3/account/{id}\"\n\npayload = {\n    \"redlockAccountId\": 0,\n    \"accountId\": \"string\",\n    \"storageUUID\": \"386118f2-854b-4cff-b247-36e2caa8f09c\",\n    \"cloudType\": \"aws\",\n    \"accountType\": \"regular\",\n    \"redlockTenantId\": 0,\n    \"storageScanStatus\": \"initialized\",\n    \"dssTenantId\": \"string\",\n    \"accountName\": \"string\",\n    \"scanOption\": \"none\",\n    \"excludeRlp\": {\n        \"tenantId\": \"string\",\n        \"redlockAccountId\": 0,\n        \"excludeRlpOrgMembers\": [\n            {\n                \"accountNum\": \"string\",\n                \"accountName\": \"string\",\n                \"redlockAccountId\": 0\n            }\n        ]\n    },\n    \"cloudConfig\": {}\n}\nheaders = {\"content-type\": \"application/json\"}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/config/v3/account/{id}\"\n\npayload = {\n    \"redlockAccountId\": 0,\n    \"accountId\": \"string\",\n    \"storageUUID\": \"386118f2-854b-4cff-b247-36e2caa8f09c\",\n    \"cloudType\": \"aws\",\n    \"accountType\": \"regular\",\n    \"redlockTenantId\": 0,\n    \"storageScanStatus\": \"initialized\",\n    \"dssTenantId\": \"string\",\n    \"accountName\": \"string\",\n    \"scanOption\": \"none\",\n    \"excludeRlp\": {\n        \"tenantId\": \"string\",\n        \"redlockAccountId\": 0,\n        \"excludeRlpOrgMembers\": [\n            {\n                \"accountNum\": \"string\",\n                \"accountName\": \"string\",\n                \"redlockAccountId\": 0\n            }\n        ]\n    },\n    \"cloudConfig\": {}\n}\nheaders = {\"content-type\": \"application/json\"}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url http://undefinedundefined/config/v3/account/{id} \\\n  --header 'content-type: application/json' \\\n  --data '{\"redlockAccountId\":0,\"accountId\":\"string\",\"storageUUID\":\"386118f2-854b-4cff-b247-36e2caa8f09c\",\"cloudType\":\"aws\",\"accountType\":\"regular\",\"redlockTenantId\":0,\"storageScanStatus\":\"initialized\",\"dssTenantId\":\"string\",\"accountName\":\"string\",\"scanOption\":\"none\",\"excludeRlp\":{\"tenantId\":\"string\",\"redlockAccountId\":0,\"excludeRlpOrgMembers\":[{\"accountNum\":\"string\",\"accountName\":\"string\",\"redlockAccountId\":0}]},\"cloudConfig\":{}}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/config/v3/account/{id} \\\n  --header 'content-type: application/json' \\\n  --data '{\"redlockAccountId\":0,\"accountId\":\"string\",\"storageUUID\":\"386118f2-854b-4cff-b247-36e2caa8f09c\",\"cloudType\":\"aws\",\"accountType\":\"regular\",\"redlockTenantId\":0,\"storageScanStatus\":\"initialized\",\"dssTenantId\":\"string\",\"accountName\":\"string\",\"scanOption\":\"none\",\"excludeRlp\":{\"tenantId\":\"string\",\"redlockAccountId\":0,\"excludeRlpOrgMembers\":[{\"accountNum\":\"string\",\"accountName\":\"string\",\"redlockAccountId\":0}]},\"cloudConfig\":{}}'"
           }
         ]
       }
@@ -137,11 +141,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"http://undefinedundefined/config/v3/account/{id}/status\"\n\nresponse = requests.request(\"GET\", url)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/config/v3/account/{id}/status\"\n\nresponse = requests.request(\"GET\", url)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url http://undefinedundefined/config/v3/account/{id}/status"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/config/v3/account/{id}/status"
           }
         ]
       }
@@ -169,11 +173,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"http://undefinedundefined/config/v3/account/{subscriptionId}/acl-script\"\n\nresponse = requests.request(\"GET\", url)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/config/v3/account/{subscriptionId}/acl-script\"\n\nresponse = requests.request(\"GET\", url)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url http://undefinedundefined/config/v3/account/{subscriptionId}/acl-script"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/config/v3/account/{subscriptionId}/acl-script"
           }
         ]
       }
@@ -204,11 +208,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"http://undefinedundefined/config/v3/estimated-credits\"\n\npayload = {\n    \"scanOption\": \"exposure_only\",\n    \"scanType\": \"not_selected\",\n    \"resources\": [\n        {\n            \"resourceName\": \"string\",\n            \"resourceGroup\": \"string\",\n            \"accountId\": \"string\",\n            \"cloudType\": \"aws\"\n        }\n    ]\n}\nheaders = {\"content-type\": \"application/json\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/config/v3/estimated-credits\"\n\npayload = {\n    \"scanOption\": \"exposure_only\",\n    \"scanType\": \"not_selected\",\n    \"resources\": [\n        {\n            \"resourceName\": \"string\",\n            \"resourceGroup\": \"string\",\n            \"accountId\": \"string\",\n            \"cloudType\": \"aws\"\n        }\n    ]\n}\nheaders = {\"content-type\": \"application/json\"}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url http://undefinedundefined/config/v3/estimated-credits \\\n  --header 'content-type: application/json' \\\n  --data '{\"scanOption\":\"exposure_only\",\"scanType\":\"not_selected\",\"resources\":[{\"resourceName\":\"string\",\"resourceGroup\":\"string\",\"accountId\":\"string\",\"cloudType\":\"aws\"}]}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/config/v3/estimated-credits \\\n  --header 'content-type: application/json' \\\n  --data '{\"scanOption\":\"exposure_only\",\"scanType\":\"not_selected\",\"resources\":[{\"resourceName\":\"string\",\"resourceGroup\":\"string\",\"accountId\":\"string\",\"cloudType\":\"aws\"}]}'"
           }
         ]
       }
@@ -240,11 +244,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"http://undefinedundefined/config/v3/resource/configure\"\n\npayload = {\n    \"enableScanning\": True,\n    \"scanType\": \"not_selected\",\n    \"scanOption\": \"exposure_only\",\n    \"resources\": [\n        {\n            \"resourceName\": \"string\",\n            \"resourceGroup\": \"string\",\n            \"accountId\": \"string\",\n            \"cloudType\": \"aws\"\n        }\n    ]\n}\nheaders = {\"content-type\": \"application/json\"}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/config/v3/resource/configure\"\n\npayload = {\n    \"enableScanning\": True,\n    \"scanType\": \"not_selected\",\n    \"scanOption\": \"exposure_only\",\n    \"resources\": [\n        {\n            \"resourceName\": \"string\",\n            \"resourceGroup\": \"string\",\n            \"accountId\": \"string\",\n            \"cloudType\": \"aws\"\n        }\n    ]\n}\nheaders = {\"content-type\": \"application/json\"}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url http://undefinedundefined/config/v3/resource/configure \\\n  --header 'content-type: application/json' \\\n  --data '{\"enableScanning\":true,\"scanType\":\"not_selected\",\"scanOption\":\"exposure_only\",\"resources\":[{\"resourceName\":\"string\",\"resourceGroup\":\"string\",\"accountId\":\"string\",\"cloudType\":\"aws\"}]}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/config/v3/resource/configure \\\n  --header 'content-type: application/json' \\\n  --data '{\"enableScanning\":true,\"scanType\":\"not_selected\",\"scanOption\":\"exposure_only\",\"resources\":[{\"resourceName\":\"string\",\"resourceGroup\":\"string\",\"accountId\":\"string\",\"cloudType\":\"aws\"}]}'"
           }
         ]
       }
@@ -266,11 +270,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"http://undefinedundefined/config/v3/resources\"\n\nresponse = requests.request(\"GET\", url)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/config/v3/resources\"\n\nresponse = requests.request(\"GET\", url)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url http://undefinedundefined/config/v3/resources"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/config/v3/resources"
           }
         ]
       }
@@ -290,11 +294,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"http://undefinedundefined/config/v3/tenant/acl-script\"\n\nresponse = requests.request(\"GET\", url)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/config/v3/tenant/acl-script\"\n\nresponse = requests.request(\"GET\", url)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url http://undefinedundefined/config/v3/tenant/acl-script"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/config/v3/tenant/acl-script"
           }
         ]
       }
@@ -322,11 +326,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"http://undefinedundefined/config/v3/tenant/config\"\n\nquerystring = {\"tenantId\":\"SOME_STRING_VALUE\"}\n\nresponse = requests.request(\"GET\", url, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/config/v3/tenant/config\"\n\nquerystring = {\"tenantId\":\"SOME_STRING_VALUE\"}\n\nresponse = requests.request(\"GET\", url, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'http://undefinedundefined/config/v3/tenant/config?tenantId=SOME_STRING_VALUE'"
+            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/config/v3/tenant/config?tenantId=SOME_STRING_VALUE'"
           }
         ]
       }
@@ -355,11 +359,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"http://undefinedundefined/config/v3/tenant/resource/sizing/configure\"\n\npayload = {\"sizeReportingFrequency\": \"None\"}\nheaders = {\"content-type\": \"application/json\"}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/config/v3/tenant/resource/sizing/configure\"\n\npayload = {\"sizeReportingFrequency\": \"None\"}\nheaders = {\"content-type\": \"application/json\"}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url http://undefinedundefined/config/v3/tenant/resource/sizing/configure \\\n  --header 'content-type: application/json' \\\n  --data '{\"sizeReportingFrequency\":\"None\"}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/config/v3/tenant/resource/sizing/configure \\\n  --header 'content-type: application/json' \\\n  --data '{\"sizeReportingFrequency\":\"None\"}'"
           }
         ]
       }
@@ -394,11 +398,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"http://undefinedundefined/config/v3/tenant/{tenantId}/{subscriptionId}/terraform-script\"\n\nresponse = requests.request(\"GET\", url)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/config/v3/tenant/{tenantId}/{subscriptionId}/terraform-script\"\n\nresponse = requests.request(\"GET\", url)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url http://undefinedundefined/config/v3/tenant/{tenantId}/{subscriptionId}/terraform-script"
+            "source": "curl --request GET \\\n  --url https://api.prismacloud.io/config/v3/tenant/{tenantId}/{subscriptionId}/terraform-script"
           }
         ]
       }
