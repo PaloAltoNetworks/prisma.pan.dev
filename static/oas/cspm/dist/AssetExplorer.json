@@ -438,7 +438,7 @@
           },
           "type": {
             "type": "string",
-            "description": "Asset Domain Service query type. The enum values are case-insensitive",
+            "description": "Asset Domain Service query type. The enum values are **case-insensitive**",
             "enum": [
               "EXTERNAL_FINDING",
               "RESOURCE",
