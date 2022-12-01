@@ -433,12 +433,12 @@
         "properties": {
           "assetId": {
             "type": "string",
-            "description": "Unified Asset Id or Rrn (Restricted Resource Name)",
+            "description": "Unified Asset Id or RRN (Restricted Resource Name)",
             "example": "[rrn:xxx:xx:xx-xx-x:xxx:xxx:x-xxxx or unified-asset-id]"
           },
           "type": {
             "type": "string",
-            "description": "Asset Domain Service query type.",
+            "description": "Asset Domain Service query type. The enum values are case-insensitive",
             "enum": [
               "EXTERNAL_FINDING",
               "RESOURCE",
@@ -448,16 +448,7 @@
               "TIMELINE",
               "EXTERNAL_INTEGRATION",
               "ASSET_DATA_INDICATORS",
-              "RELATIONSHIPS",
-              "external_finding",
-              "resource",
-              "alerts",
-              "raw_config",
-              "network",
-              "timeline",
-              "external_integration",
-              "asset_data_indicators",
-              "relationships"
+              "RELATIONSHIPS"
             ]
           },
           "findingType": {
