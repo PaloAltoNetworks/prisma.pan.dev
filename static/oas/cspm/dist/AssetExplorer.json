@@ -433,12 +433,12 @@
         "properties": {
           "assetId": {
             "type": "string",
-            "description": "Unified Asset Id or Rrn (Restricted Resource Name)",
+            "description": "Unified Asset Id or RRN (Restricted Resource Name)",
             "example": "[rrn:xxx:xx:xx-xx-x:xxx:xxx:x-xxxx or unified-asset-id]"
           },
           "type": {
             "type": "string",
-            "description": "Asset Domain Service query type.",
+            "description": "Asset Query Type. The enum values are **case-insensitive.**",
             "enum": [
               "EXTERNAL_FINDING",
               "RESOURCE",
@@ -448,21 +448,12 @@
               "TIMELINE",
               "EXTERNAL_INTEGRATION",
               "ASSET_DATA_INDICATORS",
-              "RELATIONSHIPS",
-              "external_finding",
-              "resource",
-              "alerts",
-              "raw_config",
-              "network",
-              "timeline",
-              "external_integration",
-              "asset_data_indicators",
-              "relationships"
+              "RELATIONSHIPS"
             ]
           },
           "findingType": {
             "type": "array",
-            "description": "External Finding Types",
+            "description": "External Finding Type. Applies to **EXTERNAL_FINDING** Asset query type only. The enum values are **case-insensitive.**",
             "items": {
               "type": "string",
               "description": "External Finding Types",
@@ -477,24 +468,13 @@
                 "SERVERLESS_VULNERABILITY",
                 "NETWORK_REACHABILITY",
                 "PACKAGE_VULNERABILITY",
-                "AZURE_SECURITY_CENTER_ALERTS",
-                "host_vulnerability_cve",
-                "container_image_vulnerability_cve",
-                "compliance_cis",
-                "guard_duty_host",
-                "guard_duty_iam",
-                "inspector_rba",
-                "inspector_sbp",
-                "serverless_vulnerability",
-                "network_reachability",
-                "package_vulnerability",
-                "azure_security_center_alerts"
+                "AZURE_SECURITY_CENTER_ALERTS"
               ]
             }
           },
           "riskFactors": {
             "type": "array",
-            "description": "External finding risk factors",
+            "description": "External Finding Risk Factors. Applies to **EXTERNAL_FINDING** Asset query type only. The enum values are **case-insensitive.**",
             "items": {
               "type": "string",
               "description": "External finding risk factors",
@@ -514,23 +494,7 @@
                 "CONTAINER_IS_RUNNING_AS_ROOT",
                 "NO_MANDATORY_SECURITY_PROFILE_APPLIED",
                 "RUNNING_AS_PRIVILEGED_CONTAINER",
-                "PACKAGE_IN_USE",
-                "critical_severity",
-                "high_severity",
-                "medium_severity",
-                "has_fix",
-                "remote_execution",
-                "dos",
-                "recent_vulnerability",
-                "exploit_exists",
-                "attack_complexity_low",
-                "attack_vector_network",
-                "reachable_from_the_internet",
-                "listening_ports",
-                "container_is_running_as_root",
-                "no_mandatory_security_profile_applied",
-                "running_as_privileged_container",
-                "package_in_use"
+                "PACKAGE_IN_USE"
               ]
             }
           },
