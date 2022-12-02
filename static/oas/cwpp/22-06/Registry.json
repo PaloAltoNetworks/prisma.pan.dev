@@ -18256,9 +18256,7 @@
   "paths": {
     "/api/v1/registry/webhook/webhook": {
       "delete": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/webhook_webhook_delete.md"
-        },
+        "description": "RegistryWebhook listen to registry updates\n",
         "responses": {
           "200": {
             "description": "OK"
@@ -18280,9 +18278,7 @@
         "summary": " Registry Webhook"
       },
       "post": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/registry/webhook_webhook_post.md"
-        },
+        "description": "RegistryWebhook listen to registry updates\n",
         "requestBody": {
           "content": {
             "application/json": {
@@ -18505,7 +18501,7 @@
           "self-hosted": true
         },
         "operationId": "get-registry",
-        "summary": " Registry Images"
+        "summary": "Get Registry Scan Results"
       }
     },
     "/api/v22.06/registry/download": {
@@ -18693,7 +18689,7 @@
           "self-hosted": true
         },
         "operationId": "get-registry-download",
-        "summary": " Download Registry Images"
+        "summary": "Download Registry Scan Results"
       }
     },
     "/api/v22.06/registry/names": {
@@ -18888,7 +18884,7 @@
           "self-hosted": true
         },
         "operationId": "get-registry-names",
-        "summary": " Registry Image Names"
+        "summary": "Get Registry Image Names"
       }
     },
     "/api/v22.06/registry/scan": {
@@ -18923,7 +18919,7 @@
           "self-hosted": true
         },
         "operationId": "post-registry-scan",
-        "summary": " Scan Registry"
+        "summary": "Start a Registry Scan"
       }
     },
     "/api/v22.06/registry/stop": {
@@ -18949,7 +18945,7 @@
           "self-hosted": true
         },
         "operationId": "post-registry-stop",
-        "summary": " Stop Registry Scan"
+        "summary": "Stop a Registry Scan"
       }
     }
   }

@@ -18256,9 +18256,7 @@
   "paths": {
     "/api/v1/util/prisma-cloud-jenkins-plugin.hpi": {
       "get": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/util/twistlock_jenkins_plugin_get.md"
-        },
+        "description": "Download prisma-cloud-jenkins-plugin.hpi",
         "responses": {
           "200": {
             "description": "OK"
@@ -18277,7 +18275,7 @@
           "self-hosted": true
         },
         "operationId": "get-util-prisma-cloud-jenkins-plugin.hpi",
-        "summary": "DownloadJenkins plugin for Prisma Cloud Compute"
+        "summary": " Download"
       }
     },
     "/api/v1/util/tas-tile": {
@@ -18303,7 +18301,7 @@
           "self-hosted": true
         },
         "operationId": "get-util-tas-tile",
-        "summary": "Download VMware TAS tile for Prisma Cloud Compute"
+        "summary": "Download VMware TAS Tile for Prisma Cloud Compute"
       }
     },
     "/api/v22.06/util/arm64/twistcli": {

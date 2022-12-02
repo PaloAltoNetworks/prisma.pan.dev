@@ -18508,7 +18508,7 @@
           "self-hosted": true
         },
         "operationId": "get-audits-incidents",
-        "summary": " Incidents"
+        "summary": "Get Incident Audit Events"
       }
     },
     "/api/v22.06/audits/incidents/download": {
@@ -18758,7 +18758,7 @@
           "self-hosted": true
         },
         "operationId": "get-audits-incidents-download",
-        "summary": " Download Incidents"
+        "summary": "Download Incident Audit Events"
       }
     }
   }

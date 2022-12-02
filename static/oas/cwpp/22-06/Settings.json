@@ -18319,7 +18319,7 @@
           "self-hosted": true
         },
         "operationId": "get-settings-coderepos",
-        "summary": " Code Repo Settings"
+        "summary": "Get Code Repository Settings"
       },
       "put": {
         "description": {
@@ -18352,7 +18352,7 @@
           "self-hosted": true
         },
         "operationId": "put-settings-coderepos",
-        "summary": " Set Code Repo Settings"
+        "summary": "Update Code Repository Settings"
       }
     },
     "/api/v22.06/settings/custom-labels": {
@@ -18385,7 +18385,7 @@
           "self-hosted": true
         },
         "operationId": "get-settings-custom-labels",
-        "summary": " Settings Custom Labels"
+        "summary": "Get Alert Labels"
       }
     },
     "/api/v22.06/settings/defender": {
@@ -18418,7 +18418,7 @@
           "self-hosted": true
         },
         "operationId": "get-settings-defender",
-        "summary": " Defender Settings"
+        "summary": "Get Advanced Defender Settings"
       }
     },
     "/api/v22.06/settings/registry": {
@@ -18451,7 +18451,7 @@
           "self-hosted": true
         },
         "operationId": "get-settings-registry",
-        "summary": " Registry Settings"
+        "summary": "Get Registry Settings"
       },
       "post": {
         "description": {
@@ -18494,7 +18494,7 @@
           "self-hosted": true
         },
         "operationId": "post-settings-registry",
-        "summary": " Add Registry Spec"
+        "summary": "Add Registry Settings"
       },
       "put": {
         "description": {
@@ -18537,7 +18537,7 @@
           "self-hosted": true
         },
         "operationId": "put-settings-registry",
-        "summary": " Set Registry Settings"
+        "summary": "Update Registry Settings"
       }
     },
     "/api/v22.06/settings/serverless-scan": {
@@ -18735,7 +18735,7 @@
           "self-hosted": true
         },
         "operationId": "get-settings-vm",
-        "summary": " VM Settings"
+        "summary": "Get VM Image Scan Settings"
       },
       "put": {
         "description": {
@@ -18768,7 +18768,7 @@
           "self-hosted": true
         },
         "operationId": "put-settings-vm",
-        "summary": " Set VM Settings"
+        "summary": "Update VM Image Scan Settings"
       }
     },
     "/api/v22.06/settings/wildfire": {

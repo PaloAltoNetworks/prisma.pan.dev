@@ -4476,6 +4476,47 @@
         ],
         "type": "string"
       },
+      "prisma.AdoptionAdvisorData": {
+        "description": "AdoptionAdvisorData holds the data for Adoption Advisor project",
+        "properties": {
+          "alert_providers": {
+            "description": "AlertProfiles is the number of alert profiles.\n",
+            "type": "integer"
+          },
+          "collections": {
+            "description": "Collections is the number of custom created collections.\n",
+            "type": "integer"
+          },
+          "compliance_issues": {
+            "$ref": "#/components/schemas/prisma.Distribution"
+          },
+          "container_rules_stats": {
+            "$ref": "#/components/schemas/prisma.ContainerRulesStats"
+          },
+          "defenders": {
+            "$ref": "#/components/schemas/prisma.DefenderStats"
+          },
+          "discovered_cloud_resources": {
+            "$ref": "#/components/schemas/prisma.DiscoveredCloudResources"
+          },
+          "feature_stats": {
+            "$ref": "#/components/schemas/prisma.FeatureStats"
+          },
+          "rules_stats": {
+            "$ref": "#/components/schemas/prisma.RulesStats"
+          },
+          "runtime_audit_stats": {
+            "$ref": "#/components/schemas/prisma.RuntimeAuditStats"
+          },
+          "scan_stats": {
+            "$ref": "#/components/schemas/prisma.ScanStats"
+          },
+          "vulnerability_stats": {
+            "$ref": "#/components/schemas/prisma.VulnerabilityStats"
+          }
+        },
+        "type": "object"
+      },
       "prisma.AlertIntegration": {
         "description": "AlertIntegration has the relevant fields for Prisma Cloud defined integrations\nhttps://prisma.pan.dev/api/cloud/cspm/integrations#operation/get-all-integrations",
         "properties": {
@@ -4493,6 +4534,100 @@
           "name": {
             "description": "Name of the integration in Prisma Cloud.\n",
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.ContainerRulesStats": {
+        "description": "ContainerRulesStats holds the number of container vulnerability rules per rule type",
+        "properties": {
+          "compliance": {
+            "description": "Compliance the number of custom container compliance rules.\n",
+            "type": "integer"
+          },
+          "runtime": {
+            "description": "Runtime is the number of runtime container images rules.\n",
+            "type": "integer"
+          },
+          "vulnerability": {
+            "description": "Vulnerability is the number of custom container vulnerability rules.\n",
+            "type": "integer"
+          },
+          "waas": {
+            "description": "Waas is the number of container WAAS rules.\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.DefenderStats": {
+        "description": "DefenderStats holds the number total defenders per resource",
+        "properties": {
+          "app_embedded": {
+            "description": "AppEmbedded is the number of total app embedded defenders.\n",
+            "type": "integer"
+          },
+          "container": {
+            "description": "Container is the number of container total defenders.\n",
+            "type": "integer"
+          },
+          "host": {
+            "description": "Host is the number of total host defenders.\n",
+            "type": "integer"
+          },
+          "serverless": {
+            "description": "Serverless is the number of total serverless defenders.\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.DiscoveredCloudResources": {
+        "description": "DiscoveredCloudResources holds the stats of cloud discovery resources",
+        "properties": {
+          "protected": {
+            "description": "Protected is the total number of protected discovered resources (cloud discovery).\n",
+            "type": "integer"
+          },
+          "total": {
+            "description": "Total is the total number of discovered resources (cloud discovery).\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.Distribution": {
+        "description": "Distribution counts the number of vulnerabilities/compliance issues per severity",
+        "properties": {
+          "critical": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "high": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "low": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "medium": {
+            "description": ".\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.FeatureStats": {
+        "description": "FeatureStats holds the Admission Control and Kubernetes audit stats",
+        "properties": {
+          "access_polices_enabled": {
+            "description": "AccessPolicesEnabled represent if Admission Control enabled.\n",
+            "type": "boolean"
+          },
+          "kubernetes_audit_enabled": {
+            "description": "KubernetesAuditEnabled represent if Kubernetes audit enabled.\n",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -4521,6 +4656,99 @@
         },
         "type": "object"
       },
+      "prisma.RulesStats": {
+        "description": "RulesStats holds the rules stats per resource type",
+        "properties": {
+          "agentless": {
+            "description": "Agentless is the number of cloud accounts configured for agentless.\n",
+            "type": "integer"
+          },
+          "cloud_discovery": {
+            "description": "CloudDiscovery is the number of cloud accounts configured for Cloud Discovery.\n",
+            "type": "integer"
+          },
+          "host_auto_defend": {
+            "description": "HostAutoDefend is the number of host auto-defend rules.\n",
+            "type": "integer"
+          },
+          "serverless_radar": {
+            "description": "ServerlessRadar is the number of cloud accounts configured for Serverless radar.\n",
+            "type": "integer"
+          },
+          "trusted_images": {
+            "description": "TrustedImages is the number of custom trusted images rules.\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.RuntimeAuditStats": {
+        "description": "RuntimeAuditStats holds the number of runtime audits per resource",
+        "properties": {
+          "container": {
+            "$ref": "#/components/schemas/prisma.RuntimeStats"
+          },
+          "function": {
+            "$ref": "#/components/schemas/prisma.RuntimeStats"
+          },
+          "host": {
+            "$ref": "#/components/schemas/prisma.RuntimeStats"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.RuntimeStats": {
+        "description": "RuntimeStats are stats for runtime flows (sum of audits per flow)",
+        "properties": {
+          "filesystem": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "kubernetes": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "network": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "processes": {
+            "description": ".\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.ScanStats": {
+        "description": "ScanStats holds the scan stats per resource type",
+        "properties": {
+          "agentless": {
+            "description": "Agentless is the total number of agentless host scan results.\n",
+            "type": "integer"
+          },
+          "ci_scans": {
+            "description": "CIScans is the number of image CI scans.\n",
+            "type": "integer"
+          },
+          "functions": {
+            "description": "Functions is the number of functions scan results.\n",
+            "type": "integer"
+          },
+          "image_analysis_sandbox": {
+            "description": "ImageAnalysisSandbox is the number of sandbox scans.\n",
+            "type": "integer"
+          },
+          "registry": {
+            "description": "Registry is the number of registry scan results.\n",
+            "type": "integer"
+          },
+          "vms": {
+            "description": "VMs is the number of VM images scan results.\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "prisma.SecurityHubIntegrationRegions": {
         "description": "SecurityHubIntegrationRegions holds AWS Security Hub regions info",
         "properties": {
@@ -4531,6 +4759,24 @@
           "name": {
             "description": "Name is the region name.\n",
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.VulnerabilityStats": {
+        "description": "VulnerabilityStats holds the number of vulnerabilities per resource",
+        "properties": {
+          "container": {
+            "$ref": "#/components/schemas/prisma.Distribution"
+          },
+          "function": {
+            "$ref": "#/components/schemas/prisma.Distribution"
+          },
+          "host": {
+            "$ref": "#/components/schemas/prisma.Distribution"
+          },
+          "image": {
+            "$ref": "#/components/schemas/prisma.Distribution"
           }
         },
         "type": "object"
@@ -17145,6 +17391,10 @@
       "waas.Rule": {
         "description": "Rule represents a single rule that is associated with a container firewall",
         "properties": {
+          "allowMalformedHttpHeaderNames": {
+            "description": "AllowMalformedHttpHeaderNames indicates if validation of http request header names should allow non-compliant characters.\n",
+            "type": "boolean"
+          },
           "applicationsSpec": {
             "description": "List of API specifications in the rule.\n",
             "items": {
@@ -17423,7 +17673,7 @@
   },
   "info": {
     "title": "Defenders Overview",
-    "version": "22.01.839",
+    "version": "22.01.890",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/defenders.md"
     }
@@ -17623,7 +17873,7 @@
           "self-hosted": true
         },
         "operationId": "get-defenders",
-        "summary": " Defenders"
+        "summary": "Get Deployed Defenders"
       }
     },
     "/api/v22.01/defenders/app-embedded": {
@@ -17658,7 +17908,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-app-embedded",
-        "summary": " Embed App-Embedded Defender"
+        "summary": "Generate a Docker File for App-embedded Defender"
       }
     },
     "/api/v22.01/defenders/daemonset.yaml": {
@@ -17700,7 +17950,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-daemonset.yaml",
-        "summary": " Generate Daemon Set"
+        "summary": "Generate Daemonset Deployment YAML File"
       }
     },
     "/api/v22.01/defenders/download": {
@@ -17884,7 +18134,7 @@
           "self-hosted": true
         },
         "operationId": "get-defenders-download",
-        "summary": " Download Defenders"
+        "summary": "Download Deployed Defenders"
       }
     },
     "/api/v22.01/defenders/fargate.json": {
@@ -17971,7 +18221,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-fargate.json",
-        "summary": " Fargate Task"
+        "summary": "Generate a Protected JSON Fargate Task Definition"
       }
     },
     "/api/v22.01/defenders/helm/twistlock-defender-helm.tar.gz": {
@@ -18006,7 +18256,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-helm-twistlock-defender-helm.tar.gz",
-        "summary": " Defender Helm Chart"
+        "summary": "Generate a Helm Deployment Chart for Defender"
       }
     },
     "/api/v22.01/defenders/image-name": {
@@ -18039,7 +18289,7 @@
           "self-hosted": true
         },
         "operationId": "get-defenders-image-name",
-        "summary": " Defender Image"
+        "summary": "Get Docker Image Name for Defender"
       }
     },
     "/api/v22.01/defenders/install-bundle": {
@@ -18117,7 +18367,7 @@
           "self-hosted": true
         },
         "operationId": "get-defenders-install-bundle",
-        "summary": " Defender Install Bundle"
+        "summary": "Get Certificate Bundle for Defender"
       }
     },
     "/api/v22.01/defenders/names": {
@@ -18308,12 +18558,14 @@
           "self-hosted": true
         },
         "operationId": "get-defenders-names",
-        "summary": " Defender Names"
+        "summary": "Get Defender Names"
       }
     },
     "/api/v22.01/defenders/serverless/bundle": {
       "post": {
-        "description": "DownloadServerlessBundle returns a ZIP with serverless defender bundle\n",
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/serverless-bundle_post.md"
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -18341,7 +18593,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-serverless-bundle",
-        "summary": " Download Serverless Bundle"
+        "summary": "Generate Serverless Bundle for Defender"
       }
     },
     "/api/v22.01/defenders/summary": {
@@ -18374,7 +18626,7 @@
           "self-hosted": true
         },
         "operationId": "get-defenders-summary",
-        "summary": " Defenders Summary"
+        "summary": "Get Defenders Summary"
       }
     },
     "/api/v22.01/defenders/upgrade": {
@@ -18400,7 +18652,131 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-upgrade",
-        "summary": " Upgrade Defenders"
+        "summary": "Upgrade Connected Single Linux Defenders"
+      }
+    },
+    "/api/v22.01/defenders/{id}": {
+      "delete": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/id_delete.md"
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Defenders",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "manageDefenders",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "delete-defenders-id",
+        "summary": "Delete a Defender"
+      }
+    },
+    "/api/v22.01/defenders/{id}/features": {
+      "post": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/id_features_post.md"
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/defender.Features"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/defender.Defender"
+                }
+              }
+            },
+            "description": "Defender is an update about an agent starting"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Defenders",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "manageDefenders",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "post-defenders-id-features",
+        "summary": "Update Defender Configuration"
+      }
+    },
+    "/api/v22.01/defenders/{id}/restart": {
+      "post": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/id_restart_post.md"
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Defenders",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "manageDefenders",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "post-defenders-id-restart",
+        "summary": "Restart a Defender"
       }
     },
     "/api/v22.01/defenders/{id}/upgrade": {
@@ -18436,7 +18812,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-id-upgrade",
-        "summary": " Upgrade Defender"
+        "summary": "Upgrade a Defender"
       }
     }
   }

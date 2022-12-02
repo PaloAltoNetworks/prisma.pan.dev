@@ -18498,7 +18498,7 @@
           "self-hosted": true
         },
         "operationId": "get-images",
-        "summary": " Images"
+        "summary": "Get Image Scan Results"
       }
     },
     "/api/v22.06/images/download": {
@@ -18738,7 +18738,7 @@
           "self-hosted": true
         },
         "operationId": "get-images-download",
-        "summary": " Download Images"
+        "summary": "Download Image Scan Results"
       }
     },
     "/api/v22.06/images/evaluate": {
@@ -19025,7 +19025,7 @@
           "self-hosted": true
         },
         "operationId": "get-images-names",
-        "summary": " Image Names"
+        "summary": "Get Image Names"
       }
     },
     "/api/v22.06/images/scan": {
@@ -19060,7 +19060,7 @@
           "self-hosted": true
         },
         "operationId": "post-images-scan",
-        "summary": " Scan Images"
+        "summary": "Start Image Scan"
       }
     },
     "/api/v22.06/images/twistlock_defender_app_embedded.tar.gz": {

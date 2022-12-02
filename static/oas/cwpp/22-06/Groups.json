@@ -18284,7 +18284,7 @@
           "self-hosted": true
         },
         "operationId": "get-groups",
-        "summary": " Groups"
+        "summary": "Get Groups"
       },
       "post": {
         "description": {
@@ -18317,7 +18317,7 @@
           "self-hosted": true
         },
         "operationId": "post-groups",
-        "summary": " Update Group"
+        "summary": "Add a Group"
       }
     },
     "/api/v22.06/groups/names": {
@@ -18350,7 +18350,7 @@
           "self-hosted": true
         },
         "operationId": "get-groups-names",
-        "summary": " Group Names"
+        "summary": "Get Group Names"
       }
     },
     "/api/v22.06/groups/{id}": {
@@ -18386,7 +18386,7 @@
           "self-hosted": true
         },
         "operationId": "delete-groups-id",
-        "summary": " Delete Group"
+        "summary": "Delete a Group"
       },
       "put": {
         "description": {
@@ -18429,7 +18429,7 @@
           "self-hosted": true
         },
         "operationId": "put-groups-id",
-        "summary": " Update Group"
+        "summary": "Update a Group"
       }
     }
   }

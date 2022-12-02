@@ -18452,7 +18452,7 @@
           "self-hosted": true
         },
         "operationId": "get-scans",
-        "summary": " CLI Scan Results"
+        "summary": "Get All CI Image Scan Results"
       },
       "post": {
         "description": "AddCLIScanResult adds a CLI scan result\n",
@@ -18710,7 +18710,7 @@
           "self-hosted": true
         },
         "operationId": "get-scans-download",
-        "summary": " Download CLI Scan Results"
+        "summary": "Download CI Image Scan Results"
       }
     },
     "/api/v22.06/scans/sonatype": {
@@ -18746,9 +18746,7 @@
     },
     "/api/v22.06/scans/vms": {
       "post": {
-        "description": {
-          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/scans/vms_post.md"
-        },
+        "description": "AddVMScanResult adds a VM scan result\n",
         "requestBody": {
           "content": {
             "application/json": {
@@ -18812,7 +18810,7 @@
           "self-hosted": true
         },
         "operationId": "get-scans-id",
-        "summary": " Image Scan Result"
+        "summary": "Get CI Image Scan Results"
       }
     }
   }

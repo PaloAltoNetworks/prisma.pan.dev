@@ -18284,7 +18284,7 @@
           "self-hosted": true
         },
         "operationId": "post-authenticate-client",
-        "summary": " Authenticate Client"
+        "summary": "Get Client Authentication Access Token"
       }
     }
   }

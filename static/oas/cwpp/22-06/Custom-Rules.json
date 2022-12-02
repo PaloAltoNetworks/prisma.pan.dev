@@ -18284,7 +18284,7 @@
           "self-hosted": true
         },
         "operationId": "get-custom-rules",
-        "summary": " Custom Rules"
+        "summary": "Get Custom Rules"
       }
     },
     "/api/v22.06/custom-rules/{id}": {
@@ -18320,7 +18320,7 @@
           "self-hosted": true
         },
         "operationId": "delete-custom-rules-id",
-        "summary": " Delete Custom Rule"
+        "summary": "Delete a Custom Rule"
       },
       "put": {
         "description": "UpdateCustomRule creates/edits a custom rule\n",

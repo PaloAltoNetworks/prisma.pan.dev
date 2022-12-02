@@ -18284,7 +18284,7 @@
           "self-hosted": true
         },
         "operationId": "get-tags",
-        "summary": " Tags"
+        "summary": "Get Tags"
       },
       "post": {
         "description": {
@@ -18317,7 +18317,7 @@
           "self-hosted": true
         },
         "operationId": "post-tags",
-        "summary": " Add Tag"
+        "summary": "Add Tags"
       }
     },
     "/api/v22.06/tags/{id}": {
@@ -18353,7 +18353,7 @@
           "self-hosted": true
         },
         "operationId": "delete-tags-id",
-        "summary": " Delete Tag"
+        "summary": "Delete a Tag"
       },
       "put": {
         "description": {
@@ -18396,7 +18396,7 @@
           "self-hosted": true
         },
         "operationId": "put-tags-id",
-        "summary": " Update Tag"
+        "summary": "Update a Tag"
       }
     },
     "/api/v22.06/tags/{id}/vuln": {

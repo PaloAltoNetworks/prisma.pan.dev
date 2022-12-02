@@ -18386,7 +18386,7 @@
           "self-hosted": true
         },
         "operationId": "get-cloud-discovery",
-        "summary": " Cloud Discovery Results"
+        "summary": "Get Cloud Discovery Scan Results"
       }
     },
     "/api/v22.06/cloud/discovery/download": {
@@ -18514,7 +18514,7 @@
           "self-hosted": true
         },
         "operationId": "get-cloud-discovery-download",
-        "summary": " Download Cloud Discovery"
+        "summary": "Download Cloud Discovery Scan Results"
       }
     },
     "/api/v22.06/cloud/discovery/scan": {
@@ -18540,7 +18540,7 @@
           "self-hosted": true
         },
         "operationId": "post-cloud-discovery-scan",
-        "summary": " Do Cloud Discovery Scan"
+        "summary": "Start a Cloud Discovery Scan"
       }
     },
     "/api/v22.06/cloud/discovery/stop": {
@@ -18566,7 +18566,7 @@
           "self-hosted": true
         },
         "operationId": "post-cloud-discovery-stop",
-        "summary": " Stop Cloud Discovery Scan"
+        "summary": "Stop a Cloud Discovery Scan"
       }
     },
     "/api/v22.06/cloud/discovery/vms": {
@@ -18709,7 +18709,7 @@
           "self-hosted": true
         },
         "operationId": "get-cloud-discovery-vms",
-        "summary": " Discovered VMs"
+        "summary": "Get Discovered VMs"
       }
     }
   }

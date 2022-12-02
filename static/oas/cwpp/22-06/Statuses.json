@@ -18284,7 +18284,7 @@
           "self-hosted": true
         },
         "operationId": "get-statuses-registry",
-        "summary": " Registry Scan Status"
+        "summary": "Get Registry Scan Status"
       }
     }
   }

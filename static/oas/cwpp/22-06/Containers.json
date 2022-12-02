@@ -18466,7 +18466,7 @@
           "self-hosted": true
         },
         "operationId": "get-containers",
-        "summary": " Containers"
+        "summary": "Get Container Scan Results"
       }
     },
     "/api/v22.06/containers/count": {
@@ -18681,7 +18681,7 @@
           "self-hosted": true
         },
         "operationId": "get-containers-count",
-        "summary": " Container Count"
+        "summary": "Get Containers Count"
       }
     },
     "/api/v22.06/containers/download": {
@@ -18889,7 +18889,7 @@
           "self-hosted": true
         },
         "operationId": "get-containers-download",
-        "summary": " Download Containers"
+        "summary": "Download Container Scan Results"
       }
     },
     "/api/v22.06/containers/names": {
@@ -19104,7 +19104,7 @@
           "self-hosted": true
         },
         "operationId": "get-containers-names",
-        "summary": " Container Names"
+        "summary": "Get Container Names"
       }
     },
     "/api/v22.06/containers/scan": {
@@ -19130,7 +19130,7 @@
           "self-hosted": true
         },
         "operationId": "post-containers-scan",
-        "summary": " Scan Containers"
+        "summary": "Start a Container Scan"
       }
     }
   }

@@ -18293,7 +18293,7 @@
           "self-hosted": true
         },
         "operationId": "post-authenticate",
-        "summary": " Authenticate"
+        "summary": "Get User Authentication Access Token"
       }
     },
     "/api/v22.06/authenticate/identity-redirect-url": {

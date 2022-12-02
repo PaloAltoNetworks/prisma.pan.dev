@@ -18478,7 +18478,7 @@
           "self-hosted": true
         },
         "operationId": "get-defenders",
-        "summary": " Defenders"
+        "summary": "Get Deployed Defenders"
       }
     },
     "/api/v22.06/defenders/app-embedded": {
@@ -18513,7 +18513,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-app-embedded",
-        "summary": " Embed App-Embedded Defender"
+        "summary": "Generate a Docker File for App-embedded Defender"
       }
     },
     "/api/v22.06/defenders/daemonset.yaml": {
@@ -18555,7 +18555,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-daemonset.yaml",
-        "summary": " Generate Daemon Set"
+        "summary": "Generate Daemonset Deployment YAML File"
       }
     },
     "/api/v22.06/defenders/download": {
@@ -18775,7 +18775,7 @@
           "self-hosted": true
         },
         "operationId": "get-defenders-download",
-        "summary": " Download Defenders"
+        "summary": "Download Deployed Defenders"
       }
     },
     "/api/v22.06/defenders/fargate.json": {
@@ -18902,7 +18902,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-fargate.json",
-        "summary": " Fargate Task"
+        "summary": "Generate a Protected JSON Fargate Task Definition"
       }
     },
     "/api/v22.06/defenders/fargate.yaml": {
@@ -19020,7 +19020,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-fargate.yaml",
-        "summary": " Fargate Task Y A M L"
+        "summary": "Generate a Protected YAML Fargate Task Definition"
       }
     },
     "/api/v22.06/defenders/helm/twistlock-defender-helm.tar.gz": {
@@ -19055,7 +19055,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-helm-twistlock-defender-helm.tar.gz",
-        "summary": " Defender Helm Chart"
+        "summary": "Generate a Helm Deployment Chart for Defender"
       }
     },
     "/api/v22.06/defenders/image-name": {
@@ -19088,7 +19088,7 @@
           "self-hosted": true
         },
         "operationId": "get-defenders-image-name",
-        "summary": " Defender Image"
+        "summary": "Get Docker Image Name for Defender"
       }
     },
     "/api/v22.06/defenders/install-bundle": {
@@ -19206,7 +19206,7 @@
           "self-hosted": true
         },
         "operationId": "get-defenders-install-bundle",
-        "summary": " Defender Install Bundle"
+        "summary": "Get Certificate Bundle for Defender"
       }
     },
     "/api/v22.06/defenders/names": {
@@ -19433,7 +19433,7 @@
           "self-hosted": true
         },
         "operationId": "get-defenders-names",
-        "summary": " Defender Names"
+        "summary": "Get Defender Names"
       }
     },
     "/api/v22.06/defenders/serverless/bundle": {
@@ -19468,7 +19468,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-serverless-bundle",
-        "summary": " Download Serverless Bundle"
+        "summary": "Generate Serverless Bundle for Defender"
       }
     },
     "/api/v22.06/defenders/summary": {
@@ -19501,7 +19501,7 @@
           "self-hosted": true
         },
         "operationId": "get-defenders-summary",
-        "summary": " Defenders Summary"
+        "summary": "Get Defenders Summary"
       }
     },
     "/api/v22.06/defenders/upgrade": {
@@ -19527,7 +19527,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-upgrade",
-        "summary": " Upgrade Defenders"
+        "summary": "Upgrade Connected Single Linux Defenders"
       }
     },
     "/api/v22.06/defenders/{id}": {
@@ -19563,7 +19563,7 @@
           "self-hosted": true
         },
         "operationId": "delete-defenders-id",
-        "summary": " Delete Defender"
+        "summary": "Delete a Defender"
       }
     },
     "/api/v22.06/defenders/{id}/features": {
@@ -19615,7 +19615,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-id-features",
-        "summary": " Update Defender Features"
+        "summary": "Update Defender Configuration"
       }
     },
     "/api/v22.06/defenders/{id}/restart": {
@@ -19651,7 +19651,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-id-restart",
-        "summary": " Restart Defender"
+        "summary": "Restart a Defender"
       }
     },
     "/api/v22.06/defenders/{id}/upgrade": {
@@ -19687,7 +19687,7 @@
           "self-hosted": true
         },
         "operationId": "post-defenders-id-upgrade",
-        "summary": " Upgrade Defender"
+        "summary": "Upgrade a Defender"
       }
     }
   }

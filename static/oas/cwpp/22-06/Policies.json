@@ -18315,7 +18315,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-compliance-ci-images",
-        "summary": " Image CI Compliance Policy"
+        "summary": "Get Continuous Integration (CI) Image Compliance Policy"
       },
       "put": {
         "description": {
@@ -18348,7 +18348,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-compliance-ci-images",
-        "summary": " Set Policy"
+        "summary": "Update Continuous Integration (CI) Image Compliance Policy"
       }
     },
     "/api/v22.06/policies/compliance/ci/serverless": {
@@ -18381,7 +18381,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-compliance-ci-serverless",
-        "summary": " CI Serverless Compliance Policy"
+        "summary": "Get Continuous Integration (CI) Serverless Compliance Policy"
       },
       "put": {
         "description": {
@@ -18414,7 +18414,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-compliance-ci-serverless",
-        "summary": " Set Policy"
+        "summary": "Update Continuous Integration (CI) Serverless Compliance Policy"
       }
     },
     "/api/v22.06/policies/compliance/container": {
@@ -18447,7 +18447,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-compliance-container",
-        "summary": " Container Compliance Policy"
+        "summary": "Get Container Compliance Policy"
       },
       "put": {
         "description": {
@@ -18480,7 +18480,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-compliance-container",
-        "summary": " Set Policy"
+        "summary": "Update Container Compliance Policy"
       }
     },
     "/api/v22.06/policies/compliance/container/impacted": {
@@ -18599,7 +18599,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-compliance-container-impacted",
-        "summary": " Container Compliance Policy Impacted"
+        "summary": "Get Impacted Container Compliance Policy"
       }
     },
     "/api/v22.06/policies/compliance/host": {
@@ -18632,7 +18632,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-compliance-host",
-        "summary": " Host Compliance Policy"
+        "summary": "Get Host Compliance Policy"
       },
       "put": {
         "description": {
@@ -18665,7 +18665,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-compliance-host",
-        "summary": " Set Policy"
+        "summary": "Update Host Compliance Policy"
       }
     },
     "/api/v22.06/policies/compliance/serverless": {
@@ -18698,7 +18698,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-compliance-serverless",
-        "summary": " Serverless Compliance Policy"
+        "summary": "Get Serverless Compliance Policy"
       },
       "put": {
         "description": {
@@ -18731,7 +18731,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-compliance-serverless",
-        "summary": " Set Policy"
+        "summary": "Update Serverless Compliance Policy"
       }
     },
     "/api/v22.06/policies/compliance/vms/impacted": {
@@ -18850,7 +18850,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-compliance-vms-impacted",
-        "summary": " VM Compliance Policy Impacted"
+        "summary": "Get Impacted VMs Compliance Policy"
       }
     },
     "/api/v22.06/policies/firewall/app/apispec": {
@@ -18883,7 +18883,7 @@
           "self-hosted": true
         },
         "operationId": "post-policies-firewall-app-apispec",
-        "summary": " Resolve App Firewall API Spec"
+        "summary": "Generate a WAAS API Specification Object"
       }
     },
     "/api/v22.06/policies/firewall/app/app-embedded": {
@@ -18916,7 +18916,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-firewall-app-app-embedded",
-        "summary": " App-Embedded App Firewall Policy"
+        "summary": "Get WAAS App-embedded Policy"
       },
       "put": {
         "description": {
@@ -18949,7 +18949,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-firewall-app-app-embedded",
-        "summary": " Set App-Embedded App Firewall Policy"
+        "summary": "Update WAAS App-embedded Policy"
       }
     },
     "/api/v22.06/policies/firewall/app/container": {
@@ -18982,7 +18982,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-firewall-app-container",
-        "summary": " Container App Firewall Policy"
+        "summary": "Get WAAS Container Policy"
       },
       "put": {
         "description": {
@@ -19015,7 +19015,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-firewall-app-container",
-        "summary": " Set Container App Firewall Policy"
+        "summary": "Update WAAS Container Policy"
       }
     },
     "/api/v22.06/policies/firewall/app/container/impacted": {
@@ -19165,7 +19165,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-firewall-app-host",
-        "summary": " Host App Firewall Policy"
+        "summary": "Get WAAS Host Policy"
       },
       "put": {
         "description": {
@@ -19198,7 +19198,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-firewall-app-host",
-        "summary": " Set Host App Firewall Policy"
+        "summary": "Update WAAS Host Policy"
       }
     },
     "/api/v22.06/policies/firewall/app/host/impacted": {
@@ -19348,7 +19348,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-firewall-app-network-list",
-        "summary": " Network Lists"
+        "summary": "Get WAAS Network List"
       },
       "post": {
         "description": {
@@ -19381,7 +19381,7 @@
           "self-hosted": true
         },
         "operationId": "post-policies-firewall-app-network-list",
-        "summary": " Add Network List"
+        "summary": "Add WAAS Network List"
       },
       "put": {
         "description": {
@@ -19414,7 +19414,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-firewall-app-network-list",
-        "summary": " Update Network List"
+        "summary": "Update WAAS Network List"
       }
     },
     "/api/v22.06/policies/firewall/app/network-list/{id}": {
@@ -19450,7 +19450,7 @@
           "self-hosted": true
         },
         "operationId": "delete-policies-firewall-app-network-list-id",
-        "summary": " Delete Network List"
+        "summary": "Delete WAAS Network List"
       }
     },
     "/api/v22.06/policies/firewall/app/out-of-band": {
@@ -19483,7 +19483,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-firewall-app-out-of-band",
-        "summary": "Retrieve out-of-band WAAS policies"
+        "summary": "Get Out-of-Band WAAS Policy"
       },
       "put": {
         "description": {
@@ -19516,7 +19516,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-firewall-app-out-of-band",
-        "summary": "Update out-of-band WAAS policies"
+        "summary": "Update Out-of-Band WAAS Policy"
       }
     },
     "/api/v22.06/policies/firewall/app/out-of-band/impacted": {
@@ -19635,7 +19635,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-firewall-app-out-of-band-impacted",
-        "summary": "Retrieve impacted resources for out-of-band WAAS policies"
+        "summary": "Get Impacted Resources for Out-of-Band WAAS Policy"
       }
     },
     "/api/v22.06/policies/firewall/app/serverless": {
@@ -19668,7 +19668,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-firewall-app-serverless",
-        "summary": " Serverless App Firewall Policy"
+        "summary": "Get WAAS Serverless Policy"
       },
       "put": {
         "description": {
@@ -19701,12 +19701,14 @@
           "self-hosted": true
         },
         "operationId": "put-policies-firewall-app-serverless",
-        "summary": " Set Serverless App Firewall Policy"
+        "summary": "Update WAAS Serverless Policy"
       }
     },
     "/api/v22.06/policies/firewall/network": {
       "get": {
-        "description": "NetworkFirewallPolicy returns the network firewall policy\n",
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_network_container_get.md"
+        },
         "responses": {
           "200": {
             "content": {
@@ -19732,10 +19734,12 @@
           "self-hosted": true
         },
         "operationId": "get-policies-firewall-network",
-        "summary": " Network Firewall Policy"
+        "summary": "Get CNNS Container and Host Policy"
       },
       "put": {
-        "description": "SetNetworkFirewallPolicy sets the given firewall policy\n",
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_network_container_put.md"
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -19763,7 +19767,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-firewall-network",
-        "summary": " Set Network Firewall Policy"
+        "summary": "Update CNNS Container and Host Policy"
       }
     },
     "/api/v22.06/policies/runtime/app-embedded": {
@@ -19796,7 +19800,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-runtime-app-embedded",
-        "summary": " App-Embedded Runtime Policy"
+        "summary": "Get Runtime App-embedded Policy"
       },
       "post": {
         "description": {
@@ -19829,7 +19833,7 @@
           "self-hosted": true
         },
         "operationId": "post-policies-runtime-app-embedded",
-        "summary": " Set App-Embedded Runtime Policy Rule"
+        "summary": "Add Runtime App-embedded Policy"
       },
       "put": {
         "description": {
@@ -19862,7 +19866,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-runtime-app-embedded",
-        "summary": " Set App-Embedded Runtime Policy"
+        "summary": "Update Runtime App-embedded Policy"
       }
     },
     "/api/v22.06/policies/runtime/container": {
@@ -19895,7 +19899,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-runtime-container",
-        "summary": " Container Policy"
+        "summary": "Add Runtime Container Policy"
       },
       "post": {
         "description": "SetContainerRuntimePolicyRule adds the given container runtime policy rule\n",
@@ -19959,7 +19963,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-runtime-container",
-        "summary": " Set Container Runtime Policy"
+        "summary": "Update Runtime Container Policy"
       }
     },
     "/api/v22.06/policies/runtime/container/impacted": {
@@ -20078,7 +20082,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-runtime-container-impacted",
-        "summary": " Container Runtime Policy Impacted"
+        "summary": "Update Runtime Impacted Container Policy"
       }
     },
     "/api/v22.06/policies/runtime/host": {
@@ -20111,7 +20115,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-runtime-host",
-        "summary": " Host Policy"
+        "summary": "Get Runtime Host Policy"
       },
       "post": {
         "description": "SetHostRuntimePolicyRule set the specified rule first\n",
@@ -20175,7 +20179,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-runtime-host",
-        "summary": " Set Host Runtime Policy"
+        "summary": "Update Runtime Host Policy"
       }
     },
     "/api/v22.06/policies/runtime/serverless": {
@@ -20208,7 +20212,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-runtime-serverless",
-        "summary": " Serverless Runtime Policy"
+        "summary": "Get Runtime Serverless Policy"
       },
       "post": {
         "description": "SetServerlessRuntimePolicyRule adds the given serverless runtime policy rule\n",
@@ -20272,7 +20276,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-runtime-serverless",
-        "summary": " Set Serverless Runtime Policy"
+        "summary": "Update Runtime Serverless Policy"
       }
     },
     "/api/v22.06/policies/vulnerability/base-images": {
@@ -20425,7 +20429,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-ci-images",
-        "summary": " Image CI Vulnerability Policy"
+        "summary": "Get CI Image Vulnerability Policy"
       },
       "put": {
         "description": {
@@ -20458,7 +20462,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-vulnerability-ci-images",
-        "summary": " Set Policy"
+        "summary": "Update CI Image Vulnerability Policy"
       }
     },
     "/api/v22.06/policies/vulnerability/ci/serverless": {
@@ -20491,7 +20495,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-ci-serverless",
-        "summary": " CI Serverless Vulnerability Policy"
+        "summary": "Get CI Serverless Vulnerability Policy"
       },
       "put": {
         "description": {
@@ -20524,7 +20528,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-vulnerability-ci-serverless",
-        "summary": " Set Policy"
+        "summary": "Update CI Serverless Vulnerability Policy"
       }
     },
     "/api/v22.06/policies/vulnerability/coderepos": {
@@ -20557,7 +20561,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-coderepos",
-        "summary": " Code Repo Vulnerability Policy"
+        "summary": "Get Code Repository Vulnerability Policy"
       },
       "put": {
         "description": {
@@ -20590,7 +20594,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-vulnerability-coderepos",
-        "summary": " Set Policy"
+        "summary": "Update Code Repository Vulnerability Policy"
       }
     },
     "/api/v22.06/policies/vulnerability/coderepos/impacted": {
@@ -20709,7 +20713,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-coderepos-impacted",
-        "summary": " Code Repo Vulnerability Policy Impacted"
+        "summary": "Get Impacted Code Repository Vulnerability Policy"
       }
     },
     "/api/v22.06/policies/vulnerability/host": {
@@ -20742,7 +20746,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-host",
-        "summary": " Host Vulnerability Policy"
+        "summary": "Get Host Vulnerability Policy"
       },
       "put": {
         "description": {
@@ -20775,7 +20779,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-vulnerability-host",
-        "summary": " Set Policy"
+        "summary": "Update Host Vulnerability Policy"
       }
     },
     "/api/v22.06/policies/vulnerability/host/impacted": {
@@ -20894,7 +20898,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-host-impacted",
-        "summary": " Host Vulnerability Policy Impacted"
+        "summary": "Get Impacted Host Vulnerability Policy"
       }
     },
     "/api/v22.06/policies/vulnerability/images": {
@@ -20927,7 +20931,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-images",
-        "summary": " Container Vulnerability Policy"
+        "summary": "Get Image Vulnerability Policy"
       },
       "put": {
         "description": {
@@ -20960,7 +20964,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-vulnerability-images",
-        "summary": " Set Policy"
+        "summary": "Update Image Vulnerability Policy"
       }
     },
     "/api/v22.06/policies/vulnerability/images/impacted": {
@@ -21079,7 +21083,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-images-impacted",
-        "summary": " Container Vulnerability Policy Impacted"
+        "summary": "Get Impacted Image Vulnerability Policy"
       }
     },
     "/api/v22.06/policies/vulnerability/serverless": {
@@ -21112,7 +21116,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-serverless",
-        "summary": " Serverless Vulnerability Policy"
+        "summary": "Get Serverless Vulnerability Policy"
       },
       "put": {
         "description": {
@@ -21145,7 +21149,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-vulnerability-serverless",
-        "summary": " Set Policy"
+        "summary": "Update Serverless Vulnerability Policy"
       }
     }
   }

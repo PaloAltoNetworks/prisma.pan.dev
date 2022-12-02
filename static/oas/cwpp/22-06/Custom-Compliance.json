@@ -18284,7 +18284,7 @@
           "self-hosted": true
         },
         "operationId": "get-custom-compliance",
-        "summary": " Set Custom Compliance Check"
+        "summary": "Get Custom Compliance Checks"
       },
       "put": {
         "description": {
@@ -18324,7 +18324,7 @@
           "self-hosted": true
         },
         "operationId": "put-custom-compliance",
-        "summary": " Upsert Custom Compliance Check"
+        "summary": "Update Custom Compliance Checks"
       }
     },
     "/api/v22.06/custom-compliance/{id}": {
@@ -18360,7 +18360,7 @@
           "self-hosted": true
         },
         "operationId": "delete-custom-compliance-id",
-        "summary": " Delete Custom Compliance Check"
+        "summary": "Delete a Custom Compliance Check"
       }
     }
   }

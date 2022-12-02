@@ -18284,7 +18284,7 @@
           "self-hosted": true
         },
         "operationId": "get-version",
-        "summary": " Version"
+        "summary": "Get Prisma Cloud Compute Version"
       }
     }
   }

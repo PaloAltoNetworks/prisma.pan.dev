@@ -18454,7 +18454,7 @@
           "self-hosted": true
         },
         "operationId": "get-hosts",
-        "summary": " Hosts"
+        "summary": "Get Host Scan Results"
       }
     },
     "/api/v22.06/hosts/download": {
@@ -18650,7 +18650,7 @@
           "self-hosted": true
         },
         "operationId": "get-hosts-download",
-        "summary": " Download Hosts"
+        "summary": "Download Host Scan Results"
       }
     },
     "/api/v22.06/hosts/evaluate": {
@@ -18893,7 +18893,7 @@
           "self-hosted": true
         },
         "operationId": "get-hosts-info",
-        "summary": " Hosts Info"
+        "summary": "Get Host Information"
       }
     },
     "/api/v22.06/hosts/scan": {
@@ -18919,7 +18919,7 @@
           "self-hosted": true
         },
         "operationId": "post-hosts-scan",
-        "summary": " Scan Hosts"
+        "summary": "Start a Host Scan"
       }
     }
   }

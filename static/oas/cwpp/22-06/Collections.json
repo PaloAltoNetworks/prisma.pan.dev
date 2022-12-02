@@ -18294,7 +18294,7 @@
           "self-hosted": true
         },
         "operationId": "get-collections",
-        "summary": " Collections"
+        "summary": "Get Collections"
       },
       "post": {
         "description": {
@@ -18327,7 +18327,7 @@
           "self-hosted": true
         },
         "operationId": "post-collections",
-        "summary": " Add Collection"
+        "summary": "Add a New Collection"
       }
     },
     "/api/v22.06/collections/{id}": {
@@ -18363,7 +18363,7 @@
           "self-hosted": true
         },
         "operationId": "delete-collections-id",
-        "summary": " Delete Collection"
+        "summary": "Delete an Existing Collection"
       },
       "put": {
         "description": {
@@ -18406,7 +18406,7 @@
           "self-hosted": true
         },
         "operationId": "put-collections-id",
-        "summary": " Update Collection"
+        "summary": "Update an Existing Collection"
       }
     },
     "/api/v22.06/collections/{id}/usages": {
@@ -18449,7 +18449,7 @@
           "self-hosted": true
         },
         "operationId": "get-collections-id-usages",
-        "summary": " Collection Usages"
+        "summary": "Get Policies for a Collection"
       }
     }
   }

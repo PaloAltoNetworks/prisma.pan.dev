@@ -18434,7 +18434,7 @@
           "self-hosted": true
         },
         "operationId": "get-profiles-app-embedded",
-        "summary": "Retrieve app-embedded profiles"
+        "summary": "Get App-embedded Profiles"
       }
     },
     "/api/v22.06/profiles/app-embedded/download": {
@@ -18610,7 +18610,7 @@
           "self-hosted": true
         },
         "operationId": "get-profiles-app-embedded-download",
-        "summary": "Download app-embedded profiles"
+        "summary": "Download App-embedded Profiles"
       }
     },
     "/api/v22.06/profiles/container": {
@@ -18817,7 +18817,7 @@
           "self-hosted": true
         },
         "operationId": "get-profiles-container",
-        "summary": " Container Runtime Profiles"
+        "summary": "Get Runtime Container Profiles"
       }
     },
     "/api/v22.06/profiles/container/download": {
@@ -19017,7 +19017,7 @@
           "self-hosted": true
         },
         "operationId": "get-profiles-container-download",
-        "summary": " Download Container Runtime Profiles"
+        "summary": "Download Runtime Container Profiles"
       }
     },
     "/api/v22.06/profiles/container/learn": {
@@ -19043,7 +19043,7 @@
           "self-hosted": true
         },
         "operationId": "post-profiles-container-learn",
-        "summary": " Relearn All Container Runtime Profiles"
+        "summary": "Relearn Runtime Container Profiles"
       }
     },
     "/api/v22.06/profiles/host": {
@@ -19250,7 +19250,7 @@
           "self-hosted": true
         },
         "operationId": "get-profiles-host",
-        "summary": " Host Runtime Profiles"
+        "summary": "Get Runtime Host Profiles"
       }
     },
     "/api/v22.06/profiles/host/download": {
@@ -19450,7 +19450,7 @@
           "self-hosted": true
         },
         "operationId": "get-profiles-host-download",
-        "summary": " Download Hosts Runtime Profiles"
+        "summary": "Download Runtime Host Profiles"
       }
     }
   }

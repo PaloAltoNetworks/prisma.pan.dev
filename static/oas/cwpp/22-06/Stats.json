@@ -18434,7 +18434,7 @@
           "self-hosted": true
         },
         "operationId": "get-stats-compliance",
-        "summary": " Compliance Stats"
+        "summary": "Get Compliance Stats"
       }
     },
     "/api/v22.06/stats/compliance/download": {
@@ -18729,7 +18729,7 @@
           "self-hosted": true
         },
         "operationId": "post-stats-compliance-refresh",
-        "summary": " Refresh Compliance Stats"
+        "summary": "Refresh Compliance Stats"
       }
     },
     "/api/v22.06/stats/daily": {
@@ -18762,7 +18762,7 @@
           "self-hosted": true
         },
         "operationId": "get-stats-daily",
-        "summary": " Stats"
+        "summary": "Get Daily Compliance Stats"
       }
     },
     "/api/v22.06/stats/dashboard": {
@@ -18795,7 +18795,7 @@
           "self-hosted": true
         },
         "operationId": "get-stats-dashboard",
-        "summary": " Trends"
+        "summary": "Get Dashboard Stats"
       }
     },
     "/api/v22.06/stats/events": {
@@ -18884,7 +18884,7 @@
           "self-hosted": true
         },
         "operationId": "get-stats-events",
-        "summary": " Events Stats"
+        "summary": "Get Event Stats"
       }
     },
     "/api/v22.06/stats/license": {
@@ -19088,7 +19088,7 @@
           "self-hosted": true
         },
         "operationId": "get-stats-vulnerabilities",
-        "summary": "Retrieve vulnerabilities (CVEs) report"
+        "summary": "Get Vulnerability (CVEs) Stats"
       }
     },
     "/api/v22.06/stats/vulnerabilities/download": {
@@ -19254,7 +19254,7 @@
           "self-hosted": true
         },
         "operationId": "get-stats-vulnerabilities-download",
-        "summary": "Download vulnerabilities (CVEs) report"
+        "summary": "Download Vulnerability (CVEs) Stats"
       }
     },
     "/api/v22.06/stats/vulnerabilities/impacted-resources": {
@@ -19427,7 +19427,7 @@
           "self-hosted": true
         },
         "operationId": "get-stats-vulnerabilities-impacted-resources",
-        "summary": "Retrieve impacted resources for a vulnerability (CVE)"
+        "summary": "Get Impacted Resources Vulnerability (CVE) Stats"
       }
     },
     "/api/v22.06/stats/vulnerabilities/impacted-resources/download": {
@@ -19593,7 +19593,7 @@
           "self-hosted": true
         },
         "operationId": "get-stats-vulnerabilities-impacted-resources-download",
-        "summary": "Download impacted resources for a vulnerability (CVE)"
+        "summary": "Download Impacted Resources Vulnerability (CVE) Stats"
       }
     },
     "/api/v22.06/stats/vulnerabilities/refresh": {
@@ -19704,7 +19704,7 @@
           "self-hosted": true
         },
         "operationId": "post-stats-vulnerabilities-refresh",
-        "summary": " Refresh Vulnerability Stats"
+        "summary": "Refresh Vulnerability Stats"
       }
     }
   }

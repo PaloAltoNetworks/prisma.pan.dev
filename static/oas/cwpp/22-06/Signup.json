@@ -18286,7 +18286,7 @@
           "self-hosted": true
         },
         "operationId": "post-signup",
-        "summary": " Signup"
+        "summary": "Create Admin Account"
       }
     }
   }

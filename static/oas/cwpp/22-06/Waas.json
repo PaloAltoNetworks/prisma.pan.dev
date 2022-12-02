@@ -18281,7 +18281,7 @@
           "self-hosted": true
         },
         "operationId": "post-waas-openapi-scans",
-        "summary": "Scan OpenAPI specification file for WAAS observations"
+        "summary": "Scan OpenAPI Specification File for WAAS Observations"
       }
     }
   }

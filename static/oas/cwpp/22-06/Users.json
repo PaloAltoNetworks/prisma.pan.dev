@@ -18284,7 +18284,7 @@
           "self-hosted": true
         },
         "operationId": "get-users",
-        "summary": " Users"
+        "summary": "Get Users"
       },
       "post": {
         "description": {
@@ -18317,7 +18317,7 @@
           "self-hosted": true
         },
         "operationId": "post-users",
-        "summary": " Create User"
+        "summary": "Add Users"
       },
       "put": {
         "description": {
@@ -18350,7 +18350,7 @@
           "self-hosted": true
         },
         "operationId": "put-users",
-        "summary": " Update User"
+        "summary": "Update Users"
       }
     },
     "/api/v22.06/users/password": {
@@ -18385,7 +18385,7 @@
           "self-hosted": true
         },
         "operationId": "put-users-password",
-        "summary": " Replace User Password"
+        "summary": "Update User Password"
       }
     },
     "/api/v22.06/users/{id}": {
@@ -18421,7 +18421,7 @@
           "self-hosted": true
         },
         "operationId": "delete-users-id",
-        "summary": " Delete User"
+        "summary": "Delete Users"
       }
     }
   }

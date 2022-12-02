@@ -18478,7 +18478,7 @@
           "self-hosted": true
         },
         "operationId": "get-serverless",
-        "summary": " Serverless Functions"
+        "summary": "Get Serverless Function Scan Results"
       }
     },
     "/api/v22.06/serverless/download": {
@@ -18698,7 +18698,7 @@
           "self-hosted": true
         },
         "operationId": "get-serverless-download",
-        "summary": " Download Serverless Functions"
+        "summary": "Download Serverless Function Scan Results"
       }
     },
     "/api/v22.06/serverless/evaluate": {
@@ -18965,7 +18965,7 @@
           "self-hosted": true
         },
         "operationId": "get-serverless-names",
-        "summary": " Serverless Function Names"
+        "summary": "Get Serverless Function Names"
       }
     },
     "/api/v22.06/serverless/scan": {
@@ -18991,7 +18991,7 @@
           "self-hosted": true
         },
         "operationId": "post-serverless-scan",
-        "summary": " Scan Serverless"
+        "summary": "Start Serverless Function Scan"
       }
     },
     "/api/v22.06/serverless/stop": {
@@ -19017,7 +19017,7 @@
           "self-hosted": true
         },
         "operationId": "post-serverless-stop",
-        "summary": " Stop Serverless Scan"
+        "summary": "Stop Serverless Function Scan"
       }
     }
   }
