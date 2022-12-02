@@ -134,6 +134,22 @@ module.exports = {
           items: [
             {
               type: "category",
+              label: "Version Self-Hosted 22.12",
+              items: [
+                {
+                  type: "link",
+                  label: "Administrator's Guide",
+                  href: "https://docs.paloaltonetworks.com/content/techdocs/en_US/prisma/prisma-cloud/22-12/prisma-cloud-compute-edition-admin.html",
+                },
+                {
+                  type: "link",
+                  label: "Release Notes",
+                  href: "https://docs.paloaltonetworks.com/prisma/prisma-cloud/22-12/prisma-cloud-compute-edition-release-notes/release-information",
+                },
+              ],
+            },
+            {
+              type: "category",
               label: "Version Self-Hosted 22.06",
               items: [
                 {
@@ -161,22 +177,6 @@ module.exports = {
                   type: "link",
                   label: "Release Notes",
                   href: "https://docs.paloaltonetworks.com/prisma/prisma-cloud/22-01/prisma-cloud-compute-edition-release-notes/release-information",
-                },
-              ],
-            },
-            {
-              type: "category",
-              label: "Version Self-Hosted 21.08",
-              items: [
-                {
-                  type: "link",
-                  label: "Administrator's Guide",
-                  href: "https://docs.paloaltonetworks.com/content/techdocs/en_US/prisma/prisma-cloud/21-08/prisma-cloud-compute-edition-admin.html",
-                },
-                {
-                  type: "link",
-                  label: "Release Notes",
-                  href: "https://docs.paloaltonetworks.com/prisma/prisma-cloud/21-08/prisma-cloud-compute-edition-release-notes/release-information",
                 },
               ],
             },
