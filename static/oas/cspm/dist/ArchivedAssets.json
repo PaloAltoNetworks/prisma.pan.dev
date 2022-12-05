@@ -23,7 +23,7 @@
       "get": {
         "tags": ["Archived Assets"],
         "summary": "Bulk Export Resource Archives",
-        "description": "Returns a list that has details about (and optionally, links for) the compressed archive files that contain the configuration details for assets that were deleted in the specified time period.\n\nEach archive file contains the configuration details for up to 50,000 assets that belong to a cloud account ID and were deleted on a specific day.\n\nThe returned list has a maximum of 10 items. Each item is itself an array that has details about the archive file and (optionally) a temporary presigned URL for downloading the file. If the number of archive files exceeds 10, the response includes a URL (**nextPageUrl**) that you can use to get the next 10 archive files.\n\nThis endpoint checks the date on which an asset was deleted against the specified dates. If the asset was deleted on or after the specified **start_date** and on or before the specified **end_date**, and subsequently archived, it is included in an archive file returned by this endpoint.\n\nUsers (**prisma_id**) must have the “System Admin” role in Prisma Cloud to invoke this endpoint.\n\n**Rate Limits**\n\nThe following rate limits apply:\n* Request Rate Limit: 80/minute\n",
+        "description": "Returns a list that has details about (and optionally, links for) the compressed archive files that contain the configuration details for assets that were deleted in the specified time period.\n\nEach archive file contains the configuration details for up to 50,000 assets that belong to a cloud account ID and were deleted on a specific day.\n\nThe returned list has a maximum of 10 items. Each item is itself an array that has details about the archive file and (optionally) a temporary presigned URL for downloading the file. If the number of archive files exceeds 10, the response includes a URL (**nextPageUrl**) that you can use to get the next 10 archive files.\n\nThis endpoint checks the date on which an asset was deleted against the specified dates. If the asset was deleted on or after the specified **start_date** and on or before the specified **end_date**, and subsequently archived, it is included in an archive file returned by this endpoint.\n\nUsers must have the “System Admin” role in Prisma Cloud to invoke this endpoint.\n\n**Rate Limits**\n\nThe following rate limits apply:\n* Request Rate Limit: 80/minute\n",
         "operationId": "bulkExportResourceArchives",
         "parameters": [
           {
@@ -36,14 +36,14 @@
           {
             "name": "start_date",
             "in": "query",
-            "description": "Start date (in the YYYY-MM-DD format) of the time period for which the archives are returned.",
+            "description": "Start date (in the YYYY-MM-DD format) of the asset deletion period. If an asset was deleted on or after this date and on or before the **end_date**, and subsequently archived, it is included in one of the returned archives.",
             "required": true,
             "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "end_date",
             "in": "query",
-            "description": "End date (in the YYYY-MM-DD format) of the time period for which the archives are returned.",
+            "description": "End date (in the YYYY-MM-DD format) of the asset deletion period. If an asset was deleted on or before this date and on or after the **start_date**, and subsequently archived, it is included in one of the returned archives.",
             "required": true,
             "schema": { "type": "string", "format": "date-time" }
           },
@@ -80,9 +80,9 @@
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ApiError" },
                 "example": {
-                  "status": "400 BAD_REQUEST",
+                  "status": 400,
                   "timestamp": "string",
-                  "message": "string"
+                  "message": "BAD_REQUEST"
                 }
               }
             }
@@ -93,9 +93,9 @@
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ApiError" },
                 "example": {
-                  "status": "401 UNAUTHORIZED",
+                  "status": 401,
                   "timestamp": "string",
-                  "message": "string"
+                  "message": "UNAUTHORIZED"
                 }
               }
             }
@@ -106,9 +106,9 @@
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ApiError" },
                 "example": {
-                  "status": "403 FORBIDDEN",
+                  "status": 403,
                   "timestamp": "string",
-                  "message": "string"
+                  "message": "FORBIDDEN"
                 }
               }
             }
@@ -119,9 +119,9 @@
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ApiError" },
                 "example": {
-                  "status": "405 METHOD_NOT_ALLOWED",
+                  "status": 405,
                   "timestamp": "string",
-                  "message": "string"
+                  "message": "METHOD_NOT_ALLOWED"
                 }
               }
             }
@@ -132,9 +132,9 @@
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ApiError" },
                 "example": {
-                  "status": "425 TOO_EARLY",
+                  "status": 425,
                   "timestamp": "string",
-                  "message": "string"
+                  "message": "TOO_EARLY"
                 }
               }
             }
@@ -145,9 +145,9 @@
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ApiError" },
                 "example": {
-                  "status": "429 TOO_MANY_REQUESTS",
+                  "status": 429,
                   "timestamp": "string",
-                  "message": "string"
+                  "message": "TOO_MANY_REQUESTS"
                 }
               }
             }
@@ -158,9 +158,9 @@
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ApiError" },
                 "example": {
-                  "status": "500 INTERNAL_SERVER_ERROR",
+                  "status": 500,
                   "timestamp": "string",
-                  "message": "string"
+                  "message": "INTERNAL_SERVER_ERROR"
                 }
               }
             }
