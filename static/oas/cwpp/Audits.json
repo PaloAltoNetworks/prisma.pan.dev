@@ -19609,7 +19609,7 @@
   },
   "info": {
     "title": "Audits Overview",
-    "version": "22.12.412",
+    "version": "22.12.415",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/audits/audits.md"
     }
