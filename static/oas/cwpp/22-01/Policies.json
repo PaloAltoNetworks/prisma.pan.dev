@@ -4476,6 +4476,47 @@
         ],
         "type": "string"
       },
+      "prisma.AdoptionAdvisorData": {
+        "description": "AdoptionAdvisorData holds the data for Adoption Advisor project",
+        "properties": {
+          "alert_providers": {
+            "description": "AlertProfiles is the number of alert profiles.\n",
+            "type": "integer"
+          },
+          "collections": {
+            "description": "Collections is the number of custom created collections.\n",
+            "type": "integer"
+          },
+          "compliance_issues": {
+            "$ref": "#/components/schemas/prisma.Distribution"
+          },
+          "container_rules_stats": {
+            "$ref": "#/components/schemas/prisma.ContainerRulesStats"
+          },
+          "defenders": {
+            "$ref": "#/components/schemas/prisma.DefenderStats"
+          },
+          "discovered_cloud_resources": {
+            "$ref": "#/components/schemas/prisma.DiscoveredCloudResources"
+          },
+          "feature_stats": {
+            "$ref": "#/components/schemas/prisma.FeatureStats"
+          },
+          "rules_stats": {
+            "$ref": "#/components/schemas/prisma.RulesStats"
+          },
+          "runtime_audit_stats": {
+            "$ref": "#/components/schemas/prisma.RuntimeAuditStats"
+          },
+          "scan_stats": {
+            "$ref": "#/components/schemas/prisma.ScanStats"
+          },
+          "vulnerability_stats": {
+            "$ref": "#/components/schemas/prisma.VulnerabilityStats"
+          }
+        },
+        "type": "object"
+      },
       "prisma.AlertIntegration": {
         "description": "AlertIntegration has the relevant fields for Prisma Cloud defined integrations\nhttps://prisma.pan.dev/api/cloud/cspm/integrations#operation/get-all-integrations",
         "properties": {
@@ -4493,6 +4534,100 @@
           "name": {
             "description": "Name of the integration in Prisma Cloud.\n",
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.ContainerRulesStats": {
+        "description": "ContainerRulesStats holds the number of container vulnerability rules per rule type",
+        "properties": {
+          "compliance": {
+            "description": "Compliance the number of custom container compliance rules.\n",
+            "type": "integer"
+          },
+          "runtime": {
+            "description": "Runtime is the number of runtime container images rules.\n",
+            "type": "integer"
+          },
+          "vulnerability": {
+            "description": "Vulnerability is the number of custom container vulnerability rules.\n",
+            "type": "integer"
+          },
+          "waas": {
+            "description": "Waas is the number of container WAAS rules.\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.DefenderStats": {
+        "description": "DefenderStats holds the number total defenders per resource",
+        "properties": {
+          "app_embedded": {
+            "description": "AppEmbedded is the number of total app embedded defenders.\n",
+            "type": "integer"
+          },
+          "container": {
+            "description": "Container is the number of container total defenders.\n",
+            "type": "integer"
+          },
+          "host": {
+            "description": "Host is the number of total host defenders.\n",
+            "type": "integer"
+          },
+          "serverless": {
+            "description": "Serverless is the number of total serverless defenders.\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.DiscoveredCloudResources": {
+        "description": "DiscoveredCloudResources holds the stats of cloud discovery resources",
+        "properties": {
+          "protected": {
+            "description": "Protected is the total number of protected discovered resources (cloud discovery).\n",
+            "type": "integer"
+          },
+          "total": {
+            "description": "Total is the total number of discovered resources (cloud discovery).\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.Distribution": {
+        "description": "Distribution counts the number of vulnerabilities/compliance issues per severity",
+        "properties": {
+          "critical": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "high": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "low": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "medium": {
+            "description": ".\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.FeatureStats": {
+        "description": "FeatureStats holds the Admission Control and Kubernetes audit stats",
+        "properties": {
+          "access_polices_enabled": {
+            "description": "AccessPolicesEnabled represent if Admission Control enabled.\n",
+            "type": "boolean"
+          },
+          "kubernetes_audit_enabled": {
+            "description": "KubernetesAuditEnabled represent if Kubernetes audit enabled.\n",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -4521,6 +4656,99 @@
         },
         "type": "object"
       },
+      "prisma.RulesStats": {
+        "description": "RulesStats holds the rules stats per resource type",
+        "properties": {
+          "agentless": {
+            "description": "Agentless is the number of cloud accounts configured for agentless.\n",
+            "type": "integer"
+          },
+          "cloud_discovery": {
+            "description": "CloudDiscovery is the number of cloud accounts configured for Cloud Discovery.\n",
+            "type": "integer"
+          },
+          "host_auto_defend": {
+            "description": "HostAutoDefend is the number of host auto-defend rules.\n",
+            "type": "integer"
+          },
+          "serverless_radar": {
+            "description": "ServerlessRadar is the number of cloud accounts configured for Serverless radar.\n",
+            "type": "integer"
+          },
+          "trusted_images": {
+            "description": "TrustedImages is the number of custom trusted images rules.\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.RuntimeAuditStats": {
+        "description": "RuntimeAuditStats holds the number of runtime audits per resource",
+        "properties": {
+          "container": {
+            "$ref": "#/components/schemas/prisma.RuntimeStats"
+          },
+          "function": {
+            "$ref": "#/components/schemas/prisma.RuntimeStats"
+          },
+          "host": {
+            "$ref": "#/components/schemas/prisma.RuntimeStats"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.RuntimeStats": {
+        "description": "RuntimeStats are stats for runtime flows (sum of audits per flow)",
+        "properties": {
+          "filesystem": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "kubernetes": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "network": {
+            "description": ".\n",
+            "type": "integer"
+          },
+          "processes": {
+            "description": ".\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.ScanStats": {
+        "description": "ScanStats holds the scan stats per resource type",
+        "properties": {
+          "agentless": {
+            "description": "Agentless is the total number of agentless host scan results.\n",
+            "type": "integer"
+          },
+          "ci_scans": {
+            "description": "CIScans is the number of image CI scans.\n",
+            "type": "integer"
+          },
+          "functions": {
+            "description": "Functions is the number of functions scan results.\n",
+            "type": "integer"
+          },
+          "image_analysis_sandbox": {
+            "description": "ImageAnalysisSandbox is the number of sandbox scans.\n",
+            "type": "integer"
+          },
+          "registry": {
+            "description": "Registry is the number of registry scan results.\n",
+            "type": "integer"
+          },
+          "vms": {
+            "description": "VMs is the number of VM images scan results.\n",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "prisma.SecurityHubIntegrationRegions": {
         "description": "SecurityHubIntegrationRegions holds AWS Security Hub regions info",
         "properties": {
@@ -4531,6 +4759,24 @@
           "name": {
             "description": "Name is the region name.\n",
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "prisma.VulnerabilityStats": {
+        "description": "VulnerabilityStats holds the number of vulnerabilities per resource",
+        "properties": {
+          "container": {
+            "$ref": "#/components/schemas/prisma.Distribution"
+          },
+          "function": {
+            "$ref": "#/components/schemas/prisma.Distribution"
+          },
+          "host": {
+            "$ref": "#/components/schemas/prisma.Distribution"
+          },
+          "image": {
+            "$ref": "#/components/schemas/prisma.Distribution"
           }
         },
         "type": "object"
@@ -17145,6 +17391,10 @@
       "waas.Rule": {
         "description": "Rule represents a single rule that is associated with a container firewall",
         "properties": {
+          "allowMalformedHttpHeaderNames": {
+            "description": "AllowMalformedHttpHeaderNames indicates if validation of http request header names should allow non-compliant characters.\n",
+            "type": "boolean"
+          },
           "applicationsSpec": {
             "description": "List of API specifications in the rule.\n",
             "items": {
@@ -17423,7 +17673,7 @@
   },
   "info": {
     "title": "Policies Overview",
-    "version": "22.01.839",
+    "version": "22.01.890",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/policies.md"
     }
@@ -17435,6 +17685,37 @@
     }
   ],
   "paths": {
+    "/api/v22.01/policies/cloud-platforms": {
+      "get": {
+        "description": "CloudScanPolicy returns the cloud scan settings\n",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/shared.CloudScanPolicy"
+                }
+              }
+            },
+            "description": "CloudScanPolicy holds policies for cloud scan"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Policies",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "policyCloud",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "get-policies-cloud-platforms",
+        "summary": " Cloud Scan Policy"
+      }
+    },
     "/api/v22.01/policies/compliance/ci/images": {
       "get": {
         "description": {
@@ -17465,7 +17746,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-compliance-ci-images",
-        "summary": " Image CI Compliance Policy"
+        "summary": "Get Continuous Integration (CI) Image Compliance Policy"
       },
       "put": {
         "description": {
@@ -17498,7 +17779,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-compliance-ci-images",
-        "summary": " Set Policy"
+        "summary": "Update Continuous Integration (CI) Image Compliance Policy"
       }
     },
     "/api/v22.01/policies/compliance/ci/serverless": {
@@ -17531,7 +17812,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-compliance-ci-serverless",
-        "summary": " CI Serverless Compliance Policy"
+        "summary": "Get Continuous Integration (CI) Serverless Compliance Policy"
       },
       "put": {
         "description": {
@@ -17564,7 +17845,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-compliance-ci-serverless",
-        "summary": " Set Policy"
+        "summary": "Update Continuous Integration (CI) Serverless Compliance Policy"
       }
     },
     "/api/v22.01/policies/compliance/container": {
@@ -17597,7 +17878,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-compliance-container",
-        "summary": " Container Compliance Policy"
+        "summary": "Get Container Compliance Policy"
       },
       "put": {
         "description": {
@@ -17630,7 +17911,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-compliance-container",
-        "summary": " Set Policy"
+        "summary": "Update Container Compliance Policy"
       }
     },
     "/api/v22.01/policies/compliance/container/impacted": {
@@ -17749,7 +18030,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-compliance-container-impacted",
-        "summary": " Container Compliance Policy Impacted"
+        "summary": "Get Impacted Container Compliance Policy"
       }
     },
     "/api/v22.01/policies/compliance/host": {
@@ -17782,7 +18063,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-compliance-host",
-        "summary": " Host Compliance Policy"
+        "summary": "Get Host Compliance Policy"
       },
       "put": {
         "description": {
@@ -17815,7 +18096,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-compliance-host",
-        "summary": " Set Policy"
+        "summary": "Update Host Compliance Policy"
       }
     },
     "/api/v22.01/policies/compliance/serverless": {
@@ -17848,7 +18129,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-compliance-serverless",
-        "summary": " Serverless Compliance Policy"
+        "summary": "Get Serverless Compliance Policy"
       },
       "put": {
         "description": {
@@ -17881,7 +18162,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-compliance-serverless",
-        "summary": " Set Policy"
+        "summary": "Update Serverless Compliance Policy"
       }
     },
     "/api/v22.01/policies/compliance/vms/impacted": {
@@ -18000,7 +18281,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-compliance-vms-impacted",
-        "summary": " VM Compliance Policy Impacted"
+        "summary": "Get Impacted VMs Compliance Policy"
       }
     },
     "/api/v22.01/policies/firewall/app/apispec": {
@@ -18033,7 +18314,7 @@
           "self-hosted": true
         },
         "operationId": "post-policies-firewall-app-apispec",
-        "summary": " Resolve App Firewall API Spec"
+        "summary": "Generate a WAAS API Specification Object"
       }
     },
     "/api/v22.01/policies/firewall/app/app-embedded": {
@@ -18066,7 +18347,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-firewall-app-app-embedded",
-        "summary": " App-Embedded App Firewall Policy"
+        "summary": "Get WAAS App-embedded Policy"
       },
       "put": {
         "description": {
@@ -18099,7 +18380,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-firewall-app-app-embedded",
-        "summary": " Set App-Embedded App Firewall Policy"
+        "summary": "Update WAAS App-embedded Policy"
       }
     },
     "/api/v22.01/policies/firewall/app/container": {
@@ -18132,7 +18413,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-firewall-app-container",
-        "summary": " Container App Firewall Policy"
+        "summary": "Get WAAS Container Policy"
       },
       "put": {
         "description": {
@@ -18165,7 +18446,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-firewall-app-container",
-        "summary": " Set Container App Firewall Policy"
+        "summary": "Update WAAS Container Policy"
       }
     },
     "/api/v22.01/policies/firewall/app/container/impacted": {
@@ -18315,7 +18596,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-firewall-app-host",
-        "summary": " Host App Firewall Policy"
+        "summary": "Get WAAS Host Policy"
       },
       "put": {
         "description": {
@@ -18348,7 +18629,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-firewall-app-host",
-        "summary": " Set Host App Firewall Policy"
+        "summary": "Update WAAS Host Policy"
       }
     },
     "/api/v22.01/policies/firewall/app/host/impacted": {
@@ -18498,7 +18779,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-firewall-app-network-list",
-        "summary": " Network Lists"
+        "summary": "Get WAAS Network List"
       },
       "post": {
         "description": {
@@ -18531,7 +18812,7 @@
           "self-hosted": true
         },
         "operationId": "post-policies-firewall-app-network-list",
-        "summary": " Add Network List"
+        "summary": "Add WAAS Network List"
       },
       "put": {
         "description": {
@@ -18564,7 +18845,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-firewall-app-network-list",
-        "summary": " Update Network List"
+        "summary": "Update WAAS Network List"
       }
     },
     "/api/v22.01/policies/firewall/app/network-list/{id}": {
@@ -18600,7 +18881,7 @@
           "self-hosted": true
         },
         "operationId": "delete-policies-firewall-app-network-list-id",
-        "summary": " Delete Network List"
+        "summary": "Delete WAAS Network List"
       }
     },
     "/api/v22.01/policies/firewall/app/serverless": {
@@ -18633,7 +18914,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-firewall-app-serverless",
-        "summary": " Serverless App Firewall Policy"
+        "summary": "Get WAAS Serverless Policy"
       },
       "put": {
         "description": {
@@ -18666,12 +18947,14 @@
           "self-hosted": true
         },
         "operationId": "put-policies-firewall-app-serverless",
-        "summary": " Set Serverless App Firewall Policy"
+        "summary": "Update WAAS Serverless Policy"
       }
     },
     "/api/v22.01/policies/firewall/network": {
       "get": {
-        "description": "NetworkFirewallPolicy returns the network firewall policy\n",
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_network_container_get.md"
+        },
         "responses": {
           "200": {
             "content": {
@@ -18697,10 +18980,12 @@
           "self-hosted": true
         },
         "operationId": "get-policies-firewall-network",
-        "summary": " Network Firewall Policy"
+        "summary": "Get CNNS Container and Host Policy"
       },
       "put": {
-        "description": "SetNetworkFirewallPolicy sets the given firewall policy\n",
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/firewall_network_container_put.md"
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -18728,7 +19013,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-firewall-network",
-        "summary": " Set Network Firewall Policy"
+        "summary": "Update CNNS Container and Host Policy"
       }
     },
     "/api/v22.01/policies/runtime/app-embedded": {
@@ -18761,7 +19046,40 @@
           "self-hosted": true
         },
         "operationId": "get-policies-runtime-app-embedded",
-        "summary": " App-Embedded Runtime Policy"
+        "summary": "Get Runtime App-embedded Policy"
+      },
+      "post": {
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/runtime_app-embedded_post.md"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/runtime.ContainerPolicyRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Policies",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "policyRuntimeServerless",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "post-policies-runtime-app-embedded",
+        "summary": "Add Runtime App-embedded Policy"
       },
       "put": {
         "description": {
@@ -18794,7 +19112,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-runtime-app-embedded",
-        "summary": " Set App-Embedded Runtime Policy"
+        "summary": "Update Runtime App-embedded Policy"
       }
     },
     "/api/v22.01/policies/runtime/container": {
@@ -18827,7 +19145,38 @@
           "self-hosted": true
         },
         "operationId": "get-policies-runtime-container",
-        "summary": " Container Policy"
+        "summary": "Add Runtime Container Policy"
+      },
+      "post": {
+        "description": "SetContainerRuntimePolicyRule adds the given container runtime policy rule\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/runtime.ContainerPolicyRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Policies",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "policyRuntimeContainer",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "post-policies-runtime-container",
+        "summary": " Set Container Runtime Policy Rule"
       },
       "put": {
         "description": {
@@ -18860,7 +19209,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-runtime-container",
-        "summary": " Set Container Runtime Policy"
+        "summary": "Update Runtime Container Policy"
       }
     },
     "/api/v22.01/policies/runtime/container/impacted": {
@@ -18979,7 +19328,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-runtime-container-impacted",
-        "summary": " Container Runtime Policy Impacted"
+        "summary": "Update Runtime Impacted Container Policy"
       }
     },
     "/api/v22.01/policies/runtime/host": {
@@ -19012,7 +19361,38 @@
           "self-hosted": true
         },
         "operationId": "get-policies-runtime-host",
-        "summary": " Host Policy"
+        "summary": "Get Runtime Host Policy"
+      },
+      "post": {
+        "description": "SetHostRuntimePolicyRule set the specified rule first\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/runtime.HostPolicyRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Policies",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "policyRuntimeHosts",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "post-policies-runtime-host",
+        "summary": " Set Host Runtime Policy Rule"
       },
       "put": {
         "description": {
@@ -19045,7 +19425,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-runtime-host",
-        "summary": " Set Host Runtime Policy"
+        "summary": "Update Runtime Host Policy"
       }
     },
     "/api/v22.01/policies/runtime/serverless": {
@@ -19078,7 +19458,38 @@
           "self-hosted": true
         },
         "operationId": "get-policies-runtime-serverless",
-        "summary": " Serverless Runtime Policy"
+        "summary": "Get Runtime Serverless Policy"
+      },
+      "post": {
+        "description": "SetServerlessRuntimePolicyRule adds the given serverless runtime policy rule\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/runtime.ContainerPolicyRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Policies",
+          "Supported API"
+        ],
+        "x-prisma-cloud-target-env": {
+          "permission": "policyRuntimeServerless",
+          "saas": true,
+          "self-hosted": true
+        },
+        "operationId": "post-policies-runtime-serverless",
+        "summary": " Set Serverless Runtime Policy Rule"
       },
       "put": {
         "description": {
@@ -19111,7 +19522,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-runtime-serverless",
-        "summary": " Set Serverless Runtime Policy"
+        "summary": "Update Runtime Serverless Policy"
       }
     },
     "/api/v22.01/policies/vulnerability/base-images": {
@@ -19264,7 +19675,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-ci-images",
-        "summary": " Image CI Vulnerability Policy"
+        "summary": "Get CI Image Vulnerability Policy"
       },
       "put": {
         "description": {
@@ -19297,7 +19708,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-vulnerability-ci-images",
-        "summary": " Set Policy"
+        "summary": "Update CI Image Vulnerability Policy"
       }
     },
     "/api/v22.01/policies/vulnerability/ci/serverless": {
@@ -19330,7 +19741,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-ci-serverless",
-        "summary": " CI Serverless Vulnerability Policy"
+        "summary": "Get CI Serverless Vulnerability Policy"
       },
       "put": {
         "description": {
@@ -19363,7 +19774,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-vulnerability-ci-serverless",
-        "summary": " Set Policy"
+        "summary": "Update CI Serverless Vulnerability Policy"
       }
     },
     "/api/v22.01/policies/vulnerability/coderepos": {
@@ -19396,7 +19807,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-coderepos",
-        "summary": " Code Repo Vulnerability Policy"
+        "summary": "Get Code Repository Vulnerability Policy"
       },
       "put": {
         "description": {
@@ -19429,7 +19840,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-vulnerability-coderepos",
-        "summary": " Set Policy"
+        "summary": "Update Code Repository Vulnerability Policy"
       }
     },
     "/api/v22.01/policies/vulnerability/coderepos/impacted": {
@@ -19548,7 +19959,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-coderepos-impacted",
-        "summary": " Code Repo Vulnerability Policy Impacted"
+        "summary": "Get Impacted Code Repository Vulnerability Policy"
       }
     },
     "/api/v22.01/policies/vulnerability/host": {
@@ -19581,7 +19992,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-host",
-        "summary": " Host Vulnerability Policy"
+        "summary": "Get Host Vulnerability Policy"
       },
       "put": {
         "description": {
@@ -19614,7 +20025,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-vulnerability-host",
-        "summary": " Set Policy"
+        "summary": "Update Host Vulnerability Policy"
       }
     },
     "/api/v22.01/policies/vulnerability/host/impacted": {
@@ -19733,7 +20144,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-host-impacted",
-        "summary": " Host Vulnerability Policy Impacted"
+        "summary": "Get Impacted Host Vulnerability Policy"
       }
     },
     "/api/v22.01/policies/vulnerability/images": {
@@ -19766,7 +20177,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-images",
-        "summary": " Container Vulnerability Policy"
+        "summary": "Get Image Vulnerability Policy"
       },
       "put": {
         "description": {
@@ -19799,7 +20210,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-vulnerability-images",
-        "summary": " Set Policy"
+        "summary": "Update Image Vulnerability Policy"
       }
     },
     "/api/v22.01/policies/vulnerability/images/impacted": {
@@ -19918,7 +20329,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-images-impacted",
-        "summary": " Container Vulnerability Policy Impacted"
+        "summary": "Get Impacted Image Vulnerability Policy"
       }
     },
     "/api/v22.01/policies/vulnerability/serverless": {
@@ -19951,7 +20362,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-vulnerability-serverless",
-        "summary": " Serverless Vulnerability Policy"
+        "summary": "Get Serverless Vulnerability Policy"
       },
       "put": {
         "description": {
@@ -19984,7 +20395,7 @@
           "self-hosted": true
         },
         "operationId": "put-policies-vulnerability-serverless",
-        "summary": " Set Policy"
+        "summary": "Update Serverless Vulnerability Policy"
       }
     }
   }
