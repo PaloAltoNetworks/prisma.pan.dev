@@ -19623,7 +19623,9 @@
   "paths": {
     "/api/v22.12/vms": {
       "get": {
-        "description": "VMs returns images by the query specification\n",
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/vms/get.md"
+        },
         "parameters": [
           {
             "description": "Offset from the start of the list from which to retrieve documents.\n",
@@ -19843,7 +19845,7 @@
           "self-hosted": true
         },
         "operationId": "get-vms",
-        "summary": " VMs"
+        "summary": "Get VM Image Scan Results"
       }
     },
     "/api/v22.12/vms/download": {
