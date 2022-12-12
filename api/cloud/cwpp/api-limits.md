@@ -12,6 +12,6 @@ If the response contains more than 250 objects, cycle through the collection wit
 For example:
 
 ```
-https://<CONSOLE>/api/v<VERSION>/images?limit=50&offset=X
+https://<CONSOLE>/api/v<VERSION>/images?limit=250&offset=X
 ```
 
