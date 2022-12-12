@@ -19690,7 +19690,9 @@
         "summary": "Delete a Custom Rule"
       },
       "put": {
-        "description": "UpdateCustomRule creates/edits a custom rule\n",
+        "description": {
+          "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/custom-rules/put.md"
+        },
         "parameters": [
           {
             "in": "path",
@@ -19728,7 +19730,7 @@
           "self-hosted": true
         },
         "operationId": "put-custom-rules-id",
-        "summary": " Update Custom Rule"
+        "summary": "Update a Custom Rule"
       }
     }
   }
