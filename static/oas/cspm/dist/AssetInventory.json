@@ -54,6 +54,7 @@
       "AssetInventoryGroupedAggregate": {
         "description": "Model for Grouped Inventory Detail on Asset Inventory Dashboard API",
         "properties": {
+          "accountId": { "type": "string" },
           "accountName": {
             "description": "Name of cloud account",
             "type": "string"
@@ -66,6 +67,16 @@
             "description": "Name of cloud type",
             "type": "string"
           },
+          "criticalSeverityFailedResources": {
+            "description": "The number of resources whose highest policy failure is **critical**",
+            "format": "int64",
+            "type": "integer"
+          },
+          "criticalVulnerabilityFailedResources": {
+            "description": "The number of resources that failed with critical vulnerabilities",
+            "format": "int64",
+            "type": "integer"
+          },
           "failedResources": {
             "description": "Number of failed resources",
             "format": "int64",
@@ -76,13 +87,33 @@
             "format": "int64",
             "type": "integer"
           },
+          "highVulnerabilityFailedResources": {
+            "description": "The number of resources that failed with high vulnerabilities",
+            "format": "int64",
+            "type": "integer"
+          },
+          "informationalSeverityFailedResources": {
+            "description": "The number of resources whose highest policy failure is **informational**",
+            "format": "int64",
+            "type": "integer"
+          },
           "lowSeverityFailedResources": {
             "description": "The number of resources whose highest policy failure is **low**",
             "format": "int64",
             "type": "integer"
           },
+          "lowVulnerabilityFailedResources": {
+            "description": "The number of resources that failed with low vulnerabilities",
+            "format": "int64",
+            "type": "integer"
+          },
           "mediumSeverityFailedResources": {
             "description": "The number of resources whose highest policy failure is **medium**",
+            "format": "int64",
+            "type": "integer"
+          },
+          "mediumVulnerabilityFailedResources": {
+            "description": "The number of resources that failed with medium vulnerabilities",
             "format": "int64",
             "type": "integer"
           },
@@ -105,6 +136,11 @@
           },
           "totalResources": {
             "description": "Total number of Compliance Standard/Requirement/Section scanned resources",
+            "format": "int64",
+            "type": "integer"
+          },
+          "totalVulnerabilityFailedResources": {
+            "description": "The total number of resources that failed with vulnerabilities",
             "format": "int64",
             "type": "integer"
           },
@@ -148,6 +184,11 @@
       "AssetInventorySummary": {
         "description": "Model for Asset Inventory Summary",
         "properties": {
+          "criticalVulnerabilityFailedResources": {
+            "description": "The number of resources that failed with critical vulnerabilities",
+            "format": "int64",
+            "type": "integer"
+          },
           "failedResources": {
             "description": "Number of failed resources",
             "format": "int64",
@@ -158,13 +199,28 @@
             "format": "int64",
             "type": "integer"
           },
-          "lowSeverityFailedResources": {
-            "description": "he number of resources whose highest policy failure is **low**",
+          "highVulnerabilityFailedResources": {
+            "description": "The number of resources that failed with high vulnerabilities",
+            "format": "int64",
+            "type": "integer"
+          },
+          "informationalSeverityFailedResources": {
+            "description": "The number of resources that failed informational severity policies*",
+            "format": "int64",
+            "type": "integer"
+          },
+          "lowVulnerabilityFailedResources": {
+            "description": "The number of resources that failed with low vulnerabilities",
             "format": "int64",
             "type": "integer"
           },
           "mediumSeverityFailedResources": {
-            "description": "The number of resources whose highest policy failure is **medium**",
+            "description": "The number of resources that failed medium severity policies",
+            "format": "int64",
+            "type": "integer"
+          },
+          "mediumVulnerabilityFailedResources": {
+            "description": "The number of resources that failed with medium vulnerabilities",
             "format": "int64",
             "type": "integer"
           },
@@ -180,6 +236,11 @@
           },
           "totalResources": {
             "description": "Total number of resources",
+            "format": "int64",
+            "type": "integer"
+          },
+          "totalVulnerabilityFailedResources": {
+            "description": "The total number of resources that failed with vulnerabilities",
             "format": "int64",
             "type": "integer"
           },
@@ -211,7 +272,7 @@
             "type": "array"
           },
           "limit": {
-            "description": "Maximum number of items to return. When data is paginated, maximum number of items per page",
+            "description": "Maximum number of items to return. When data is paginated, maximum number of items per page.The maximum cannot exceed 10,000. The default is 10,000.",
             "type": "number"
           },
           "offset": {
@@ -574,11 +635,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/filter/inventory\"\n\npayload = {\n    \"detailed\": True,\n    \"fields\": [\"string\"],\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"limit\": 0,\n    \"offset\": 0,\n    \"pageToken\": \"string\",\n    \"sortBy\": [\"string\"],\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json; charset=UTF-8\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/filter/inventory\"\n\npayload = {\n    \"detailed\": True,\n    \"fields\": [\"string\"],\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"limit\": 0,\n    \"offset\": 0,\n    \"pageToken\": \"string\",\n    \"sortBy\": [\"string\"],\n    \"timeRange\": {\n        \"type\": \"relative\",\n        \"relativeTimeType\": \"BACKWARD\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json; charset=UTF-8\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/filter/inventory \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/filter/inventory \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"type\":\"relative\",\"relativeTimeType\":\"BACKWARD\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }
@@ -651,11 +712,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/filter/inventory/{id}\"\n\npayload = {\n    \"detailed\": True,\n    \"fields\": [\"string\"],\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"limit\": 0,\n    \"offset\": 0,\n    \"pageToken\": \"string\",\n    \"sortBy\": [\"string\"],\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json; charset=UTF-8\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/filter/inventory/{id}\"\n\npayload = {\n    \"detailed\": True,\n    \"fields\": [\"string\"],\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"limit\": 0,\n    \"offset\": 0,\n    \"pageToken\": \"string\",\n    \"sortBy\": [\"string\"],\n    \"timeRange\": {\n        \"type\": \"relative\",\n        \"relativeTimeType\": \"BACKWARD\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json; charset=UTF-8\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"PUT\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/filter/inventory/{id} \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request PUT \\\n  --url https://api.prismacloud.io/filter/inventory/{id} \\\n  --header 'content-type: application/json; charset=UTF-8' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"type\":\"relative\",\"relativeTimeType\":\"BACKWARD\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       },
@@ -792,9 +853,16 @@
             "schema": { "type": "string" }
           },
           {
-            "description": "Policy compliance section ID",
+            "description": "Policy severity",
             "in": "query",
-            "name": "policy.complianceSection",
+            "name": "asset.severity",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "description": "Vulnerability Severity",
+            "in": "query",
+            "name": "vulnerability.severity",
             "required": false,
             "schema": { "type": "string" }
           }
@@ -820,11 +888,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/inventory\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"account.group\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"cloud.service\":\"SOME_STRING_VALUE\",\"resource.type\":\"SOME_STRING_VALUE\",\"groupBy\":\"SOME_STRING_VALUE\",\"scan.status\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/inventory\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"account.group\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"cloud.service\":\"SOME_STRING_VALUE\",\"resource.type\":\"SOME_STRING_VALUE\",\"groupBy\":\"SOME_STRING_VALUE\",\"scan.status\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"asset.severity\":\"SOME_STRING_VALUE\",\"vulnerability.severity\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/v2/inventory?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&account.group=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&cloud.service=SOME_STRING_VALUE&resource.type=SOME_STRING_VALUE&groupBy=SOME_STRING_VALUE&scan.status=SOME_STRING_VALUE&policy.complianceStandard=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/v2/inventory?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&account.group=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&cloud.service=SOME_STRING_VALUE&resource.type=SOME_STRING_VALUE&groupBy=SOME_STRING_VALUE&scan.status=SOME_STRING_VALUE&policy.complianceStandard=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&asset.severity=SOME_STRING_VALUE&vulnerability.severity=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -858,11 +926,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/inventory\"\n\npayload = {\n    \"detailed\": True,\n    \"fields\": [\"string\"],\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"limit\": 0,\n    \"offset\": 0,\n    \"pageToken\": \"string\",\n    \"sortBy\": [\"string\"],\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/inventory\"\n\npayload = {\n    \"detailed\": True,\n    \"fields\": [\"string\"],\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"limit\": 0,\n    \"offset\": 0,\n    \"pageToken\": \"string\",\n    \"sortBy\": [\"string\"],\n    \"timeRange\": {\n        \"type\": \"relative\",\n        \"relativeTimeType\": \"BACKWARD\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/v2/inventory \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/v2/inventory \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"type\":\"relative\",\"relativeTimeType\":\"BACKWARD\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }
@@ -965,6 +1033,20 @@
             "name": "policy.complianceSection",
             "required": false,
             "schema": { "type": "string" }
+          },
+          {
+            "description": "Policy severity",
+            "in": "query",
+            "name": "asset.severity",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "description": "Vulnerability Severity",
+            "in": "query",
+            "name": "vulnerability.severity",
+            "required": false,
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -991,11 +1073,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/inventory/trend\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"account.group\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"cloud.service\":\"SOME_STRING_VALUE\",\"resource.type\":\"SOME_STRING_VALUE\",\"scan.status\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/inventory/trend\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"account.group\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"cloud.service\":\"SOME_STRING_VALUE\",\"resource.type\":\"SOME_STRING_VALUE\",\"scan.status\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\",\"asset.severity\":\"SOME_STRING_VALUE\",\"vulnerability.severity\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/v2/inventory/trend?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&account.group=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&cloud.service=SOME_STRING_VALUE&resource.type=SOME_STRING_VALUE&scan.status=SOME_STRING_VALUE&policy.complianceStandard=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/v2/inventory/trend?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&account.group=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&cloud.service=SOME_STRING_VALUE&resource.type=SOME_STRING_VALUE&scan.status=SOME_STRING_VALUE&policy.complianceStandard=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE&asset.severity=SOME_STRING_VALUE&vulnerability.severity=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -1032,11 +1114,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/inventory/trend\"\n\npayload = {\n    \"detailed\": True,\n    \"fields\": [\"string\"],\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"limit\": 0,\n    \"offset\": 0,\n    \"pageToken\": \"string\",\n    \"sortBy\": [\"string\"],\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/v2/inventory/trend\"\n\npayload = {\n    \"detailed\": True,\n    \"fields\": [\"string\"],\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"limit\": 0,\n    \"offset\": 0,\n    \"pageToken\": \"string\",\n    \"sortBy\": [\"string\"],\n    \"timeRange\": {\n        \"type\": \"relative\",\n        \"relativeTimeType\": \"BACKWARD\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/v2/inventory/trend \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/v2/inventory/trend \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"type\":\"relative\",\"relativeTimeType\":\"BACKWARD\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }
