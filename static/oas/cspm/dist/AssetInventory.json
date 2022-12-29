@@ -205,7 +205,7 @@
             "type": "integer"
           },
           "informationalSeverityFailedResources": {
-            "description": "The number of resources that failed informational severity policies*",
+            "description": "The number of resources that failed informational severity policies",
             "format": "int64",
             "type": "integer"
           },
