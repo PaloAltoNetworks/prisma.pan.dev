@@ -280,7 +280,10 @@
             "content": {
               "application/json; charset=UTF-8": {
                 "schema": {
-                  "$ref": "#/components/schemas/AdoptionAdvisorChecksComputationResponseModel"
+                  "items": {
+                    "$ref": "#/components/schemas/AdoptionAdvisorReportGenerationConfigApiModel"
+                  },
+                  "type": "array"
                 }
               }
             },
@@ -320,7 +323,7 @@
             "content": {
               "application/json; charset=UTF-8": {
                 "schema": {
-                  "$ref": "#/components/schemas/AdoptionAdvisorChecksComputationResponseModel"
+                  "$ref": "#/components/schemas/AdoptionAdvisorReportGenerationConfigApiModel"
                 }
               }
             },
@@ -357,16 +360,7 @@
           }
         ],
         "responses": {
-          "200": {
-            "content": {
-              "application/pdf": {
-                "schema": {
-                  "$ref": "#/components/schemas/AdoptionAdvisorChecksComputationResponseModel"
-                }
-              }
-            },
-            "description": "successful operation"
-          },
+          "200": { "description": "successful operation" },
           "400": { "description": "bad_request" },
           "500": { "description": "internal_error" }
         },
@@ -411,7 +405,7 @@
             "content": {
               "application/json; charset=UTF-8": {
                 "schema": {
-                  "$ref": "#/components/schemas/AdoptionAdvisorChecksComputationResponseModel"
+                  "$ref": "#/components/schemas/AdoptionAdvisorReportGenerationConfigApiModel"
                 }
               }
             },
@@ -446,16 +440,7 @@
           }
         ],
         "responses": {
-          "200": {
-            "content": {
-              "application/json; charset=UTF-8": {
-                "schema": {
-                  "$ref": "#/components/schemas/AdoptionAdvisorChecksComputationResponseModel"
-                }
-              }
-            },
-            "description": "successful operation"
-          },
+          "200": { "description": "successful operation" },
           "400": { "description": "bad_request" },
           "500": { "description": "internal_error" }
         },
