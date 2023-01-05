@@ -44,11 +44,30 @@
           }
         ]
       },
+      "AlertStatus": {
+        "properties": {
+          "critical": { "format": "int64", "type": "integer" },
+          "high": { "format": "int64", "type": "integer" },
+          "informational": { "format": "int64", "type": "integer" },
+          "low": { "format": "int64", "type": "integer" },
+          "medium": { "format": "int64", "type": "integer" }
+        },
+        "type": "object"
+      },
       "DecoratedResourceInfo": {
         "description": "Model for resource info and status list",
         "properties": {
           "accountId": { "description": "Account ID", "type": "string" },
           "accountName": { "description": "Account name", "type": "string" },
+          "alertStatus": {
+            "allOf": [
+              { "$ref": "#/components/schemas/AlertStatus" },
+              {
+                "description": "Count of alerts found by their policy severity"
+              }
+            ]
+          },
+          "assetType": { "description": "Asset Type", "type": "string" },
           "cloudType": {
             "description": "Cloud type",
             "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
@@ -62,11 +81,28 @@
           },
           "regionId": { "description": "Region ID", "type": "string" },
           "regionName": { "description": "Region Name", "type": "string" },
+          "resourceConfigJsonAvailable": {
+            "description": "Resource config JSON available",
+            "type": "boolean"
+          },
+          "resourceDetailsAvailable": {
+            "description": "Resource details available",
+            "type": "boolean"
+          },
           "rrn": { "description": "RRN", "type": "string" },
           "scannedPolicies": {
             "description": "Scanned policies",
             "items": { "$ref": "#/components/schemas/ScannedPolicyInfo" },
             "type": "array"
+          },
+          "unifiedAssetId": { "description": "Asset Id", "type": "string" },
+          "vulnerabilityStatus": {
+            "allOf": [
+              { "$ref": "#/components/schemas/VulnerabilityStatus" },
+              {
+                "description": "Count of vulnerabilities found by their severity"
+              }
+            ]
           }
         },
         "type": "object"
@@ -384,6 +420,15 @@
         },
         "type": "object"
       },
+      "VulnerabilityStatus": {
+        "properties": {
+          "critical": { "format": "int64", "type": "integer" },
+          "high": { "format": "int64", "type": "integer" },
+          "low": { "format": "int64", "type": "integer" },
+          "medium": { "format": "int64", "type": "integer" }
+        },
+        "type": "object"
+      },
       "Problem": {
         "type": "object",
         "properties": {
@@ -450,7 +495,7 @@
               "ASSET_DATA_INDICATORS",
               "RELATIONSHIPS"
             ]
-          },
+        },
           "findingType": {
             "type": "array",
             "description": "External Finding Type. Applies to **EXTERNAL_FINDING** Asset query type only. The enum values are **case-insensitive.**",
@@ -1192,7 +1237,7 @@
             "type": "string"
           },
           "tags": {
-            "type": "object"
+        "type": "object"
           },
           "relationshipCounts": {
             "type": "integer",
@@ -1445,6 +1490,27 @@
             "name": "pageToken",
             "required": false,
             "schema": { "type": "string" }
+          },
+          {
+            "description": "Policy severity",
+            "in": "query",
+            "name": "asset.severity",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "description": "Vulnerability Severity",
+            "in": "query",
+            "name": "vulnerability.severity",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "description": "Include Foreign Entities. This is only applicable for compliance flows. This is because the Asset Inventory only counts assets that belong to your cloud account, and the Compliance Dashboard includes foreign entities such as SSO or Federated Users that are not resources ingested directly from the monitored cloud accounts",
+            "in": "query",
+            "name": "includeEventForeignEntities",
+            "required": false,
+            "schema": { "type": "boolean" }
           }
         ],
         "responses": {
@@ -1467,11 +1533,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/scan_info\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"account.group\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\",\"limit\":\"SOME_STRING_VALUE\",\"scan.status\":\"SOME_STRING_VALUE\",\"pageToken\":\"SOME_STRING_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/scan_info\"\n\nquerystring = {\"timeType\":\"SOME_STRING_VALUE\",\"timeAmount\":\"SOME_STRING_VALUE\",\"timeUnit\":\"SOME_STRING_VALUE\",\"cloud.account\":\"SOME_STRING_VALUE\",\"cloud.type\":\"SOME_STRING_VALUE\",\"cloud.region\":\"SOME_STRING_VALUE\",\"account.group\":\"SOME_STRING_VALUE\",\"policy.complianceStandard\":\"SOME_STRING_VALUE\",\"policy.complianceRequirement\":\"SOME_STRING_VALUE\",\"policy.complianceSection\":\"SOME_STRING_VALUE\",\"limit\":\"SOME_STRING_VALUE\",\"scan.status\":\"SOME_STRING_VALUE\",\"pageToken\":\"SOME_STRING_VALUE\",\"asset.severity\":\"SOME_STRING_VALUE\",\"vulnerability.severity\":\"SOME_STRING_VALUE\",\"includeEventForeignEntities\":\"SOME_BOOLEAN_VALUE\"}\n\nheaders = {\"x-redlock-auth\": \"REPLACE_KEY_VALUE\"}\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/resource/scan_info?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&account.group=SOME_STRING_VALUE&policy.complianceStandard=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE&limit=SOME_STRING_VALUE&scan.status=SOME_STRING_VALUE&pageToken=SOME_STRING_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
+            "source": "curl --request GET \\\n  --url 'https://api.prismacloud.io/resource/scan_info?timeType=SOME_STRING_VALUE&timeAmount=SOME_STRING_VALUE&timeUnit=SOME_STRING_VALUE&cloud.account=SOME_STRING_VALUE&cloud.type=SOME_STRING_VALUE&cloud.region=SOME_STRING_VALUE&account.group=SOME_STRING_VALUE&policy.complianceStandard=SOME_STRING_VALUE&policy.complianceRequirement=SOME_STRING_VALUE&policy.complianceSection=SOME_STRING_VALUE&limit=SOME_STRING_VALUE&scan.status=SOME_STRING_VALUE&pageToken=SOME_STRING_VALUE&asset.severity=SOME_STRING_VALUE&vulnerability.severity=SOME_STRING_VALUE&includeEventForeignEntities=SOME_BOOLEAN_VALUE' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE'"
           }
         ]
       },
@@ -1506,11 +1572,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/scan_info\"\n\npayload = {\n    \"detailed\": True,\n    \"fields\": [\"string\"],\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"limit\": 0,\n    \"offset\": 0,\n    \"pageToken\": \"string\",\n    \"sortBy\": [\"string\"],\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/resource/scan_info\"\n\npayload = {\n    \"detailed\": True,\n    \"fields\": [\"string\"],\n    \"filters\": [\n        {\n            \"name\": \"string\",\n            \"operator\": \"=\",\n            \"value\": \"string\"\n        }\n    ],\n    \"groupBy\": [\"string\"],\n    \"limit\": 0,\n    \"offset\": 0,\n    \"pageToken\": \"string\",\n    \"sortBy\": [\"string\"],\n    \"timeRange\": {\n        \"type\": \"relative\",\n        \"relativeTimeType\": \"BACKWARD\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource/scan_info \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url https://api.prismacloud.io/resource/scan_info \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"detailed\":true,\"fields\":[\"string\"],\"filters\":[{\"name\":\"string\",\"operator\":\"=\",\"value\":\"string\"}],\"groupBy\":[\"string\"],\"limit\":0,\"offset\":0,\"pageToken\":\"string\",\"sortBy\":[\"string\"],\"timeRange\":{\"type\":\"relative\",\"relativeTimeType\":\"BACKWARD\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }
@@ -1554,10 +1620,10 @@
             {
               "lang": "Shell + Curl",
               "source": "curl --request POST \\\n  --url https://app.prismacloud.io/uai/v1/asset \\\n  --header 'content-type: application/json' \\\n  --data '{\"assetId\":\"[rrn:xxx:xx:xx-xx-x:xxx:xxx:x-xxxx or unified-asset-id]\",\"type\":\"EXTERNAL_FINDING\",\"findingType\":[\"HOST_VULNERABILITY_CVE\"],\"riskFactors\":[\"CRITICAL_SEVERITY\"],\"timelineItemId\":\"string\"}'"
-            }
-          ]
-        }
-      }    
+          }
+        ]
+      }
+    }
   },
   "servers": [{ "url": "https://api.prismacloud.io" }],
   "tags": [
