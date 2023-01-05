@@ -124,7 +124,7 @@
   },
   "info": {
     "contact": {},
-    "description": "Mange a list of trusted IP addresses with respect to alerts and a list of trusted login IP addresses.\n",
+    "description": "Manage a list of trusted IP addresses with respect to alerts and a list of trusted login IP addresses.\n",
     "title": "Prisma Cloud IP Allow List API Overview",
     "version": "Latest"
   },
