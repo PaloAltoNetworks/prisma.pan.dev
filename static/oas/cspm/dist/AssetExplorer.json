@@ -586,7 +586,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/UnifiedAsset"
+            "$ref": "#/components/schemas/AssetWrapper"
           },
           "errors": {
             "required": [
@@ -621,7 +621,17 @@
             },
             "description": "Error Object."
           }
-        }
+        },
+        "description": "Asset object"
+      },
+      "AssetWrapper": {
+        "type": "object",
+        "properties": {
+          "asset": {
+            "$ref": "#/components/schemas/UnifiedAsset"
+          }
+        },
+        "description": "Asset Domain Service Object type."
       },
       "ExternalFinding": {
         "type": "object",
