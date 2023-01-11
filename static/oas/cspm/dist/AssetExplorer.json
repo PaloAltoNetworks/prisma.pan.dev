@@ -486,7 +486,7 @@
             "description": "Asset Query Type. The enum values are **case-insensitive.**",
             "enum": [
               "EXTERNAL_FINDING",
-              "RESOURCE",
+              "ASSET",
               "ALERTS",
               "RAW_CONFIG",
               "NETWORK",
@@ -495,7 +495,7 @@
               "ASSET_DATA_INDICATORS",
               "RELATIONSHIPS"
             ]
-        },
+          },
           "findingType": {
             "type": "array",
             "description": "External Finding Type. Applies to **EXTERNAL_FINDING** Asset query type only. The enum values are **case-insensitive.**",
@@ -539,7 +539,15 @@
                 "CONTAINER_IS_RUNNING_AS_ROOT",
                 "NO_MANDATORY_SECURITY_PROFILE_APPLIED",
                 "RUNNING_AS_PRIVILEGED_CONTAINER",
-                "PACKAGE_IN_USE"
+                "PACKAGE_IN_USE",
+                "DOS_LOW",
+                "DOS_HIGH",
+                "EXPLOIT_EXISTS_IN_THE_WILD",
+                "EXPLOIT_EXISTS_POC",
+                "SENSITIVE_INFORMATION",
+                "ROOT_MOUNT",
+                "RUNTIME_SOCKET",
+                "HOST_ACCESS"
               ]
             }
           },
@@ -718,6 +726,14 @@
                 "NO_MANDATORY_SECURITY_PROFILE_APPLIED",
                 "RUNNING_AS_PRIVILEGED_CONTAINER",
                 "PACKAGE_IN_USE",
+                "DOS_LOW",
+                "DOS_HIGH",
+                "EXPLOIT_EXISTS_IN_THE_WILD",
+                "EXPLOIT_EXISTS_POC",
+                "SENSITIVE_INFORMATION",
+                "ROOT_MOUNT",
+                "RUNTIME_SOCKET",
+                "HOST_ACCESS",
                 "critical_severity",
                 "high_severity",
                 "medium_severity",
@@ -733,7 +749,15 @@
                 "container_is_running_as_root",
                 "no_mandatory_security_profile_applied",
                 "running_as_privileged_container",
-                "package_in_use"
+                "package_in_use",
+                "dos_low",
+                "dos_high",
+                "exploit_exists_in_the_wild",
+                "exploit_exists_poc",
+                "sensitive_information",
+                "root_mount",
+                "runtime_socket",
+                "host_access"
               ]
             }
           },
