@@ -2771,7 +2771,7 @@
     },
     "/alert/csv": {
       "post": {
-        "description": "Submits a job to generate an alerts list that matches the constraints in the body parameters and is downloadable as a CSV file. Returns the job ID and job submission status.  \r\n\r\nFilter model fields specific to pagination (**sortBy**, **limit**, and **pageToken**) do not apply to this request, \neven though the body parameters include them.\n\nThe **fields** body parameter allows you to request specific fields from the alert payload. These \nfields are separate from the filters you specify. The following are valid **fields** items.\n\n* alert.id\n* alert.status\n* alert.time\n* cloud.account\n* cloud.accountId\n* cloud.region\n* resource.id\n* resource.name\n* policy.name\n* policy.type\n* policy.severity\n\nThe **filters*8 body parameter enables you to narrow your request for alerts. See [List Alert Filters](/api/cloud/cspm/alerts#operation/get-alert-filter-and-options) \nfor an API request to list all the valid filters.\n",
+        "description": "Submits a job to generate an alerts list that matches the constraints in the body parameters and is downloadable as a CSV file. Returns the job ID and job submission status.  \r\n\r\nFilter model fields specific to pagination (**sortBy**, **limit**, and **pageToken**) do not apply to this request, \neven though the body parameters include them.\n\nThe **fields** request body parameter is ignored!\n\nThe **filters** body parameter enables you to narrow your request for alerts. See [List Alert Filters](/api/cloud/cspm/alerts#operation/get-alert-filter-and-options) \nfor an API request to list all the valid filters.\n",
         "operationId": "submit-an-alert-csv-download-job",
         "parameters": [
           {
