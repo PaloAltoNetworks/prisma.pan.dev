@@ -19698,7 +19698,7 @@
   },
   "info": {
     "title": "Statuses Overview",
-    "version": "22.12.426",
+    "version": "22.12.427",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/statuses/statuses.md"
     }
