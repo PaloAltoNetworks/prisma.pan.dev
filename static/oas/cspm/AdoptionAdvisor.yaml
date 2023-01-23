@@ -324,6 +324,28 @@ paths:
       summary: Delete Adoption Advisor Report
       tags:
       - Adoption Advisor
+  /adoptionadvisor/report/{reportId}/download:
+    get:
+      description: Download Latest Adoption Advisor Report
+      operationId: adoption-advisor-download-latest-report
+      parameters:
+      - in: path
+        name: reportId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: bad_request
+        '500':
+          description: internal_error
+      security:
+      - x-redlock-auth: []
+      summary: Download Latest Adoption Advisor Report
+      tags:
+      - Adoption Advisor
   /adoptionadvisor/report/{reportId}/{createdOn}/download:
     get:
       description: Download Adoption Advisor Report
