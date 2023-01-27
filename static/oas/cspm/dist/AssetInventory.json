@@ -66,6 +66,11 @@
             "description": "Name of cloud type",
             "type": "string"
           },
+          "criticalSeverityFailedResources": {
+            "description": "The number of resources whose highest policy failure is **critical**",
+            "format": "int64",
+            "type": "integer"
+          },
           "criticalVulnerabilityFailedResources": {
             "description": "The number of resources that failed with critical vulnerabilities",
             "format": "int64",
@@ -83,6 +88,11 @@
           },
           "highVulnerabilityFailedResources": {
             "description": "The number of resources that failed with high vulnerabilities",
+            "format": "int64",
+            "type": "integer"
+          },
+          "informationalSeverityFailedResources": {
+            "description": "The number of resources whose highest policy failure is **informational**",
             "format": "int64",
             "type": "integer"
           },
@@ -173,6 +183,11 @@
       "AssetInventorySummary": {
         "description": "Model for Asset Inventory Summary",
         "properties": {
+          "criticalSeverityFailedResources": {
+            "description": "The number of resources that failed critical severity policies",
+            "format": "int64",
+            "type": "integer"
+          },
           "criticalVulnerabilityFailedResources": {
             "description": "The number of resources that failed with critical vulnerabilities",
             "format": "int64",
@@ -193,8 +208,23 @@
             "format": "int64",
             "type": "integer"
           },
+          "informationalSeverityFailedResources": {
+            "description": "The number of resources that failed informational severity policies",
+            "format": "int64",
+            "type": "integer"
+          },
+          "lowSeverityFailedResources": {
+            "description": "The number of resources that failed low severity policies",
+            "format": "int64",
+            "type": "integer"
+          },
           "lowVulnerabilityFailedResources": {
             "description": "The number of resources that failed with low vulnerabilities",
+            "format": "int64",
+            "type": "integer"
+          },
+          "mediumSeverityFailedResources": {
+            "description": "The number of resources that failed medium severity policies",
             "format": "int64",
             "type": "integer"
           },
