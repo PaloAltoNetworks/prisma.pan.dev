@@ -7,15 +7,16 @@
   "tags": [
     {
       "name": "Command Center",
-      "description": "Test Command Center Vulnerability Swim Lane APIs"
+      "description": "Command Center Vulnerability Swim Lane APIs"
     }
   ],
   "paths": {
     "/commandcenter/v1/top-vulnerabilities": {
       "post": {
-        "summary": "Get Vulnerable Assets",
-        "description": "Gets the data for the vulnerable images or host based on the type for the requested time, accounts and account groups",
-        "operationId": "changeme",
+        "tags": ["Command Center Vulnerability Swim Lane APIs"],
+        "summary": "List Top Vulnerabilities",
+        "description": "Gets the data for the vulnerable images and hosts based on the type for the requested time, accounts and account groups",
+        "operationId": "command-center-list-top-vulnerabilities",
         "parameters": [
           {
             "name": "limit",
