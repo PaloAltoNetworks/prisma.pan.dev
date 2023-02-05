@@ -12,7 +12,7 @@ paths:
       tags:
         - Command Center Vulnerability Swim Lane APIs
       summary: List Top Vulnerabilities
-      description: Gets the data for the vulnerable images and hosts based on the type for the requested time, accounts and account groups
+      description: Gets the data for the top 5 hosts and top 5 images with highest number of vulnerabilities, based on the type for the request time, accounts and account groups.
       operationId: command-center-list-top-vulnerabilities
       parameters:
         - name: limit
