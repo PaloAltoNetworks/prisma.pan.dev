@@ -21,6 +21,13 @@ components:
             type: object
       description: Cloud Account
       required: true
+    get-cloud-account-statusBody:
+      content:
+        application/json:
+          schema:
+            additionalProperties:
+              type: object
+            type: object
     get-list-of-children-under-parent-awsBody:
       content:
         application/json:
@@ -328,6 +335,7 @@ components:
           - GCP
           - ALIBABA_CLOUD
           - OCI
+          - IBM
           readOnly: true
           type: string
         deploymentType:
@@ -348,10 +356,20 @@ components:
           - ALIBABA_CLOUD
           - ALIBABA_CLOUD_GOVERNMENT
           - ALIBABA_CLOUD_CHINA
+          - ALIBABA_CLOUD_FINANCE
+          - IBM
+          - IBM_GOVERNMENT
+          - IBM_CHINA
           type: string
         enabled:
           description: Enabled
           type: boolean
+        features:
+          description: Features
+          items:
+            $ref: '#/components/schemas/FeatureItem'
+          type: array
+          uniqueItems: true
         groupIds:
           description: Group Ids
           items:
@@ -369,6 +387,8 @@ components:
           type: integer
         name:
           description: Name
+          type: string
+        parentAccountId:
           type: string
         protectionMode:
           description: Protection Mode
@@ -438,6 +458,7 @@ components:
           - GCP
           - ALIBABA_CLOUD
           - OCI
+          - IBM
           readOnly: true
           type: string
         deploymentType:
@@ -458,6 +479,10 @@ components:
           - ALIBABA_CLOUD
           - ALIBABA_CLOUD_GOVERNMENT
           - ALIBABA_CLOUD_CHINA
+          - ALIBABA_CLOUD_FINANCE
+          - IBM
+          - IBM_GOVERNMENT
+          - IBM_CHINA
           type: string
         enabled:
           description: Enabled
@@ -469,6 +494,12 @@ components:
           description: External ID
           readOnly: true
           type: string
+        features:
+          description: Features
+          items:
+            $ref: '#/components/schemas/FeatureItem'
+          type: array
+          uniqueItems: true
         groupIds:
           description: Group Ids
           items:
@@ -486,6 +517,8 @@ components:
           type: integer
         name:
           description: Name
+          type: string
+        parentAccountId:
           type: string
         protectionMode:
           description: Protection Mode
@@ -559,6 +592,7 @@ components:
           - GCP
           - ALIBABA_CLOUD
           - OCI
+          - IBM
           readOnly: true
           type: string
         defaultAccountGroupId:
@@ -582,6 +616,10 @@ components:
           - ALIBABA_CLOUD
           - ALIBABA_CLOUD_GOVERNMENT
           - ALIBABA_CLOUD_CHINA
+          - ALIBABA_CLOUD_FINANCE
+          - IBM
+          - IBM_GOVERNMENT
+          - IBM_CHINA
           type: string
         enabled:
           description: Enabled
@@ -593,6 +631,12 @@ components:
           description: External ID
           readOnly: true
           type: string
+        features:
+          description: Features
+          items:
+            $ref: '#/components/schemas/FeatureItem'
+          type: array
+          uniqueItems: true
         groupIds:
           description: Group Ids
           items:
@@ -624,6 +668,8 @@ components:
           type: boolean
         name:
           description: Name
+          type: string
+        parentAccountId:
           type: string
         protectionMode:
           description: Protection Mode
@@ -756,7 +802,6 @@ components:
           type: array
         accountId:
           description: Account ID
-          readOnly: true
           type: string
         accountType:
           description: Cloud Account Type
@@ -764,10 +809,8 @@ components:
           - ACCOUNT
           - MASTER_SERVICE_ACCOUNT
           - COMPARTMENT
-          - MANAGEMENT_GROUP
           - ORGANIZATION
           - TENANT
-          - WORKSPACE_DOMAIN
           readOnly: true
           type: string
         addedOn:
@@ -779,11 +822,6 @@ components:
           description: Associated Account Groups Count with this cloud account
           format: int32
           type: integer
-        clientId:
-          description: Application (Client) ID
-          type: string
-        cloudAccount:
-          $ref: '#/components/schemas/GenericCloudAccountModel'
         cloudAccountOwner:
           description: Cloud account owner
           type: string
@@ -792,10 +830,6 @@ components:
           format: int32
           readOnly: true
           type: integer
-        cloudAccountStatus:
-          description: Internal use only
-          readOnly: true
-          type: object
         cloudType:
           description: Cloud Type
           enum:
@@ -805,16 +839,9 @@ components:
           - GCP
           - ALIBABA_CLOUD
           - OCI
+          - IBM
           readOnly: true
           type: string
-        cspAccountId:
-          description: Internal use only
-          readOnly: true
-          type: string
-        deleted:
-          description: Internal use only
-          readOnly: true
-          type: boolean
         deploymentType:
           description: Deployment Type
           enum:
@@ -833,31 +860,26 @@ components:
           - ALIBABA_CLOUD
           - ALIBABA_CLOUD_GOVERNMENT
           - ALIBABA_CLOUD_CHINA
+          - ALIBABA_CLOUD_FINANCE
+          - IBM
+          - IBM_GOVERNMENT
+          - IBM_CHINA
           type: string
         enabled:
           description: Enabled
           type: boolean
-        environmentType:
-          enum:
-          - AZURE
-          - AZURE_GOVERNMENT
-          - AZURE_CHINA
-          type: string
+        features:
+          description: Features
+          items:
+            $ref: '#/components/schemas/FeatureItem'
+          type: array
+          uniqueItems: true
         groupIds:
-          description: Group IDs
+          description: Group Ids
           items:
             type: string
           readOnly: true
           type: array
-        id:
-          description: Internal use only
-          format: int32
-          readOnly: true
-          type: integer
-        key:
-          description: Application client secret
-          readOnly: true
-          type: string
         lastModifiedBy:
           description: Last Modified By
           readOnly: true
@@ -867,18 +889,11 @@ components:
           format: int64
           readOnly: true
           type: integer
-        monitorFlowLogs:
-          description: Monitor flow logs
-          type: boolean
         name:
           description: Name
-          readOnly: true
           type: string
-        parentId:
-          description: Internal use only
-          format: int32
-          readOnly: true
-          type: integer
+        parentAccountId:
+          type: string
         protectionMode:
           description: Protection Mode
           enum:
@@ -886,22 +901,11 @@ components:
           - MONITOR_AND_PROTECT
           readOnly: true
           type: string
-        servicePrincipalId:
-          description: Enterprise application object ID
-          readOnly: true
-          type: string
         storageScanEnabled:
           description: Storage Scan Enabled
           type: boolean
         storageUUID:
           description: Storage UUID
-          type: string
-        subscriptionId:
-          description: Subscription ID
-          readOnly: true
-          type: string
-        tenantId:
-          description: Directory (Tenant) ID
           type: string
       type: object
     AzureTenantModel:
@@ -914,7 +918,6 @@ components:
           type: array
         accountId:
           description: Account ID
-          readOnly: true
           type: string
         accountType:
           description: Cloud Account Type
@@ -922,10 +925,8 @@ components:
           - ACCOUNT
           - MASTER_SERVICE_ACCOUNT
           - COMPARTMENT
-          - MANAGEMENT_GROUP
           - ORGANIZATION
           - TENANT
-          - WORKSPACE_DOMAIN
           readOnly: true
           type: string
         addedOn:
@@ -937,11 +938,6 @@ components:
           description: Associated Account Groups Count with this cloud account
           format: int32
           type: integer
-        clientId:
-          description: Application (Client) ID
-          type: string
-        cloudAccount:
-          $ref: '#/components/schemas/GenericCloudAccountModel'
         cloudAccountOwner:
           description: Cloud account owner
           type: string
@@ -950,10 +946,6 @@ components:
           format: int32
           readOnly: true
           type: integer
-        cloudAccountStatus:
-          description: Internal use only
-          readOnly: true
-          type: object
         cloudType:
           description: Cloud Type
           enum:
@@ -963,19 +955,9 @@ components:
           - GCP
           - ALIBABA_CLOUD
           - OCI
+          - IBM
           readOnly: true
           type: string
-        cspAccountId:
-          description: Internal use only
-          readOnly: true
-          type: string
-        defaultAccountGroupId:
-          description: Default account group associated with tenant
-          type: string
-        deleted:
-          description: Internal use only
-          readOnly: true
-          type: boolean
         deploymentType:
           description: Deployment Type
           enum:
@@ -994,36 +976,26 @@ components:
           - ALIBABA_CLOUD
           - ALIBABA_CLOUD_GOVERNMENT
           - ALIBABA_CLOUD_CHINA
+          - ALIBABA_CLOUD_FINANCE
+          - IBM
+          - IBM_GOVERNMENT
+          - IBM_CHINA
           type: string
         enabled:
           description: Enabled
           type: boolean
-        environmentType:
-          enum:
-          - AZURE
-          - AZURE_GOVERNMENT
-          - AZURE_CHINA
-          type: string
+        features:
+          description: Features
+          items:
+            $ref: '#/components/schemas/FeatureItem'
+          type: array
+          uniqueItems: true
         groupIds:
-          description: Group IDs
+          description: Group Ids
           items:
             type: string
           readOnly: true
           type: array
-        hierarchySelections:
-          description: List of selected resource hierarchy selections
-          items:
-            $ref: '#/components/schemas/HierarchySelectionModel'
-          type: array
-        id:
-          description: Internal use only
-          format: int32
-          readOnly: true
-          type: integer
-        key:
-          description: Application client secret
-          readOnly: true
-          type: string
         lastModifiedBy:
           description: Last Modified By
           readOnly: true
@@ -1033,18 +1005,11 @@ components:
           format: int64
           readOnly: true
           type: integer
-        monitorFlowLogs:
-          description: Monitor flow logs
-          type: boolean
         name:
           description: Name
-          readOnly: true
           type: string
-        parentId:
-          description: Internal use only
-          format: int32
-          readOnly: true
-          type: integer
+        parentAccountId:
+          type: string
         protectionMode:
           description: Protection Mode
           enum:
@@ -1052,25 +1017,11 @@ components:
           - MONITOR_AND_PROTECT
           readOnly: true
           type: string
-        rootSyncEnabled:
-          description: true = Cloud account sync of tenant root group is enabled
-          type: boolean
-        servicePrincipalId:
-          description: Enterprise application object ID
-          readOnly: true
-          type: string
         storageScanEnabled:
           description: Storage Scan Enabled
           type: boolean
         storageUUID:
           description: Storage UUID
-          type: string
-        subscriptionId:
-          description: Subscription ID
-          readOnly: true
-          type: string
-        tenantId:
-          description: Directory (Tenant) ID
           type: string
       type: object
     CloudAccountConfigStatusView:
@@ -1105,6 +1056,7 @@ components:
           - GCP
           - ALIBABA_CLOUD
           - OCI
+          - IBM
           type: string
         id:
           description: ID of Account/ Project/ Master Service Account/ Organization
@@ -1172,6 +1124,7 @@ components:
           - GCP
           - ALIBABA_CLOUD
           - OCI
+          - IBM
           readOnly: true
           type: string
         deploymentType:
@@ -1192,10 +1145,20 @@ components:
           - ALIBABA_CLOUD
           - ALIBABA_CLOUD_GOVERNMENT
           - ALIBABA_CLOUD_CHINA
+          - ALIBABA_CLOUD_FINANCE
+          - IBM
+          - IBM_GOVERNMENT
+          - IBM_CHINA
           type: string
         enabled:
           description: Enabled
           type: boolean
+        features:
+          description: Features
+          items:
+            $ref: '#/components/schemas/FeatureItem'
+          type: array
+          uniqueItems: true
         groupIds:
           description: Group Ids
           items:
@@ -1213,6 +1176,8 @@ components:
           type: integer
         name:
           description: Name
+          type: string
+        parentAccountId:
           type: string
         protectionMode:
           description: Protection Mode
@@ -1305,6 +1270,7 @@ components:
           - GCP
           - ALIBABA_CLOUD
           - OCI
+          - IBM
           readOnly: true
           type: string
         deploymentType:
@@ -1325,10 +1291,20 @@ components:
           - ALIBABA_CLOUD
           - ALIBABA_CLOUD_GOVERNMENT
           - ALIBABA_CLOUD_CHINA
+          - ALIBABA_CLOUD_FINANCE
+          - IBM
+          - IBM_GOVERNMENT
+          - IBM_CHINA
           type: string
         enabled:
           description: Enabled
           type: boolean
+        features:
+          description: Features
+          items:
+            $ref: '#/components/schemas/FeatureItem'
+          type: array
+          uniqueItems: true
         groupIds:
           description: Group Ids
           items:
@@ -1358,6 +1334,8 @@ components:
         numberOfChildAccounts:
           format: int32
           type: integer
+        parentAccountId:
+          type: string
         protectionMode:
           description: Protection Mode
           enum:
@@ -1388,16 +1366,25 @@ components:
           description: Exception name
           type: string
       type: object
+    FeatureItem:
+      description: Model for Feature
+      properties:
+        displayName:
+          description: displayName
+          type: string
+        mode:
+          description: mode
+          type: string
+        name:
+          description: name
+          type: string
+        state:
+          description: state
+          type: string
+      type: object
     GcpCloudOrgModel:
       description: Model for GCP Cloud Account
       properties:
-        accountGroupCreationMode:
-          description: Cloud Account group creation mode
-          enum:
-          - MANUAL
-          - AUTO
-          - RECURSIVE
-          type: string
         accountGroupInfos:
           description: Account group details of groups associated with this account
           items:
@@ -1425,10 +1412,6 @@ components:
           description: Associated Account Groups Count with this cloud account
           format: int32
           type: integer
-        autoAccountGroupCreationModeOn:
-          type: boolean
-        cloudAccount:
-          $ref: '#/components/schemas/GenericCloudAccountModel'
         cloudAccountOwner:
           description: Cloud account owner
           type: string
@@ -1437,10 +1420,6 @@ components:
           format: int32
           readOnly: true
           type: integer
-        cloudAccountStatus:
-          description: Internal use only
-          readOnly: true
-          type: object
         cloudType:
           description: Cloud Type
           enum:
@@ -1450,19 +1429,8 @@ components:
           - GCP
           - ALIBABA_CLOUD
           - OCI
+          - IBM
           readOnly: true
-          type: string
-        compressionEnabled:
-          description: Compression Enabled
-          type: boolean
-        credentials:
-          description: Credentials
-          type: object
-        dataflowEnabledProject:
-          description: Dataflow enabled project ID
-          type: string
-        defaultAccountGroupId:
-          description: Default Account Group
           type: string
         deploymentType:
           description: Deployment Type
@@ -1482,22 +1450,25 @@ components:
           - ALIBABA_CLOUD
           - ALIBABA_CLOUD_GOVERNMENT
           - ALIBABA_CLOUD_CHINA
+          - ALIBABA_CLOUD_FINANCE
+          - IBM
+          - IBM_GOVERNMENT
+          - IBM_CHINA
           type: string
         enabled:
           description: Enabled
           type: boolean
-        flowLogStorageBucket:
-          description: Flow Log Storage Bucket
-          type: string
+        features:
+          description: Features
+          items:
+            $ref: '#/components/schemas/FeatureItem'
+          type: array
+          uniqueItems: true
         groupIds:
           description: Group Ids
           items:
             type: string
           readOnly: true
-          type: array
-        hierarchySelection:
-          items:
-            $ref: '#/components/schemas/HierarchySelectionModel'
           type: array
         lastModifiedBy:
           description: Last Modified By
@@ -1511,11 +1482,7 @@ components:
         name:
           description: Name
           type: string
-        organizationName:
-          description: Organization Display Name in Cloud
-          type: string
-        projectId:
-          readOnly: true
+        parentAccountId:
           type: string
         protectionMode:
           description: Protection Mode
@@ -1530,22 +1497,10 @@ components:
         storageUUID:
           description: Storage UUID
           type: string
-        transitionMode:
-          enum:
-          - NO_TRANSITION
-          - MANUAL_TO_AUTO
-          type: string
       type: object
     GcpCloudProjectModel:
       description: Model for GCP Cloud Account
       properties:
-        accountGroupCreationMode:
-          description: Cloud Account group creation mode
-          enum:
-          - MANUAL
-          - AUTO
-          - RECURSIVE
-          type: string
         accountGroupInfos:
           description: Account group details of groups associated with this account
           items:
@@ -1553,7 +1508,6 @@ components:
           type: array
         accountId:
           description: Account ID
-          readOnly: true
           type: string
         accountType:
           description: Cloud Account Type
@@ -1561,10 +1515,8 @@ components:
           - ACCOUNT
           - MASTER_SERVICE_ACCOUNT
           - COMPARTMENT
-          - MANAGEMENT_GROUP
           - ORGANIZATION
           - TENANT
-          - WORKSPACE_DOMAIN
           readOnly: true
           type: string
         addedOn:
@@ -1576,10 +1528,6 @@ components:
           description: Associated Account Groups Count with this cloud account
           format: int32
           type: integer
-        autoAccountGroupCreationModeOn:
-          type: boolean
-        cloudAccount:
-          $ref: '#/components/schemas/GenericCloudAccountModel'
         cloudAccountOwner:
           description: Cloud account owner
           type: string
@@ -1588,10 +1536,6 @@ components:
           format: int32
           readOnly: true
           type: integer
-        cloudAccountStatus:
-          description: Internal use only
-          readOnly: true
-          type: object
         cloudType:
           description: Cloud Type
           enum:
@@ -1601,16 +1545,8 @@ components:
           - GCP
           - ALIBABA_CLOUD
           - OCI
+          - IBM
           readOnly: true
-          type: string
-        compressionEnabled:
-          description: Compression Enabled
-          type: boolean
-        credentials:
-          description: Credentials
-          type: object
-        dataflowEnabledProject:
-          description: Dataflow enabled project ID
           type: string
         deploymentType:
           description: Deployment Type
@@ -1630,24 +1566,26 @@ components:
           - ALIBABA_CLOUD
           - ALIBABA_CLOUD_GOVERNMENT
           - ALIBABA_CLOUD_CHINA
+          - ALIBABA_CLOUD_FINANCE
+          - IBM
+          - IBM_GOVERNMENT
+          - IBM_CHINA
           type: string
         enabled:
           description: Enabled
           type: boolean
-        flowLogStorageBucket:
-          description: Flow Log Storage Bucket
-          type: string
+        features:
+          description: Features
+          items:
+            $ref: '#/components/schemas/FeatureItem'
+          type: array
+          uniqueItems: true
         groupIds:
           description: Group Ids
           items:
             type: string
           readOnly: true
           type: array
-        id:
-          description: Internal use only
-          format: int32
-          readOnly: true
-          type: integer
         lastModifiedBy:
           description: Last Modified By
           readOnly: true
@@ -1659,15 +1597,8 @@ components:
           type: integer
         name:
           description: Name
-          readOnly: true
           type: string
-        parentId:
-          description: Internal use only
-          format: int32
-          readOnly: true
-          type: integer
-        projectId:
-          readOnly: true
+        parentAccountId:
           type: string
         protectionMode:
           description: Protection Mode
@@ -1710,108 +1641,6 @@ components:
           - TENANT
           - ACCOUNT
           - OU
-          type: string
-      type: object
-    GenericCloudAccountModel:
-      description: Model for Generic Cloud Account
-      properties:
-        accountGroupInfos:
-          description: Account group details of groups associated with this account
-          items:
-            $ref: '#/components/schemas/AccountGroupInfo'
-          type: array
-        accountId:
-          description: Account ID
-          type: string
-        accountType:
-          description: Cloud Account Type
-          enum:
-          - ACCOUNT
-          - MASTER_SERVICE_ACCOUNT
-          - COMPARTMENT
-          - ORGANIZATION
-          - TENANT
-          readOnly: true
-          type: string
-        addedOn:
-          description: Added On
-          format: int64
-          readOnly: true
-          type: integer
-        associatedAccountGroupsCount:
-          description: Associated Account Groups Count with this cloud account
-          format: int32
-          type: integer
-        cloudAccountOwner:
-          description: Cloud account owner
-          type: string
-        cloudAccountOwnerCount:
-          description: Cloud account owner count
-          format: int32
-          readOnly: true
-          type: integer
-        cloudType:
-          description: Cloud Type
-          enum:
-          - ALL
-          - AWS
-          - AZURE
-          - GCP
-          - ALIBABA_CLOUD
-          - OCI
-          readOnly: true
-          type: string
-        deploymentType:
-          description: Deployment Type
-          enum:
-          - AZURE
-          - AZURE_GOVERNMENT
-          - AZURE_CHINA
-          - AWS
-          - AWS_GOVERNMENT
-          - AWS_CHINA
-          - OCI
-          - OCI_GOVERNMENT
-          - OCI_CHINA
-          - GCP
-          - GCP_GOVERNMENT
-          - GCP_CHINA
-          - ALIBABA_CLOUD
-          - ALIBABA_CLOUD_GOVERNMENT
-          - ALIBABA_CLOUD_CHINA
-          type: string
-        enabled:
-          description: Enabled
-          type: boolean
-        groupIds:
-          description: Group Ids
-          items:
-            type: string
-          readOnly: true
-          type: array
-        lastModifiedBy:
-          description: Last Modified By
-          readOnly: true
-          type: string
-        lastModifiedTs:
-          description: Time account was last updated
-          format: int64
-          readOnly: true
-          type: integer
-        name:
-          description: Name
-          type: string
-        protectionMode:
-          description: Protection Mode
-          enum:
-          - MONITOR
-          - MONITOR_AND_PROTECT
-          type: string
-        storageScanEnabled:
-          description: Storage Scan Enabled
-          type: boolean
-        storageUUID:
-          description: Storage UUID
           type: string
       type: object
     HierarchySelectionModel:
@@ -1909,6 +1738,7 @@ components:
           - GCP
           - ALIBABA_CLOUD
           - OCI
+          - IBM
           type: string
         defaultAccountGroupId:
           description: Default Account Group Id
@@ -1931,10 +1761,20 @@ components:
           - ALIBABA_CLOUD
           - ALIBABA_CLOUD_GOVERNMENT
           - ALIBABA_CLOUD_CHINA
+          - ALIBABA_CLOUD_FINANCE
+          - IBM
+          - IBM_GOVERNMENT
+          - IBM_CHINA
           type: string
         enabled:
           description: Enabled
           type: boolean
+        features:
+          description: Features
+          items:
+            $ref: '#/components/schemas/FeatureItem'
+          type: array
+          uniqueItems: true
         groupIds:
           description: Group Ids
           items:
@@ -1958,6 +1798,8 @@ components:
           type: integer
         name:
           description: Name
+          type: string
+        parentAccountId:
           type: string
         policyName:
           description: Policy Name
@@ -2383,26 +2225,29 @@ paths:
         \  | Type | Description | Default Value or Required\n-----------| ---- | -----------\
         \ | -------------\naccountId | string | AWS account ID | Required\nenabled\
         \ | boolean | Whether or not the account is enabled | Default is **false**\n\
-        groupIds | array of strings  | List of account group IDs for this account\
-        \  | Required\nname | string  | Name to be used for the account on the Prisma\
-        \ Cloud platform (must be unique)  | Required\nroleArn | string | Unique identifier\
-        \ for an AWS resource (ARN) | Required\nprotectiveMode | string | Valid values:\
-        \ **MONITOR**, **MONITOR_AND_PROTECT** | Default is **MONITOR**\n\n#### Request\
-        \ Body Example\n```json\n{\n  \"accountId\": \"\",\n  \"enabled\": true,\n\
-        \  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"protectionMode\"\
-        : \"MONITOR\"\n}\n```\n### Request Body to Add an AWS Org Account\nThe table\
-        \ below lists the request body parameters to add an AWS org account.\n\nParameter\
-        \  | Type | Description | Default Value or Required\n-----------| ---- | -----------\
-        \ | -------------\naccountId | string | AWS account ID | Required\nenabled\
-        \ | boolean | Whether or not the account is enabled | Default is **false**\n\
-        groupIds | array  | List of account group IDs for account  | Required\nname\
+        externalId | string | AWS account external ID | Required\ngroupIds | array\
+        \ of strings  | List of account group IDs for this account  | Required\nname\
         \ | string  | Name to be used for the account on the Prisma Cloud platform\
         \ (must be unique)  | Required\nroleArn | string | Unique identifier for an\
-        \ AWS resource (ARN) | Required\naccountType | string | **organization** |\
-        \ Required\nmemberRoleName | string | AWS Member account role name | Required\n\
+        \ AWS resource (ARN) | Required\nprotectionMode | string | Valid values: **MONITOR**,\
+        \ **MONITOR_AND_PROTECT** | Default is **MONITOR**\n\n#### Request Body Example\n\
+        ```json\n{\n  \"accountId\": \"\",\n  \"enabled\": true,\n  \"externalId\"\
+        : \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"\
+        protectionMode\": \"MONITOR\"\n}\n```\n### Request Body to Add an AWS Org\
+        \ Account\nThe table below lists the request body parameters to add an AWS\
+        \ org account.\n\nParameter  | Type | Description | Default Value or Required\n\
+        -----------| ---- | ----------- | -------------\naccountId | string | AWS\
+        \ account ID | Required\nenabled | boolean | Whether or not the account is\
+        \ enabled | Default is **false**\nexternalId | string | AWS account external\
+        \ ID | Required\ngroupIds | array  | List of account group IDs for account\
+        \  | Required\nname | string  | Name to be used for the account on the Prisma\
+        \ Cloud platform (must be unique)  | Required\nroleArn | string | Unique identifier\
+        \ for an AWS resource (ARN) | Required\naccountType | string | **organization**\
+        \ | Required\nmemberRoleName | string | AWS Member account role name | Required\n\
+        memberExternalId | string | AWS Member account role's external ID | Required\n\
         memberRoleStatus | boolean | **true**: The member role created using stack\
         \ set exists in all the member accounts. All the Org accounts will be added.<br/>**false**:\
-        \ Only the master account will be added. | Default is **false**\nprotectiveMode\
+        \ Only the master account will be added. | Default is **false**\nprotectionMode\
         \ | string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Default\
         \ is **MONITOR**\nhierarchySelection | array of objects | List of AWS Organization\
         \ Units (OU), AWS accounts, and AWS Organizations to onboard under this organization\
@@ -2418,21 +2263,21 @@ paths:
         \ exclude the specified resource and onboard the rest, **ALL** to onboard\
         \ all resources in the organization. |  Required if **hierarchySelection**\
         \ is specified\n\n#### Request Body Example\n```json\n{\n  \"accountId\":\
-        \ \"\",\n  \"enabled\": true,\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"\
-        roleArn\": \"\",\n  \"accountType\": \"organization\",\n  \"memberRoleName\"\
-        : \"\",\n  \"memberRoleStatus\": true,\n  \"protectionMode\": \"MONITOR\"\
-        ,\n  \"hierarchySelection\": \n  [{\n    \"resourceId\": \"\",\n    \"displayName\"\
-        : \"\",\n    \"nodeType\": \"OU\",\n    \"selectionType\": \"EXCLUDE\"\n \
-        \ }]  \n}\n```\n\n### Request Body to Add an Azure Subscription\nThe table\
-        \ below lists the request body parameters to add an Azure subscription.\n\n\
-        Parameter  | Type | Description | Default Value or Required\n-----------|\
-        \ ---- | ----------- | -------------\ncloudAccount.accountId | string | Azure\
-        \ account ID | Required\ncloudAccount.enabled | boolean  | Whether or not\
-        \ to enable the account | Default is **false**\ncloudAccount.groupIds | array\
-        \ of strings | List of account group IDs for this account  | Required\ncloudAccount.name\
-        \ | string | Name to be used for the account on the Prisma Cloud platform\
-        \ (must be unique)  | Required\ncloudAccount.accountType | string | Valid\
-        \ value: **account** | Default is **account**\ncloudAccount.protectionMode\
+        \ \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n  \"groupIds\": [],\n\
+        \  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"accountType\": \"organization\"\
+        ,\n  \"memberRoleName\": \"\",\n  \"memberExternalId\": \"\",\n  \"memberRoleStatus\"\
+        : true,\n  \"protectionMode\": \"MONITOR\",\n  \"hierarchySelection\": \n\
+        \  [{\n    \"resourceId\": \"\",\n    \"displayName\": \"\",\n    \"nodeType\"\
+        : \"OU\",\n    \"selectionType\": \"EXCLUDE\"\n  }]  \n}\n```\n\n### Request\
+        \ Body to Add an Azure Subscription\nThe table below lists the request body\
+        \ parameters to add an Azure subscription.\n\nParameter  | Type | Description\
+        \ | Default Value or Required\n-----------| ---- | ----------- | -------------\n\
+        cloudAccount.accountId | string | Azure account ID | Required\ncloudAccount.enabled\
+        \ | boolean  | Whether or not to enable the account | Default is **false**\n\
+        cloudAccount.groupIds | array of strings | List of account group IDs for this\
+        \ account  | Required\ncloudAccount.name | string | Name to be used for the\
+        \ account on the Prisma Cloud platform (must be unique)  | Required\ncloudAccount.accountType\
+        \ | string | Valid value: **account** | Default is **account**\ncloudAccount.protectionMode\
         \ | string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required\n\
         clientId | string | Application ID registered with Active Directory | Required\n\
         tenantId | string | Active Directory ID associated with Azure | Required\n\
@@ -2719,6 +2564,7 @@ paths:
           - gcp
           - alibaba_cloud
           - oci
+          - ibm
           type: string
       - description: Account ID
         in: path
@@ -2752,29 +2598,32 @@ paths:
         \ the request body parameters.\n\nParameter  | Type | Description | Required?\n\
         -----------| ---- | ----------- | -------------\naccountId | string | AWS\
         \ account ID | Required\nenabled | boolean | Whether or not the account is\
-        \ enabled | Required\ngroupIds | array of strings | List of account group\
-        \ IDs for this account  | Required\nname | string  | Name to be used for the\
-        \ account on the Prisma Cloud platform (must be unique)  | Required\nroleArn\
-        \ | string | Unique identifier for an AWS resource (ARN) | Required\nprotectiveMode\
-        \ |string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Required\n\
-        \n#### Request Body Example\n```json\n{\n  \"accountId\": \"\",\n  \"enabled\"\
-        : true,\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"\
+        \ enabled | Required\nexternalId | string | AWS account external ID | Required\n\
+        groupIds | array of strings | List of account group IDs for this account \
+        \ | Required\nname | string  | Name to be used for the account on the Prisma\
+        \ Cloud platform (must be unique)  | Required\nroleArn | string | Unique identifier\
+        \ for an AWS resource (ARN) | Required\nprotectionMode |string | Valid values:\
+        \ **MONITOR**, **MONITOR_AND_PROTECT** | Required\n\n#### Request Body Example\n\
+        ```json\n{\n  \"accountId\": \"\",\n  \"enabled\": true,\n  \"externalId\"\
+        : \"\",\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"\
         protectionMode\": \"MONITOR\"\n}\n```\n### Request Body to Update an AWS Org\
         \ Account\nThe table below lists the request body parameters.\n\nParameter\
         \  | Type | Description | Required?\n-----------| ---- | ----------- | -------------\n\
         accountId | string | AWS account ID | Required\nenabled | boolean | Whether\
-        \ or not the account is enabled | Required\ngroupIds | array of strings  |\
-        \ List of account group IDs for this account | Required\nname | string  |\
-        \ Name to be used for the account on the Prisma Cloud platform (must be unique)\
-        \ | Required\nroleArn | string | Unique identifier for an AWS resource (ARN)\
-        \ | Required\naccountType | string | **organization** | Required\nmemberRoleName\
-        \ | string | AWS Member account role name | Required\nmemberRoleStatus | boolean\
-        \ | **true**: The member role created using stack set exists in all the member\
-        \ accounts. All the Org accounts will be added.<br/>**false**: Only the master\
-        \ account will be added. | Required\nprotectiveMode | string | Valid values:\
-        \ **MONITOR**, **MONITOR_AND_PROTECT** | Required\nhierarchySelection | array\
-        \ of objects | List of AWS Organization Units (OU), AWS accounts, and AWS\
-        \ Organizations to onboard under this organization | Default is none\nhierarchySelection.resourceId\
+        \ or not the account is enabled | Required\nexternalId | string | AWS account\
+        \ external ID | Required\ngroupIds | array of strings  | List of account group\
+        \ IDs for this account | Required\nname | string  | Name to be used for the\
+        \ account on the Prisma Cloud platform (must be unique) | Required\nroleArn\
+        \ | string | Unique identifier for an AWS resource (ARN) | Required\naccountType\
+        \ | string | **organization** | Required\nmemberRoleName | string | AWS Member\
+        \ account role name | Required\nmemberExternalId | string | AWS Member account\
+        \ role's external ID | Required\nmemberRoleStatus | boolean | **true**: The\
+        \ member role created using stack set exists in all the member accounts. All\
+        \ the Org accounts will be added.<br/>**false**: Only the master account will\
+        \ be added. | Required\nprotectionMode | string | Valid values: **MONITOR**,\
+        \ **MONITOR_AND_PROTECT** | Required\nhierarchySelection | array of objects\
+        \ | List of AWS Organization Units (OU), AWS accounts, and AWS Organizations\
+        \ to onboard under this organization | Default is none\nhierarchySelection.resourceId\
         \ | string | Resource ID. Valid values are AWS OU ID, AWS account ID, or AWS\
         \ Organization ID.<br/>Note you must escape any double quotes in the resource\
         \ ID with a backslash. | Required if **hierarchySelection** is specified\n\
@@ -2786,30 +2635,31 @@ paths:
         \ onboard, **EXCLUDE** to exclude the specified resource and onboard the rest,\
         \ **ALL** to onboard all resources in the organization. |  Required if **hierarchySelection**\
         \ is specified\n\n\n#### Request Body Example\n```json\n{\n  \"accountId\"\
-        : \"\",\n  \"enabled\": true,\n  \"groupIds\": [],\n  \"name\": \"\",\n  \"\
-        roleArn\": \"\",\n  \"accountType\": \"organization\",\n  \"memberRoleName\"\
-        : \"\",\n  \"memberRoleStatus\": true,\n  \"protectionMode\": \"MONITOR\"\
-        ,\n  \"hierarchySelection\": \n  [{\n    \"resourceId\": \"\",\n    \"displayName\"\
-        : \"\",\n    \"nodeType\": \"OU\",\n    \"selectionType\": \"EXCLUDE\"\n \
-        \ }] \n}\n```\n\n### Request Body to Update an Azure Subscription\nThe table\
-        \ below lists the request body parameters to update an Azure subscription.\n\
-        \nParameter  | Type | Description | Default Value or Required\n-----------|\
-        \ ---- | ----------- | -------------\ncloudAccount.accountId | string | Azure\
-        \ account ID | Required\ncloudAccount.enabled | boolean  | Whether or not\
-        \ to enable the account | Default is **false**\ncloudAccount.groupIds | array\
-        \ of strings | List of account group IDs for this account  | Required\ncloudAccount.name\
-        \ | string | Name to be used for the account on the Prisma Cloud platform\
-        \ (must be unique)  | Required\ncloudAccount.accountType | string | Valid\
-        \ value: **account** | Default is **account**\ncloudAccount.protectionMode\
-        \ | string | Valid values: **MONITOR**, **MONITOR_AND_PROTECT** | Default\
-        \ is the existing value\nclientId | string | Application ID registered with\
-        \ Active Directory | Required\ntenantId | string | Active Directory ID associated\
-        \ with Azure | Required\nservicePrincipalId | string | Unique ID of the service\
-        \ principal object associated with the Prisma Cloud application | Required\n\
-        monitorFlowLogs | boolean | Automatically ingest flow logs | Required\nkey\
-        \ | string | Application ID key | Required\nenvironmentType | string | Valid\
-        \ values:<br/>**azure** (Commercial),<br/>**azure_gov** (Government),<br/>**azure_china**\
-        \ (China) | Required\n\n#### Request Body Example\n```json\n{\n  \"cloudAccount\"\
+        : \"\",\n  \"enabled\": true,\n  \"externalId\": \"\",\n  \"groupIds\": [],\n\
+        \  \"name\": \"\",\n  \"roleArn\": \"\",\n  \"accountType\": \"organization\"\
+        ,\n  \"memberRoleName\": \"\",\n  \"memberExternalId\": \"\",\n  \"memberRoleStatus\"\
+        : true,\n  \"protectionMode\": \"MONITOR\",\n  \"hierarchySelection\": \n\
+        \  [{\n    \"resourceId\": \"\",\n    \"displayName\": \"\",\n    \"nodeType\"\
+        : \"OU\",\n    \"selectionType\": \"EXCLUDE\"\n  }] \n}\n```\n\n### Request\
+        \ Body to Update an Azure Subscription\nThe table below lists the request\
+        \ body parameters to update an Azure subscription.\n\nParameter  | Type |\
+        \ Description | Default Value or Required\n-----------| ---- | -----------\
+        \ | -------------\ncloudAccount.accountId | string | Azure account ID | Required\n\
+        cloudAccount.enabled | boolean  | Whether or not to enable the account | Default\
+        \ is **false**\ncloudAccount.groupIds | array of strings | List of account\
+        \ group IDs for this account  | Required\ncloudAccount.name | string | Name\
+        \ to be used for the account on the Prisma Cloud platform (must be unique)\
+        \  | Required\ncloudAccount.accountType | string | Valid value: **account**\
+        \ | Default is **account**\ncloudAccount.protectionMode | string | Valid values:\
+        \ **MONITOR**, **MONITOR_AND_PROTECT** | Default is the existing value\nclientId\
+        \ | string | Application ID registered with Active Directory | Required\n\
+        tenantId | string | Active Directory ID associated with Azure | Required\n\
+        servicePrincipalId | string | Unique ID of the service principal object associated\
+        \ with the Prisma Cloud application | Required\nmonitorFlowLogs | boolean\
+        \ | Automatically ingest flow logs | Required\nkey | string | Application\
+        \ ID key | Required\nenvironmentType | string | Valid values:<br/>**azure**\
+        \ (Commercial),<br/>**azure_gov** (Government),<br/>**azure_china** (China)\
+        \ | Required\n\n#### Request Body Example\n```json\n{\n  \"cloudAccount\"\
         : {\n    \"accountId\": \"\",\n    \"enabled\": true,\n    \"groupIds\": [],\n\
         \    \"name\": \"\",\n    \"accountType\": \"account\",\n    \"protectionMode\"\
         : \"MONITOR\"\n  },\n  \"clientId\": \"\",\n  \"key\": \"\",\n  \"monitorFlowLogs\"\
@@ -3185,12 +3035,7 @@ paths:
           - oci
           type: string
       requestBody:
-        content:
-          application/json:
-            schema:
-              additionalProperties:
-                type: object
-              type: object
+        $ref: '#/components/requestBodies/get-cloud-account-statusBody'
       responses:
         '200':
           content:
@@ -3837,6 +3682,204 @@ paths:
       security:
       - x-redlock-auth: []
       summary: List Ancestors (AWS)
+      tags:
+      - Cloud Accounts
+  /cas/v1/aws_account:
+    post:
+      description: Onboard a new aws cloud account onto the Prisma Cloud platform.
+      operationId: add-aws-cloud-account
+      parameters:
+      - description: true = Skip account status checks to improve response time
+        in: query
+        name: skipStatusChecks
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        $ref: '#/components/requestBodies/add-cloud-accountBody'
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: duplicate_cloud_account_name / duplicate_cloud_account / invalid_account_id_format
+            / duplicate_cloud_account_needs_upgrade / cannot_select_zero_account_groups
+            / invalid_account_group_ids
+        '404':
+          description: invalid_account_type
+        '412':
+          description: external_id_empty_or_not_generated
+        '500':
+          description: internal_error
+      security:
+      - x-redlock-auth: []
+      summary: Add AWS Cloud Account
+      tags:
+      - Cloud Accounts
+  /cas/v1/aws_account/{id}:
+    put:
+      description: Update information related to aws cloud account.
+      operationId: update-aws-cloud-account
+      parameters:
+      - description: Account ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: true = Skip account status checks to improve response time
+        in: query
+        name: skipStatusChecks
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        $ref: '#/components/requestBodies/add-cloud-accountBody'
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: invalid_account_id_format / duplicate_cloud_account_name /
+            duplicate_cloud_account / cannot_select_zero_account_groups / invalid_account_group_ids
+            / external_id_empty_or_not_generated
+        '404':
+          description: invalid_account_type
+        '412':
+          description: external_id_empty_or_not_generated
+        '500':
+          description: not_found / internal_error
+      security:
+      - x-redlock-auth: []
+      summary: Update AWS Cloud Account
+      tags:
+      - Cloud Accounts
+  /cas/v1/cloud_account/status/aws:
+    post:
+      description: Lists status messages of the specified AWS cloud account.
+      operationId: get-aws-cloud-account-status
+      requestBody:
+        $ref: '#/components/requestBodies/get-cloud-account-statusBody'
+      responses:
+        '200':
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CloudAccountStatus'
+                type: array
+          description: successful operation
+        '400':
+          description: bad_request
+        '412':
+          description: external_id_empty_or_not_generated
+        '500':
+          description: internal_error
+      security:
+      - x-redlock-auth: []
+      summary: Get AWS Cloud Account Status
+      tags:
+      - Cloud Accounts
+  /cas/v1/aws_account/{parent_id}/children:
+    post:
+      description: For AWS only. Lists all the children of the given parent organizational
+        unit (OU).The listed children include both OU resources and account resources.
+      operationId: get-list-of-children-under-parent-aws-v2
+      parameters:
+      - description: Parent OU ID
+        in: path
+        name: parent_id
+        required: true
+        schema:
+          type: string
+      - description: The page token to request the next page of accounts. The response
+          from a previous request provides this token. If the token has characters
+          outside the ASCII character set, URL encode the token before using it to
+          make a request.
+        in: query
+        name: accountNextPageToken
+        required: false
+        schema:
+          type: string
+      - description: Total number of accounts to return. An  **accountFetchCount**
+          of 0 returns a nextPageToken but no accounts.
+        in: query
+        name: accountFetchCount
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - description: The page token to request next set of OUs. The response from
+          a previous request provides this token. If the token has characters outside
+          the ASCII character set, URL encode the token before using it to make a
+          request.
+        in: query
+        name: ouNextPageToken
+        required: false
+        schema:
+          type: string
+      - description: Total number of OUs to return. An **ouFetchCount** of 0 returns
+          a nextPageToken but no OUs.
+        in: query
+        name: ouFetchCount
+        required: false
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/get-list-of-children-under-parent-awsBody'
+      responses:
+        '200':
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/AwsListChildrenApiResponseModel'
+          description: success
+        '400':
+          description: permission_error / bad_request
+        '422':
+          description: external_id_empty_or_not_generated
+        '500':
+          description: internal_error
+      security:
+      - x-redlock-auth: []
+      summary: List Children of Parent (AWS) V2
+      tags:
+      - Cloud Accounts
+  /cas/v1/aws_account/{account_id}/ancestors:
+    post:
+      description: For AWS only. Lists the ancestors of the given member accounts
+        and organizational units (OUs) for the specified cloud account ID. A successful
+        response returns an array of projects and/or folders each of which is mapped
+        to an array of ancestor resource IDs.
+      operationId: get-ancestors-for-given-members-ous-v2
+      parameters:
+      - description: Account ID
+        in: path
+        name: account_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/get-list-of-children-under-parent-awsBody'
+      responses:
+        '200':
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AwsNodeModel'
+                type: array
+          description: success
+        '400':
+          description: bad_request / unauthorized_access
+        '404':
+          description: invalid_account_id_format
+        '412':
+          description: external_id_empty_or_not_generated
+        '500':
+          description: internal_error
+      security:
+      - x-redlock-auth: []
+      summary: List Ancestors (AWS) V2
       tags:
       - Cloud Accounts
 servers:
