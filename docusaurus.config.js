@@ -19,7 +19,7 @@ module.exports = {
     announcementBar: {
       id: "migrating",
       content:
-        "Coming Soon! The Prisma Cloud API documentation is getting a new home in March 2023",
+        "Coming Soon! The Prisma Cloud API documentation is getting a new home in March 2023.",
       backgroundColor: "#daf0f6",
     },
     prism: {
