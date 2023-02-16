@@ -18242,7 +18242,7 @@
   },
   "info": {
     "title": "Policies Overview",
-    "version": "22.06.213",
+    "version": "22.06.232",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/policies/policies.md"
     }
@@ -18254,37 +18254,6 @@
     }
   ],
   "paths": {
-    "/api/v22.06/policies/cloud-platforms": {
-      "get": {
-        "description": "CloudScanPolicy returns the cloud scan settings\n",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/shared.CloudScanPolicy"
-                }
-              }
-            },
-            "description": "CloudScanPolicy holds policies for cloud scan"
-          },
-          "default": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Policies",
-          "Supported API"
-        ],
-        "x-prisma-cloud-target-env": {
-          "permission": "policyCloud",
-          "saas": true,
-          "self-hosted": true
-        },
-        "operationId": "get-policies-cloud-platforms",
-        "summary": " Cloud Scan Policy"
-      }
-    },
     "/api/v22.06/policies/compliance/ci/images": {
       "get": {
         "description": {
@@ -19899,7 +19868,7 @@
           "self-hosted": true
         },
         "operationId": "get-policies-runtime-container",
-        "summary": "Add Runtime Container Policy"
+        "summary": "Get Runtime Container Policy"
       },
       "post": {
         "description": "SetContainerRuntimePolicyRule adds the given container runtime policy rule\n",

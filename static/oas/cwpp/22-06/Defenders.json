@@ -18242,7 +18242,7 @@
   },
   "info": {
     "title": "Defenders Overview",
-    "version": "22.06.213",
+    "version": "22.06.232",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/defenders/defenders.md"
     }
@@ -18337,7 +18337,7 @@
             }
           },
           {
-            "description": "Name of a specific Defender to retrieve.\n",
+            "description": "Hostname is a name of a specific Defender to retrieve.\n",
             "in": "query",
             "name": "hostname",
             "schema": {
@@ -18641,7 +18641,7 @@
             }
           },
           {
-            "description": "Name of a specific Defender to retrieve.\n",
+            "description": "Hostname is a name of a specific Defender to retrieve.\n",
             "in": "query",
             "name": "hostname",
             "schema": {
@@ -19292,7 +19292,7 @@
             }
           },
           {
-            "description": "Name of a specific Defender to retrieve.\n",
+            "description": "Hostname is a name of a specific Defender to retrieve.\n",
             "in": "query",
             "name": "hostname",
             "schema": {

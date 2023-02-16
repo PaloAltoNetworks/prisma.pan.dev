@@ -18242,7 +18242,7 @@
   },
   "info": {
     "title": "Settings Overview",
-    "version": "22.06.213",
+    "version": "22.06.232",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/settings/settings.md"
     }
