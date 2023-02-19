@@ -823,10 +823,8 @@
               "ACCOUNT",
               "MASTER_SERVICE_ACCOUNT",
               "COMPARTMENT",
-              "MANAGEMENT_GROUP",
               "ORGANIZATION",
-              "TENANT",
-              "WORKSPACE_DOMAIN"
+              "TENANT"
             ],
             "readOnly": true,
             "type": "string"

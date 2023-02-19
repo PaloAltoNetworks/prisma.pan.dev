@@ -271,7 +271,10 @@
           "400": {
             "description": "invalid_id / non_existing_resource_list_id / resource_list_assigned_to_user_role / resource_list_assigned_to_policy_scan_config"
           },
-          "404": { "description": "non_existing_resource_list_id" }
+          "404": { "description": "non_existing_resource_list_id" },
+          "409": {
+            "description": "conflict_deleting_last_compute_access_group_for_alert_rule"
+          }
         },
         "security": [{ "x-redlock-auth": [] }],
         "summary": "Delete Resource List",
