@@ -67,6 +67,11 @@
               }
             ]
           },
+          "appNames": {
+            "items": { "type": "string" },
+            "type": "array",
+            "uniqueItems": true
+          },
           "assetType": { "description": "Asset Type", "type": "string" },
           "cloudType": {
             "description": "Cloud type",
