@@ -365,8 +365,16 @@
             "type": "object"
           },
           "cloudType": {
-            "description": "Cloud type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "description": "Cloud Type",
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -482,7 +490,15 @@
           },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -613,7 +629,15 @@
           },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -852,7 +876,15 @@
           },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -962,7 +994,15 @@
           },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -1070,7 +1110,15 @@
         "properties": {
           "cloudType": {
             "description": "Cloud Type of Account/ Project/ Master Service Account/ Organization",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "IBM"
+            ],
             "type": "string"
           },
           "id": {
@@ -1142,7 +1190,15 @@
           },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -1284,7 +1340,15 @@
           },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -1443,7 +1507,15 @@
           },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -1553,7 +1625,15 @@
           },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -1750,7 +1830,16 @@
           },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
+            "readOnly": true,
             "type": "string"
           },
           "defaultAccountGroupId": {
