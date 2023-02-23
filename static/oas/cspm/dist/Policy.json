@@ -104,7 +104,15 @@
         "properties": {
           "cloudType": {
             "description": "Cloud type (Required for config policies). Not case-sensitive. Default is **ALL**.",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "IBM"
+            ],
             "type": "string"
           },
           "complianceMetadata": {
@@ -402,7 +410,15 @@
         "properties": {
           "cloudType": {
             "description": "Cloud type (Required for config policies). Not case-sensitive. Default is **ALL**.",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "IBM"
+            ],
             "type": "string"
           },
           "complianceMetadata": {
@@ -567,7 +583,15 @@
         "properties": {
           "cloudType": {
             "description": "Cloud type (Required for config policies). Not case-sensitive. Default is **ALL**.",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "IBM"
+            ],
             "type": "string"
           },
           "complianceMetadata": {

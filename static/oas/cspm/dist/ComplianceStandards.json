@@ -196,7 +196,15 @@
           "cloudType": {
             "description": "Cloud Type (determined based on policies assigned)",
             "items": {
-              "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+              "enum": [
+                "ALL",
+                "AWS",
+                "AZURE",
+                "GCP",
+                "ALIBABA_CLOUD",
+                "OCI",
+                "IBM"
+              ],
               "type": "string"
             },
             "readOnly": true,
