@@ -153,7 +153,15 @@
           "accountId": { "description": "Account ID", "type": "string" },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "type": "string"
           },
           "lastModifiedBy": {
