@@ -27,16 +27,6 @@
         "type": 301
       },
       {
-        "source": "/api/cloud/cwpp/22-06/",
-        "destination": "https://pan.dev/compute/api/22-06/",
-        "type": 301
-      },
-      {
-        "source": "/api/cloud/cwpp/22-01/",
-        "destination": "https://pan.dev/compute/api/22-01/",
-        "type": 301
-      },
-      {
         "source": "/api/cloud/cwpp/stable-endpoints",
         "destination": "https://pan.dev/prisma-cloud/api/cwpp/stable-endpoints/",
         "type": 301
