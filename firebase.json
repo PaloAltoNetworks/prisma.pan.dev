@@ -957,13 +957,43 @@
         "type": 301
       },
       {
+        "source": "/api/cloud/cwpp/22-01/how-to-eval-console",
+        "destination": "https://pan.dev/compute/api/22-01/prisma-cloud-compute-api/",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/curl-examples",
+        "destination": "https://pan.dev/compute/api/22-01/prisma-cloud-compute-api/",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/api-limits",
+        "destination": "https://pan.dev/compute/api/22-01/prisma-cloud-compute-api/",
+        "type": 301
+      },
+      {
         "source": "/api/cloud/cwpp/22-01/:api",
         "destination": "https://pan.dev/compute/api/22-01/:api",
         "type": 301
       },
       {
-        "source": "/api/cloud/cwpp/22-06d",
+        "source": "/api/cloud/cwpp/22-06",
         "destination": "https://pan.dev/compute/api/22-06",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/curl-examples",
+        "destination": "https://pan.dev/compute/api/22-06/prisma-cloud-compute-api/",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/api-limits",
+        "destination": "https://pan.dev/compute/api/22-06/prisma-cloud-compute-api/",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/how-to-eval-console",
+        "destination": "https://pan.dev/compute/api/22-06/prisma-cloud-compute-api/",
         "type": 301
       },
       {
