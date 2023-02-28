@@ -72,11 +72,6 @@
         "type": 301
       },
       {
-        "source": "/api/cloud/cwpp/22-01/api-limits",
-        "destination": "https://pan.dev/compute/api/22-01/api-limits",
-        "type": 301
-      },
-      {
         "source": "/api/cloud/cspm",
         "destination": "https://pan.dev/prisma-cloud/api/cspm",
         "type": 301
