@@ -10,6 +10,17 @@
           }
         }
       },
+      "GcpResourceControllerRequestModel": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GcpResourceControllerRequestModel"
+            }
+          }
+        },
+        "description": "The content of the credentials object is the Service Account Key for your Google Cloud service account",
+        "required": true
+      },
       "Resources": {
         "content": {
           "application/json": {
@@ -31,6 +42,16 @@
         "description": "Cloud Account",
         "required": true
       },
+      "get-cloud-account-statusBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "additionalProperties": { "type": "object" },
+              "type": "object"
+            }
+          }
+        }
+      },
       "get-list-of-children-under-parent-awsBody": {
         "content": {
           "application/json": {
@@ -41,18 +62,6 @@
           }
         },
         "description": "Cloud Account JSON",
-        "required": true
-      },
-      "get-list-of-children-under-parentBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "additionalProperties": { "type": "object" },
-              "type": "object"
-            }
-          }
-        },
-        "description": "Service Account Key (JSON) file content",
         "required": true
       }
     },
@@ -356,8 +365,16 @@
             "type": "object"
           },
           "cloudType": {
-            "description": "Cloud type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "description": "Cloud Type",
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -378,11 +395,18 @@
               "GCP_CHINA",
               "ALIBABA_CLOUD",
               "ALIBABA_CLOUD_GOVERNMENT",
-              "ALIBABA_CLOUD_CHINA"
+              "ALIBABA_CLOUD_CHINA",
+              "ALIBABA_CLOUD_FINANCE"
             ],
             "type": "string"
           },
           "enabled": { "description": "Enabled", "type": "boolean" },
+          "features": {
+            "description": "Features",
+            "items": { "$ref": "#/components/schemas/FeatureItem" },
+            "type": "array",
+            "uniqueItems": true
+          },
           "groupIds": {
             "description": "Group Ids",
             "items": { "type": "string" },
@@ -401,6 +425,7 @@
             "type": "integer"
           },
           "name": { "description": "Name", "type": "string" },
+          "parentAccountId": { "type": "string" },
           "protectionMode": {
             "description": "Protection Mode",
             "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
@@ -465,7 +490,15 @@
           },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -486,7 +519,8 @@
               "GCP_CHINA",
               "ALIBABA_CLOUD",
               "ALIBABA_CLOUD_GOVERNMENT",
-              "ALIBABA_CLOUD_CHINA"
+              "ALIBABA_CLOUD_CHINA",
+              "ALIBABA_CLOUD_FINANCE"
             ],
             "type": "string"
           },
@@ -499,6 +533,12 @@
             "description": "External ID",
             "readOnly": true,
             "type": "string"
+          },
+          "features": {
+            "description": "Features",
+            "items": { "$ref": "#/components/schemas/FeatureItem" },
+            "type": "array",
+            "uniqueItems": true
           },
           "groupIds": {
             "description": "Group Ids",
@@ -518,6 +558,7 @@
             "type": "integer"
           },
           "name": { "description": "Name", "type": "string" },
+          "parentAccountId": { "type": "string" },
           "protectionMode": {
             "description": "Protection Mode",
             "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
@@ -588,7 +629,15 @@
           },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -613,7 +662,8 @@
               "GCP_CHINA",
               "ALIBABA_CLOUD",
               "ALIBABA_CLOUD_GOVERNMENT",
-              "ALIBABA_CLOUD_CHINA"
+              "ALIBABA_CLOUD_CHINA",
+              "ALIBABA_CLOUD_FINANCE"
             ],
             "type": "string"
           },
@@ -626,6 +676,12 @@
             "description": "External ID",
             "readOnly": true,
             "type": "string"
+          },
+          "features": {
+            "description": "Features",
+            "items": { "$ref": "#/components/schemas/FeatureItem" },
+            "type": "array",
+            "uniqueItems": true
           },
           "groupIds": {
             "description": "Group Ids",
@@ -662,6 +718,7 @@
             "type": "boolean"
           },
           "name": { "description": "Name", "type": "string" },
+          "parentAccountId": { "type": "string" },
           "protectionMode": {
             "description": "Protection Mode",
             "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
@@ -783,21 +840,15 @@
             "items": { "$ref": "#/components/schemas/AccountGroupInfo" },
             "type": "array"
           },
-          "accountId": {
-            "description": "Account ID",
-            "readOnly": true,
-            "type": "string"
-          },
+          "accountId": { "description": "Account ID", "type": "string" },
           "accountType": {
             "description": "Cloud Account Type",
             "enum": [
               "ACCOUNT",
               "MASTER_SERVICE_ACCOUNT",
               "COMPARTMENT",
-              "MANAGEMENT_GROUP",
               "ORGANIZATION",
-              "TENANT",
-              "WORKSPACE_DOMAIN"
+              "TENANT"
             ],
             "readOnly": true,
             "type": "string"
@@ -813,13 +864,6 @@
             "format": "int32",
             "type": "integer"
           },
-          "clientId": {
-            "description": "Application (Client) ID",
-            "type": "string"
-          },
-          "cloudAccount": {
-            "$ref": "#/components/schemas/GenericCloudAccountModel"
-          },
           "cloudAccountOwner": {
             "description": "Cloud account owner",
             "type": "string"
@@ -830,26 +874,19 @@
             "readOnly": true,
             "type": "integer"
           },
-          "cloudAccountStatus": {
-            "description": "Internal use only",
-            "readOnly": true,
-            "type": "object"
-          },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
-          },
-          "cspAccountId": {
-            "description": "Internal use only",
-            "readOnly": true,
-            "type": "string"
-          },
-          "deleted": {
-            "description": "Internal use only",
-            "readOnly": true,
-            "type": "boolean"
           },
           "deploymentType": {
             "description": "Deployment Type",
@@ -868,31 +905,23 @@
               "GCP_CHINA",
               "ALIBABA_CLOUD",
               "ALIBABA_CLOUD_GOVERNMENT",
-              "ALIBABA_CLOUD_CHINA"
+              "ALIBABA_CLOUD_CHINA",
+              "ALIBABA_CLOUD_FINANCE"
             ],
             "type": "string"
           },
           "enabled": { "description": "Enabled", "type": "boolean" },
-          "environmentType": {
-            "enum": ["AZURE", "AZURE_GOVERNMENT", "AZURE_CHINA"],
-            "type": "string"
+          "features": {
+            "description": "Features",
+            "items": { "$ref": "#/components/schemas/FeatureItem" },
+            "type": "array",
+            "uniqueItems": true
           },
           "groupIds": {
-            "description": "Group IDs",
+            "description": "Group Ids",
             "items": { "type": "string" },
             "readOnly": true,
             "type": "array"
-          },
-          "id": {
-            "description": "Internal use only",
-            "format": "int32",
-            "readOnly": true,
-            "type": "integer"
-          },
-          "key": {
-            "description": "Application client secret",
-            "readOnly": true,
-            "type": "string"
           },
           "lastModifiedBy": {
             "description": "Last Modified By",
@@ -905,25 +934,11 @@
             "readOnly": true,
             "type": "integer"
           },
-          "monitorFlowLogs": {
-            "description": "Monitor flow logs",
-            "type": "boolean"
-          },
-          "name": { "description": "Name", "readOnly": true, "type": "string" },
-          "parentId": {
-            "description": "Internal use only",
-            "format": "int32",
-            "readOnly": true,
-            "type": "integer"
-          },
+          "name": { "description": "Name", "type": "string" },
+          "parentAccountId": { "type": "string" },
           "protectionMode": {
             "description": "Protection Mode",
             "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
-            "readOnly": true,
-            "type": "string"
-          },
-          "servicePrincipalId": {
-            "description": "Enterprise application object ID",
             "readOnly": true,
             "type": "string"
           },
@@ -931,16 +946,7 @@
             "description": "Storage Scan Enabled",
             "type": "boolean"
           },
-          "storageUUID": { "description": "Storage UUID", "type": "string" },
-          "subscriptionId": {
-            "description": "Subscription ID",
-            "readOnly": true,
-            "type": "string"
-          },
-          "tenantId": {
-            "description": "Directory (Tenant) ID",
-            "type": "string"
-          }
+          "storageUUID": { "description": "Storage UUID", "type": "string" }
         },
         "type": "object"
       },
@@ -952,21 +958,15 @@
             "items": { "$ref": "#/components/schemas/AccountGroupInfo" },
             "type": "array"
           },
-          "accountId": {
-            "description": "Account ID",
-            "readOnly": true,
-            "type": "string"
-          },
+          "accountId": { "description": "Account ID", "type": "string" },
           "accountType": {
             "description": "Cloud Account Type",
             "enum": [
               "ACCOUNT",
               "MASTER_SERVICE_ACCOUNT",
               "COMPARTMENT",
-              "MANAGEMENT_GROUP",
               "ORGANIZATION",
-              "TENANT",
-              "WORKSPACE_DOMAIN"
+              "TENANT"
             ],
             "readOnly": true,
             "type": "string"
@@ -982,13 +982,6 @@
             "format": "int32",
             "type": "integer"
           },
-          "clientId": {
-            "description": "Application (Client) ID",
-            "type": "string"
-          },
-          "cloudAccount": {
-            "$ref": "#/components/schemas/GenericCloudAccountModel"
-          },
           "cloudAccountOwner": {
             "description": "Cloud account owner",
             "type": "string"
@@ -999,30 +992,19 @@
             "readOnly": true,
             "type": "integer"
           },
-          "cloudAccountStatus": {
-            "description": "Internal use only",
-            "readOnly": true,
-            "type": "object"
-          },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
-          },
-          "cspAccountId": {
-            "description": "Internal use only",
-            "readOnly": true,
-            "type": "string"
-          },
-          "defaultAccountGroupId": {
-            "description": "Default account group associated with tenant",
-            "type": "string"
-          },
-          "deleted": {
-            "description": "Internal use only",
-            "readOnly": true,
-            "type": "boolean"
           },
           "deploymentType": {
             "description": "Deployment Type",
@@ -1041,36 +1023,23 @@
               "GCP_CHINA",
               "ALIBABA_CLOUD",
               "ALIBABA_CLOUD_GOVERNMENT",
-              "ALIBABA_CLOUD_CHINA"
+              "ALIBABA_CLOUD_CHINA",
+              "ALIBABA_CLOUD_FINANCE"
             ],
             "type": "string"
           },
           "enabled": { "description": "Enabled", "type": "boolean" },
-          "environmentType": {
-            "enum": ["AZURE", "AZURE_GOVERNMENT", "AZURE_CHINA"],
-            "type": "string"
+          "features": {
+            "description": "Features",
+            "items": { "$ref": "#/components/schemas/FeatureItem" },
+            "type": "array",
+            "uniqueItems": true
           },
           "groupIds": {
-            "description": "Group IDs",
+            "description": "Group Ids",
             "items": { "type": "string" },
             "readOnly": true,
             "type": "array"
-          },
-          "hierarchySelections": {
-            "description": "List of selected resource hierarchy selections",
-            "items": { "$ref": "#/components/schemas/HierarchySelectionModel" },
-            "type": "array"
-          },
-          "id": {
-            "description": "Internal use only",
-            "format": "int32",
-            "readOnly": true,
-            "type": "integer"
-          },
-          "key": {
-            "description": "Application client secret",
-            "readOnly": true,
-            "type": "string"
           },
           "lastModifiedBy": {
             "description": "Last Modified By",
@@ -1083,29 +1052,11 @@
             "readOnly": true,
             "type": "integer"
           },
-          "monitorFlowLogs": {
-            "description": "Monitor flow logs",
-            "type": "boolean"
-          },
-          "name": { "description": "Name", "readOnly": true, "type": "string" },
-          "parentId": {
-            "description": "Internal use only",
-            "format": "int32",
-            "readOnly": true,
-            "type": "integer"
-          },
+          "name": { "description": "Name", "type": "string" },
+          "parentAccountId": { "type": "string" },
           "protectionMode": {
             "description": "Protection Mode",
             "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
-            "readOnly": true,
-            "type": "string"
-          },
-          "rootSyncEnabled": {
-            "description": "true = Cloud account sync of tenant root group is enabled",
-            "type": "boolean"
-          },
-          "servicePrincipalId": {
-            "description": "Enterprise application object ID",
             "readOnly": true,
             "type": "string"
           },
@@ -1113,14 +1064,20 @@
             "description": "Storage Scan Enabled",
             "type": "boolean"
           },
-          "storageUUID": { "description": "Storage UUID", "type": "string" },
-          "subscriptionId": {
-            "description": "Subscription ID",
-            "readOnly": true,
+          "storageUUID": { "description": "Storage UUID", "type": "string" }
+        },
+        "type": "object"
+      },
+      "CloudAccount": {
+        "properties": {
+          "accountId": {
+            "description": "GCP organization resource ID",
             "type": "string"
           },
-          "tenantId": {
-            "description": "Directory (Tenant) ID",
+          "accountType": {
+            "description": "Cloud Account Type",
+            "enum": ["ORGANIZATION"],
+            "readOnly": true,
             "type": "string"
           }
         },
@@ -1153,7 +1110,15 @@
         "properties": {
           "cloudType": {
             "description": "Cloud Type of Account/ Project/ Master Service Account/ Organization",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "IBM"
+            ],
             "type": "string"
           },
           "id": {
@@ -1225,7 +1190,15 @@
           },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -1246,11 +1219,18 @@
               "GCP_CHINA",
               "ALIBABA_CLOUD",
               "ALIBABA_CLOUD_GOVERNMENT",
-              "ALIBABA_CLOUD_CHINA"
+              "ALIBABA_CLOUD_CHINA",
+              "ALIBABA_CLOUD_FINANCE"
             ],
             "type": "string"
           },
           "enabled": { "description": "Enabled", "type": "boolean" },
+          "features": {
+            "description": "Features",
+            "items": { "$ref": "#/components/schemas/FeatureItem" },
+            "type": "array",
+            "uniqueItems": true
+          },
           "groupIds": {
             "description": "Group Ids",
             "items": { "type": "string" },
@@ -1269,6 +1249,7 @@
             "type": "integer"
           },
           "name": { "description": "Name", "type": "string" },
+          "parentAccountId": { "type": "string" },
           "protectionMode": {
             "description": "Protection Mode",
             "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
@@ -1359,7 +1340,15 @@
           },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -1380,11 +1369,18 @@
               "GCP_CHINA",
               "ALIBABA_CLOUD",
               "ALIBABA_CLOUD_GOVERNMENT",
-              "ALIBABA_CLOUD_CHINA"
+              "ALIBABA_CLOUD_CHINA",
+              "ALIBABA_CLOUD_FINANCE"
             ],
             "type": "string"
           },
           "enabled": { "description": "Enabled", "type": "boolean" },
+          "features": {
+            "description": "Features",
+            "items": { "$ref": "#/components/schemas/FeatureItem" },
+            "type": "array",
+            "uniqueItems": true
+          },
           "groupIds": {
             "description": "Group Ids",
             "items": { "type": "string" },
@@ -1413,6 +1409,7 @@
           },
           "name": { "description": "Name", "type": "string" },
           "numberOfChildAccounts": { "format": "int32", "type": "integer" },
+          "parentAccountId": { "type": "string" },
           "protectionMode": {
             "description": "Protection Mode",
             "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
@@ -1431,6 +1428,22 @@
         },
         "type": "object"
       },
+      "Credentials": {
+        "description": "The content of the credentials object is the Service Account Key for your Google Cloud service account",
+        "properties": {
+          "auth_provider_x509_cert_url": { "type": "string" },
+          "auth_uri": { "type": "string" },
+          "client_email": { "type": "string" },
+          "client_id": { "type": "string" },
+          "client_x509_cert_url": { "type": "string" },
+          "private_key": { "type": "string" },
+          "private_key_id": { "type": "string" },
+          "project_id": { "type": "string" },
+          "token_uri": { "type": "string" },
+          "type": { "type": "string" }
+        },
+        "type": "object"
+      },
       "DLPAPIResponse": {
         "description": "Model for response from API",
         "properties": {
@@ -1440,14 +1453,19 @@
         },
         "type": "object"
       },
+      "FeatureItem": {
+        "description": "Model for Feature",
+        "properties": {
+          "displayName": { "description": "displayName", "type": "string" },
+          "mode": { "description": "mode", "type": "string" },
+          "name": { "description": "name", "type": "string" },
+          "state": { "description": "state", "type": "string" }
+        },
+        "type": "object"
+      },
       "GcpCloudOrgModel": {
         "description": "Model for GCP Cloud Account",
         "properties": {
-          "accountGroupCreationMode": {
-            "description": "Cloud Account group creation mode",
-            "enum": ["MANUAL", "AUTO", "RECURSIVE"],
-            "type": "string"
-          },
           "accountGroupInfos": {
             "description": "Account group details of groups associated with this account",
             "items": { "$ref": "#/components/schemas/AccountGroupInfo" },
@@ -1477,10 +1495,6 @@
             "format": "int32",
             "type": "integer"
           },
-          "autoAccountGroupCreationModeOn": { "type": "boolean" },
-          "cloudAccount": {
-            "$ref": "#/components/schemas/GenericCloudAccountModel"
-          },
           "cloudAccountOwner": {
             "description": "Cloud account owner",
             "type": "string"
@@ -1491,28 +1505,18 @@
             "readOnly": true,
             "type": "integer"
           },
-          "cloudAccountStatus": {
-            "description": "Internal use only",
-            "readOnly": true,
-            "type": "object"
-          },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
-            "type": "string"
-          },
-          "compressionEnabled": {
-            "description": "Compression Enabled",
-            "type": "boolean"
-          },
-          "credentials": { "description": "Credentials", "type": "object" },
-          "dataflowEnabledProject": {
-            "description": "Dataflow enabled project ID",
-            "type": "string"
-          },
-          "defaultAccountGroupId": {
-            "description": "Default Account Group",
             "type": "string"
           },
           "deploymentType": {
@@ -1532,23 +1536,22 @@
               "GCP_CHINA",
               "ALIBABA_CLOUD",
               "ALIBABA_CLOUD_GOVERNMENT",
-              "ALIBABA_CLOUD_CHINA"
+              "ALIBABA_CLOUD_CHINA",
+              "ALIBABA_CLOUD_FINANCE"
             ],
             "type": "string"
           },
           "enabled": { "description": "Enabled", "type": "boolean" },
-          "flowLogStorageBucket": {
-            "description": "Flow Log Storage Bucket",
-            "type": "string"
+          "features": {
+            "description": "Features",
+            "items": { "$ref": "#/components/schemas/FeatureItem" },
+            "type": "array",
+            "uniqueItems": true
           },
           "groupIds": {
             "description": "Group Ids",
             "items": { "type": "string" },
             "readOnly": true,
-            "type": "array"
-          },
-          "hierarchySelection": {
-            "items": { "$ref": "#/components/schemas/HierarchySelectionModel" },
             "type": "array"
           },
           "lastModifiedBy": {
@@ -1563,11 +1566,7 @@
             "type": "integer"
           },
           "name": { "description": "Name", "type": "string" },
-          "organizationName": {
-            "description": "Organization Display Name in Cloud",
-            "type": "string"
-          },
-          "projectId": { "readOnly": true, "type": "string" },
+          "parentAccountId": { "type": "string" },
           "protectionMode": {
             "description": "Protection Mode",
             "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
@@ -1578,42 +1577,27 @@
             "description": "Storage Scan Enabled",
             "type": "boolean"
           },
-          "storageUUID": { "description": "Storage UUID", "type": "string" },
-          "transitionMode": {
-            "enum": ["NO_TRANSITION", "MANUAL_TO_AUTO"],
-            "type": "string"
-          }
+          "storageUUID": { "description": "Storage UUID", "type": "string" }
         },
         "type": "object"
       },
       "GcpCloudProjectModel": {
         "description": "Model for GCP Cloud Account",
         "properties": {
-          "accountGroupCreationMode": {
-            "description": "Cloud Account group creation mode",
-            "enum": ["MANUAL", "AUTO", "RECURSIVE"],
-            "type": "string"
-          },
           "accountGroupInfos": {
             "description": "Account group details of groups associated with this account",
             "items": { "$ref": "#/components/schemas/AccountGroupInfo" },
             "type": "array"
           },
-          "accountId": {
-            "description": "Account ID",
-            "readOnly": true,
-            "type": "string"
-          },
+          "accountId": { "description": "Account ID", "type": "string" },
           "accountType": {
             "description": "Cloud Account Type",
             "enum": [
               "ACCOUNT",
               "MASTER_SERVICE_ACCOUNT",
               "COMPARTMENT",
-              "MANAGEMENT_GROUP",
               "ORGANIZATION",
-              "TENANT",
-              "WORKSPACE_DOMAIN"
+              "TENANT"
             ],
             "readOnly": true,
             "type": "string"
@@ -1629,10 +1613,6 @@
             "format": "int32",
             "type": "integer"
           },
-          "autoAccountGroupCreationModeOn": { "type": "boolean" },
-          "cloudAccount": {
-            "$ref": "#/components/schemas/GenericCloudAccountModel"
-          },
           "cloudAccountOwner": {
             "description": "Cloud account owner",
             "type": "string"
@@ -1643,24 +1623,18 @@
             "readOnly": true,
             "type": "integer"
           },
-          "cloudAccountStatus": {
-            "description": "Internal use only",
-            "readOnly": true,
-            "type": "object"
-          },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
             "readOnly": true,
-            "type": "string"
-          },
-          "compressionEnabled": {
-            "description": "Compression Enabled",
-            "type": "boolean"
-          },
-          "credentials": { "description": "Credentials", "type": "object" },
-          "dataflowEnabledProject": {
-            "description": "Dataflow enabled project ID",
             "type": "string"
           },
           "deploymentType": {
@@ -1680,26 +1654,23 @@
               "GCP_CHINA",
               "ALIBABA_CLOUD",
               "ALIBABA_CLOUD_GOVERNMENT",
-              "ALIBABA_CLOUD_CHINA"
+              "ALIBABA_CLOUD_CHINA",
+              "ALIBABA_CLOUD_FINANCE"
             ],
             "type": "string"
           },
           "enabled": { "description": "Enabled", "type": "boolean" },
-          "flowLogStorageBucket": {
-            "description": "Flow Log Storage Bucket",
-            "type": "string"
+          "features": {
+            "description": "Features",
+            "items": { "$ref": "#/components/schemas/FeatureItem" },
+            "type": "array",
+            "uniqueItems": true
           },
           "groupIds": {
             "description": "Group Ids",
             "items": { "type": "string" },
             "readOnly": true,
             "type": "array"
-          },
-          "id": {
-            "description": "Internal use only",
-            "format": "int32",
-            "readOnly": true,
-            "type": "integer"
           },
           "lastModifiedBy": {
             "description": "Last Modified By",
@@ -1712,14 +1683,8 @@
             "readOnly": true,
             "type": "integer"
           },
-          "name": { "description": "Name", "readOnly": true, "type": "string" },
-          "parentId": {
-            "description": "Internal use only",
-            "format": "int32",
-            "readOnly": true,
-            "type": "integer"
-          },
-          "projectId": { "readOnly": true, "type": "string" },
+          "name": { "description": "Name", "type": "string" },
+          "parentAccountId": { "type": "string" },
           "protectionMode": {
             "description": "Protection Mode",
             "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
@@ -1762,104 +1727,11 @@
         },
         "type": "object"
       },
-      "GenericCloudAccountModel": {
-        "description": "Model for Generic Cloud Account",
+      "GcpResourceControllerRequestModel": {
+        "description": "Model containing the request for GCP Resources",
         "properties": {
-          "accountGroupInfos": {
-            "description": "Account group details of groups associated with this account",
-            "items": { "$ref": "#/components/schemas/AccountGroupInfo" },
-            "type": "array"
-          },
-          "accountId": { "description": "Account ID", "type": "string" },
-          "accountType": {
-            "description": "Cloud Account Type",
-            "enum": [
-              "ACCOUNT",
-              "MASTER_SERVICE_ACCOUNT",
-              "COMPARTMENT",
-              "ORGANIZATION",
-              "TENANT"
-            ],
-            "readOnly": true,
-            "type": "string"
-          },
-          "addedOn": {
-            "description": "Added On",
-            "format": "int64",
-            "readOnly": true,
-            "type": "integer"
-          },
-          "associatedAccountGroupsCount": {
-            "description": "Associated Account Groups Count with this cloud account",
-            "format": "int32",
-            "type": "integer"
-          },
-          "cloudAccountOwner": {
-            "description": "Cloud account owner",
-            "type": "string"
-          },
-          "cloudAccountOwnerCount": {
-            "description": "Cloud account owner count",
-            "format": "int32",
-            "readOnly": true,
-            "type": "integer"
-          },
-          "cloudType": {
-            "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
-            "readOnly": true,
-            "type": "string"
-          },
-          "deploymentType": {
-            "description": "Deployment Type",
-            "enum": [
-              "AZURE",
-              "AZURE_GOVERNMENT",
-              "AZURE_CHINA",
-              "AWS",
-              "AWS_GOVERNMENT",
-              "AWS_CHINA",
-              "OCI",
-              "OCI_GOVERNMENT",
-              "OCI_CHINA",
-              "GCP",
-              "GCP_GOVERNMENT",
-              "GCP_CHINA",
-              "ALIBABA_CLOUD",
-              "ALIBABA_CLOUD_GOVERNMENT",
-              "ALIBABA_CLOUD_CHINA"
-            ],
-            "type": "string"
-          },
-          "enabled": { "description": "Enabled", "type": "boolean" },
-          "groupIds": {
-            "description": "Group Ids",
-            "items": { "type": "string" },
-            "readOnly": true,
-            "type": "array"
-          },
-          "lastModifiedBy": {
-            "description": "Last Modified By",
-            "readOnly": true,
-            "type": "string"
-          },
-          "lastModifiedTs": {
-            "description": "Time account was last updated",
-            "format": "int64",
-            "readOnly": true,
-            "type": "integer"
-          },
-          "name": { "description": "Name", "type": "string" },
-          "protectionMode": {
-            "description": "Protection Mode",
-            "enum": ["MONITOR", "MONITOR_AND_PROTECT"],
-            "type": "string"
-          },
-          "storageScanEnabled": {
-            "description": "Storage Scan Enabled",
-            "type": "boolean"
-          },
-          "storageUUID": { "description": "Storage UUID", "type": "string" }
+          "cloudAccount": { "$ref": "#/components/schemas/CloudAccount" },
+          "credentials": { "$ref": "#/components/schemas/Credentials" }
         },
         "type": "object"
       },
@@ -1958,7 +1830,16 @@
           },
           "cloudType": {
             "description": "Cloud Type",
-            "enum": ["ALL", "AWS", "AZURE", "GCP", "ALIBABA_CLOUD", "OCI"],
+            "enum": [
+              "ALL",
+              "AWS",
+              "AZURE",
+              "GCP",
+              "ALIBABA_CLOUD",
+              "OCI",
+              "OTHER"
+            ],
+            "readOnly": true,
             "type": "string"
           },
           "defaultAccountGroupId": {
@@ -1982,11 +1863,18 @@
               "GCP_CHINA",
               "ALIBABA_CLOUD",
               "ALIBABA_CLOUD_GOVERNMENT",
-              "ALIBABA_CLOUD_CHINA"
+              "ALIBABA_CLOUD_CHINA",
+              "ALIBABA_CLOUD_FINANCE"
             ],
             "type": "string"
           },
           "enabled": { "description": "Enabled", "type": "boolean" },
+          "features": {
+            "description": "Features",
+            "items": { "$ref": "#/components/schemas/FeatureItem" },
+            "type": "array",
+            "uniqueItems": true
+          },
           "groupIds": {
             "description": "Group Ids",
             "items": { "type": "string" },
@@ -2007,6 +1895,7 @@
             "type": "integer"
           },
           "name": { "description": "Name", "type": "string" },
+          "parentAccountId": { "type": "string" },
           "policyName": { "description": "Policy Name", "type": "string" },
           "protectionMode": {
             "description": "Protection Mode",
@@ -2363,11 +2252,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/name\"\n\nquerystring = {\"onlyActive\":\"SOME_BOOLEAN_VALUE\",\"cloudType\":\"SOME_STRING_VALUE\",\"includeOthers\":\"SOME_BOOLEAN_VALUE\"}\n\npayload = {\n    \"accountGroupIds\": [\"string\"],\n    \"accountIds\": [\"string\"],\n    \"aggregate\": True,\n    \"cloudType\": \"string\",\n    \"csvHeaderRequired\": True,\n    \"filterKey\": \"string\",\n    \"filterValue\": \"string\",\n    \"groupBy\": \"string\",\n    \"limit\": 0,\n    \"timeRange\": {\n        \"relativeTimeType\": \"BACKWARD\",\n        \"type\": \"relative\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/name\"\n\nquerystring = {\"onlyActive\":\"SOME_BOOLEAN_VALUE\",\"cloudType\":\"SOME_STRING_VALUE\",\"includeOthers\":\"SOME_BOOLEAN_VALUE\"}\n\npayload = {\n    \"accountGroupIds\": [\"string\"],\n    \"accountIds\": [\"string\"],\n    \"aggregate\": True,\n    \"cloudType\": \"string\",\n    \"csvHeaderRequired\": True,\n    \"filterKey\": \"string\",\n    \"filterValue\": \"string\",\n    \"groupBy\": \"string\",\n    \"limit\": 0,\n    \"timeRange\": {\n        \"type\": \"relative\",\n        \"relativeTimeType\": \"BACKWARD\",\n        \"value\": {\n            \"amount\": 0,\n            \"unit\": \"minute\"\n        }\n    }\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud/name?onlyActive=SOME_BOOLEAN_VALUE&cloudType=SOME_STRING_VALUE&includeOthers=SOME_BOOLEAN_VALUE' \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountGroupIds\":[\"string\"],\"accountIds\":[\"string\"],\"aggregate\":true,\"cloudType\":\"string\",\"csvHeaderRequired\":true,\"filterKey\":\"string\",\"filterValue\":\"string\",\"groupBy\":\"string\",\"limit\":0,\"timeRange\":{\"relativeTimeType\":\"BACKWARD\",\"type\":\"relative\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
+            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud/name?onlyActive=SOME_BOOLEAN_VALUE&cloudType=SOME_STRING_VALUE&includeOthers=SOME_BOOLEAN_VALUE' \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"accountGroupIds\":[\"string\"],\"accountIds\":[\"string\"],\"aggregate\":true,\"cloudType\":\"string\",\"csvHeaderRequired\":true,\"filterKey\":\"string\",\"filterValue\":\"string\",\"groupBy\":\"string\",\"limit\":0,\"timeRange\":{\"type\":\"relative\",\"relativeTimeType\":\"BACKWARD\",\"value\":{\"amount\":0,\"unit\":\"minute\"}}}'"
           }
         ]
       }
@@ -3087,12 +2976,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": { "type": "object" },
-                "type": "object"
+                "$ref": "#/components/schemas/GcpResourceControllerRequestModel"
               }
             }
           },
-          "description": "Service Account Key (JSON) file content",
+          "description": "The content of the credentials object is the Service Account Key for your Google Cloud service account",
           "required": true
         },
         "responses": {
@@ -3115,11 +3003,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/gcp/parent/{parent_id}/children\"\n\nquerystring = {\"projectNextPageToken\":\"SOME_STRING_VALUE\",\"projectPageSize\":\"SOME_INTEGER_VALUE\",\"folderNextPageToken\":\"SOME_STRING_VALUE\",\"folderPageSize\":\"SOME_INTEGER_VALUE\",\"parentType\":\"SOME_STRING_VALUE\"}\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/gcp/parent/{parent_id}/children\"\n\nquerystring = {\"projectNextPageToken\":\"SOME_STRING_VALUE\",\"projectPageSize\":\"SOME_INTEGER_VALUE\",\"folderNextPageToken\":\"SOME_STRING_VALUE\",\"folderPageSize\":\"SOME_INTEGER_VALUE\",\"parentType\":\"SOME_STRING_VALUE\"}\n\npayload = {\n    \"cloudAccount\": {\"accountId\": \"string\"},\n    \"credentials\": {\n        \"auth_provider_x509_cert_url\": \"string\",\n        \"auth_uri\": \"string\",\n        \"client_email\": \"string\",\n        \"client_id\": \"string\",\n        \"client_x509_cert_url\": \"string\",\n        \"private_key\": \"string\",\n        \"private_key_id\": \"string\",\n        \"project_id\": \"string\",\n        \"token_uri\": \"string\",\n        \"type\": \"string\"\n    }\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud/gcp/parent/{parent_id}/children?projectNextPageToken=SOME_STRING_VALUE&projectPageSize=SOME_INTEGER_VALUE&folderNextPageToken=SOME_STRING_VALUE&folderPageSize=SOME_INTEGER_VALUE&parentType=SOME_STRING_VALUE' \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
+            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud/gcp/parent/{parent_id}/children?projectNextPageToken=SOME_STRING_VALUE&projectPageSize=SOME_INTEGER_VALUE&folderNextPageToken=SOME_STRING_VALUE&folderPageSize=SOME_INTEGER_VALUE&parentType=SOME_STRING_VALUE' \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"cloudAccount\":{\"accountId\":\"string\"},\"credentials\":{\"auth_provider_x509_cert_url\":\"string\",\"auth_uri\":\"string\",\"client_email\":\"string\",\"client_id\":\"string\",\"client_x509_cert_url\":\"string\",\"private_key\":\"string\",\"private_key_id\":\"string\",\"project_id\":\"string\",\"token_uri\":\"string\",\"type\":\"string\"}}'"
           }
         ]
       }
@@ -3169,12 +3057,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": { "type": "object" },
-                "type": "object"
+                "$ref": "#/components/schemas/GcpResourceControllerRequestModel"
               }
             }
           },
-          "description": "Service Account Key (JSON) file content",
+          "description": "The content of the credentials object is the Service Account Key for your Google Cloud service account",
           "required": true
         },
         "responses": {
@@ -3195,11 +3082,11 @@
         "x-codeSamples": [
           {
             "lang": "Python + Requests",
-            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/{cloud_type}/parent/{parent_id}/folders\"\n\nquerystring = {\"nextPageToken\":\"SOME_STRING_VALUE\",\"pageSize\":\"SOME_INTEGER_VALUE\",\"parentType\":\"SOME_STRING_VALUE\"}\n\npayload = {\n    \"property1\": {},\n    \"property2\": {}\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
+            "source": "import requests\n\nurl = \"https://api.prismacloud.io/cloud/{cloud_type}/parent/{parent_id}/folders\"\n\nquerystring = {\"nextPageToken\":\"SOME_STRING_VALUE\",\"pageSize\":\"SOME_INTEGER_VALUE\",\"parentType\":\"SOME_STRING_VALUE\"}\n\npayload = {\n    \"cloudAccount\": {\"accountId\": \"string\"},\n    \"credentials\": {\n        \"auth_provider_x509_cert_url\": \"string\",\n        \"auth_uri\": \"string\",\n        \"client_email\": \"string\",\n        \"client_id\": \"string\",\n        \"client_x509_cert_url\": \"string\",\n        \"private_key\": \"string\",\n        \"private_key_id\": \"string\",\n        \"project_id\": \"string\",\n        \"token_uri\": \"string\",\n        \"type\": \"string\"\n    }\n}\nheaders = {\n    \"content-type\": \"application/json\",\n    \"x-redlock-auth\": \"REPLACE_KEY_VALUE\"\n}\n\nresponse = requests.request(\"POST\", url, json=payload, headers=headers, params=querystring)\n\nprint(response.text)"
           },
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud/{cloud_type}/parent/{parent_id}/folders?nextPageToken=SOME_STRING_VALUE&pageSize=SOME_INTEGER_VALUE&parentType=SOME_STRING_VALUE' \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"property1\":{},\"property2\":{}}'"
+            "source": "curl --request POST \\\n  --url 'https://api.prismacloud.io/cloud/{cloud_type}/parent/{parent_id}/folders?nextPageToken=SOME_STRING_VALUE&pageSize=SOME_INTEGER_VALUE&parentType=SOME_STRING_VALUE' \\\n  --header 'content-type: application/json' \\\n  --header 'x-redlock-auth: REPLACE_KEY_VALUE' \\\n  --data '{\"cloudAccount\":{\"accountId\":\"string\"},\"credentials\":{\"auth_provider_x509_cert_url\":\"string\",\"auth_uri\":\"string\",\"client_email\":\"string\",\"client_id\":\"string\",\"client_x509_cert_url\":\"string\",\"private_key\":\"string\",\"private_key_id\":\"string\",\"project_id\":\"string\",\"token_uri\":\"string\",\"type\":\"string\"}}'"
           }
         ]
       }

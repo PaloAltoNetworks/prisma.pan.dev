@@ -421,6 +421,12 @@
         },
         "type": "array"
       },
+      "-_waas.APIChangeDetails": {
+        "items": {
+          "$ref": "#/components/schemas/waas.APIChangeDetails"
+        },
+        "type": "array"
+      },
       "-_waas.DiscoveredAPI": {
         "items": {
           "$ref": "#/components/schemas/waas.DiscoveredAPI"
@@ -7848,6 +7854,13 @@
             "description": "ConsoleAddr is a network-accessible address that scanners can use to publish scan results to Console.\n",
             "type": "string"
           },
+          "customTags": {
+            "description": "CustomTags are optional tags that can be added to the resources created by the scan.\n",
+            "items": {
+              "$ref": "#/components/schemas/string"
+            },
+            "type": "array"
+          },
           "enabled": {
             "description": "Enabled indicates whether agentless scanning is enabled.\n",
             "type": "boolean"
@@ -8523,7 +8536,8 @@
             "package",
             "product",
             "app",
-            "go"
+            "go",
+            "nuget"
           ]
         ],
         "type": "string"
@@ -15307,6 +15321,10 @@
             "description": ".\n",
             "type": "string"
           },
+          "imageID": {
+            "description": ".\n",
+            "type": "string"
+          },
           "namespace": {
             "description": ".\n",
             "type": "string"
@@ -17121,6 +17139,28 @@
         },
         "type": "object"
       },
+      "waas.APIChangeDetails": {
+        "description": "APIChangeDetails contains the details of the API change",
+        "properties": {
+          "changeType": {
+            "$ref": "#/components/schemas/waas.APIChangesType"
+          },
+          "date": {
+            "description": "Date is the change date.\n",
+            "format": "date-time",
+            "type": "string"
+          },
+          "value": {
+            "description": "Value the value of the change - if applicable.\n",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "waas.APIChangesType": {
+        "description": "APIChangesType is used to represent the supported API changes types",
+        "type": "integer"
+      },
       "waas.APIProtectionStatus": {
         "enum": [
           [
@@ -17156,6 +17196,11 @@
           "hits": {
             "description": "Hits are amount of hits on this path.\n",
             "type": "integer"
+          },
+          "lastChanged": {
+            "description": "LastChanged is the date when this path was last changed.\n",
+            "format": "date-time",
+            "type": "string"
           },
           "lastSeen": {
             "description": "LastSeen is the date when this path was last seen.\n",
@@ -17943,6 +17988,11 @@
           },
           "image": {
             "description": "Image is the image names seen for this API.\n",
+            "type": "string"
+          },
+          "lastChanged": {
+            "description": "LastChanged is the date when this path was last changed.\n",
+            "format": "date-time",
             "type": "string"
           },
           "lastSeen": {
@@ -19698,7 +19748,7 @@
   },
   "info": {
     "title": "Audits Overview",
-    "version": "22.12.427",
+    "version": "22.12.582",
     "description": {
       "$ref": "https://raw.githubusercontent.com/PaloAltoNetworks/prisma-cloud-docs/master/api/descriptions/audits/audits.md"
     }
@@ -19769,11 +19819,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -19974,11 +20060,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -20172,11 +20294,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -20349,11 +20507,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -20519,11 +20713,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -20646,18 +20876,6 @@
             "name": "function",
             "schema": {
               "description": "FunctionName is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -21012,11 +21230,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -21139,18 +21393,6 @@
             "name": "function",
             "schema": {
               "description": "FunctionName is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -21498,11 +21740,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -21625,18 +21903,6 @@
             "name": "function",
             "schema": {
               "description": "FunctionName is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -21999,11 +22265,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -22126,18 +22428,6 @@
             "name": "function",
             "schema": {
               "description": "FunctionName is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -22492,11 +22782,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -22619,18 +22945,6 @@
             "name": "function",
             "schema": {
               "description": "FunctionName is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -22978,11 +23292,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -23105,18 +23455,6 @@
             "name": "function",
             "schema": {
               "description": "FunctionName is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -23479,11 +23817,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -23606,18 +23980,6 @@
             "name": "function",
             "schema": {
               "description": "FunctionName is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -23972,11 +24334,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -24099,18 +24497,6 @@
             "name": "function",
             "schema": {
               "description": "FunctionName is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -24456,11 +24842,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -24583,18 +25005,6 @@
             "name": "function",
             "schema": {
               "description": "FunctionName is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -24957,11 +25367,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -25084,18 +25530,6 @@
             "name": "function",
             "schema": {
               "description": "FunctionName is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -25450,11 +25884,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -25577,18 +26047,6 @@
             "name": "function",
             "schema": {
               "description": "FunctionName is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -25934,11 +26392,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -26061,18 +26555,6 @@
             "name": "function",
             "schema": {
               "description": "FunctionName is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -26435,11 +26917,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -26562,18 +27080,6 @@
             "name": "function",
             "schema": {
               "description": "FunctionName is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -26928,11 +27434,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -27055,18 +27597,6 @@
             "name": "function",
             "schema": {
               "description": "FunctionName is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -27414,11 +27944,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -27541,18 +28107,6 @@
             "name": "function",
             "schema": {
               "description": "FunctionName is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -27915,11 +28469,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -28076,11 +28666,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -28230,11 +28856,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -28383,11 +29045,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -28529,11 +29227,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -28624,18 +29358,6 @@
             "name": "acknowledged",
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "description": "Filters results by region (for functions).\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Filters results by region (for functions).\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
             }
           },
           {
@@ -28843,11 +29565,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -28938,18 +29696,6 @@
             "name": "acknowledged",
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "description": "Filters results by region (for functions).\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Filters results by region (for functions).\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
             }
           },
           {
@@ -29105,11 +29851,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -29176,18 +29958,6 @@
             "name": "cluster",
             "schema": {
               "description": "Clusters is the list of clusters for filtering.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Provider is the cloud provider for filtering.\n",
-            "in": "query",
-            "name": "provider",
-            "schema": {
-              "description": "Provider is the cloud provider for filtering.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -29282,11 +30052,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -29353,18 +30159,6 @@
             "name": "cluster",
             "schema": {
               "description": "Clusters is the list of clusters for filtering.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Provider is the cloud provider for filtering.\n",
-            "in": "query",
-            "name": "provider",
-            "schema": {
-              "description": "Provider is the cloud provider for filtering.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -29452,11 +30246,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -29605,11 +30435,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -29751,11 +30617,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -29904,11 +30806,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -30152,18 +31090,6 @@
             "name": "function",
             "schema": {
               "description": "Function is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -30350,11 +31276,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -30598,18 +31560,6 @@
             "name": "function",
             "schema": {
               "description": "Function is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -30789,11 +31739,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -31037,18 +32023,6 @@
             "name": "function",
             "schema": {
               "description": "Function is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -31235,11 +32209,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -31483,18 +32493,6 @@
             "name": "function",
             "schema": {
               "description": "Function is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -31674,11 +32672,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -31922,18 +32956,6 @@
             "name": "function",
             "schema": {
               "description": "Function is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -32128,11 +33150,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -32317,11 +33375,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -32499,11 +33593,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -32747,18 +33877,6 @@
             "name": "function",
             "schema": {
               "description": "Function is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -32945,11 +34063,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -33193,18 +34347,6 @@
             "name": "function",
             "schema": {
               "description": "Function is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -33384,11 +34526,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -33632,18 +34810,6 @@
             "name": "function",
             "schema": {
               "description": "Function is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -33838,11 +35004,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -34015,11 +35217,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -34185,11 +35423,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -34289,18 +35563,6 @@
             "name": "function",
             "schema": {
               "description": "Function is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -34463,11 +35725,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -34711,18 +36009,6 @@
             "name": "function",
             "schema": {
               "description": "Function is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -34902,11 +36188,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -35150,18 +36472,6 @@
             "name": "function",
             "schema": {
               "description": "Function is used to filter by function name.\n",
-              "items": {
-                "$ref": "#/components/schemas/string"
-              },
-              "type": "array"
-            }
-          },
-          {
-            "description": "Region is used to filter by region.\n",
-            "in": "query",
-            "name": "region",
-            "schema": {
-              "description": "Region is used to filter by region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -35356,11 +36666,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
@@ -35521,11 +36867,47 @@
             }
           },
           {
+            "description": "Scopes the query by cloud provider.\n",
+            "in": "query",
+            "name": "provider",
+            "schema": {
+              "description": "Scopes the query by cloud provider.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "Scopes the query by account ID.\n",
             "in": "query",
             "name": "accountIDs",
             "schema": {
               "description": "Scopes the query by account ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by resource ID.\n",
+            "in": "query",
+            "name": "resourceIDs",
+            "schema": {
+              "description": "Scopes the query by resource ID.\n",
+              "items": {
+                "$ref": "#/components/schemas/string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Scopes the query by cloud region.\n",
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "description": "Scopes the query by cloud region.\n",
               "items": {
                 "$ref": "#/components/schemas/string"
               },
