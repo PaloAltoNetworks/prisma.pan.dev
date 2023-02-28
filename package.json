@@ -31,6 +31,7 @@
     "clsx": "^1.1.1",
     "core-js": "^3.6.5",
     "esbuild-loader": "^2.14.0",
+    "firebase-tools": "^11.23.1",
     "lodash.merge": "^4.6.2",
     "mobx": "6.1.8",
     "node": "^15.12.0",
