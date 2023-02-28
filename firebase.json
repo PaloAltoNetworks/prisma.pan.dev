@@ -992,7 +992,7 @@
         "type": 301
       },
       {
-        "source": "",
+        "source": "/",
         "destination": "https://pan.dev",
         "type": 301
       },
