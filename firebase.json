@@ -1253,7 +1253,7 @@
       },
       {
         "source": "/api/cloud/cwpp/22-06/waas",
-        "destination": "https://pan.dev/compute/api/22-06/wass",
+        "destination": "https://pan.dev/compute/api/22-06/waas",
         "type": 301
       },
       {
