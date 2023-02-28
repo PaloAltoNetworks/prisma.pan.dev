@@ -62,16 +62,6 @@
         "type": 301
       },
       {
-        "source": "/api/cloud/cwpp/22-01/curl-examples",
-        "destination": "https://pan.dev/compute/api/22-01/curl-examples",
-        "type": 301
-      },
-      {
-        "source": "/api/cloud/cwpp/22-01/how-to-eval-console",
-        "destination": "https://pan.dev/compute/api/22-01",
-        "type": 301
-      },
-      {
         "source": "/api/cloud/cspm",
         "destination": "https://pan.dev/prisma-cloud/api/cspm",
         "type": 301
@@ -973,12 +963,12 @@
       },
       {
         "source": "/docs/contributing",
-        "destination": "https://pan.dev/docs/contributing",
+        "destination": "https://pan.dev/contributing",
         "type": 301
       },
       {
         "source": "/docs/contributing/:docid",
-        "destination": "https://pan.dev/docs/contributing/:docid",
+        "destination": "https://pan.dev/contributing/:docid",
         "type": 301
       },
       {
@@ -1143,7 +1133,7 @@
       },
       {
         "source": "/api/cloud/cwpp/22-06/collections",
-        "destination": "https://pan.dev/compute/api/22-06/clients",
+        "destination": "https://pan.dev/compute/api/22-06/collections",
         "type": 301
       },
       {
@@ -1288,6 +1278,11 @@
       },
       {
         "source": "/api/cloud/cwpp/22-01/curl-examples",
+        "destination": "https://pan.dev/compute/api/22-01",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/how-to-eval-console",
         "destination": "https://pan.dev/compute/api/22-01",
         "type": 301
       },
