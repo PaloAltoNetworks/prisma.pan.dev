@@ -5,25 +5,27 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
-import Layout from '@theme/Layout';
+import React, { useEffect } from "react";
+import { useLocation } from "@docusaurus/router";
 
 function NotFound() {
+  const location = useLocation();
+  const newLocation = location
+    ? "https://pan.dev/" + location.pathname
+    : "https://pan.dev";
+
+  useEffect(() => {
+    window.location.href = newLocation;
+  }, []);
+
   return (
-    <Layout title="Page Not Found">
-      <div className="container margin-vert--xl">
-        <div className="row">
-          <div className="col col--6 col--offset-3">
-            <h1 className="hero__title">Page Not Found</h1>
-            <p>We could not find what you were looking for.</p>
-            <p>
-              Please contact the owner of the site that linked you to the
-              original URL and let them know their link is broken.
-            </p>
-          </div>
-        </div>
-      </div>
-    </Layout>
+    <span>
+      Redirecting to pan.dev... click{" "}
+      <a target="_self" href={newLocation}>
+        here
+      </a>{" "}
+      if the redirect fails or is taking too long.
+    </span>
   );
 }
 

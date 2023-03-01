@@ -15,9 +15,7 @@ function AnnouncementBar() {
   const { isActive, close } = useAnnouncementBar();
   const { announcementBar } = useThemeConfig();
 
-  const content2 = "All of our developer docs and tools are moving to ";
-  const content3 =
-    "You will be automatically redirected to the new URL when we move.";
+  const content2 = "All of our developer docs and tools have moved to ";
 
   if (!isActive) {
     return null;
@@ -37,9 +35,8 @@ function AnnouncementBar() {
       <div className={styles.announcementBarContent}>{content}</div>
       <div className={styles.announcementBarContent}>
         {content2}
-        <a href="https://pan.dev/prisma-cloud">pan.dev</a>.
+        <a href="https://pan.dev">pan.dev</a>.
       </div>
-      <div className={styles.announcementBarContentSub}>{content3}</div>
       {isCloseable ? (
         <button
           type="button"
