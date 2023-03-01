@@ -10,8 +10,9 @@ import { useLocation } from "@docusaurus/router";
 
 function NotFound() {
   const location = useLocation();
+  console.log(location);
   const newLocation = location
-    ? "https://pan.dev/" + location.pathname
+    ? "https://pan.dev" + location.pathname
     : "https://pan.dev";
 
   useEffect(() => {
