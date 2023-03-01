@@ -1,4 +1,10 @@
 {
+  "emulators": {
+    "hosting": {
+      "host": "localhost",
+      "port": 3000
+    }
+  },
   "hosting": {
     "headers": [
       {
@@ -13,10 +19,1278 @@
     ],
     "target": "prisma.pan.dev",
     "public": "build",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "redirects": [
+      {
+        "source": "/api/cloud/cwpp",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06",
+        "destination": "https://pan.dev/compute/api/22-06",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01",
+        "destination": "https://pan.dev/compute/api/22-01",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/stable-endpoints",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/stable-endpoints",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/curl-examples",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/how-to-eval-console",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/api-limits",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/stable-endpoints",
+        "destination": "https://pan.dev/compute/api/22-01/stable-endpoints",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/basic-request",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/api-urls",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/api-urls",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/api-headers",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/api-headers",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/rate-limits",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/rate-limits",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/api-time-range-model",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/api-time-range-model",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/api-integration-config",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/api-integration-config",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/api-errors",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/api-errors",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code",
+        "destination": "https://pan.dev/prisma-cloud/api/code",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/basic-request",
+        "destination": "https://pan.dev/prisma-cloud/api/code/basic-request",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/api-headers",
+        "destination": "https://pan.dev/prisma-cloud/api/code/api-headers",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/agentless",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/agentless",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/audits",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/authenticate-client",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/authenticate",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/authenticate",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/certs",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/certs",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/cloud",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/cloud",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/collections",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/collections",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/containers",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/containers",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/credentials",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/credentials",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/current",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/current",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/custom-compliance",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/custom-compliance",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/custom-rules",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/custom-rules",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/defenders",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/defenders",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/groups",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/groups",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/hosts",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/hosts",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/images",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/images",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/policies",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/policies",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/profiles",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/profiles",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/registry",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/registry",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/scans",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/scans",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/serverless",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/serverless",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/settings",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/settings",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/signup",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/stats",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/stats",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/statuses",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/statuses",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/tags",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/tags",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/users",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/users",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/util",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/util",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/version",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/version",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/vms",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/vms",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/waas",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/waas",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud",
+        "destination": "https://pan.dev/prisma-cloud/docs",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/cspm-gs",
+        "destination": "https://pan.dev/prisma-cloud/docs/cspm/cspm-gs",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/aws_ec2",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/aws_ec2",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/aws_ecr",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/aws_ecr",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/aws_elb",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/aws_elb",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/aws_cloudformation",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/aws_cloudformation",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/aws_cloudfront",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/aws_cloudfront",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/aws_cognito",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/aws_cognito",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/aws_ecs",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/aws_ecs",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/aws_guardduty",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/aws_guardduty",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/aws_lambda",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/aws_lambda",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/aws_rds",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/aws_rds",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/aws_s3",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/aws_s3",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/aws_vpc",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/aws_vpc",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/aws_event",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/aws_event",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/network_vpc_flows",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/network_vpc_flows",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/aws_iam",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/aws_iam",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/aws/aws_route53",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/aws/aws_route53",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/gcp/gcp_compute",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/gcp/gcp_compute",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/gcp/gcp_cloudstorage",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/gcp/gcp_cloudstorage",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/gcp/gcp_gke",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/gcp/gcp_gke",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/gcp/gcp_project",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/gcp/gcp_project",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/azure/azure_acr",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/azure/azure_acr",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/azure/azure_aks",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/azure/azure_aks",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/azure/azure_alb",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/azure/azure_alb",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/azure/azure_app_svc",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/azure/azure_app_svc",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/azure/azure_cosmos_db",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/azure/azure_cosmos_db",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/azure/azure_storage",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/azure/azure_storage",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/azure/azure_sql_db",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/azure/azure_sql_db",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/azure/azure_sql_server",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/azure/azure_sql_server",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/azure/azure_virtual_machine",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/azure/azure_virtual_machine",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/azure/azure_event",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/azure/azure_event",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/general/iam_gen",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/general/iam_gen",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/rql/general/network_vpc_flows",
+        "destination": "https://pan.dev/prisma-cloud/docs/rql/general/network_vpc_flows",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/tf/provider_doc",
+        "destination": "https://pan.dev/prisma-cloud/docs/tf/provider_doc",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/tf/tf_example1",
+        "destination": "https://pan.dev/prisma-cloud/docs/tf/tf_example1",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cspm/cspm_postman_collection",
+        "destination": "https://pan.dev/prisma-cloud/docs/cspm-postman-collection",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cwpp/cwpp-gs",
+        "destination": "https://pan.dev/prisma-cloud/docs",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cwpp/access-api-self-hosted",
+        "destination": "https://pan.dev/prisma-cloud/docs",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cwpp/access-api-saas",
+        "destination": "https://pan.dev/prisma-cloud/docs",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cwpp/policy_samples",
+        "destination": "https://pan.dev/prisma-cloud/docs",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cwpp/twistcli_gs",
+        "destination": "https://pan.dev/prisma-cloud/docs",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cwpp/custom_compliance_samples",
+        "destination": "https://pan.dev/prisma-cloud/docs",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cwpp/cwpp_postman_collection",
+        "destination": "https://pan.dev/prisma-cloud/docs/cspm-postman-collection",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cwpp/api-workflows/set-up-console",
+        "destination": "https://pan.dev/prisma-cloud/docs",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/cwpp/porting-guides/porting-guide-21-08",
+        "destination": "https://pan.dev/prisma-cloud/docs",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/tutorials/rest-api-basics",
+        "destination": "https://pan.dev/prisma-cloud/docs",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/agentless",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/agentless",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/audits",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/authenticate-client",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/authenticate",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/authenticate",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/certs",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/certs",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/cloud",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/cloud",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/collections",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/collections",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/containers",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/containers",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/credentials",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/credentials",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/current",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/current",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/custom-compliance",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/custom-compliance",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/custom-rules",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/custom-rules",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/defenders",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/defenders",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/groups",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/groups",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/hosts",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/hosts",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/images",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/images",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/policies",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/policies",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/profiles",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/profiles",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/registry",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/registry",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/scans",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/scans",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/serverless",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/serverless",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/settings",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/settings",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/signup",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/stats",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/stats",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/statuses",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/statuses",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/tags",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/tags",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/users",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/users",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/util",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/util",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/version",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/version",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/vms",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/vms",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/waas",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp/waas",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/bomreport",
+        "destination": "https://pan.dev/prisma-cloud/api/code/bom-report",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/checkov-version",
+        "destination": "https://pan.dev/prisma-cloud/api/code/checkov-version",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/code-fixes",
+        "destination": "https://pan.dev/prisma-cloud/api/code/code-fixes",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/development-pipeline",
+        "destination": "https://pan.dev/prisma-cloud/api/code/development-pipeline",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/errors",
+        "destination": "https://pan.dev/prisma-cloud/api/code/errors",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/packages",
+        "destination": "https://pan.dev/prisma-cloud/api/code/packages",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/packages-alerts",
+        "destination": "https://pan.dev/prisma-cloud/api/code/packages-alerts",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/policies",
+        "destination": "https://pan.dev/prisma-cloud/api/code/policies",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/remediations",
+        "destination": "https://pan.dev/prisma-cloud/api/code/remediations",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/repositories",
+        "destination": "https://pan.dev/prisma-cloud/api/code/repositories",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/repository",
+        "destination": "https://pan.dev/prisma-cloud/api/code/repository",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/rules",
+        "destination": "https://pan.dev/prisma-cloud/api/code/rules",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/scans",
+        "destination": "https://pan.dev/prisma-cloud/api/code/scans",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/supply-chain",
+        "destination": "https://pan.dev/prisma-cloud/api/code/supply-chain",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/suppressions",
+        "destination": "https://pan.dev/prisma-cloud/api/code/suppressions",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/tag-rules",
+        "destination": "https://pan.dev/prisma-cloud/api/code/tag-rules",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/access-keys",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/access-keys",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/account-groups",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/account-groups",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/adoption-advisor",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/adoption-advisor",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/alert-rules",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/alert-rules",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/alerts",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/alerts",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/anomalies",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/anomalies",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/archived-assets",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/archived-assets",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/asset-explorer",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/asset-explorer",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/asset-inventory",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/asset-inventory",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/audit-logs",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/audit-logs",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/cloud-accounts",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/cloud-accounts",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/compliance-posture",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/compliance-posture",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/compliance-standards",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/compliance-standards",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/ipallow-list",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/ip-allow-list",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/integrations",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/integrations",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/integrations-pull",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/integrations-pull",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/licensing",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/licensing",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/login",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/login",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/notification-templates",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/notification-templates",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/onboarding-awss3flow-logs",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/onboarding-aws-s-3-flow-logs",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/permission-groups",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/permission-groups",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/policy",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/policy",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/reports",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/reports",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/resource-explorer",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/resource-explorer",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/resource-lists",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/resource-lists",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/search",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/search",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/search-manager",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/search-manager",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/settings",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/settings",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/system",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/system",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/user-profile",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/user-profile",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/user-roles",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/user-roles",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/data-security-dashboard",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/data-security-dashboard",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/data-security-inventory",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/data-security-inventory",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/data-security-settings",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/data-security-settings",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/iam",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/iam",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/iamidp",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/iam-idp",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud",
+        "destination": "https://pan.dev/prisma-cloud/api",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/code/code-security",
+        "destination": "https://pan.dev/prisma-cloud/api/code",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/api-urls",
+        "destination": "https://pan.dev/prisma-cloud/api/cspm/api-urls",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cspm/prisma-cloud-see-also",
+        "destination": "https://pan.dev/prisma-cloud/api",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp",
+        "destination": "https://pan.dev/prisma-cloud/api/cwpp",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01",
+        "destination": "https://pan.dev/compute/api/22-01",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06",
+        "destination": "https://pan.dev/compute/api/22-06",
+        "type": 301
+      },
+      {
+        "source": "/docs/cloud/prisma-cloud-see-also",
+        "destination": "https://pan.dev/prisma-cloud/docs",
+        "type": 301
+      },
+      {
+        "source": "/docs/contributing",
+        "destination": "https://pan.dev/contributing",
+        "type": 301
+      },
+      {
+        "source": "/docs/contributing/:docid",
+        "destination": "https://pan.dev/contributing/:docid",
+        "type": 301
+      },
+      {
+        "source": "/docs/whatisprisma",
+        "destination": "https://pan.dev",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/audits",
+        "destination": "https://pan.dev/compute/api/22-01/audits",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/authenticate",
+        "destination": "https://pan.dev/compute/api/22-01/authenticate",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/authenticate-client",
+        "destination": "https://pan.dev/compute/api/22-01/authenticate-client",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/cloud",
+        "destination": "https://pan.dev/compute/api/22-01/cloud",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/collections",
+        "destination": "https://pan.dev/compute/api/22-01/collections",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/containers",
+        "destination": "https://pan.dev/compute/api/22-01/containers",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/credentials",
+        "destination": "https://pan.dev/compute/api/22-01/credentials",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/current",
+        "destination": "https://pan.dev/compute/api/22-01/current",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/custom-compliance",
+        "destination": "https://pan.dev/compute/api/22-01/custom-compliance",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/custom-rules",
+        "destination": "https://pan.dev/compute/api/22-01/custom-rules",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/defenders",
+        "destination": "https://pan.dev/compute/api/22-01/defenders",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/groups",
+        "destination": "https://pan.dev/compute/api/22-01/groups",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/hosts",
+        "destination": "https://pan.dev/compute/api/22-01/hosts",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/images",
+        "destination": "https://pan.dev/compute/api/22-01/images",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/policies",
+        "destination": "https://pan.dev/compute/api/22-01/policies",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/profiles",
+        "destination": "https://pan.dev/compute/api/22-01/profiles",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/registry",
+        "destination": "https://pan.dev/compute/api/22-01/registry",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/scans",
+        "destination": "https://pan.dev/compute/api/22-01/scans",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/serverless",
+        "destination": "https://pan.dev/compute/api/22-01/serverless",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/settings",
+        "destination": "https://pan.dev/compute/api/22-01/settings",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/signup",
+        "destination": "https://pan.dev/compute/api/22-01/signup",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/stats",
+        "destination": "https://pan.dev/compute/api/22-01/stats",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/statuses",
+        "destination": "https://pan.dev/compute/api/22-01/statuses",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/tags",
+        "destination": "https://pan.dev/compute/api/22-01/tags",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/users",
+        "destination": "https://pan.dev/compute/api/22-01/users",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/util",
+        "destination": "https://pan.dev/compute/api/22-01/util",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/version",
+        "destination": "https://pan.dev/compute/api/22-01/version",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/audits",
+        "destination": "https://pan.dev/compute/api/22-06/audits",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/authenticate",
+        "destination": "https://pan.dev/compute/api/22-06/authenticate",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/authenticate-client",
+        "destination": "https://pan.dev/compute/api/22-06/authenticate-client",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/cloud",
+        "destination": "https://pan.dev/compute/api/22-06/cloud",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/collections",
+        "destination": "https://pan.dev/compute/api/22-06/collections",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/containers",
+        "destination": "https://pan.dev/compute/api/22-06/containers",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/credentials",
+        "destination": "https://pan.dev/compute/api/22-06/credentials",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/current",
+        "destination": "https://pan.dev/compute/api/22-06/current",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/custom-compliance",
+        "destination": "https://pan.dev/compute/api/22-06/custom-compliance",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/custom-rules",
+        "destination": "https://pan.dev/compute/api/22-06/custom-rules",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/defenders",
+        "destination": "https://pan.dev/compute/api/22-06/defenders",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/groups",
+        "destination": "https://pan.dev/compute/api/22-06/groups",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/hosts",
+        "destination": "https://pan.dev/compute/api/22-06/hosts",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/images",
+        "destination": "https://pan.dev/compute/api/22-06/images",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/policies",
+        "destination": "https://pan.dev/compute/api/22-06/policies",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/profiles",
+        "destination": "https://pan.dev/compute/api/22-06/profiles",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/registry",
+        "destination": "https://pan.dev/compute/api/22-06/registry",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/scans",
+        "destination": "https://pan.dev/compute/api/22-06/scans",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/serverless",
+        "destination": "https://pan.dev/compute/api/22-06/serverless",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/settings",
+        "destination": "https://pan.dev/compute/api/22-06/settings",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/signup",
+        "destination": "https://pan.dev/compute/api/22-06/signup",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/stable-endpoints",
+        "destination": "https://pan.dev/compute/api/22-06/stable-endpoints",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/stats",
+        "destination": "https://pan.dev/compute/api/22-06/stats",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/statuses",
+        "destination": "https://pan.dev/compute/api/22-06/statuses",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/tags",
+        "destination": "https://pan.dev/compute/api/22-06/tags",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/users",
+        "destination": "https://pan.dev/compute/api/22-06/users",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/util",
+        "destination": "https://pan.dev/compute/api/22-06/util",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/version",
+        "destination": "https://pan.dev/compute/api/22-06/version",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/waas",
+        "destination": "https://pan.dev/compute/api/22-06/waas",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/curl-examples",
+        "destination": "https://pan.dev/compute/api/22-06",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/api-limits",
+        "destination": "https://pan.dev/compute/api/22-06",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-06/how-to-eval-console",
+        "destination": "https://pan.dev/compute/api/22-06",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/api-limits",
+        "destination": "https://pan.dev/compute/api/22-01",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/curl-examples",
+        "destination": "https://pan.dev/compute/api/22-01",
+        "type": 301
+      },
+      {
+        "source": "/api/cloud/cwpp/22-01/how-to-eval-console",
+        "destination": "https://pan.dev/compute/api/22-01",
+        "type": 301
+      },
+      {
+        "source": "/",
+        "destination": "https://pan.dev",
+        "type": 301
+      }
     ]
   }
 }
