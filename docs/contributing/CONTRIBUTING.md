@@ -6,7 +6,7 @@ hide_title: true
 hide_table_of_contents: true
 slug: /contributing
 keywords:
-  - contributing guidelines
+  - contributing
 ---
 import CardLayout from "@theme/CardLayout";
 
