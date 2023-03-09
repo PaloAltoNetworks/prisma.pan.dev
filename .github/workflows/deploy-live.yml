@@ -42,22 +42,6 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
-        - name: Checkout repository
-          uses: actions/checkout@v2
-
-        - uses: actions/download-artifact@v2
-          with:
-            name: build-dir
-            path: build/
-
-        - name: Deploy to Firebase
-          id: deploy_live
-          uses: FirebaseExtended/action-hosting-deploy@276388dd6c2cde23455b30293105cc866c22282d # v0.6-alpha
-          with:
-            repoToken: '${{ secrets.GITHUB_TOKEN }}'
-            firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PAN_DEV_F1B58 }}'
-            projectId: pan-dev-f1b58
-            channelId: live
-            target: prisma.pan.dev
-          env:
-            FIREBASE_CLI_PREVIEWS: hostingchannels
+        - name: Hi
+          run: echo "Hello World!"
+        
